@@ -1,0 +1,6 @@
+# Legacy Redirects (Legacy path cleanup)
+/tools/parent-support/* /apoyo/:splat 301
+/tools/parent-support /apoyo 301
+/tools/SIQ_SignalExtractor_Tool /signals 301
+/tools/SIQ_SignalExtractor_Tool.html /signals 301
+
