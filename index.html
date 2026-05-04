@@ -11,7 +11,7 @@
     <meta name="description" content="Guías rápidas para momentos difíciles de crianza. Elige lo que está pasando y encuentra un siguiente paso sin culpa.">
     <meta property="og:title" content="Apoyo en tiempo real · Criar Sin Culpas">
     <meta property="og:description" content="Guías rápidas para momentos difíciles de crianza. Elige lo que está pasando y encuentra un siguiente paso sin culpa.">
-    <meta property="og:url" content="https://nari.luis-gilberto.com/apoyo">
+    <meta property="og:url" content="https://criarsinculpas.com">
     <meta property="og:site_name" content="Criar Sin Culpas">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
@@ -19,6 +19,8 @@
     
     
 
+    
+    
     
     
     
@@ -914,9 +916,9 @@
       }
     /* ── CARD EXIT TRANSITION ───────────────────────────────────── */ 
  .protocol-grid { perspective: 1200px; } 
- 
+
  .card { transform-origin: center center; will-change: transform, opacity, filter; } 
- 
+
  /* State when a sibling card is being navigated away from */ 
  .card.is-receding { 
    animation: cardRecede 480ms cubic-bezier(.4,0,.2,1) forwards; 
@@ -929,7 +931,7 @@
    z-index: 10; 
    position: relative; 
  } 
- 
+
  @keyframes cardExpand { 
    0%   { transform: scale(1);    opacity: 1; filter: brightness(1); } 
    60%  { transform: scale(1.06); opacity: 1; filter: brightness(1.15); } 
@@ -939,7 +941,7 @@
    0%   { transform: scale(1)    translateZ(0); opacity: 1; filter: blur(0); } 
    100% { transform: scale(0.88) translateZ(-60px); opacity: 0; filter: blur(6px); } 
  } 
- 
+
  /* Page-level fade-out before navigation */ 
  .page-exiting { 
    animation: pageExitFade 480ms cubic-bezier(.4,0,1,1) forwards; 
@@ -948,7 +950,7 @@
    0%   { opacity: 1; } 
    100% { opacity: 0; } 
  } 
- 
+
  </style>
   </head>
   <body style="">
@@ -964,7 +966,7 @@
           
           <div class="top-row">
             <nav class="top-nav">
-              <a href="https://criarsinculpas.com" class="nav-link" data-i18n="nav_brand" data-es="Criar Sin Culpas" data-en="Criar Sin Culpas">Criar Sin Culpas</a>
+              <a href="/apoyo" class="nav-link" data-i18n="nav_brand" data-es="Criar Sin Culpas" data-en="Criar Sin Culpas">Criar Sin Culpas</a>
             </nav>
             <div class="lang-switcher">
               <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
@@ -1155,11 +1157,11 @@
           try { localStorage.setItem(key, val); } catch (e) {}
         };
         function getCanonicalUrl(url) {
-          const vanityUrl = 'https://nari.luis-gilberto.com/apoyo';
+          const vanityUrl = 'https://criarsinculpas.com';
           if (window.location.pathname.includes('/parent-support/index.html') || window.location.pathname.endsWith('/parent-support/')) {
             return vanityUrl;
           }
-          return url.replace(/https:\/\/.*\.pages\.dev/, 'https://nari.luis-gilberto.com');
+          return url.replace(/https:\/\/.*\.pages\.dev/, 'https://criarsinculpas.com');
         }
 
         // State
@@ -1249,13 +1251,13 @@
         }
       /* ── Card exit transition ─────────────────────────────────── */ 
  const cards = document.querySelectorAll('.protocol-grid .card'); 
- 
+
  cards.forEach(card => { 
    card.addEventListener('click', function(e) { 
      e.preventDefault(); 
      const href = this.getAttribute('href'); 
      if (!href) return; 
- 
+
      // Accent color for the destination page — read from card class 
      const accentMap = { 
        screen:     'rgba(141,121,255,0.18)', 
@@ -1267,7 +1269,7 @@
      if (this.classList.contains('escalation')) accentKey = 'escalation'; 
      else if (this.classList.contains('bedtime'))    accentKey = 'bedtime'; 
      else if (this.classList.contains('sibling'))    accentKey = 'sibling'; 
- 
+
      // Flash accent overlay on body before leaving 
      const overlay = document.createElement('div'); 
      overlay.style.cssText = ` 
@@ -1279,16 +1281,16 @@
      requestAnimationFrame(() => { 
        overlay.style.opacity = '1'; 
      }); 
- 
+
      // Animate clicked card up, siblings away 
      this.classList.add('is-expanding'); 
      cards.forEach(c => { if (c !== this) c.classList.add('is-receding'); }); 
- 
+
      // Navigate after animation completes 
      setTimeout(() => { window.location.href = href; }, 460); 
    }); 
  }); 
- 
+
  })();
     </script>
 </body></html>
