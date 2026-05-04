@@ -7,8 +7,8 @@
   <title data-i18n="doc_title" data-es="Hermanos: cómo intervenir sin tomar partido · Criar Sin Culpas" data-en="Siblings: how to step in without taking sides · Criar Sin Culpas">Hermanos: cómo intervenir sin tomar partido · Criar Sin Culpas</title>
   <meta name="description" content="Guía rápida para mediar en conflictos entre hermanos sin tomar partido. Criar Sin Culpas.">
   <meta property="og:title" content="Hermanos: cómo intervenir sin tomar partido · Criar Sin Culpas">
-  <meta property="og:url" content="https://nari.luis-gilberto.com/apoyo/sibling-conflict">
-  <link rel="canonical" href="https://nari.luis-gilberto.com/apoyo/sibling-conflict">
+  <meta property="og:url" content="https://criarsinculpas.com/apoyo/sibling-conflict">
+  <link rel="canonical" href="https://criarsinculpas.com/apoyo/sibling-conflict">
   <meta property="og:site_name" content="Criar Sin Culpas">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
@@ -144,11 +144,8 @@
   <div class="page">
     <nav class="p-nav"> 
        <div class="p-links"> 
-         <!-- Internal nav: only shown when arriving from the Hub --> 
-         <a href="/" class="p-link nav-internal" id="nav-workspace" data-i18n="nav_workspace" data-es="Volver al workspace" data-en="Back to workspace" style="display:none">Volver al workspace</a> 
-         <!-- External nav: shown to shared-link visitors --> 
-         <a href="https://nari.luis-gilberto.com" class="p-link nav-external" id="nav-brand" data-i18n="nav_brand" data-es="Criar Sin Culpas" data-en="Criar Sin Culpas" style="display:none">Criar Sin Culpas</a> 
-         <a href="/apoyo" class="p-link" data-i18n="nav_hub" data-es="Ver todas las guías" data-en="See all guides">Ver todas las guías</a> 
+         <a href="/apoyo" class="p-link" data-i18n="nav_brand" data-es="Criar Sin Culpas" data-en="Criar Sin Culpas">Criar Sin Culpas</a> 
+         <a href="/" class="p-link" data-i18n="nav_hub" data-es="Ver todas las guías" data-en="See all guides">Ver todas las guías</a> 
        </div> 
        <div class="lang-sw" role="group" aria-label="Idioma / Language"> 
          <button type="button" class="lang-btn" data-lang="es" aria-pressed="true">ES</button> 
@@ -251,25 +248,12 @@
   <script>  (function(){
     const safeGet=(k,fb)=>{try{return localStorage.getItem(k)||fb}catch{return fb}};
     const safeSet=(k,v)=>{try{localStorage.setItem(k,v)}catch{}};
-    const canonUrl=()=>window.location.href.replace(/https:\/\/.*\.pages\.dev/,'https://nari.luis-gilberto.com').split('?')[0].split('#')[0];
+    const canonUrl=()=>window.location.href.replace(/https:\/\/.*\.pages\.dev/,'https://criarsinculpas.com').split('?')[0].split('#')[0];
     let lang=safeGet('lg_parent_lang','es');
 
     /* Entry overlay */ 
     const overlay=document.getElementById('entry-overlay'); 
     if(overlay)requestAnimationFrame(()=>requestAnimationFrame(()=>overlay.classList.add('gone'))); 
-    /* Nav context detection — hide workspace link from external visitors */ 
-    (function(){ 
-      const internalDomains = ['nari.luis-gilberto.com', 'localhost', '127.0.0.1']; 
-      const ref = document.referrer; 
-      const isInternal = ref && internalDomains.some(d => ref.includes(d)); 
-      const navWorkspace = document.getElementById('nav-workspace'); 
-      const navBrand = document.getElementById('nav-brand'); 
-      if(isInternal){ 
-        if(navWorkspace) navWorkspace.style.display = 'inline-flex'; 
-      } else { 
-        if(navBrand) navBrand.style.display = 'inline-flex'; 
-      } 
-    })(); 
 
     function applyLang(l){
       lang=l; document.documentElement.lang=l; safeSet('lg_parent_lang',l);
