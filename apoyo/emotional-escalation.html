@@ -383,8 +383,12 @@
     document.querySelectorAll('.phrase-card').forEach(card=>{ 
       card.querySelector('.card-collapsed').addEventListener('click',()=>{ 
         document.querySelectorAll('.phrase-card.expanded').forEach(c=>{if(c!==card)c.classList.remove('expanded')}); 
-        card.classList.toggle('expanded'); 
-        if(card.classList.contains('expanded')){setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'nearest'}),50)} 
+        card.classList.toggle('expanded');
+        if(card.classList.contains('expanded')){
+          setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
+          const mode=card.querySelector('.pc-mode')?.textContent?.trim();
+          if(typeof plausible!=='undefined')plausible('card_opened',{props:{mode:mode||'unknown',page:document.title}});
+        } 
       }); 
       card.querySelector('.expanded-close').addEventListener('click',e=>{e.stopPropagation();card.classList.remove('expanded')}); 
       card.querySelector('.expanded-copy').addEventListener('click',e=>{ 
@@ -420,6 +424,9 @@
 
     applyLang(lang);
   })();</script>
+  <!-- Privacy-friendly analytics by Plausible --> 
+  <script async src="https://plausible.io/js/pa-aBQa31dOYQ7rF5Dn1DVy9.js"></script> 
+  <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script> 
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79"}' crossorigin="anonymous"></script>
 </body>
 </html>

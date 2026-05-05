@@ -414,11 +414,15 @@
       const o=this.textContent;this.textContent=lang==='es'?'¡Copiado!':'Copied!';
       setTimeout(()=>this.textContent=o,2000);
       showToast(lang==='es'?'Link copiado al portapapeles.':'Link copied to clipboard.');
+      if(typeof plausible!=='undefined')plausible('share_copy_link',{props:{page:document.title}});
     };
     if(btnW)btnW.onclick=()=>{const d=shareData();window.open('https://wa.me/?text='+encodeURIComponent(d.text+d.url),'_blank')};
 
     applyLang(lang);
   })();</script>
+  <!-- Privacy-friendly analytics by Plausible --> 
+  <script async src="https://plausible.io/js/pa-aBQa31dOYQ7rF5Dn1DVy9.js"></script> 
+  <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script> 
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79"}' crossorigin="anonymous"></script>
 </body>
 </html>
