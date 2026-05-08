@@ -937,6 +937,25 @@
    .watermark { width: 280px; height: 280px; bottom: -40px; right: -30px; opacity: .15; } 
  } 
 
+    /* ── Hub disclaimer ─────────────────────────────────────── */ 
+     .hub-disclaimer { 
+       margin: 0 20px 28px; 
+       padding: 18px 22px; 
+       border-radius: 16px; 
+       background: rgba(255,255,255,.035); 
+       backdrop-filter: blur(16px); 
+       -webkit-backdrop-filter: blur(16px); 
+       border: 1px solid rgba(255,255,255,.08); 
+       box-shadow: inset 0 1px 0 rgba(255,255,255,.06); 
+     } 
+     .hub-disclaimer p { 
+       font-size: .78rem; 
+       color: rgba(255,255,255,.38); 
+       line-height: 1.7; 
+       font-weight: 400; 
+     } 
+     .hub-disclaimer p + p { margin-top: 8px; } 
+
  </style>
   </head>
   <body style="">
@@ -987,6 +1006,19 @@
           </div>
 
           
+      <div class="hub-disclaimer" role="note" aria-label="Nota de apoyo"> 
+         <p class="disclaimer-text" 
+            data-phrase-es="Estas guías están pensadas para acompañarte en momentos difíciles de crianza, no para reemplazar apoyo profesional." 
+            data-phrase-en="These guides are designed to support you during difficult parenting moments, not replace professional support."> 
+           Estas guías están pensadas para acompañarte en momentos difíciles de crianza, no para reemplazar apoyo profesional. 
+         </p> 
+         <p class="disclaimer-text" 
+            data-phrase-es="Si una situación se siente físicamente peligrosa, fuera de control o emocionalmente abrumadora de forma constante, buscar apoyo especializado también es una forma de cuidado." 
+            data-phrase-en="If a situation feels physically unsafe, consistently overwhelming, or out of control, seeking specialized support is also a form of care."> 
+           Si una situación se siente físicamente peligrosa, fuera de control o emocionalmente abrumadora de forma constante, buscar apoyo especializado también es una forma de cuidado. 
+         </p> 
+       </div> 
+
           <section class="protocols-panel">
             <div class="protocols-header">
               <div class="protocols-kicker" data-i18n="proto_kicker" data-es="Elige según el momento" data-en="Choose based on the moment">
@@ -1164,6 +1196,12 @@
             const txt = el.getAttribute(`data-${lang}`);
             if (txt) el.textContent = txt;
           });
+
+          document.querySelectorAll('[data-phrase-es]').forEach(el=>{ 
+            const t=el.getAttribute('data-phrase-'+lang); 
+            if(!t)return; 
+            el.textContent=t; 
+          }); 
 
           const btns = document.querySelectorAll('.lang-btn');
           btns.forEach(btn => {
