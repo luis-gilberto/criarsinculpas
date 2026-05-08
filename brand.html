@@ -73,21 +73,6 @@
     .bmn-center { display: flex; align-items: center; justify-content: center; }
     .bmn-right  { display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
 
-    /* Back pill */
-    .bmn-back {
-      display: inline-flex; align-items: center; gap: 6px;
-      text-decoration: none; font-size: 10px; font-weight: 600;
-      letter-spacing: 0.10em; text-transform: uppercase;
-      color: rgba(62,42,107,0.6);
-      background: rgba(62,42,107,0.06); border: 1px solid rgba(62,42,107,0.12);
-      padding: 5px 10px 5px 8px; border-radius: 999px; transition: all 0.2s ease;
-      width: max-content; flex-shrink: 0;
-      font-family: var(--font-body);
-    }
-    .bmn-back:hover { background: var(--deep-purple); color: #fff; border-color: var(--deep-purple); }
-    .bmn-back svg { opacity: 0.6; }
-    .bmn-back:hover svg { opacity: 1; }
-
     /* Logo wordmark */
     .bmn-wordmark {
       font-family: var(--font-wordmark); font-size: 1.05rem;
@@ -444,47 +429,6 @@
     }
     .download-all-btn:hover { background: var(--coral); transform: translateY(-2px); }
 
-    /* ─── WORKSPACE CTA ──────────────────────────────────── */
-    .workspace-cta-section {
-      padding: 100px 0;
-      background: linear-gradient(135deg, var(--deep-purple) 0%, #2a1c4a 100%);
-      position: relative; overflow: hidden;
-    }
-    .workspace-cta-section::before {
-      content: ''; position: absolute; top: -60px; right: -60px;
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(249,111,110,0.18) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .workspace-cta-section::after {
-      content: ''; position: absolute; bottom: -60px; left: -40px;
-      width: 350px; height: 350px;
-      background: radial-gradient(circle, rgba(75,173,168,0.15) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .workspace-cta-inner { position: relative; z-index: 1; text-align: center; }
-    .workspace-cta-inner .section-kicker { color: rgba(255,255,255,0.55); }
-    .workspace-cta-inner h2 { color: #fff; font-size: clamp(2rem,4vw,3rem); margin-bottom: 16px; }
-    .workspace-cta-inner p { color: rgba(255,255,255,0.7); max-width: 520px; margin: 0 auto 36px; }
-    .cta-pill-group { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-    .cta-pill-primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 14px 28px; border-radius: 999px;
-      background: var(--coral); color: #fff; text-decoration: none;
-      font-family: var(--font-body); font-size: 0.9rem; font-weight: 600;
-      box-shadow: 0 8px 24px rgba(249,111,110,0.35); transition: var(--transition);
-    }
-    .cta-pill-primary:hover { background: #e55e5d; transform: translateY(-2px); }
-    .cta-pill-secondary {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 14px 28px; border-radius: 999px;
-      background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.9);
-      border: 1px solid rgba(255,255,255,0.2); text-decoration: none;
-      font-family: var(--font-body); font-size: 0.9rem; font-weight: 500;
-      transition: var(--transition);
-    }
-    .cta-pill-secondary:hover { background: rgba(255,255,255,0.18); }
-
     /* ─── FOOTER ─────────────────────────────────────────── */
     footer {
       background: var(--ink); color: rgba(255,255,255,0.6);
@@ -820,7 +764,7 @@
 
     /* ─── PRINT ───────────────────────────────────────────── */
     @media print {
-      .brand-nav, .workspace-cta-section, #lightbox, #toast, .shr-backdrop, .shr-copied-flash,
+      .brand-nav, #lightbox, #toast, .shr-backdrop, .shr-copied-flash,
       .actions, .brand-share-btn, .brand-back-pill { display: none !important; }
       section { padding: 40px 0; page-break-inside: avoid; }
       .img-showcase, .download-category { box-shadow: none; border: 1px solid #ccc; }
@@ -834,12 +778,8 @@
   <nav class="brand-mega-nav" id="brandMegaNav">
     <div class="bmn-inner">
 
-      <!-- Left: back pill + wordmark -->
+      <!-- Left: wordmark -->
       <div class="bmn-left">
-        <a href="index.html" class="bmn-back" title="Back to Workspace">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-          Workspace
-        </a>
         <span class="bmn-wordmark">Criar Sin <span>Culpas</span></span>
       </div>
 
@@ -847,15 +787,9 @@
       <div class="bmn-center">
         <div class="bmn-triggers" id="bmnTriggers">
 
-          <!-- Trigger 1: Brand Book -->
+          <!-- Trigger: Brand Book -->
           <button class="bmn-trigger" data-bmn="book">
             Brand Book
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 4l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-
-          <!-- Trigger 2: CSC Project -->
-          <button class="bmn-trigger" data-bmn="project">
-            CSC Project
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 4l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
 
@@ -910,37 +844,6 @@
                 </div>
               </div>
 
-              <!-- Panel: CSC Project -->
-              <div id="bmn-view-project" class="bmn-view" style="display:none;">
-                <div class="bmn-panel-header">
-                  <span class="bmn-panel-label" style="color:var(--coral);">Proyecto CSC 2.0</span>
-                  <p class="bmn-panel-tagline">Workspace, method &amp; brand identity hub</p>
-                </div>
-                <div class="bmn-grid-2">
-                  <a href="index.html" class="bmn-link">
-                    <div class="bmn-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
-                    <div class="bmn-text"><b>Private Workspace</b><span>Artifacts, speaking &amp; growth</span></div>
-                  </a>
-                  <a href="method.html" class="bmn-link">
-                    <div class="bmn-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h20M2 9h20M2 15h12M2 21h8"/></svg></div>
-                    <div class="bmn-text"><b>The Nari Method</b><span>Three-chapter parenting system</span></div>
-                  </a>
-                  <a href="index.html" class="bmn-link" onclick="localStorage.setItem('csc-goto','speaking')">
-                    <div class="bmn-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0014 0M12 19v3M8 22h8"/></svg></div>
-                    <div class="bmn-text"><b>Speaking</b><span>Press kit &amp; speaker dossier</span></div>
-                  </a>
-                  <a href="index.html" class="bmn-link" onclick="localStorage.setItem('csc-goto','vault')">
-                    <div class="bmn-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-                    <div class="bmn-text"><b>Brand Vault</b><span>Viz ID, tokens &amp; assets</span></div>
-                  </a>
-                </div>
-                <div class="bmn-divider"></div>
-                <div class="bmn-orientation">
-                  <a href="index.html" class="bmn-orient-link">Project overview →</a>
-                  <a href="index.html" class="bmn-orient-link" onclick="localStorage.setItem('csc-goto','artifacts')">Artifacts &amp; deliverables →</a>
-                </div>
-              </div>
-
             </div>
           </div>
         </div>
@@ -968,7 +871,7 @@
         <div class="bmn-drawer-eyebrow">Criar Sin Culpas</div>
         <div class="bmn-drawer-title">Visual Brand Book</div>
       </div>
-      <button class="bmn-drawer-close" onclick="bmnCloseDrawer()">&#x2715;</button>
+      <button class="bmn-drawer-close" onclick="bmnCloseDrawer()">✕</button>
     </div>
 
     <div class="bmn-drawer-section">
@@ -983,12 +886,6 @@
       <a href="#downloads"    class="bmn-drawer-link" onclick="bmnCloseDrawer()"><span>Downloads</span><span class="bmn-drawer-arrow">›</span></a>
     </div>
 
-    <div class="bmn-drawer-section">
-      <div class="bmn-drawer-label coral">CSC Project</div>
-      <a href="index.html"  class="bmn-drawer-link"><span>Private Workspace</span><span class="bmn-drawer-arrow" style="color:var(--coral)">↗</span></a>
-      <a href="method.html" class="bmn-drawer-link"><span>The Nari Method</span><span class="bmn-drawer-arrow" style="color:var(--coral)">↗</span></a>
-    </div>
-
     <div class="bmn-drawer-section" style="border-bottom:none;">
       <button class="bmn-share" style="width:100%;justify-content:center;" onclick="bmnCloseDrawer();openShareModal();">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -996,7 +893,8 @@
       </button>
     </div>
 
-    <div class="bmn-drawer-foot">Built inside the LG Ecosystem</div>
+    <div class="bmn-drawer-foot">Criar Sin Culpas · Brand System</div>
+
   </div>
 
   <!-- ═══ IDENTITY ══════════════════════════════════════════ -->
@@ -1416,21 +1314,6 @@
     </div>
   </section>
 
-  <!-- ═══ WORKSPACE CTA ════════════════════════════════════ -->
-  <section class="workspace-cta-section">
-    <div class="container">
-      <div class="workspace-cta-inner fade-up">
-        <div class="section-kicker">Private Workspace</div>
-        <h2>Want to go deeper?</h2>
-        <p>The full Criar Sin Culpas strategy — speaker dossier, monetization model, growth signals, and brand vault — lives inside the private workspace.</p>
-        <div class="cta-pill-group">
-          <a href="index.html" class="cta-pill-primary">Enter Workspace →</a>
-          <a href="method.html" class="cta-pill-secondary">Read The Nari Method</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ═══ FOOTER ════════════════════════════════════════════ -->
   <footer>
     <div class="container footer-grid">
@@ -1482,14 +1365,14 @@
 
         <!-- LINK TAB -->
         <div class="shr-tab-panel active" id="shr-panel-link">
-          <p style="font-size:.82rem;color:var(--text-muted);margin:0 0 14px;">This link goes directly to the public brand book. Your private workspace is not accessible from it.</p>
+          <p style="font-size:.82rem;color:var(--text-muted);margin:0 0 14px;">This link goes directly to the public brand book.</p>
           <div class="shr-link-row">
             <input class="shr-url-input" id="shr-link-url" type="text" readonly>
             <button class="shr-copy-btn" id="shr-copy-link-btn" onclick="shrCopyLink(this)">Copy</button>
           </div>
           <div class="shr-privacy-note">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            Only the brand book is accessible via this link. The private workspace stays protected.
+            Only the brand book is accessible via this link.
           </div>
         </div>
 
@@ -1870,7 +1753,7 @@
 
       // Social captions
       const igCaption = `The Criar Sin Culpas brand system is live.\n\nWarm, editorial, and built around one principle: connection before control. From deep purple to coral — every color, typeface, and layout choice reflects how Nari Fateha approaches parenting: with clarity, warmth, and intention.\n\n👉 ${pubUrl}\n\n#CriarSinCulpas #BrandIdentity #ParentingBrand`;
-      const liCaption = `Brand identity isn't decoration — it's communication.\n\nThe Criar Sin Culpas visual brand book is now publicly available. It documents the full design system behind the brand: color philosophy, typography pairing, logo architecture, social templates, and real-world applications.\n\nBuilt by the LG Ecosystem for Nari Fateha and Criar Sin Culpas.\n\n${pubUrl}`;
+      const liCaption = `Brand identity isn't decoration — it's communication.\n\nThe Criar Sin Culpas visual brand book is now publicly available. It documents the full design system behind the brand: color philosophy, typography pairing, logo architecture, social templates, and real-world applications.\n\nCriar Sin Culpas · Brand System\n\n${pubUrl}`;
       const xCaption  = `The @criarsinculpas brand book is live. Color, type, logo, social, DNA — all of it. Built around connection before control. → ${pubUrl}`;
       const waCaption = `Hi! Sharing the Criar Sin Culpas visual brand book — it covers the full design system: colors, typography, logo, social templates, and more. Worth a look if you work with the brand. ${pubUrl}`;
 
