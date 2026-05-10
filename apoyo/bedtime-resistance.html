@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <meta name="theme-color" content="#0c1a18">
   <title data-i18n="doc_title" data-es="Hora de irse a dormir. Cómo mantenerte firme sin pelear. · Criar Sin Culpas" data-en="Bedtime. How to stay firm without a fight. · Criar Sin Culpas">Hora de irse a dormir. Cómo mantenerte firme sin pelear. · Criar Sin Culpas</title>
   <meta name="description" content="Guía rápida para gestionar la resistencia a la hora de dormir. Criar Sin Culpas.">
@@ -11,195 +11,189 @@
   <link rel="canonical" href="https://criarsinculpas.com/apoyo/bedtime-resistance">
   <meta property="og:site_name" content="Criar Sin Culpas">
   <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" type="image/png" href="/assets/favicon/CSC_favicon.png">
+
+  <!-- SnglIQ Telemetry Engine (Plausible) -->
+  <script defer data-domain="criarsinculpas.com" src="https://plausible.io/js/script.js"></script>
+  <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q ||[]).push(arguments) }</script>
+
   <style>
     :root {
-      --accent: #61d1c4;
-      --accent-glow: rgba(97,209,196,.18);
-      --accent-border: rgba(97,209,196,.3);
-      --card-glow: rgba(97,209,196,.48);
-      --entry-color: rgba(97,209,196,.3);
+      --bg-1: #0c1a18; --bg-2: #081210; --bg-3: #0a1614;
+      --text: #f7f1ec; --muted: rgba(255,255,255,.62);
+      --accent: #61d1c4; --accent-glow: rgba(97,209,196,.18);
+      --card-glow: rgba(97,209,196,.48); --accent-border: rgba(97,209,196,.3);
+      --ok: #cbc1ff; --success: #35d06e; --success-bg: #eafff1;
+      --shadow: 0 10px 34px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.08);
+      --radius-xl: 24px; --radius-lg: 20px; --radius-md: 18px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     html, body { min-height: 100%; }
-    a, button { font: inherit; text-decoration: none; border: none; background: none; color: inherit; cursor: pointer; }
     body {
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      color: #f7f1ec;
-      background: #0e0b12;
-      min-height: 100dvh;
-      -webkit-font-smoothing: antialiased;
-      line-height: 1.5;
-      overflow-x: hidden;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      color: var(--text); background: var(--bg-2);
+      line-height: 1.5; overflow-x: hidden; padding-bottom: 120px;
     }
-    .orbs {
-      position: fixed; inset: 0;
-      pointer-events: none; z-index: 0;
+    a, button { font: inherit; text-decoration: none; border: none; background: none; color: inherit; cursor: pointer; }
+    
+    /* BACKGROUNDS */
+    .orbs, .grain { position: fixed; inset: 0; pointer-events: none; }
+    .orbs { z-index: 0; }
+    .grain { z-index: 1; opacity: .025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 180px 180px; }
+    
+    .watermark { 
+      position: fixed; bottom: -60px; right: -40px; width: 420px; height: 420px; 
+      pointer-events: none; z-index: 1; opacity: .22; 
+      filter: grayscale(100%) brightness(1.1); mix-blend-mode: normal; 
+    } 
+    .watermark img { width: 100%; height: 100%; object-fit: contain; object-position: bottom right; } 
+    @media(max-width:600px) { .watermark { width: 280px; height: 280px; bottom: -40px; right: -30px; opacity: .15; } }
+
+    /* ENHANCED TACTILE TOAST */
+    .toast {
+      position: fixed; bottom: 100px; left: 50%; transform: translate(-50%,20px) scale(0.95);
+      opacity: 0; visibility: hidden;
+      background: rgba(30, 41, 59, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff; padding: 14px 24px; border-radius: 999px;
+      font-size: .9rem; font-weight: 700; letter-spacing: 0.02em;
+      box-shadow: 0 20px 40px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,0.1);
+      transition: all .4s cubic-bezier(.175, .885, .32, 1.275);
+      z-index: 1000; white-space: nowrap; pointer-events: none;
+      display: flex; align-items: center; gap: 10px;
     }
-    .grain {
-      position: fixed; inset: 0;
-      pointer-events: none; z-index: 1;
-      opacity: .025;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size: 180px 180px;
-    }
-    .page { position: relative; z-index: 2; max-width: 480px; margin: 0 auto; padding: 0 0 72px; }
-    .p-nav { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 18px 20px 0; flex-wrap: wrap; }
-    .p-links { display: flex; gap: 18px; align-items: center; }
-    .p-link { font-size: .74rem; font-weight: 600; color: rgba(255,255,255,.38); letter-spacing: .03em; min-height: 48px; display: inline-flex; align-items: center; transition: color 200ms; }
-    .p-link:hover { color: #f7f1ec; } 
-    .nav-external { font-weight: 800; letter-spacing: .04em; color: rgba(255,255,255,.55); } 
-    .nav-external:hover { color: #f7f1ec; } 
-    .lang-sw { display: inline-flex; padding: 3px; gap: 2px; border-radius: 999px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.04); flex-shrink: 0; }
-    .lang-btn { min-height: 38px; min-width: 44px; padding: 6px 12px; border-radius: 999px; color: rgba(255,255,255,.4); font-size: .72rem; font-weight: 800; letter-spacing: .05em; transition: all 240ms cubic-bezier(.2,.8,.2,1); }
+    .toast.show { opacity: 1; visibility: visible; transform: translate(-50%,0) scale(1); }
+    .toast-icon { color: var(--success); }
+
+    .page { position: relative; z-index: 2; max-width: 480px; margin: 0 auto; padding: 0 0 24px; }
+    
+    /* NAV */
+    .p-nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 20px 0; }
+    .p-link { font-size: .74rem; font-weight: 600; color: rgba(255,255,255,.38); transition: color 200ms; }
+    .p-link:hover { color: #f7f1ec; }
+    .lang-sw { display: inline-flex; padding: 3px; gap: 2px; border-radius: 999px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.04); }
+    .lang-btn { min-width: 44px; padding: 6px 12px; border-radius: 999px; color: rgba(255,255,255,.4); font-size: .72rem; font-weight: 700; transition: all 240ms; }
     .lang-btn[aria-pressed='true'] { color: #fff; background: rgba(255,255,255,.14); box-shadow: 0 2px 8px rgba(0,0,0,.22); }
-    .lang-btn:active { transform: scale(.96); }
-    .eyebrow { display: flex; align-items: center; gap: 8px; padding: 28px 20px 0; flex-wrap: wrap; animation: fadeIn .5s both; }
-    .ey-arr { color: rgba(255,255,255,.3); font-size: .8rem; line-height: 1; }
+    
+    /* HEADER */
+    .eyebrow { display: flex; align-items: center; gap: 8px; padding: 28px 20px 0; animation: fadeIn .5s both; }
     .ey-lbl { font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.38); }
-    .ey-dot { width: 4px; height: 4px; border-radius: 50%; opacity: .7; flex-shrink: 0; background: var(--accent); }
     .ey-pill { padding: 3px 9px; border-radius: 999px; background: rgba(141,121,255,.14); border: 1px solid rgba(141,121,255,.22); color: #cbc1ff; font-size: .68rem; font-weight: 700; }
-    .hero { padding: 20px 20px 0; position: relative; animation: fadeIn .6s .05s both; }
-    .hero h1 { font-family: 'Iowan Old Style','Palatino Linotype','Book Antiqua',Georgia,serif; font-size: clamp(1.85rem,7.5vw,2.7rem); line-height: 1.06; letter-spacing: -.03em; font-weight: 800; margin-bottom: 14px; text-shadow: 0 0 60px var(--accent-glow); animation: fadeInUp .6s .1s both; }
-    .hero-sub { font-size: clamp(.9rem,3.5vw,.98rem); color: rgba(255,255,255,.55); line-height: 1.65; max-width: 36ch; margin-bottom: 16px; }
-    .hero-intro { font-size: .88rem; color: rgba(255,255,255,.38); line-height: 1.6; max-width: 38ch; padding-bottom: 24px; }
-    .hero-illo { float: right; width: 100px; height: 100px; margin: 4px 0 12px 16px; pointer-events: none; opacity: .28; shape-outside: circle(50%); } 
-    .hero-illo svg { width: 100%; height: 100%; } 
-    @media(max-width:400px) { .hero-illo { width: 72px; height: 72px; opacity: .18; margin: 2px 0 8px 12px; } } 
-    .hero::after { content: ''; display: table; clear: both; } 
-    .sec-lbl { padding: 0 20px 12px; font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.28); }
-    .phrase-grid{display:flex;flex-direction:column;gap:10px;padding:0 20px;animation:fadeInUp .6s .26s both} 
-    .phrase-card{border-radius:18px;background:rgba(255,255,255,.055);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border:1px solid rgba(255,255,255,.1);box-shadow:0 8px 32px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.1);cursor:pointer;position:relative;overflow:hidden;transition:border-color 260ms cubic-bezier(.2,.8,.2,1),box-shadow 260ms} 
-    .phrase-card::before{content:'';position:absolute;width:100px;height:100px;top:-28px;right:-18px;border-radius:50%;filter:blur(28px);pointer-events:none;opacity:.5;background:var(--card-glow);z-index:0;transition:opacity 260ms} 
-    .phrase-card:hover::before{opacity:.8} 
-    .phrase-card.expanded{border-color:var(--accent);cursor:default} 
-    .phrase-card.expanded::before{opacity:.9} 
-    .card-collapsed{display:flex;align-items:center;gap:14px;padding:16px 18px;position:relative;z-index:1} 
-    .phrase-card.expanded .card-collapsed{display:none} 
-    .collapsed-left{flex:1;min-width:0} 
-    .pc-mode{font-size:.65rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:3px} 
-    .pc-tag{font-size:.78rem;color:rgba(255,255,255,.42);font-weight:400;line-height:1.4;display:block} 
-    .collapsed-arrow{flex-shrink:0;width:30px;height:30px;border-radius:50%;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.35);font-size:.85rem;transition:background 200ms,border-color 200ms,color 200ms} 
-    .phrase-card:hover .collapsed-arrow{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.22);color:rgba(255,255,255,.7)} 
-    .card-expanded{display:none;flex-direction:column;padding:22px 22px 20px;position:relative;z-index:1;animation:expandIn 320ms cubic-bezier(.2,.8,.2,1) both} 
-    .phrase-card.expanded .card-expanded{display:flex} 
-    @keyframes expandIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}} 
-    .expanded-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px} 
-    .expanded-mode{font-size:.65rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--accent)} 
-    .expanded-close{width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);font-size:.75rem;cursor:pointer;transition:background 200ms,color 200ms;flex-shrink:0;font-family:inherit} 
-    .expanded-close:hover{background:rgba(255,255,255,.12);color:rgba(255,255,255,.8)} 
-    .expanded-situation{font-size:.82rem;color:rgba(255,255,255,.42);font-weight:400;line-height:1.6;margin-bottom:20px} 
-    .expanded-intro{font-size:.75rem;color:rgba(255,255,255,.32);font-weight:400;margin-bottom:8px;letter-spacing:.01em} 
-    .expanded-phrase{font-family:'Iowan Old Style','Palatino Linotype','Book Antiqua',Georgia,serif;font-size:clamp(1.15rem,4.5vw,1.45rem);line-height:1.4;font-weight:500;font-style:italic;color:#fff;margin-bottom:24px;text-shadow:0 2px 16px rgba(0,0,0,.25)} 
-    .expanded-copy{display:inline-flex;align-items:center;gap:6px;font-size:.73rem;font-weight:600;color:var(--accent);opacity:.65;background:none;border:none;cursor:pointer;padding:0;font-family:inherit;transition:opacity 200ms;align-self:flex-start} 
-    .expanded-copy:hover{opacity:1} 
-    .expanded-copy.copied{color:#61d1c4;opacity:1}
-    .steps-lbl { padding: 24px 20px 6px; font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.28); }
-    .steps-row { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; padding: 0 20px; font-size: .8rem; font-weight: 700; color: rgba(255,255,255,.28); }
-    .steps-row .s { color: rgba(255,255,255,.55); }
-    .steps-row .a { color: rgba(255,255,255,.18); font-size: .7rem; }
-    .steps-note { padding: 8px 20px 0; font-size: .82rem; color: rgba(255,255,255,.35); font-style: italic; }
-    .accordion { margin: 24px 20px 0; border-radius: 18px; background: rgba(255,255,255,.045); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,.1); box-shadow: 0 8px 32px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.1); overflow: hidden; }
-    .acc-trig { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 18px 20px; min-height: 52px; font-size: .92rem; font-weight: 700; color: rgba(255,255,255,.5); text-align: left; transition: color 200ms; background: none; border: none; cursor: pointer; font-family: inherit; }
-    .acc-trig:hover { color: rgba(255,255,255,.8); }
-    .acc-icon { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.35); flex-shrink: 0; transition: transform 300ms cubic-bezier(.2,.8,.2,1); }
+    
+    .hero { padding: 18px 20px 0; position: relative; animation: fadeIn .6s .05s both; }
+    
+    /* FIX: DOODLE CSS RESTORED */
+    .hero-illo { float: right; width: 96px; height: 96px; margin: 2px 0 10px 14px; pointer-events: none; opacity: .28; shape-outside: circle(50%); }
+    .hero-illo svg { width: 100%; height: 100%; }
+    @media (max-width: 400px) { .hero-illo { width: 72px; height: 72px; opacity: .2; margin: 2px 0 8px 12px; } }
+
+    .hero h1 { font-family: 'Iowan Old Style', Georgia, serif; font-size: clamp(1.9rem,7.6vw,2.7rem); line-height: 1.06; letter-spacing: -.03em; font-weight: 800; margin-bottom: 14px; text-shadow: 0 0 60px var(--accent-glow); animation: fadeInUp .6s .1s both; }
+    .hero-sub { font-size: clamp(.93rem,3.6vw,1rem); color: var(--muted); line-height: 1.6; font-weight: 400; max-width: 35ch; }
+
+    /* PRIMER */
+    .primer { margin: 10px 20px 0; padding: 18px; border-radius: var(--radius-lg); background: linear-gradient(180deg, rgba(97,209,196,.1), rgba(255,255,255,.03)); border: 1px solid rgba(97,209,196,.2); box-shadow: var(--shadow); animation: fadeInUp .6s .16s both; }
+    .primer-kicker { font-size: .68rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; color: var(--ok); margin-bottom: 6px; }
+    .primer-main { font-size: .95rem; font-weight: 400; line-height: 1.5; color: rgba(255,255,255,.9); }
+    
+    .sec-lbl { padding: 28px 20px 10px; font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.28); }
+    
+    /* ENHANCED TACTILE PHRASE CARDS */
+    .phrase-grid { display: grid; gap: 14px; padding: 0 20px; animation: fadeInUp .6s .22s both; }
+    .phrase-card { width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 20px; text-align: left; border-radius: 20px; background: rgba(255,255,255,.05); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,.1); box-shadow: var(--shadow); position: relative; overflow: hidden; transition: transform 0.15s ease-out, background 0.2s, border-color 0.2s, box-shadow 0.2s; }
+    
+    .phrase-card:active { transform: scale(0.97); background: rgba(255,255,255,.08); }
+    .phrase-card[aria-pressed='true'] { background: rgba(53, 208, 110, 0.08); border-color: var(--success); box-shadow: 0 12px 36px rgba(53, 208, 110, 0.15), inset 0 0 0 1px var(--success); transform: scale(0.99); }
+    
+    .pc-top { display: flex; width: 100%; align-items: center; justify-content: space-between; margin-bottom: 2px; }
+    .pc-mode { font-size: .74rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); transition: color 0.2s; }
+    .phrase-card[aria-pressed='true'] .pc-mode { color: var(--success); }
+    
+    .pc-copy { font-size: .64rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: rgba(255,255,255,.5); background: rgba(255,255,255,.08); padding: 6px 12px; border-radius: 12px; transition: all 200ms;}
+    .phrase-card[aria-pressed='true'] .pc-copy { background: var(--success); color: #000; }
+    
+    .pc-when { font-size: .85rem; color: rgba(255,255,255,.6); line-height: 1.45; font-weight: 400; }
+    .pc-when strong { color: rgba(255,255,255,.95); font-weight: 700; }
+    
+    .pc-phrase { font-family: 'Iowan Old Style', Georgia, serif; font-size: 1.25rem; line-height: 1.35; color: #fff; font-weight: 400; flex: 1; border-left: 2px solid var(--accent); padding-left: 14px; margin: 6px 0; transition: border-color 0.2s; }
+    .phrase-card[aria-pressed='true'] .pc-phrase { border-color: var(--success); }
+    
+    .pc-hint { font-size: .75rem; color: rgba(255,255,255,.4); font-weight: 400; margin-top: 2px; }
+
+    /* ACCORDIONS */
+    .stack { display: grid; gap: 12px; padding: 24px 20px 0; }
+    .accordion { border-radius: 18px; background: rgba(255,255,255,.03); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,.08); overflow: hidden; }
+    .acc-trig { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 18px; font-size: .92rem; font-weight: 700; color: rgba(255,255,255,.85); text-align: left; }
+    .acc-icon { transition: transform 300ms; opacity: 0.5; }
     .accordion[open] .acc-icon { transform: rotate(180deg); }
-    .acc-body { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows 260ms cubic-bezier(.2,.8,.2,1), opacity 260ms; }
+    .acc-body { display: grid; grid-template-rows: 0fr; opacity: 0; transition: all 260ms; }
     .accordion[open] .acc-body { grid-template-rows: 1fr; opacity: 1; }
     .acc-inner { overflow: hidden; }
-    .acc-box { padding: 0 20px 20px; display: flex; flex-direction: column; gap: 10px; }
-    .acc-primary { font-size: .93rem; font-weight: 700; color: rgba(255,255,255,.82); }
-    .acc-helper { font-size: .86rem; color: rgba(255,255,255,.45); line-height: 1.6; }
-    .acc-safety { padding-top: 12px; border-top: 1px solid rgba(255,100,80,.15); color: var(--accent); font-size: .82rem; font-weight: 600; line-height: 1.5; }
-    .share-panel { margin: 16px 20px 0; padding: 24px 20px; border-radius: 24px; background: rgba(255,255,255,.035); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,.09); box-shadow: 0 8px 32px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.08); text-align: center; }
-    .share-title { font-family: 'Iowan Old Style','Palatino Linotype','Book Antiqua',Georgia,serif; font-size: 1.25rem; font-weight: 700; margin-bottom: 6px; }
-    .share-sub { font-size: .84rem; color: rgba(255,255,255,.42); margin-bottom: 18px; line-height: 1.5; }
-    .share-steps { font-size: .73rem; color: rgba(255,255,255,.28); font-weight: 600; margin-bottom: 18px; }
-    .share-steps span { color: rgba(255,255,255,.48); }
-    .share-actions { display: flex; flex-direction: column; gap: 10px; }
-    .sc-btn { min-height: 52px; padding: 0 20px; width: 100%; display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; font-size: .88rem; font-weight: 700; color: #fff; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); backdrop-filter: blur(10px); transition: background 200ms, transform 200ms; }
-    .sc-btn:hover { background: rgba(255,255,255,.13); }
-    .sc-btn:active { transform: scale(.97); }
-    .sc-btn.wa { background: rgba(53,208,110,.14); border-color: rgba(53,208,110,.28); color: #cbffd8; }
-    .sc-btn.wa:hover { background: rgba(53,208,110,.22); }
-    .share-native { display: none; }
-    .toast { position: fixed; bottom: 24px; left: 50%; transform: translate(-50%,14px); opacity: 0; visibility: hidden; background: linear-gradient(180deg,#61d1c4,#44ada1); color: #081311; padding: 12px 24px; border-radius: 999px; font-size: .85rem; font-weight: 800; box-shadow: 0 12px 28px rgba(0,0,0,.3); transition: all .28s cubic-bezier(.2,.8,.2,1); z-index: 1000; white-space: nowrap; pointer-events: none; }
-    .toast.show { opacity: 1; visibility: visible; transform: translate(-50%,0); }
-    .entry-overlay { position: fixed; inset: 0; z-index: 9998; pointer-events: none; opacity: 1; transition: opacity 800ms cubic-bezier(.4,0,.2,1) 100ms; background: radial-gradient(ellipse 80% 60% at 20% 20%, var(--entry-color,transparent) 0%, transparent 70%); }
-    .entry-overlay.gone { opacity: 0; }
-    @keyframes fadeInUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
-    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-    @media(hover:hover) {
-      .phrase-card:hover { transform: translateY(-3px); }
-      .sc-btn:hover { background: rgba(255,255,255,.13); }
-    }
-    @media(min-width:600px) {
-      .page { padding-bottom: 88px; }
-      .share-actions { flex-direction: row; justify-content: center; flex-wrap: wrap; }
-      .sc-btn { width: auto; }
-    }
-    @media(prefers-reduced-motion:reduce) {
-      *, *::before, *::after { animation-duration:.01ms!important; transition-duration:.01ms!important; }
-    }
+    .acc-box { padding: 0 18px 18px; display: flex; flex-direction: column; gap: 12px; }
+    
+    .acc-primary { font-size: .92rem; font-weight: 400; color: rgba(255,255,255,.85); line-height: 1.55; }
+    .acc-list { display: grid; gap: 10px; list-style: none; padding-left: 0; }
+    .acc-list li { position: relative; padding-left: 16px; font-size: .88rem; font-weight: 400; color: rgba(255,255,255,.76); line-height: 1.5; }
+    .acc-list li::before { content: ''; position: absolute; left: 0; top: .56em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 
-    .watermark { 
-      position: fixed; 
-      bottom: -60px; 
-      right: -40px; 
-      width: 420px; 
-      height: 420px; 
-      pointer-events: none; 
-      z-index: 1; 
-      opacity: .22; 
-      filter: grayscale(100%) brightness(1.1); 
-      mix-blend-mode: normal; 
-    } 
-    .watermark img { 
-      width: 100%; 
-      height: 100%; 
-      object-fit: contain; 
-      object-position: bottom right; 
-    } 
-    @media(max-width:600px) { 
-      .watermark { width: 280px; height: 280px; bottom: -40px; right: -30px; opacity: .15; } 
-    } 
+    /* CROSS-PROTOCOL */
+    .cross-protocol { margin: 32px 20px 0; padding: 24px; border-radius: 22px; background: linear-gradient(135deg, rgba(97,209,196,.1), rgba(255,255,255,.02)); border: 1px dashed rgba(97,209,196,.3); text-align: center; }
+    .cp-title { font-size: 0.88rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ok); margin-bottom: 12px; }
+    .cp-link { display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 16px; border-radius: 16px; background: #fff; color: #130e1a; font-weight: 700; font-size: 0.95rem; transition: transform 200ms, box-shadow 200ms; }
+    .cp-link:active { transform: scale(0.97); }
+    .cp-link svg { color: var(--accent); }
+
+    /* SHARE PANEL */
+    .share-panel { margin: 24px 20px 0; padding: 24px; border-radius: 22px; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); }
+    .share-title { font-size: .82rem; font-weight: 800; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 8px; }
+    .share-sub { font-size: .9rem; font-weight: 400; color: rgba(255,255,255,.6); margin-bottom: 20px; line-height: 1.5; }
+    .share-actions { display: grid; grid-template-columns: 1fr; gap: 12px; }
+    .sc-btn { width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 16px; border-radius: 16px; font-size: .95rem; font-weight: 700; color: #fff; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); transition: transform 0.15s; }
+    .sc-btn:active { transform: scale(0.98); }
+    .sc-btn.wa { background: rgba(53,208,110,.15); border-color: rgba(53,208,110,.3); color: #cbffd8; }
+    
+    /* STICKY FOOTER */
+    .sticky-footer-wrap { position: fixed; bottom: 0; width: 100%; padding: 10px 20px 24px; background: linear-gradient(0deg, var(--bg-2) 40%, transparent 100%); pointer-events: none; z-index: 30; }
+    .sticky-footer { max-width: 440px; margin: 0 auto; display: flex; justify-content: space-between; padding: 16px 24px; border-radius: 999px; background: rgba(14,20,18,.92); border: 1px solid rgba(255,255,255,.1); box-shadow: 0 10px 30px rgba(0,0,0,.6); backdrop-filter: blur(12px); pointer-events: auto; }
+    .sticky-step { font-size: .75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(255,255,255,.4); }
+    
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   </style>
 </head>
 <body>
-  <div class="watermark" aria-hidden="true"> 
-    <img src="/assets/images/CSC_Logo_Grayscale.png" alt=""> 
-  </div> 
-  <div class="entry-overlay" id="entry-overlay"></div>
-  <div id="toast" class="toast" aria-live="polite"></div>
 
-  <div class="orbs" style="background:
-    radial-gradient(ellipse 65% 55% at -5% -10%, rgba(50,190,175,.45) 0%, transparent 65%),
-    radial-gradient(ellipse 55% 50% at 108% 108%, rgba(30,110,150,.38) 0%, transparent 65%),
-    radial-gradient(ellipse 75% 55% at 50% 28%, rgba(97,209,196,.14) 0%, transparent 60%),
-    linear-gradient(160deg, #0c1a18 0%, #081210 50%, #0a1614 100%);"></div>
+  <!-- Cloudinary Watermark -->
+  <div class="watermark" aria-hidden="true">
+    <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778272963/CSC_Logo_Grayscale_k6uitt.png" alt="">
+  </div>
+
+  <!-- Ambient Orbs (Bedtime Colors) -->
+  <div class="orbs" style="background: radial-gradient(ellipse 65% 55% at -5% -10%, rgba(50,190,175,.45) 0%, transparent 65%), radial-gradient(ellipse 55% 50% at 108% 108%, rgba(30,110,150,.38) 0%, transparent 65%), radial-gradient(ellipse 75% 55% at 50% 28%, rgba(97,209,196,.14) 0%, transparent 60%), linear-gradient(160deg, #0c1a18 0%, #081210 50%, #0a1614 100%);"></div>
   <div class="grain"></div>
 
-  <div class="page">
-    <nav class="p-nav"> 
-       <div class="p-links"> 
-         <a href="/" class="p-link" data-i18n="nav_brand" data-es="Criar Sin Culpas" data-en="Criar Sin Culpas">Criar Sin Culpas</a> 
-         <a href="/apoyo" class="p-link" data-i18n="nav_hub" data-es="Ver todas las guías" data-en="See all guides">Ver todas las guías</a> 
-       </div> 
-       <div class="lang-sw" role="group" aria-label="Idioma / Language"> 
-         <button type="button" class="lang-btn" data-lang="es" aria-pressed="true">ES</button> 
-         <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button> 
-       </div> 
-     </nav> 
+  <!-- TACTILE TOAST -->
+  <div id="toast" class="toast" aria-live="polite">
+    <svg class="toast-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    <span id="toast-msg">¡Copiado! Úsalo ahora.</span>
+  </div>
 
+  <div class="page">
+    <!-- NAV -->
+    <nav class="p-nav">
+      <a href="/apoyo" class="p-link" data-i18n="nav_hub" data-es="← Todas las guías" data-en="← All guides">← Todas las guías</a>
+      <div class="lang-sw">
+        <button type="button" class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </nav>
+
+    <!-- HEADER -->
     <div class="eyebrow">
-      <span class="ey-arr" aria-hidden="true">←</span>
-      <span class="ey-lbl" data-i18n="eyebrow" data-es="Apoyo en tiempo real" data-en="Real-time support">Apoyo en tiempo real</span>
-      <span class="ey-dot" aria-hidden="true"></span>
-      <span class="ey-pill">Nari</span>
+      <span class="ey-lbl" data-i18n="eyebrow" data-es="Apoyo en crisis" data-en="Crisis Support">Apoyo en crisis</span>
+      <span class="ey-pill">Criar Sin Culpas</span>
     </div>
 
     <header class="hero">
+      <!-- FIXED: Properly Sized Doodle -->
       <div class="hero-illo" aria-hidden="true">
         <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="15" cy="18" r="1.5" fill="#61d1c4" opacity=".55"/>
@@ -216,216 +210,234 @@
         </svg>
       </div>
       <h1 data-i18n="title" data-es="Hora de irse a dormir. Cómo mantenerte firme sin pelear." data-en="Bedtime. How to stay firm without a fight.">Hora de irse a dormir. Cómo mantenerte firme sin pelear.</h1>
-      <p class="hero-sub" data-i18n="subtitle" data-es="No necesitas hacerlo perfecto. Solo necesitas calma, claridad y repetición." data-en="You don't need to do it perfectly. You just need calm, clarity, and repetition.">No necesitas hacerlo perfecto. Solo necesitas calma, claridad y repetición.</p>
-      <p class="hero-intro" data-i18n="intro_body" data-es="No negocies de más. No aceleres. Mantén el límite con cercanía. Elige según lo que esté pasando ahora mismo." data-en="Don't over-negotiate. Don't rush. Hold the boundary with closeness. Choose based on what's happening right now.">No negocies de más. No aceleres. Mantén el límite con cercanía. Elige según lo que esté pasando ahora mismo.</p>
+      <p class="hero-sub" data-i18n="subtitle" data-es="No necesitas hacerlo perfecto. Solo necesitas calma, claridad y repetición." data-en="You do not need to do it perfectly. You just need calm, clarity, and repetition.">No necesitas hacerlo perfecto. Solo necesitas calma, claridad y repetición.</p>
     </header>
 
-    <p class="sec-lbl" data-i18n="cards_intro" data-es="Elige según el momento" data-en="Choose based on the moment">Elige según el momento</p>
+    <section class="primer">
+      <p class="primer-kicker" data-i18n="primer_kicker" data-es="Primero entiende esto" data-en="Understand this first">Primero entiende esto</p>
+      <p class="primer-main" data-i18n="primer_main" data-es="A veces no se está oponiendo. Puede estar cansado, activado o sintiendo que soltar el día le cuesta más de lo que parece." data-en="Your child may not be pushing back on purpose. They may be tired, activated, or finding it harder than it seems to let the day end.">A veces no se está oponiendo. Puede estar cansado, activado o sintiendo que soltar el día le cuesta más de lo que parece.</p>
+    </section>
 
-    <div class="phrase-grid" role="list"> 
-      <div class="phrase-card" role="listitem"> 
-        <div class="card-collapsed"> 
-          <div class="collapsed-left"> 
-            <span class="pc-mode" data-i18n="c1_title" data-es="Anticipar" data-en="Prepare">Anticipar</span> 
-            <span class="pc-tag" data-i18n="c1_tag_short" data-es="Aún hay margen. Tu hijo está receptivo." data-en="There's still room. Your child is receptive.">Aún hay margen. Tu hijo está receptivo.</span> 
-          </div> 
-          <div class="collapsed-arrow" aria-hidden="true">+</div> 
-        </div> 
-        <div class="card-expanded"> 
-          <div class="expanded-top"> 
-            <span class="expanded-mode" data-i18n="c1_title" data-es="Anticipar" data-en="Prepare">Anticipar</span> 
-            <button class="expanded-close" aria-label="Cerrar">✕</button> 
-          </div> 
-          <p class="expanded-situation" data-phrase-es="Aún hay margen. Tu hijo está receptivo. Aquí funciona anticipar." data-phrase-en="There's still room to guide. Your child is receptive. Anticipating works here.">Aún hay margen. Tu hijo está receptivo. Aquí funciona anticipar.</p> 
-          <p class="expanded-intro" data-phrase-es="Podrías decirle algo como:" data-phrase-en="You could say something like:">Podrías decirle algo como:</p> 
-          <p class="expanded-phrase" data-phrase-es="En un ratito vamos a dormir. Te estoy avisando con tiempo." data-phrase-en="In a little bit we're going to sleep. I'm giving you a heads up.">"En un ratito vamos a dormir. Te estoy avisando con tiempo."</p> 
-          <button class="expanded-copy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copiar frase</button> 
-        </div> 
-      </div> 
-      <div class="phrase-card" role="listitem"> 
-        <div class="card-collapsed"> 
-          <div class="collapsed-left"> 
-            <span class="pc-mode" data-i18n="c2_title" data-es="Guiar" data-en="Guide">Guiar</span> 
-            <span class="pc-tag" data-i18n="c2_tag_short" data-es="Empieza la resistencia. Paso a paso juntos." data-en="Resistance is starting. Step by step together.">Empieza la resistencia. Paso a paso juntos.</span> 
-          </div> 
-          <div class="collapsed-arrow" aria-hidden="true">+</div> 
-        </div> 
-        <div class="card-expanded"> 
-          <div class="expanded-top"> 
-            <span class="expanded-mode" data-i18n="c2_title" data-es="Guiar" data-en="Guide">Guiar</span> 
-            <button class="expanded-close" aria-label="Cerrar">✕</button> 
-          </div> 
-          <p class="expanded-situation" data-phrase-es="Empieza la resistencia. La frustración sube. Paso a paso juntos." data-phrase-en="Resistance is starting. Frustration is rising. Step by step together.">Empieza la resistencia. La frustración sube. Paso a paso juntos.</p> 
-          <p class="expanded-intro" data-phrase-es="Podrías decirle algo como:" data-phrase-en="You could say something like:">Podrías decirle algo como:</p> 
-          <p class="expanded-phrase" data-phrase-es="Sé que no quieres parar. Igual vamos a hacerlo paso a paso, juntos." data-phrase-en="I know you don't want to stop. We're still going to do it, step by step, together.">"Sé que no quieres parar. Igual vamos a hacerlo paso a paso, juntos."</p> 
-          <button class="expanded-copy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copiar frase</button> 
-        </div> 
-      </div> 
-      <div class="phrase-card" role="listitem"> 
-        <div class="card-collapsed"> 
-          <div class="collapsed-left"> 
-            <span class="pc-mode" data-i18n="c3_title" data-es="Firme + calma" data-en="Firm + calm">Firme + calma</span> 
-            <span class="pc-tag" data-i18n="c3_tag_short" data-es="Ya hay protesta. Tu límite es seguridad." data-en="There's already protest. Your limit is safety.">Ya hay protesta. Tu límite es seguridad.</span> 
-          </div> 
-          <div class="collapsed-arrow" aria-hidden="true">+</div> 
-        </div> 
-        <div class="card-expanded"> 
-          <div class="expanded-top"> 
-            <span class="expanded-mode" data-i18n="c3_title" data-es="Firme + calma" data-en="Firm + calm">Firme + calma</span> 
-            <button class="expanded-close" aria-label="Cerrar">✕</button> 
-          </div> 
-          <p class="expanded-situation" data-phrase-es="Ya hay protesta o desborde. Tu límite es seguridad, no castigo." data-phrase-en="There's already protest or overload. Your limit is safety, not punishment.">Ya hay protesta o desborde. Tu límite es seguridad, no castigo.</p> 
-          <p class="expanded-intro" data-phrase-es="Podrías decirle algo como:" data-phrase-en="You could say something like:">Podrías decirle algo como:</p> 
-          <p class="expanded-phrase" data-phrase-es="No dejemos que esto se vuelva una pelea. Estamos juntos en esto." data-phrase-en="Let's not turn this into a fight. We're in this together.">"No dejemos que esto se vuelva una pelea. Estamos juntos en esto."</p> 
-          <button class="expanded-copy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copiar frase</button> 
-        </div> 
-      </div> 
-    </div> 
+    <p class="sec-lbl" data-i18n="cards_intro" data-es="Elige tu respuesta (Toca para copiar)" data-en="Choose your response (Tap to copy)">Elige tu respuesta (Toca para copiar)</p>
 
-
-    <p class="steps-lbl" data-i18n="steps_heading" data-es="La secuencia que te guía" data-en="The sequence that guides you">La secuencia que te guía</p>
-    <div class="steps-row" aria-label="Pasos">
-      <span class="s" data-i18n="footer_s1" data-es="Anticipa" data-en="Prepare">Anticipa</span>
-      <span class="a" aria-hidden="true">→</span>
-      <span class="s" data-i18n="footer_s2" data-es="Guía" data-en="Guide">Guía</span>
-      <span class="a" aria-hidden="true">→</span>
-      <span class="s" data-i18n="footer_s3" data-es="Sostén" data-en="Hold">Sostén</span>
-      <span class="a" aria-hidden="true">→</span>
-      <span class="s" data-i18n="footer_s4" data-es="Descansa" data-en="Rest">Descansa</span>
-    </div>
-    <p class="steps-note" data-i18n="steps_note" data-es="La constancia importa más que la perfección de cada noche." data-en="Consistency matters more than perfecting every single night.">La constancia importa más que la perfección de cada noche.</p>
-
-    <div class="accordion">
-      <button type="button" class="acc-trig" aria-expanded="false">
-        <span data-i18n="after_label" data-es="Después (cuando todo se calme)" data-en="After (when everything is calm)">Después (cuando todo se calme)</span>
-        <span class="acc-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+    <!-- PROTOCOL CARDS (Flat Golden Standard Structure) -->
+    <div class="phrase-grid">
+      <button type="button" class="phrase-card" data-mode="anticipar">
+        <span class="pc-top">
+          <span class="pc-mode" data-i18n="c1_title" data-es="Anticipar" data-en="Prepare">Anticipar</span>
+          <span class="pc-copy" data-i18n="tap_copy" data-es="Copiar" data-en="Copy">Copiar</span>
+        </span>
+        <p class="pc-when" data-i18n="c1_when" data-es="<strong>Cuándo:</strong> Aún hay margen y está receptivo." data-en="<strong>When:</strong> There is still room and they are receptive."><strong>Cuándo:</strong> Aún hay margen y está receptivo.</p>
+        <p class="pc-phrase" data-i18n="c1_phrase" data-es="En un ratito vamos a dormir. Te estoy avisando con tiempo." data-en="In a little bit we are going to sleep. I am giving you a heads up.">En un ratito vamos a dormir. Te estoy avisando con tiempo.</p>
+        <span class="pc-hint" data-i18n="copy_hint" data-es="Avísalo antes. Baja la fricción." data-en="Give the heads up early. Lower the friction.">Avísalo antes. Baja la fricción.</span>
       </button>
-      <div class="acc-body"><div class="acc-inner"><div class="acc-box">
-        <p class="acc-primary" data-i18n="after_primary" data-es="Dormir cuesta más cuando el cuerpo ya llegó al límite, ¿verdad?" data-en="Sleep gets harder when the body is already at its limit, doesn't it?">Dormir cuesta más cuando el cuerpo ya llegó al límite, ¿verdad?</p>
-        <p class="acc-helper" data-i18n="after_helper" data-es="Primero reconecta. Después, en calma, puedes ajustar la rutina o hablar de lo que ayudó y lo que no." data-en="Reconnect first. Later, when things are calm, you can adjust the routine or talk about what helped and what didn't.">Primero reconecta. Después, en calma, puedes ajustar la rutina o hablar de lo que ayudó y lo que no.</p>
-        <div class="acc-safety" data-i18n="safety_note" data-es="Si hay agotamiento extremo o riesgo físico, prioriza seguridad, presencia y pausa." data-en="If there is extreme exhaustion or physical risk, prioritize safety, presence, and pause.">Si hay agotamiento extremo o riesgo físico, prioriza seguridad, presencia y pausa.</div>
-      </div></div></div>
+
+      <button type="button" class="phrase-card" data-mode="guiar">
+        <span class="pc-top">
+          <span class="pc-mode" data-i18n="c2_title" data-es="Guiar" data-en="Guide">Guiar</span>
+          <span class="pc-copy" data-i18n="tap_copy" data-es="Copiar" data-en="Copy">Copiar</span>
+        </span>
+        <p class="pc-when" data-i18n="c2_when" data-es="<strong>Cuándo:</strong> Empieza la resistencia y necesita una guía clara." data-en="<strong>When:</strong> Resistance is starting and they need clear guidance."><strong>Cuándo:</strong> Empieza la resistencia y necesita una guía clara.</p>
+        <p class="pc-phrase" data-i18n="c2_phrase" data-es="Sé que no quieres parar. Igual vamos a hacerlo paso a paso, juntos." data-en="I know you do not want to stop. We are still going to do it step by step, together.">Sé que no quieres parar. Igual vamos a hacerlo paso a paso, juntos.</p>
+        <span class="pc-hint" data-i18n="copy_hint_step" data-es="Pocas palabras. Misma dirección." data-en="Fewer words. Same direction.">Pocas palabras. Misma dirección.</span>
+      </button>
+
+      <button type="button" class="phrase-card" data-mode="firme_calma">
+        <span class="pc-top">
+          <span class="pc-mode" data-i18n="c3_title" data-es="Firme + calma" data-en="Firm + calm">Firme + calma</span>
+          <span class="pc-copy" data-i18n="tap_copy" data-es="Copiar" data-en="Copy">Copiar</span>
+        </span>
+        <p class="pc-when" data-i18n="c3_when" data-es="<strong>Cuándo:</strong> Ya hay protesta o desborde." data-en="<strong>When:</strong> There is already protest or overload."><strong>Cuándo:</strong> Ya hay protesta o desborde.</p>
+        <p class="pc-phrase" data-i18n="c3_phrase" data-es="No dejemos que esto se vuelva una pelea. Estoy contigo y vamos a dormir." data-en="Let us not turn this into a fight. I am with you and we are going to sleep.">No dejemos que esto se vuelva una pelea. Estoy contigo y vamos a dormir.</p>
+        <span class="pc-hint" data-i18n="copy_hint_firm" data-es="Tu límite es seguridad, no castigo." data-en="Your limit is safety, not punishment.">Tu límite es seguridad, no castigo.</span>
+      </button>
     </div>
 
+    <!-- TACTICAL ACCORDIONS -->
+    <section class="stack">
+      <div class="accordion" data-topic="why_bedtime_resistance">
+        <button type="button" class="acc-trig">
+          <span data-i18n="acc1_title" data-es="¿Por qué se resiste a dormir?" data-en="Why do they resist bedtime?">¿Por qué se resiste a dormir?</span>
+          <span class="acc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="acc-body"><div class="acc-inner"><div class="acc-box">
+          <ul class="acc-list">
+            <li data-i18n="acc1_li1" data-es="Pasar de activación a descanso no es inmediato." data-en="Shifting from activation to rest is not immediate.">Pasar de activación a descanso no es inmediato.</li>
+            <li data-i18n="acc1_li2" data-es="Dormir puede sentirse como perder control o conexión." data-en="Sleep can feel like losing control or connection.">Dormir puede sentirse como perder control o conexión.</li>
+            <li data-i18n="acc1_li3" data-es="Si ya llegó pasado de cansancio, todo se vuelve más difícil." data-en="If they are already overtired, everything gets harder.">Si ya llegó pasado de cansancio, todo se vuelve más difícil.</li>
+          </ul>
+        </div></div></div>
+      </div>
+      
+      <div class="accordion" data-topic="if_protesting">
+        <button type="button" class="acc-trig">
+          <span data-i18n="acc2_title" data-es="Si empieza a protestar o resistirse..." data-en="If they start protesting or resisting...">Si empieza a protestar o resistirse...</span>
+          <span class="acc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="acc-body"><div class="acc-inner"><div class="acc-box">
+          <p class="acc-primary" data-i18n="acc2_body" data-es="Puede protestar, negociar o desbordarse. No significa que lo estás haciendo mal. Mantén el límite con calma, repite poco y no entres en debate." data-en="They may protest, negotiate, or get overwhelmed. It does not mean you are doing it wrong. Hold the boundary calmly, repeat less, and do not turn it into a debate.">Puede protestar, negociar o desbordarse. No significa que lo estás haciendo mal. Mantén el límite con calma, repite poco y no entres en debate.</p>
+        </div></div></div>
+      </div>
+
+      <div class="accordion" data-topic="after_bedtime_storm">
+        <button type="button" class="acc-trig">
+          <span data-i18n="acc3_title" data-es="Cuando pase la tormenta (Después)" data-en="When the storm passes (After)">Cuando pase la tormenta (Después)</span>
+          <span class="acc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="acc-body"><div class="acc-inner"><div class="acc-box">
+          <p class="acc-primary" data-i18n="acc3_body" data-es="Dormir cuesta más cuando el cuerpo ya llegó al límite, ¿verdad? Primero reconecta. Después, en calma, puedes ajustar la rutina o hablar de lo que ayudó y de lo que no." data-en="Sleep gets harder when the body is already at its limit, right? Reconnect first. Later, when things are calm, you can adjust the routine or talk about what helped and what did not.">Dormir cuesta más cuando el cuerpo ya llegó al límite, ¿verdad? Primero reconecta. Después, en calma, puedes ajustar la rutina o hablar de lo que ayudó y de lo que no.</p>
+        </div></div></div>
+      </div>
+    </section>
+
+    <!-- CROSS-PROTOCOL -->
+    <section class="cross-protocol">
+      <p class="cp-title" data-i18n="cross_title" data-es="¿La situación escaló a un berrinche?" data-en="Did the situation escalate to a meltdown?">¿La situación escaló a un berrinche?</p>
+      <a href="/apoyo/emotional-escalation" class="cp-link" data-cross-target="emotional_escalation">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span data-i18n="cross_link" data-es="Ir al Protocolo de Desborde" data-en="Go to Escalation Protocol">Ir al Protocolo de Desborde</span>
+      </a>
+    </section>
+
+    <!-- NEW INCLUSIVE SHARE PANEL -->
     <div class="share-panel">
-      <p class="share-title" data-i18n="share_label" data-es="Compartir esta guía" data-en="Share this guide">Compartir esta guía</p>
-      <p class="share-sub" data-i18n="share_helper" data-es="Si esto te ayudó, puedes enviárselo a otra persona." data-en="If this helped, you can send it to someone else.">Si esto te ayudó, puedes enviárselo a otra persona.</p>
-      <p class="share-steps"><span data-i18n="footer_s1" data-es="Anticipa" data-en="Prepare">Anticipa</span> → <span data-i18n="footer_s2" data-es="Guía" data-en="Guide">Guía</span> → <span data-i18n="footer_s3" data-es="Sostén" data-en="Hold">Sostén</span> → <span data-i18n="footer_s4" data-es="Descansa" data-en="Rest">Descansa</span></p>
+      <p class="share-title" data-i18n="share_label" data-es="Crianza en sintonía" data-en="Parenting on the same page">Crianza en sintonía</p>
+      <p class="share-sub" data-i18n="share_helper" data-es="Comparte este protocolo con quien te ayuda en la crianza (pareja, abuelos o cuidadores) para bajar la tensión." data-en="Share this with your parenting village (partner, grandparents, or caregivers) to lower the tension.">Comparte este protocolo con quien te ayuda en la crianza (pareja, abuelos o cuidadores) para bajar la tensión.</p>
       <div class="share-actions">
-        <button type="button" class="sc-btn share-native" data-i18n="share_btn_native" data-es="Compartir" data-en="Share">Compartir</button>
-        <button type="button" class="sc-btn share-copy" data-i18n="share_btn_copy" data-es="Copiar link" data-en="Copy link">Copiar link</button>
-        <button type="button" class="sc-btn wa share-wa" data-i18n="share_btn_wa" data-es="WhatsApp" data-en="WhatsApp">WhatsApp</button>
+        <button type="button" class="sc-btn wa share-wa">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51h-.57c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span data-i18n="share_btn_wa" data-es="Enviar por WhatsApp" data-en="Send via WhatsApp">Enviar por WhatsApp</span>
+        </button>
+        <button type="button" class="sc-btn share-copy">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          <span data-i18n="share_btn_copy" data-es="Copiar Link" data-en="Copy Link">Copiar Link</span>
+        </button>
       </div>
     </div>
   </div>
 
-  <script>  (function(){
-    const safeGet=(k,fb)=>{try{return localStorage.getItem(k)||fb}catch{return fb}};
-    const safeSet=(k,v)=>{try{localStorage.setItem(k,v)}catch{}};
-    const canonUrl=()=>window.location.href.replace(/https:\/\/.*\.pages\.dev/,'https://criarsinculpas.com').split('?')[0].split('#')[0];
-    let lang=safeGet('lg_parent_lang','es');
+  <!-- STICKY ANCHOR MENU -->
+  <div class="sticky-footer-wrap">
+    <div class="sticky-footer">
+      <span class="sticky-step" data-i18n="footer_s1" data-es="Anticipa" data-en="Prepare">Anticipa</span>
+      <span style="color:rgba(255,255,255,0.2)">→</span>
+      <span class="sticky-step" style="color: #fff" data-i18n="footer_s2" data-es="Guía" data-en="Guide">Guía</span>
+      <span style="color:rgba(255,255,255,0.2)">→</span>
+      <span class="sticky-step" data-i18n="footer_s3" data-es="Mantén" data-en="Hold">Mantén</span>
+    </div>
+  </div>
 
-    /* Entry overlay */ 
-    const overlay=document.getElementById('entry-overlay'); 
-    if(overlay)requestAnimationFrame(()=>requestAnimationFrame(()=>overlay.classList.add('gone'))); 
+  <script>
+    (function(){
+      function trackSignal(eventName, properties) {
+        if (typeof plausible !== 'undefined') { plausible(eventName, { props: properties }); }
+        console.log(`[SnglIQ Captured]: ${eventName}`, properties);
+      }
 
-    function applyLang(l){ 
-      lang=l; document.documentElement.lang=l; safeSet('lg_parent_lang',l); 
-      document.querySelectorAll('[data-i18n]').forEach(el=>{ 
-        const t=el.getAttribute('data-'+l); 
-        if(t!==null)el.innerHTML=t; 
-      }); 
-      document.querySelectorAll('[data-phrase-es]').forEach(el=>{ 
-        const t=el.getAttribute('data-phrase-'+l); 
-        if(!t)return; 
-        if(el.classList.contains('expanded-phrase')){ 
-          el.textContent='\u201c'+t+'\u201d'; 
-        } else { 
-          el.textContent=t; 
-        } 
-      }); 
-      document.querySelectorAll('[data-i18n-aria]').forEach(el=>{
-        const t=el.getAttribute('data-'+l);
-        if(t)el.setAttribute('aria-label',t);
+      let lang = localStorage.getItem('lg_parent_lang') || 'es';
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-msg');
+      let toastTimer;
+
+      function showToast(msg) {
+        clearTimeout(toastTimer);
+        toastMsg.textContent = msg;
+        toast.classList.add('show');
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
+      }
+
+      function applyLang(l) {
+        lang = l;
+        document.documentElement.lang = l;
+        localStorage.setItem('lg_parent_lang', l);
+        
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const t = el.getAttribute('data-' + l);
+          if (t) el.innerHTML = t;
+        });
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+          btn.setAttribute('aria-pressed', btn.dataset.lang === l ? 'true' : 'false');
+        });
+      }
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => { applyLang(e.target.dataset.lang); });
       });
-      const titleEl=document.querySelector('title[data-i18n]');
-      if(titleEl){const t=titleEl.getAttribute('data-'+l);if(t)document.title=t}
-      document.querySelectorAll('.lang-btn').forEach(btn=>{
-        btn.setAttribute('aria-pressed',btn.dataset.lang===l?'true':'false');
+
+      document.querySelectorAll('.phrase-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const phrase = card.querySelector('.pc-phrase').textContent.trim();
+          const mode = card.getAttribute('data-mode');
+
+          navigator.clipboard.writeText(phrase).then(() => {
+            document.querySelectorAll('.phrase-card').forEach(c => {
+              c.setAttribute('aria-pressed', 'false');
+              const cp = c.querySelector('.pc-copy');
+              cp.textContent = cp.getAttribute('data-' + lang) || (lang === 'es' ? 'Copiar' : 'Copy');
+            });
+
+            card.setAttribute('aria-pressed', 'true');
+            card.querySelector('.pc-copy').textContent = lang === 'es' ? '¡Copiado!' : 'Copied!';
+            showToast(lang === 'es' ? '¡Copiado! Úsalo ahora.' : 'Copied! Use it now.');
+
+            trackSignal('phrase_copied', { mode: mode, language: lang, protocol: 'bedtime_resistance' });
+
+            setTimeout(() => {
+              card.setAttribute('aria-pressed', 'false');
+              const cp = card.querySelector('.pc-copy');
+              cp.textContent = cp.getAttribute('data-' + lang) || (lang === 'es' ? 'Copiar' : 'Copy');
+            }, 3000);
+          });
+        });
       });
-    }
 
-    document.addEventListener('click',e=>{
-      const btn=e.target.closest('.lang-btn');
-      if(btn)applyLang(btn.dataset.lang);
-    });
+      document.querySelectorAll('.accordion').forEach(acc => {
+        const trigger = acc.querySelector('.acc-trig');
+        const topic = acc.getAttribute('data-topic');
 
-    /* Accordion */
-    document.querySelectorAll('.accordion').forEach(acc=>{
-      const trigger=acc.querySelector('.acc-trig');
-      if(!trigger)return;
-      trigger.addEventListener('click',()=>{
-        const open=acc.hasAttribute('open');
-        acc.toggleAttribute('open',!open);
-        trigger.setAttribute('aria-expanded',open?'false':'true');
+        trigger.addEventListener('click', () => {
+          const isOpen = acc.hasAttribute('open');
+          acc.toggleAttribute('open', !isOpen);
+          
+          if (!isOpen) { trackSignal('card_opened', { topic: topic, protocol: 'bedtime_resistance' }); }
+        });
       });
-    });
 
-    /* Phrase copy */
-    const toast=document.getElementById('toast');
-    let toastTimer;
-    function showToast(msg){
-      if(!toast)return;
-      clearTimeout(toastTimer);
-      toast.textContent=msg;
-      toast.classList.add('show');
-      toastTimer=setTimeout(()=>toast.classList.remove('show'),2400);
-    }
+      const crossLink = document.querySelector('.cp-link');
+      if(crossLink) {
+        crossLink.addEventListener('click', () => { trackSignal('cross_nav', { from: 'bedtime_resistance', to: 'emotional_escalation' }); });
+      }
 
-    document.querySelectorAll('.phrase-card').forEach(card=>{ 
-      card.querySelector('.card-collapsed').addEventListener('click',()=>{ 
-        document.querySelectorAll('.phrase-card.expanded').forEach(c=>{if(c!==card)c.classList.remove('expanded')}); 
-        card.classList.toggle('expanded'); 
-        if(card.classList.contains('expanded')){setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'nearest'}),50)} 
-      }); 
-      card.querySelector('.expanded-close').addEventListener('click',e=>{e.stopPropagation();card.classList.remove('expanded')}); 
-      card.querySelector('.expanded-copy').addEventListener('click',e=>{ 
-        e.stopPropagation(); 
-        const phrase=card.querySelector('.expanded-phrase')?.textContent?.replace(/[""]/g,'').trim(); 
-        if(!phrase)return; 
-        navigator.clipboard.writeText(phrase).then(()=>{ 
-          const btn=card.querySelector('.expanded-copy'); 
-          btn.classList.add('copied'); 
-          const orig=btn.textContent; 
-          btn.textContent=lang==='es'?'¡Copiado!':'Copied!'; 
-          showToast(lang==='es'?'Frase copiada. Respira. Úsala con calma.':'Phrase copied. Breathe. Use it calmly.'); 
-          setTimeout(()=>{btn.classList.remove('copied');btn.textContent=orig},2000); 
-        }).catch(()=>{}); 
-      }); 
-    }); 
+      function getShareData() {
+        return {
+          title: document.title,
+          text: lang === 'es' ? 'Para tener a la mano. Protocolo de Criar Sin Culpas para la hora de dormir: ' : 'Keep this handy. Bedtime protocol: ',
+          url: window.location.href.split('?')[0]
+        };
+      }
 
-    /* Share */
-    function shareData(){return{title:document.title,text:lang==='es'?'Te comparto esta guía de Criar Sin Culpas: ':'Sharing this guide from Criar Sin Culpas: ',url:canonUrl()}}
-    const btnN=document.querySelector('.share-native');
-    const btnC=document.querySelector('.share-copy');
-    const btnW=document.querySelector('.share-wa');
-    if(navigator.share&&btnN)btnN.style.display='inline-flex';
-    if(btnN)btnN.onclick=async()=>{const d=shareData();try{await navigator.share({title:d.title,url:d.url})}catch{}};
-    if(btnC)btnC.onclick=function(){
-      const d=shareData();
-      navigator.clipboard.writeText(d.url);
-      const o=this.textContent;this.textContent=lang==='es'?'¡Copiado!':'Copied!';
-      setTimeout(()=>this.textContent=o,2000);
-      showToast(lang==='es'?'Link copiado al portapapeles.':'Link copied to clipboard.');
-      if(typeof plausible!=='undefined')plausible('share_copy_link',{props:{page:document.title}});
-    };
-    if(btnW)btnW.onclick=()=>{const d=shareData();window.open('https://wa.me/?text='+encodeURIComponent(d.text+d.url),'_blank')};
+      const btnWa = document.querySelector('.share-wa');
+      if(btnWa) {
+        btnWa.addEventListener('click', () => {
+          const d = getShareData();
+          trackSignal('share_whatsapp', { protocol: 'bedtime_resistance', context: 'caregiver_alignment' });
+          window.open('https://wa.me/?text=' + encodeURIComponent(d.text + d.url), '_blank');
+        });
+      }
 
-    applyLang(lang);
-  })();</script>
-  <!-- Privacy-friendly analytics by Plausible --> 
-  <script async src="https://plausible.io/js/pa-aBQa31dOYQ7rF5Dn1DVy9.js"></script> 
-  <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script> 
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79"}' crossorigin="anonymous"></script>
+      const btnCopy = document.querySelector('.share-copy');
+      if(btnCopy) {
+        btnCopy.addEventListener('click', () => {
+          const d = getShareData();
+          navigator.clipboard.writeText(d.url);
+          trackSignal('share_copy_link', { protocol: 'bedtime_resistance' });
+          showToast(lang === 'es' ? 'Link copiado' : 'Link copied');
+        });
+      }
+
+      applyLang(lang);
+    })();
+  </script>
 </body>
 </html>
