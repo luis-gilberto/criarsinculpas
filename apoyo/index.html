@@ -71,7 +71,7 @@
     .watermark img { width: 100%; height: 100%; object-fit: contain; object-position: bottom right; } 
     @media(max-width:600px) { .watermark { width: 280px; height: 280px; bottom: -40px; right: -30px; opacity: .15; } }
 
-    a, button { font: inherit; text-decoration: none; border: none; background: none; }
+    a, button { font: inherit; text-decoration: none; border: none; background: none; cursor: pointer; }
 
     .page-wrap { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
 
@@ -95,11 +95,24 @@
     .lang-btn { min-width: 52px; padding: 8px 16px; border-radius: var(--radius-pill); color: var(--text-soft); font-size: 0.75rem; font-weight: 800; cursor: pointer; transition: all 280ms; }
     .lang-btn[aria-pressed='true'] { color: #fff; background: rgba(255, 255, 255, 0.12); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); }
 
-    /* Hero */
-    .hero { display: flex; flex-direction: column; gap: 12px; animation: fadeIn 0.8s backwards; }
+    /* Hero & Information Hierarchy */
+    .hero { display: flex; flex-direction: column; gap: 32px; animation: fadeIn 0.8s backwards; margin-bottom: 8px; }
+    
+    .hero-intro { display: flex; flex-direction: column; gap: 14px; }
     .brand-pill { align-self: flex-start; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--teal); padding: 6px 14px; border-radius: var(--radius-pill); background: rgba(97, 209, 196, 0.1); border: 1px solid rgba(97, 209, 196, 0.2); } 
-    .hero h1 { font-family: var(--display-font); font-size: clamp(2.2rem, 6vw, 3.2rem); line-height: 1.05; letter-spacing: -0.03em; font-weight: 600; text-shadow: 0 10px 28px rgba(0, 0, 0, 0.2); animation: fadeInUp 0.8s 0.1s backwards; }
-    .hero .subtitle { font-size: clamp(1.05rem, 3vw, 1.15rem); font-weight: 400; color: var(--text-muted); max-width: 42ch; animation: fadeInUp 0.8s 0.2s backwards; }
+    
+    .hero-context { font-family: var(--display-font); font-size: clamp(2rem, 6.5vw, 3rem); line-height: 1.1; letter-spacing: -0.02em; font-weight: 600; color: #fff; max-width: 20ch; text-shadow: 0 10px 28px rgba(0, 0, 0, 0.2); animation: fadeInUp 0.8s 0.1s backwards; margin: 0; }
+
+    /* CTA Section inside Hero */
+    .hero-action { display: flex; flex-direction: column; gap: 8px; padding-top: 24px; border-top: 1px solid var(--border-soft); animation: fadeInUp 0.8s 0.2s backwards; }
+    .hero-cta { font-family: var(--display-font); font-size: clamp(1.3rem, 4vw, 1.6rem); line-height: 1.1; font-weight: 600; color: var(--text-main); letter-spacing: -0.01em; margin: 0; }
+    .hero .subtitle { font-size: 0.95rem; font-weight: 400; color: var(--text-muted); max-width: 42ch; line-height: 1.5; margin: 0; }
+
+    @media (max-width: 560px) {
+      .hero-context { font-size: clamp(2rem, 8.5vw, 2.8rem); line-height: 1.05; }
+      .hero-cta { font-size: clamp(1.3rem, 6vw, 1.6rem); }
+      .hero .subtitle { font-size: 0.95rem; }
+    }
 
     /* Protocol Grid */
     .protocol-grid { display: grid; grid-template-columns: 1fr; gap: 16px; perspective: 1200px; animation: fadeInUp 0.8s 0.3s backwards; }
@@ -111,6 +124,7 @@
       background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: var(--shadow-card); overflow: hidden; min-height: 240px; will-change: transform;
       transition: transform 320ms, border-color 320ms, background 320ms;
+      text-decoration: none;
     }
     .card:active { transform: scale(0.97); background: rgba(255,255,255,0.06); }
     @media (hover: hover) { .card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.2); } }
@@ -130,11 +144,11 @@
     .card-index { font-size: 0.9rem; font-weight: 800; color: rgba(255, 255, 255, 0.2); }
 
     .card-title { font-size: 1.35rem; font-weight: 700; color: #fff; line-height: 1.25; margin-top: 4px; }
-    .card-desc { font-size: 0.9rem; font-weight: 400; color: var(--text-muted); line-height: 1.5; flex: 1; }
+    .card-desc { font-size: 0.9rem; font-weight: 400; color: var(--text-muted); line-height: 1.5; flex: 1; margin: 0; }
 
     .card-cta { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; }
     .btn-pill { padding: 10px 20px; border-radius: var(--radius-pill); background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.15); color: #fff; font-size: 0.85rem; font-weight: 700; transition: background 200ms; }
-    .btn-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.08); font-size: 1.1rem; }
+    .btn-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.08); font-size: 1.1rem; color: #fff; }
 
     /* Exit Transitions */
     .card.is-receding { animation: cardRecede 400ms forwards; pointer-events: none; } 
@@ -144,11 +158,11 @@
 
     /* Info & Context (Moved to bottom) */
     .context-panel { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; animation: fadeInUp 0.8s 0.4s backwards; }
-    .context-panel h2 { font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-soft); margin-bottom: 12px; font-weight: 800; }
-    .context-panel p { color: var(--text-muted); font-size: 0.9rem; font-weight: 400; line-height: 1.6; margin-bottom: 12px; }
+    .context-panel h2 { font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-soft); margin: 0 0 12px 0; font-weight: 800; }
+    .context-panel p { color: var(--text-muted); font-size: 0.9rem; font-weight: 400; line-height: 1.6; margin: 0 0 12px 0; }
     
-    .hub-disclaimer { margin-top: 12px; padding-top: 16px; border-top: 1px solid var(--border-soft); }
-    .hub-disclaimer p { font-size: 0.8rem; color: rgba(255,255,255,0.3); margin-bottom: 0; }
+    .hub-disclaimer { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-soft); }
+    .hub-disclaimer p { font-size: 0.8rem; color: rgba(255,255,255,0.3); margin: 0; }
 
     /* Share Panel */
     .share-panel { text-align: center; padding: 12px 0; animation: fadeInUp 0.8s 0.5s backwards; }
@@ -169,11 +183,13 @@
 </head>
 <body>
   
-  <div id="toast" class="toast">
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="toast" aria-live="polite">
     <svg class="toast-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
     <span id="toast-msg">¡Enlace copiado!</span>
   </div>
 
+  <!-- CLOUDINARY WATERMARK -->
   <div class="watermark" aria-hidden="true"> 
     <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778272963/CSC_Logo_Grayscale_k6uitt.png" alt=""> 
   </div> 
@@ -182,7 +198,7 @@
     <main class="app-shell">
       <div class="shell-inner">
         
-        <!-- NAV -->
+        <!-- TOP NAVIGATION -->
         <div class="top-row">
           <a href="/" class="nav-link" data-i18n="nav_brand" data-es="Criar Sin Culpas" data-en="Criar Sin Culpas">Criar Sin Culpas</a>
           <div class="lang-switcher">
@@ -191,16 +207,28 @@
           </div>
         </div>
 
-        <!-- HERO -->
+        <!-- REFINED HERO SECTION -->
         <header class="hero">
-          <span class="brand-pill" data-i18n="hero_eyebrow" data-es="Apoyo para los momentos difíciles" data-en="Support in the moment">Apoyo para los momentos difíciles</span>
-          <h1 data-i18n="hero_title" data-es="Elige lo que está pasando" data-en="Choose what's happening">Elige lo que está pasando</h1>
-          <p class="subtitle" data-i18n="hero_subtitle" data-es="Abre la guía que más se parece a tu situación actual para encontrar palabras que sí ayudan." data-en="Open the guide that best matches your situation to find words that actually help.">Abre la guía que más se parece a tu situación actual para encontrar palabras que sí ayudan.</p>
+          
+          <!-- 1. The Context (What this is) -->
+          <div class="hero-intro">
+            <span class="brand-pill" data-i18n="hero_eyebrow" data-es="Apoyo en el momento" data-en="Support in the moment">Apoyo en el momento</span>
+            <h1 class="hero-context" data-i18n="hero_context" data-es="Guías para momentos difíciles" data-en="Guides for difficult moments">Guías para momentos difíciles</h1>
+            <p class="subtitle" data-i18n="hero_context_sub" data-es="Herramientas simples para acompañarte en situaciones reales." data-en="Simple tools to support you in real situations.">Herramientas simples para acompañarte en situaciones reales.</p>
+          </div>
+
+          <!-- 2. The Call to Action (What to do) -->
+          <div class="hero-action">
+            <h2 class="hero-cta" data-i18n="hero_cta" data-es="Elige lo que está pasando" data-en="Choose what's happening">Elige lo que está pasando</h2>
+            <p class="subtitle" data-i18n="hero_subtitle" data-es="Abre la guía que más se parece a lo que estás viviendo ahora." data-en="Open the guide that best matches what you are living right now.">Abre la guía que más se parece a lo que estás viviendo ahora.</p>
+          </div>
+
         </header>
 
         <!-- PROTOCOLS GRID -->
         <section class="protocol-grid">
           
+          <!-- Screen Time -->
           <a href="/apoyo/screen-time" class="card screen" data-protocol="screen_time">
             <div class="card-top">
               <span class="card-tag" data-i18n="c1_tag" data-es="Pantallas" data-en="Screen time">Pantallas</span>
@@ -214,6 +242,7 @@
             </div>
           </a>
 
+          <!-- Emotional Escalation -->
           <a href="/apoyo/emotional-escalation" class="card escalation" data-protocol="emotional_escalation">
             <div class="card-top">
               <span class="card-tag" data-i18n="c2_tag" data-es="Desborde" data-en="Meltdown">Desborde</span>
@@ -227,6 +256,7 @@
             </div>
           </a>
 
+          <!-- Bedtime Resistance -->
           <a href="/apoyo/bedtime-resistance" class="card bedtime" data-protocol="bedtime_resistance">
             <div class="card-top">
               <span class="card-tag" data-i18n="c3_tag" data-es="Dormir" data-en="Bedtime">Dormir</span>
@@ -240,6 +270,7 @@
             </div>
           </a>
 
+          <!-- Sibling Conflict -->
           <a href="/apoyo/sibling-conflict" class="card sibling" data-protocol="sibling_conflict">
             <div class="card-top">
               <span class="card-tag" data-i18n="c4_tag" data-es="Hermanos" data-en="Siblings">Hermanos</span>
@@ -276,7 +307,7 @@
             </button>
             <button class="share-btn" id="btn-copy">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-              <span data-i18n="share_copy_btn" data-es="Copiar enlace" data-en="Copy link">Copiar enlace</span>
+              <span data-i18n="share_copy_btn" data-es="Copiar enlace" data-en="Copy Link">Copiar enlace</span>
             </button>
           </div>
         </section>
@@ -301,7 +332,7 @@
 
       const updateLanguage = (lang) => {
         currentLang = lang;
-        document.documentElement.lang = lang;
+        document.documentElement.lang = l;
         safeStorageSet('lg_parent_lang', lang);
 
         document.querySelectorAll('[data-i18n]').forEach(el => {
