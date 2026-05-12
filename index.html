@@ -64,31 +64,34 @@
     @media (max-width: 600px) { .watermark { width: 320px; height: 320px; bottom: -40px; right: -40px; opacity: 0.08; } }
 
     /* --- MINIMAL HEADER --- */
-    .top-bar { position: absolute; top: 0; left: 0; right: 0; padding: 24px 32px; z-index: 10; animation: fade-in 2s var(--ease-cinematic) 3.5s both; }
-    @media (max-width: 600px) { .top-bar { padding: 24px; } }
+    .top-bar { position: absolute; top: 0; left: 0; right: 0; padding: 24px 32px; z-index: 100; animation: fade-in 1.5s var(--ease-cinematic) 1.5s both; }
+    @media (max-width: 600px) { .top-bar { padding: 20px; } }
 
-    .nav-container { display: flex; justify-content: flex-end; align-items: center; gap: 32px; width: 100%; max-width: 1200px; margin: 0 auto; }
+    .nav-container { display: flex; justify-content: flex-end; align-items: center; gap: 20px; width: 100%; max-width: 1400px; margin: 0 auto; }
 
     .nav-links { display: flex; gap: 24px; align-items: center; }
-    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s; }
     .nav-links a:hover { color: #fff; }
 
     .mobile-menu-btn { display: none; }
 
-    .lang-switcher { display: inline-flex; padding: 4px; gap: 4px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); backdrop-filter: blur(12px); }
-    
     @media (max-width: 768px) {
-      .mobile-menu-btn { display: flex; align-items: center; justify-content: center; background: none; border: none; color: #fff; z-index: 1000; position: relative; cursor: pointer; padding: 8px; }
+      .nav-links { position: fixed; inset: 0; background: rgba(7, 5, 10, 0.98); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; opacity: 0; pointer-events: none; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); transform: translateY(-10px); }
+      .nav-links.is-open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+      .nav-links a { font-size: 1.5rem; letter-spacing: 0.1em; }
+      
+      .mobile-menu-btn { display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 50%; width: 44px; height: 44px; color: #fff; z-index: 1000; position: relative; cursor: pointer; transition: all 0.3s; }
+      .mobile-menu-btn:active { transform: scale(0.9); background: rgba(255,255,255,0.1); }
       .mobile-menu-btn .close-icon { display: none; }
       .mobile-menu-btn.is-active .menu-icon { display: none; }
       .mobile-menu-btn.is-active .close-icon { display: flex; }
-
-      .nav-links { position: fixed; inset: 0; background: rgba(14, 11, 18, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
-      .nav-links.is-open { opacity: 1; pointer-events: auto; }
-      .nav-links a { font-size: 1.25rem; }
+      
+      /* Hide desktop-only links by default on mobile */
+      .nav-links:not(.is-open) a { display: none; }
+      .nav-links.is-open a { display: block; }
     }
 
-    .lang-btn { min-width: 44px; padding: 6px 12px; border-radius: 999px; color: var(--text-faint); font-size: 0.7rem; font-weight: 700; cursor: pointer; transition: all 300ms; font-family: var(--ui-font); border: none; background: none; }
+    .lang-switcher { display: inline-flex; padding: 4px; gap: 4px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); backdrop-filter: blur(12px); }
     .lang-btn[aria-pressed='true'] { color: #fff; background: rgba(255,255,255,0.08); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
 
     /* --- THE THRESHOLD (Main Content) --- */
