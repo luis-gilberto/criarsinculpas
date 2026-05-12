@@ -69,6 +69,39 @@
 
     .nav-container { display: flex; justify-content: space-between; align-items: center; gap: 20px; width: 100%; max-width: 1400px; margin: 0 auto; }
 
+    .brand-logo-cinematic { 
+      display: inline-flex; 
+      align-items: center; 
+      position: relative; 
+      z-index: 10; 
+      transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); 
+      animation: floatLogo 6s ease-in-out infinite; 
+    } 
+    .brand-logo-cinematic img { 
+      height: 26px; 
+      width: auto; 
+      display: block; 
+      object-fit: contain; 
+      opacity: 0.92; 
+      filter:  
+        drop-shadow(0 4px 6px rgba(0,0,0,0.6))  
+        drop-shadow(0 0 14px rgba(141, 121, 255, 0.4))  
+        brightness(1.05); 
+      transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); 
+    } 
+    .brand-logo-cinematic:hover img { 
+      opacity: 1; 
+      transform: scale(1.04); 
+      filter:  
+        drop-shadow(0 6px 12px rgba(0,0,0,0.8))  
+        drop-shadow(0 0 24px rgba(141, 121, 255, 0.7))  
+        brightness(1.15); 
+    } 
+    @keyframes floatLogo { 
+      0%, 100% { transform: translateY(0); } 
+      50% { transform: translateY(-2px); } 
+    } 
+
     .nav-links { display: flex; gap: 24px; align-items: center; }
     .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s; }
     .nav-links a:hover { color: #fff; }
@@ -151,8 +184,8 @@
   <!-- Subtle Top Bar -->
   <header class="top-bar">
     <div class="nav-container">
-      <a href="https://criarsinculpas.com" aria-label="Criar Sin Culpas - Inicio" style="display: inline-flex; align-items: center; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'"> 
-        <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778615036/CSC_Wordmark_print_ldajtg.png" alt="Criar Sin Culpas" style="height: 32px; width: auto; display: block; object-fit: contain;"> 
+      <a href="https://criarsinculpas.com" aria-label="Criar Sin Culpas - Inicio" class="brand-logo-cinematic"> 
+        <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778614159/CSC_logo_horizontal_ry0osd.png" alt="Criar Sin Culpas"> 
       </a> 
       <nav class="nav-links">
         <a href="/apoyo" data-i18n="nav_apoyo" data-es="Apoyo" data-en="Support">Apoyo</a>
