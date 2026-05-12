@@ -67,7 +67,7 @@
     .top-bar { position: absolute; top: 0; left: 0; right: 0; padding: 24px 32px; z-index: 100; animation: fade-in 1.5s var(--ease-cinematic) 1.5s both; }
     @media (max-width: 600px) { .top-bar { padding: 20px; } }
 
-    .nav-container { display: flex; justify-content: flex-end; align-items: center; gap: 20px; width: 100%; max-width: 1400px; margin: 0 auto; }
+    .nav-container { display: flex; justify-content: space-between; align-items: center; gap: 20px; width: 100%; max-width: 1400px; margin: 0 auto; }
 
     .nav-links { display: flex; gap: 24px; align-items: center; }
     .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s; }
@@ -151,6 +151,9 @@
   <!-- Subtle Top Bar -->
   <header class="top-bar">
     <div class="nav-container">
+      <a href="https://criarsinculpas.com" aria-label="Criar Sin Culpas - Inicio" style="display: inline-flex; align-items: center; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'"> 
+        <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778614159/CSC_logo_horizontal_ry0osd.png" alt="Criar Sin Culpas" style="height: 24px; width: auto; display: block; object-fit: contain;"> 
+      </a> 
       <nav class="nav-links">
         <a href="/apoyo" data-i18n="nav_apoyo" data-es="Apoyo" data-en="Support">Apoyo</a>
         <a href="#" style="opacity: 0.5; cursor: default;" data-i18n="nav_metodo" data-es="El Método (Pronto)" data-en="Method (Soon)">El Método (Pronto)</a>
