@@ -64,10 +64,30 @@
     @media (max-width: 600px) { .watermark { width: 320px; height: 320px; bottom: -40px; right: -40px; opacity: 0.08; } }
 
     /* --- MINIMAL HEADER --- */
-    .top-bar { position: absolute; top: 0; left: 0; right: 0; padding: 24px 32px; display: flex; justify-content: flex-end; z-index: 10; animation: fade-in 2s var(--ease-cinematic) 3.5s both; }
+    .top-bar { position: absolute; top: 0; left: 0; right: 0; padding: 24px 32px; z-index: 10; animation: fade-in 2s var(--ease-cinematic) 3.5s both; }
     @media (max-width: 600px) { .top-bar { padding: 24px; } }
 
+    .nav-container { display: flex; justify-content: flex-end; align-items: center; gap: 32px; width: 100%; max-width: 1200px; margin: 0 auto; }
+
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s; }
+    .nav-links a:hover { color: #fff; }
+
+    .mobile-menu-btn { display: none; }
+
     .lang-switcher { display: inline-flex; padding: 4px; gap: 4px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); backdrop-filter: blur(12px); }
+    
+    @media (max-width: 768px) {
+      .mobile-menu-btn { display: flex; align-items: center; justify-content: center; background: none; border: none; color: #fff; z-index: 1000; position: relative; cursor: pointer; padding: 8px; }
+      .mobile-menu-btn .close-icon { display: none; }
+      .mobile-menu-btn.is-active .menu-icon { display: none; }
+      .mobile-menu-btn.is-active .close-icon { display: flex; }
+
+      .nav-links { position: fixed; inset: 0; background: rgba(14, 11, 18, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+      .nav-links.is-open { opacity: 1; pointer-events: auto; }
+      .nav-links a { font-size: 1.25rem; }
+    }
+
     .lang-btn { min-width: 44px; padding: 6px 12px; border-radius: 999px; color: var(--text-faint); font-size: 0.7rem; font-weight: 700; cursor: pointer; transition: all 300ms; font-family: var(--ui-font); border: none; background: none; }
     .lang-btn[aria-pressed='true'] { color: #fff; background: rgba(255,255,255,0.08); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
 
@@ -127,9 +147,20 @@
 
   <!-- Subtle Top Bar -->
   <header class="top-bar">
-    <div class="lang-switcher">
-      <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
-      <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+    <div class="nav-container">
+      <nav class="nav-links">
+        <a href="/apoyo" data-i18n="nav_apoyo" data-es="Apoyo" data-en="Support">Apoyo</a>
+        <a href="#" style="opacity: 0.5; cursor: default;" data-i18n="nav_metodo" data-es="El Método (Pronto)" data-en="Method (Soon)">El Método (Pronto)</a>
+        <a href="#" style="opacity: 0.5; cursor: default;" data-i18n="nav_aprende" data-es="Aprende (Pronto)" data-en="Learn (Soon)">Aprende (Pronto)</a>
+      </nav>
+      <div class="lang-switcher">
+        <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
+        <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button class="mobile-menu-btn" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="menu-icon"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="close-icon"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
     </div>
   </header>
 
@@ -211,6 +242,29 @@
           setTimeout(() => {
             window.location.href = href;
           }, 800); 
+        });
+      }
+
+      // Mobile Menu Toggle
+      const menuBtn = document.querySelector('.mobile-menu-btn');
+      const navLinks = document.querySelector('.nav-links');
+      
+      if(menuBtn && navLinks) {
+        menuBtn.addEventListener('click', () => {
+          const isOpen = navLinks.classList.toggle('is-open');
+          menuBtn.classList.toggle('is-active');
+          
+          // Prevent body scroll when menu is open
+          document.body.style.overflow = isOpen ? 'hidden' : '';
+        });
+
+        // Close menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            navLinks.classList.remove('is-open');
+            menuBtn.classList.remove('is-active');
+            document.body.style.overflow = '';
+          });
         });
       }
     })();
