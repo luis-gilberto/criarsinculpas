@@ -37,7 +37,7 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-    html, body { min-height: 100%; width: 100%; overflow-x: hidden; scroll-behavior: smooth; background-color: var(--bg-void); }
+    html, body { min-height: 100%; width: 100%; overflow: hidden; background-color: var(--bg-void); }
 
     body {
       font-family: var(--ui-font);
@@ -155,24 +155,18 @@
         <span data-i18n="portal_cta" data-es="Necesito apoyo ahora" data-en="I need support right now">Necesito apoyo ahora</span>
         <span class="btn-arrow">→</span>
       </a>
-      <a href="#sobre-nari" class="btn-secondary" style="margin-left: 20px; color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Conocer a Nari</a>
+      <a href="#sobre-nari" style="margin-left: 24px; color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500;">Conocer a Nari</a>
     </div>
 
   </main>
 
-  <!-- SOBRE NARI SECTION -->
-  <section id="sobre-nari" style="padding: 100px 32px; max-width: 900px; margin: 0 auto; position: relative; z-index: 2;">
-    <h2 style="font-family: var(--display-font); font-size: 2.5rem; margin-bottom: 24px;">Sobre Nari</h2>
-    <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8;">
-      Nari es un sistema de inteligencia emocional diseñado para acompañar a madres y padres en los momentos de mayor tensión. 
-      No es solo información; es un espacio de regulación humana potenciado por síntesis estratégica.
+  <section id="sobre-nari" style="padding: 120px 32px; max-width: 900px; margin: 0 auto; position: relative; z-index: 2;">
+    <h2 style="font-family: var(--display-font); font-size: 2.2rem; margin-bottom: 24px;">Sobre Nari</h2>
+    <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 60ch;">
+      Nari es un sistema de apoyo emocional diseñado para acompañar a madres y padres. 
+      No es solo información; es un espacio de regulación humana.
     </p>
-  </section>
-
-  <!-- PROTOCOLS SECTION PREVIEW -->
-  <section style="padding: 60px 32px; max-width: 900px; margin: 0 auto; position: relative; z-index: 2;">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
-      <h3 style="font-family: var(--display-font); font-size: 1.8rem;">Protocolos destacados</h3>
+    <div style="margin-top: 40px;">
       <a href="/apoyo" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.1);">Ver todas</a>
     </div>
   </section>
