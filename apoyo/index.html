@@ -94,8 +94,8 @@
       align-items: center;  
       gap: 12px;  
       background: #000000;  
-      margin: -24px -24px 40px -24px;  
-      padding: 20px 24px;  
+      margin: -12px -12px 32px -12px;  
+      padding: max(24px, env(safe-area-inset-top)) 24px 20px 24px;  
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);  
       border-top-left-radius: var(--radius-xl);  
       border-top-right-radius: var(--radius-xl);  
@@ -349,8 +349,8 @@
 
         <!-- NAV -->
         <div class="top-row">
-          <a href="/" aria-label="Criar Sin Culpas - Inicio" style="display: inline-flex; align-items: center; transition: opacity 0.2s ease;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'"> 
-            <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778618162/logomark_qmaugw.jpg" alt="Criar Sin Culpas" style="height: clamp(36px, 5vw, 44px); width: auto; display: block; object-fit: contain;"> 
+          <a href="/" aria-label="Criar Sin Culpas - Inicio" style="display: flex; flex-shrink: 0; align-items: center; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"> 
+            <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778618162/logomark_qmaugw.jpg" alt="Criar Sin Culpas" style="height: 38px; width: auto; max-width: none; display: block; object-fit: contain; mix-blend-mode: screen; filter: contrast(1.6) brightness(0.9); flex-shrink: 0; margin-left: -4px;"> 
           </a> 
           <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
             <nav class="nav-links">

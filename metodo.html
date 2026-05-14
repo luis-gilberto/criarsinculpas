@@ -33,7 +33,7 @@
     @media(max-width:600px) { .watermark { width: 280px; height: 280px; bottom: -40px; right: -30px; opacity: .12; } }
 
     /* NAV */
-    .top-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; background: #000000; padding: 16px 24px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); position: sticky; top: 0; z-index: 1000; }
+    .top-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; background: #000000; padding: max(24px, env(safe-area-inset-top)) 24px 20px 24px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); position: sticky; top: 0; z-index: 1000; }
     .lang-switcher { display: inline-flex; padding: 4px; gap: 4px; border-radius: 999px; border: 1px solid var(--border); background: rgba(255, 255, 255, 0.03); }
     .lang-btn { min-width: 48px; padding: 8px 12px; border-radius: 999px; color: var(--text-soft); font-size: 0.75rem; font-weight: 800; cursor: pointer; transition: all 280ms; background: none; border: none; }
     .lang-btn[aria-pressed='true'] { color: #fff; background: rgba(255, 255, 255, 0.12); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); }
@@ -98,15 +98,14 @@
   <div class="grain"></div>
   <div class="watermark"><img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778272963/CSC_Logo_Grayscale_k6uitt.png" alt="CSC"></div>
 
-  <!-- NAV -->
   <div class="top-row">
     <div style="display: flex; align-items: center; gap: 14px;">
       <a href="/apoyo" aria-label="Volver" style="color: rgba(255,255,255,0.5); text-decoration: none; display: flex; align-items: center; transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
       </a>
-      <a href="/" aria-label="Criar Sin Culpas" style="display: inline-flex; align-items: center;">
-        <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778618162/logomark_qmaugw.jpg" alt="Criar Sin Culpas" style="height: 34px; width: auto !important; display: block; object-fit: contain; mix-blend-mode: screen; filter: contrast(1.6) brightness(0.85);">
-      </a>
+      <a href="/" aria-label="Criar Sin Culpas - Inicio" style="display: flex; flex-shrink: 0; align-items: center; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"> 
+        <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778618162/logomark_qmaugw.jpg" alt="Criar Sin Culpas" style="height: 38px; width: auto; max-width: none; display: block; object-fit: contain; mix-blend-mode: screen; filter: contrast(1.6) brightness(0.9); flex-shrink: 0; margin-left: -4px;"> 
+      </a> 
     </div>
     <div class="lang-switcher">
       <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>

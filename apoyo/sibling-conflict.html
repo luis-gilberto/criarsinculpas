@@ -72,7 +72,7 @@
       justify-content: space-between; 
       align-items: center; 
       background: #000000; 
-      padding: 16px 20px; 
+      padding: max(24px, env(safe-area-inset-top)) 24px 20px 24px; 
       margin: 0 0 24px 0; 
       border-bottom: 1px solid rgba(255, 255, 255, 0.08); 
       border-bottom-left-radius: 20px; 
@@ -187,14 +187,13 @@
   </div>
 
   <div class="page">
-    <!-- NAV -->
     <nav class="p-nav">
       <div style="display: flex; align-items: center; gap: 14px;"> 
         <a href="/apoyo" aria-label="Volver al Hub" style="color: rgba(255,255,255,0.5); text-decoration: none; display: flex; align-items: center; transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'"> 
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> 
         </a> 
-        <a href="/" aria-label="Criar Sin Culpas" style="display: flex; align-items: center;"> 
-          <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778618162/logomark_qmaugw.jpg" alt="Criar Sin Culpas" style="height: 28px; width: auto; display: block; object-fit: contain;"> 
+        <a href="/" aria-label="Criar Sin Culpas - Inicio" style="display: flex; flex-shrink: 0; align-items: center; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"> 
+          <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778618162/logomark_qmaugw.jpg" alt="Criar Sin Culpas" style="height: 38px; width: auto; max-width: none; display: block; object-fit: contain; mix-blend-mode: screen; filter: contrast(1.6) brightness(0.9); flex-shrink: 0; margin-left: -4px;"> 
         </a> 
       </div>
       <div class="lang-sw">

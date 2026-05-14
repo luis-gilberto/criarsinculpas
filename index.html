@@ -74,8 +74,8 @@
       align-items: center; 
       gap: 12px; 
       background: #000000; 
-      padding: 16px 24px; 
-      margin: -24px -24px 32px -24px; 
+      padding: max(24px, env(safe-area-inset-top)) 24px 20px 24px; 
+      margin: -12px -12px 32px -12px; 
       border-bottom: 1px solid rgba(255, 255, 255, 0.08); 
       border-top-left-radius: var(--radius-xl); 
       border-top-right-radius: var(--radius-xl); 
@@ -163,10 +163,9 @@
     <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778272963/CSC_Logo_Grayscale_k6uitt.png" alt="">
   </div>
 
-  <!-- Subtle Top Bar -->
   <header class="top-row">
-      <a href="/" aria-label="Criar Sin Culpas - Inicio" style="display: inline-flex; align-items: center; transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"> 
-        <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778618162/logomark_qmaugw.jpg" alt="Criar Sin Culpas" style="height: 34px; width: auto !important; max-width: none; display: block; object-fit: contain; mix-blend-mode: screen; filter: contrast(1.6) brightness(0.85);"> 
+      <a href="/" aria-label="Criar Sin Culpas - Inicio" style="display: flex; flex-shrink: 0; align-items: center; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"> 
+        <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778618162/logomark_qmaugw.jpg" alt="Criar Sin Culpas" style="height: 38px; width: auto; max-width: none; display: block; object-fit: contain; mix-blend-mode: screen; filter: contrast(1.6) brightness(0.9); flex-shrink: 0; margin-left: -4px;"> 
       </a> 
       <nav class="nav-links">
         <a href="/apoyo" data-i18n="nav_apoyo" data-es="Guías" data-en="Guides">Guías</a>
