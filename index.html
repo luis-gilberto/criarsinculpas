@@ -34,6 +34,10 @@
       
       /* Cinematic Easing */
       --ease-cinematic: cubic-bezier(0.25, 1, 0.5, 1);
+      
+      --teal: #4bada8;
+      --radius-pill: 999px;
+      --border-soft: rgba(255, 255, 255, 0.08);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -102,19 +106,22 @@
     .lang-switcher { display: inline-flex; padding: 4px; gap: 4px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); backdrop-filter: blur(12px); }
     .lang-btn[aria-pressed='true'] { color: #fff; background: rgba(255,255,255,0.08); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
 
-    /* --- THE THRESHOLD (Main Content) --- */
-    .threshold { position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 22vh; min-height: 100dvh; padding-left: 32px; padding-right: 32px; max-width: 900px; margin: 0 auto; }
-    @media (max-width: 600px) { .threshold { padding-left: 24px; padding-right: 24px; padding-top: 18vh; } }
+    /* --- THE HERO (Main Content) --- */
+    .hero { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 32px; animation: fadeIn 0.8s backwards; margin-bottom: 24px; padding-top: 4vh; position: relative; z-index: 2; min-height: 100dvh; max-width: 900px; margin: 0 auto; } 
+    .hero-intro { display: flex; flex-direction: column; align-items: center; gap: 16px; } 
+    .brand-pill { align-self: center; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal); padding: 8px 18px; border-radius: var(--radius-pill); background: rgba(97, 209, 196, 0.1); border: 1px solid rgba(97, 209, 196, 0.2); } 
+    .hero-context { font-family: var(--display-font); font-size: clamp(2rem, 6vw, 3.2rem); line-height: 1.1; letter-spacing: -0.02em; font-weight: 600; color: #fff; max-width: 24ch; margin: 0 auto; } 
+    .hero-action { display: flex; flex-direction: column; align-items: center; gap: 12px; padding-top: 32px; border-top: 1px solid var(--border-soft); width: 100%; max-width: 600px; margin: 0 auto; animation: fadeInUp 0.8s 0.2s backwards; } 
+    .hero .subtitle { font-size: 1rem; font-weight: 400; color: var(--text-muted); max-width: 48ch; line-height: 1.6; margin: 0 auto; } 
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 600px) { .hero { padding-left: 24px; padding-right: 24px; padding-top: 18vh; } }
 
     /* The Human Mark */
-    .human-mark { width: 64px; height: 24px; opacity: 0.35; margin-bottom: 24px; animation: fade-in-up 2s var(--ease-cinematic) 0.2s both; }
+    .human-mark { width: 64px; height: 24px; opacity: 0.35; margin-bottom: 24px; animation: fadeInUp 2s var(--ease-cinematic) 0.2s both; }
     .human-mark path { stroke-dasharray: 200; stroke-dashoffset: 200; animation: draw-line 3s var(--ease-cinematic) 0.8s forwards; }
-
-    .eyebrow { font-family: var(--display-font); font-size: clamp(0.95rem, 2vw, 1.15rem); font-style: italic; color: var(--text-muted); margin-bottom: 32px; animation: fade-in-up 2s var(--ease-cinematic) 0.8s both; }
-    
-    .headline { font-family: var(--display-font); font-size: clamp(2.4rem, 6vw, 4.2rem); line-height: 1.08; font-weight: 500; color: var(--text-main); margin-bottom: 40px; letter-spacing: -0.02em; max-width: 20ch; animation: fade-in-up 2.5s var(--ease-cinematic) 1.2s both; }
-    
-    .subheadline { font-size: clamp(1rem, 2vw, 1.15rem); line-height: 1.8; font-weight: 400; color: var(--text-muted); max-width: 40ch; margin-bottom: 56px; animation: fade-in-up 2.5s var(--ease-cinematic) 1.8s both; }
 
     /* --- THE ACTION (Entering the Support Space) --- */
     .cta-wrapper { animation: fade-in-up 2.5s var(--ease-cinematic) 2.4s both; }
@@ -159,7 +166,7 @@
   <!-- Subtle Top Bar -->
   <header class="top-row">
       <a href="/" aria-label="Criar Sin Culpas - Inicio" style="display: inline-flex; align-items: center; transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"> 
-        <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778618162/logomark_qmaugw.jpg" alt="Criar Sin Culpas" style="height: clamp(55px, 8vw, 85px); width: auto; max-width: 280px; display: block; object-fit: contain; margin-left: -12px;"> 
+        <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778618162/logomark_qmaugw.jpg" alt="Criar Sin Culpas" style="height: 34px; width: auto !important; max-width: none; display: block; object-fit: contain; mix-blend-mode: screen; filter: contrast(1.6) brightness(0.85);"> 
       </a> 
       <nav class="nav-links">
         <a href="/apoyo" data-i18n="nav_apoyo" data-es="Guías" data-en="Guides">Guías</a>
@@ -177,32 +184,36 @@
   </header>
 
   <!-- Emotional Threshold -->
-  <main class="threshold">
+  <main class="hero">
     
     <svg class="human-mark" viewBox="0 0 100 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <path d="M5,15 C10,-5 20,35 25,15 C30,-5 40,35 45,15 Q60,15 95,15" stroke="#F2EFEA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
 
-    <div class="eyebrow" data-i18n="portal_eyebrow" data-es="Criar Sin Culpas" data-en="Criar Sin Culpas">Criar Sin Culpas</div>
-    
-    <h1 class="headline" data-i18n="portal_headline" data-es="La crianza no debería sentirse como un incendio a diario." data-en="Parenting shouldn’t feel like a daily fire to put out.">
-      La crianza no debería sentirse como un incendio a diario.
-    </h1>
-    
-    <p class="subheadline" data-i18n="portal_subheadline" data-es="A veces, el corazón que necesita más calma… es el nuestro.<br><br>Y cuando las palabras o la teoría ya no ayudan, lo que buscamos es un lugar donde entender, respirar y volver a empezar." data-en="Sometimes, the heart that needs the most calm… is our own.<br><br>When words are no longer enough, what we need most is a space to understand, breathe, and begin again.">
-      A veces, el corazón que necesita más calma… es el nuestro.<br><br>Y cuando las palabras o la teoría ya no ayudan, lo que buscamos es un lugar donde entender, respirar y volver a empezar.
-    </p>
-
-    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 32px; animation: fade-in-up 2.5s var(--ease-cinematic) 2.1s both;">
-      <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778609928/Nari_Portrait_c5wgmr.png" alt="Nari Fateha" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(255,255,255,0.1);">
-      <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 500;">Nari Fateha</span>
+    <div class="hero-intro">
+      <div class="brand-pill" data-i18n="portal_eyebrow" data-es="Criar Sin Culpas" data-en="Criar Sin Culpas">Criar Sin Culpas</div>
+      
+      <h1 class="hero-context" data-i18n="portal_headline" data-es="La crianza no debería sentirse como un incendio a diario." data-en="Parenting shouldn’t feel like a daily fire to put out.">
+        La crianza no debería sentirse como un incendio a diario.
+      </h1>
     </div>
+    
+    <div class="hero-action">
+      <p class="subtitle" data-i18n="portal_subheadline" data-es="A veces, el corazón que necesita más calma… es el nuestro.<br><br>Y cuando las palabras o la teoría ya no ayudan, lo que buscamos es un lugar donde entender, respirar y volver a empezar." data-en="Sometimes, the heart that needs the most calm… is our own.<br><br>When words are no longer enough, what we need most is a space to understand, breathe, and begin again.">
+        A veces, el corazón que necesita más calma… es el nuestro.<br><br>Y cuando las palabras o la teoría ya no ayudan, lo que buscamos es un lugar donde entender, respirar y volver a empezar.
+      </p>
 
-    <div class="cta-wrapper">
-      <a href="/apoyo" class="btn-enter" id="enter-btn">
-        <span data-i18n="portal_cta" data-es="Necesito apoyo ahora" data-en="I need support right now">Necesito apoyo ahora</span>
-        <span class="btn-arrow">→</span>
-      </a>
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+        <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778609928/Nari_Portrait_c5wgmr.png" alt="Nari Fateha" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(255,255,255,0.1);">
+        <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 500;">Nari Fateha</span>
+      </div>
+
+      <div class="cta-wrapper">
+        <a href="/apoyo" class="btn-enter" id="enter-btn">
+          <span data-i18n="portal_cta" data-es="Necesito apoyo ahora" data-en="I need support right now">Necesito apoyo ahora</span>
+          <span class="btn-arrow">→</span>
+        </a>
+      </div>
     </div>
 
   </main>
