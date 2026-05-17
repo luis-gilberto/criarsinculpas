@@ -33,7 +33,7 @@
       --ui-font: Inter, system-ui, -apple-system, sans-serif;
       
       /* Cinematic Easing */
-      --ease-cinematic: cubic-bezier(0.25, 1, 0.5, 1);
+      --ease-cinematic: cubic-bezier(0.25, 1, 0.4, 1);
       
       --teal: #4bada8;
       --radius-pill: 999px;
@@ -41,6 +41,8 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    
+    /* PERFECT VIEWPORT LOCK */
     html, body { min-height: 100dvh; width: 100%; overflow-x: hidden; background-color: var(--bg-void); }
 
     body {
@@ -52,9 +54,8 @@
       flex-direction: column;
     }
 
-    /* --- ATMOSPHERIC MOTION (The Breathing Room) --- */
+    /* --- ATMOSPHERIC MOTION --- */
     .atmosphere { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-    
     .breath-orb { position: absolute; border-radius: 50%; filter: blur(80px); animation: breathe 12s ease-in-out infinite alternate; }
     .orb-1 { width: 60vw; height: 60vw; top: -20%; left: -10%; background: var(--glow-violet); animation-delay: 0s; }
     .orb-2 { width: 50vw; height: 50vw; bottom: -10%; right: -10%; background: var(--glow-teal); animation-delay: -4s; }
@@ -62,23 +63,17 @@
 
     .grain { position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.035; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 180px 180px; }
 
-    /* Watermark */
     .watermark { position: fixed; bottom: -80px; right: -60px; width: 500px; height: 500px; pointer-events: none; z-index: 1; opacity: 0.12; filter: grayscale(100%); }
     .watermark img { width: 100%; height: 100%; object-fit: contain; object-position: bottom right; }
     @media (max-width: 600px) { .watermark { width: 320px; height: 320px; bottom: -40px; right: -40px; opacity: 0.08; } }
 
-    /* --- MINIMAL HEADER --- */
+    /* --- NAVIGATION --- */
     .top-row { 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
-      gap: 12px; 
-      background: #000000; 
-      padding: max(24px, env(safe-area-inset-top)) 24px 20px 24px; 
-      margin: -12px -12px 32px -12px; 
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08); 
-      border-top-left-radius: var(--radius-xl); 
-      border-top-right-radius: var(--radius-xl); 
+      display: flex; justify-content: space-between; align-items: center; gap: 12px; 
+      background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      padding: max(16px, env(safe-area-inset-top)) 24px 16px 24px; 
+      border-bottom: 1px solid var(--border-soft); 
+      position: relative; z-index: 100;
     } 
 
     .nav-links { display: flex; gap: 24px; align-items: center; }
@@ -92,59 +87,76 @@
       .nav-links.is-open { opacity: 1; pointer-events: auto; transform: translateY(0); }
       .nav-links a { font-size: 1.5rem; letter-spacing: 0.1em; }
       
-      .mobile-menu-btn { display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 50%; width: 44px; height: 44px; color: #fff; z-index: 1000; position: relative; cursor: pointer; transition: all 0.3s; }
+      .mobile-menu-btn { display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 50%; width: 44px; height: 44px; color: #fff; z-index: 1000; position: relative; cursor: pointer; transition: all 0.3s; flex-shrink: 0; }
       .mobile-menu-btn:active { transform: scale(0.9); background: rgba(255,255,255,0.1); }
       .mobile-menu-btn .close-icon { display: none; }
       .mobile-menu-btn.is-active .menu-icon { display: none; }
       .mobile-menu-btn.is-active .close-icon { display: flex; }
       
-      /* Hide desktop-only links by default on mobile */
       .nav-links:not(.is-open) a { display: none; }
       .nav-links.is-open a { display: block; }
     }
 
-    .lang-switcher { display: inline-flex; padding: 4px; gap: 4px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); backdrop-filter: blur(12px); }
+    .lang-switcher { display: inline-flex; padding: 4px; gap: 4px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); flex-shrink: 0; }
+    .lang-btn { min-width: 44px; padding: 6px 12px; border-radius: 999px; color: var(--text-muted); font-size: 0.75rem; font-weight: 700; transition: all 280ms; }
     .lang-btn[aria-pressed='true'] { color: #fff; background: rgba(255,255,255,0.08); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
 
-    /* --- THE HERO (Main Content) --- */
-    .hero { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 32px; animation: fadeIn 0.8s backwards; margin-bottom: 24px; padding-top: 4vh; position: relative; z-index: 2; min-height: 100dvh; max-width: 900px; margin: 0 auto; } 
-    .hero-intro { display: flex; flex-direction: column; align-items: center; gap: 16px; } 
+    /* --- THE CASCADING ANIMATION SYSTEM --- */
+    @keyframes cinematicReveal {
+      0% { opacity: 0; transform: translateY(24px); filter: blur(12px); }
+      100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+    .reveal-1 { animation: cinematicReveal 1.2s var(--ease-cinematic) 0.1s both; }
+    .reveal-2 { animation: cinematicReveal 1.2s var(--ease-cinematic) 0.3s both; }
+    .reveal-3 { animation: cinematicReveal 1.2s var(--ease-cinematic) 0.5s both; }
+    .reveal-4 { animation: cinematicReveal 1.2s var(--ease-cinematic) 0.7s both; }
+    .reveal-5 { animation: cinematicReveal 1.2s var(--ease-cinematic) 0.9s both; }
+
+    @keyframes draw-line { to { stroke-dashoffset: 0; } }
+    @keyframes breathe { 0% { transform: scale(1) translate(0, 0); opacity: 0.5; } 100% { transform: scale(1.15) translate(2%, 2%); opacity: 1; } }
+
+    /* --- THE HERO (Perfectly Centered Content) --- */
+    .page-wrap { display: flex; flex-direction: column; flex: 1; position: relative; z-index: 2; width: 100%; }
+    
+    .hero { 
+      flex: 1; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center; 
+      align-items: center; 
+      text-align: center; 
+      max-width: 900px; 
+      margin: 0 auto; 
+      padding: 24px 24px 8vh 24px; /* Optical center offset */
+      width: 100%;
+    } 
+    
+    .hero-intro { display: flex; flex-direction: column; align-items: center; gap: 16px; width: 100%; } 
     .brand-pill { align-self: center; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal); padding: 8px 18px; border-radius: var(--radius-pill); background: rgba(97, 209, 196, 0.1); border: 1px solid rgba(97, 209, 196, 0.2); } 
-    .hero-context { font-family: var(--display-font); font-size: clamp(2rem, 6vw, 3.2rem); line-height: 1.1; letter-spacing: -0.02em; font-weight: 600; color: #fff; max-width: 24ch; margin: 0 auto; } 
-    .hero-action { display: flex; flex-direction: column; align-items: center; gap: 12px; padding-top: 32px; border-top: 1px solid var(--border-soft); width: 100%; max-width: 600px; margin: 0 auto; animation: fadeInUp 0.8s 0.2s backwards; } 
-    .hero .subtitle { font-size: 1rem; font-weight: 400; color: var(--text-muted); max-width: 48ch; line-height: 1.6; margin: 0 auto; } 
+    .hero-context { font-family: var(--display-font); font-size: clamp(2.2rem, 7vw, 3.4rem); line-height: 1.1; letter-spacing: -0.02em; font-weight: 600; color: #fff; max-width: 22ch; margin: 0 auto; } 
+    
+    .hero-action { display: flex; flex-direction: column; align-items: center; gap: 24px; padding-top: 32px; border-top: 1px solid var(--border-soft); width: 100%; max-width: 600px; margin: 32px auto 0 auto; } 
+    .subtitle { font-size: 1.05rem; font-weight: 400; color: var(--text-muted); line-height: 1.6; margin: 0 auto; } 
 
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-    @media (max-width: 600px) { .hero { padding-left: 24px; padding-right: 24px; padding-top: 18vh; } }
-
-    /* The Human Mark */
-    .human-mark { width: 64px; height: 24px; opacity: 0.35; margin-bottom: 24px; animation: fadeInUp 2s var(--ease-cinematic) 0.2s both; }
-    .human-mark path { stroke-dasharray: 200; stroke-dashoffset: 200; animation: draw-line 3s var(--ease-cinematic) 0.8s forwards; }
+    .human-mark { width: 64px; height: 24px; opacity: 0.35; margin-bottom: 24px; }
+    .human-mark path { stroke-dasharray: 200; stroke-dashoffset: 200; animation: draw-line 3s var(--ease-cinematic) 0.4s forwards; }
 
     /* --- THE ACTION (Entering the Support Space) --- */
-    .cta-wrapper { animation: fade-in-up 2.5s var(--ease-cinematic) 2.4s both; }
-    
-    .btn-enter { display: inline-flex; align-items: center; gap: 12px; padding: 18px 36px; border-radius: 999px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--text-main); font-size: 0.95rem; font-weight: 600; letter-spacing: 0.02em; cursor: pointer; transition: all 400ms var(--ease-cinematic); backdrop-filter: blur(16px); text-decoration: none; overflow: hidden; position: relative; }
-    
-    .btn-enter::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent); transform: translateX(-100%); transition: transform 600ms ease; }
-    
-    .btn-enter:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1); padding-right: 32px; padding-left: 40px; }
+    .hero-profile { display: flex; align-items: center; gap: 12px; }
+    .hero-profile img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(255,255,255,0.1); }
+    .hero-profile span { font-size: 0.95rem; color: var(--text-muted); font-weight: 500; }
+
+    .btn-enter { display: inline-flex; align-items: center; gap: 12px; padding: 18px 36px; border-radius: 999px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: #fff; font-size: 1rem; font-weight: 600; letter-spacing: 0.02em; cursor: pointer; transition: all 400ms var(--ease-cinematic); backdrop-filter: blur(16px); text-decoration: none; overflow: hidden; position: relative; }
+    .btn-enter::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent); transform: translateX(-100%); transition: transform 600ms ease; }
+    .btn-enter:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.25); box-shadow: 0 20px 40px rgba(0,0,0,0.4); padding-right: 32px; padding-left: 40px; }
     .btn-enter:hover::before { transform: translateX(100%); }
     .btn-enter:active { transform: scale(0.98); }
 
     .btn-arrow { font-weight: 400; font-size: 1.2rem; color: rgba(255,255,255,0.4); transition: color 400ms, transform 400ms var(--ease-cinematic); }
-    .btn-enter:hover .btn-arrow { color: #fff; transform: translateX(4px); }
-
-    /* --- KEYFRAMES --- */
-    @keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
-    @keyframes fade-in-up { 0% { opacity: 0; transform: translateY(24px); filter: blur(8px); } 100% { opacity: 1; transform: translateY(0); filter: blur(0); } }
-    @keyframes draw-line { to { stroke-dashoffset: 0; } }
-    @keyframes breathe { 0% { transform: scale(1) translate(0, 0); opacity: 0.5; } 100% { transform: scale(1.15) translate(2%, 2%); opacity: 1; } }
+    .btn-enter:hover .btn-arrow { color: var(--teal); transform: translateX(4px); }
 
     /* Page Exit Transition */
-    .page-exiting { animation: exit-fade 800ms var(--ease-cinematic) forwards; pointer-events: none; }
+    .page-exiting { animation: exit-fade 600ms var(--ease-cinematic) forwards; pointer-events: none; }
     @keyframes exit-fade { 0% { opacity: 1; filter: blur(0); transform: scale(1); } 100% { opacity: 0; filter: blur(12px); transform: scale(1.02); } }
   </style>
 </head>
@@ -163,66 +175,67 @@
     <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778272963/CSC_Logo_Grayscale_k6uitt.png" alt="">
   </div>
 
- <div class="top-row" style="flex-wrap: nowrap;"> 
-   <!-- LOGO --> 
-   <a href="/" aria-label="Criar Sin Culpas - Inicio" style="display: flex; flex-shrink: 0; align-items: center; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'"> 
-     <img src="/assets/images/csc-logo.svg" alt="Criar Sin Culpas" style="height: clamp(26px, 4vw, 34px); width: auto !important; max-width: none; display: block; object-fit: contain; flex-shrink: 0; margin-left: -4px;"> 
-   </a> 
-   
-   <!-- RIGHT MENU ELEMENTS --> 
-   <div style="display:flex; align-items:center; gap:16px; flex-wrap:nowrap; flex-shrink: 0;"> 
-     <nav class="nav-links" style="white-space: nowrap;"> 
-       <a href="/apoyo/" class="nav-link" data-i18n="nav_apoyo" data-es="Guías" data-en="Guides">Guías</a> 
-       <a href="/metodo" class="nav-link" data-i18n="nav_metodo" data-es="El Método" data-en="Method">El Método</a> 
-       <a href="#" class="nav-link" data-i18n="nav_aprende" data-es="Aprende (Pronto)" data-en="Learn (Soon)" style="opacity: 0.5; cursor: default; pointer-events: none;">Aprende (Pronto)</a> 
-     </nav> 
-     
-     <div class="lang-switcher" style="flex-shrink: 0;"> 
-       <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button> 
-       <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button> 
-     </div> 
-     
-     <button class="mobile-menu-btn" aria-label="Menu" style="flex-shrink: 0;"> 
-       <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="menu-icon"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg> 
-       <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="close-icon"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> 
-     </button> 
-   </div> 
- </div> 
-
-  <!-- Emotional Threshold -->
-  <main class="hero">
+  <!-- HEADER -->
+  <div class="top-row" style="flex-wrap: nowrap;"> 
+    <a href="/" aria-label="Criar Sin Culpas - Inicio" style="display: flex; flex-shrink: 0; align-items: center; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'"> 
+      <img src="/assets/images/csc-logo.svg" alt="Criar Sin Culpas" style="height: clamp(26px, 4vw, 34px); width: auto !important; max-width: none; display: block; object-fit: contain; flex-shrink: 0; margin-left: -4px;"> 
+    </a> 
     
-    <svg class="human-mark" viewBox="0 0 100 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M5,15 C10,-5 20,35 25,15 C30,-5 40,35 45,15 Q60,15 95,15" stroke="#F2EFEA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-
-    <div class="hero-intro">
-      <div class="brand-pill" data-i18n="portal_eyebrow" data-es="Criar Sin Culpas" data-en="Criar Sin Culpas">Criar Sin Culpas</div>
+    <div style="display:flex; align-items:center; gap:16px; flex-wrap:nowrap; flex-shrink: 0;"> 
+      <nav class="nav-links" style="white-space: nowrap;"> 
+        <a href="/apoyo/" class="nav-link" data-i18n="nav_apoyo" data-es="Guías" data-en="Guides">Guías</a> 
+        <a href="/metodo" class="nav-link" data-i18n="nav_metodo" data-es="El Método" data-en="Method">El Método</a> 
+        <a href="#" class="nav-link" data-i18n="nav_aprende" data-es="Aprende (Pronto)" data-en="Learn (Soon)" style="opacity: 0.5; cursor: default; pointer-events: none;">Aprende (Pronto)</a> 
+      </nav> 
       
-      <h1 class="hero-context" data-i18n="portal_headline" data-es="La crianza no debería sentirse como un incendio a diario." data-en="Parenting shouldn’t feel like a daily fire to put out.">
-        La crianza no debería sentirse como un incendio a diario.
-      </h1>
-    </div>
-    
-    <div class="hero-action">
-      <p class="subtitle" data-i18n="portal_subheadline" data-es="A veces, el corazón que necesita más calma… es el nuestro.<br><br>Y cuando las palabras o la teoría ya no ayudan, lo que buscamos es un lugar donde entender, respirar y volver a empezar." data-en="Sometimes, the heart that needs the most calm… is our own.<br><br>When words are no longer enough, what we need most is a space to understand, breathe, and begin again.">
-        A veces, el corazón que necesita más calma… es el nuestro.<br><br>Y cuando las palabras o la teoría ya no ayudan, lo que buscamos es un lugar donde entender, respirar y volver a empezar.
-      </p>
+      <div class="lang-switcher" style="flex-shrink: 0;"> 
+        <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button> 
+        <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button> 
+      </div> 
+      
+      <button class="mobile-menu-btn" aria-label="Menu" style="flex-shrink: 0;"> 
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="menu-icon"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg> 
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="close-icon"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> 
+      </button> 
+    </div> 
+  </div> 
 
-      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
-        <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778609928/Nari_Portrait_c5wgmr.png" alt="Nari Fateha" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(255,255,255,0.1);">
-        <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 500;">Nari Fateha</span>
+  <!-- MAIN VIEWPORT -->
+  <div class="page-wrap">
+    <main class="hero">
+      
+      <svg class="human-mark reveal-1" viewBox="0 0 100 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M5,15 C10,-5 20,35 25,15 C30,-5 40,35 45,15 Q60,15 95,15" stroke="#F2EFEA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+
+      <div class="hero-intro reveal-2">
+        <div class="brand-pill" data-i18n="portal_eyebrow" data-es="Criar Sin Culpas" data-en="Criar Sin Culpas">Criar Sin Culpas</div>
+        <h1 class="hero-context" data-i18n="portal_headline" data-es="La crianza no debería sentirse como un incendio a diario." data-en="Parenting shouldn’t feel like a daily fire to put out.">
+          La crianza no debería sentirse como un incendio a diario.
+        </h1>
+      </div>
+      
+      <!-- The separator line fades in first (reveal-3), creating structure before the text drops in -->
+      <div class="hero-action reveal-3">
+        <p class="subtitle reveal-4" data-i18n="portal_subheadline" data-es="A veces, el corazón que necesita más calma… es el nuestro.<br><br>Y cuando las palabras o la teoría ya no ayudan, lo que buscamos es un lugar donde entender, respirar y volver a empezar." data-en="Sometimes, the heart that needs the most calm… is our own.<br><br>When words are no longer enough, what we need most is a space to understand, breathe, and begin again.">
+          A veces, el corazón que necesita más calma… es el nuestro.<br><br>Y cuando las palabras o la teoría ya no ayudan, lo que buscamos es un lugar donde entender, respirar y volver a empezar.
+        </p>
+
+        <div class="hero-profile reveal-4">
+          <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778609928/Nari_Portrait_c5wgmr.png" alt="Nari Fateha">
+          <span>Nari Fateha</span>
+        </div>
+
+        <div class="cta-wrapper reveal-5">
+          <a href="/apoyo" class="btn-enter" id="enter-btn">
+            <span data-i18n="portal_cta" data-es="Necesito apoyo ahora" data-en="I need support right now">Necesito apoyo ahora</span>
+            <span class="btn-arrow">→</span>
+          </a>
+        </div>
       </div>
 
-      <div class="cta-wrapper">
-        <a href="/apoyo" class="btn-enter" id="enter-btn">
-          <span data-i18n="portal_cta" data-es="Necesito apoyo ahora" data-en="I need support right now">Necesito apoyo ahora</span>
-          <span class="btn-arrow">→</span>
-        </a>
-      </div>
-    </div>
-
-  </main>
+    </main>
+  </div>
 
   <script>
     (function() {
@@ -265,12 +278,9 @@
           const href = this.getAttribute('href');
           
           trackSignal('portal_entered', { language: currentLang });
-          
           document.body.classList.add('page-exiting');
           
-          setTimeout(() => {
-            window.location.href = href;
-          }, 800); 
+          setTimeout(() => { window.location.href = href; }, 600); 
         });
       }
 
@@ -282,12 +292,9 @@
         menuBtn.addEventListener('click', () => {
           const isOpen = navLinks.classList.toggle('is-open');
           menuBtn.classList.toggle('is-active');
-          
-          // Prevent body scroll when menu is open
           document.body.style.overflow = isOpen ? 'hidden' : '';
         });
 
-        // Close menu on link click
         navLinks.querySelectorAll('a').forEach(link => {
           link.addEventListener('click', () => {
             navLinks.classList.remove('is-open');
