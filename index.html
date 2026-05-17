@@ -163,24 +163,31 @@
     <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778272963/CSC_Logo_Grayscale_k6uitt.png" alt="">
   </div>
 
-  <header class="top-row">
-      <a href="/" aria-label="Criar Sin Culpas - Inicio" style="display: flex; flex-shrink: 0; align-items: center; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"> 
-        <img src="/assets/images/csc-logo.svg" alt="Criar Sin Culpas" style="height: clamp(48px, 8vw, 64px); width: auto !important; max-width: none; display: block; object-fit: contain; flex-shrink: 0; margin-left: -4px;"> 
-      </a> 
-      <nav class="nav-links">
-        <a href="/apoyo" data-i18n="nav_apoyo" data-es="Guías" data-en="Guides">Guías</a>
-        <a href="/metodo" data-i18n="nav_metodo" data-es="El Método" data-en="Method">El Método</a>
-        <a href="#" style="opacity: 0.5; cursor: default;" data-i18n="nav_aprende" data-es="Aprende (Pronto)" data-en="Learn (Soon)">Aprende (Pronto)</a>
-      </nav>
-      <div class="lang-switcher">
-        <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
-        <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
-      </div>
-      <button class="mobile-menu-btn" aria-label="Menu">
-        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="menu-icon"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="close-icon"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-      </button>
-  </header>
+ <div class="top-row" style="flex-wrap: nowrap;"> 
+   <!-- LOGO --> 
+   <a href="/" aria-label="Criar Sin Culpas - Inicio" style="display: flex; flex-shrink: 0; align-items: center; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'"> 
+     <img src="/assets/images/csc-logo.svg" alt="Criar Sin Culpas" style="height: clamp(26px, 4vw, 34px); width: auto !important; max-width: none; display: block; object-fit: contain; flex-shrink: 0; margin-left: -4px;"> 
+   </a> 
+   
+   <!-- RIGHT MENU ELEMENTS --> 
+   <div style="display:flex; align-items:center; gap:16px; flex-wrap:nowrap; flex-shrink: 0;"> 
+     <nav class="nav-links" style="white-space: nowrap;"> 
+       <a href="/apoyo/" class="nav-link" data-i18n="nav_apoyo" data-es="Guías" data-en="Guides">Guías</a> 
+       <a href="/metodo" class="nav-link" data-i18n="nav_metodo" data-es="El Método" data-en="Method">El Método</a> 
+       <a href="#" class="nav-link" data-i18n="nav_aprende" data-es="Aprende (Pronto)" data-en="Learn (Soon)" style="opacity: 0.5; cursor: default; pointer-events: none;">Aprende (Pronto)</a> 
+     </nav> 
+     
+     <div class="lang-switcher" style="flex-shrink: 0;"> 
+       <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button> 
+       <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button> 
+     </div> 
+     
+     <button class="mobile-menu-btn" aria-label="Menu" style="flex-shrink: 0;"> 
+       <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="menu-icon"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg> 
+       <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="close-icon"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> 
+     </button> 
+   </div> 
+ </div> 
 
   <!-- Emotional Threshold -->
   <main class="hero">
