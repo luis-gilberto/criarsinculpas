@@ -130,15 +130,56 @@
     .hero { 
       flex: 1; 
       display: flex; 
-      flex-direction: column; 
-      justify-content: center; 
+      flex-direction: row; 
       align-items: center; 
-      text-align: center; 
-      max-width: 900px; 
+      max-width: 1200px; 
       margin: 0 auto; 
-      padding: 24px 24px 8vh 24px; /* Optical center offset */
-      width: 100%;
-      background: radial-gradient(circle at center, rgba(14,11,18,0.8) 0%, transparent 60%); /* Text anchor gradient */
+      padding: 48px 24px; 
+      width: 100%; 
+      gap: 48px; 
+    } 
+    .hero-content { 
+      flex: 1; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 16px; 
+      text-align: left; 
+    } 
+    .hero-content .hero-intro { 
+      display: flex; 
+      flex-direction: column; 
+      align-items: flex-start; 
+      gap: 16px; 
+    } 
+    .hero-content .hero-action { 
+      display: flex; 
+      flex-direction: column; 
+      align-items: flex-start; 
+      gap: 24px; 
+      padding-top: 32px; 
+      border-top: 1px solid var(--border-soft); 
+      width: 100%; 
+      margin: 24px 0 0 0; 
+    } 
+    .hero-photo { 
+      flex: 1; 
+      max-width: 48%; 
+      border-radius: 24px; 
+      overflow: hidden; 
+      aspect-ratio: 4 / 5; 
+    } 
+    .hero-photo img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      display: block; 
+    } 
+    @media (max-width: 768px) { 
+      .hero { flex-direction: column; gap: 32px; } 
+      .hero-photo { max-width: 100%; width: 100%; aspect-ratio: 16 / 9; } 
+      .hero-content { text-align: center; } 
+      .hero-content .hero-intro { align-items: center; } 
+      .hero-content .hero-action { align-items: center; } 
     } 
     
     .hero-intro { display: flex; flex-direction: column; align-items: center; gap: 16px; width: 100%; } 
@@ -212,38 +253,39 @@
 
   <!-- MAIN VIEWPORT -->
   <div class="page-wrap">
-    <main class="hero">
-      
-      <div class="human-mark reveal-1" style="width: 100%; max-width: 600px; height: auto; aspect-ratio: 16/9; opacity: 1; border-radius: 16px; overflow: hidden; margin-bottom: 32px; stroke-dasharray: none;"> 
-        <img src="assets/images/pexels-gustavo-fring-8770585.jpg" alt="Madre e hijos leyendo juntos en el sofá" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /> 
+    <main class="hero"> 
+      <div class="hero-content reveal-2"> 
+        <div class="hero-intro"> 
+          <div class="brand-pill" data-i18n="portal_eyebrow" data-es="Criar Sin Culpas" data-en="Criar Sin Culpas">Criar Sin Culpas</div> 
+          <h1 class="hero-context" data-i18n="portal_headline" 
+              data-es="Mereces un hogar que se sienta en calma, no en caos." 
+              data-en="You deserve a home that feels calm, not chaotic."> 
+            Mereces un hogar que se sienta en calma, no en caos. 
+          </h1> 
+        </div> 
+        <div class="hero-action reveal-3"> 
+          <p class="subtitle reveal-4" data-i18n="portal_subheadline" 
+             data-es="A veces, el corazón que necesita más calma… es el nuestro.<br><br>Y cuando las palabras o la teoría ya no ayudan, lo que buscamos es un lugar donde entender, respirar y volver a empezar." 
+             data-en="Sometimes, the heart that needs the most calm… is our own.<br><br>When words are no longer enough, what we need most is a space to understand, breathe, and begin again."> 
+            A veces, el corazón que necesita más calma… es el nuestro.<br><br> 
+            Y cuando las palabras o la teoría ya no ayudan, lo que buscamos es un lugar donde entender, respirar y volver a empezar. 
+          </p> 
+          <div class="hero-profile reveal-4"> 
+            <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779117777/nari-portrait_jzjwcw.png" alt="Nari Fateha"> 
+            <span>Nari Fateha</span> 
+          </div> 
+          <div class="cta-wrapper reveal-5"> 
+            <a href="/apoyo" class="btn-enter" id="enter-btn"> 
+              <span data-i18n="portal_cta" data-es="Quiero sentirme mejor" data-en="I want to feel better">Quiero sentirme mejor</span> 
+              <span class="btn-arrow">→</span> 
+            </a> 
+          </div> 
+        </div> 
       </div> 
-
-      <div class="hero-intro reveal-2">
-        <div class="brand-pill" data-i18n="portal_eyebrow" data-es="Criar Sin Culpas" data-en="Criar Sin Culpas">Criar Sin Culpas</div>
-        <h1 class="hero-context" data-i18n="portal_headline" data-es="Mereces un hogar que se sienta en calma, no en caos." data-en="You deserve a home that feels calm, not chaotic.">
-          Mereces un hogar que se sienta en calma, no en caos.
-        </h1>
-      </div>
-      
-      <!-- The separator line fades in first (reveal-3), creating structure before the text drops in -->
-      <div class="hero-action reveal-3">
-        <p class="subtitle reveal-4" data-i18n="portal_subheadline" data-es="A veces, el corazón que necesita más calma… es el nuestro.<br><br>Y cuando las palabras o la teoría ya no ayudan, lo que buscamos es un lugar donde entender, respirar y volver a empezar." data-en="Sometimes, the heart that needs the most calm… is our own.<br><br>When words are no longer enough, what we need most is a space to understand, breathe, and begin again.">
-          A veces, el corazón que necesita más calma… es el nuestro.<br><br>Y cuando las palabras o la teoría ya no ayudan, lo que buscamos es un lugar donde entender, respirar y volver a empezar.
-        </p>
-
-        <div class="hero-profile reveal-4"> 
-           <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779117777/nari-portrait_jzjwcw.png" alt="Nari Fateha"> 
-           <span>Nari Fateha</span> 
-         </div> 
-
-        <div class="cta-wrapper reveal-5">
-          <a href="/apoyo" class="btn-enter" id="enter-btn"> 
-            <span data-i18n="portal_cta" data-es="Quiero sentirme mejor" data-en="I want to feel better">Quiero sentirme mejor</span> 
-            <span class="btn-arrow">→</span> 
-          </a> 
-        </div>
-      </div>
-
+      <div class="hero-photo reveal-1"> 
+        <img src="assets/images/pexels-gustavo-fring-8770585.jpg" 
+             alt="Madre e hijos leyendo juntos en el sofá"> 
+      </div> 
     </main> 
       
      <p class="hero-subtext" style="color: var(--text-muted); text-align: center; max-width: 600px; margin: 0 auto; padding: 24px 24px 64px 24px; font-size: 1.05rem; line-height: 1.6;"> 
