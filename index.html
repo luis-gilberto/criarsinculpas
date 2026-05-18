@@ -124,140 +124,113 @@
     @keyframes draw-line { to { stroke-dashoffset: 0; } }
     @keyframes breathe { 0% { transform: scale(1) translate(0, 0); opacity: 0.5; } 100% { transform: scale(1.15) translate(2%, 2%); opacity: 1; } }
 
-    /* --- THE HERO (Editorial Split Layout) --- */
-    .page-wrap { display: flex; flex-direction: column; flex: 1; position: relative; z-index: 2; width: 100%; }
-
-    .hero {
-      flex: 1;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 64px 24px;
-      width: 100%;
-      gap: 64px;
-    }
-
-    .hero-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      max-width: 520px;
-    }
-
-    /* Top Half: Centered relative to its column */
-    .hero-intro {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 20px;
-      width: 100%;
-    }
-
-    .brand-pill {
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--teal);
-      padding: 8px 18px;
-      border-radius: var(--radius-pill);
-      background: rgba(97, 209, 196, 0.1);
-      border: 1px solid rgba(97, 209, 196, 0.2);
-    }
-
-    .hero-context {
-      font-family: var(--display-font);
-      font-size: clamp(2.4rem, 4vw, 3.4rem);
-      line-height: 1.1;
-      font-weight: 600;
-      color: #fff;
-      margin: 0;
-    }
-
-    /* Bottom Half: Left-aligned */
-    .hero-action {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      text-align: left;
-      gap: 24px;
-      padding-top: 32px;
-      border-top: 1px solid var(--border-soft);
-      width: 100%;
-      margin-top: 32px;
-    }
-
-    .subtitle {
-      font-size: 1.05rem;
-      font-weight: 400;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin: 0;
-      max-width: 45ch;
-    }
-
-    .hero-photo {
-      flex: 1;
-      max-width: 480px;
-      border-radius: 20px;
-      overflow: hidden;
-      aspect-ratio: 4 / 5;
-      box-shadow: 0 32px 64px rgba(0,0,0,0.5);
-      border: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .hero-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    @media (max-width: 900px) {
-      .hero { flex-direction: column; gap: 48px; padding: 40px 24px; }
-      .hero-content { align-items: center; text-align: center; }
-      .hero-action { align-items: center; text-align: center; }
-      .subtitle { max-width: 100%; }
-      .hero-photo { max-width: 100%; width: 100%; aspect-ratio: 16 / 9; }
-    }
-
-    /* --- THE ACTION (Entering the Support Space) --- */
-    .hero-profile { display: flex; align-items: center; gap: 10px; }
-    .hero-profile img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; aspect-ratio: 1 / 1; border: 1.5px solid rgba(252, 248, 242, 0.15); }
-    .hero-profile span { font-size: 0.95rem; color: var(--text-muted); font-weight: 500; }
-
-    .btn-enter { display: inline-flex; align-items: center; gap: 12px; padding: 20px 40px; border-radius: 999px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: #fff; font-size: 1rem; font-weight: 600; letter-spacing: 0.02em; cursor: pointer; transition: all 400ms var(--ease-cinematic); backdrop-filter: blur(16px); text-decoration: none; overflow: hidden; position: relative; }
-    .btn-enter::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent); transform: translateX(-100%); transition: transform 600ms ease; }
-    .btn-enter:hover { background: rgba(255, 125, 115, 0.15); border-color: rgba(255, 125, 115, 0.25); box-shadow: 0 12px 32px rgba(255, 125, 115, 0.12); padding-right: 32px; padding-left: 40px; }
-    .btn-enter:hover::before { transform: translateX(100%); }
-    .btn-enter:active { transform: scale(0.98); }
-
-    .btn-arrow { font-weight: 400; font-size: 1.2rem; color: rgba(255,255,255,0.4); transition: color 400ms, transform 400ms var(--ease-cinematic); }
-    .btn-enter:hover .btn-arrow { color: var(--teal); transform: translateX(4px); }
-
-    /* Page Exit Transition */
-    .page-exiting { animation: exit-fade 600ms var(--ease-cinematic) forwards; pointer-events: none; }
-    @keyframes exit-fade { 0% { opacity: 1; filter: blur(0); transform: scale(1); } 100% { opacity: 0; filter: blur(12px); transform: scale(1.02); } }
+    /* --- THE HERO (Cinematic Blend Layout) --- */ 
+     .page-wrap { display: flex; flex-direction: column; flex: 1; position: relative; z-index: 2; width: 100%; } 
+      
+     .hero {  
+       position: relative; 
+       flex: 1;  
+       display: flex;  
+       flex-direction: column;  
+       justify-content: center; 
+       max-width: 1200px;  
+       margin: 0 auto;  
+       padding: 8vh 24px 64px 24px;  
+       width: 100%;  
+       min-height: calc(100vh - 80px); 
+     }  
+  
+     /* Full-Bleed Blended Background Image */ 
+     .hero-bg { 
+       position: absolute; 
+       top: 0; 
+       right: 0; 
+       width: 65%; 
+       height: 100%; 
+       z-index: 0; 
+       pointer-events: none; 
+     } 
+     .hero-bg img { 
+       width: 100%; 
+       height: 100%; 
+       object-fit: cover; 
+       object-position: 70% center; 
+     } 
+     .hero-bg::after { 
+       content: ''; 
+       position: absolute; 
+       inset: 0; 
+       background: linear-gradient(to right, var(--bg-void) 0%, rgba(14,11,18,0.8) 35%, transparent 70%), 
+                   linear-gradient(to bottom, transparent 60%, var(--bg-void) 100%), 
+                   linear-gradient(to top, transparent 80%, var(--bg-void) 100%); 
+     } 
+      
+     .hero-content {  
+       position: relative; 
+       z-index: 2; 
+       display: flex;  
+       flex-direction: column;  
+       gap: 24px;  
+       max-width: 580px;  
+     }  
+      
+     .hero-eyebrow { display: flex; align-items: center; gap: 16px; margin-bottom: -8px; } 
+     .hero-eyebrow svg { width: 56px; height: auto; opacity: 0.8; } 
+      
+     .brand-pill {  
+       font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em;  
+       color: var(--teal); padding: 6px 16px; border-radius: var(--radius-pill);  
+       background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08);  
+     }  
+      
+     .hero-context { font-family: var(--display-font); font-size: clamp(2.6rem, 5vw, 4rem); line-height: 1.05; letter-spacing: -0.01em; font-weight: 600; color: #fff; margin: 0; }  
+      
+     .subtitle { font-size: 1.1rem; font-weight: 400; color: var(--text-muted); line-height: 1.6; margin: 0; max-width: 50ch; }  
+  
+     .hero-profile { display: flex; align-items: center; gap: 12px; margin-top: 8px; } 
+     .hero-profile img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(255,255,255,0.1); } 
+     .hero-profile span { font-size: 0.95rem; color: var(--text-muted); font-weight: 400; } 
+  
+     .cta-wrapper { margin-top: 16px; } 
+     .btn-enter { display: inline-flex; align-items: center; gap: 12px; padding: 18px 36px; border-radius: 999px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: #fff; font-size: 1rem; font-weight: 500; cursor: pointer; transition: all 400ms var(--ease-cinematic); backdrop-filter: blur(12px); text-decoration: none; } 
+     .btn-enter:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.2); transform: translateY(-2px); } 
+     .btn-arrow { font-weight: 300; font-size: 1.2rem; color: rgba(255,255,255,0.5); transition: transform 400ms; } 
+     .btn-enter:hover .btn-arrow { transform: translateX(4px); color: #fff; } 
+  
+     /* The 3 Pillars */ 
+     .hero-pillars { 
+       position: relative; z-index: 2; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; 
+       margin-top: auto; padding-top: 8vh; max-width: 1000px; 
+     } 
+     .pillar { display: flex; align-items: flex-start; gap: 16px; padding-left: 32px; border-left: 1px solid rgba(255,255,255,0.06); } 
+     .pillar:first-child { padding-left: 0; border-left: none; } 
+     .pillar-icon { flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: var(--text-muted); } 
+     .pillar-icon svg { width: 20px; height: 20px; }
+     .pillar-text h4 { font-size: 0.95rem; font-weight: 500; color: #fff; margin-bottom: 4px; } 
+     .pillar-text p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin: 0; } 
+  
+     @media (max-width: 900px) {  
+       .hero { justify-content: flex-start; padding-top: 50vh; } 
+       .hero-bg { width: 100%; height: 60vh; } 
+       .hero-bg::after { background: linear-gradient(to top, var(--bg-void) 0%, rgba(14,11,18,0.9) 30%, transparent 100%); } 
+       .hero-pillars { grid-template-columns: 1fr; gap: 32px; padding-top: 48px; } 
+       .pillar { padding-left: 0; border-left: none; } 
+     } 
+  
+     /* Page Exit Transition */ 
+     .page-exiting { animation: exit-fade 600ms var(--ease-cinematic) forwards; pointer-events: none; } 
+     @keyframes exit-fade { 0% { opacity: 1; filter: blur(0); transform: scale(1); } 100% { opacity: 0; filter: blur(12px); transform: scale(1.02); } }
   </style>
 </head>
 <body>
 
-  <!-- Ambient Cinematic Background -->
+  <!-- ATMOSPHERIC MOTION -->
   <div class="atmosphere">
     <div class="breath-orb orb-1"></div>
     <div class="breath-orb orb-2"></div>
     <div class="breath-orb orb-3"></div>
   </div>
   <div class="grain"></div>
-
-  <!-- Watermark -->
-  <div class="watermark" aria-hidden="true">
-    <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778272963/CSC_Logo_Grayscale_k6uitt.png" alt="">
-  </div>
 
   <!-- HEADER -->
   <div class="top-row" style="flex-wrap: nowrap;"> 
@@ -284,48 +257,82 @@
     </div> 
   </div> 
 
-  <!-- MAIN VIEWPORT -->
-  <div class="page-wrap">
-    <main class="hero"> 
-      <div class="hero-content reveal-2"> 
-        <div class="hero-intro"> 
-          <div class="brand-pill" data-i18n="portal_eyebrow" data-es="Criar Sin Culpas" data-en="Criar Sin Culpas">Criar Sin Culpas</div> 
-          <h1 class="hero-context" data-i18n="portal_headline" 
-              data-es="Mereces un hogar que se sienta en calma, no en caos." 
-              data-en="You deserve a home that feels calm, not chaotic."> 
-            Mereces un hogar que se sienta en calma, no en caos. 
-          </h1> 
-        </div> 
-        <div class="hero-action reveal-3"> 
-          <p class="subtitle reveal-4" data-i18n="portal_subheadline" 
-             data-es="A veces, el corazón que necesita más calma… es el nuestro.<br><br>Y cuando las palabras o la teoría ya no ayudan, lo que buscamos es un lugar donde entender, respirar y volver a empezar." 
-             data-en="Sometimes, the heart that needs the most calm… is our own.<br><br>When words are no longer enough, what we need most is a space to understand, breathe, and begin again."> 
-            A veces, el corazón que necesita más calma… es el nuestro.<br><br> 
-            Y cuando las palabras o la teoría ya no ayudan, lo que buscamos es un lugar donde entender, respirar y volver a empezar. 
-          </p> 
-          <div class="hero-profile reveal-4"> 
-            <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779117777/nari-portrait_jzjwcw.png" alt="Nari Fateha"> 
-            <span>Nari Fateha</span> 
-          </div> 
-          <div class="cta-wrapper reveal-5"> 
-            <a href="/apoyo" class="btn-enter" id="enter-btn"> 
-              <span data-i18n="portal_cta" data-es="Quiero sentirme mejor" data-en="I want to feel better">Quiero sentirme mejor</span> 
-              <span class="btn-arrow">→</span> 
-            </a> 
-          </div> 
-        </div> 
-      </div> 
-      <div class="hero-photo reveal-1"> 
-        <img src="assets/images/pexels-gustavo-fring-8770585.jpg" 
-             alt="Madre e hijos leyendo juntos en el sofá"> 
-      </div> 
-    </main> 
+  <!-- MAIN VIEWPORT --> 
+   <div class="page-wrap"> 
       
-     <p class="hero-subtext" style="color: var(--text-muted); text-align: center; max-width: 600px; margin: 0 auto; padding: 24px 24px 64px 24px; font-size: 1.05rem; line-height: 1.6;"> 
-       A veces, lo que más necesita calma no es la casa… sino nosotros.<br> 
-       Y tener un espacio para respirar... lo cambia todo. 
-     </p> 
+     <!-- Blended Background Image --> 
+     <div class="hero-bg reveal-1"> 
+       <img src="https://images.unsplash.com/photo-1596414605991-5fb5f8e6c434?q=80&w=2000&auto=format&fit=crop" alt="Hogar en calma"> 
+     </div> 
   
+     <main class="hero">  
+       <div class="hero-content reveal-2">  
+          
+         <div class="hero-eyebrow"> 
+           <svg viewBox="0 0 100 20" fill="none" xmlns="http://www.w3.org/2000/svg"> 
+             <path d="M5,10 Q15,-5 25,10 T45,10 T65,10 T85,10" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" fill="none" stroke-linecap="round"/> 
+             <line x1="85" y1="10" x2="100" y2="10" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round"/> 
+           </svg> 
+           <div class="brand-pill" data-i18n="portal_eyebrow" data-es="Criar Sin Culpas" data-en="Criar Sin Culpas">Criar Sin Culpas</div>  
+         </div> 
+  
+         <h1 class="hero-context" data-i18n="portal_headline" data-es="Mereces un hogar que se sienta en calma, no en caos." data-en="You deserve a home that feels calm, not chaotic.">  
+           Mereces un hogar que se sienta en calma, no en caos.  
+         </h1>  
+          
+         <p class="subtitle reveal-3" data-i18n="portal_subheadline" data-es="A veces, lo que más necesita calma no es la casa… sino nosotros.<br><br>Y tener un espacio para respirar... lo cambia todo." data-en="Sometimes, what needs the most calm isn't the house... but us.<br><br>And having a space to breathe... changes everything.">  
+           A veces, lo que más necesita calma no es la casa… sino nosotros.<br><br>  
+           Y tener un espacio para respirar... lo cambia todo.  
+         </p>  
+          
+         <div class="hero-profile reveal-4">  
+           <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779117777/nari-portrait_jzjwcw.png" alt="Nari Fateha">  
+           <span>Nari Fateha</span>  
+         </div>  
+          
+         <div class="cta-wrapper reveal-4">  
+           <a href="/apoyo" class="btn-enter" id="enter-btn">  
+             <span data-i18n="portal_cta" data-es="Recibe apoyo que se sienta bien" data-en="Get support that feels right">Recibe apoyo que se sienta bien</span>  
+             <span class="btn-arrow">→</span>  
+           </a>  
+         </div>  
+       </div>  
+  
+       <!-- The 3 Pillars --> 
+       <div class="hero-pillars reveal-5"> 
+          
+         <div class="pillar"> 
+           <div class="pillar-icon"> 
+             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg> 
+           </div> 
+           <div class="pillar-text"> 
+             <h4 data-i18n="pillar_1_title" data-es="Sin juicios" data-en="No Judgment">Sin juicios</h4> 
+             <p data-i18n="pillar_1_desc" data-es="Te acompañamos como eres, con respeto y empatía." data-en="We support you as you are, with respect and empathy.">Te acompañamos como eres, con respeto y empatía.</p> 
+           </div> 
+         </div> 
+  
+         <div class="pillar"> 
+           <div class="pillar-icon"> 
+             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 1 8.3C18.4 15 15.1 20 11 20z"/><path d="M11 20c2.4-3.4 3.5-7.1 2.2-11.4"/></svg> 
+           </div> 
+           <div class="pillar-text"> 
+             <h4 data-i18n="pillar_2_title" data-es="Herramientas reales" data-en="Real Tools">Herramientas reales</h4> 
+             <p data-i18n="pillar_2_desc" data-es="Recursos prácticos para tu día a día, no solo teoría." data-en="Practical resources for your daily life, not just theory.">Recursos prácticos para tu día a día, no solo teoría.</p> 
+           </div> 
+         </div> 
+  
+         <div class="pillar"> 
+           <div class="pillar-icon"> 
+             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> 
+           </div> 
+           <div class="pillar-text"> 
+             <h4 data-i18n="pillar_3_title" data-es="Comunidad segura" data-en="Safe Community">Comunidad segura</h4> 
+             <p data-i18n="pillar_3_desc" data-es="No estás sola. Aquí hay espacio para ti." data-en="You are not alone. There is space for you here.">No estás sola. Aquí hay espacio para ti.</p> 
+           </div> 
+         </div> 
+  
+       </div> 
+     </main>  
    </div> 
 
   <script>
