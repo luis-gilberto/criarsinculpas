@@ -20,209 +20,400 @@
       pl.src = 'https://plausible.io/js/script.js';
       document.head.appendChild(pl);
     }
-    window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q ||[]).push(arguments) };
+    window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) };
   </script>
 
   <style>
-    :root { 
-       /* Deep, meditative atmospheric colors */ 
-       --bg-void: #0e0b12; 
-       --text-main: #F2EFEA; 
-       --text-muted: rgba(242, 239, 234, 0.7); /* Warmer, saturated muted tone */
-       --text-faint: #756D69; 
-  
-       /* Muted emotional glows */ 
-       --glow-teal: rgba(97, 209, 196, 0.08); 
-       --glow-violet: rgba(141, 121, 255, 0.07); 
-       --glow-coral: rgba(255, 125, 115, 0.06); 
-  
-       --display-font: 'Iowan Old Style', 'Playfair Display', Georgia, serif; 
-       --ui-font: Inter, system-ui, -apple-system, sans-serif; 
-        
-       /* Cinematic Easing */ 
-       --ease-cinematic: cubic-bezier(0.2, 0.8, 0.2, 1); 
-      
+    :root {
+      --bg-void: #0c0a10;
+      --text-main: #F2EFEA;
+      --text-muted: rgba(242, 239, 234, 0.65);
+      --text-faint: #756D69;
+
+      --glow-teal: rgba(97, 209, 196, 0.09);
+      --glow-violet: rgba(141, 121, 255, 0.08);
+      --glow-coral: rgba(255, 125, 115, 0.07);
+
+      --display-font: 'Iowan Old Style', 'Playfair Display', Georgia, serif;
+      --ui-font: Inter, system-ui, -apple-system, sans-serif;
+
+      --ease-cinematic: cubic-bezier(0.2, 0.8, 0.2, 1);
+
       --teal: #4bada8;
       --radius-pill: 999px;
-      --border-soft: rgba(255, 255, 255, 0.08);
+      --border-soft: rgba(255, 255, 255, 0.07);
+
+      /* Photo: the Pexels portrait sofa scene via Cloudinary */
+      --hero-photo: url('https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779147046/pexels-gustavo-fring-8770590_stewia.jpg');
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-    
-    /* PERFECT VIEWPORT LOCK */
-    html, body { min-height: 100dvh; width: 100%; overflow-x: hidden; background-color: var(--bg-void); }
+
+    html, body {
+      min-height: 100dvh;
+      width: 100%;
+      overflow-x: hidden;
+      background-color: var(--bg-void);
+    }
 
     body {
       font-family: var(--ui-font);
       color: var(--text-main);
       -webkit-font-smoothing: antialiased;
-      line-height: 1.5; /* Tightened from 1.6 */
+      line-height: 1.5;
       display: flex;
       flex-direction: column;
     }
 
-    /* --- ATMOSPHERIC MOTION --- */
-    .atmosphere { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-    .breath-orb { position: absolute; border-radius: 50%; filter: blur(80px); animation: breathe 12s ease-in-out infinite alternate; }
+    /* ── ATMOSPHERE ── */
+    .atmosphere {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+    }
+    .breath-orb {
+      position: absolute; border-radius: 50%; filter: blur(80px);
+      animation: breathe 12s ease-in-out infinite alternate;
+    }
     .orb-1 { width: 60vw; height: 60vw; top: -20%; left: -10%; background: var(--glow-violet); animation-delay: 0s; }
     .orb-2 { width: 50vw; height: 50vw; bottom: -10%; right: -10%; background: var(--glow-teal); animation-delay: -4s; }
     .orb-3 { width: 40vw; height: 40vw; top: 40%; left: 40%; background: var(--glow-coral); animation-delay: -8s; }
 
-    .grain { position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.035; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 180px 180px; }
+    .grain {
+      position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+    }
 
-    .watermark { position: fixed; bottom: -40px; right: -60px; width: 500px; height: 500px; pointer-events: none; z-index: 1; opacity: 0.22; filter: grayscale(100%) sepia(20%); -webkit-mask-image: linear-gradient(to top, transparent, black 20%); mask-image: linear-gradient(to top, transparent, black 20%); animation: float 10s ease-in-out infinite alternate; }
-    .watermark img { width: 100%; height: 100%; object-fit: contain; object-position: bottom right; }
-    @media (max-width: 600px) { .watermark { width: 320px; height: 320px; bottom: -20px; right: -40px; opacity: 0.15; } }
+    @keyframes breathe {
+      0%   { transform: scale(1) translate(0, 0); opacity: 0.5; }
+      100% { transform: scale(1.15) translate(2%, 2%); opacity: 1; }
+    }
 
-    @keyframes float { 0% { transform: translateY(0); } 100% { transform: translateY(-15px); } }
+    /* ── CASCADING REVEALS ── */
+    @keyframes cinematicReveal {
+      0%   { opacity: 0; transform: translateY(14px); filter: blur(6px); }
+      100% { opacity: 1; transform: translateY(0);    filter: blur(0);  }
+    }
+    .reveal-1 { animation: cinematicReveal 0.9s ease-out 0.05s both; }
+    .reveal-2 { animation: cinematicReveal 0.9s ease-out 0.2s  both; }
+    .reveal-3 { animation: cinematicReveal 0.9s ease-out 0.35s both; }
+    .reveal-4 { animation: cinematicReveal 0.9s ease-out 0.5s  both; }
+    .reveal-5 { animation: cinematicReveal 0.9s ease-out 0.65s both; }
 
- /* --- NAVIGATION --- */ 
-     .top-row {  
-       display: flex; justify-content: space-between; align-items: center; gap: 12px;  
-       background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); 
-       padding: max(24px, env(safe-area-inset-top)) 24px 16px 24px;  
-       border-bottom: 1px solid var(--border-soft);  
-       position: relative; z-index: 100; 
-     }  
-  
-     .nav-links { display: flex; gap: 36px; align-items: center; } 
-     .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s; } 
-     .nav-links a:hover { color: #fff; } 
-  
-     .mobile-menu-btn { display: none; } 
-  
-     @media (max-width: 768px) { 
-       .nav-links { position: fixed; inset: 0; background: rgba(14, 11, 18, 0.98); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; opacity: 0; pointer-events: none; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); transform: translateY(-10px); } 
+    /* ── NAVIGATION ── */
+    .top-row {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      background: rgba(12, 10, 16, 0.55);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      padding: max(22px, env(safe-area-inset-top)) 28px 16px 28px;
+      border-bottom: 1px solid var(--border-soft);
+      position: relative; z-index: 100;
+    }
+
+    .nav-links { display: flex; gap: 36px; align-items: center; }
+    .nav-links a {
+      color: var(--text-muted); text-decoration: none;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: #fff; }
+
+    .mobile-menu-btn { display: none; }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed; inset: 0;
+        background: rgba(12, 10, 16, 0.98);
+        backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        z-index: 999; display: flex; flex-direction: column;
+        align-items: center; justify-content: center; gap: 40px;
+        opacity: 0; pointer-events: none;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateY(-10px);
+      }
       .nav-links.is-open { opacity: 1; pointer-events: auto; transform: translateY(0); }
-      .nav-links a { font-size: 1.5rem; letter-spacing: 0.1em; }
-      
-      .mobile-menu-btn { display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 50%; width: 44px; height: 44px; color: #fff; z-index: 1000; position: relative; cursor: pointer; transition: all 0.3s; flex-shrink: 0; }
+      .nav-links a { font-size: 1.4rem; letter-spacing: 0.1em; }
+
+      .mobile-menu-btn {
+        display: flex; align-items: center; justify-content: center;
+        background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 50%; width: 44px; height: 44px; color: #fff;
+        z-index: 1000; position: relative; cursor: pointer;
+        transition: all 0.3s; flex-shrink: 0;
+      }
       .mobile-menu-btn:active { transform: scale(0.9); background: rgba(255,255,255,0.1); }
       .mobile-menu-btn .close-icon { display: none; }
       .mobile-menu-btn.is-active .menu-icon { display: none; }
       .mobile-menu-btn.is-active .close-icon { display: flex; }
-      
       .nav-links:not(.is-open) a { display: none; }
       .nav-links.is-open a { display: block; }
     }
 
-    .lang-switcher { display: inline-flex; padding: 4px; gap: 4px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.04); background: rgba(255,255,255,0.02); flex-shrink: 0; }
-    .lang-btn { min-width: 44px; padding: 4px 8px; border-radius: 999px; color: var(--text-muted); font-size: 0.7rem; font-weight: 700; transition: all 280ms; }
-    .lang-btn[aria-pressed='true'] { color: #fff; background: rgba(255,255,255,0.08); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-
-    /* --- THE CASCADING ANIMATION SYSTEM --- */
-    @keyframes cinematicReveal {
-      0% { opacity: 0; transform: translateY(12px); filter: blur(8px); }
-      100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+    .lang-switcher {
+      display: inline-flex; padding: 4px; gap: 4px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.03);
+      flex-shrink: 0;
     }
-    .reveal-1 { animation: cinematicReveal 0.8s ease-out 0.1s both; }
-    .reveal-2 { animation: cinematicReveal 0.8s ease-out 0.25s both; }
-    .reveal-3 { animation: cinematicReveal 0.8s ease-out 0.4s both; }
-    .reveal-4 { animation: cinematicReveal 0.8s ease-out 0.55s both; }
-    .reveal-5 { animation: cinematicReveal 0.8s ease-out 0.7s both; }
+    .lang-btn {
+      min-width: 44px; padding: 5px 10px;
+      border-radius: 999px; color: var(--text-muted);
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.05em;
+      transition: all 260ms; cursor: pointer;
+      background: none; border: none;
+    }
+    .lang-btn[aria-pressed='true'] {
+      color: #fff; background: rgba(255,255,255,0.1);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
 
-    @keyframes draw-line { to { stroke-dashoffset: 0; } }
-    @keyframes breathe { 0% { transform: scale(1) translate(0, 0); opacity: 0.5; } 100% { transform: scale(1.15) translate(2%, 2%); opacity: 1; } }
+    /* ── PAGE SHELL ── */
+    .page-wrap {
+      display: flex; flex-direction: column; flex: 1;
+      position: relative; z-index: 2; width: 100%;
+    }
 
-    /* --- THE HERO (Cinematic Blend Layout) --- */ 
-     .page-wrap { display: flex; flex-direction: column; flex: 1; position: relative; z-index: 2; width: 100%; } 
-      
-     .hero {  
-       position: relative; 
-       flex: 1;  
-       display: flex;  
-       flex-direction: column;  
-       justify-content: center; 
-       max-width: 1200px;  
-       margin: 0 auto;  
-       padding: 8vh 24px 64px 24px;  
-       width: 100%;  
-       min-height: calc(100vh - 80px); 
-     }  
-  
-    /* Full-Bleed Blended Background Image */ 
-     .hero-bg { 
-       position: absolute; 
-       top: 0; 
-       left: 0; 
-       width: 100%; /* Stretch across the entire screen */ 
-       height: 100%; 
-       z-index: 0; 
-       pointer-events: none; 
-     } 
-     .hero-bg img { 
-       width: 100%; 
-       height: 100%; 
-       object-fit: cover; 
-       object-position: 80% center; /* Push the focal point to the right */ 
-       opacity: 0.85; 
-     } 
-     .hero-bg::after { 
-       content: ''; 
-       position: absolute; 
-       inset: 0; 
-       background: 
-         /* Left 45% is pure solid dark for the text, fading to transparent by 80% */ 
-         linear-gradient(to right, #0e0b12 0%, #0e0b12 45%, rgba(14,11,18,0) 80%), 
-         /* Bottom fade to blend with the pillars */ 
-         linear-gradient(to top, #0e0b12 0%, rgba(14,11,18,0) 15%); 
-     } 
-      
-     .hero-content {  
-       position: relative; 
-       z-index: 2; 
-       display: flex;  
-       flex-direction: column;  
-       gap: 24px;  
-       max-width: 580px;  
-     }  
-      
-     .hero-eyebrow { display: flex; align-items: center; gap: 16px; margin-bottom: -8px; } 
-     .hero-eyebrow svg { width: 56px; height: auto; opacity: 0.8; } 
-      
-     .brand-pill {  
-       font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em;  
-       color: var(--teal); padding: 6px 16px; border-radius: var(--radius-pill);  
-       background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08);  
-     }  
-      
-     .hero-context { font-family: var(--display-font); font-size: clamp(2.6rem, 5vw, 4rem); line-height: 1.05; letter-spacing: -0.01em; font-weight: 600; color: #fff; margin: 0; }  
-      
-     .subtitle { font-size: 1.1rem; font-weight: 400; color: var(--text-muted); line-height: 1.6; margin: 0; max-width: 50ch; }  
-  
-     .hero-profile { display: flex; align-items: center; gap: 12px; margin-top: 8px; } 
-     .hero-profile img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(255,255,255,0.1); } 
-     .hero-profile span { font-size: 0.95rem; color: var(--text-muted); font-weight: 400; } 
-  
-     .cta-wrapper { margin-top: 16px; } 
-     .btn-enter { display: inline-flex; align-items: center; gap: 12px; padding: 18px 36px; border-radius: 999px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: #fff; font-size: 1rem; font-weight: 500; cursor: pointer; transition: all 400ms var(--ease-cinematic); backdrop-filter: blur(12px); text-decoration: none; } 
-     .btn-enter:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.2); transform: translateY(-2px); } 
-     .btn-arrow { font-weight: 300; font-size: 1.2rem; color: rgba(255,255,255,0.5); transition: transform 400ms; } 
-     .btn-enter:hover .btn-arrow { transform: translateX(4px); color: #fff; } 
-  
-     /* The 3 Pillars */ 
-     .hero-pillars { 
-       position: relative; z-index: 2; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; 
-       margin-top: auto; padding-top: 8vh; max-width: 1000px; 
-     } 
-     .pillar { display: flex; align-items: flex-start; gap: 16px; padding-left: 32px; border-left: 1px solid rgba(255,255,255,0.06); } 
-     .pillar:first-child { padding-left: 0; border-left: none; } 
-     .pillar-icon { flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: var(--text-muted); } 
-     .pillar-icon svg { width: 20px; height: 20px; }
-     .pillar-text h4 { font-size: 0.95rem; font-weight: 500; color: #fff; margin-bottom: 4px; } 
-     .pillar-text p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin: 0; } 
-  
-     @media (max-width: 900px) {  
-       .hero { justify-content: flex-start; padding-top: 50vh; } 
-       .hero-bg { width: 100%; height: 65vh; } 
-       .hero-bg::after { background: linear-gradient(to top, #0e0b12 0%, #0e0b12 15%, rgba(14,11,18,0) 100%); } 
-       .hero-pillars { grid-template-columns: 1fr; gap: 32px; padding-top: 48px; } 
-       .pillar { padding-left: 0; border-left: none; } 
-     } 
-  
-     /* Page Exit Transition */ 
-     .page-exiting { animation: exit-fade 600ms var(--ease-cinematic) forwards; pointer-events: none; } 
-     @keyframes exit-fade { 0% { opacity: 1; filter: blur(0); transform: scale(1); } 100% { opacity: 0; filter: blur(12px); transform: scale(1.02); } }
+    /* ── HERO PHOTO LAYER ──
+       Full-viewport background image, blended cinematic-left so text is readable
+       and the photo glows warmly on the right — matching the mockup exactly.
+    */
+    .hero-scene {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    /* The actual photograph */
+    .hero-scene__photo {
+      position: absolute;
+      inset: 0;
+      background-image: var(--hero-photo);
+      background-size: cover;
+      /* On Desktop: Shift the portrait image to the right so it clears the text */
+      background-position: 80% 25%;
+      /* Warm cinematic grade */
+      filter: brightness(0.68) saturate(1.25) sepia(0.15);
+    }
+
+    /* Multi-stop gradient overlay — this is the cinematic blend magic */
+    .hero-scene__overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        /* Left column: solid dark for text, feathering from 32% → fully clear by 62% */
+        linear-gradient(
+          to right,
+          #0c0a10 0%,
+          #0c0a10 32%,
+          rgba(12, 10, 16, 0.80) 46%,
+          rgba(12, 10, 16, 0.20) 62%,
+          rgba(12, 10, 16, 0.0) 78%
+        ),
+        /* Bottom: fade up so pillars read cleanly */
+        linear-gradient(
+          to top,
+          #0c0a10 0%,
+          rgba(12, 10, 16, 0.55) 14%,
+          rgba(12, 10, 16, 0.0) 30%
+        ),
+        /* Top nav vignette */
+        linear-gradient(
+          to bottom,
+          rgba(12, 10, 16, 0.4) 0%,
+          rgba(12, 10, 16, 0.0) 16%
+        );
+    }
+
+    /* ── HERO LAYOUT ── */
+    .hero {
+      position: relative;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 9vh 28px 72px 28px;
+      width: 100%;
+      min-height: calc(100dvh - 72px);
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column; gap: 22px;
+      max-width: 560px;
+    }
+
+    /* ── EYEBROW ── */
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 14px; margin-bottom: -4px;
+    }
+    .hero-eyebrow svg { width: 52px; height: auto; opacity: 0.75; }
+
+    .brand-pill {
+      font-size: 0.72rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--teal);
+      padding: 7px 18px;
+      border-radius: var(--radius-pill);
+      background: rgba(75, 173, 168, 0.07);
+      border: 1px solid rgba(75, 173, 168, 0.2);
+    }
+
+    /* ── HEADLINE ── */
+    .hero-context {
+      font-family: var(--display-font);
+      font-size: clamp(2.5rem, 4.8vw, 3.8rem);
+      line-height: 1.06;
+      letter-spacing: -0.015em;
+      font-weight: 600;
+      color: #fff;
+      margin: 0;
+    }
+
+    /* ── SUBTITLE ── */
+    .subtitle {
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin: 0;
+      max-width: 46ch;
+    }
+
+    /* ── AUTHOR ── */
+    .hero-profile {
+      display: flex; align-items: center; gap: 12px; margin-top: 4px;
+    }
+    .hero-profile img {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid rgba(255,255,255,0.15);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    }
+    .hero-profile span {
+      font-size: 0.92rem; color: rgba(242,239,234,0.75); font-weight: 400;
+    }
+
+    /* ── CTA ── */
+    .cta-wrapper { margin-top: 12px; }
+
+    .btn-enter {
+      display: inline-flex; align-items: center; gap: 14px;
+      padding: 17px 38px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #fff;
+      font-size: 0.97rem; font-weight: 500;
+      cursor: pointer;
+      transition: all 360ms var(--ease-cinematic);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    .btn-enter:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.22);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+    .btn-arrow {
+      font-weight: 300; font-size: 1.1rem;
+      color: rgba(255,255,255,0.45);
+      transition: transform 360ms, color 360ms;
+    }
+    .btn-enter:hover .btn-arrow { transform: translateX(5px); color: #fff; }
+
+    /* ── PILLARS ── */
+    .hero-pillars {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+      margin-top: auto; padding-top: 7vh;
+      max-width: 900px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 32px;
+      margin-top: 56px;
+    }
+
+    .pillar {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 0 32px;
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+    .pillar:first-child { padding-left: 0; }
+    .pillar:last-child  { border-right: none; }
+
+    .pillar-icon {
+      flex-shrink: 0; width: 42px; height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.03);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted);
+    }
+    .pillar-icon svg { width: 18px; height: 18px; }
+
+    .pillar-text h4 {
+      font-size: 0.9rem; font-weight: 600; color: #fff; margin-bottom: 5px;
+    }
+    .pillar-text p {
+      font-size: 0.82rem; color: var(--text-muted); line-height: 1.55; margin: 0;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .hero {
+        justify-content: flex-end;
+        padding-top: 0;
+        padding-bottom: 48px;
+        min-height: calc(100dvh - 72px);
+      }
+
+      /* On mobile, center the portrait horizontally and keep focus up high */
+      .hero-scene__photo {
+        background-position: center 20%;
+        filter: brightness(0.55) saturate(1.1) sepia(0.08);
+      }
+      .hero-scene__overlay {
+        background:
+          linear-gradient(
+            to top,
+            #0c0a10 0%,
+            #0c0a10 25%,
+            rgba(12,10,16,0.8) 50%,
+            rgba(12,10,16,0.1) 100%
+          );
+      }
+
+      .hero-content { max-width: 100%; }
+
+      .hero-pillars {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        border-top: 1px solid rgba(255,255,255,0.06);
+        padding-top: 28px;
+        margin-top: 40px;
+      }
+      .pillar {
+        padding: 0;
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        padding-bottom: 20px;
+      }
+      .pillar:last-child { border-bottom: none; padding-bottom: 0; }
+    }
+
+    /* ── PAGE EXIT ── */
+    .page-exiting { animation: exit-fade 600ms var(--ease-cinematic) forwards; pointer-events: none; }
+    @keyframes exit-fade {
+      0%   { opacity: 1; filter: blur(0);    transform: scale(1);    }
+      100% { opacity: 0; filter: blur(12px); transform: scale(1.02); }
+    }
   </style>
 </head>
 <body>
@@ -236,110 +427,164 @@
   <div class="grain"></div>
 
   <!-- HEADER -->
-  <div class="top-row" style="flex-wrap: nowrap;"> 
-    <a href="/" aria-label="Criar Sin Culpas - Inicio" style="display: flex; flex-shrink: 0; align-items: center; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'"> 
-      <img src="/assets/images/csc-logo.svg" alt="Criar Sin Culpas" style="height: clamp(26px, 4vw, 34px); width: auto !important; max-width: none; display: block; object-fit: contain; flex-shrink: 0; margin-left: -4px;"> 
-    </a> 
-    
-    <div style="display:flex; align-items:center; gap:16px; flex-wrap:nowrap; flex-shrink: 0;"> 
-      <nav class="nav-links" style="white-space: nowrap;"> 
-        <a href="/apoyo/" class="nav-link" data-i18n="nav_apoyo" data-es="Guías" data-en="Guides">Guías</a> 
-        <a href="/metodo" class="nav-link" data-i18n="nav_metodo" data-es="El Método" data-en="Method">El Método</a> 
-        <a href="#" class="nav-link" data-i18n="nav_aprende" data-es="Aprende (Pronto)" data-en="Learn (Soon)" style="opacity: 0.5; cursor: default; pointer-events: none;">Aprende (Pronto)</a> 
-      </nav> 
-      
-      <div class="lang-switcher" style="flex-shrink: 0;"> 
-        <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button> 
-        <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button> 
-      </div> 
-      
-      <button class="mobile-menu-btn" aria-label="Menu" style="flex-shrink: 0;"> 
-        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="menu-icon"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg> 
-        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="close-icon"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> 
-      </button> 
-    </div> 
-  </div> 
+  <div class="top-row" style="flex-wrap: nowrap;">
+    <a href="/" aria-label="Criar Sin Culpas - Inicio"
+       style="display:flex; flex-shrink:0; align-items:center; transition:transform 0.3s ease;"
+       onmouseover="this.style.transform='scale(1.02)'"
+       onmouseout="this.style.transform='scale(1)'">
+      <img src="/assets/images/csc-logo.svg" alt="Criar Sin Culpas"
+           style="height:clamp(26px,4vw,34px); width:auto !important; max-width:none; display:block; object-fit:contain; flex-shrink:0; margin-left:-4px;">
+    </a>
 
-  <!-- MAIN VIEWPORT --> 
-   <div class="page-wrap"> 
-      
-     <!-- Blended Background Image --> 
-     <div class="hero-bg reveal-1"> 
-       <img src="assets/images/pexels-gustavo-fring-8770585.jpg" alt="Madre e hijos leyendo juntos en el sofá"> 
-     </div> 
-  
-     <main class="hero">  
-       <div class="hero-content reveal-2">  
-          
-         <div class="hero-eyebrow"> 
-           <svg viewBox="0 0 100 20" fill="none" xmlns="http://www.w3.org/2000/svg"> 
-             <path d="M5,10 Q15,-5 25,10 T45,10 T65,10 T85,10" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" fill="none" stroke-linecap="round"/> 
-             <line x1="85" y1="10" x2="100" y2="10" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round"/> 
-           </svg> 
-           <div class="brand-pill" data-i18n="portal_eyebrow" data-es="Criar Sin Culpas" data-en="Criar Sin Culpas">Criar Sin Culpas</div>  
-         </div> 
-  
-         <h1 class="hero-context" data-i18n="portal_headline" data-es="Mereces un hogar que se sienta en calma, no en caos." data-en="You deserve a home that feels calm, not chaotic.">  
-           Mereces un hogar que se sienta en calma, no en caos.  
-         </h1>  
-          
-         <p class="subtitle reveal-3" data-i18n="portal_subheadline" data-es="A veces, lo que más necesita calma no es la casa… sino nosotros.<br><br>Y tener un espacio para respirar... lo cambia todo." data-en="Sometimes, what needs the most calm isn't the house... but us.<br><br>And having a space to breathe... changes everything.">  
-           A veces, lo que más necesita calma no es la casa… sino nosotros.<br><br>  
-           Y tener un espacio para respirar... lo cambia todo.  
-         </p>  
-          
-         <div class="hero-profile reveal-4">  
-           <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779117777/nari-portrait_jzjwcw.png" alt="Nari Fateha">  
-           <span>Nari Fateha</span>  
-         </div>  
-          
-         <div class="cta-wrapper reveal-4">  
-           <a href="/apoyo" class="btn-enter" id="enter-btn">  
-             <span data-i18n="portal_cta" data-es="Recibe apoyo que se sienta bien" data-en="Get support that feels right">Recibe apoyo que se sienta bien</span>  
-             <span class="btn-arrow">→</span>  
-           </a>  
-         </div>  
-       </div>  
-  
-       <!-- The 3 Pillars --> 
-       <div class="hero-pillars reveal-5"> 
-          
-         <div class="pillar"> 
-           <div class="pillar-icon"> 
-             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg> 
-           </div> 
-           <div class="pillar-text"> 
-             <h4 data-i18n="pillar_1_title" data-es="Sin juicios" data-en="No Judgment">Sin juicios</h4> 
-             <p data-i18n="pillar_1_desc" data-es="Te acompañamos como eres, con respeto y empatía." data-en="We support you as you are, with respect and empathy.">Te acompañamos como eres, con respeto y empatía.</p> 
-           </div> 
-         </div> 
-  
-         <div class="pillar"> 
-           <div class="pillar-icon"> 
-             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 1 8.3C18.4 15 15.1 20 11 20z"/><path d="M11 20c2.4-3.4 3.5-7.1 2.2-11.4"/></svg> 
-           </div> 
-           <div class="pillar-text"> 
-             <h4 data-i18n="pillar_2_title" data-es="Herramientas reales" data-en="Real Tools">Herramientas reales</h4> 
-             <p data-i18n="pillar_2_desc" data-es="Recursos prácticos para tu día a día, no solo teoría." data-en="Practical resources for your daily life, not just theory.">Recursos prácticos para tu día a día, no solo teoría.</p> 
-           </div> 
-         </div> 
-  
-         <div class="pillar"> 
-           <div class="pillar-icon"> 
-             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> 
-           </div> 
-           <div class="pillar-text"> 
-             <h4 data-i18n="pillar_3_title" data-es="Comunidad segura" data-en="Safe Community">Comunidad segura</h4> 
-             <p data-i18n="pillar_3_desc" data-es="No estás sola. Aquí hay espacio para ti." data-en="You are not alone. There is space for you here.">No estás sola. Aquí hay espacio para ti.</p> 
-           </div> 
-         </div> 
-  
-       </div> 
-     </main>  
-   </div> 
+    <div style="display:flex; align-items:center; gap:16px; flex-wrap:nowrap; flex-shrink:0;">
+      <nav class="nav-links" style="white-space:nowrap;">
+        <a href="/apoyo/"  class="nav-link" data-i18n="nav_apoyo"   data-es="Guías"           data-en="Guides">Guías</a>
+        <a href="/metodo"  class="nav-link" data-i18n="nav_metodo"  data-es="El Método"       data-en="Method">El Método</a>
+        <a href="#"        class="nav-link" data-i18n="nav_aprende" data-es="Aprende (Pronto)" data-en="Learn (Soon)"
+           style="opacity:0.45; cursor:default; pointer-events:none;">Aprende (Pronto)</a>
+      </nav>
+
+      <div class="lang-switcher" style="flex-shrink:0;">
+        <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
+        <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+
+      <button class="mobile-menu-btn" aria-label="Menu" style="flex-shrink:0;">
+        <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="menu-icon">
+          <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+        <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="close-icon">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- PAGE SHELL -->
+  <div class="page-wrap">
+
+    <!-- CINEMATIC PHOTO LAYER -->
+    <div class="hero-scene reveal-1">
+      <div class="hero-scene__photo"></div>
+      <div class="hero-scene__overlay"></div>
+    </div>
+
+    <main class="hero">
+      <div class="hero-content reveal-2">
+
+        <!-- Eyebrow -->
+        <div class="hero-eyebrow">
+          <svg viewBox="0 0 100 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5,10 Q15,-5 25,10 T45,10 T65,10 T85,10"
+                  stroke="rgba(255,255,255,0.6)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <line x1="85" y1="10" x2="100" y2="10"
+                  stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <div class="brand-pill"
+               data-i18n="portal_eyebrow"
+               data-es="Criar Sin Culpas"
+               data-en="Criar Sin Culpas">Criar Sin Culpas</div>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="hero-context"
+            data-i18n="portal_headline"
+            data-es="Mereces un hogar que se sienta en calma, no en caos."
+            data-en="You deserve a home that feels calm, not chaotic.">
+          Mereces un hogar que se sienta en calma, no en caos.
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="subtitle reveal-3"
+           data-i18n="portal_subheadline"
+           data-es="A veces, lo que más necesita calma no es la casa… sino nosotros.<br><br>Y tener un espacio para respirar... lo cambia todo."
+           data-en="Sometimes, what needs the most calm isn't the house... but us.<br><br>And having a space to breathe... changes everything.">
+          A veces, lo que más necesita calma no es la casa… sino nosotros.<br><br>
+          Y tener un espacio para respirar... lo cambia todo.
+        </p>
+
+        <!-- Author -->
+        <div class="hero-profile reveal-4">
+          <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779117777/nari-portrait_jzjwcw.png"
+               alt="Nari Fateha">
+          <span>Nari Fateha</span>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-wrapper reveal-4">
+          <a href="/apoyo" class="btn-enter" id="enter-btn">
+            <span data-i18n="portal_cta"
+                  data-es="Recibe apoyo que se sienta bien"
+                  data-en="Get support that feels right">Recibe apoyo que se sienta bien</span>
+            <span class="btn-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Pillars -->
+      <div class="hero-pillars reveal-5">
+
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
+          <div class="pillar-text">
+            <h4 data-i18n="pillar_1_title" data-es="Sin juicios" data-en="No Judgment">Sin juicios</h4>
+            <p  data-i18n="pillar_1_desc"
+                data-es="Te acompañamos como eres, con respeto y empatía."
+                data-en="We support you as you are, with respect and empathy.">
+              Te acompañamos como eres, con respeto y empatía.
+            </p>
+          </div>
+        </div>
+
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 1 8.3C18.4 15 15.1 20 11 20z"/>
+              <path d="M11 20c2.4-3.4 3.5-7.1 2.2-11.4"/>
+            </svg>
+          </div>
+          <div class="pillar-text">
+            <h4 data-i18n="pillar_2_title" data-es="Herramientas reales" data-en="Real Tools">Herramientas reales</h4>
+            <p  data-i18n="pillar_2_desc"
+                data-es="Recursos prácticos para tu día a día, no solo teoría."
+                data-en="Practical resources for your daily life, not just theory.">
+              Recursos prácticos para tu día a día, no solo teoría.
+            </p>
+          </div>
+        </div>
+
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <div class="pillar-text">
+            <h4 data-i18n="pillar_3_title" data-es="Comunidad segura" data-en="Safe Community">Comunidad segura</h4>
+            <p  data-i18n="pillar_3_desc"
+                data-es="No estás sola. Aquí hay espacio para ti."
+                data-en="You are not alone. There is space for you here.">
+              No estás sola. Aquí hay espacio para ti.
+            </p>
+          </div>
+        </div>
+
+      </div><!-- /pillars -->
+    </main>
+  </div><!-- /page-wrap -->
 
   <script>
-    (function() {
+    (function () {
       function trackSignal(eventName, properties) {
         if (typeof plausible !== 'undefined') { plausible(eventName, { props: properties }); }
       }
@@ -351,10 +596,10 @@
         currentLang = lang;
         localStorage.setItem(STORAGE_KEY, lang);
         document.documentElement.lang = lang;
-        
+
         document.querySelectorAll('[data-i18n]').forEach(el => {
-          const txt = el.getAttribute(`data-${lang}`);
-          if (txt) el.innerHTML = txt; 
+          const txt = el.getAttribute('data-' + lang);
+          if (txt) el.innerHTML = txt;
         });
 
         document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -362,7 +607,7 @@
         });
       }
 
-      document.addEventListener('click', (e) => {
+      document.addEventListener('click', e => {
         const btn = e.target.closest('.lang-btn');
         if (btn) {
           applyLang(btn.getAttribute('data-lang'));
@@ -373,29 +618,25 @@
       applyLang(currentLang);
 
       const enterBtn = document.getElementById('enter-btn');
-      if(enterBtn) {
-        enterBtn.addEventListener('click', function(e) {
+      if (enterBtn) {
+        enterBtn.addEventListener('click', function (e) {
           e.preventDefault();
           const href = this.getAttribute('href');
-          
           trackSignal('portal_entered', { language: currentLang });
           document.body.classList.add('page-exiting');
-          
-          setTimeout(() => { window.location.href = href; }, 600); 
+          setTimeout(() => { window.location.href = href; }, 600);
         });
       }
 
-      // Mobile Menu Toggle
-      const menuBtn = document.querySelector('.mobile-menu-btn');
+      // Mobile Menu
+      const menuBtn  = document.querySelector('.mobile-menu-btn');
       const navLinks = document.querySelector('.nav-links');
-      
-      if(menuBtn && navLinks) {
+      if (menuBtn && navLinks) {
         menuBtn.addEventListener('click', () => {
           const isOpen = navLinks.classList.toggle('is-open');
           menuBtn.classList.toggle('is-active');
           document.body.style.overflow = isOpen ? 'hidden' : '';
         });
-
         navLinks.querySelectorAll('a').forEach(link => {
           link.addEventListener('click', () => {
             navLinks.classList.remove('is-open');
