@@ -17,23 +17,23 @@
   <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q ||[]).push(arguments) }</script>
 
   <style>
-    :root {
-      /* Deep, meditative atmospheric colors */
-      --bg-void: #07050A;
-      --text-main: #F2EFEA;
-      --text-muted: #A39B96;
-      --text-faint: #756D69;
-
-      /* Muted emotional glows */
-      --glow-teal: rgba(97, 209, 196, 0.08);
-      --glow-violet: rgba(141, 121, 255, 0.07);
-      --glow-coral: rgba(255, 125, 115, 0.06);
-
-      --display-font: 'Iowan Old Style', 'Playfair Display', Georgia, serif;
-      --ui-font: Inter, system-ui, -apple-system, sans-serif;
-      
-      /* Cinematic Easing */
-      --ease-cinematic: cubic-bezier(0.25, 1, 0.4, 1);
+    :root { 
+       /* Deep, meditative atmospheric colors */ 
+       --bg-void: #0e0b12; 
+       --text-main: #F2EFEA; 
+       --text-muted: #A39B96; 
+       --text-faint: #756D69; 
+  
+       /* Muted emotional glows */ 
+       --glow-teal: rgba(97, 209, 196, 0.08); 
+       --glow-violet: rgba(141, 121, 255, 0.07); 
+       --glow-coral: rgba(255, 125, 115, 0.06); 
+  
+       --display-font: 'Iowan Old Style', 'Playfair Display', Georgia, serif; 
+       --ui-font: Inter, system-ui, -apple-system, sans-serif; 
+        
+       /* Cinematic Easing */ 
+       --ease-cinematic: cubic-bezier(0.2, 0.8, 0.2, 1); 
       
       --teal: #4bada8;
       --radius-pill: 999px;
@@ -67,23 +67,23 @@
     .watermark img { width: 100%; height: 100%; object-fit: contain; object-position: bottom right; }
     @media (max-width: 600px) { .watermark { width: 320px; height: 320px; bottom: -40px; right: -40px; opacity: 0.08; } }
 
-    /* --- NAVIGATION --- */
-    .top-row { 
-      display: flex; justify-content: space-between; align-items: center; gap: 12px; 
-      background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      padding: max(16px, env(safe-area-inset-top)) 24px 16px 24px; 
-      border-bottom: 1px solid var(--border-soft); 
-      position: relative; z-index: 100;
-    } 
-
-    .nav-links { display: flex; gap: 24px; align-items: center; }
-    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s; }
-    .nav-links a:hover { color: #fff; }
-
-    .mobile-menu-btn { display: none; }
-
-    @media (max-width: 768px) {
-      .nav-links { position: fixed; inset: 0; background: rgba(7, 5, 10, 0.98); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; opacity: 0; pointer-events: none; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); transform: translateY(-10px); }
+ /* --- NAVIGATION --- */ 
+     .top-row {  
+       display: flex; justify-content: space-between; align-items: center; gap: 12px;  
+       background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); 
+       padding: max(24px, env(safe-area-inset-top)) 24px 16px 24px;  
+       border-bottom: 1px solid var(--border-soft);  
+       position: relative; z-index: 100; 
+     }  
+  
+     .nav-links { display: flex; gap: 24px; align-items: center; } 
+     .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s; } 
+     .nav-links a:hover { color: #fff; } 
+  
+     .mobile-menu-btn { display: none; } 
+  
+     @media (max-width: 768px) { 
+       .nav-links { position: fixed; inset: 0; background: rgba(14, 11, 18, 0.98); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; opacity: 0; pointer-events: none; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); transform: translateY(-10px); } 
       .nav-links.is-open { opacity: 1; pointer-events: auto; transform: translateY(0); }
       .nav-links a { font-size: 1.5rem; letter-spacing: 0.1em; }
       
@@ -221,10 +221,10 @@
           A veces, el corazón que necesita más calma… es el nuestro.<br><br>Y cuando las palabras o la teoría ya no ayudan, lo que buscamos es un lugar donde entender, respirar y volver a empezar.
         </p>
 
-        <div class="hero-profile reveal-4">
-          <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778609928/Nari_Portrait_c5wgmr.png" alt="Nari Fateha">
-          <span>Nari Fateha</span>
-        </div>
+        <div class="hero-profile reveal-4"> 
+           <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779117777/nari-portrait_jzjwcw.png" alt="Nari Fateha"> 
+           <span>Nari Fateha</span> 
+         </div> 
 
         <div class="cta-wrapper reveal-5">
           <a href="/apoyo" class="btn-enter" id="enter-btn">
