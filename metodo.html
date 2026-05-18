@@ -6,9 +6,16 @@
   <title data-i18n="title_tag" data-es="El Método Nari — Criar Sin Culpas" data-en="The Nari Method — Criar Sin Culpas">El Método Nari — Criar Sin Culpas</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <!-- SnglIQ Telemetry Engine -->
-  <script defer data-domain="criarsinculpas.com" src="https://plausible.io/js/script.js"></script>
-  <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q ||[]).push(arguments) }</script>
+  <!-- SnglIQ Telemetry Engine (Plausible) - Production Only -->
+  <script>
+    if (window.location.hostname === 'criarsinculpas.com' || window.location.hostname === 'www.criarsinculpas.com') {
+      var pl = document.createElement('script'); pl.defer = true;
+      pl.setAttribute('data-domain', 'criarsinculpas.com');
+      pl.src = 'https://plausible.io/js/script.js';
+      document.head.appendChild(pl);
+    }
+    window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q ||[]).push(arguments) };
+  </script>
 
   <style>
     :root {

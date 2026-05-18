@@ -13,8 +13,16 @@
   <meta property="og:type" content="website">
 
   <!-- SnglIQ Telemetry Engine (Plausible) -->
-  <script defer data-domain="criarsinculpas.com" src="https://plausible.io/js/script.js"></script>
-  <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q ||[]).push(arguments) }</script>
+  <!-- SnglIQ Telemetry Engine (Plausible) - Production Only -->
+  <script>
+    if (window.location.hostname === 'criarsinculpas.com' || window.location.hostname === 'www.criarsinculpas.com') {
+      var pl = document.createElement('script'); pl.defer = true;
+      pl.setAttribute('data-domain', 'criarsinculpas.com');
+      pl.src = 'https://plausible.io/js/script.js';
+      document.head.appendChild(pl);
+    }
+    window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q ||[]).push(arguments) };
+  </script>
 
   <style>
     :root {
