@@ -173,21 +173,21 @@
     .modal-divider { border: none; border-top: 1px solid rgba(26, 26, 26, 0.1); margin: 0 0 24px 0; }
      
     .modal-body-text { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
-    .modal-body-text p { font-size: 1.05rem; line-height: 1.6; color: rgba(26, 26, 26, 0.8); }
-    .modal-quote { font-size: 1.1rem; line-height: 1.6; color: #1A1A1A; font-weight: 500; border-left: 3px solid #C8AFA2; padding-left: 20px; margin-top: 8px; }
-     
+    .modal-body-text p { font-size: 1.05rem; line-height: 1.6; color: rgba(26, 26, 26, 0.8); max-width: 48ch; }
+    .modal-quote { font-size: 1.02rem; line-height: 1.6; color: #1A1A1A; font-weight: 500; border-left: 3px solid #C8AFA2; padding: 6px 0 6px 24px; margin-top: 8px; max-width: 46ch; }
+    
     .modal-principles-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 40px; }
     .principle-item { display: flex; flex-direction: column; gap: 12px; }
-    .principle-icon { width: 44px; height: 44px; border-radius: 50%; background: #F3EAE3; color: #1A1A1A; display: flex; align-items: center; justify-content: center; }
-    .principle-icon svg { width: 20px; height: 20px; }
+    .principle-icon { width: 38px; height: 38px; border-radius: 50%; background: #F3EAE3; color: #1A1A1A; display: flex; align-items: center; justify-content: center; }
+    .principle-icon svg { width: 16px; height: 16px; }
     .principle-item h4 { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; color: #1A1A1A; line-height: 1.4; }
     .principle-item p { font-size: 0.8rem; color: rgba(26, 26, 26, 0.7); line-height: 1.4; }
-     
-    .modal-footer-text { font-size: 0.95rem; line-height: 1.6; color: rgba(26, 26, 26, 0.8); margin-bottom: 40px; }
-     
+    
+    .modal-footer-text { font-size: 0.95rem; line-height: 1.6; color: rgba(26, 26, 26, 0.8); margin-bottom: 40px; max-width: 52ch; }
+    
     .modal-actions-light { display: flex; flex-direction: column; align-items: center; gap: 20px; }
-    .btn-clay { background: #C8AFA2; color: #fff; border: none; border-radius: 999px; padding: 16px 32px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; cursor: pointer; transition: all 0.3s; width: 100%; max-width: 440px; text-align: center; }
-    .btn-clay:hover { background: #b39b8f; transform: translateY(-2px); box-shadow: 0 12px 24px rgba(200, 175, 162, 0.4); }
+    .btn-clay { background: #C8AFA2; color: #fff; border: none; border-radius: 999px; padding: 12px 28px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; cursor: pointer; transition: all 0.3s; width: fit-content; text-align: center; box-shadow: 0 4px 12px rgba(200, 175, 162, 0.15); }
+    .btn-clay:hover { background: #b39b8f; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(200, 175, 162, 0.25); }
     .btn-link { background: none; border: none; color: #C8AFA2; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; cursor: pointer; transition: opacity 0.3s; }
     .btn-link:hover { opacity: 0.7; }
      
@@ -505,58 +505,58 @@
           </div>
         </div>
 
-        <!-- Right: Editorial Content -->
-        <div class="modal-right-pane">
-          <div class="modal-eyebrow" data-i18n="nari_cta" data-es="CONOCE A NARI" data-en="MEET NARI">CONOCE A NARI</div>
+        <!-- Right: Editorial Content --> 
+         <div class="modal-right-pane"> 
+           <div class="modal-eyebrow" data-i18n="nari_cta" data-es="CONOCE A NARI" data-en="MEET NARI">CONOCE A NARI</div> 
            
-          <h2 id="modalHook" class="modal-hook-light" data-i18n="modal_hook2" data-es="Criar Sin Culpas nació desde momentos reales de agotamiento, culpa y búsqueda." data-en="Criar Sin Culpas was born from real moments of exhaustion, guilt, and searching.">
-            Criar Sin Culpas nació desde momentos reales de agotamiento, culpa y búsqueda.
-          </h2>
+           <h2 id="modalHook" class="modal-hook-light" data-i18n="modal_hook2" data-es="Criar Sin Culpas nació desde momentos reales de agotamiento, culpa y búsqueda." data-en="Criar Sin Culpas was born from real moments of exhaustion, guilt, and searching."> 
+             Criar Sin Culpas nació desde momentos reales de agotamiento, culpa y búsqueda. 
+           </h2> 
            
-          <hr class="modal-divider">
-
-          <div class="modal-body-text">
-            <p data-i18n="modal_body_1" data-es="Nari Fateha es educadora de crianza consciente y la creadora de este espacio." data-en="Nari Fateha is a conscious parenting educator and the creator of this space.">Nari Fateha es educadora de crianza consciente y la creadora de este espacio.</p>
+           <hr class="modal-divider"> 
+ 
+           <div class="modal-body-text"> 
+             <p data-i18n="modal_body_1" data-es="Nari Fateha es educadora de crianza consciente y creadora de este espacio." data-en="Nari Fateha is a conscious parenting educator and creator of this space.">Nari Fateha es educadora de crianza consciente y creadora de este espacio.</p> 
              
-            <p data-i18n="modal_body_2" data-es="Después de escuchar los mismos patrones una y otra vez —y reconocerlos también en su propia experiencia— comprendió algo esencial:" data-en="After hearing the same patterns again and again —and recognizing them in her own experience— she understood something essential:">Después de escuchar los mismos patrones una y otra vez —y reconocerlos también en su propia experiencia— comprendió algo esencial:</p>
+             <p data-i18n="modal_body_2" data-es="Después de escuchar patrones repetirse una y otra vez —y vivir muchos de ellos también desde su propia experiencia— entendió algo importante:" data-en="After hearing patterns repeat again and again —and living many of them from her own experience— she understood something important:">Después de escuchar patrones repetirse una y otra vez —y vivir muchos de ellos también desde su propia experiencia— entendió algo importante:</p> 
              
-            <blockquote class="modal-quote" data-i18n="modal_body_3" data-es="Los padres no necesitan más juicio. Necesitan claridad cuando el momento ya se puso difícil." data-en="Parents don’t need more judgment; they need clarity when things have already become difficult.">Los padres no necesitan más juicio. Necesitan claridad cuando el momento ya se puso difícil.</blockquote>
-          </div>
-
-          <div class="modal-eyebrow" style="margin-top: 16px;" data-i18n="modal_phil_eyebrow" data-es="SU FILOSOFÍA SE SOSTIENE EN 4 PRINCIPIOS" data-en="HER PHILOSOPHY RESTS ON 4 PRINCIPLES">SU FILOSOFÍA SE SOSTIENE EN 4 PRINCIPIOS</div>
-
-          <div class="modal-principles-row">
-            <div class="principle-item">
-              <div class="principle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 8h16M4 16h16M4 12h16"></path></svg></div>
-              <h4 data-i18n="p_reg_title" data-es="REGULAR PRIMERO" data-en="REGULATE FIRST">REGULAR PRIMERO</h4>
-              <p data-i18n="p_reg_desc" data-es="La calma viene antes que la corrección." data-en="Calm comes before correction.">La calma viene antes que la corrección.</p>
-            </div>
-            <div class="principle-item">
-              <div class="principle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg></div>
-              <h4 data-i18n="p_con_title" data-es="CONECTAR ANTES" data-en="CONNECT FIRST">CONECTAR ANTES</h4>
-              <p data-i18n="p_con_desc" data-es="El vínculo es parte de la solución." data-en="Connection is part of the solution.">El vínculo es parte de la solución.</p>
-            </div>
-            <div class="principle-item">
-              <div class="principle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="7" width="16" height="14" rx="2" ry="2"></rect><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path></svg></div>
-              <h4 data-i18n="p_tool_title" data-es="HERRAMIENTAS REALES" data-en="REAL TOOLS">HERRAMIENTAS REALES</h4>
-              <p data-i18n="p_tool_desc" data-es="Menos teoría. Más ayuda útil." data-en="Less theory. More useful help.">Menos teoría. Más ayuda útil.</p>
-            </div>
-            <div class="principle-item">
-              <div class="principle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div>
-              <h4 data-i18n="p_guilt_title" data-es="SIN CULPA" data-en="WITHOUT GUILT">SIN CULPA</h4>
-              <p data-i18n="p_guilt_desc" data-es="Criar con perfección es imposible." data-en="Perfection isn't possible.">Criar con perfección es imposible.</p>
-            </div>
-          </div>
-
-          <p class="modal-footer-text" data-i18n="modal_footer" data-es="Hoy, este espacio evoluciona hacia un ecosistema práctico: guías, programas y herramientas diseñadas para ayudarte a recuperar el paso cuando más lo necesitas." data-en="Today, this space is evolving into a practical ecosystem: guides, programs, and tools designed to help you regain your footing when you need it most.">
-            Hoy, este espacio evoluciona hacia un ecosistema práctico: guías, programas y herramientas diseñadas para ayudarte a recuperar el paso cuando más lo necesitas.
-          </p>
-
-          <div class="modal-actions-light">
-            <button class="btn-clay close-modal-action" data-i18n="modal_clay_cta" data-es="EMPIEZA POR EL MOMENTO QUE QUIERES RESOLVER HOY →" data-en="START WITH THE MOMENT YOU WANT TO NAVIGATE TODAY →">EMPIEZA POR EL MOMENTO QUE QUIERES RESOLVER HOY →</button>
-            <button class="btn-link close-modal-action" data-i18n="modal_link_cta" data-es="VOLVER A LAS GUÍAS" data-en="BACK TO GUIDES">VOLVER A LAS GUÍAS</button>
-          </div>
-        </div>
+             <blockquote class="modal-quote" data-i18n="modal_body_3" data-es="Los padres no necesitan más juicio. Necesitan claridad cuando el momento ya se puso difícil." data-en="Parents don’t need more judgment. They need clarity when things have already become difficult.">Los padres no necesitan más juicio. Necesitan claridad cuando el momento ya se puso difícil.</blockquote> 
+           </div> 
+ 
+           <div class="modal-eyebrow" style="margin-top: 8px;" data-i18n="modal_phil_eyebrow" data-es="SU ENFOQUE SE SOSTIENE EN 4 PRINCIPIOS" data-en="HER APPROACH RESTS ON 4 PRINCIPLES">SU ENFOQUE SE SOSTIENE EN 4 PRINCIPIOS</div> 
+ 
+           <div class="modal-principles-row"> 
+             <div class="principle-item"> 
+               <div class="principle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 8h16M4 16h16M4 12h16"></path></svg></div> 
+               <h4 data-i18n="p_reg_title" data-es="REGULAR PRIMERO" data-en="REGULATE FIRST">REGULAR PRIMERO</h4> 
+               <p data-i18n="p_reg_desc" data-es="La calma viene antes que la corrección." data-en="Calm comes before correction.">La calma viene antes que la corrección.</p> 
+             </div> 
+             <div class="principle-item"> 
+               <div class="principle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg></div> 
+               <h4 data-i18n="p_con_title" data-es="CONECTAR ANTES" data-en="CONNECT BEFORE">CONECTAR ANTES</h4> 
+               <p data-i18n="p_con_desc" data-es="El vínculo también es parte de la solución." data-en="Connection is also part of the solution.">El vínculo también es parte de la solución.</p> 
+             </div> 
+             <div class="principle-item"> 
+               <div class="principle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="7" width="16" height="14" rx="2" ry="2"></rect><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path></svg></div> 
+               <h4 data-i18n="p_tool_title" data-es="HERRAMIENTAS REALES" data-en="REAL TOOLS">HERRAMIENTAS REALES</h4> 
+               <p data-i18n="p_tool_desc" data-es="Menos teoría. Más ayuda útil." data-en="Less theory. More useful help.">Menos teoría. Más ayuda útil.</p> 
+             </div> 
+             <div class="principle-item"> 
+               <div class="principle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div> 
+               <h4 data-i18n="p_guilt_title" data-es="SIN PERFECCIÓN" data-en="WITHOUT PERFECTION">SIN PERFECCIÓN</h4> 
+               <p data-i18n="p_guilt_desc" data-es="Criar sin culpa también significa dejar atrás la idea de hacerlo perfecto." data-en="Guilt-free parenting also means letting go of the idea of doing it perfectly.">Criar sin culpa también significa dejar atrás la idea de hacerlo perfecto.</p> 
+             </div> 
+           </div> 
+ 
+           <p class="modal-footer-text" data-i18n="modal_footer" data-es="Hoy, este espacio evoluciona hacia un ecosistema práctico de apoyo emocional: guías, herramientas y recursos diseñados para acompañarte en los momentos difíciles." data-en="Today, this space is evolving into a practical ecosystem of emotional support: guides, tools, and resources designed to support you in difficult moments."> 
+             Hoy, este espacio evoluciona hacia un ecosistema práctico de apoyo emocional: guías, herramientas y recursos diseñados para acompañarte en los momentos difíciles. 
+           </p> 
+ 
+           <div class="modal-actions-light"> 
+             <button class="btn-clay close-modal-action" data-i18n="modal_clay_cta" data-es="EMPIEZA POR EL MOMENTO QUE MÁS NECESITAS HOY →" data-en="START WITH THE MOMENT YOU NEED MOST TODAY →">EMPIEZA POR EL MOMENTO QUE MÁS NECESITAS HOY →</button> 
+             <button class="btn-link close-modal-action" data-i18n="modal_link_cta" data-es="VOLVER A LAS GUÍAS" data-en="BACK TO GUIDES">VOLVER A LAS GUÍAS</button> 
+           </div> 
+         </div>
       </div>
 
     </div>
