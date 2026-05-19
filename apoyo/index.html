@@ -142,6 +142,36 @@
     /* Cinematic Reveal */
     .reveal { animation: cinematicReveal 0.8s var(--ease-cinematic) both; }
     @keyframes cinematicReveal { 0% { opacity: 0; transform: translateY(20px); filter: blur(4px); } 100% { opacity: 1; transform: translateY(0); filter: blur(0); } }
+
+    /* ── CONTEXTUAL TRUST MODAL ── */
+    .trust-modal-overlay { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; pointer-events: none; transition: opacity 0.6s var(--ease-cinematic); }
+    .trust-modal-overlay.is-open { opacity: 1; pointer-events: auto; }
+    .trust-modal-backdrop { position: absolute; inset: 0; background: rgba(12, 10, 16, 0.7); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
+    .trust-modal-container { position: relative; width: 100%; max-width: 720px; max-height: 90vh; background: #0c0a10; border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; overflow-y: auto; overflow-x: hidden; box-shadow: 0 32px 64px rgba(0,0,0,0.6); transform: translateY(24px) scale(0.98); transition: all 0.6s var(--ease-cinematic); }
+    .trust-modal-overlay.is-open .trust-modal-container { transform: translateY(0) scale(1); }
+    .trust-modal-close { position: absolute; top: 24px; right: 24px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; z-index: 10; }
+    .trust-modal-close:hover { background: rgba(255,255,255,0.1); color: #fff; transform: rotate(90deg); }
+    .trust-modal-content { padding: 56px 48px; display: flex; flex-direction: column; gap: 48px; }
+    .modal-hook { font-family: var(--display-font); font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.15; font-weight: 500; color: #fff; max-width: 24ch; }
+    .modal-human-layer { display: flex; gap: 32px; align-items: center; }
+    .modal-human-layer img { width: 120px; height: 120px; border-radius: 16px; object-fit: cover; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 16px 32px rgba(0,0,0,0.4); flex-shrink: 0; }
+    .modal-human-text { display: flex; flex-direction: column; gap: 12px; }
+    .modal-human-text p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
+    .modal-highlight { font-weight: 500; color: #fff !important; font-size: 1.05rem !important; border-left: 2px solid var(--teal); padding-left: 16px; margin-top: 8px; }
+    .modal-philosophy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; padding: 32px 0; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .phil-card h4 { font-size: 0.85rem; font-weight: 600; color: #fff; margin-bottom: 4px; }
+    .phil-card p { font-size: 0.8rem; color: var(--text-muted); }
+    .modal-vision { display: flex; flex-direction: column; gap: 32px; text-align: center; align-items: center; }
+    .modal-vision p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; max-width: 45ch; }
+    .modal-actions { display: flex; flex-direction: column; gap: 16px; align-items: center; }
+    .modal-action-hint { font-size: 0.8rem !important; font-weight: 500; color: var(--teal) !important; text-transform: uppercase; letter-spacing: 0.05em; }
+     
+    @media (max-width: 600px) {
+      .trust-modal-content { padding: 40px 24px; gap: 40px; }
+      .modal-human-layer { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .modal-human-layer img { width: 80px; height: 80px; border-radius: 50%; }
+      .modal-philosophy-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
   </style>
 </head>
 <body>
@@ -277,7 +307,9 @@
             <p data-i18n="nari_desc" data-es="Educadora de crianza consciente. Creo este espacio desde mi propia experiencia como madre." data-en="Conscious parenting educator. I created this space from my own experience as a mother.">Educadora de crianza consciente. Creo este espacio desde mi propia experiencia como madre.</p>
           </div>
         </div>
-        <a href="/metodo" class="btn-secondary" data-i18n="nari_cta" data-es="Conoce a Nari" data-en="Meet Nari">Conoce a Nari →</a>
+        <button class="btn-secondary open-nari-modal">
+          <span data-i18n="nari_cta" data-es="Conoce a Nari" data-en="Meet Nari">Conoce a Nari</span> →
+        </button>
       </div>
     </section>
 
@@ -370,6 +402,67 @@
 
   </div> <!-- End container -->
 
+  <!-- CONTEXTUAL TRUST MODAL (SOBRE NARI) -->
+  <div class="trust-modal-overlay" id="nariModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalHook">
+    <div class="trust-modal-backdrop" id="nariModalCloseBg"></div>
+    <div class="trust-modal-container">
+       
+      <button class="trust-modal-close" id="nariModalCloseBtn" aria-label="Cerrar">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+
+      <div class="trust-modal-content">
+        <!-- 01. Emotional Hook -->
+        <h2 id="modalHook" class="modal-hook" data-i18n="modal_hook" data-es="Criar Sin Culpas no nació desde una teoría. Nació desde momentos reales de agotamiento, culpa y búsqueda." data-en="Criar Sin Culpas wasn't born from a theory. It was born from real moments of exhaustion, guilt, and searching.">
+          Criar Sin Culpas no nació desde una teoría. Nació desde momentos reales de agotamiento, culpa y búsqueda.
+        </h2>
+
+        <!-- 02. The Human Layer -->
+        <div class="modal-human-layer">
+          <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779216966/Nari_xwahmd.png" alt="Nari Fateha">
+          <div class="modal-human-text">
+            <p data-i18n="modal_p1" data-es="Nari es educadora de crianza consciente y creadora de este espacio." data-en="Nari is a conscious parenting educator and the creator of this space.">Nari es educadora de crianza consciente y creadora de este espacio.</p>
+            <p data-i18n="modal_p2" data-es="Después de escuchar los mismos patrones una y otra vez en muchas familias — y reconocerlos también desde su propia experiencia — comprendió algo vital:" data-en="After hearing the same patterns repeatedly from many families—and recognizing them from her own experience—she understood something vital:">Después de escuchar los mismos patrones una y otra vez en muchas familias — y reconocerlos también desde su propia experiencia — comprendió algo vital:</p>
+            <p class="modal-highlight" data-i18n="modal_p3" data-es="Los padres no necesitan más juicio. Necesitan apoyo claro cuando el momento ya se puso difícil." data-en="Parents don't need more judgment. They need clear support when the moment gets tough.">Los padres no necesitan más juicio. Necesitan apoyo claro cuando el momento ya se puso difícil.</p>
+          </div>
+        </div>
+
+        <!-- 03. The Philosophy -->
+        <div class="modal-philosophy-grid">
+          <div class="phil-card">
+            <h4 data-i18n="phil_1_title" data-es="Regular primero" data-en="Regulate first">Regular primero</h4>
+            <p data-i18n="phil_1_desc" data-es="La calma viene antes que la corrección." data-en="Calm comes before correction.">La calma viene antes que la corrección.</p>
+          </div>
+          <div class="phil-card">
+            <h4 data-i18n="phil_2_title" data-es="Conectar antes" data-en="Connect before">Conectar antes</h4>
+            <p data-i18n="phil_2_desc" data-es="El vínculo es parte de la solución." data-en="The bond is part of the solution.">El vínculo es parte de la solución.</p>
+          </div>
+          <div class="phil-card">
+            <h4 data-i18n="phil_3_title" data-es="Herramientas reales" data-en="Real tools">Herramientas reales</h4>
+            <p data-i18n="phil_3_desc" data-es="Menos teoría. Más ayuda útil." data-en="Less theory. More useful help.">Menos teoría. Más ayuda útil.</p>
+          </div>
+          <div class="phil-card">
+            <h4 data-i18n="phil_4_title" data-es="Sin culpa" data-en="Without guilt">Sin culpa</h4>
+            <p data-i18n="phil_4_desc" data-es="Criar con perfección es imposible." data-en="Parenting perfectly is impossible.">Criar con perfección es imposible.</p>
+          </div>
+        </div>
+
+        <!-- 04. Ecosystem Vision & CTA -->
+        <div class="modal-vision">
+          <p data-i18n="modal_vision" data-es="Hoy, este espacio evoluciona hacia un ecosistema de apoyo en tiempo real. Guías prácticas, programas y herramientas diseñadas para acompañarte." data-en="Today, this space is evolving into a real-time support ecosystem. Practical guides, programs, and tools designed to support you.">
+            Hoy, este espacio evoluciona hacia un ecosistema de apoyo en tiempo real. Guías prácticas, programas y herramientas diseñadas para acompañarte.
+          </p>
+          
+          <div class="modal-actions">
+            <p class="modal-action-hint" data-i18n="modal_hint" data-es="Empieza por el momento que más necesitas resolver hoy." data-en="Start with the moment you need to resolve most today.">Empieza por el momento que más necesitas resolver hoy.</p>
+            <button class="btn-primary close-modal-action" data-i18n="modal_close_cta" data-es="Volver a las guías" data-en="Return to guides">Volver a las guías</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <script>
     (function () {
       function trackSignal(eventName, properties) {
@@ -407,6 +500,60 @@
         card.addEventListener('click', () => {
           trackSignal('card_opened', { guide: card.getAttribute('data-id') });
         });
+      });
+
+      // Contextual Trust Modal Logic
+      const modalOverlay = document.getElementById('nariModal');
+      const openModalBtns = document.querySelectorAll('.open-nari-modal');
+      const closeBtn = document.getElementById('nariModalCloseBtn');
+      const closeBg = document.getElementById('nariModalCloseBg');
+      const closeActionBtn = document.querySelector('.close-modal-action');
+
+      function openModal() {
+        if (!modalOverlay) return;
+        modalOverlay.classList.add('is-open');
+        modalOverlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+         
+        // Defensive check to prevent crash if telemetry is blocked
+        if (typeof trackSignal === 'function') {
+          trackSignal('trust_modal_opened', { language: typeof currentLang !== 'undefined' ? currentLang : 'es' });
+        }
+      }
+
+      function closeModal() {
+        if (!modalOverlay) return;
+        modalOverlay.classList.remove('is-open');
+        modalOverlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      if (openModalBtns.length > 0) {
+        openModalBtns.forEach(btn => btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          openModal();
+        }));
+      }
+
+      if(closeBtn) closeBtn.addEventListener('click', closeModal);
+      if(closeBg) closeBg.addEventListener('click', closeModal);
+       
+      if(closeActionBtn) {
+        closeActionBtn.addEventListener('click', () => {
+          closeModal();
+          // Smart UX: Scroll back to the guides section upon closing
+          const guidesSection = document.getElementById('guias');
+          if (guidesSection) {
+            guidesSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      }
+
+      // Close on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('is-open')) {
+          closeModal();
+        }
       });
 
       // Mobile Menu
