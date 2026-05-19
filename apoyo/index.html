@@ -4,6 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <title data-i18n="title_tag" data-es="Espacio de Apoyo · Criar Sin Culpas" data-en="Support Space · Criar Sin Culpas">Espacio de Apoyo · Criar Sin Culpas</title>
+  <meta property="og:description" content="Un sistema de apoyo emocional para padres. Encuentra calma, claridad y herramientas prácticas para los momentos difíciles.">
+  <meta property="og:image" content="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779225964/gRvUE3dA_mbifyu.png">
+  <meta property="og:url" content="https://criarsinculpas.com">
+  <link rel="canonical" href="https://criarsinculpas.com">
   
   <!-- SnglIQ Telemetry Engine (Plausible) - Production Only -->
   <script>
@@ -244,6 +248,32 @@
        .badge-role { display: none; } /* Hidden on mobile to save space */ 
        .badge-signature { font-size: 1.5rem; margin-top: 2px; } 
      }
+/* ── WAITLIST & FOOTER ── */ 
+     .waitlist-card { background: rgba(97, 209, 196, 0.05); border: 1px solid rgba(97, 209, 196, 0.15); border-radius: 16px; padding: 32px 40px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-top: 16px; } 
+     .waitlist-info h3 { font-size: 1.1rem; font-weight: 500; color: #fff; margin-bottom: 4px; } 
+     .waitlist-info p { font-size: 0.9rem; color: var(--text-muted); } 
+     .waitlist-form { display: flex; gap: 8px; flex: 1; max-width: 420px; min-width: 280px; } 
+     .waitlist-form input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--card-border); border-radius: 8px; padding: 12px 16px; color: #fff; font-family: var(--ui-font); font-size: 0.9rem; outline: none; transition: border-color 0.3s; min-width: 0; } 
+     .waitlist-form input:focus { border-color: var(--teal); } 
+     .waitlist-form input::placeholder { color: rgba(255,255,255,0.3); } 
+     .waitlist-form button { background: var(--teal); color: #0c0a10; border: none; border-radius: 8px; padding: 0 24px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: opacity 0.3s; flex-shrink: 0; } 
+     .waitlist-form button:hover { opacity: 0.85; } 
+  
+     .site-footer { border-top: 1px solid var(--card-border); padding: 40px 24px; margin-top: auto; background: var(--bg-void); position: relative; z-index: 10; } 
+     .footer-content { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; } 
+     .footer-copy { font-size: 0.8rem; color: var(--text-faint); font-weight: 500; letter-spacing: 0.05em; } 
+     .footer-links { display: flex; gap: 32px; align-items: center; flex-wrap: wrap; } 
+     .footer-links a { font-size: 0.8rem; color: var(--text-muted); text-decoration: none; transition: color 0.3s; font-weight: 500; letter-spacing: 0.02em; } 
+     .footer-links a:hover { color: #fff; } 
+      
+     @media (max-width: 900px) {  
+       .waitlist-card { flex-direction: column; align-items: flex-start; padding: 24px; gap: 20px; }  
+       .waitlist-form { width: 100%; max-width: none; flex-wrap: wrap; } 
+       .waitlist-form input { width: 100%; min-width: 100%; } 
+       .waitlist-form button { width: 100%; padding: 14px 24px; } 
+       .footer-content { flex-direction: column; align-items: center; text-align: center; gap: 32px; } 
+       .footer-links { justify-content: center; gap: 24px; } 
+     } 
   </style>
 </head>
 <body>
@@ -544,18 +574,43 @@
           <div class="path-tag"><div class="tag-dot" style="background: #2DD4BF;"></div> <span data-i18n="tag_soon" data-es="Próximamente" data-en="Soon">Próximamente</span></div>
         </div>
 
-        <div class="path-card">
-          <div class="path-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C084FC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
-          <div class="path-info">
-            <h4 data-i18n="p4_type" data-es="Sesión 1:1" data-en="1:1 Session">Sesión 1:1</h4>
-            <h3 data-i18n="p4_title" data-es="Acompañamiento con Nari" data-en="Guidance with Nari">Acompañamiento con Nari</h3>
-          </div>
-          <div class="path-tag"><div class="tag-dot" style="background: #C084FC;"></div> <span data-i18n="tag_soon" data-es="Próximamente" data-en="Soon">Próximamente</span></div>
-        </div>
-      </div>
-    </section>
+        <div class="path-card"> 
+           <div class="path-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C084FC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div> 
+           <div class="path-info"> 
+             <h4 data-i18n="p4_type" data-es="Sesión 1:1" data-en="1:1 Session">Sesión 1:1</h4> 
+             <h3 data-i18n="p4_title" data-es="Acompañamiento con Nari" data-en="Guidance with Nari">Acompañamiento con Nari</h3> 
+           </div> 
+           <div class="path-tag"><div class="tag-dot" style="background: #C084FC;"></div> <span data-i18n="tag_soon" data-es="Próximamente" data-en="Soon">Próximamente</span></div> 
+         </div> 
+       </div> 
+  
+       <!-- Waitlist Audience Capture --> 
+       <div class="waitlist-card"> 
+         <div class="waitlist-info"> 
+           <h3 data-i18n="waitlist_title" data-es="¿Quieres saber cuando estén listos?" data-en="Want to know when they're ready?">¿Quieres saber cuando estén listos?</h3> 
+           <p data-i18n="waitlist_desc" data-es="Déjanos tu correo y te avisaremos antes que a nadie." data-en="Leave your email and we'll notify you before anyone else.">Déjanos tu correo y te avisaremos antes que a nadie.</p> 
+         </div> 
+         <form class="waitlist-form" onsubmit="event.preventDefault(); this.innerHTML='<p style=\'color:var(--teal); font-size:0.95rem; font-weight:500; margin:0; padding: 10px 0;\'>¡Gracias! Te avisaremos pronto.</p>'; if(typeof trackSignal==='function') trackSignal('waitlist_joined', {location:'hub'});"> 
+           <input type="email" placeholder="Tu correo electrónico" required aria-label="Email"> 
+           <button type="submit" data-i18n="waitlist_btn" data-es="Avísame" data-en="Notify me">Avísame</button> 
+         </form> 
+       </div> 
+  
+     </section>
 
-  </div> <!-- End container -->
+  </div> <!-- End container --> 
+  
+   <!-- GLOBAL FOOTER --> 
+   <footer class="site-footer"> 
+     <div class="footer-content"> 
+       <span class="footer-copy">© 2026 Criar Sin Culpas</span> 
+       <div class="footer-links"> 
+         <a href="/privacidad" data-i18n="footer_privacy" data-es="Política de Privacidad" data-en="Privacy Policy">Política de Privacidad</a> 
+         <a href="mailto:hola@criarsinculpas.com" data-i18n="footer_contact" data-es="Contacto" data-en="Contact">Contacto</a> 
+         <a href="https://instagram.com/criarsinculpas" target="_blank" rel="noopener noreferrer">Instagram</a> 
+       </div> 
+     </div> 
+   </footer>
 
   <!-- CONTEXTUAL TRUST MODAL (LIGHT EDITORIAL) -->
   <div class="trust-modal-overlay" id="nariModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalHook">
