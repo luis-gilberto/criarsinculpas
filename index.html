@@ -103,10 +103,13 @@
     .top-row {
       display: flex; justify-content: space-between; align-items: center; gap: 12px;
       background: rgba(12, 10, 16, 0.55);
-      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
       padding: max(22px, env(safe-area-inset-top)) 28px 16px 28px;
       border-bottom: 1px solid var(--border-soft);
       position: relative; z-index: 100;
+    }
+    .top-row::before {
+      content: ''; position: absolute; inset: 0; z-index: -1;
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     }
 
     .nav-links { display: flex; gap: 36px; align-items: center; }
@@ -130,6 +133,7 @@
         opacity: 0; pointer-events: none;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         transform: translateY(-10px);
+        white-space: normal !important;
       }
       .nav-links.is-open { opacity: 1; pointer-events: auto; transform: translateY(0); }
       .nav-links a { font-size: 1.4rem; letter-spacing: 0.1em; }
