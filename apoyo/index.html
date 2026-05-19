@@ -136,7 +136,14 @@
     .panel-link:hover { opacity: 0.75; }
     .method-row:last-child { border-bottom: none; }
     .method-row:hover { background: var(--card-hover); }
-    .row-num { font-size: 0.8rem; color: var(--text-muted); font-family: monospace; }
+    .row-num { font-size: 0.8rem; color: #A78BFA; font-family: monospace; font-weight: 600; } 
+     
+     .method-deep-link { background: rgba(167, 139, 250, 0.12); border: 1px solid rgba(167, 139, 250, 0.25); color: #A78BFA; border-radius: 999px; padding: 6px 16px; font-size: 0.78rem; font-weight: 600; text-decoration: none; transition: background 0.3s; display: inline-block; } 
+     .method-deep-link:hover { background: rgba(167, 139, 250, 0.2); opacity: 1; } 
+     
+     .method-teaser-card { background: var(--bg-void); padding: 24px 28px; border-top: 1px solid var(--card-border); border-left: 3px solid #A78BFA; } 
+     .teaser-quote { font-family: var(--display-font); font-size: 1.1rem; font-style: italic; color: #fff; line-height: 1.5; margin-bottom: 8px; } 
+     .teaser-attr { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; color: var(--text-muted); text-transform: uppercase; }
     .row-title { font-size: 0.95rem; font-weight: 500; flex-shrink: 0; width: 220px; }
     .row-desc { font-size: 0.85rem; color: var(--text-muted); flex: 1; }
     .row-icon { color: var(--text-muted); }
@@ -436,13 +443,13 @@
 
     <!-- 4. EL METODO -->
     <section class="reveal" style="animation-delay: 0.4s;">
-      <div class="section-header flex-header">
-        <div>
-          <h2 data-i18n="method_title" data-es="El método" data-en="The method">El método</h2>
-          <p data-i18n="method_desc" data-es="Un sistema, no solo consejos sueltos." data-en="A system, not just random advice.">Un sistema, no solo consejos sueltos.</p>
-        </div>
-        <a href="/metodo" class="text-link" data-i18n="method_link" data-es="Conocer el método completo" data-en="Learn the full method">Conocer el método completo</a>
-      </div>
+      <div class="section-header flex-header"> 
+         <div> 
+           <h2 data-i18n="method_title" data-es="El método" data-en="The method">El método</h2> 
+           <p data-i18n="method_desc" data-es="Un sistema, no solo consejos sueltos." data-en="A system, not just random advice.">Un sistema, no solo consejos sueltos.</p> 
+         </div> 
+         <a href="/metodo" class="text-link method-deep-link" data-i18n="method_link" data-es="Conocer el método completo" data-en="Learn the full method">Conocer el método completo</a> 
+       </div> 
       
       <div class="method-accordion"> 
  
@@ -488,6 +495,12 @@
          <div class="method-panel"> 
            <p data-i18n="m4_panel_text" data-es="Reaccionar desde el cansancio no es un fallo de carácter — es biología. Este pilar diseña un sistema estable para que la respuesta que das mañana sea distinta a la de hoy, sin depender de cuánto dormiste." data-en="Reacting from exhaustion is not a character flaw — it's biology. This pillar designs a stable system so the response you give tomorrow is different from today's, regardless of how much sleep you got.">Reaccionar desde el cansancio no es un fallo de carácter — es biología. Este pilar diseña un sistema estable para que la respuesta que das mañana sea distinta a la de hoy, sin depender de cuánto dormiste.</p> 
            <a href="/metodo" class="panel-link" data-i18n="m_panel_link" data-es="Ver en el método →" data-en="See in the method →">Ver en el método →</a> 
+         </div> 
+ 
+         <!-- Pull-Quote Teaser connecting to /metodo --> 
+         <div class="method-teaser-card"> 
+           <blockquote class="teaser-quote" data-i18n="teaser_quote" data-es="«No puedes guiar a un niño si tú mismo estás en desborde.»" data-en="«You cannot guide a child if you are emotionally overwhelmed.»">«No puedes guiar a un niño si tú mismo estás en desborde.»</blockquote> 
+           <div class="teaser-attr" data-i18n="teaser_attr" data-es="EL MÉTODO NARI" data-en="THE NARI METHOD">EL MÉTODO NARI</div> 
          </div> 
  
        </div>
