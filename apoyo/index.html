@@ -147,7 +147,13 @@
     .trust-modal-overlay { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; pointer-events: none; transition: opacity 0.6s var(--ease-cinematic); }
     .trust-modal-overlay.is-open { opacity: 1; pointer-events: auto; }
     .trust-modal-backdrop { position: absolute; inset: 0; background: rgba(12, 10, 16, 0.7); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
-    .trust-modal-container { position: relative; width: 100%; max-width: 720px; max-height: 90vh; background: #0c0a10; border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; overflow-y: auto; overflow-x: hidden; box-shadow: 0 32px 64px rgba(0,0,0,0.6); transform: translateY(24px) scale(0.98); transition: all 0.6s var(--ease-cinematic); }
+    .trust-modal-container { position: relative; width: 100%; max-width: 720px; max-height: 90vh; background: #0c0a10; border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; overflow-y: auto; overflow-x: hidden; box-shadow: 0 32px 64px rgba(0,0,0,0.6); transform: translateY(24px) scale(0.98); transition: all 0.6s var(--ease-cinematic); scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.15) transparent; }
+    
+    /* Sleek Custom Scrollbar for Webkit */
+    .trust-modal-container::-webkit-scrollbar { width: 8px; }
+    .trust-modal-container::-webkit-scrollbar-track { background: transparent; }
+    .trust-modal-container::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 8px; border: 2px solid #0c0a10; /* creates padded look */ }
+    .trust-modal-container::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.25); }
     .trust-modal-overlay.is-open .trust-modal-container { transform: translateY(0) scale(1); }
     .trust-modal-close { position: absolute; top: 24px; right: 24px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; z-index: 10; }
     .trust-modal-close:hover { background: rgba(255,255,255,0.1); color: #fff; transform: rotate(90deg); }
