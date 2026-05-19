@@ -102,6 +102,38 @@
 
     .method-accordion { border: 1px solid var(--card-border); border-radius: 16px; overflow: hidden; }
     .method-row { padding: 20px 24px; border-bottom: 1px solid var(--card-border); display: flex; align-items: center; gap: 24px; text-decoration: none; color: var(--text-main); transition: background 0.3s; }
+    .method-row { cursor: pointer; } 
+    .method-row[aria-expanded="true"] { background: var(--card-hover); } 
+    .method-row[aria-expanded="true"] .row-icon { transform: rotate(180deg); } 
+    .row-icon { display: inline-block; transition: transform 0.35s cubic-bezier(0.2,0.8,0.2,1); } 
+    .method-panel { 
+      max-height: 0; 
+      overflow: hidden; 
+      transition: max-height 0.45s cubic-bezier(0.2,0.8,0.2,1), 
+                  padding 0.35s cubic-bezier(0.2,0.8,0.2,1); 
+      padding: 0 24px; 
+      border-bottom: 1px solid var(--card-border); 
+    } 
+    .method-panel.is-open { 
+      max-height: 300px; 
+      padding: 20px 24px 24px 24px; 
+    } 
+    .method-panel p { 
+      font-size: 0.9rem; 
+      color: var(--text-muted); 
+      line-height: 1.65; 
+      max-width: 62ch; 
+      margin-bottom: 16px; 
+    } 
+    .panel-link { 
+      font-size: 0.8rem; 
+      font-weight: 600; 
+      color: var(--teal); 
+      text-decoration: none; 
+      letter-spacing: 0.02em; 
+      transition: opacity 0.2s; 
+    } 
+    .panel-link:hover { opacity: 0.75; }
     .method-row:last-child { border-bottom: none; }
     .method-row:hover { background: var(--card-hover); }
     .row-num { font-size: 0.8rem; color: var(--text-muted); font-family: monospace; }
@@ -412,32 +444,53 @@
         <a href="/metodo" class="text-link" data-i18n="method_link" data-es="Conocer el método completo" data-en="Learn the full method">Conocer el método completo</a>
       </div>
       
-      <div class="method-accordion">
-        <a href="/metodo" class="method-row">
-          <span class="row-num">01</span>
-          <span class="row-title" data-i18n="m1_title" data-es="Pilar: Regulación emocional" data-en="Pillar: Emotional regulation">Pilar: Regulación emocional</span>
-          <span class="row-desc" data-i18n="m1_desc" data-es="Qué hacer cuando todo se sale de control." data-en="What to do when everything spirals out of control.">Qué hacer cuando todo se sale de control.</span>
-          <span class="row-icon">↓</span>
-        </a>
-        <a href="/metodo" class="method-row">
-          <span class="row-num">02</span>
-          <span class="row-title" data-i18n="m2_title" data-es="Pilar: Límites desde la calma" data-en="Pillar: Calm boundaries">Pilar: Límites desde la calma</span>
-          <span class="row-desc" data-i18n="m2_desc" data-es="Cómo poner límites sin gritar." data-en="How to set boundaries without yelling.">Cómo poner límites sin gritar.</span>
-          <span class="row-icon">↓</span>
-        </a>
-        <a href="/metodo" class="method-row">
-          <span class="row-num">03</span>
-          <span class="row-title" data-i18n="m3_title" data-es="Pilar: Comunicación conectiva" data-en="Pillar: Connective communication">Pilar: Comunicación conectiva</span>
-          <span class="row-desc" data-i18n="m3_desc" data-es="Cómo conectar antes de corregir." data-en="How to connect before correcting.">Cómo conectar antes de corregir.</span>
-          <span class="row-icon">↓</span>
-        </a>
-        <a href="/metodo" class="method-row">
-          <span class="row-num">04</span>
-          <span class="row-title" data-i18n="m4_title" data-es="Pilar: Autorregulación" data-en="Pillar: Self-regulation">Pilar: Autorregulación</span>
-          <span class="row-desc" data-i18n="m4_desc" data-es="Cómo dejar de reaccionar desde el agotamiento." data-en="How to stop reacting from exhaustion.">Cómo dejar de reaccionar desde el agotamiento.</span>
-          <span class="row-icon">↓</span>
-        </a>
-      </div>
+      <div class="method-accordion"> 
+ 
+         <div class="method-row" role="button" tabindex="0" aria-expanded="false" data-accordion> 
+           <span class="row-num">01</span> 
+           <span class="row-title" data-i18n="m1_title" data-es="Pilar: Regulación emocional" data-en="Pillar: Emotional regulation">Pilar: Regulación emocional</span> 
+           <span class="row-desc" data-i18n="m1_desc" data-es="Qué hacer cuando todo se sale de control." data-en="What to do when everything spirals out of control.">Qué hacer cuando todo se sale de control.</span> 
+           <span class="row-icon">↓</span> 
+         </div> 
+         <div class="method-panel"> 
+           <p data-i18n="m1_panel_text" data-es="No puedes guiar a un niño si tú mismo estás en desborde. Este pilar trabaja primero contigo: reconocer la señal de alarma antes de que escale, y tener una respuesta lista en lugar de una reacción." data-en="You cannot guide a child when you yourself are overwhelmed. This pillar works with you first: recognizing the alarm signal before it escalates, and having a response ready instead of a reaction.">No puedes guiar a un niño si tú mismo estás en desborde. Este pilar trabaja primero contigo: reconocer la señal de alarma antes de que escale, y tener una respuesta lista en lugar de una reacción.</p> 
+           <a href="/metodo" class="panel-link" data-i18n="m_panel_link" data-es="Ver en el método →" data-en="See in the method →">Ver en el método →</a> 
+         </div> 
+ 
+         <div class="method-row" role="button" tabindex="0" aria-expanded="false" data-accordion> 
+           <span class="row-num">02</span> 
+           <span class="row-title" data-i18n="m2_title" data-es="Pilar: Límites desde la calma" data-en="Pillar: Calm boundaries">Pilar: Límites desde la calma</span> 
+           <span class="row-desc" data-i18n="m2_desc" data-es="Cómo poner límites sin gritar." data-en="How to set boundaries without yelling.">Cómo poner límites sin gritar.</span> 
+           <span class="row-icon">↓</span> 
+         </div> 
+         <div class="method-panel"> 
+           <p data-i18n="m2_panel_text" data-es="Un límite dicho desde el agotamiento se convierte en amenaza. Este pilar muestra cómo sostener la estructura del hogar sin perder la conexión — ni la calma — en el intento." data-en="A boundary spoken from exhaustion becomes a threat. This pillar shows how to hold the structure of home without losing connection — or calm — in the process.">Un límite dicho desde el agotamiento se convierte en amenaza. Este pilar muestra cómo sostener la estructura del hogar sin perder la conexión — ni la calma — en el intento.</p> 
+           <a href="/metodo" class="panel-link" data-i18n="m_panel_link" data-es="Ver en el método →" data-en="See in the method →">Ver en el método →</a> 
+         </div> 
+ 
+         <div class="method-row" role="button" tabindex="0" aria-expanded="false" data-accordion> 
+           <span class="row-num">03</span> 
+           <span class="row-title" data-i18n="m3_title" data-es="Pilar: Comunicación conectiva" data-en="Pillar: Connective communication">Pilar: Comunicación conectiva</span> 
+           <span class="row-desc" data-i18n="m3_desc" data-es="Cómo conectar antes de corregir." data-en="How to connect before correcting.">Cómo conectar antes de corregir.</span> 
+           <span class="row-icon">↓</span> 
+         </div> 
+         <div class="method-panel"> 
+           <p data-i18n="m3_panel_text" data-es="El niño que no se siente escuchado no está listo para escucharte. Este pilar enseña a entrar al mundo del niño primero — no para capitular, sino para abrir la puerta a que el cambio sea posible." data-en="A child who doesn't feel heard isn't ready to hear you. This pillar teaches you to enter the child's world first — not to capitulate, but to open the door to change.">El niño que no se siente escuchado no está listo para escucharte. Este pilar enseña a entrar al mundo del niño primero — no para capitular, sino para abrir la puerta a que el cambio sea posible.</p> 
+           <a href="/metodo" class="panel-link" data-i18n="m_panel_link" data-es="Ver en el método →" data-en="See in the method →">Ver en el método →</a> 
+         </div> 
+ 
+         <div class="method-row" role="button" tabindex="0" aria-expanded="false" data-accordion> 
+           <span class="row-num">04</span> 
+           <span class="row-title" data-i18n="m4_title" data-es="Pilar: Autorregulación" data-en="Pillar: Self-regulation">Pilar: Autorregulación</span> 
+           <span class="row-desc" data-i18n="m4_desc" data-es="Cómo dejar de reaccionar desde el agotamiento." data-en="How to stop reacting from exhaustion.">Cómo dejar de reaccionar desde el agotamiento.</span> 
+           <span class="row-icon">↓</span> 
+         </div> 
+         <div class="method-panel"> 
+           <p data-i18n="m4_panel_text" data-es="Reaccionar desde el cansancio no es un fallo de carácter — es biología. Este pilar diseña un sistema estable para que la respuesta que das mañana sea distinta a la de hoy, sin depender de cuánto dormiste." data-en="Reacting from exhaustion is not a character flaw — it's biology. This pillar designs a stable system so the response you give tomorrow is different from today's, regardless of how much sleep you got.">Reaccionar desde el cansancio no es un fallo de carácter — es biología. Este pilar diseña un sistema estable para que la respuesta que das mañana sea distinta a la de hoy, sin depender de cuánto dormiste.</p> 
+           <a href="/metodo" class="panel-link" data-i18n="m_panel_link" data-es="Ver en el método →" data-en="See in the method →">Ver en el método →</a> 
+         </div> 
+ 
+       </div>
     </section>
 
     <!-- 5. CAMINOS -->
@@ -693,7 +746,27 @@
         }
       });
 
-      // Mobile Menu
+      // Method Accordion 
+       document.querySelectorAll('[data-accordion]').forEach(row => { 
+         row.addEventListener('click', () => { 
+           const isOpen = row.getAttribute('aria-expanded') === 'true'; 
+           // Close all 
+           document.querySelectorAll('[data-accordion]').forEach(r => { 
+             r.setAttribute('aria-expanded', 'false'); 
+             r.nextElementSibling.classList.remove('is-open'); 
+           }); 
+           // Open clicked if it was closed 
+           if (!isOpen) { 
+             row.setAttribute('aria-expanded', 'true'); 
+             row.nextElementSibling.classList.add('is-open'); 
+           } 
+         }); 
+         row.addEventListener('keydown', e => { 
+           if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); row.click(); } 
+         }); 
+       }); 
+ 
+       // Mobile Menu
       const menuBtn = document.querySelector('.mobile-menu-btn');
       const navLinks = document.querySelector('.nav-links');
       if (menuBtn && navLinks) {
