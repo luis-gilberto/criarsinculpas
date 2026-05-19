@@ -66,7 +66,12 @@
 
     /* ── HERO SECTION ── */
     .hub-hero { position: relative; padding: 80px 0; display: flex; flex-direction: column; justify-content: center; min-height: 50vh; border-bottom: 1px solid var(--card-border); }
-    .hub-hero-bg { position: absolute; top: 0; right: -10%; width: 60%; height: 100%; pointer-events: none; z-index: 0; background-image: url('https://images.unsplash.com/photo-1544281679-0d12e6973347?q=80&w=1200&auto=format&fit=crop'); background-size: cover; background-position: center 20%; filter: contrast(1.1) brightness(0.6) sepia(0.2); -webkit-mask-image: linear-gradient(to right, transparent 0%, black 50%, black 100%), linear-gradient(to bottom, black 60%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, black 50%), linear-gradient(to bottom, black 60%, transparent 100%); mask-composite: intersect; -webkit-mask-composite: source-in; opacity: 0.6; }
+    .hub-hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+    .hub-hero-bg img { position: absolute; right: 0; top: 0; width: 60%; height: 100%; object-fit: cover; object-position: center 20%; opacity: 0.35; filter: contrast(1.2) sepia(0.1); }
+    .hub-hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, var(--bg-void) 0%, var(--bg-void) 45%, rgba(12,10,16,0) 80%), linear-gradient(to top, var(--bg-void) 0%, rgba(12,10,16,0) 20%); }
+     
+    .disabled-card { opacity: 0.4; pointer-events: none; cursor: default; }
+    .coming-soon-badge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 4px 8px; border-radius: 6px; color: var(--text-muted); margin-left: auto; align-self: center; }
     
     .hub-hero-content { position: relative; z-index: 2; max-width: 500px; }
     .eyebrow { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal); margin-bottom: 16px; display: block; }
@@ -123,7 +128,8 @@
       .row-icon { position: absolute; right: 24px; top: 20px; }
     }
     @media (max-width: 600px) {
-      .hub-hero-bg { width: 100%; right: 0; mask-image: linear-gradient(to bottom, black 40%, transparent 100%); opacity: 0.3; }
+      .hub-hero-bg img { width: 100%; }
+      .hub-hero-bg::after { background: linear-gradient(to top, var(--bg-void) 0%, var(--bg-void) 30%, rgba(12,10,16,0) 100%); }
       .hub-hero { padding: 60px 0 40px 0; }
       .guides-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
       .guide-card { flex-direction: column; gap: 12px; padding: 16px; }
@@ -165,7 +171,10 @@
     
     <!-- 1. HERO -->
     <div class="hub-hero">
-      <div class="hub-hero-bg"></div>
+      <div class="hub-hero-bg">
+        <!-- TEMP PLACEHOLDER: Swap this URL with your final silhouette image -->
+        <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779147046/pexels-gustavo-fring-8770590_stewia.jpg" alt="Silueta">
+      </div>
       <div class="hub-hero-content reveal" style="animation-delay: 0.1s;">
         <span class="eyebrow" data-i18n="hero_eyebrow" data-es="Apoyo para la crianza real" data-en="Support for real parenting">Apoyo para la crianza real</span>
         <h1 data-i18n="hero_h1" data-es="Cuando el momento ya se puso difícil" data-en="When the moment gets tough">Cuando el momento ya se puso difícil</h1>
@@ -222,25 +231,25 @@
           <div class="guide-arrow">→</div>
         </a>
 
-        <!-- Transiciones -->
-        <a href="#" class="guide-card" style="--icon-color: #FBBF24; --icon-glow: rgba(251, 191, 36, 0.1);">
+        <!-- Transiciones (Próximamente) -->
+        <div class="guide-card disabled-card" style="--icon-color: #FBBF24; --icon-glow: rgba(251, 191, 36, 0.1);">
           <div class="guide-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg></div>
           <div class="guide-info">
             <h3 data-i18n="g5_title" data-es="Transiciones" data-en="Transitions">Transiciones</h3>
             <p data-i18n="g5_desc" data-es="Le cuesta cambiar de actividad." data-en="Struggles to change activities.">Le cuesta cambiar de actividad.</p>
           </div>
-          <div class="guide-arrow">→</div>
-        </a>
+          <div class="coming-soon-badge" data-i18n="tag_soon" data-es="Pronto" data-en="Soon">Pronto</div>
+        </div>
 
-        <!-- Salidas -->
-        <a href="#" class="guide-card" style="--icon-color: #60A5FA; --icon-glow: rgba(96, 165, 250, 0.1);">
+        <!-- Salidas (Próximamente) -->
+        <div class="guide-card disabled-card" style="--icon-color: #60A5FA; --icon-glow: rgba(96, 165, 250, 0.1);">
           <div class="guide-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg></div>
           <div class="guide-info">
             <h3 data-i18n="g6_title" data-es="Salidas" data-en="Outings">Salidas</h3>
             <p data-i18n="g6_desc" data-es="Rabietas en lugares públicos." data-en="Tantrums in public places.">Rabietas en lugares públicos.</p>
           </div>
-          <div class="guide-arrow">→</div>
-        </a>
+          <div class="coming-soon-badge" data-i18n="tag_soon" data-es="Pronto" data-en="Soon">Pronto</div>
+        </div>
       </div>
     </section>
 
