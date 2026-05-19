@@ -191,14 +191,20 @@
     .btn-link { background: none; border: none; color: #C8AFA2; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; cursor: pointer; transition: opacity 0.3s; }
     .btn-link:hover { opacity: 0.7; }
      
-    @media (max-width: 900px) {
-      .trust-modal-container-light { flex-direction: column; max-width: 600px; }
-      .modal-split-layout { flex-direction: column; }
-      .modal-left-pane { width: 100%; height: 400px; }
-      .modal-right-pane { width: 100%; padding: 40px 24px; }
-      .modal-principles-row { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-      .btn-clay { width: 100%; max-width: none; }
-    }
+    @media (max-width: 900px) { 
+       .trust-modal-container-light { flex-direction: column; max-width: 600px; } 
+       .modal-split-layout { flex-direction: column; } 
+       .modal-left-pane { width: 100%; height: 380px; } 
+       .modal-right-pane { width: 100%; padding: 40px 24px; } 
+       .modal-principles-row { grid-template-columns: repeat(2, 1fr); gap: 24px; } 
+       .btn-clay { width: 100%; max-width: none; } 
+       
+       /* Mobile Badge Fix: Shrink footprint and remove redundant text */ 
+       .modal-name-badge { bottom: 16px; left: 16px; right: 16px; padding: 16px 20px; border-radius: 10px; } 
+       .badge-name { margin-bottom: 0; font-size: 0.8rem; } 
+       .badge-role { display: none; } /* Hidden on mobile to save space */ 
+       .badge-signature { font-size: 1.5rem; margin-top: 2px; } 
+     }
   </style>
 </head>
 <body>
