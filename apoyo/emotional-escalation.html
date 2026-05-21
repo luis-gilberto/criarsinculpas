@@ -143,8 +143,18 @@
     .acc-trig { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 18px; font-size: .92rem; font-weight: 700; color: rgba(255,255,255,.85); text-align: left; background: none; border: none; cursor: pointer; font-family: inherit; }
     .acc-icon { transition: transform 300ms; opacity: 0.5; color: #fff; }
     .accordion[open] .acc-icon { transform: rotate(180deg); }
-    .acc-body { display: grid; grid-template-rows: 0fr; opacity: 0; transition: all 260ms; }
-    .accordion[open] .acc-body { grid-template-rows: 1fr; opacity: 1; }
+    .acc-body { 
+      max-height: 0; 
+      overflow: hidden; 
+      padding: 0 18px; 
+      opacity: 0;
+      transition: all 0.4s var(--ease-cinematic); 
+    }
+    .acc-body.is-open { 
+      max-height: 400px; 
+      padding: 16px 18px 24px 18px; 
+      opacity: 1;
+    }
     .acc-inner { overflow: hidden; }
     .acc-box { padding: 0 18px 18px; display: flex; flex-direction: column; gap: 12px; }
     
@@ -172,8 +182,8 @@
     
     /* STICKY FOOTER */
     .sticky-footer-wrap { position: fixed; bottom: 0; width: 100%; padding: 10px 20px 24px; background: linear-gradient(0deg, var(--bg-2) 40%, transparent 100%); pointer-events: none; z-index: 30; }
-    .sticky-footer { max-width: 440px; margin: 0 auto; display: flex; justify-content: space-between; padding: 16px 20px; border-radius: 999px; background: rgba(14,20,18,.92); border: 1px solid rgba(255,255,255,.1); box-shadow: 0 10px 30px rgba(0,0,0,.6); backdrop-filter: blur(12px); pointer-events: auto; }
-    .sticky-step { font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.03em; color: rgba(255,255,255,.4); white-space: nowrap; }
+    .sticky-footer { max-width: 440px; margin: 0 auto; display: flex; justify-content: space-between; padding: 12px 20px; border-radius: 999px; background: rgba(14,20,18,.92); border: 1px solid rgba(255,255,255,.1); border-top: 1px solid rgba(255,255,255,0.05); box-shadow: 0 10px 30px rgba(0,0,0,.6); backdrop-filter: blur(12px); pointer-events: auto; }
+    .sticky-step { font-size: .7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; color: rgba(255,255,255,0.55); white-space: nowrap; }
     
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -233,7 +243,8 @@
         </svg>
       </div>
       <h1 data-i18n="title" data-es="Emociones: cómo acompañar sin escalar" data-en="Emotions: how to support without escalating">Emociones: cómo acompañar sin escalar</h1>
-      <p class="hero-sub" data-i18n="subtitle" data-es="Cuando tu hijo está intenso, tú también sientes el impacto. Respira un momento. No estás fallando. No tienes que apagar nada. Tu calma ayuda más que mil explicaciones. No necesitas arreglarlo todo en ese momento." data-en="When your child is intense, you feel the impact too. Take a breath. You're not failing. You don't have to turn anything off. Your calm helps more than a thousand explanations. You don't need to fix everything right then.">Cuando tu hijo está intenso, tú también sientes el impacto. Respira un momento. No estás fallando. No tienes que apagar nada. Tu calma ayuda más que mil explicaciones. No necesitas arreglarlo todo en ese momento.</p>
+      <p data-i18n="esc_hero_p1" data-es="Cuando tu hijo está intenso, tú también sientes el impacto." data-en="When your child is intense, you feel the impact too.">Cuando tu hijo está intenso, tú también sientes el impacto.</p>
+      <p style="margin-top: 16px;" data-i18n="esc_hero_p2" data-es="Respira un momento. No estás fallando. No tienes que apagar nada. Tu calma ayuda más que mil explicaciones. No necesitas arreglarlo todo en ese momento." data-en="Take a breath. You are not failing. You don't have to shut anything down. Your calm helps more than a thousand explanations. You don't need to fix everything right then.">Respira un momento. No estás fallando. No tienes que apagar nada. Tu calma ayuda más que mil explicaciones. No necesitas arreglarlo todo en ese momento.</p>
       <p class="hero-intro" data-i18n="intro_body" data-es="Aquí tienes frases cortas para usar en el momento, sin explicar, sin corregir, sin entrar en lucha." data-en="Here are short phrases to use in the moment — no explaining, no correcting, no power struggle.">Aquí tienes frases cortas para usar en el momento, sin explicar, sin corregir, sin entrar en lucha.</p>
     </header>
 
@@ -282,8 +293,8 @@
         <div class="acc-body"><div class="acc-inner"><div class="acc-box">
           <ul class="acc-list">
             <li data-i18n="acc1_li1" data-es="La mente lógica de tu hijo está apagada. Razonar no funciona." data-en="Your child's logical brain is offline. Reasoning won't work.">La mente lógica de tu hijo está apagada. Razonar no funciona.</li>
-            <li data-i18n="acc1_li2" data-es="Puede tomar tiempo que su cuerpo vuelva a la calma." data-en="It may take time for their body to return to calm.">Puede tomar tiempo que su cuerpo vuelva a la calma.</li>
-            <li data-i18n="acc1_li3" data-es="Tu silencio y tu presencia cercana hacen más que mil palabras." data-en="Your silence and close presence do more than a thousand words.">Tu silencio y tu presencia cercana hacen más que mil palabras.</li>
+            <li data-i18n="acc1_li2" data-es="Puede tardar un poco en calmarse." data-en="They might take a little while to calm down.">Puede tardar un poco en calmarse.</li>
+            <li data-i18n="acc1_li3" data-es="A veces tu calma ayuda más que hablar." data-en="Sometimes your calm helps more than talking.">A veces tu calma ayuda más que hablar.</li>
           </ul>
         </div></div></div>
       </div>
@@ -425,6 +436,8 @@
         trigger.addEventListener('click', () => {
           const isOpen = acc.hasAttribute('open');
           acc.toggleAttribute('open', !isOpen);
+          const body = acc.querySelector('.acc-body');
+          if (body) body.classList.toggle('is-open', !isOpen);
           
           if (!isOpen) { // Means it was just opened
             trackSignal('card_opened', { topic: topic, protocol: 'emotional_escalation' });
