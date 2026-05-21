@@ -182,7 +182,7 @@
     
     /* STICKY FOOTER */
     .sticky-footer-wrap { position: fixed; bottom: 0; width: 100%; padding: 10px 20px 24px; background: linear-gradient(0deg, var(--bg-2) 40%, transparent 100%); pointer-events: none; z-index: 30; }
-    .sticky-footer { max-width: 440px; margin: 0 auto; display: flex; justify-content: space-between; padding: 12px 20px; border-radius: 999px; background: rgba(14,20,18,.92); border: 1px solid rgba(255,255,255,.1); border-top: 1px solid rgba(255,255,255,0.05); box-shadow: 0 10px 30px rgba(0,0,0,.6); backdrop-filter: blur(12px); pointer-events: auto; }
+    .sticky-footer { max-width: 440px; margin: 0 auto; display: flex; justify-content: space-between; padding: 12px 20px; border-radius: 999px; background: rgba(14,20,18,.92); border: 1px solid rgba(255,255,255,.1); border-top: 1px solid rgba(255,255,255,0.05); box-shadow: 0 10px 30px rgba(0,0,0,.6); backdrop-filter: blur(12px); pointer-events: auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 92vw; margin: 0 auto; font-size: clamp(0.65rem, 2.8vw, 0.75rem); }
     .sticky-step { font-size: .7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; color: rgba(255,255,255,0.55); white-space: nowrap; }
     
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
@@ -258,8 +258,8 @@
           <span class="pc-copy" data-i18n="tap_copy" data-es="Copiar" data-en="Copy">Copiar</span>
         </span>
         <p class="pc-when" data-i18n="c1_when" data-es="<strong>Cuándo:</strong> Empieza la intensidad. Tu hijo aún te escucha." data-en="<strong>When:</strong> The intensity is starting. Your child can still hear you."><strong>Cuándo:</strong> Empieza la intensidad. Tu hijo aún te escucha.</p>
-        <p class="pc-phrase" data-i18n="c1_phrase" data-es="Ya sé que estás muy molesto. Aquí estoy." data-en="I know you're very upset. I'm right here.">Ya sé que estás muy molesto. Aquí estoy.</p>
-        <span class="pc-hint" data-i18n="c1_hint" data-es="Valida la emoción sin arreglarla." data-en="Validate the emotion without fixing it.">Valida la emoción sin arreglarla.</span>
+        <p class="pc-phrase" data-i18n="c1_phrase" data-es="Veo que estás muy molesto. Aquí estoy." data-en="I see you're very upset. I'm right here.">Veo que estás muy molesto. Aquí estoy.</p>
+        <span class="pc-hint" data-i18n="c1_hint" data-es="Valida lo que siente, sin intentar cambiarlo en el momento." data-en="Validate what they feel without trying to change it in the moment.">Valida lo que siente, sin intentar cambiarlo en el momento.</span>
       </button>
 
       <button type="button" class="phrase-card" data-mode="regular">
@@ -268,8 +268,8 @@
           <span class="pc-copy" data-i18n="tap_copy" data-es="Copiar" data-en="Copy">Copiar</span>
         </span>
         <p class="pc-when" data-i18n="c2_when" data-es="<strong>Cuándo:</strong> La emoción está subiendo. Necesita tu ritmo." data-en="<strong>When:</strong> The emotion is rising. They need your rhythm."><strong>Cuándo:</strong> La emoción está subiendo. Necesita tu ritmo.</p>
-        <p class="pc-phrase" data-i18n="c2_phrase" data-es="Vamos poco a poco. Hablemos cuando baje un poco." data-en="Let's go little by little. We'll talk when it comes down a bit.">Vamos poco a poco. Hablemos cuando baje un poco.</p>
-        <span class="pc-hint" data-i18n="c2_hint" data-es="Primero bajemos la intensidad." data-en="First, let's lower the intensity.">Primero bajemos la intensidad.</span>
+        <p class="pc-phrase" data-i18n="c2_phrase" data-es="Vamos poco a poco." data-en="Let's go little by little.">Vamos poco a poco.</p>
+        <span class="pc-hint" data-i18n="c2_hint" data-es="Baja el ritmo y evita entrar en lucha." data-en="Slow the pace and avoid getting into a fight.">Baja el ritmo y evita entrar en lucha.</span>
       </button>
 
       <button type="button" class="phrase-card" data-mode="proteger">
@@ -278,8 +278,8 @@
           <span class="pc-copy" data-i18n="tap_copy" data-es="Copiar" data-en="Copy">Copiar</span>
         </span>
         <p class="pc-when" data-i18n="c3_when" data-es="<strong>Cuándo:</strong> Hay llanto fuerte. Ahora mismo solo necesita que no escalemos más." data-en="<strong>When:</strong> There is heavy crying. Right now, they just need us not to escalate further."><strong>Cuándo:</strong> Hay llanto fuerte. Ahora mismo solo necesita que no escalemos más.</p>
-        <p class="pc-phrase" data-i18n="c3_phrase" data-es="No estás solo. Vamos poco a poco." data-en="You are not alone. Let's go little by little.">No estás solo. Vamos poco a poco.</p>
-        <span class="pc-hint" data-i18n="c3_hint" data-es="Tu límite es seguridad, no castigo." data-en="Your limit is safety, not punishment.">Tu límite es seguridad, no castigo.</span>
+        <p class="pc-phrase" data-i18n="c3_phrase" data-es="No hace falta seguir escalando." data-en="There's no need to keep escalating.">No hace falta seguir escalando.</p>
+        <span class="pc-hint" data-i18n="c3_hint" data-es="Tu papel aquí es estabilizar, no absorber." data-en="Your role here is to stabilize, not to absorb.">Tu papel aquí es estabilizar, no absorber.</span>
       </button>
     </div>
 
