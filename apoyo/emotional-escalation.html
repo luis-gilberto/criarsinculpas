@@ -11,8 +11,10 @@
   <link rel="canonical" href="https://criarsinculpas.com/apoyo/emotional-escalation">
   <meta property="og:site_name" content="Criar Sin Culpas">
   <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- SnglIQ Telemetry Engine (Plausible) -->
   <!-- SnglIQ Telemetry Engine (Plausible) - Production Only -->
   <script>
     if (window.location.hostname === 'criarsinculpas.com' || window.location.hostname === 'www.criarsinculpas.com') {
@@ -21,200 +23,693 @@
       pl.src = 'https://plausible.io/js/script.js';
       document.head.appendChild(pl);
     }
-    window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q ||[]).push(arguments) };
+    window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) };
   </script>
 
   <style>
+    /* ─────────────────────────────────────────
+       DESIGN TOKENS — CSC locked system
+    ───────────────────────────────────────── */
     :root {
-      --bg-1: #1a0e0c; --bg-2: #120908; --bg-3: #150c0a;
-      --text: #f7f1ec; --muted: rgba(255,255,255,.62);
-      --accent: #ff7d73; --accent-glow: rgba(255,125,115,.2);
-      --card-glow: rgba(255,125,115,.55); --accent-border: rgba(255,125,115,.32);
-      --ok: #cbc1ff; --success: #35d06e; --success-bg: #eafff1;
-      --shadow: 0 10px 34px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.08);
-      --radius-xl: 24px; --radius-lg: 20px; --radius-md: 18px;
+      --coral:    #F96F6E;
+      --teal:     #4BADA8;
+      --obsidian: #0E0C0A;
+      --cloud:    #F5F0EB;
+
+      /* Page palette */
+      --bg-1: #1a0e0c;
+      --bg-2: #120908;
+      --bg-3: #150c0a;
+      --bg-card: rgba(255,255,255,.045);
+      --bg-card-hover: rgba(255,255,255,.072);
+      --text: #f7f1ec;
+      --muted: rgba(247,241,236,.62);
+      --subtle: rgba(247,241,236,.35);
+      --faint:  rgba(247,241,236,.18);
+
+      --accent:        #ff7d73;
+      --accent-glow:   rgba(255,125,115,.18);
+      --accent-border: rgba(255,125,115,.28);
+      --accent-bg:     rgba(255,125,115,.08);
+
+      --ok:           #cbc1ff;
+      --ok-bg:        rgba(203,193,255,.1);
+      --success:      #35d06e;
+      --success-bg:   rgba(53,208,110,.1);
+      --success-dark: rgba(53,208,110,.2);
+
+      --border:       rgba(255,255,255,.08);
+      --border-soft:  rgba(255,255,255,.05);
+
+      --shadow-card:  0 2px 20px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
+      --shadow-lg:    0 12px 48px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
+      --shadow-btn:   0 4px 16px rgba(0,0,0,.3);
+
+      --radius-pill: 999px;
+      --radius-xl:   24px;
+      --radius-lg:   20px;
+      --radius-md:   16px;
+      --radius-sm:   12px;
+
+      /* Layout */
+      --content-max: 1100px;
+      --col-main: 580px;
+      --gutter-desktop: 56px;
+      --gutter-mobile: 20px;
+
+      /* Transition */
+      --ease-out:  cubic-bezier(.22, 1, .36, 1);
+      --ease-back: cubic-bezier(.175, .885, .32, 1.275);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    /* ─────────────────────────────────────────
+       RESET
+    ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; }
     html, body { min-height: 100%; }
     body {
-      font-family: Inter, system-ui, -apple-system, sans-serif;
-      color: var(--text); background: var(--bg-2);
-      line-height: 1.5; overflow-x: hidden; padding-bottom: 120px;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: var(--bg-2);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
     a, button { font: inherit; text-decoration: none; border: none; background: none; color: inherit; cursor: pointer; }
-    
-    /* BACKGROUNDS */
-    .orbs, .grain { position: fixed; inset: 0; pointer-events: none; }
-    .orbs { z-index: 0; }
-    .grain { z-index: 1; opacity: .025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 180px 180px; }
-    
-    /* CSC WATERMARK */
-    .watermark { 
-      position: fixed; bottom: -60px; right: -40px; width: 420px; height: 420px; 
-      pointer-events: none; z-index: 1; opacity: .22; 
-      filter: grayscale(100%) brightness(1.1); mix-blend-mode: normal; 
-    } 
-    .watermark img { width: 100%; height: 100%; object-fit: contain; object-position: bottom right; } 
-    @media(max-width:600px) { .watermark { width: 280px; height: 280px; bottom: -40px; right: -30px; opacity: .15; } }
 
-    /* ENHANCED TACTILE TOAST */
+    /* ─────────────────────────────────────────
+       AMBIENT LAYER
+    ───────────────────────────────────────── */
+    .orbs, .grain {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    }
+    .orbs {
+      background:
+        radial-gradient(ellipse 70% 55% at -8% -12%, rgba(255,80,60,.55) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 50% at 110% 110%, rgba(160,40,130,.42) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 60% at 52% 25%, rgba(255,125,115,.12) 0%, transparent 60%),
+        linear-gradient(160deg, #1a0e0c 0%, #120908 50%, #150c0a 100%);
+    }
+    .grain {
+      z-index: 1;
+      opacity: .022;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+    }
+
+    /* ─────────────────────────────────────────
+       WATERMARK
+    ───────────────────────────────────────── */
+    .watermark {
+      position: fixed; bottom: -60px; right: -40px;
+      width: 380px; height: 380px;
+      pointer-events: none; z-index: 1;
+      opacity: .18;
+      filter: grayscale(100%) brightness(1.1);
+    }
+    .watermark img { width: 100%; height: 100%; object-fit: contain; object-position: bottom right; }
+    @media (max-width: 600px) {
+      .watermark { width: 240px; height: 240px; bottom: -30px; right: -20px; opacity: .12; }
+    }
+
+    /* ─────────────────────────────────────────
+       TOAST
+    ───────────────────────────────────────── */
     .toast {
-      position: fixed; bottom: 100px; left: 50%; transform: translate(-50%,20px) scale(0.95);
+      position: fixed; bottom: 96px; left: 50%;
+      transform: translate(-50%, 20px) scale(0.95);
       opacity: 0; visibility: hidden;
-      background: rgba(30, 41, 59, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: #fff; padding: 14px 24px; border-radius: 999px;
-      font-size: .9rem; font-weight: 700; letter-spacing: 0.02em;
-      box-shadow: 0 20px 40px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,0.1);
-      transition: all .4s cubic-bezier(.175, .885, .32, 1.275);
+      background: rgba(22, 30, 42, 0.92);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,.14);
+      color: #fff; padding: 13px 22px;
+      border-radius: var(--radius-pill);
+      font-size: .875rem; font-weight: 700; letter-spacing: .02em;
+      box-shadow: 0 20px 48px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.1);
+      transition: all .4s var(--ease-back);
       z-index: 1000; white-space: nowrap; pointer-events: none;
-      display: flex; align-items: center; gap: 10px;
+      display: flex; align-items: center; gap: 9px;
     }
-    .toast.show { opacity: 1; visibility: visible; transform: translate(-50%,0) scale(1); }
-    .toast-icon { color: var(--success); }
+    .toast.show { opacity: 1; visibility: visible; transform: translate(-50%, 0) scale(1); }
+    .toast-icon { color: var(--success); flex-shrink: 0; }
 
-    .page { position: relative; z-index: 2; max-width: 480px; margin: 0 auto; padding: 0 0 24px; }
-    
-    .p-nav { 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
-      background: #000000; 
-      padding: max(24px, env(safe-area-inset-top)) 24px 20px 24px; 
-      margin: 0 0 24px 0; 
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08); 
-      border-bottom-left-radius: 20px; 
-      border-bottom-right-radius: 20px; 
+    /* ─────────────────────────────────────────
+       LAYOUT SHELL
+    ───────────────────────────────────────── */
+    .page-shell {
+      position: relative; z-index: 2;
+      min-height: 100vh;
+      padding-bottom: 100px;
     }
-    .p-link { font-size: .74rem; font-weight: 600; color: rgba(255,255,255,.38); transition: color 200ms; }
-    .p-link:hover { color: #f7f1ec; }
-    .lang-sw { display: inline-flex; padding: 3px; gap: 2px; border-radius: 999px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.04); }
-    .lang-btn { min-width: 44px; padding: 6px 12px; border-radius: 999px; color: rgba(255,255,255,.4); font-size: .72rem; font-weight: 700; transition: all 240ms; }
-    .lang-btn[aria-pressed='true'] { color: #fff; background: rgba(255,255,255,.14); box-shadow: 0 2px 8px rgba(0,0,0,.22); }
-    
-    /* HEADER */
-    .eyebrow { display: flex; align-items: center; gap: 8px; padding: 28px 20px 0; animation: fadeIn .5s both; }
-    .ey-lbl { font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.38); }
-    .ey-pill { padding: 3px 9px; border-radius: 999px; background: rgba(141,121,255,.14); border: 1px solid rgba(141,121,255,.22); color: #cbc1ff; font-size: .68rem; font-weight: 700; }
-    
-    .hero { padding: 18px 20px 0; position: relative; animation: fadeIn .6s .05s both; }
-    
-    /* DOODLE CSS RESTORED */
-    .hero-illo { float: right; width: 96px; height: 96px; margin: 2px 0 10px 14px; pointer-events: none; opacity: .35; shape-outside: circle(50%); }
-    .hero-illo svg { width: 100%; height: 100%; }
-    @media (max-width: 400px) { .hero-illo { width: 72px; height: 72px; opacity: .25; margin: 2px 0 8px 12px; } }
 
-    .hero h1 { font-family: 'Iowan Old Style', Georgia, serif; font-size: clamp(1.9rem,7.6vw,2.7rem); line-height: 1.06; letter-spacing: -.03em; font-weight: 800; margin-bottom: 14px; text-shadow: 0 0 60px var(--accent-glow); animation: fadeInUp .6s .1s both; }
-    .hero-sub { font-size: clamp(.93rem,3.6vw,1rem); color: var(--muted); line-height: 1.6; font-weight: 400; max-width: 35ch; margin-bottom: 16px; }
-    .hero-intro { font-size: .88rem; color: rgba(255,255,255,.38); line-height: 1.6; max-width: 38ch; padding-bottom: 8px; }
+    /* ─────────────────────────────────────────
+       NAV
+    ───────────────────────────────────────── */
+    .p-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      padding: max(20px, env(safe-area-inset-top)) var(--gutter-mobile) 18px;
+      border-bottom: 1px solid var(--border);
+      border-bottom-left-radius: var(--radius-lg);
+      border-bottom-right-radius: var(--radius-lg);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-left { display: flex; align-items: center; gap: 14px; }
+    .nav-back {
+      display: flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: 50%;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      transition: color .2s, background .2s, border-color .2s;
+    }
+    .nav-back:hover { color: var(--text); background: var(--bg-card-hover); border-color: rgba(255,255,255,.15); }
+    .nav-logo { display: flex; align-items: center; }
+    .nav-logo img { height: clamp(44px, 7vw, 58px); width: auto; display: block; }
+    .lang-sw {
+      display: inline-flex; padding: 3px; gap: 2px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+    }
+    .lang-btn {
+      min-width: 40px; padding: 5px 11px;
+      border-radius: var(--radius-pill);
+      color: var(--subtle); font-size: .72rem; font-weight: 700;
+      transition: all .24s;
+    }
+    .lang-btn[aria-pressed='true'] {
+      color: #fff;
+      background: rgba(255,255,255,.12);
+      box-shadow: 0 2px 8px rgba(0,0,0,.22);
+    }
 
-    /* PRIMER */
-    .primer { margin: 10px 20px 0; padding: 18px; border-radius: var(--radius-lg); background: linear-gradient(180deg, rgba(255,125,115,.1), rgba(255,255,255,.03)); border: 1px solid rgba(255,125,115,.2); box-shadow: var(--shadow); animation: fadeInUp .6s .16s both; }
-    .primer-kicker { font-size: .68rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; color: var(--ok); margin-bottom: 6px; }
-    .primer-main { font-size: .95rem; font-weight: 400; line-height: 1.5; color: rgba(255,255,255,.9); }
-    
-    .sec-lbl { padding: 28px 20px 10px; font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.28); }
-    
-    /* ENHANCED TACTILE PHRASE CARDS */
-    .phrase-grid { display: grid; gap: 14px; padding: 0 20px; animation: fadeInUp .6s .22s both; }
-    .phrase-card { width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 20px; text-align: left; border-radius: 20px; background: rgba(255,255,255,.05); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,.1); box-shadow: var(--shadow); position: relative; overflow: hidden; transition: transform 0.15s ease-out, background 0.2s, border-color 0.2s, box-shadow 0.2s; }
-    
-    .phrase-card:active { transform: scale(0.97); background: rgba(255,255,255,.08); }
-    .phrase-card[aria-pressed='true'] { background: rgba(53, 208, 110, 0.08); border-color: var(--success); box-shadow: 0 12px 36px rgba(53, 208, 110, 0.15), inset 0 0 0 1px var(--success); transform: scale(0.99); }
-    
-    .pc-top { display: flex; width: 100%; align-items: center; justify-content: space-between; margin-bottom: 2px; }
-    .pc-mode { font-size: .74rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); transition: color 0.2s; }
+    /* ─────────────────────────────────────────
+       MAIN CONTENT WRAPPER
+    ───────────────────────────────────────── */
+    .content-wrapper {
+      max-width: var(--content-max);
+      margin: 0 auto;
+      padding: 0 var(--gutter-mobile);
+    }
+
+    /* ─────────────────────────────────────────
+       HERO — mobile default (stacked)
+    ───────────────────────────────────────── */
+    .hero-section {
+      padding-top: 36px;
+      padding-bottom: 0;
+    }
+
+    .eyebrow {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 20px;
+      animation: fadeIn .5s both;
+    }
+    .ey-lbl {
+      font-size: .68rem; font-weight: 800;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--subtle);
+    }
+    .ey-pill {
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      background: var(--ok-bg);
+      border: 1px solid rgba(203,193,255,.2);
+      color: var(--ok);
+      font-size: .67rem; font-weight: 700;
+    }
+
+    .hero-grid {
+      display: block;
+    }
+
+    .hero-text {
+      animation: fadeInUp .6s .05s both;
+    }
+
+    .hero-illo-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 24px 0 0;
+      animation: fadeIn .8s .2s both;
+    }
+    .hero-illo-wrap svg {
+      width: 100px; height: 100px;
+      opacity: .3;
+    }
+
+    h1.hero-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2.1rem, 8.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.04;
+      letter-spacing: -.02em;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    h1.hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-lead {
+      font-size: .95rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 10px;
+      max-width: 38ch;
+    }
+    .hero-intro {
+      font-size: .85rem;
+      color: var(--subtle);
+      line-height: 1.65;
+      max-width: 40ch;
+    }
+
+    /* ─────────────────────────────────────────
+       SECTION LABEL
+    ───────────────────────────────────────── */
+    .sec-lbl {
+      display: block;
+      margin: 36px 0 12px;
+      font-size: .67rem; font-weight: 800;
+      letter-spacing: .09em; text-transform: uppercase;
+      color: var(--faint);
+    }
+
+    /* ─────────────────────────────────────────
+       PHRASE CARDS — mobile
+    ───────────────────────────────────────── */
+    .phrase-grid {
+      display: grid;
+      gap: 12px;
+      animation: fadeInUp .6s .22s both;
+    }
+
+    .phrase-card {
+      width: 100%;
+      display: flex; flex-direction: column; align-items: flex-start;
+      gap: 8px; padding: 20px;
+      text-align: left;
+      border-radius: var(--radius-lg);
+      background: var(--bg-card);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-card);
+      position: relative; overflow: hidden;
+      transition: transform .15s var(--ease-out), background .2s, border-color .2s, box-shadow .2s;
+    }
+    .phrase-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,125,115,.04), transparent 60%);
+      pointer-events: none;
+    }
+    .phrase-card:hover { background: var(--bg-card-hover); }
+    .phrase-card:active { transform: scale(0.975); background: var(--bg-card-hover); }
+    .phrase-card[aria-pressed='true'] {
+      background: var(--success-bg);
+      border-color: rgba(53,208,110,.4);
+      box-shadow: 0 8px 32px rgba(53,208,110,.12), inset 0 0 0 1px rgba(53,208,110,.3);
+      transform: scale(0.99);
+    }
+
+    .pc-top {
+      display: flex; width: 100%;
+      align-items: center; justify-content: space-between;
+      margin-bottom: 2px;
+    }
+    .pc-mode {
+      font-size: .7rem; font-weight: 800;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--accent);
+      transition: color .2s;
+    }
     .phrase-card[aria-pressed='true'] .pc-mode { color: var(--success); }
-    
-    .pc-copy { font-size: .64rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: rgba(255,255,255,.5); background: rgba(255,255,255,.08); padding: 6px 12px; border-radius: 12px; transition: all 200ms;}
-    .phrase-card[aria-pressed='true'] .pc-copy { background: var(--success); color: #000; }
-    
-    .pc-when { font-size: .85rem; color: rgba(255,255,255,.6); line-height: 1.45; font-weight: 400; }
-    .pc-when strong { color: rgba(255,255,255,.95); font-weight: 700; }
-    
-    .pc-phrase { font-family: 'Iowan Old Style', Georgia, serif; font-size: 1.25rem; line-height: 1.35; color: #fff; font-weight: 400; flex: 1; border-left: 2px solid var(--accent); padding-left: 14px; margin: 6px 0; transition: border-color 0.2s; }
-    .phrase-card[aria-pressed='true'] .pc-phrase { border-color: var(--success); }
-    
-    .pc-hint { font-size: .75rem; color: rgba(255,255,255,.4); font-weight: 400; margin-top: 2px; }
 
-    /* ACCORDIONS */
-    .stack { display: grid; gap: 12px; padding: 24px 20px 0; }
-    .accordion { border-radius: 18px; background: rgba(255,255,255,.03); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,.08); overflow: hidden; }
-    .acc-trig { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 18px; font-size: .92rem; font-weight: 700; color: rgba(255,255,255,.85); text-align: left; background: none; border: none; cursor: pointer; font-family: inherit; }
-    .acc-icon { transition: transform 300ms; opacity: 0.5; color: #fff; }
-    .accordion[open] .acc-icon { transform: rotate(180deg); }
-    .acc-body { 
-      max-height: 0; 
-      overflow: hidden; 
-      padding: 0 18px; 
-      opacity: 0;
-      transition: all 0.4s var(--ease-cinematic); 
+    .pc-copy {
+      font-size: .62rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .05em;
+      color: var(--subtle);
+      background: rgba(255,255,255,.07);
+      padding: 5px 11px; border-radius: var(--radius-sm);
+      transition: all .2s;
+      flex-shrink: 0;
     }
-    .acc-body.is-open { 
-      max-height: 400px; 
-      padding: 16px 18px 24px 18px; 
+    .phrase-card[aria-pressed='true'] .pc-copy {
+      background: var(--success); color: #000;
+    }
+
+    .pc-when {
+      font-size: .82rem; color: var(--muted);
+      line-height: 1.5; font-weight: 400;
+    }
+    .pc-when strong { color: rgba(255,255,255,.92); font-weight: 700; }
+
+    .pc-phrase {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.3rem; line-height: 1.3;
+      color: #fff; font-weight: 600;
+      flex: 1;
+      border-left: 2px solid var(--accent);
+      padding-left: 14px;
+      margin: 4px 0;
+      transition: border-color .2s;
+    }
+    .phrase-card[aria-pressed='true'] .pc-phrase { border-color: var(--success); }
+
+    .pc-hint {
+      font-size: .74rem; color: var(--subtle);
+      font-weight: 400; margin-top: 2px;
+    }
+
+    /* ─────────────────────────────────────────
+       ACCORDIONS
+    ───────────────────────────────────────── */
+    .accordion-stack {
+      display: grid; gap: 10px;
+      margin-top: 36px;
+    }
+    .accordion {
+      border-radius: var(--radius-lg);
+      background: var(--bg-card);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+    .accordion[open] { border-color: rgba(255,255,255,.12); }
+
+    .acc-trig {
+      width: 100%; display: flex;
+      justify-content: space-between; align-items: center;
+      padding: 18px 20px;
+      font-size: .9rem; font-weight: 700;
+      color: rgba(255,255,255,.82);
+      text-align: left;
+      background: none; border: none; cursor: pointer; font-family: inherit;
+      transition: color .2s;
+    }
+    .acc-trig:hover { color: var(--text); }
+    .acc-icon {
+      flex-shrink: 0; margin-left: 12px;
+      opacity: .45; color: #fff;
+      transition: transform .32s var(--ease-out), opacity .2s;
+    }
+    .accordion[open] .acc-icon { transform: rotate(180deg); opacity: .7; }
+
+    .acc-body {
+      max-height: 0; overflow: hidden;
+      padding: 0 20px; opacity: 0;
+      transition: max-height .4s var(--ease-out), padding .4s var(--ease-out), opacity .3s;
+    }
+    .acc-body.is-open {
+      max-height: 500px;
+      padding: 4px 20px 24px;
       opacity: 1;
     }
-    .acc-inner { overflow: hidden; }
-    .acc-box { padding: 0 18px 18px; display: flex; flex-direction: column; gap: 12px; }
-    
-    .acc-primary { font-size: .92rem; font-weight: 400; color: rgba(255,255,255,.85); line-height: 1.55; }
-    .acc-list { display: grid; gap: 10px; list-style: none; padding-left: 0; margin: 0; }
-    .acc-list li { position: relative; padding-left: 16px; font-size: .88rem; font-weight: 400; color: rgba(255,255,255,.76); line-height: 1.5; }
-    .acc-list li::before { content: ''; position: absolute; left: 0; top: .56em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
-    .acc-safety { padding-top: 12px; border-top: 1px solid rgba(255,100,80,.15); color: var(--accent); font-size: .82rem; font-weight: 600; line-height: 1.5; }
+    .acc-divider {
+      height: 1px; background: var(--border-soft); margin-bottom: 18px;
+    }
+    .acc-primary {
+      font-size: .88rem; font-weight: 400;
+      color: rgba(255,255,255,.82); line-height: 1.6;
+    }
+    .acc-list {
+      display: grid; gap: 10px; list-style: none;
+    }
+    .acc-list li {
+      position: relative; padding-left: 16px;
+      font-size: .85rem; font-weight: 400;
+      color: rgba(255,255,255,.72); line-height: 1.5;
+    }
+    .acc-list li::before {
+      content: '';
+      position: absolute; left: 0; top: .58em;
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--accent);
+    }
+    .acc-safety {
+      margin-top: 14px; padding-top: 14px;
+      border-top: 1px solid rgba(255,100,80,.12);
+      color: var(--accent); font-size: .8rem; font-weight: 600; line-height: 1.5;
+    }
 
-    /* CROSS-PROTOCOL */
-    .cross-protocol { margin: 32px 20px 0; padding: 24px; border-radius: 22px; background: linear-gradient(135deg, rgba(255,125,115,.1), rgba(255,255,255,.02)); border: 1px dashed rgba(255,125,115,.3); text-align: center; }
-    .cp-title { font-size: 0.88rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ok); margin-bottom: 12px; }
-    .cp-link { display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 16px; border-radius: 16px; background: #fff; color: #130e1a; font-weight: 700; font-size: 0.95rem; transition: transform 200ms, box-shadow 200ms; }
-    .cp-link:active { transform: scale(0.97); }
-    .cp-link svg { color: var(--accent); }
+    /* ─────────────────────────────────────────
+       CROSS-PROTOCOL
+    ───────────────────────────────────────── */
+    .cross-protocol {
+      margin-top: 36px; padding: 24px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, var(--accent-bg), rgba(255,255,255,.02));
+      border: 1px dashed var(--accent-border);
+      text-align: center;
+    }
+    .cp-eyebrow {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: .67rem; font-weight: 800;
+      letter-spacing: .09em; text-transform: uppercase;
+      color: var(--ok); margin-bottom: 12px;
+    }
+    .cp-link {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; padding: 16px 20px;
+      border-radius: var(--radius-md);
+      background: var(--cloud); color: var(--obsidian);
+      font-weight: 700; font-size: .92rem;
+      transition: transform .2s var(--ease-out), box-shadow .2s;
+      box-shadow: var(--shadow-btn);
+    }
+    .cp-link:hover { transform: translateY(-1px); box-shadow: 0 8px 28px rgba(0,0,0,.38); }
+    .cp-link:active { transform: scale(0.98); }
+    .cp-link-left { display: flex; align-items: center; gap: 10px; }
+    .cp-link svg { color: var(--accent); flex-shrink: 0; }
 
-    /* SHARE PANEL */
-    .share-panel { margin: 24px 20px 0; padding: 24px; border-radius: 22px; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); }
-    .share-title { font-size: .82rem; font-weight: 800; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 8px; }
-    .share-sub { font-size: .9rem; font-weight: 400; color: rgba(255,255,255,.6); margin-bottom: 20px; line-height: 1.5; }
-    .share-actions { display: grid; grid-template-columns: 1fr; gap: 12px; }
-    .sc-btn { width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 16px; border-radius: 16px; font-size: .95rem; font-weight: 700; color: #fff; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); transition: transform 0.15s; }
+    /* ─────────────────────────────────────────
+       SHARE PANEL
+    ───────────────────────────────────────── */
+    .share-panel {
+      margin-top: 28px; padding: 24px;
+      border-radius: var(--radius-xl);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+    }
+    .share-title {
+      font-size: .67rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .09em;
+      color: var(--subtle); margin-bottom: 6px;
+    }
+    .share-sub {
+      font-size: .87rem; font-weight: 400;
+      color: var(--muted); margin-bottom: 20px;
+      line-height: 1.6; max-width: 36ch;
+    }
+    .share-actions { display: grid; gap: 10px; }
+    .sc-btn {
+      width: 100%; display: flex;
+      align-items: center; justify-content: center; gap: 8px;
+      padding: 15px 20px; border-radius: var(--radius-md);
+      font-size: .9rem; font-weight: 700; color: #fff;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+      transition: transform .15s var(--ease-out), background .2s;
+    }
+    .sc-btn:hover { background: rgba(255,255,255,.1); }
     .sc-btn:active { transform: scale(0.98); }
-    .sc-btn.wa { background: rgba(53,208,110,.15); border-color: rgba(53,208,110,.3); color: #cbffd8; }
-    
-    /* STICKY FOOTER */
-    .sticky-footer-wrap { position: fixed; bottom: 0; width: 100%; padding: 10px 20px 24px; background: linear-gradient(0deg, var(--bg-2) 40%, transparent 100%); pointer-events: none; z-index: 30; }
-    .sticky-footer { width: max-content; max-width: 90vw; margin: 0 auto; display: flex; justify-content: center; gap: 12px; padding: 12px 24px; border-radius: 999px; background: rgba(14,20,18,.92); border: 1px solid rgba(255,255,255,.1); border-top: 1px solid rgba(255,255,255,0.05); box-shadow: 0 10px 30px rgba(0,0,0,.6); backdrop-filter: blur(12px); pointer-events: auto; white-space: nowrap; font-size: clamp(0.65rem, 2.8vw, 0.75rem); } 
-    .sticky-step { font-size: .7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; color: rgba(255,255,255,0.55); white-space: nowrap; }
-    
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .sc-btn.wa {
+      background: rgba(53,208,110,.12);
+      border-color: rgba(53,208,110,.25);
+      color: #cbffd8;
+    }
+    .sc-btn.wa:hover { background: rgba(53,208,110,.18); }
+
+    /* ─────────────────────────────────────────
+       STICKY FOOTER
+    ───────────────────────────────────────── */
+    .sticky-footer-wrap {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      padding: 8px 20px max(20px, env(safe-area-inset-bottom));
+      background: linear-gradient(0deg, var(--bg-2) 50%, transparent 100%);
+      pointer-events: none; z-index: 30;
+    }
+    .sticky-footer {
+      max-width: 440px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 11px 20px;
+      border-radius: var(--radius-pill);
+      background: rgba(14,12,10,.92);
+      border: 1px solid rgba(255,255,255,.09);
+      box-shadow: 0 10px 32px rgba(0,0,0,.6);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      pointer-events: auto;
+      overflow: hidden;
+    }
+    .sticky-step {
+      font-size: clamp(.6rem, 2.5vw, .7rem); font-weight: 600;
+      text-transform: uppercase; letter-spacing: .03em;
+      color: rgba(255,255,255,.45); white-space: nowrap;
+    }
+    .sticky-sep { color: rgba(255,255,255,.18); font-size: .7rem; }
+
+    /* ─────────────────────────────────────────
+       TABLET (640px+)
+    ───────────────────────────────────────── */
+    @media (min-width: 640px) {
+      body { font-size: 16px; }
+      .content-wrapper { padding: 0 32px; }
+      .p-nav { padding-left: 32px; padding-right: 32px; }
+
+      .phrase-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+      .phrase-card {
+        padding: 22px;
+        border-radius: var(--radius-xl);
+      }
+      .pc-phrase { font-size: 1.2rem; }
+
+      h1.hero-title { font-size: clamp(2.4rem, 6vw, 3.2rem); }
+
+      .share-actions { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .sc-btn { padding: 16px 20px; }
+    }
+
+    /* ─────────────────────────────────────────
+       DESKTOP (900px+) — editorial two-column
+    ───────────────────────────────────────── */
+    @media (min-width: 900px) {
+      body { font-size: 17px; padding-bottom: 0; }
+
+      .p-nav { padding-left: 48px; padding-right: 48px; border-radius: 0; }
+      .p-nav .content-nav-inner { max-width: var(--content-max); margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; }
+      .nav-logo img { height: 60px; }
+
+      .content-wrapper { padding: 0 48px; }
+      .hero-section { padding-top: 56px; }
+
+      /* Two column hero */
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 420px;
+        gap: var(--gutter-desktop);
+        align-items: start;
+      }
+
+      .hero-text { padding-right: 0; }
+      h1.hero-title {
+        font-size: clamp(3rem, 4.2vw, 3.8rem);
+        margin-bottom: 20px;
+      }
+      .hero-lead { font-size: 1rem; max-width: 44ch; }
+      .hero-intro { font-size: .9rem; max-width: 42ch; }
+
+      /* Cards column sticks on desktop */
+      .hero-cards-col {
+        position: sticky;
+        top: 90px;
+        align-self: start;
+      }
+
+      .hero-illo-wrap {
+        display: none; /* Hidden on desktop, illo integrated in text column */
+      }
+
+      .primer {
+        margin-top: 32px;
+        padding: 22px 26px;
+      }
+
+      /* Override: phrase grid goes into sticky column on desktop */
+      /* We restructure DOM via JS for desktop layout */
+      .phrase-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .sec-lbl-cards { margin-top: 0; margin-bottom: 14px; }
+      .phrase-card {
+        padding: 22px 24px;
+        border-radius: 18px;
+      }
+      .pc-phrase { font-size: 1.25rem; }
+
+      /* Lower content (accordions etc) centered under hero */
+      .lower-content {
+        max-width: 680px;
+      }
+
+      /* Accordion stacks more spaciously */
+      .accordion-stack { gap: 12px; margin-top: 48px; }
+      .acc-trig { padding: 20px 24px; font-size: .95rem; }
+      .acc-body.is-open { padding: 4px 24px 28px; }
+
+      /* Cross protocol */
+      .cross-protocol { margin-top: 48px; padding: 28px 32px; text-align: left; }
+      .cp-link { padding: 18px 24px; }
+
+      /* Share panel */
+      .share-panel { margin-top: 32px; padding: 28px 32px; }
+      .share-sub { max-width: none; }
+      .share-actions { grid-template-columns: 1fr 1fr; }
+
+      /* Sticky footer hidden on desktop (nav always visible) */
+      .sticky-footer-wrap { display: none; }
+    }
+
+    /* ─────────────────────────────────────────
+       ANIMATIONS
+    ───────────────────────────────────────── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ─────────────────────────────────────────
+       DESKTOP LAYOUT OVERRIDE (cards sticky col)
+    ───────────────────────────────────────── */
+    @media (min-width: 900px) {
+      /* sec-lbl inside cards column */
+      .hero-cards-col .sec-lbl { margin-top: 0; margin-bottom: 14px; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Cloudinary Watermark -->
+  <!-- Ambient -->
+  <div class="orbs"></div>
+  <div class="grain"></div>
+
+  <!-- Watermark -->
   <div class="watermark" aria-hidden="true">
     <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778272963/CSC_Logo_Grayscale_k6uitt.png" alt="">
   </div>
 
-  <!-- Ambient Orbs -->
-  <div class="orbs" style="background: radial-gradient(ellipse 65% 55% at -5% -10%, rgba(255,90,70,.5) 0%, transparent 65%), radial-gradient(ellipse 55% 50% at 108% 108%, rgba(180,50,140,.38) 0%, transparent 65%), radial-gradient(ellipse 75% 55% at 50% 28%, rgba(255,125,115,.15) 0%, transparent 60%), linear-gradient(160deg, #1a0e0c 0%, #120908 50%, #150c0a 100%);"></div>
-  <div class="grain"></div>
-
-  <!-- TACTILE TOAST -->
+  <!-- Toast -->
   <div id="toast" class="toast" aria-live="polite">
-    <svg class="toast-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    <svg class="toast-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
     <span id="toast-msg">¡Copiado! Úsalo ahora.</span>
   </div>
 
-  <div class="page">
+  <div class="page-shell">
+
+    <!-- NAV -->
     <nav class="p-nav">
-      <div style="display: flex; align-items: center; gap: 14px;"> 
-        <a href="/apoyo" aria-label="Volver al Hub" style="color: rgba(255,255,255,0.5); text-decoration: none; display: flex; align-items: center; transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'"> 
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> 
-        </a> 
-        <a href="/" aria-label="Criar Sin Culpas - Inicio" style="display: flex; flex-shrink: 0; align-items: center; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"> 
-          <img src="/assets/images/csc-logo.svg" alt="Criar Sin Culpas" style="height: clamp(48px, 8vw, 64px); width: auto !important; max-width: none; display: block; object-fit: contain; flex-shrink: 0; margin-left: -4px;"> 
-        </a> 
+      <div class="nav-left">
+        <a href="/apoyo" class="nav-back" aria-label="Volver al Hub">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </a>
+        <a href="/" class="nav-logo" aria-label="Criar Sin Culpas - Inicio">
+          <img src="/assets/images/csc-logo.svg" alt="Criar Sin Culpas">
+        </a>
       </div>
       <div class="lang-sw">
         <button type="button" class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
@@ -222,267 +717,400 @@
       </div>
     </nav>
 
-    <!-- HEADER -->
-    <div class="eyebrow">
-      <span class="ey-lbl" data-i18n="eyebrow" data-es="Apoyo en crisis" data-en="Crisis Support">Apoyo en crisis</span>
-      <span class="ey-pill">Criar Sin Culpas</span>
+    <!-- MAIN -->
+    <main class="content-wrapper">
+
+      <!-- HERO SECTION -->
+      <section class="hero-section">
+        <div class="hero-grid">
+
+          <!-- Left: text + primer (mobile: full width) -->
+          <div class="hero-text">
+            <div class="eyebrow">
+              <span class="ey-lbl" data-i18n="eyebrow" data-es="Apoyo en crisis" data-en="Crisis Support">Apoyo en crisis</span>
+              <span class="ey-pill">Criar Sin Culpas</span>
+            </div>
+
+            <!-- Hero SVG illo (mobile only, hidden desktop) -->
+            <div class="hero-illo-wrap" aria-hidden="true">
+              <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 68 Q36 38 54 68" stroke="#ff7d73" stroke-width="1.4" stroke-linecap="round" opacity=".45"/>
+                <path d="M10 68 Q34 26 58 68" stroke="#ff7d73" stroke-width="1.7" stroke-linecap="round" opacity=".7"/>
+                <path d="M4 68 Q32 14 62 68" stroke="#ff7d73" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+                <line x1="6" y1="68" x2="60" y2="68" stroke="#ff7d73" stroke-width=".8" stroke-dasharray="3 5" stroke-linecap="round" opacity=".22"/>
+                <circle cx="33" cy="10" r="2" fill="#ff7d73" opacity=".5"/>
+                <circle cx="36" cy="4" r="1.4" fill="#ff7d73" opacity=".32"/>
+                <path d="M29 61 Q29 57 32 57 Q35 57 35 60 Q35 57 38 57 Q41 57 41 61 Q41 65 35 69 Q29 65 29 61Z" stroke="#ff7d73" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/>
+              </svg>
+            </div>
+
+            <h1 class="hero-title" data-i18n="title" data-es="Emociones: cómo acompañar <em>sin escalar</em>" data-en="Emotions: how to support <em>without escalating</em>">Emociones: cómo acompañar <em>sin escalar</em></h1>
+
+            <p class="hero-lead" data-i18n="esc_hero_p1" data-es="Cuando tu hijo está intenso, tú también sientes el impacto." data-en="When your child is intense, you feel the impact too.">Cuando tu hijo está intenso, tú también sientes el impacto.</p>
+
+            <p class="hero-lead" style="margin-top: 10px;" data-i18n="esc_hero_p2" data-es="Respira un momento. No estás fallando. Tu calma ayuda más que mil explicaciones. No necesitas arreglarlo todo en ese momento." data-en="Take a breath. You are not failing. Your calm helps more than a thousand explanations. You don't need to fix everything right then.">Respira un momento. No estás fallando. Tu calma ayuda más que mil explicaciones. No necesitas arreglarlo todo en ese momento.</p>
+
+            <p class="hero-intro" data-i18n="intro_body" data-es="Aquí tienes frases cortas para usar en el momento, sin explicar, sin corregir, sin entrar en lucha." data-en="Here are short phrases to use in the moment — no explaining, no correcting, no power struggle.">Aquí tienes frases cortas para usar en el momento, sin explicar, sin corregir, sin entrar en lucha.</p>
+            <!-- Mobile cards (shown here, hidden on desktop — desktop shows in right column) -->
+            <div id="mobile-cards-section">
+              <span class="sec-lbl" data-i18n="cards_intro" data-es="Elige tu respuesta · Toca para copiar" data-en="Choose your response · Tap to copy">Elige tu respuesta · Toca para copiar</span>
+              <div class="phrase-grid" id="phrase-grid-mobile">
+                <!-- Cards injected by JS on mobile, moved to desktop col on wide screens -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: sticky cards column (desktop only) -->
+          <div class="hero-cards-col" id="desktop-cards-col" style="display:none;">
+            <span class="sec-lbl sec-lbl-cards" data-i18n="cards_intro" data-es="Elige tu respuesta · Toca para copiar" data-en="Choose your response · Tap to copy">Elige tu respuesta · Toca para copiar</span>
+            <div class="phrase-grid" id="phrase-grid-desktop"></div>
+          </div>
+
+        </div><!-- /hero-grid -->
+      </section>
+
+      <!-- LOWER CONTENT (accordions, cross-protocol, share) -->
+      <div class="lower-content" id="lower-content">
+
+        <!-- ACCORDIONS -->
+        <div class="accordion-stack">
+          <div class="accordion" data-topic="why_explode">
+            <button type="button" class="acc-trig">
+              <span data-i18n="acc1_title" data-es="¿Qué esperar durante la explosión?" data-en="What to expect during the explosion?">¿Qué esperar durante la explosión?</span>
+              <span class="acc-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+              </span>
+            </button>
+            <div class="acc-body">
+              <div class="acc-divider"></div>
+              <ul class="acc-list">
+                <li data-i18n="acc1_li1" data-es="La mente lógica de tu hijo está apagada. Razonar no funciona." data-en="Your child's logical brain is offline. Reasoning won't work.">La mente lógica de tu hijo está apagada. Razonar no funciona.</li>
+                <li data-i18n="acc1_li2" data-es="Puede tardar un poco en calmarse." data-en="They might take a little while to calm down.">Puede tardar un poco en calmarse.</li>
+                <li data-i18n="acc1_li3" data-es="A veces tu calma ayuda más que hablar." data-en="Sometimes your calm helps more than talking.">A veces tu calma ayuda más que hablar.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="accordion" data-topic="after_storm">
+            <button type="button" class="acc-trig">
+              <span data-i18n="acc3_title" data-es="Después (cuando todo se calme)" data-en="After (when everything is calm)">Después (cuando todo se calme)</span>
+              <span class="acc-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+              </span>
+            </button>
+            <div class="acc-body">
+              <div class="acc-divider"></div>
+              <p class="acc-primary" data-i18n="acc3_body" data-es="Cuando ambos estén más tranquilos, puedes hablar, enseñar o reparar. En el momento intenso, lo único que importa es acompañar sin escalar." data-en="When you're both calmer, you can talk, teach, or repair. In the intense moment, the only thing that matters is staying present without escalating.">Cuando ambos estén más tranquilos, puedes hablar, enseñar o reparar. En el momento intenso, lo único que importa es acompañar sin escalar.</p>
+              <p class="acc-safety" data-i18n="safety_note" data-es="Si hay riesgo físico, prioriza seguridad y pausa." data-en="If there is physical risk, prioritize safety and pause.">Si hay riesgo físico, prioriza seguridad y pausa.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CROSS-PROTOCOL -->
+        <section class="cross-protocol">
+          <p class="cp-eyebrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <span data-i18n="cross_title" data-es="¿El desborde fue por la hora de dormir?" data-en="Was the meltdown about bedtime?">¿El desborde fue por la hora de dormir?</span>
+          </p>
+          <a href="/apoyo/bedtime-resistance" class="cp-link" data-cross-target="bedtime_resistance">
+            <span class="cp-link-left">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+              <span data-i18n="cross_link" data-es="Ir al Protocolo de Sueño" data-en="Go to Bedtime Protocol">Ir al Protocolo de Sueño</span>
+            </span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </section>
+
+        <!-- SHARE PANEL -->
+        <div class="share-panel">
+          <p class="share-title" data-i18n="share_label" data-es="Crianza en sintonía" data-en="Parenting on the same page">Crianza en sintonía</p>
+          <p class="share-sub" data-i18n="share_helper" data-es="Comparte este protocolo con quien te ayuda en la crianza (pareja, abuelos o cuidadores) para bajar la tensión." data-en="Share this with your parenting village (partner, grandparents, or caregivers) to lower the tension.">Comparte este protocolo con quien te ayuda en la crianza (pareja, abuelos o cuidadores) para bajar la tensión.</p>
+          <div class="share-actions">
+            <button type="button" class="sc-btn wa share-wa">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51h-.57c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              <span data-i18n="share_wa" data-es="Enviar por WhatsApp" data-en="Send via WhatsApp">Enviar por WhatsApp</span>
+            </button>
+            <button type="button" class="sc-btn share-copy">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span data-i18n="share_btn_copy" data-es="Copiar enlace" data-en="Copy Link">Copiar enlace</span>
+            </button>
+          </div>
+        </div>
+
+      </div><!-- /lower-content -->
+
+    </main><!-- /content-wrapper -->
+  </div><!-- /page-shell -->
+
+  <!-- STICKY FOOTER (mobile/tablet only) -->
+  <div class="sticky-footer-wrap">
+    <div class="sticky-footer">
+      <span class="sticky-step" style="color:#fff" data-i18n="footer_s2" data-es="Validación" data-en="Validate">Validación</span>
+      <span class="sticky-sep">→</span>
+      <span class="sticky-step" data-i18n="footer_s3" data-es="Regulación" data-en="Regulate">Regulación</span>
+      <span class="sticky-sep">→</span>
+      <span class="sticky-step" data-i18n="footer_s4" data-es="Protección" data-en="Protect">Protección</span>
     </div>
-
-    <header class="hero">
-      <div class="hero-illo" aria-hidden="true">
-        <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M18 68 Q36 38 54 68" stroke="#ff7d73" stroke-width="1.4" stroke-linecap="round" opacity=".45"/>
-          <path d="M10 68 Q34 26 58 68" stroke="#ff7d73" stroke-width="1.7" stroke-linecap="round" opacity=".7"/>
-          <path d="M4 68 Q32 14 62 68" stroke="#ff7d73" stroke-width="2" stroke-linecap="round" opacity=".9"/>
-          <line x1="6" y1="68" x2="60" y2="68" stroke="#ff7d73" stroke-width=".8" stroke-dasharray="3 5" stroke-linecap="round" opacity=".22"/>
-          <circle cx="33" cy="10" r="2" fill="#ff7d73" opacity=".5"/>
-          <circle cx="36" cy="4" r="1.4" fill="#ff7d73" opacity=".32"/>
-          <path d="M29 61 Q29 57 32 57 Q35 57 35 60 Q35 57 38 57 Q41 57 41 61 Q41 65 35 69 Q29 65 29 61Z" stroke="#ff7d73" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/>
-          <path d="M4 72 Q8 76 13 74" stroke="#ff7d73" stroke-width="1.3" stroke-linecap="round" opacity=".35"/>
-          <path d="M51 74 Q56 76 60 72" stroke="#ff7d73" stroke-width="1.3" stroke-linecap="round" opacity=".35"/>
-        </svg>
-      </div>
-      <h1 data-i18n="title" data-es="Emociones: cómo acompañar sin escalar" data-en="Emotions: how to support without escalating">Emociones: cómo acompañar sin escalar</h1>
-      <p data-i18n="esc_hero_p1" data-es="Cuando tu hijo está intenso, tú también sientes el impacto." data-en="When your child is intense, you feel the impact too.">Cuando tu hijo está intenso, tú también sientes el impacto.</p>
-      <p style="margin-top: 16px;" data-i18n="esc_hero_p2" data-es="Respira un momento. No estás fallando. No tienes que apagar nada. Tu calma ayuda más que mil explicaciones. No necesitas arreglarlo todo en ese momento." data-en="Take a breath. You are not failing. You don't have to shut anything down. Your calm helps more than a thousand explanations. You don't need to fix everything right then.">Respira un momento. No estás fallando. No tienes que apagar nada. Tu calma ayuda más que mil explicaciones. No necesitas arreglarlo todo en ese momento.</p>
-      <p class="hero-intro" data-i18n="intro_body" data-es="Aquí tienes frases cortas para usar en el momento, sin explicar, sin corregir, sin entrar en lucha." data-en="Here are short phrases to use in the moment — no explaining, no correcting, no power struggle.">Aquí tienes frases cortas para usar en el momento, sin explicar, sin corregir, sin entrar en lucha.</p>
-    </header>
-
-    <p class="sec-lbl" data-i18n="cards_intro" data-es="Elige tu respuesta (Toca para copiar)" data-en="Choose your response (Tap to copy)">Elige tu respuesta (Toca para copiar)</p>
-
-    <!-- PROTOCOL CARDS -->
-    <div class="phrase-grid">
-      <button type="button" class="phrase-card" data-mode="contener"> 
-        <span class="pc-top"> 
-          <span class="pc-mode" data-i18n="c1_title" data-es="Contener" data-en="Contain">Contener</span> 
-          <span class="pc-copy" data-i18n="tap_copy" data-es="Copiar" data-en="Copy">Copiar</span> 
-        </span> 
-        <p class="pc-when" data-i18n="c1_when" data-es="<strong>Cuándo:</strong> Empieza la intensidad. Tu hijo aún te escucha." data-en="<strong>When:</strong> The intensity is starting. Your child can still hear you."><strong>Cuándo:</strong> Empieza la intensidad. Tu hijo aún te escucha.</p> 
-        <p class="pc-phrase" data-i18n="c1_phrase" data-es="Ya veo que estás muy molesto. Aquí estoy." data-en="I see you are very upset. I'm right here.">Ya veo que estás muy molesto. Aquí estoy.</p> 
-        <span class="pc-hint" data-i18n="c1_hint" data-es="Valida lo que siente, no trates de cambiarlo en el momento." data-en="Validate what they feel, don't try to change it in the moment.">Valida lo que siente, no trates de cambiarlo en el momento.</span> 
-      </button>
-
-      <button type="button" class="phrase-card" data-mode="regular">
-        <span class="pc-top">
-          <span class="pc-mode" data-i18n="c2_title" data-es="Regular juntos" data-en="Regulate together">Regular juntos</span>
-          <span class="pc-copy" data-i18n="tap_copy" data-es="Copiar" data-en="Copy">Copiar</span>
-        </span>
-        <p class="pc-when" data-i18n="c2_when" data-es="<strong>Cuándo:</strong> La emoción está subiendo. Necesita tu ritmo." data-en="<strong>When:</strong> The emotion is rising. They need your rhythm."><strong>Cuándo:</strong> La emoción está subiendo. Necesita tu ritmo.</p>
-        <p class="pc-phrase" data-i18n="c2_phrase" data-es="Vamos poco a poco." data-en="Let's go little by little.">Vamos poco a poco.</p>
-        <span class="pc-hint" data-i18n="c2_hint" data-es="Baja el ritmo y evita entrar en lucha." data-en="Slow the pace and avoid getting into a fight.">Baja el ritmo y evita entrar en lucha.</span>
-      </button>
-
-      <button type="button" class="phrase-card" data-mode="proteger"> 
-        <span class="pc-top"> 
-          <span class="pc-mode" data-i18n="c3_title" data-es="Sostener + proteger" data-en="Hold + protect">Sostener + proteger</span> 
-          <span class="pc-copy" data-i18n="tap_copy" data-es="Copiar" data-en="Copy">Copiar</span> 
-        </span> 
-        <p class="pc-when" data-i18n="c3_when" data-es="<strong>Cuándo:</strong> Hay llanto fuerte. Ahora mismo solo necesita que no escalemos más." data-en="<strong>When:</strong> There is heavy crying. Right now, they just need us not to escalate further."><strong>Cuándo:</strong> Hay llanto fuerte. Ahora mismo solo necesita que no escalemos más.</p> 
-        <p class="pc-phrase" data-i18n="c3_phrase" data-es="No hace falta seguir escalando." data-en="There's no need to keep escalating.">No hace falta seguir escalando.</p> 
-        <span class="pc-hint" data-i18n="c3_hint" data-es="Tu papel aquí es estabilizar, no absorber." data-en="Your role here is to stabilize, not to absorb.">Tu papel aquí es estabilizar, no absorber.</span> 
-      </button>
-    </div>
-
-    <!-- TACTICAL ACCORDIONS -->
-    <section class="stack">
-      <div class="accordion" data-topic="why_explode">
-        <button type="button" class="acc-trig">
-          <span data-i18n="acc1_title" data-es="¿Qué esperar durante la explosión?" data-en="What to expect during the explosion?">¿Qué esperar durante la explosión?</span>
-          <span class="acc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
-        </button>
-        <div class="acc-body"><div class="acc-inner"><div class="acc-box">
-          <ul class="acc-list">
-            <li data-i18n="acc1_li1" data-es="La mente lógica de tu hijo está apagada. Razonar no funciona." data-en="Your child's logical brain is offline. Reasoning won't work.">La mente lógica de tu hijo está apagada. Razonar no funciona.</li>
-            <li data-i18n="acc1_li2" data-es="Puede tardar un poco en calmarse." data-en="They might take a little while to calm down.">Puede tardar un poco en calmarse.</li>
-            <li data-i18n="acc1_li3" data-es="A veces tu calma ayuda más que hablar." data-en="Sometimes your calm helps more than talking.">A veces tu calma ayuda más que hablar.</li>
-          </ul>
-        </div></div></div>
-      </div>
-      
-      <div class="accordion" data-topic="after_storm">
-        <button type="button" class="acc-trig">
-          <span data-i18n="acc3_title" data-es="Después (cuando todo se calme)" data-en="After (when everything is calm)">Después (cuando todo se calme)</span>
-          <span class="acc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
-        </button>
-        <div class="acc-body"><div class="acc-inner"><div class="acc-box">
-          <p class="acc-primary" data-i18n="acc3_body" data-es="Cuando ambos estén más tranquilos, puedes hablar, enseñar o reparar. En el momento intenso, lo único que importa es acompañar sin escalar." data-en="When you're both calmer, you can talk, teach, or repair. In the intense moment, the only thing that matters is staying present without escalating.">Cuando ambos estén más tranquilos, puedes hablar, enseñar o reparar. En el momento intenso, lo único que importa es acompañar sin escalar.</p>
-          <div class="acc-safety" data-i18n="safety_note" data-es="Si hay riesgo físico, prioriza seguridad y pausa." data-en="If there is physical risk, prioritize safety and pause.">Si hay riesgo físico, prioriza seguridad y pausa.</div>
-        </div></div></div>
-      </div>
-    </section>
-
-    <!-- CROSS-PROTOCOL (FIXED: Navigates to Bedtime, not itself) -->
-    <section class="cross-protocol">
-      <p class="cp-title" data-i18n="cross_title" data-es="¿El desborde fue por la hora de dormir?" data-en="Was the meltdown about bedtime?">¿El desborde fue por la hora de dormir?</p>
-      <a href="/apoyo/bedtime-resistance" class="cp-link" data-cross-target="bedtime_resistance">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <span data-i18n="cross_link" data-es="Ir al Protocolo de Sueño" data-en="Go to Bedtime Protocol">Ir al Protocolo de Sueño</span>
-      </a>
-    </section>
-
-    <!-- NEW INCLUSIVE SHARE PANEL -->
-    <div class="share-panel">
-      <p class="share-title" data-i18n="share_label" data-es="Crianza en sintonía" data-en="Parenting on the same page">Crianza en sintonía</p>
-      <p class="share-sub" data-i18n="share_helper" data-es="Comparte este protocolo con quien te ayuda en la crianza (pareja, abuelos o cuidadores) para bajar la tensión." data-en="Share this with your parenting village (partner, grandparents, or caregivers) to lower the tension.">Comparte este protocolo con quien te ayuda en la crianza (pareja, abuelos o cuidadores) para bajar la tensión.</p>
-      <div class="share-actions">
-        <button type="button" class="sc-btn wa share-wa">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51h-.57c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          <span data-i18n="share_wa" data-es="Enviar por WhatsApp" data-en="Send via WhatsApp">Enviar por WhatsApp</span>
-        </button>
-        <button type="button" class="sc-btn share-copy">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-          <span data-i18n="share_btn_copy" data-es="Copiar enlace" data-en="Copy Link">Copiar enlace</span>
-        </button>
-      </div>
-    </div>
-  </div> <!-- END .page -->
-
-<!-- STICKY ANCHOR MENU (Fixed 3 steps) --> 
-  <div class="sticky-footer-wrap"> 
-    <div class="sticky-footer"> 
-      <span class="sticky-step" style="color: #fff" data-i18n="footer_s2" data-es="Validación" data-en="Validate">Validación</span> 
-      <span style="color:rgba(255,255,255,0.2)">→</span> 
-      <span class="sticky-step" data-i18n="footer_s3" data-es="Regulación" data-en="Regulate">Regulación</span> 
-      <span style="color:rgba(255,255,255,0.2)">→</span> 
-      <span class="sticky-step" data-i18n="footer_s4" data-es="Protección" data-en="Protect">Protección</span> 
-    </div> 
-  </div> 
+  </div>
 
   <script>
-    (function(){
-      // SnglIQ TELEMETRY SAFE WRAPPER
-      function trackSignal(eventName, properties) {
-        if (typeof plausible !== 'undefined') {
-          plausible(eventName, { props: properties });
-        }
-        console.log(`[SnglIQ Captured]: ${eventName}`, properties);
+  (function () {
+    'use strict';
+
+    // ─────────────────────────────────────────
+    // CARD DATA (source of truth)
+    // ─────────────────────────────────────────
+    const cards = [
+      {
+        mode: 'contener',
+        title:  { es: 'Contener',         en: 'Contain' },
+        when:   { es: '<strong>Cuándo:</strong> Empieza la intensidad. Tu hijo aún te escucha.',
+                  en: '<strong>When:</strong> The intensity is starting. Your child can still hear you.' },
+        phrase: { es: 'Ya veo que estás muy molesto. Aquí estoy.',
+                  en: "I see you are very upset. I'm right here." },
+        hint:   { es: 'Valida lo que siente, no trates de cambiarlo en el momento.',
+                  en: "Validate what they feel, don't try to change it in the moment." }
+      },
+      {
+        mode: 'regular',
+        title:  { es: 'Regular juntos',   en: 'Regulate together' },
+        when:   { es: '<strong>Cuándo:</strong> La emoción está subiendo. Necesita tu ritmo.',
+                  en: '<strong>When:</strong> The emotion is rising. They need your rhythm.' },
+        phrase: { es: 'Vamos poco a poco.',
+                  en: 'Let\'s go little by little.' },
+        hint:   { es: 'Baja el ritmo y evita entrar en lucha.',
+                  en: 'Slow the pace and avoid getting into a fight.' }
+      },
+      {
+        mode: 'proteger',
+        title:  { es: 'Sostener + proteger', en: 'Hold + protect' },
+        when:   { es: '<strong>Cuándo:</strong> Hay llanto fuerte. Ahora mismo solo necesita que no escalemos más.',
+                  en: '<strong>When:</strong> There is heavy crying. Right now, they just need us not to escalate further.' },
+        phrase: { es: 'No hace falta seguir escalando.',
+                  en: "There's no need to keep escalating." },
+        hint:   { es: 'Tu papel aquí es estabilizar, no absorber.',
+                  en: 'Your role here is to stabilize, not to absorb.' }
       }
+    ];
 
-      // STATE & UTILS
-      let lang = localStorage.getItem('lg_parent_lang') || 'es';
-      const toast = document.getElementById('toast');
-      const toastMsg = document.getElementById('toast-msg');
-      let toastTimer;
-
-      function showToast(msg) {
-        clearTimeout(toastTimer);
-        toastMsg.textContent = msg;
-        toast.classList.add('show');
-        toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
+    // ─────────────────────────────────────────
+    // TELEMETRY
+    // ─────────────────────────────────────────
+    function trackSignal(eventName, properties) {
+      if (typeof plausible !== 'undefined') {
+        plausible(eventName, { props: properties });
       }
+      console.log('[SnglIQ Captured]:', eventName, properties);
+    }
 
-      // LANGUAGE TRANSLATOR SYSTEM
-      function applyLang(l) {
-        lang = l;
-        document.documentElement.lang = l;
-        localStorage.setItem('lg_parent_lang', l);
-        
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-          const t = el.getAttribute('data-' + l);
-          if (t) el.innerHTML = t;
-        });
+    // ─────────────────────────────────────────
+    // STATE
+    // ─────────────────────────────────────────
+    let lang = localStorage.getItem('lg_parent_lang') || 'es';
+    let isDesktop = false;
 
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-          btn.setAttribute('aria-pressed', btn.dataset.lang === l ? 'true' : 'false');
-        });
-      }
+    const toast    = document.getElementById('toast');
+    const toastMsg = document.getElementById('toast-msg');
+    let toastTimer;
 
-      // EVENT LISTENER: LANGUAGE
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          applyLang(e.target.dataset.lang);
-        });
+    function showToast(msg) {
+      clearTimeout(toastTimer);
+      toastMsg.textContent = msg;
+      toast.classList.add('show');
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    // ─────────────────────────────────────────
+    // BUILD CARD ELEMENT
+    // ─────────────────────────────────────────
+    function buildCard(card, l) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'phrase-card';
+      btn.setAttribute('data-mode', card.mode);
+      btn.setAttribute('aria-pressed', 'false');
+      btn.innerHTML = `
+        <span class="pc-top">
+          <span class="pc-mode">${card.title[l]}</span>
+          <span class="pc-copy">${l === 'es' ? 'Copiar' : 'Copy'}</span>
+        </span>
+        <p class="pc-when">${card.when[l]}</p>
+        <p class="pc-phrase">${card.phrase[l]}</p>
+        <span class="pc-hint">${card.hint[l]}</span>
+      `;
+      return btn;
+    }
+
+    // ─────────────────────────────────────────
+    // RENDER CARDS
+    // ─────────────────────────────────────────
+    function renderCards(l) {
+      const mobileGrid  = document.getElementById('phrase-grid-mobile');
+      const desktopGrid = document.getElementById('phrase-grid-desktop');
+      const mobileSection = document.getElementById('mobile-cards-section');
+      const desktopCol = document.getElementById('desktop-cards-col');
+
+      mobileGrid.innerHTML = '';
+      desktopGrid.innerHTML = '';
+
+      cards.forEach(card => {
+        const cardMobile  = buildCard(card, l);
+        const cardDesktop = buildCard(card, l);
+        attachCardEvents(cardMobile);
+        attachCardEvents(cardDesktop);
+        mobileGrid.appendChild(cardMobile);
+        desktopGrid.appendChild(cardDesktop);
       });
 
-      // EVENT LISTENER: COPY PHRASES (Tactile UX + Telemetry)
-      document.querySelectorAll('.phrase-card').forEach(card => {
-        card.addEventListener('click', () => {
-          const phrase = card.querySelector('.pc-phrase').textContent.trim();
-          const mode = card.getAttribute('data-mode');
+      // Show/hide correct column
+      if (isDesktop) {
+        mobileSection.style.display = 'none';
+        desktopCol.style.display = 'block';
+      } else {
+        mobileSection.style.display = 'block';
+        desktopCol.style.display = 'none';
+      }
+    }
 
-          navigator.clipboard.writeText(phrase).then(() => {
-            // Revert others
-            document.querySelectorAll('.phrase-card').forEach(c => {
-              c.setAttribute('aria-pressed', 'false');
-              const cp = c.querySelector('.pc-copy');
-              cp.textContent = cp.getAttribute('data-' + lang) || (lang === 'es' ? 'Copiar' : 'Copy');
-            });
+    // ─────────────────────────────────────────
+    // CARD EVENTS
+    // ─────────────────────────────────────────
+    function attachCardEvents(card) {
+      card.addEventListener('click', () => {
+        const phrase = card.querySelector('.pc-phrase').textContent.trim();
+        const mode   = card.getAttribute('data-mode');
 
-            // Activate current
-            card.setAttribute('aria-pressed', 'true');
-            card.querySelector('.pc-copy').textContent = lang === 'es' ? '¡Copiado!' : 'Copied!';
-            
-            showToast(lang === 'es' ? '¡Copiado! Úsalo ahora.' : 'Copied! Use it now.');
-
-            // SnglIQ Trigger (FIXED to emotional_escalation)
-            trackSignal('phrase_copied', { mode: mode, language: lang, protocol: 'emotional_escalation' });
-
-            setTimeout(() => {
-              card.setAttribute('aria-pressed', 'false');
-              const cp = card.querySelector('.pc-copy');
-              cp.textContent = cp.getAttribute('data-' + lang) || (lang === 'es' ? 'Copiar' : 'Copy');
-            }, 3000);
+        navigator.clipboard.writeText(phrase).then(() => {
+          // Reset all cards in both grids
+          document.querySelectorAll('.phrase-card').forEach(c => {
+            c.setAttribute('aria-pressed', 'false');
+            const cp = c.querySelector('.pc-copy');
+            cp.textContent = lang === 'es' ? 'Copiar' : 'Copy';
           });
+          // Activate
+          card.setAttribute('aria-pressed', 'true');
+          card.querySelector('.pc-copy').textContent = lang === 'es' ? '¡Copiado!' : 'Copied!';
+          showToast(lang === 'es' ? '¡Copiado! Úsalo ahora.' : 'Copied! Use it now.');
+          trackSignal('phrase_copied', { mode, language: lang, protocol: 'emotional_escalation' });
+
+          setTimeout(() => {
+            card.setAttribute('aria-pressed', 'false');
+            card.querySelector('.pc-copy').textContent = lang === 'es' ? 'Copiar' : 'Copy';
+          }, 3000);
+        }).catch(() => {
+          showToast(lang === 'es' ? 'Toca para copiar' : 'Tap to copy');
         });
       });
+    }
 
-      // EVENT LISTENER: ACCORDIONS (Telemetry)
-      document.querySelectorAll('.accordion').forEach(acc => {
-        const trigger = acc.querySelector('.acc-trig');
-        const topic = acc.getAttribute('data-topic');
+    // ─────────────────────────────────────────
+    // LANGUAGE
+    // ─────────────────────────────────────────
+    function applyLang(l) {
+      lang = l;
+      document.documentElement.lang = l;
+      localStorage.setItem('lg_parent_lang', l);
 
-        trigger.addEventListener('click', () => {
-          const isOpen = acc.hasAttribute('open');
-          acc.toggleAttribute('open', !isOpen);
-          const body = acc.querySelector('.acc-body');
-          if (body) body.classList.toggle('is-open', !isOpen);
-          
-          if (!isOpen) { // Means it was just opened
-            trackSignal('card_opened', { topic: topic, protocol: 'emotional_escalation' });
-          }
-        });
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const t = el.getAttribute('data-' + l);
+        if (t !== null) el.innerHTML = t;
+      });
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.setAttribute('aria-pressed', btn.dataset.lang === l ? 'true' : 'false');
       });
 
-      // EVENT LISTENER: CROSS PROTOCOL (Telemetry)
-      const crossLink = document.querySelector('.cp-link');
-      if(crossLink) {
-        crossLink.addEventListener('click', () => {
-          trackSignal('cross_nav', { from: 'emotional_escalation', to: 'bedtime_resistance' });
+      // Re-render cards in new language
+      renderCards(l);
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+    });
+
+    // ─────────────────────────────────────────
+    // RESPONSIVE LAYOUT SWITCH
+    // ─────────────────────────────────────────
+    const mq = window.matchMedia('(min-width: 900px)');
+    function handleBreakpoint(e) {
+      isDesktop = e.matches;
+      renderCards(lang);
+    }
+    mq.addEventListener('change', handleBreakpoint);
+    isDesktop = mq.matches;
+
+    // ─────────────────────────────────────────
+    // ACCORDIONS
+    // ─────────────────────────────────────────
+    document.querySelectorAll('.accordion').forEach(acc => {
+      const trigger = acc.querySelector('.acc-trig');
+      const body    = acc.querySelector('.acc-body');
+      const topic   = acc.getAttribute('data-topic');
+
+      trigger.addEventListener('click', () => {
+        const isOpen = acc.hasAttribute('open');
+        // Close all
+        document.querySelectorAll('.accordion').forEach(a => {
+          a.removeAttribute('open');
+          a.querySelector('.acc-body').classList.remove('is-open');
         });
-      }
+        // Open clicked if was closed
+        if (!isOpen) {
+          acc.setAttribute('open', '');
+          body.classList.add('is-open');
+          trackSignal('card_opened', { topic, protocol: 'emotional_escalation' });
+        }
+      });
+    });
 
-      // EVENT LISTENER: SHARING (Telemetry)
-      function getShareData() {
-        return {
-          title: document.title,
-          text: lang === 'es' ? 'Para tener a la mano. Protocolo de Criar Sin Culpas para acompañar desbordes: ' : 'Keep this handy. Emotional escalation protocol: ',
-          url: window.location.href.split('?')[0]
-        };
-      }
+    // ─────────────────────────────────────────
+    // CROSS PROTOCOL
+    // ─────────────────────────────────────────
+    const crossLink = document.querySelector('.cp-link');
+    if (crossLink) {
+      crossLink.addEventListener('click', () => {
+        trackSignal('cross_nav', { from: 'emotional_escalation', to: 'bedtime_resistance' });
+      });
+    }
 
-      const btnWa = document.querySelector('.share-wa');
-      if(btnWa) {
-        btnWa.addEventListener('click', () => {
-          const d = getShareData();
-          trackSignal('share_whatsapp', { protocol: 'emotional_escalation', context: 'caregiver_alignment' });
-          window.open('https://wa.me/?text=' + encodeURIComponent(d.text + d.url), '_blank');
-        });
-      }
+    // ─────────────────────────────────────────
+    // SHARING
+    // ─────────────────────────────────────────
+    function getShareData() {
+      return {
+        text: lang === 'es'
+          ? 'Para tener a la mano. Protocolo de Criar Sin Culpas para acompañar desbordes: '
+          : 'Keep this handy. Emotional escalation protocol: ',
+        url: window.location.href.split('?')[0]
+      };
+    }
 
-      const btnCopy = document.querySelector('.share-copy');
-      if(btnCopy) {
-        btnCopy.addEventListener('click', () => {
-          const d = getShareData();
-          navigator.clipboard.writeText(d.url);
-          trackSignal('share_copy_link', { protocol: 'emotional_escalation' });
-          showToast(lang === 'es' ? '¡Enlace copiado!' : 'Link copied!');
-        });
-      }
+    const btnWa = document.querySelector('.share-wa');
+    if (btnWa) {
+      btnWa.addEventListener('click', () => {
+        const d = getShareData();
+        trackSignal('share_whatsapp', { protocol: 'emotional_escalation', context: 'caregiver_alignment' });
+        window.open('https://wa.me/?text=' + encodeURIComponent(d.text + d.url), '_blank');
+      });
+    }
 
-      // Initialize Language
-      applyLang(lang);
+    const btnCopy = document.querySelector('.share-copy');
+    if (btnCopy) {
+      btnCopy.addEventListener('click', () => {
+        const d = getShareData();
+        navigator.clipboard.writeText(d.url);
+        trackSignal('share_copy_link', { protocol: 'emotional_escalation' });
+        showToast(lang === 'es' ? '¡Enlace copiado!' : 'Link copied!');
+      });
+    }
 
-    })();
+    // ─────────────────────────────────────────
+    // INIT
+    // ─────────────────────────────────────────
+    applyLang(lang);
+
+  })();
   </script>
+
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"a6fdd4e7ff644527b91c6db4b97e68f5","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
