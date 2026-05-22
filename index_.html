@@ -164,9 +164,12 @@
 
     /* ── MOBILE OVERRIDES ── */
     @media (max-width: 900px) {
-      .hero { padding: 120px 24px 0 24px; }
-      .hero-scene__photo { background-position: 60% 25%; filter: brightness(0.7) saturate(1.15) sepia(0.05); }
-      .hero-scene__overlay { background: linear-gradient(to top, #0c0a10 0%, rgba(12,10,16,0.85) 45%, rgba(12,10,16,0.1) 100%); }
+      /* Pulled the text higher up the screen to stop crushing the faces */
+      .hero { padding: 80px 24px 0 24px; }
+      /* Shifted focus slightly to frame mother and child better on portrait screens */
+      .hero-scene__photo { background-position: 70% 15%; filter: brightness(0.65) saturate(1.15) sepia(0.05); }
+      /* Deepened the gradient to protect text readability now that it sits higher */
+      .hero-scene__overlay { background: linear-gradient(to top, #0c0a10 0%, rgba(12,10,16,0.92) 50%, rgba(12,10,16,0.1) 100%); }
       
       .hero-content { align-items: center; text-align: center; margin: 0 auto; }
       .subtitle { max-width: 100%; }
@@ -189,7 +192,7 @@
   <!-- HEADER -->
   <div class="top-row" style="flex-wrap: nowrap;">
     <a href="/" aria-label="Criar Sin Culpas - Inicio" style="display: flex; flex-shrink: 0; align-items: center; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
-      <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779410831/logo_horizontal_oj9qfj.svg" alt="Criar Sin Culpas" style="height: clamp(40px, 6.5vw, 56px); width: auto !important; max-width: none; display: block; object-fit: contain; flex-shrink: 0; margin-left: -4px;">
+      <img src="/assets/images/csc-logo.svg" alt="Criar Sin Culpas" style="height: clamp(26px, 4vw, 34px); width: auto !important; max-width: none; display: block; object-fit: contain; flex-shrink: 0; margin-left: -4px;">
     </a>
     
     <div style="display:flex; align-items:center; gap:16px; flex-wrap:nowrap; flex-shrink: 0;">
