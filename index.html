@@ -90,8 +90,8 @@
 
     /* ── CASCADING REVEALS ── */
     @keyframes cinematicReveal {
-      0%   { opacity: 0; transform: translateY(14px); filter: blur(6px); }
-      100% { opacity: 1; transform: translateY(0);    filter: blur(0);  }
+      0%   { opacity: 0; transform: translateY(16px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
     .reveal-1 { animation: cinematicReveal 0.9s ease-out 0.05s both; }
     .reveal-2 { animation: cinematicReveal 0.9s ease-out 0.2s  both; }
@@ -290,21 +290,23 @@
 
     /* ── AUTHOR ── */
     .hero-profile {
-      display: flex; align-items: center; gap: 12px; margin-top: 4px;
+      display: flex; align-items: center; gap: 12px; margin-top: 12px; margin-bottom: 8px;
     }
     .hero-profile img {
-      width: 46px; height: 46px;
+      width: 48px; height: 48px;
       border-radius: 50%;
       object-fit: cover;
       border: 1.5px solid rgba(255,255,255,0.15);
       box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      transform: translateZ(0); /* Forces crisp hardware rendering on iOS */
     }
     .hero-profile span {
-      font-size: 0.92rem; color: rgba(242,239,234,0.75); font-weight: 400;
+      font-size: 0.95rem; color: rgba(242,239,234,0.9); font-weight: 500;
+      transform: translateZ(0); /* Forces crisp text rendering */
     }
 
     /* ── CTA ── */
-    .cta-wrapper { margin-top: 12px; }
+    .cta-wrapper { margin-top: 16px; }
 
     .btn-enter {
       display: inline-flex; align-items: center; gap: 14px;
@@ -388,8 +390,8 @@
           linear-gradient(
             to top,
             #0c0a10 0%,
-            #0c0a10 25%,
-            rgba(12,10,16,0.8) 50%,
+            #0c0a10 35%,
+            rgba(12,10,16,0.9) 65%,
             rgba(12,10,16,0.1) 100%
           );
       }
