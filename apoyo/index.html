@@ -1,16 +1,9 @@
-<system_context>
-Target Repository: `luis-gilberto/criarsinculpas`
-Target File: `apoyo/index.html`
-Goal: Nuclear Override. Completely replace the Support Hub page with the finalized V2 code that includes the warmer cinematic color palette, Cormorant Garamond typography, and gold-tinted UI borders.
-</system_context>
-
-<task>
-Delete the entire contents of `apoyo/index.html` and replace it 100% with the provided code block below. Do not use search-and-replace. Then, commit and push the changes to production.
+<!DOCTYPE html>` and the very last line MUST be `</html>`.
 </task>
 
 <execution>
-**Step 1: Full File Override**
-Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
+**Step 1: Overwrite the file**
+Replace the entire contents of `apoyo/index.html` with exactly this code:
 
 ```html
 <!DOCTYPE html>
@@ -40,11 +33,7 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
   </script>
 
   <style>
-    /* ─────────────────────────────────────────
-       TOKENS — matched to index page
-    ───────────────────────────────────────── */
     :root {
-      /* Same warm void as index, not cold purple */
       --bg-void:   #0a0807;
       --bg-card:   rgba(255,255,255,.028);
       --bg-card-hover: rgba(255,255,255,.06);
@@ -55,25 +44,19 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
       --text-muted: rgba(247,244,242,.62);
       --text-faint: rgba(247,244,242,.35);
 
-      /* Warm gold — same as index */
       --gold:       #C9A96E;
       --gold-light: #e2c48a;
       --gold-dark:  #9e7840;
 
-      /* Teal — preserved from original hub */
       --teal:  #61d1c4;
       --teal-bg: rgba(97,209,196,.07);
 
-      /* Typography */
       --display-font: 'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
       --ui-font: 'Inter', system-ui, -apple-system, sans-serif;
 
       --ease-cinematic: cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
-    /* ─────────────────────────────────────────
-       RESET
-    ───────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     html, body {
       min-height: 100dvh; width: 100%;
@@ -85,7 +68,6 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Grain — same texture as index */
     body::before {
       content: '';
       position: fixed; inset: 0;
@@ -95,7 +77,6 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
       background-size: 180px 180px;
     }
 
-    /* Subtle warm ambient glow — bottom left, like index */
     body::after {
       content: '';
       position: fixed; inset: 0;
@@ -105,9 +86,6 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
         radial-gradient(ellipse 40% 30% at 100% 0%, rgba(97,209,196,.04) 0%, transparent 60%);
     }
 
-    /* ─────────────────────────────────────────
-       NAV — matched to index
-    ───────────────────────────────────────── */
     .top-row {
       display: flex; justify-content: space-between; align-items: center;
       gap: 12px;
@@ -167,9 +145,6 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
       .nav-links.is-open a { display: block; }
     }
 
-    /* ─────────────────────────────────────────
-       LAYOUT SHELL
-    ───────────────────────────────────────── */
     .hub-container {
       position: relative; z-index: 1;
       max-width: 1000px; margin: 0 auto;
@@ -178,7 +153,6 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
     }
     section { display: flex; flex-direction: column; gap: 24px; }
 
-    /* Section headers — Cormorant for h2, matching index editorial feel */
     .section-header h2 {
       font-family: var(--display-font);
       font-size: 2rem; font-weight: 500;
@@ -194,9 +168,6 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
     }
     .text-link:hover { opacity: .75; }
 
-    /* ─────────────────────────────────────────
-       HERO — warm photo treatment
-    ───────────────────────────────────────── */
     .hub-hero {
       position: relative;
       padding: 72px 0 48px 0;
@@ -215,7 +186,6 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
       width: 62%; height: 100%;
       object-fit: cover; object-position: 0% 25%;
       opacity: .72;
-      /* Same warm filter as index photo */
       filter: brightness(.82) saturate(1.1) sepia(.14) hue-rotate(-6deg);
       border-radius: 0 0 0 24px;
     }
@@ -231,14 +201,12 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
       position: relative; z-index: 2; max-width: 480px;
     }
 
-    /* Eyebrow — teal, same as index badge */
     .eyebrow {
       font-size: .68rem; font-weight: 700;
       text-transform: uppercase; letter-spacing: .1em;
       color: var(--teal); margin-bottom: 14px; display: block;
     }
 
-    /* Hub h1 uses the display serif, bridging from index */
     .hub-hero h1 {
       font-family: var(--display-font);
       font-size: clamp(2.2rem, 4.5vw, 3rem);
@@ -250,7 +218,6 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
       margin-bottom: 28px; line-height: 1.65; max-width: 40ch;
     }
 
-    /* CTA button — teal, consistent with hub's primary action */
     .btn-primary {
       display: inline-flex; align-items: center; justify-content: center;
       padding: 13px 26px;
@@ -265,9 +232,6 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
       box-shadow: 0 8px 24px rgba(97,209,196,.35);
     }
 
-    /* ─────────────────────────────────────────
-       GUIDE CARDS — warm borders, gold accents
-    ───────────────────────────────────────── */
     .guides-grid {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
     }
@@ -280,7 +244,6 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
       transition: all .35s var(--ease-cinematic);
       position: relative; overflow: hidden;
     }
-    /* Warm shimmer on hover */
     .guide-card::before {
       content: ''; position: absolute; inset: 0;
       background: linear-gradient(135deg, rgba(201,169,110,.04), transparent 60%);
@@ -322,9 +285,6 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
       color: var(--text-faint); margin-left: auto; align-self: center;
     }
 
-    /* ─────────────────────────────────────────
-       NARI CARD
-    ───────────────────────────────────────── */
     .nari-card {
       background: var(--bg-card);
       border: 1px solid var(--card-border);
@@ -354,9 +314,6 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
       border-color: rgba(201,169,110,.35);
     }
 
-    /* ─────────────────────────────────────────
-       METHOD ACCORDION
-    ───────────────────────────────────────── */
     .method-accordion {
       border: 1px solid var(--card-border);
       border-radius: 16px; overflow: hidden;
@@ -406,7 +363,6 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
     }
     .method-deep-link:hover { background: rgba(201,169,110,.18); }
 
-    /* Method teaser card — warm border */
     .method-teaser-card {
       background: rgba(10,8,7,.5);
       padding: 22px 26px;
@@ -426,9 +382,6 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
     .row-title { font-size: .92rem; font-weight: 500; flex-shrink: 0; width: 220px; }
     .row-desc  { font-size: .82rem; color: var(--text-muted); flex: 1; }
 
-    /* ─────────────────────────────────────────
-       LEARNING PATHS
-    ───────────────────────────────────────── */
     .paths-grid {
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
     }
@@ -454,9 +407,6 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
     }
     .tag-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--teal); opacity: .5; }
 
-    /* ─────────────────────────────────────────
-       WAITLIST
-    ───────────────────────────────────────── */
     .waitlist-card {
       background: rgba(97,209,196,.04);
       border: 1px solid rgba(97,209,196,.14);
@@ -486,9 +436,6 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
     }
     .waitlist-form button:hover { opacity: .85; }
 
-    /* ─────────────────────────────────────────
-       FOOTER
-    ───────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid rgba(201,169,110,.08);
       padding: 36px 24px; margin-top: auto;
@@ -508,118 +455,7 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
     }
     .footer-links a:hover { color: #fff; }
 
-    /* ─────────────────────────────────────────
-       TRUST MODAL — preserved exactly
-    ───────────────────────────────────────── */
-    .trust-modal-overlay {
-      position: fixed; inset: 0; z-index: 9999;
-      display: flex; align-items: center; justify-content: center; padding: 24px;
-      opacity: 0; pointer-events: none;
-      transition: opacity .6s var(--ease-cinematic);
-    }
-    .trust-modal-overlay.is-open { opacity: 1; pointer-events: auto; }
-    .trust-modal-backdrop {
-      position: absolute; inset: 0;
-      background: rgba(10,8,7,.88);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    }
-    .trust-modal-container-light {
-      position: relative; width: 100%; max-width: 980px; max-height: 90vh;
-      background: #FAF8F6; color: #1A1A1A;
-      border-radius: 20px; overflow-y: auto; overflow-x: hidden;
-      box-shadow: 0 40px 80px rgba(0,0,0,.45);
-      transform: translateY(16px);
-      transition: all .6s var(--ease-cinematic);
-      scrollbar-width: thin; scrollbar-color: #D7C7BD transparent;
-      display: flex;
-    }
-    .trust-modal-overlay.is-open .trust-modal-container-light { transform: translateY(0); }
-    .trust-modal-container-light::-webkit-scrollbar { width: 6px; }
-    .trust-modal-container-light::-webkit-scrollbar-track { background: transparent; }
-    .trust-modal-container-light::-webkit-scrollbar-thumb { background: #D7C7BD; border-radius: 6px; }
-    .trust-modal-close-light {
-      position: absolute; top: 24px; right: 24px;
-      width: 36px; height: 36px; border-radius: 50%;
-      background: transparent; border: none; color: #1A1A1A;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: transform .3s; z-index: 10;
-    }
-    .trust-modal-close-light:hover { transform: rotate(90deg); }
-    .modal-split-layout { display: flex; width: 100%; min-height: 600px; }
-    .modal-left-pane { width: 42%; position: relative; background: #e8e4e1; }
-    .modal-left-pane img { width: 100%; height: 100%; object-fit: cover; }
-    .modal-name-badge {
-      position: absolute; bottom: 32px; left: 32px; right: 32px;
-      background: rgba(26,26,26,.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-      padding: 24px; border-radius: 12px; color: #FAF8F6;
-    }
-    .badge-name { font-size: .85rem; letter-spacing: .15em; font-weight: 600; margin-bottom: 8px; }
-    .badge-role { font-size: .85rem; line-height: 1.5; color: rgba(250,248,246,.8); margin-bottom: 16px; }
-    .badge-signature { font-family: var(--display-font); font-style: italic; font-size: 2rem; color: #C8AFA2; margin-top: 12px; }
-    .modal-right-pane { width: 58%; padding: 64px 56px; display: flex; flex-direction: column; }
-    .modal-eyebrow { font-size: .7rem; font-weight: 700; letter-spacing: .1em; color: #C8AFA2; text-transform: uppercase; margin-bottom: 16px; }
-    .modal-hook-light {
-      font-family: var(--display-font);
-      font-size: clamp(1.8rem,3vw,2.4rem); line-height: 1.15;
-      font-weight: 500; color: #1A1A1A; margin-bottom: 24px;
-    }
-    .modal-divider { border: none; border-top: 1px solid rgba(26,26,26,.1); margin: 0 0 24px 0; }
-    .modal-body-text { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
-    .modal-body-text p { font-size: 1.05rem; line-height: 1.6; color: rgba(26,26,26,.8); max-width: 48ch; }
-    .modal-quote {
-      font-size: 1.02rem; line-height: 1.6; color: #1A1A1A; font-weight: 500;
-      border-left: 3px solid #C8AFA2; padding: 6px 0 6px 24px;
-      margin-top: 8px; max-width: 46ch;
-    }
-    .modal-principles-row { display: grid; grid-template-columns: repeat(2,1fr); gap: 28px 32px; margin-bottom: 40px; }
-    .principle-item { display: flex; flex-direction: column; gap: 12px; }
-    .principle-icon {
-      width: 38px; height: 38px; border-radius: 50%;
-      background: #F3EAE3; color: #1A1A1A;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .principle-icon svg { width: 16px; height: 16px; }
-    .principle-item h4 { font-size: .7rem; font-weight: 700; letter-spacing: .05em; color: #1A1A1A; line-height: 1.4; }
-    .principle-item p  { font-size: .8rem; color: rgba(26,26,26,.7); line-height: 1.4; }
-    .modal-footer-text { font-size: .95rem; line-height: 1.6; color: rgba(26,26,26,.8); margin-bottom: 40px; max-width: 52ch; }
-    .modal-actions-light { display: flex; flex-direction: column; align-items: center; gap: 20px; }
-    .btn-clay {
-      background: #C8AFA2; color: #fff; border: none; border-radius: 999px;
-      padding: 12px 28px; font-size: .75rem; font-weight: 700;
-      letter-spacing: .05em; cursor: pointer; transition: all .3s;
-      width: fit-content; text-align: center;
-      box-shadow: 0 4px 12px rgba(200,175,162,.15);
-    }
-    .btn-clay:hover { background: #b39b8f; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(200,175,162,.25); }
-    .btn-link {
-      background: none; border: none; color: #C8AFA2;
-      font-size: .8rem; font-weight: 700; letter-spacing: .1em;
-      cursor: pointer; transition: opacity .3s;
-    }
-    .btn-link:hover { opacity: .7; }
-
-    /* ─────────────────────────────────────────
-       RESPONSIVE
-    ───────────────────────────────────────── */
     @media (max-width: 900px) {
-      .guides-grid { grid-template-columns: repeat(2,1fr); }
-      .paths-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 16px; margin: 0 -24px; padding: 0 24px 24px; }
-      .path-card { min-width: 240px; scroll-snap-align: start; }
-      .method-row { flex-direction: column; align-items: flex-start; gap: 6px; position: relative; }
-      .row-title { width: 100%; }
-      .row-icon { position: absolute; right: 22px; top: 18px; }
-      .trust-modal-container-light { flex-direction: column; max-width: 600px; }
-      .modal-split-layout { flex-direction: column; }
-      .modal-left-pane { width: 100%; height: 380px; }
-      .modal-right-pane { width: 100%; padding: 40px 24px; }
-      .modal-principles-row { grid-template-columns: repeat(2,1fr); gap: 24px; }
-      .btn-clay { width: 100%; max-width: none; }
-      .modal-name-badge { bottom: 16px; left: 16px; right: 16px; padding: 16px 20px; border-radius: 10px; }
-      .badge-name { margin-bottom: 0; font-size: .8rem; }
-      .badge-role { display: none; }
-      .badge-signature { font-size: 1.5rem; margin-top: 2px; }
-    }
-    @media (max-width: 600px) {
       .hub-hero-bg img { width: 100%; object-position: 0% 25%; }
       .hub-hero-bg::after { background: linear-gradient(to top, var(--bg-void) 0%, var(--bg-void) 40%, rgba(10,8,7,0) 100%); }
       .hub-hero { padding: 56px 0 36px; }
@@ -635,13 +471,11 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
       .waitlist-form button { width: 100%; padding: 14px 24px; }
       .footer-content { flex-direction: column; align-items: center; text-align: center; gap: 28px; }
       .footer-links { justify-content: center; gap: 20px; }
-    }
-
-    /* Cinematic Reveal */
-    .reveal { animation: cinematicReveal .8s var(--ease-cinematic) both; }
-    @keyframes cinematicReveal {
-      0%   { opacity: 0; transform: translateY(18px); }
-      100% { opacity: 1; transform: translateY(0); }
+      .paths-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 16px; margin: 0 -24px; padding: 0 24px 24px; }
+      .path-card { min-width: 240px; scroll-snap-align: start; }
+      .method-row { flex-direction: column; align-items: flex-start; gap: 6px; position: relative; }
+      .row-title { width: 100%; }
+      .row-icon { position: absolute; right: 22px; top: 18px; }
     }
   </style>
 </head>
@@ -649,11 +483,8 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
 
   <!-- HEADER -->
   <div class="top-row">
-    <a href="/" aria-label="Inicio"
-       style="display:flex;flex-shrink:0;align-items:center;transition:transform .3s ease;"
-       onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
-      <img src="/assets/images/csc-logo.svg" alt="Criar Sin Culpas"
-           style="height:clamp(26px,4vw,34px);width:auto !important;max-width:none;display:block;object-fit:contain;flex-shrink:0;margin-left:-4px;">
+    <a href="/" aria-label="Inicio" style="display:flex;flex-shrink:0;align-items:center;transition:transform .3s ease;">
+      <img src="/assets/images/csc-logo.svg" alt="Criar Sin Culpas" style="height:clamp(26px,4vw,34px);width:auto !important;max-width:none;display:block;object-fit:contain;flex-shrink:0;margin-left:-4px;">
     </a>
     <div style="display:flex;align-items:center;gap:16px;">
       <nav class="nav-links">
@@ -678,7 +509,7 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
       <div class="hub-hero-bg">
         <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779225964/gRvUE3dA_mbifyu.png" alt="Madre e hijas en un momento de tensión">
       </div>
-      <div class="hub-hero-content reveal" style="animation-delay:.1s;">
+      <div class="hub-hero-content">
         <span class="eyebrow" data-i18n="hero_eyebrow" data-es="Apoyo para la crianza real" data-en="Support for real parenting">Apoyo para la crianza real</span>
         <h1 data-i18n="hero_h1" data-es="Cuando el momento ya se puso difícil" data-en="When the moment gets tough">Cuando el momento ya se puso difícil</h1>
         <p data-i18n="hero_p" data-es="Hay días que se sienten intensos y no sabemos por dónde empezar. Encuentra aquí una guía clara y simple para volver a la calma." data-en="There are days that feel intense and we don't know where to start. Find a clear and simple guide here to return to calm.">Hay días que se sienten intensos y no sabemos por dónde empezar. Encuentra aquí una guía clara y simple para volver a la calma.</p>
@@ -687,7 +518,7 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
     </div>
 
     <!-- 2. GUIDES GRID -->
-    <section id="guias" class="reveal" style="animation-delay:.2s;">
+    <section id="guias">
       <div class="section-header">
         <h2 data-i18n="guides_title" data-es="Guías para los momentos difíciles" data-en="Guides for difficult moments">Guías para los momentos difíciles</h2>
         <p data-i18n="guides_desc" data-es="Herramientas simples para ayudarte a responder con más calma cuando todo se siente intenso." data-en="Simple tools to help you respond more calmly when everything feels intense.">Herramientas simples para ayudarte a responder con más calma cuando todo se siente intenso.</p>
@@ -764,7 +595,7 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
     </section>
 
     <!-- 3. SOBRE NARI -->
-    <section class="reveal" style="animation-delay:.3s;">
+    <section>
       <div class="nari-card">
         <div class="nari-profile">
           <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779117777/nari-portrait_jzjwcw.png" alt="Nari Fateha">
@@ -773,14 +604,15 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
             <p data-i18n="nari_desc" data-es="Educadora de crianza consciente. Creo este espacio desde mi propia experiencia como madre." data-en="Conscious parenting educator. I created this space from my own experience as a mother.">Educadora de crianza consciente. Creo este espacio desde mi propia experiencia como madre.</p>
           </div>
         </div>
-        <button class="btn-secondary open-nari-modal">
+        <!-- Modal will be implemented later in UI passes -->
+        <a href="/metodo" class="btn-secondary">
           <span data-i18n="nari_cta" data-es="Conoce a Nari" data-en="Meet Nari">Conoce a Nari</span> →
-        </button>
+        </a>
       </div>
     </section>
 
     <!-- 4. EL METODO -->
-    <section class="reveal" style="animation-delay:.4s;">
+    <section>
       <div class="section-header flex-header">
         <div>
           <h2 data-i18n="method_title" data-es="El método" data-en="The method">El método</h2>
@@ -842,7 +674,7 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
     </section>
 
     <!-- 5. CAMINOS -->
-    <section class="reveal" style="animation-delay:.5s;">
+    <section>
       <div class="section-header flex-header">
         <div>
           <h2 data-i18n="paths_title" data-es="Caminos de aprendizaje" data-en="Learning paths">Caminos de aprendizaje</h2>
@@ -878,54 +710,13 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
       <span class="footer-copy">© 2026 Criar Sin Culpas</span>
       <div class="footer-links">
         <a href="/privacidad" data-i18n="footer_privacy" data-es="Política de Privacidad" data-en="Privacy Policy">Política de Privacidad</a>
-        <a href="mailto:hola@criarsinculpas.com" data-i18n="footer_contact" data-es="Contacto" data-en="Contact">Contacto</a>
+        <a href="/cdn-cgi/l/email-protection#aac2c5c6cbeac9d8c3cbd8d9c3c4c9dfc6dacbd984c9c5c7" data-i18n="footer_contact" data-es="Contacto" data-en="Contact">Contacto</a>
         <a href="https://instagram.com/criarsinculpas" target="_blank" rel="noopener noreferrer">Instagram</a>
       </div>
     </div>
   </footer>
 
-  <!-- TRUST MODAL -->
-  <div class="trust-modal-overlay" id="nariModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalHook">
-    <div class="trust-modal-backdrop" id="nariModalCloseBg"></div>
-    <div class="trust-modal-container-light">
-      <button class="trust-modal-close-light" id="nariModalCloseBtn" aria-label="Cerrar">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-      </button>
-      <div class="modal-split-layout">
-        <div class="modal-left-pane">
-          <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779216966/Nari_xwahmd.png" alt="Nari Fateha">
-          <div class="modal-name-badge">
-            <h3 class="badge-name">NARI FATEHA</h3>
-            <p class="badge-role" data-i18n="badge_role" data-es="Educadora de crianza consciente y creadora de Criar Sin Culpas." data-en="Conscious parenting educator and creator of Criar Sin Culpas.">Educadora de crianza consciente y creadora de Criar Sin Culpas.</p>
-            <div class="badge-signature">Nari</div>
-          </div>
-        </div>
-        <div class="modal-right-pane">
-          <div class="modal-eyebrow" data-i18n="nari_cta" data-es="CONOCE A NARI" data-en="MEET NARI">CONOCE A NARI</div>
-          <h2 id="modalHook" class="modal-hook-light" data-i18n="modal_hook2" data-es="Criar Sin Culpas nació desde momentos reales de agotamiento, culpa y búsqueda." data-en="Criar Sin Culpas was born from real moments of exhaustion, guilt, and searching.">Criar Sin Culpas nació desde momentos reales de agotamiento, culpa y búsqueda.</h2>
-          <hr class="modal-divider">
-          <div class="modal-body-text">
-            <p data-i18n="modal_body_1" data-es="Nari Fateha es educadora de crianza consciente y creadora de este espacio." data-en="Nari Fateha is a conscious parenting educator and creator of this space.">Nari Fateha es educadora de crianza consciente y creadora de este espacio.</p>
-            <p data-i18n="modal_body_2" data-es="Después de escuchar patrones repetirse una y otra vez —y vivir muchos de ellos también desde su propia experiencia— entendió algo importante:" data-en="After hearing patterns repeat again and again —and living many of them from her own experience— she understood something important:">Después de escuchar patrones repetirse una y otra vez —y vivir muchos de ellos también desde su propia experiencia— entendió algo importante:</p>
-            <blockquote class="modal-quote" data-i18n="modal_body_3" data-es="Los padres no necesitan más juicio. Necesitan claridad cuando el momento ya se puso difícil." data-en="Parents don't need more judgment. They need clarity when things have already become difficult.">Los padres no necesitan más juicio. Necesitan claridad cuando el momento ya se puso difícil.</blockquote>
-          </div>
-          <div class="modal-eyebrow" style="margin-top:8px;" data-i18n="modal_phil_eyebrow" data-es="SU ENFOQUE SE SOSTIENE EN 4 PRINCIPIOS" data-en="HER APPROACH RESTS ON 4 PRINCIPLES">SU ENFOQUE SE SOSTIENE EN 4 PRINCIPIOS</div>
-          <div class="modal-principles-row">
-            <div class="principle-item"><div class="principle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14 Q 8 8, 12 14 T 21 14"/><circle cx="12" cy="6" r="1.5" fill="currentColor" stroke="none"/></svg></div><h4 data-i18n="p_reg_title" data-es="REGULAR PRIMERO" data-en="REGULATE FIRST">REGULAR PRIMERO</h4><p data-i18n="p_reg_desc" data-es="La calma viene antes que la corrección." data-en="Calm comes before correction.">La calma viene antes que la corrección.</p></div>
-            <div class="principle-item"><div class="principle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div><h4 data-i18n="p_con_title" data-es="CONECTAR ANTES" data-en="CONNECT BEFORE">CONECTAR ANTES</h4><p data-i18n="p_con_desc" data-es="El vínculo también es parte de la solución." data-en="Connection is also part of the solution.">El vínculo también es parte de la solución.</p></div>
-            <div class="principle-item"><div class="principle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 1 8.3C18.4 15 15.1 20 11 20z"/><path d="M11 20c2.4-3.4 3.5-7.1 2.2-11.4"/></svg></div><h4 data-i18n="p_tool_title" data-es="HERRAMIENTAS REALES" data-en="REAL TOOLS">HERRAMIENTAS REALES</h4><p data-i18n="p_tool_desc" data-es="Menos teoría. Más ayuda útil." data-en="Less theory. More useful help.">Menos teoría. Más ayuda útil.</p></div>
-            <div class="principle-item"><div class="principle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 19.36A9 9 0 1 1 21 12"/><circle cx="19" cy="7" r="1.5" fill="currentColor" stroke="none"/></svg></div><h4 data-i18n="p_guilt_title" data-es="SIN PERFECCIÓN" data-en="WITHOUT PERFECTION">SIN PERFECCIÓN</h4><p data-i18n="p_guilt_desc" data-es="Criar sin culpa también significa dejar atrás la idea de hacerlo perfecto." data-en="Guilt-free parenting also means letting go of the idea of doing it perfectly.">Criar sin culpa también significa dejar atrás la idea de hacerlo perfecto.</p></div>
-          </div>
-          <p class="modal-footer-text" data-i18n="modal_footer" data-es="Hoy, este espacio evoluciona hacia un ecosistema práctico de apoyo emocional: guías, herramientas y recursos diseñados para acompañarte en los momentos difíciles." data-en="Today, this space is evolving into a practical ecosystem of emotional support: guides, tools, and resources designed to support you in difficult moments.">Hoy, este espacio evoluciona hacia un ecosistema práctico de apoyo emocional: guías, herramientas y recursos diseñados para acompañarte en los momentos difíciles.</p>
-          <div class="modal-actions-light">
-            <button class="btn-clay close-modal-action" data-i18n="modal_clay_cta" data-es="EMPIEZA POR EL MOMENTO QUE MÁS NECESITAS HOY →" data-en="START WITH THE MOMENT YOU NEED MOST TODAY →">EMPIEZA POR EL MOMENTO QUE MÁS NECESITAS HOY →</button>
-            <button class="btn-link close-modal-action" data-i18n="modal_link_cta" data-es="VOLVER A LAS GUÍAS" data-en="BACK TO GUIDES">VOLVER A LAS GUÍAS</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
     (function () {
       function trackSignal(eventName, properties) {
@@ -933,6 +724,7 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
       }
       const STORAGE_KEY = 'lg_parent_lang';
       let currentLang = localStorage.getItem(STORAGE_KEY) || 'es';
+      
       function applyLang(lang) {
         currentLang = lang;
         localStorage.setItem(STORAGE_KEY, lang);
@@ -945,43 +737,17 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
           btn.setAttribute('aria-pressed', btn.getAttribute('data-lang') === lang ? 'true' : 'false');
         });
       }
+      
       document.addEventListener('click', e => {
         const btn = e.target.closest('.lang-btn');
         if (btn) { applyLang(btn.getAttribute('data-lang')); trackSignal('language_changed', { to_lang: currentLang, location: 'hub' }); }
       });
       applyLang(currentLang);
+
       document.querySelectorAll('.track-guide').forEach(card => {
         card.addEventListener('click', () => { trackSignal('card_opened', { guide: card.getAttribute('data-id') }); });
       });
-      const modalOverlay = document.getElementById('nariModal');
-      const openModalBtns = document.querySelectorAll('.open-nari-modal');
-      const closeBtn = document.getElementById('nariModalCloseBtn');
-      const closeBg = document.getElementById('nariModalCloseBg');
-      const closeActionBtns = document.querySelectorAll('.close-modal-action');
-      function openModal() {
-        if (!modalOverlay) return;
-        modalOverlay.classList.add('is-open');
-        modalOverlay.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-        if (typeof trackSignal === 'function') trackSignal('trust_modal_opened', { language: currentLang });
-      }
-      function closeModal() {
-        if (!modalOverlay) return;
-        modalOverlay.classList.remove('is-open');
-        modalOverlay.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-      }
-      openModalBtns.forEach(btn => btn.addEventListener('click', e => { e.preventDefault(); openModal(); }));
-      if (closeBtn) closeBtn.addEventListener('click', closeModal);
-      if (closeBg)  closeBg.addEventListener('click', closeModal);
-      closeActionBtns.forEach(btn => btn.addEventListener('click', () => {
-        closeModal();
-        const guidesSection = document.getElementById('guias');
-        if (guidesSection) guidesSection.scrollIntoView({ behavior: 'smooth' });
-      }));
-      document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('is-open')) closeModal();
-      });
+
       document.querySelectorAll('[data-accordion]').forEach(row => {
         row.addEventListener('click', () => {
           const isOpen = row.getAttribute('aria-expanded') === 'true';
@@ -993,11 +759,12 @@ Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
         });
         row.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); row.click(); } });
       });
+
       const menuBtn = document.querySelector('.mobile-menu-btn');
       const navLinks = document.querySelector('.nav-links');
       if (menuBtn && navLinks) { menuBtn.addEventListener('click', () => { navLinks.classList.toggle('is-open'); }); }
     })();
   </script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"a6fdd4e7ff644527b91c6db4b97e68f5","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
-I just created the exact same file in Trae's directory and  all I need is to tell him to use it to push it or to copy it to github somehow.. that is the only hng I dont know ow to ask it .. this is the apoo/index.html 
