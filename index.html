@@ -6,7 +6,6 @@
   <title data-i18n="title_tag" data-es="Criar Sin Culpas · Espacio de Apoyo" data-en="Criar Sin Culpas · Support Space">Criar Sin Culpas · Espacio de Apoyo</title>
   <meta name="description" content="Un sistema de apoyo emocional para padres. Encuentra calma, claridad y herramientas prácticas para los momentos difíciles.">
   <meta property="og:title" content="Criar Sin Culpas · Espacio de Apoyo">
-  <meta property="og:description" content="Un sistema de apoyo emocional para padres. Encuentra calma, claridad y herramientas prácticas para los momentos difíciles.">
   <meta property="og:url" content="https://criarsinculpas.com">
   <link rel="canonical" href="https://criarsinculpas.com">
   <meta property="og:site_name" content="Criar Sin Culpas">
@@ -27,30 +26,30 @@
   </script>
 
   <style>
+    /* ─────────────────────────────────────────
+       TOKENS
+    ───────────────────────────────────────── */
     :root {
       --bg-void: #0a0807;
       --text-main: #F7F4F2;
       --text-muted: rgba(247,244,242,.68);
-      /* Warmer, deeper gold */
       --gold: #C9A96E;
       --gold-light: #e2c48a;
       --gold-dark: #9e7840;
-      /* Rose slightly richer */
       --rose: #F0A0BE;
       --teal: #61d1c4;
 
       --display-font: 'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
       --ui-font: 'Inter', system-ui, -apple-system, sans-serif;
       --script-font: 'Great Vibes', cursive;
-
       --ease-cinematic: cubic-bezier(0.2, 0.8, 0.2, 1);
       --radius-pill: 999px;
-
       --hero-photo: url('https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779147046/pexels-gustavo-fring-8770590_stewia.jpg');
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
+    /* DESKTOP: viewport-locked, no scroll */
     html, body {
       height: 100dvh; width: 100%;
       overflow: hidden;
@@ -74,32 +73,35 @@
 
     /* REVEALS */
     @keyframes cinematicReveal {
-      0%   { opacity: 0; transform: translateY(14px); }
-      100% { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
     .reveal-1 { animation: cinematicReveal .9s ease-out .05s both; }
-    .reveal-2 { animation: cinematicReveal .9s ease-out .2s  both; }
-    .reveal-3 { animation: cinematicReveal .9s ease-out .35s both; }
-    .reveal-4 { animation: cinematicReveal .9s ease-out .5s  both; }
-    .reveal-5 { animation: cinematicReveal .9s ease-out .65s both; }
+    .reveal-2 { animation: cinematicReveal .9s ease-out .15s both; }
+    .reveal-3 { animation: cinematicReveal .9s ease-out .3s  both; }
+    .reveal-4 { animation: cinematicReveal .9s ease-out .45s both; }
+    .reveal-5 { animation: cinematicReveal .9s ease-out .6s  both; }
 
-    /* NAV */
+    /* ─────────────────────────────────────────
+       NAV — floats over the photo on desktop
+    ───────────────────────────────────────── */
     .top-row {
       flex-shrink: 0;
       display: flex; justify-content: space-between; align-items: center;
       gap: 12px;
-      padding: max(16px, env(safe-area-inset-top)) 48px 14px 48px;
+      padding: max(18px, env(safe-area-inset-top)) 48px 16px 48px;
       position: relative; z-index: 100;
-      background: rgba(10,8,7,.45);
+      /* Subtle glass — not opaque black */
+      background: rgba(10,8,7,.3);
     }
     .top-row::before {
       content: ''; position: absolute; inset: 0; z-index: -1;
-      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255,255,255,.04);
     }
     .nav-links { display: flex; gap: 32px; align-items: center; }
     .nav-links a {
-      color: var(--text-muted); text-decoration: none;
+      color: rgba(247,244,242,.75); text-decoration: none;
       font-size: .75rem; font-weight: 500;
       letter-spacing: .06em; text-transform: uppercase;
       transition: color .25s;
@@ -110,8 +112,8 @@
     .lang-switcher {
       display: inline-flex; padding: 4px; gap: 4px;
       border-radius: var(--radius-pill);
-      border: 1px solid rgba(255,255,255,.07);
-      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.05);
       flex-shrink: 0;
     }
     .lang-btn {
@@ -122,11 +124,13 @@
       cursor: pointer; background: none; border: none;
     }
     .lang-btn[aria-pressed='true'] {
-      color: var(--text-main); background: rgba(255,255,255,.1);
+      color: var(--text-main); background: rgba(255,255,255,.12);
       box-shadow: 0 2px 10px rgba(0,0,0,.3);
     }
 
-    /* PAGE SHELL */
+    /* ─────────────────────────────────────────
+       PAGE SHELL
+    ───────────────────────────────────────── */
     .page-wrap {
       flex: 1; min-height: 0;
       position: relative; z-index: 2;
@@ -134,47 +138,54 @@
       overflow: hidden;
     }
 
-    /* PHOTO LAYER — warmer golden tone */
-    .hero-scene { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    /* ─────────────────────────────────────────
+       PHOTO — full bleed, warm tone
+    ───────────────────────────────────────── */
+    .hero-scene {
+      position: absolute; inset: 0;
+      z-index: 0; pointer-events: none; overflow: hidden;
+    }
     .hero-scene__photo {
       position: absolute; inset: 0;
       background-image: var(--hero-photo);
       background-size: cover;
       background-position: 40% 35%;
-      /* Sepia + warm brightness for the golden feel */
-      filter: brightness(.72) saturate(1.1) sepia(.18) hue-rotate(-8deg);
+      filter: brightness(.75) saturate(1.1) sepia(.15) hue-rotate(-6deg);
     }
     .hero-scene__overlay {
       position: absolute; inset: 0;
       background:
-        /* Warm amber glow bottom-left */
-        radial-gradient(ellipse 60% 50% at 0% 100%, rgba(120,70,20,.45) 0%, transparent 70%),
-        /* Standard dark vignettes for text legibility */
-        linear-gradient(to top, #0a0807 0%, rgba(10,8,7,.78) 40%, rgba(10,8,7,.05) 100%),
-        linear-gradient(to right, rgba(10,8,7,.82) 0%, rgba(10,8,7,.35) 42%, rgba(10,8,7,0) 78%);
+        radial-gradient(ellipse 55% 45% at 0% 100%, rgba(110,60,15,.5) 0%, transparent 65%),
+        linear-gradient(to top,  #0a0807 0%, rgba(10,8,7,.72) 38%, rgba(10,8,7,.0) 70%),
+        linear-gradient(to right, rgba(10,8,7,.85) 0%, rgba(10,8,7,.4) 45%, rgba(10,8,7,0) 75%);
     }
 
-    /* HERO */
+    /* ─────────────────────────────────────────
+       HERO — desktop: content fills left half,
+       anchors to bottom
+    ───────────────────────────────────────── */
     .hero {
       position: relative; z-index: 2;
       flex: 1; min-height: 0;
       display: flex; align-items: flex-end;
       max-width: 1300px; margin: 0 auto;
-      padding: 0 48px 28px 48px; width: 100%;
+      padding: 0 48px 32px 48px; width: 100%;
     }
     .hero-content {
       position: relative; z-index: 2;
       display: flex; flex-direction: column;
-      max-width: 580px;
+      align-items: flex-start;   /* LEFT aligned */
+      text-align: left;
+      max-width: 600px;
     }
 
-    /* ── BRAND BADGE ── */
+    /* BRAND BADGE */
     .brand-badge {
       display: inline-flex; align-items: center; gap: 7px;
       padding: 6px 16px; border-radius: var(--radius-pill);
-      border: 1px solid rgba(97,209,196,.5);
+      border: 1px solid rgba(97,209,196,.45);
       background: rgba(97,209,196,.06);
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       width: fit-content;
     }
     .brand-badge span {
@@ -182,64 +193,55 @@
       letter-spacing: .14em; text-transform: uppercase;
       color: var(--teal);
     }
-    /* Small dot accent inside badge */
     .brand-badge::before {
       content: '';
       width: 5px; height: 5px; border-radius: 50%;
-      background: var(--teal);
-      opacity: .7;
-      flex-shrink: 0;
+      background: var(--teal); opacity: .75; flex-shrink: 0;
     }
 
-    /* HEADLINE */
+    /* HEADLINE — large, editorial, left */
     .hero-context {
       font-family: var(--display-font);
-      font-size: clamp(2.2rem, 4vw, 3.8rem);
-      line-height: 1.12; letter-spacing: .01em;
+      font-size: clamp(2.4rem, 3.8vw, 4rem);
+      line-height: 1.08; letter-spacing: .01em;
       font-weight: 400; color: var(--text-main);
       margin: 0 0 16px 0;
     }
     .text-rose { color: var(--rose); font-style: italic; font-weight: 700; }
 
-    /* ── SQUIGGLE DIVIDER ── */
-    .squiggle {
-      display: block;
-      margin: 0 0 14px 0;
-      opacity: .55;
-    }
+    /* SQUIGGLE */
+    .squiggle { display: block; margin: 0 0 16px 0; opacity: .55; }
 
     /* SUBHEAD */
     .subtitle {
-      font-size: clamp(.82rem, 1.1vw, .92rem);
-      font-weight: 400;
-      color: rgba(247,244,242,.85);
-      line-height: 1.7; margin: 0; max-width: 44ch;
+      font-size: clamp(.88rem, 1.2vw, 1rem);
+      font-weight: 400; color: rgba(247,244,242,.82);
+      line-height: 1.7; margin: 0; max-width: 42ch;
     }
 
     /* PROFILE */
     .hero-profile {
       display: flex; align-items: center; gap: 12px;
-      margin-top: 22px;
+      margin-top: 16px;
     }
     .hero-profile img {
-      width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
-      border: 1px solid rgba(201,169,110,.3);
+      width: 46px; height: 46px; border-radius: 50%; object-fit: cover;
+      border: 1px solid rgba(201,169,110,.35);
       box-shadow: 0 4px 16px rgba(0,0,0,.45);
       flex-shrink: 0;
     }
-    .profile-text { display: flex; flex-direction: column; gap: 1px; }
-    .profile-name { font-size: .88rem; color: var(--text-main); font-weight: 600; }
-    .profile-role { font-size: .74rem; color: var(--text-muted); }
+    .profile-text { display: flex; flex-direction: column; gap: 2px; }
+    .profile-name { font-size: .9rem; color: var(--text-main); font-weight: 600; }
+    .profile-role { font-size: .75rem; color: var(--text-muted); }
 
-    /* CTA — warm gold gradient matching mockup */
-    .cta-wrapper { margin-top: 20px; }
+    /* CTA — warm gold gradient */
+    .cta-wrapper { margin-top: 16px; }
     .btn-premium {
       display: inline-flex; align-items: center; gap: 14px;
       padding: 16px 36px; border-radius: var(--radius-pill);
       background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 60%, var(--gold-dark) 100%);
-      border: none;
-      color: #1a0e06;
-      font-size: .9rem; font-weight: 600; letter-spacing: .02em;
+      border: none; color: #1a0e06;
+      font-size: .92rem; font-weight: 600; letter-spacing: .02em;
       cursor: pointer; text-decoration: none;
       transition: all 400ms var(--ease-cinematic);
       box-shadow: 0 8px 24px rgba(180,130,60,.35);
@@ -252,106 +254,159 @@
     .btn-arrow { font-weight: 400; font-size: 1.1rem; transition: transform 400ms var(--ease-cinematic); }
     .btn-premium:hover .btn-arrow { transform: translateX(5px); }
 
-    /* GLASS PANEL */
+    /* ─────────────────────────────────────────
+       GLASS PANEL
+    ───────────────────────────────────────── */
     .glass-panel-wrapper {
       flex-shrink: 0;
       position: relative; z-index: 10;
       max-width: 1200px; width: 100%;
       margin: 0 auto;
-      padding: 0 48px 28px 48px;
+      padding: 0 48px 20px 48px;
     }
     .premium-glass-panel {
-      background: rgba(14,10,8,.75);
-      backdrop-filter: blur(36px); -webkit-backdrop-filter: blur(36px);
-      border: 1px solid rgba(201,169,110,.12);
-      border-radius: 24px;
-      padding: 32px 48px 26px;
-      box-shadow: 0 24px 64px rgba(0,0,0,.55), inset 0 1px 0 rgba(201,169,110,.08);
+      background: rgba(20,14,10,.6);
+      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+      border: 1px solid rgba(201,169,110,.15);
+      border-top: 1px solid rgba(201,169,110,.22);
+      border-radius: 20px;
+      padding: 24px 40px 20px;
+      box-shadow: 0 16px 48px rgba(0,0,0,.4), inset 0 1px 0 rgba(201,169,110,.1);
     }
-
     .pillars-row {
       display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
+      /* Vertical dividers between columns */
+      divide-x: 1px solid rgba(201,169,110,.1);
+      gap: 0;
+      padding-bottom: 16px; margin-bottom: 14px;
       border-bottom: 1px solid rgba(201,169,110,.1);
-      padding-bottom: 26px; margin-bottom: 22px;
+    }
+    /* Each pillar: consistent internal layout, centered vertically */
+    .pillar-premium {
+      display: flex; flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      padding: 4px 28px 4px 0;
+    }
+    .pillar-premium:not(:last-child) {
+      border-right: 1px solid rgba(201,169,110,.1);
+      margin-right: 28px;
+    }
+
+    /* Icon: simple flex, no position:absolute tricks */
+    .pillar-icon-wrap {
+      display: flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid rgba(201,169,110,.3);
+      background: rgba(201,169,110,.07);
+      margin-bottom: 10px;
+      flex-shrink: 0;
+      position: relative; /* for sparkle pseudo-elements */
+    }
+    .pillar-icon-box { display: none; } /* replaced by icon-wrap directly */
+    .pillar-icon-wrap svg { width: 17px; height: 17px; color: var(--gold); }
+    .pillar-icon-wrap::after {
+      content: '+'; position: absolute; top: -5px; right: -5px;
+      font-size: .55rem; font-weight: 700; line-height: 1;
+      color: var(--gold); opacity: .65;
+    }
+    .pillar-icon-wrap::before {
+      content: '·'; position: absolute; bottom: -3px; left: -5px;
+      font-size: .8rem; line-height: 1;
+      color: var(--gold); opacity: .38;
+    }
+
+    .pillar-premium h3 {
+      font-size: .85rem; font-weight: 600;
+      color: var(--gold); margin: 0 0 5px 0;
+      line-height: 1.2;
+    }
+    .pillar-premium p {
+      font-size: .78rem; color: rgba(247,244,242,.78);
+      line-height: 1.5; margin: 0;
+    }
+    .pillar-arrow {
+      display: none; /* cleaner without the arrows at this panel size */
     }
     .pillar-premium {
       display: flex; flex-direction: column; gap: 10px; align-items: flex-start;
     }
 
-    /* ── ICON BOX with sparkle dots ── */
-    .pillar-icon-wrap {
-      position: relative;
-      width: 54px; height: 54px;
-      flex-shrink: 0;
-    }
+    /* Icon wrap with sparkles */
+    .pillar-icon-wrap { position: relative; width: 46px; height: 46px; flex-shrink: 0; }
     .pillar-icon-box {
-      width: 50px; height: 50px; border-radius: 50%;
-      border: 1px solid rgba(201,169,110,.35);
+      width: 42px; height: 42px; border-radius: 50%;
+      border: 1px solid rgba(201,169,110,.32);
       display: flex; justify-content: center; align-items: center;
       color: var(--gold); background: rgba(201,169,110,.06);
       position: absolute; top: 2px; left: 2px;
     }
-    .pillar-icon-box svg { width: 20px; height: 20px; color: var(--gold); }
-
-    /* Sparkle "+" marks — top-right of the circle */
+    .pillar-icon-box svg { width: 18px; height: 18px; color: var(--gold); }
     .pillar-icon-wrap::after {
-      content: '+';
-      position: absolute; top: -2px; right: -2px;
+      content: '+'; position: absolute; top: -2px; right: -2px;
       font-size: .6rem; font-weight: 700; line-height: 1;
       color: var(--gold); opacity: .7;
     }
-    /* Extra sparkle dot — bottom-left */
     .pillar-icon-wrap::before {
-      content: '·';
-      position: absolute; bottom: 0; left: -4px;
+      content: '·'; position: absolute; bottom: 0; left: -4px;
       font-size: .9rem; font-weight: 700; line-height: 1;
-      color: var(--gold); opacity: .45;
+      color: var(--gold); opacity: .42;
     }
 
-    .pillar-premium h3 { font-size: .95rem; font-weight: 600; color: var(--gold); margin: 0; }
-    .pillar-premium p { font-size: .83rem; color: var(--text-main); line-height: 1.55; margin: 0; opacity: .85; }
-    .pillar-arrow { color: var(--text-muted); font-size: .9rem; margin-top: auto; opacity: .5; transition: opacity .3s; }
+    /* pillar-premium defined above in glass panel section */
+    .pillar-premium h3 { font-size: .88rem; font-weight: 600; color: var(--gold); margin: 0; }
+    .pillar-premium p  { font-size: .78rem; color: var(--text-main); line-height: 1.5; margin: 0; opacity: .82; }
+    .pillar-arrow { color: var(--text-muted); font-size: .85rem; margin-top: auto; opacity: .45; transition: opacity .3s; }
     .pillar-premium:hover .pillar-arrow { opacity: 1; color: var(--gold); }
 
-    /* SCRIPT FOOTER — two-line like the mockup */
+    /* Script footer */
     .script-footer {
       text-align: center;
-      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
     }
-    /* Line 1: cursive Great Vibes */
     .script-line-1 {
       font-family: var(--script-font);
-      font-size: clamp(1.7rem, 2.6vw, 2.6rem);
-      color: var(--gold);
-      line-height: 1.2;
-      text-shadow: 0 2px 14px rgba(0,0,0,.5);
-      opacity: .92;
+      font-size: clamp(1.4rem, 2vw, 2rem);
+      color: var(--gold); line-height: 1.2;
+      text-shadow: 0 2px 12px rgba(0,0,0,.6); opacity: .92;
     }
-    /* Line 2: smaller roman serif */
     .script-line-2 {
       font-family: var(--display-font);
-      font-size: clamp(.78rem, 1vw, .9rem);
-      color: rgba(247,244,242,.65);
-      letter-spacing: .04em;
-      font-style: italic;
+      font-size: .78rem;
+      color: rgba(247,244,242,.55);
+      letter-spacing: .04em; font-style: italic;
     }
-    /* Pink heart below */
-    .script-heart {
-      margin-top: 6px;
-      color: var(--rose);
-      opacity: .8;
-    }
+    .script-heart { margin-top: 4px; color: var(--rose); opacity: .75; }
 
-    /* RESPONSIVE — mobile reverts to scroll */
+    /* ─────────────────────────────────────────
+       MOBILE — completely different rhythm
+       Photo bleeds wall-to-wall from pixel 0.
+       Nav is transparent overlay.
+       Hero fills ~100vh, left-aligned, large type.
+       Glass panel scrolls into view below.
+    ───────────────────────────────────────── */
     @media (max-width: 900px) {
+      /* Allow scroll on mobile */
       html, body { height: auto; overflow: auto; }
-      .page-wrap { overflow: visible; }
-      .top-row { padding-left: 20px; padding-right: 20px; }
+      .page-wrap { overflow: visible; min-height: 0; flex: none; }
 
+      /* Nav: fully transparent, photo shows through from row 0 */
+      .top-row {
+        background: transparent;
+        position: fixed; top: 0; left: 0; right: 0;
+        padding: max(16px, env(safe-area-inset-top)) 20px 14px 20px;
+        z-index: 200;
+      }
+      .top-row::before {
+        backdrop-filter: none; -webkit-backdrop-filter: none;
+        border-bottom: none;
+        background: linear-gradient(to bottom, rgba(10,8,7,.55) 0%, transparent 100%);
+      }
+
+      /* Mobile menu */
       .nav-links {
         position: fixed; inset: 0;
-        background: rgba(10,8,7,.98);
+        background: rgba(10,8,7,.97);
         backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
         z-index: 999;
         flex-direction: column; align-items: center; justify-content: center;
@@ -360,14 +415,14 @@
         transform: translateY(-10px);
       }
       .nav-links.is-open { opacity: 1; pointer-events: auto; transform: translateY(0); }
-      .nav-links a { font-size: 1.3rem; letter-spacing: .1em; }
+      .nav-links a { font-size: 1.3rem; letter-spacing: .1em; color: rgba(247,244,242,.9); }
       .nav-links:not(.is-open) a { display: none; }
       .nav-links.is-open a { display: block; }
 
       .mobile-menu-btn {
         display: flex; align-items: center; justify-content: center;
-        background: rgba(255,255,255,.03);
-        border: 1px solid rgba(255,255,255,.08); border-radius: 50%;
+        background: rgba(255,255,255,.08);
+        border: 1px solid rgba(255,255,255,.12); border-radius: 50%;
         width: 44px; height: 44px; color: #fff;
         z-index: 1000; position: relative; cursor: pointer;
         transition: all .3s; flex-shrink: 0;
@@ -376,26 +431,94 @@
       .mobile-menu-btn.is-active .menu-icon { display: none; }
       .mobile-menu-btn.is-active .close-icon { display: flex; }
 
-      .hero-scene__photo { background-position: 38% 45%; filter: brightness(.6) saturate(1.1) sepia(.2) hue-rotate(-8deg); }
-      .hero-scene__overlay { background: linear-gradient(to top, #0a0807 0%, rgba(10,8,7,.9) 52%, rgba(10,8,7,.1) 100%); }
+      /* HERO SECTION — full viewport height, photo bleeds */
+      .hero-scene {
+        /* Not absolute inside page-wrap — needs to span the full hero section */
+        position: absolute;
+      }
+      .hero-section-mobile {
+        position: relative;
+        min-height: 100svh;
+        display: flex; flex-direction: column; justify-content: flex-end;
+        padding: 0;
+        overflow: hidden;
+      }
+      /* Photo behind everything including nav */
+      .hero-section-mobile .hero-scene {
+        position: fixed; inset: 0; z-index: 0;
+      }
+      .hero-section-mobile .hero-scene__photo {
+        background-position: 40% 38%;
+        filter: brightness(.65) saturate(1.1) sepia(.18) hue-rotate(-6deg);
+      }
+      .hero-section-mobile .hero-scene__overlay {
+        background:
+          radial-gradient(ellipse 80% 50% at 50% 100%, rgba(10,8,7,.9) 0%, transparent 70%),
+          linear-gradient(to top, #0a0807 0%, rgba(10,8,7,.85) 30%, rgba(10,8,7,.15) 65%, rgba(10,8,7,0) 100%);
+      }
 
-      .hero { flex: none; padding: 60px 20px 24px 20px; min-height: 68vh; align-items: flex-end; }
-      .hero-context { font-size: clamp(2rem, 8vw, 2.8rem); margin-bottom: 14px; }
-      .hero-content { align-items: center; text-align: center; margin: 0 auto; max-width: 100%; }
-      .brand-badge { margin-left: auto; margin-right: auto; }
-      .squiggle { margin: 0 auto 14px; }
-      .subtitle { max-width: 100%; font-size: .88rem; }
-      .hero-profile { flex-direction: column; gap: 8px; margin-top: 18px; }
-      .profile-text { align-items: center; }
-      .cta-wrapper { margin-top: 18px; }
+      /* Hero content: left-aligned, large, sits above bottom of screen */
+      .hero {
+        position: relative; z-index: 10;
+        flex: none;
+        display: flex; align-items: flex-end;
+        padding: 0 24px 40px 24px;
+        min-height: 100svh;
+        max-width: 100%;
+        margin: 0;
+      }
+      .hero-content {
+        align-items: flex-start; text-align: left;
+        max-width: 100%;
+      }
 
-      .glass-panel-wrapper { padding: 0 16px 24px 16px; }
-      .premium-glass-panel { padding: 24px 20px 20px; border-radius: 20px; }
-      .pillars-row { grid-template-columns: 1fr; gap: 24px; padding-bottom: 20px; margin-bottom: 18px; }
-      .pillar-premium { align-items: center; text-align: center; }
-      .script-line-1 { font-size: 1.9rem; }
+      /* Much bigger headline on mobile */
+      .hero-context {
+        font-size: clamp(2.6rem, 10vw, 3.4rem);
+        line-height: 1.06;
+        margin-bottom: 14px;
+      }
+      .brand-badge { margin-bottom: 16px; }
+      .squiggle { margin-bottom: 14px; }
+      .subtitle { font-size: .9rem; max-width: 36ch; }
+      .hero-profile { margin-top: 20px; }
+      .cta-wrapper { margin-top: 20px; }
+      .btn-premium { width: 100%; justify-content: center; padding: 18px 28px; font-size: 1rem; }
+
+      /* Glass panel: below the fold, feels like a natural next section */
+      .glass-panel-wrapper {
+        position: relative; z-index: 20;
+        padding: 0 16px 32px 16px;
+        margin-top: 0;
+        /* Slight negative overlap with hero bottom for continuity */
+        margin-top: -1px;
+        background: #0a0807;
+      }
+      .premium-glass-panel {
+        padding: 28px 20px 22px;
+        border-radius: 20px;
+        margin-top: 20px;
+        border-color: rgba(201,169,110,.12);
+      }
+      .pillars-row {
+        grid-template-columns: 1fr;
+        gap: 28px; padding-bottom: 22px; margin-bottom: 18px;
+      }
+      .pillar-premium { align-items: flex-start; text-align: left; }
+      /* On mobile, pillar layout is horizontal: icon left, text right */
+      .pillar-premium {
+        flex-direction: row; align-items: center; gap: 16px;
+      }
+      .pillar-text { display: flex; flex-direction: column; gap: 4px; }
+      .pillar-premium h3 { font-size: .92rem; }
+      .pillar-premium p  { font-size: .8rem; }
+      .pillar-arrow { display: none; } /* cleaner on mobile */
+
+      .script-line-1 { font-size: 2rem; }
+      .script-line-2 { font-size: .8rem; }
     }
 
+    /* Mid-range desktop tightening */
     @media (min-width: 900px) and (max-width: 1100px) {
       .hero { padding: 0 36px 24px 36px; }
       .glass-panel-wrapper { padding: 0 36px 24px 36px; }
@@ -416,20 +539,17 @@
       <img src="/assets/images/csc-logo.svg" alt="Criar Sin Culpas"
            style="height:clamp(26px,4vw,34px);width:auto !important;max-width:none;display:block;object-fit:contain;flex-shrink:0;margin-left:-4px;">
     </a>
-
     <div style="display:flex;align-items:center;gap:16px;flex-wrap:nowrap;flex-shrink:0;">
       <nav class="nav-links" style="white-space:nowrap;">
         <a href="/apoyo/" data-i18n="nav_apoyo" data-es="Guías" data-en="Guides">Guías</a>
         <a href="/metodo" data-i18n="nav_metodo" data-es="El Método" data-en="Method">El Método</a>
         <a href="#" data-i18n="nav_aprende" data-es="Aprende (Pronto)" data-en="Learn (Soon)"
-           style="opacity:.45;cursor:default;pointer-events:none;">Aprende (Pronto)</a>
+           style="opacity:.4;cursor:default;pointer-events:none;">Aprende (Pronto)</a>
       </nav>
-
       <div class="lang-switcher" style="flex-shrink:0;">
         <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
         <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
       </div>
-
       <button class="mobile-menu-btn" aria-label="Menu" style="flex-shrink:0;">
         <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="menu-icon"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="close-icon"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -437,20 +557,19 @@
     </div>
   </div>
 
-  <!-- PAGE SHELL -->
+  <!-- PAGE SHELL (desktop) -->
   <div class="page-wrap">
 
-    <!-- Photo layer -->
+    <!-- Photo — desktop -->
     <div class="hero-scene reveal-1">
       <div class="hero-scene__photo"></div>
       <div class="hero-scene__overlay"></div>
     </div>
 
-    <!-- HERO CONTENT -->
+    <!-- HERO (desktop layout) -->
     <main class="hero">
       <div class="hero-content reveal-2">
 
-        <!-- Brand badge -->
         <div class="brand-badge">
           <span>Criar Sin Culpas</span>
         </div>
@@ -462,8 +581,7 @@
           Porque <span class="text-rose">criar</span> no debería sentirse imposible.
         </h1>
 
-        <!-- Squiggly wave divider -->
-        <svg class="squiggle" width="72" height="14" viewBox="0 0 72 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="squiggle" width="72" height="14" viewBox="0 0 72 14" fill="none">
           <path d="M2 7 C8 2, 14 12, 20 7 C26 2, 32 12, 38 7 C44 2, 50 12, 56 7 C62 2, 68 12, 70 7"
                 stroke="#C9A96E" stroke-width="1.6" stroke-linecap="round" fill="none"/>
         </svg>
@@ -498,51 +616,46 @@
       </div>
     </main>
 
-    <!-- GLASS PANEL -->
+    <!-- GLASS PANEL (desktop) -->
     <div class="glass-panel-wrapper reveal-5">
       <div class="premium-glass-panel">
-
         <div class="pillars-row">
 
-          <!-- Pillar 1 -->
           <div class="pillar-premium">
             <div class="pillar-icon-wrap">
-              <div class="pillar-icon-box">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-              </div>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
             </div>
-            <h3 data-i18n="pill_1_title" data-es="Sin juicios" data-en="No judgments">Sin juicios</h3>
-            <p data-i18n="pill_1_desc" data-es="Te acompañamos como eres, con respeto y empatía." data-en="We support you as you are, with respect and empathy.">Te acompañamos como eres, con respeto y empatía.</p>
+            <div class="pillar-text">
+              <h3 data-i18n="pill_1_title" data-es="Sin juicios" data-en="No judgments">Sin juicios</h3>
+              <p data-i18n="pill_1_desc" data-es="Te acompañamos como eres, con respeto y empatía." data-en="We support you as you are, with respect and empathy.">Te acompañamos como eres, con respeto y empatía.</p>
+            </div>
             <div class="pillar-arrow">→</div>
           </div>
 
-          <!-- Pillar 2 -->
           <div class="pillar-premium">
             <div class="pillar-icon-wrap">
-              <div class="pillar-icon-box">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 1 8.3C18.4 15 15.1 20 11 20z"/><path d="M11 20c2.4-3.4 3.5-7.1 2.2-11.4"/></svg>
-              </div>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 1 8.3C18.4 15 15.1 20 11 20z"/><path d="M11 20c2.4-3.4 3.5-7.1 2.2-11.4"/></svg>
             </div>
-            <h3 data-i18n="pill_2_title" data-es="Herramientas reales" data-en="Real tools">Herramientas reales</h3>
-            <p data-i18n="pill_2_desc" data-es="Recursos prácticos para tu día a día, no solo teoría." data-en="Practical resources for your day to day, not just theory.">Recursos prácticos para tu día a día, no solo teoría.</p>
+            <div class="pillar-text">
+              <h3 data-i18n="pill_2_title" data-es="Herramientas reales" data-en="Real tools">Herramientas reales</h3>
+              <p data-i18n="pill_2_desc" data-es="Recursos prácticos para tu día a día, no solo teoría." data-en="Practical resources for your day to day, not just theory.">Recursos prácticos para tu día a día, no solo teoría.</p>
+            </div>
             <div class="pillar-arrow">→</div>
           </div>
 
-          <!-- Pillar 3 -->
           <div class="pillar-premium">
             <div class="pillar-icon-wrap">
-              <div class="pillar-icon-box">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-              </div>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </div>
-            <h3 data-i18n="pill_3_title" data-es="Comunidad segura" data-en="Safe community">Comunidad segura</h3>
-            <p data-i18n="pill_3_desc" data-es="No estás sola. Aquí hay espacio para ti." data-en="You are not alone. There is space for you here.">No estás sola. Aquí hay espacio para ti.</p>
+            <div class="pillar-text">
+              <h3 data-i18n="pill_3_title" data-es="Comunidad segura" data-en="Safe community">Comunidad segura</h3>
+              <p data-i18n="pill_3_desc" data-es="No estás sola. Aquí hay espacio para ti." data-en="You are not alone. There is space for you here.">No estás sola. Aquí hay espacio para ti.</p>
+            </div>
             <div class="pillar-arrow">→</div>
           </div>
 
         </div>
 
-        <!-- Script footer — two lines + heart -->
         <div class="script-footer">
           <p class="script-line-1"
              data-i18n="script_text"
@@ -563,6 +676,250 @@
     </div>
 
   </div><!-- /page-wrap -->
+
+  <!-- ─────────────────────────────────────────
+       MOBILE HERO — separate DOM section,
+       only visible on mobile via CSS.
+       Sits outside .page-wrap so the photo
+       can be position:fixed behind the nav.
+  ───────────────────────────────────────── -->
+  <style>
+    /* Hide mobile section on desktop */
+    .mobile-only { display: none; }
+    @media (max-width: 900px) {
+      /* Hide desktop page-wrap entirely */
+      .page-wrap { display: none !important; }
+      /* Show mobile section */
+      .mobile-only { display: block; }
+
+      .m-hero-wrap {
+        position: relative;
+        min-height: 100svh;
+        overflow: hidden;
+        display: flex; flex-direction: column; justify-content: flex-end;
+      }
+      /* Full-bleed photo — fixed so it extends behind nav */
+      .m-photo {
+        position: fixed; inset: 0; z-index: 0;
+        background-image: var(--hero-photo);
+        background-size: cover;
+        background-position: 40% 38%;
+        filter: brightness(.65) saturate(1.1) sepia(.18) hue-rotate(-6deg);
+      }
+      .m-overlay {
+        position: fixed; inset: 0; z-index: 1;
+        background:
+          linear-gradient(to top, #0a0807 0%, rgba(10,8,7,.88) 32%, rgba(10,8,7,.2) 62%, rgba(10,8,7,0) 100%);
+      }
+      /* Hero text — sits above the photo, left-aligned, large */
+      .m-hero-content {
+        position: relative; z-index: 10;
+        padding: 0 24px 44px 24px;
+        /* Push content below fixed nav height */
+        padding-top: max(80px, env(safe-area-inset-top) + 64px);
+        display: flex; flex-direction: column; align-items: flex-start;
+      }
+      .m-brand-badge {
+        display: inline-flex; align-items: center; gap: 7px;
+        padding: 6px 14px; border-radius: 999px;
+        border: 1px solid rgba(97,209,196,.45);
+        background: rgba(97,209,196,.06);
+        margin-bottom: 20px;
+      }
+      .m-brand-badge span {
+        font-size: .6rem; font-weight: 700;
+        letter-spacing: .14em; text-transform: uppercase;
+        color: var(--teal);
+      }
+      .m-brand-badge::before {
+        content: ''; width: 5px; height: 5px; border-radius: 50%;
+        background: var(--teal); opacity: .75; flex-shrink: 0;
+      }
+      .m-h1 {
+        font-family: var(--display-font);
+        font-size: clamp(2.8rem, 11vw, 3.6rem);
+        line-height: 1.06; font-weight: 400;
+        color: var(--text-main);
+        margin-bottom: 14px; letter-spacing: .01em;
+      }
+      .m-squiggle { margin-bottom: 14px; opacity: .55; }
+      .m-subtitle {
+        font-size: .9rem; color: rgba(247,244,242,.82);
+        line-height: 1.68; max-width: 34ch; margin-bottom: 0;
+      }
+      .m-profile {
+        display: flex; align-items: center; gap: 12px; margin-top: 22px;
+      }
+      .m-profile img {
+        width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
+        border: 1px solid rgba(201,169,110,.35);
+        box-shadow: 0 4px 14px rgba(0,0,0,.45);
+      }
+      .m-profile-name { font-size: .88rem; font-weight: 600; color: var(--text-main); }
+      .m-profile-role { font-size: .72rem; color: var(--text-muted); margin-top: 1px; }
+      .m-cta { margin-top: 22px; width: 100%; }
+      .m-btn {
+        display: flex; align-items: center; justify-content: center; gap: 12px;
+        width: 100%; padding: 18px 24px; border-radius: 999px;
+        background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 60%, var(--gold-dark) 100%);
+        color: #1a0e06; font-size: 1rem; font-weight: 600; letter-spacing: .02em;
+        text-decoration: none; border: none;
+        box-shadow: 0 8px 24px rgba(180,130,60,.35);
+        transition: all 400ms var(--ease-cinematic);
+      }
+
+      /* Glass panel below */
+      .m-glass-wrap {
+        position: relative; z-index: 20;
+        background: #0a0807;
+        padding: 20px 16px 32px;
+      }
+      .m-glass {
+        background: rgba(14,10,8,.9);
+        backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+        border: 1px solid rgba(201,169,110,.12);
+        border-radius: 20px;
+        padding: 28px 20px 22px;
+        box-shadow: 0 16px 48px rgba(0,0,0,.5), inset 0 1px 0 rgba(201,169,110,.06);
+      }
+      .m-pillars { display: flex; flex-direction: column; gap: 24px; padding-bottom: 22px; margin-bottom: 20px; border-bottom: 1px solid rgba(201,169,110,.1); }
+      .m-pillar { display: flex; align-items: center; gap: 16px; }
+      .m-icon-wrap { position: relative; width: 52px; height: 52px; flex-shrink: 0; }
+      .m-icon-box {
+        width: 48px; height: 48px; border-radius: 50%;
+        border: 1px solid rgba(201,169,110,.3);
+        display: flex; justify-content: center; align-items: center;
+        background: rgba(201,169,110,.06);
+        position: absolute; top: 2px; left: 2px;
+      }
+      .m-icon-box svg { width: 19px; height: 19px; color: var(--gold); }
+      .m-icon-wrap::after { content: '+'; position: absolute; top: -2px; right: -2px; font-size: .6rem; font-weight: 700; color: var(--gold); opacity: .7; }
+      .m-icon-wrap::before { content: '·'; position: absolute; bottom: 0; left: -3px; font-size: .85rem; font-weight: 700; color: var(--gold); opacity: .4; }
+      .m-pillar-text h3 { font-size: .9rem; font-weight: 600; color: var(--gold); margin-bottom: 3px; }
+      .m-pillar-text p  { font-size: .8rem; color: rgba(247,244,242,.82); line-height: 1.5; }
+
+      .m-script { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+      .m-script-1 { font-family: var(--script-font); font-size: 2rem; color: var(--gold); opacity: .92; text-shadow: 0 2px 12px rgba(0,0,0,.5); }
+      .m-script-2 { font-family: var(--display-font); font-size: .8rem; color: rgba(247,244,242,.58); font-style: italic; letter-spacing: .04em; }
+      .m-heart { margin-top: 8px; color: var(--rose); opacity: .8; }
+    }
+  </style>
+
+  <!-- MOBILE SECTION (hidden on desktop) -->
+  <div class="mobile-only">
+    <!-- Fixed photo behind everything -->
+    <div class="m-photo"></div>
+    <div class="m-overlay"></div>
+
+    <!-- Full-height hero -->
+    <div class="m-hero-wrap">
+      <div class="m-hero-content reveal-2">
+
+        <div class="m-brand-badge"><span>Criar Sin Culpas</span></div>
+
+        <h1 class="m-h1"
+            data-i18n="m_headline"
+            data-es="Porque <span class='text-rose'>criar</span> no debería sentirse imposible."
+            data-en="Because <span class='text-rose'>parenting</span> shouldn't feel impossible.">
+          Porque <span class="text-rose">criar</span> no debería sentirse imposible.
+        </h1>
+
+        <svg class="m-squiggle" width="68" height="13" viewBox="0 0 72 14" fill="none">
+          <path d="M2 7 C8 2, 14 12, 20 7 C26 2, 32 12, 38 7 C44 2, 50 12, 56 7 C62 2, 68 12, 70 7"
+                stroke="#C9A96E" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+        </svg>
+
+        <p class="m-subtitle"
+           data-i18n="m_sub"
+           data-es="Te acompaño a bajar la intensidad, recuperar tu centro y transformar el caos en calma &mdash; sin juicios y sin perfeccionismos."
+           data-en="I help you lower the intensity, recover your center, and transform chaos into calm &mdash; without judgment and without perfectionism.">
+          Te acompaño a bajar la intensidad, recuperar tu centro y transformar el caos en calma &mdash; sin juicios y sin perfeccionismos.
+        </p>
+
+        <div class="m-profile">
+          <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779117777/nari-portrait_jzjwcw.png" alt="Nari Fateha">
+          <div>
+            <div class="m-profile-name">Nari Fateha</div>
+            <div class="m-profile-role"
+                 data-i18n="m_role"
+                 data-es="Educadora y creadora de Criar Sin Culpas"
+                 data-en="Educator and creator of Criar Sin Culpas">Educadora y creadora de Criar Sin Culpas</div>
+          </div>
+        </div>
+
+        <div class="m-cta">
+          <a href="/apoyo" class="m-btn" id="enter-btn-m">
+            <span data-i18n="m_cta"
+                  data-es="Recibe apoyo que se sienta bien"
+                  data-en="Get support that feels right">Recibe apoyo que se sienta bien</span>
+            <span>→</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Glass panel — scrolls into view naturally -->
+    <div class="m-glass-wrap">
+      <div class="m-glass">
+        <div class="m-pillars">
+
+          <div class="m-pillar">
+            <div class="m-icon-wrap">
+              <div class="m-icon-box">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+            </div>
+            <div class="m-pillar-text">
+              <h3 data-i18n="m_p1_title" data-es="Sin juicios" data-en="No judgments">Sin juicios</h3>
+              <p data-i18n="m_p1_desc" data-es="Te acompañamos como eres, con respeto y empatía." data-en="We support you as you are, with respect and empathy.">Te acompañamos como eres, con respeto y empatía.</p>
+            </div>
+          </div>
+
+          <div class="m-pillar">
+            <div class="m-icon-wrap">
+              <div class="m-icon-box">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 1 8.3C18.4 15 15.1 20 11 20z"/><path d="M11 20c2.4-3.4 3.5-7.1 2.2-11.4"/></svg>
+              </div>
+            </div>
+            <div class="m-pillar-text">
+              <h3 data-i18n="m_p2_title" data-es="Herramientas reales" data-en="Real tools">Herramientas reales</h3>
+              <p data-i18n="m_p2_desc" data-es="Recursos prácticos para tu día a día, no solo teoría." data-en="Practical resources for your day to day, not just theory.">Recursos prácticos para tu día a día, no solo teoría.</p>
+            </div>
+          </div>
+
+          <div class="m-pillar">
+            <div class="m-icon-wrap">
+              <div class="m-icon-box">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+            </div>
+            <div class="m-pillar-text">
+              <h3 data-i18n="m_p3_title" data-es="Comunidad segura" data-en="Safe community">Comunidad segura</h3>
+              <p data-i18n="m_p3_desc" data-es="No estás sola. Aquí hay espacio para ti." data-en="You are not alone. There is space for you here.">No estás sola. Aquí hay espacio para ti.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="m-script">
+          <p class="m-script-1"
+             data-i18n="m_script1"
+             data-es="Estás haciendo lo mejor que puedes."
+             data-en="You are doing the best you can.">Estás haciendo lo mejor que puedes.</p>
+          <p class="m-script-2"
+             data-i18n="m_script2"
+             data-es="Y eso ya es suficiente."
+             data-en="And that is enough.">Y eso ya es suficiente.</p>
+          <div class="m-heart">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /mobile-only -->
 
   <script>
   (function() {
@@ -596,18 +953,22 @@
 
     applyLang(currentLang);
 
-    const enterBtn = document.getElementById('enter-btn');
-    if (enterBtn) {
-      enterBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const href = this.getAttribute('href');
-        trackSignal('portal_entered', { language: currentLang });
-        document.body.style.opacity = '0';
-        document.body.style.transition = 'opacity .6s ease';
-        setTimeout(() => { window.location.href = href; }, 600);
-      });
-    }
+    // CTA click tracking + fade transition
+    ['enter-btn', 'enter-btn-m'].forEach(id => {
+      const btn = document.getElementById(id);
+      if (btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const href = this.getAttribute('href');
+          trackSignal('portal_entered', { language: currentLang });
+          document.body.style.opacity = '0';
+          document.body.style.transition = 'opacity .6s ease';
+          setTimeout(() => { window.location.href = href; }, 600);
+        });
+      }
+    });
 
+    // Mobile menu
     const menuBtn  = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
     if (menuBtn && navLinks) {
