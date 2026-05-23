@@ -1,3 +1,18 @@
+<system_context>
+Target Repository: `luis-gilberto/criarsinculpas`
+Target File: `apoyo/index.html`
+Goal: Nuclear Override. Completely replace the Support Hub page with the finalized V2 code that includes the warmer cinematic color palette, Cormorant Garamond typography, and gold-tinted UI borders.
+</system_context>
+
+<task>
+Delete the entire contents of `apoyo/index.html` and replace it 100% with the provided code block below. Do not use search-and-replace. Then, commit and push the changes to production.
+</task>
+
+<execution>
+**Step 1: Full File Override**
+Open `apoyo/index.html`, delete everything inside it, and paste this exact code:
+
+```html
 <!DOCTYPE html>
 <html lang="es" data-theme="dark">
 <head>
@@ -8,7 +23,11 @@
   <meta property="og:image" content="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779225964/gRvUE3dA_mbifyu.png">
   <meta property="og:url" content="https://criarsinculpas.com">
   <link rel="canonical" href="https://criarsinculpas.com">
-  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <!-- SnglIQ Telemetry Engine (Plausible) - Production Only -->
   <script>
     if (window.location.hostname === 'criarsinculpas.com' || window.location.hostname === 'www.criarsinculpas.com') {
@@ -21,273 +40,626 @@
   </script>
 
   <style>
+    /* ─────────────────────────────────────────
+       TOKENS — matched to index page
+    ───────────────────────────────────────── */
     :root {
-      --bg-void: #0c0a10;
-      --text-main: #F2EFEA;
-      --text-muted: rgba(242, 239, 234, 0.65);
-      --display-font: 'Iowan Old Style', 'Playfair Display', Georgia, serif;
-      --ui-font: Inter, system-ui, -apple-system, sans-serif;
+      /* Same warm void as index, not cold purple */
+      --bg-void:   #0a0807;
+      --bg-card:   rgba(255,255,255,.028);
+      --bg-card-hover: rgba(255,255,255,.06);
+      --card-border:   rgba(201,169,110,.1);
+      --card-border-hover: rgba(201,169,110,.2);
+
+      --text-main:  #F7F4F2;
+      --text-muted: rgba(247,244,242,.62);
+      --text-faint: rgba(247,244,242,.35);
+
+      /* Warm gold — same as index */
+      --gold:       #C9A96E;
+      --gold-light: #e2c48a;
+      --gold-dark:  #9e7840;
+
+      /* Teal — preserved from original hub */
+      --teal:  #61d1c4;
+      --teal-bg: rgba(97,209,196,.07);
+
+      /* Typography */
+      --display-font: 'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
+      --ui-font: 'Inter', system-ui, -apple-system, sans-serif;
+
       --ease-cinematic: cubic-bezier(0.2, 0.8, 0.2, 1);
-      --teal: #61d1c4;
-      
-      --card-bg: rgba(255, 255, 255, 0.02);
-      --card-border: rgba(255, 255, 255, 0.05);
-      --card-hover: rgba(255, 255, 255, 0.08);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-    html, body { min-height: 100dvh; width: 100%; overflow-x: hidden; background-color: var(--bg-void); color: var(--text-main); font-family: var(--ui-font); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+    /* ─────────────────────────────────────────
+       RESET
+    ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html, body {
+      min-height: 100dvh; width: 100%;
+      overflow-x: hidden;
+      background-color: var(--bg-void);
+      color: var(--text-main);
+      font-family: var(--ui-font);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
 
-    /* ── NAVIGATION (Reused from Index) ── */
-    .top-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; background: rgba(12, 10, 16, 0.55); padding: max(22px, env(safe-area-inset-top)) 28px 16px 28px; border-bottom: 1px solid var(--card-border); position: sticky; top: 0; z-index: 100; }
-    .top-row::before { content: ''; position: absolute; inset: 0; z-index: -1; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+    /* Grain — same texture as index */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 0;
+      opacity: .028;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+    }
+
+    /* Subtle warm ambient glow — bottom left, like index */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 0% 100%, rgba(110,60,15,.22) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 30% at 100% 0%, rgba(97,209,196,.04) 0%, transparent 60%);
+    }
+
+    /* ─────────────────────────────────────────
+       NAV — matched to index
+    ───────────────────────────────────────── */
+    .top-row {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 12px;
+      background: rgba(10,8,7,.45);
+      padding: max(18px, env(safe-area-inset-top)) 48px 16px 48px;
+      border-bottom: 1px solid rgba(201,169,110,.08);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .top-row::before {
+      content: ''; position: absolute; inset: 0; z-index: -1;
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    }
     .nav-links { display: flex; gap: 36px; align-items: center; }
-    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.25s; }
+    .nav-links a {
+      color: var(--text-muted); text-decoration: none;
+      font-size: .75rem; font-weight: 500;
+      letter-spacing: .06em; text-transform: uppercase;
+      transition: color .25s;
+    }
     .nav-links a:hover, .nav-links a.active { color: #fff; }
-    
-    .lang-switcher { display: inline-flex; padding: 4px; gap: 4px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.03); }
-    .lang-btn { min-width: 44px; padding: 5px 10px; border-radius: 999px; color: var(--text-muted); font-size: 0.68rem; font-weight: 700; cursor: pointer; background: none; border: none; transition: all 260ms; }
-    .lang-btn[aria-pressed='true'] { color: #fff; background: rgba(255,255,255,0.1); }
+
+    .lang-switcher {
+      display: inline-flex; padding: 4px; gap: 4px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.04);
+    }
+    .lang-btn {
+      min-width: 40px; padding: 5px 10px; border-radius: 999px;
+      color: var(--text-muted); font-size: .68rem; font-weight: 700;
+      cursor: pointer; background: none; border: none; transition: all 260ms;
+    }
+    .lang-btn[aria-pressed='true'] { color: #fff; background: rgba(255,255,255,.1); }
     .mobile-menu-btn { display: none; }
 
     @media (max-width: 768px) {
-      .nav-links { position: fixed; inset: 0; background: rgba(12, 10, 16, 0.98); z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; opacity: 0; pointer-events: none; transition: all 0.4s var(--ease-cinematic); transform: translateY(-10px); }
+      .top-row { padding-left: 20px; padding-right: 20px; }
+      .nav-links {
+        position: fixed; inset: 0;
+        background: rgba(10,8,7,.98);
+        backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        z-index: 999; flex-direction: column;
+        align-items: center; justify-content: center;
+        gap: 40px; opacity: 0; pointer-events: none;
+        transition: all .4s var(--ease-cinematic);
+        transform: translateY(-10px);
+      }
       .nav-links.is-open { opacity: 1; pointer-events: auto; transform: translateY(0); }
-      .nav-links a { font-size: 1.4rem; }
-      .mobile-menu-btn { display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 50%; width: 44px; height: 44px; color: #fff; z-index: 1000; cursor: pointer; }
+      .nav-links a { font-size: 1.3rem; }
+      .mobile-menu-btn {
+        display: flex; align-items: center; justify-content: center;
+        background: rgba(255,255,255,.04);
+        border: 1px solid rgba(255,255,255,.1); border-radius: 50%;
+        width: 44px; height: 44px; color: #fff; z-index: 1000; cursor: pointer;
+      }
       .nav-links:not(.is-open) a { display: none; }
       .nav-links.is-open a { display: block; }
     }
 
-    /* ── LAYOUT SHELL ── */
-    .hub-container { max-width: 1000px; margin: 0 auto; padding: 0 24px 80px 24px; display: flex; flex-direction: column; gap: 64px; }
+    /* ─────────────────────────────────────────
+       LAYOUT SHELL
+    ───────────────────────────────────────── */
+    .hub-container {
+      position: relative; z-index: 1;
+      max-width: 1000px; margin: 0 auto;
+      padding: 0 24px 80px 24px;
+      display: flex; flex-direction: column; gap: 64px;
+    }
     section { display: flex; flex-direction: column; gap: 24px; }
-    .section-header h2 { font-family: var(--display-font); font-size: 1.8rem; font-weight: 500; margin-bottom: 8px; }
-    .section-header p { color: var(--text-muted); font-size: 0.95rem; max-width: 60ch; }
+
+    /* Section headers — Cormorant for h2, matching index editorial feel */
+    .section-header h2 {
+      font-family: var(--display-font);
+      font-size: 2rem; font-weight: 500;
+      letter-spacing: .01em;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+    .section-header p { color: var(--text-muted); font-size: .92rem; max-width: 60ch; }
     .section-header.flex-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
-    .text-link { color: var(--teal); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: opacity 0.3s; }
-    .text-link:hover { opacity: 0.8; }
+    .text-link {
+      color: var(--teal); text-decoration: none;
+      font-size: .82rem; font-weight: 500; transition: opacity .3s;
+    }
+    .text-link:hover { opacity: .75; }
 
-    /* ── HERO SECTION ── */
-    .hub-hero { position: relative; padding: 80px 0; display: flex; flex-direction: column; justify-content: center; min-height: 50vh; border-bottom: 1px solid var(--card-border); }
-    .hub-hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
-    .hub-hero-bg img { position: absolute; right: 0; top: 0; width: 65%; height: 100%; object-fit: cover; object-position: 0% 25%; opacity: 0.75; filter: brightness(0.9) saturate(1.25) contrast(1.1); }
-    .hub-hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, var(--bg-void) 0%, var(--bg-void) 35%, rgba(12,10,16,0) 65%), linear-gradient(to top, var(--bg-void) 0%, rgba(12,10,16,0) 20%); }
-     
-    .disabled-card { opacity: 0.4; pointer-events: none; cursor: default; }
-    .coming-soon-badge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 4px 8px; border-radius: 6px; color: var(--text-muted); margin-left: auto; align-self: center; }
-    
-    .hub-hero-content { position: relative; z-index: 2; max-width: 500px; }
-    .eyebrow { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal); margin-bottom: 16px; display: block; }
-    .hub-hero h1 { font-family: var(--display-font); font-size: clamp(2.4rem, 5vw, 3.2rem); line-height: 1.1; margin-bottom: 24px; font-weight: 500; }
-    .hub-hero p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 32px; line-height: 1.6; }
-    
-    .btn-primary { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; background: var(--teal); color: #0c0a10; font-weight: 600; font-size: 0.95rem; border-radius: 999px; text-decoration: none; transition: transform 0.3s var(--ease-cinematic), box-shadow 0.3s; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(97, 209, 196, 0.3); }
+    /* ─────────────────────────────────────────
+       HERO — warm photo treatment
+    ───────────────────────────────────────── */
+    .hub-hero {
+      position: relative;
+      padding: 72px 0 48px 0;
+      display: flex; flex-direction: column;
+      justify-content: center;
+      min-height: 46vh;
+      border-bottom: 1px solid rgba(201,169,110,.08);
+    }
+    .hub-hero-bg {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+    }
+    .hub-hero-bg img {
+      position: absolute; right: 0; top: 0;
+      width: 62%; height: 100%;
+      object-fit: cover; object-position: 0% 25%;
+      opacity: .72;
+      /* Same warm filter as index photo */
+      filter: brightness(.82) saturate(1.1) sepia(.14) hue-rotate(-6deg);
+      border-radius: 0 0 0 24px;
+    }
+    .hub-hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background:
+        linear-gradient(to right, var(--bg-void) 0%, var(--bg-void) 35%, rgba(10,8,7,0) 62%),
+        linear-gradient(to top, var(--bg-void) 0%, rgba(10,8,7,0) 22%),
+        radial-gradient(ellipse 50% 40% at 0% 100%, rgba(100,55,10,.35) 0%, transparent 60%);
+    }
 
-    /* ── GUIDES GRID ── */
-    .guides-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .guide-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 20px; display: flex; align-items: flex-start; gap: 16px; text-decoration: none; color: var(--text-main); transition: all 0.4s var(--ease-cinematic); position: relative; overflow: hidden; }
-    .guide-card:hover { background: var(--card-hover); border-color: rgba(255,255,255,0.12); transform: translateY(-2px); }
-    .guide-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--icon-glow); color: var(--icon-color); border: 1px solid rgba(255,255,255,0.05); }
-    .guide-info h3 { font-size: 1rem; font-weight: 500; margin-bottom: 4px; }
-    .guide-info p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; }
-    .guide-arrow { margin-left: auto; align-self: center; color: var(--text-muted); opacity: 0; transform: translateX(-10px); transition: all 0.3s var(--ease-cinematic); }
+    .hub-hero-content {
+      position: relative; z-index: 2; max-width: 480px;
+    }
+
+    /* Eyebrow — teal, same as index badge */
+    .eyebrow {
+      font-size: .68rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .1em;
+      color: var(--teal); margin-bottom: 14px; display: block;
+    }
+
+    /* Hub h1 uses the display serif, bridging from index */
+    .hub-hero h1 {
+      font-family: var(--display-font);
+      font-size: clamp(2.2rem, 4.5vw, 3rem);
+      line-height: 1.1; margin-bottom: 20px;
+      font-weight: 500; letter-spacing: .01em;
+    }
+    .hub-hero p {
+      color: var(--text-muted); font-size: .98rem;
+      margin-bottom: 28px; line-height: 1.65; max-width: 40ch;
+    }
+
+    /* CTA button — teal, consistent with hub's primary action */
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 13px 26px;
+      background: var(--teal); color: #0a0807;
+      font-weight: 600; font-size: .92rem; border-radius: 999px;
+      text-decoration: none;
+      transition: transform .3s var(--ease-cinematic), box-shadow .3s;
+      box-shadow: 0 4px 18px rgba(97,209,196,.25);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(97,209,196,.35);
+    }
+
+    /* ─────────────────────────────────────────
+       GUIDE CARDS — warm borders, gold accents
+    ───────────────────────────────────────── */
+    .guides-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    }
+    .guide-card {
+      background: var(--bg-card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px; padding: 18px;
+      display: flex; align-items: flex-start; gap: 14px;
+      text-decoration: none; color: var(--text-main);
+      transition: all .35s var(--ease-cinematic);
+      position: relative; overflow: hidden;
+    }
+    /* Warm shimmer on hover */
+    .guide-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(201,169,110,.04), transparent 60%);
+      opacity: 0; transition: opacity .35s;
+      pointer-events: none;
+    }
+    .guide-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--card-border-hover);
+      transform: translateY(-2px);
+    }
+    .guide-card:hover::before { opacity: 1; }
+
+    .guide-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      background: var(--icon-glow);
+      color: var(--icon-color);
+      border: 1px solid rgba(255,255,255,.05);
+    }
+    .guide-info h3 { font-size: .95rem; font-weight: 500; margin-bottom: 3px; }
+    .guide-info p  { font-size: .78rem; color: var(--text-muted); line-height: 1.4; }
+    .guide-arrow {
+      margin-left: auto; align-self: center;
+      color: var(--text-muted); opacity: 0;
+      transform: translateX(-8px);
+      transition: all .3s var(--ease-cinematic);
+    }
     .guide-card:hover .guide-arrow { opacity: 1; transform: translateX(0); }
 
-    /* ── SOBRE NARI & METHOD ── */
-    .nari-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .disabled-card { opacity: .38; pointer-events: none; cursor: default; }
+    .coming-soon-badge {
+      font-size: .62rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .05em;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      padding: 3px 8px; border-radius: 6px;
+      color: var(--text-faint); margin-left: auto; align-self: center;
+    }
+
+    /* ─────────────────────────────────────────
+       NARI CARD
+    ───────────────────────────────────────── */
+    .nari-card {
+      background: var(--bg-card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px; padding: 22px;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 24px; flex-wrap: wrap;
+    }
     .nari-profile { display: flex; align-items: center; gap: 16px; flex: 1; min-width: 280px; }
-    .nari-profile img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(255,255,255,0.1); }
-    .nari-profile h3 { font-size: 1.1rem; font-weight: 500; margin-bottom: 4px; }
-    .nari-profile p { font-size: 0.85rem; color: var(--text-muted); }
-    .btn-secondary { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 999px; color: #fff; font-size: 0.9rem; text-decoration: none; transition: background 0.3s; }
-    .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+    .nari-profile img {
+      width: 60px; height: 60px; border-radius: 50%; object-fit: cover;
+      border: 1px solid rgba(201,169,110,.25);
+      box-shadow: 0 4px 14px rgba(0,0,0,.4);
+    }
+    .nari-profile h3 { font-size: 1.05rem; font-weight: 500; margin-bottom: 3px; }
+    .nari-profile p { font-size: .82rem; color: var(--text-muted); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 22px;
+      background: rgba(201,169,110,.08);
+      border: 1px solid rgba(201,169,110,.2);
+      border-radius: 999px; color: var(--gold-light);
+      font-size: .88rem; text-decoration: none;
+      transition: background .3s, border-color .3s;
+    }
+    .btn-secondary:hover {
+      background: rgba(201,169,110,.14);
+      border-color: rgba(201,169,110,.35);
+    }
 
-    .method-accordion { border: 1px solid var(--card-border); border-radius: 16px; overflow: hidden; }
-    .method-row { padding: 20px 24px; border-bottom: 1px solid var(--card-border); display: flex; align-items: center; gap: 24px; text-decoration: none; color: var(--text-main); transition: background 0.3s; }
-    .method-row { cursor: pointer; } 
-    .method-row[aria-expanded="true"] { background: var(--card-hover); } 
-    .method-row[aria-expanded="true"] .row-icon { transform: rotate(180deg); } 
-    .row-icon { display: inline-block; transition: transform 0.35s cubic-bezier(0.2,0.8,0.2,1); } 
-    .method-panel { 
-      max-height: 0; 
-      overflow: hidden; 
-      transition: max-height 0.45s cubic-bezier(0.2,0.8,0.2,1), 
-                  padding 0.35s cubic-bezier(0.2,0.8,0.2,1); 
-      padding: 0 24px; 
-      border-bottom: 1px solid var(--card-border); 
-    } 
-    .method-panel.is-open { 
-      max-height: 300px; 
-      padding: 20px 24px 24px 24px; 
-    } 
-    .method-panel p { 
-      font-size: 0.9rem; 
-      color: var(--text-muted); 
-      line-height: 1.65; 
-      max-width: 62ch; 
-      margin-bottom: 16px; 
-    } 
-    .panel-link { 
-      font-size: 0.8rem; 
-      font-weight: 600; 
-      color: var(--teal); 
-      text-decoration: none; 
-      letter-spacing: 0.02em; 
-      transition: opacity 0.2s; 
-    } 
-    .panel-link:hover { opacity: 0.75; }
+    /* ─────────────────────────────────────────
+       METHOD ACCORDION
+    ───────────────────────────────────────── */
+    .method-accordion {
+      border: 1px solid var(--card-border);
+      border-radius: 16px; overflow: hidden;
+    }
+    .method-row {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--card-border);
+      display: flex; align-items: center; gap: 22px;
+      text-decoration: none; color: var(--text-main);
+      transition: background .25s; cursor: pointer;
+    }
+    .method-row:hover { background: var(--bg-card-hover); }
+    .method-row[aria-expanded="true"] { background: var(--bg-card-hover); }
+    .method-row[aria-expanded="true"] .row-icon { transform: rotate(180deg); }
+    .row-icon {
+      display: inline-block;
+      transition: transform .35s var(--ease-cinematic);
+      color: var(--text-faint);
+    }
+    .method-panel {
+      max-height: 0; overflow: hidden;
+      transition: max-height .45s var(--ease-cinematic), padding .35s var(--ease-cinematic);
+      padding: 0 22px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .method-panel.is-open { max-height: 300px; padding: 18px 22px 22px 22px; }
+    .method-panel p {
+      font-size: .88rem; color: var(--text-muted);
+      line-height: 1.65; max-width: 62ch; margin-bottom: 14px;
+    }
+    .panel-link {
+      font-size: .78rem; font-weight: 600;
+      color: var(--teal); text-decoration: none;
+      letter-spacing: .02em; transition: opacity .2s;
+    }
+    .panel-link:hover { opacity: .75; }
     .method-row:last-child { border-bottom: none; }
-    .method-row:hover { background: var(--card-hover); }
-    .row-num { font-size: 0.8rem; color: #A78BFA; font-family: monospace; font-weight: 600; } 
-     
-     .method-deep-link { background: rgba(167, 139, 250, 0.12); border: 1px solid rgba(167, 139, 250, 0.25); color: #A78BFA; border-radius: 999px; padding: 6px 16px; font-size: 0.78rem; font-weight: 600; text-decoration: none; transition: background 0.3s; display: inline-block; } 
-     .method-deep-link:hover { background: rgba(167, 139, 250, 0.2); opacity: 1; } 
-     
-     .method-teaser-card { background: var(--bg-void); padding: 24px 28px; border-top: 1px solid var(--card-border); border-left: 3px solid #A78BFA; } 
-     .teaser-quote { font-family: var(--display-font); font-size: 1.1rem; font-style: italic; color: #fff; line-height: 1.5; margin-bottom: 8px; } 
-     .teaser-attr { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; color: var(--text-muted); text-transform: uppercase; }
-    .row-title { font-size: 0.95rem; font-weight: 500; flex-shrink: 0; width: 220px; }
-    .row-desc { font-size: 0.85rem; color: var(--text-muted); flex: 1; }
-    .row-icon { color: var(--text-muted); }
+    .row-num { font-size: .78rem; color: var(--gold); font-family: monospace; font-weight: 600; }
+    .method-deep-link {
+      background: rgba(201,169,110,.1);
+      border: 1px solid rgba(201,169,110,.22);
+      color: var(--gold-light);
+      border-radius: 999px; padding: 6px 16px;
+      font-size: .76rem; font-weight: 600;
+      text-decoration: none; transition: background .3s;
+      display: inline-block;
+    }
+    .method-deep-link:hover { background: rgba(201,169,110,.18); }
 
-    /* ── CAMINOS DE APRENDIZAJE ── */
-    .paths-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-    .path-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 16px; opacity: 0.6; cursor: not-allowed; }
+    /* Method teaser card — warm border */
+    .method-teaser-card {
+      background: rgba(10,8,7,.5);
+      padding: 22px 26px;
+      border-top: 1px solid var(--card-border);
+      border-left: 3px solid var(--gold);
+    }
+    .teaser-quote {
+      font-family: var(--display-font);
+      font-size: 1.1rem; font-style: italic;
+      color: var(--text-main); line-height: 1.5; margin-bottom: 6px;
+    }
+    .teaser-attr {
+      font-size: .62rem; font-weight: 700;
+      letter-spacing: .1em; color: var(--gold);
+      text-transform: uppercase;
+    }
+    .row-title { font-size: .92rem; font-weight: 500; flex-shrink: 0; width: 220px; }
+    .row-desc  { font-size: .82rem; color: var(--text-muted); flex: 1; }
+
+    /* ─────────────────────────────────────────
+       LEARNING PATHS
+    ───────────────────────────────────────── */
+    .paths-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+    }
+    .path-card {
+      background: var(--bg-card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px; padding: 22px;
+      display: flex; flex-direction: column; gap: 14px;
+      opacity: .5; cursor: not-allowed;
+    }
     .path-icon { color: var(--text-muted); }
-    .path-info h4 { font-size: 0.75rem; font-weight: 600; color: var(--teal); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
-    .path-info h3 { font-size: 1rem; font-weight: 500; line-height: 1.3; }
-    .path-tag { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; background: rgba(255,255,255,0.05); border-radius: 999px; font-size: 0.75rem; color: var(--text-muted); margin-top: auto; width: fit-content; }
-    .tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); opacity: 0.5; }
+    .path-info h4 {
+      font-size: .7rem; font-weight: 700; color: var(--teal);
+      margin-bottom: 3px; text-transform: uppercase; letter-spacing: .05em;
+    }
+    .path-info h3 { font-size: .95rem; font-weight: 500; line-height: 1.3; }
+    .path-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px;
+      background: rgba(255,255,255,.04); border-radius: 999px;
+      font-size: .72rem; color: var(--text-muted);
+      margin-top: auto; width: fit-content;
+    }
+    .tag-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--teal); opacity: .5; }
 
-    /* ── MOBILE RESPONSIVE ── */
+    /* ─────────────────────────────────────────
+       WAITLIST
+    ───────────────────────────────────────── */
+    .waitlist-card {
+      background: rgba(97,209,196,.04);
+      border: 1px solid rgba(97,209,196,.14);
+      border-radius: 16px; padding: 28px 36px;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 28px; flex-wrap: wrap;
+      margin-top: 14px;
+    }
+    .waitlist-info h3 { font-size: 1.05rem; font-weight: 500; color: #fff; margin-bottom: 3px; }
+    .waitlist-info p  { font-size: .87rem; color: var(--text-muted); }
+    .waitlist-form { display: flex; gap: 8px; flex: 1; max-width: 420px; min-width: 280px; }
+    .waitlist-form input {
+      flex: 1;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 8px; padding: 11px 14px;
+      color: #fff; font-family: var(--ui-font); font-size: .88rem;
+      outline: none; transition: border-color .3s; min-width: 0;
+    }
+    .waitlist-form input:focus { border-color: var(--teal); }
+    .waitlist-form input::placeholder { color: rgba(255,255,255,.28); }
+    .waitlist-form button {
+      background: var(--teal); color: #0a0807;
+      border: none; border-radius: 8px; padding: 0 22px;
+      font-weight: 600; font-size: .88rem;
+      cursor: pointer; transition: opacity .3s; flex-shrink: 0;
+    }
+    .waitlist-form button:hover { opacity: .85; }
+
+    /* ─────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────── */
+    .site-footer {
+      border-top: 1px solid rgba(201,169,110,.08);
+      padding: 36px 24px; margin-top: auto;
+      background: var(--bg-void); position: relative; z-index: 10;
+    }
+    .footer-content {
+      max-width: 1000px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 20px;
+    }
+    .footer-copy { font-size: .76rem; color: var(--text-faint); font-weight: 500; letter-spacing: .05em; }
+    .footer-links { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
+    .footer-links a {
+      font-size: .76rem; color: var(--text-muted);
+      text-decoration: none; transition: color .3s;
+      font-weight: 500; letter-spacing: .02em;
+    }
+    .footer-links a:hover { color: #fff; }
+
+    /* ─────────────────────────────────────────
+       TRUST MODAL — preserved exactly
+    ───────────────────────────────────────── */
+    .trust-modal-overlay {
+      position: fixed; inset: 0; z-index: 9999;
+      display: flex; align-items: center; justify-content: center; padding: 24px;
+      opacity: 0; pointer-events: none;
+      transition: opacity .6s var(--ease-cinematic);
+    }
+    .trust-modal-overlay.is-open { opacity: 1; pointer-events: auto; }
+    .trust-modal-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(10,8,7,.88);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    }
+    .trust-modal-container-light {
+      position: relative; width: 100%; max-width: 980px; max-height: 90vh;
+      background: #FAF8F6; color: #1A1A1A;
+      border-radius: 20px; overflow-y: auto; overflow-x: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,.45);
+      transform: translateY(16px);
+      transition: all .6s var(--ease-cinematic);
+      scrollbar-width: thin; scrollbar-color: #D7C7BD transparent;
+      display: flex;
+    }
+    .trust-modal-overlay.is-open .trust-modal-container-light { transform: translateY(0); }
+    .trust-modal-container-light::-webkit-scrollbar { width: 6px; }
+    .trust-modal-container-light::-webkit-scrollbar-track { background: transparent; }
+    .trust-modal-container-light::-webkit-scrollbar-thumb { background: #D7C7BD; border-radius: 6px; }
+    .trust-modal-close-light {
+      position: absolute; top: 24px; right: 24px;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: transparent; border: none; color: #1A1A1A;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: transform .3s; z-index: 10;
+    }
+    .trust-modal-close-light:hover { transform: rotate(90deg); }
+    .modal-split-layout { display: flex; width: 100%; min-height: 600px; }
+    .modal-left-pane { width: 42%; position: relative; background: #e8e4e1; }
+    .modal-left-pane img { width: 100%; height: 100%; object-fit: cover; }
+    .modal-name-badge {
+      position: absolute; bottom: 32px; left: 32px; right: 32px;
+      background: rgba(26,26,26,.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      padding: 24px; border-radius: 12px; color: #FAF8F6;
+    }
+    .badge-name { font-size: .85rem; letter-spacing: .15em; font-weight: 600; margin-bottom: 8px; }
+    .badge-role { font-size: .85rem; line-height: 1.5; color: rgba(250,248,246,.8); margin-bottom: 16px; }
+    .badge-signature { font-family: var(--display-font); font-style: italic; font-size: 2rem; color: #C8AFA2; margin-top: 12px; }
+    .modal-right-pane { width: 58%; padding: 64px 56px; display: flex; flex-direction: column; }
+    .modal-eyebrow { font-size: .7rem; font-weight: 700; letter-spacing: .1em; color: #C8AFA2; text-transform: uppercase; margin-bottom: 16px; }
+    .modal-hook-light {
+      font-family: var(--display-font);
+      font-size: clamp(1.8rem,3vw,2.4rem); line-height: 1.15;
+      font-weight: 500; color: #1A1A1A; margin-bottom: 24px;
+    }
+    .modal-divider { border: none; border-top: 1px solid rgba(26,26,26,.1); margin: 0 0 24px 0; }
+    .modal-body-text { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+    .modal-body-text p { font-size: 1.05rem; line-height: 1.6; color: rgba(26,26,26,.8); max-width: 48ch; }
+    .modal-quote {
+      font-size: 1.02rem; line-height: 1.6; color: #1A1A1A; font-weight: 500;
+      border-left: 3px solid #C8AFA2; padding: 6px 0 6px 24px;
+      margin-top: 8px; max-width: 46ch;
+    }
+    .modal-principles-row { display: grid; grid-template-columns: repeat(2,1fr); gap: 28px 32px; margin-bottom: 40px; }
+    .principle-item { display: flex; flex-direction: column; gap: 12px; }
+    .principle-icon {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: #F3EAE3; color: #1A1A1A;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .principle-icon svg { width: 16px; height: 16px; }
+    .principle-item h4 { font-size: .7rem; font-weight: 700; letter-spacing: .05em; color: #1A1A1A; line-height: 1.4; }
+    .principle-item p  { font-size: .8rem; color: rgba(26,26,26,.7); line-height: 1.4; }
+    .modal-footer-text { font-size: .95rem; line-height: 1.6; color: rgba(26,26,26,.8); margin-bottom: 40px; max-width: 52ch; }
+    .modal-actions-light { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .btn-clay {
+      background: #C8AFA2; color: #fff; border: none; border-radius: 999px;
+      padding: 12px 28px; font-size: .75rem; font-weight: 700;
+      letter-spacing: .05em; cursor: pointer; transition: all .3s;
+      width: fit-content; text-align: center;
+      box-shadow: 0 4px 12px rgba(200,175,162,.15);
+    }
+    .btn-clay:hover { background: #b39b8f; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(200,175,162,.25); }
+    .btn-link {
+      background: none; border: none; color: #C8AFA2;
+      font-size: .8rem; font-weight: 700; letter-spacing: .1em;
+      cursor: pointer; transition: opacity .3s;
+    }
+    .btn-link:hover { opacity: .7; }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────── */
     @media (max-width: 900px) {
-      .guides-grid { grid-template-columns: repeat(2, 1fr); }
-      .paths-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 16px; margin: 0 -24px; padding: 0 24px 24px 24px; }
-      .path-card { min-width: 260px; scroll-snap-align: start; }
-      .method-row { flex-direction: column; align-items: flex-start; gap: 8px; position: relative; }
+      .guides-grid { grid-template-columns: repeat(2,1fr); }
+      .paths-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 16px; margin: 0 -24px; padding: 0 24px 24px; }
+      .path-card { min-width: 240px; scroll-snap-align: start; }
+      .method-row { flex-direction: column; align-items: flex-start; gap: 6px; position: relative; }
       .row-title { width: 100%; }
-      .row-icon { position: absolute; right: 24px; top: 20px; }
+      .row-icon { position: absolute; right: 22px; top: 18px; }
+      .trust-modal-container-light { flex-direction: column; max-width: 600px; }
+      .modal-split-layout { flex-direction: column; }
+      .modal-left-pane { width: 100%; height: 380px; }
+      .modal-right-pane { width: 100%; padding: 40px 24px; }
+      .modal-principles-row { grid-template-columns: repeat(2,1fr); gap: 24px; }
+      .btn-clay { width: 100%; max-width: none; }
+      .modal-name-badge { bottom: 16px; left: 16px; right: 16px; padding: 16px 20px; border-radius: 10px; }
+      .badge-name { margin-bottom: 0; font-size: .8rem; }
+      .badge-role { display: none; }
+      .badge-signature { font-size: 1.5rem; margin-top: 2px; }
     }
     @media (max-width: 600px) {
       .hub-hero-bg img { width: 100%; object-position: 0% 25%; }
-      .hub-hero-bg::after { background: linear-gradient(to top, var(--bg-void) 0%, var(--bg-void) 40%, rgba(12,10,16,0) 100%); }
-      .hub-hero { padding: 60px 0 40px 0; }
-      .guides-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-      .guide-card { flex-direction: column; gap: 12px; padding: 16px; }
+      .hub-hero-bg::after { background: linear-gradient(to top, var(--bg-void) 0%, var(--bg-void) 40%, rgba(10,8,7,0) 100%); }
+      .hub-hero { padding: 56px 0 36px; }
+      .guides-grid { grid-template-columns: repeat(2,1fr); gap: 10px; }
+      .guide-card { flex-direction: column; gap: 10px; padding: 14px; }
       .guide-arrow { display: none; }
       .nari-card { flex-direction: column; align-items: flex-start; }
       .btn-secondary { width: 100%; justify-content: center; }
       .section-header.flex-header { flex-direction: column; align-items: flex-start; }
+      .waitlist-card { flex-direction: column; align-items: flex-start; padding: 20px; gap: 16px; }
+      .waitlist-form { width: 100%; max-width: none; flex-wrap: wrap; }
+      .waitlist-form input { width: 100%; min-width: 100%; }
+      .waitlist-form button { width: 100%; padding: 14px 24px; }
+      .footer-content { flex-direction: column; align-items: center; text-align: center; gap: 28px; }
+      .footer-links { justify-content: center; gap: 20px; }
     }
 
     /* Cinematic Reveal */
-    .reveal { animation: cinematicReveal 0.8s var(--ease-cinematic) both; }
-    @keyframes cinematicReveal { 0% { opacity: 0; transform: translateY(20px); filter: blur(4px); } 100% { opacity: 1; transform: translateY(0); filter: blur(0); } }
-
-    /* ── CONTEXTUAL TRUST MODAL (LIGHT EDITORIAL) ── */
-    .trust-modal-overlay { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; pointer-events: none; transition: opacity 0.6s var(--ease-cinematic); }
-    .trust-modal-overlay.is-open { opacity: 1; pointer-events: auto; }
-    .trust-modal-backdrop { position: absolute; inset: 0; background: rgba(12, 10, 16, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-     
-    .trust-modal-container-light { position: relative; width: 100%; max-width: 980px; max-height: 90vh; background: #FAF8F6; color: #1A1A1A; border-radius: 20px; overflow-y: auto; overflow-x: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.4); transform: translateY(16px); transition: all 0.6s var(--ease-cinematic); scrollbar-width: thin; scrollbar-color: #D7C7BD transparent; display: flex; }
-    .trust-modal-overlay.is-open .trust-modal-container-light { transform: translateY(0); }
-     
-    .trust-modal-container-light::-webkit-scrollbar { width: 6px; }
-    .trust-modal-container-light::-webkit-scrollbar-track { background: transparent; }
-    .trust-modal-container-light::-webkit-scrollbar-thumb { background: #D7C7BD; border-radius: 6px; }
-     
-    .trust-modal-close-light { position: absolute; top: 24px; right: 24px; width: 36px; height: 36px; border-radius: 50%; background: transparent; border: none; color: #1A1A1A; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.3s; z-index: 10; }
-    .trust-modal-close-light:hover { transform: rotate(90deg); }
-
-    .modal-split-layout { display: flex; width: 100%; min-height: 600px; }
-     
-    .modal-left-pane { width: 42%; position: relative; background: #e8e4e1; }
-    .modal-left-pane img { width: 100%; height: 100%; object-fit: cover; }
-    .modal-name-badge { position: absolute; bottom: 32px; left: 32px; right: 32px; background: rgba(26, 26, 26, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 24px; border-radius: 12px; color: #FAF8F6; }
-    .badge-name { font-size: 0.85rem; letter-spacing: 0.15em; font-weight: 600; margin-bottom: 8px; }
-    .badge-role { font-size: 0.85rem; line-height: 1.5; color: rgba(250, 248, 246, 0.8); margin-bottom: 16px; }
-    .badge-signature { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 2rem; color: #C8AFA2; margin-top: 12px; }
-     
-    .modal-right-pane { width: 58%; padding: 64px 56px; display: flex; flex-direction: column; }
-    .modal-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; color: #C8AFA2; text-transform: uppercase; margin-bottom: 16px; }
-    .modal-hook-light { font-family: var(--display-font); font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.15; font-weight: 500; color: #1A1A1A; margin-bottom: 24px; }
-    .modal-divider { border: none; border-top: 1px solid rgba(26, 26, 26, 0.1); margin: 0 0 24px 0; }
-     
-    .modal-body-text { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
-    .modal-body-text p { font-size: 1.05rem; line-height: 1.6; color: rgba(26, 26, 26, 0.8); max-width: 48ch; }
-    .modal-quote { font-size: 1.02rem; line-height: 1.6; color: #1A1A1A; font-weight: 500; border-left: 3px solid #C8AFA2; padding: 6px 0 6px 24px; margin-top: 8px; max-width: 46ch; }
-    
-    .modal-principles-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 32px; margin-bottom: 40px; }
-    .principle-item { display: flex; flex-direction: column; gap: 12px; }
-    .principle-icon { width: 38px; height: 38px; border-radius: 50%; background: #F3EAE3; color: #1A1A1A; display: flex; align-items: center; justify-content: center; }
-    .principle-icon svg { width: 16px; height: 16px; }
-    .principle-item h4 { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; color: #1A1A1A; line-height: 1.4; }
-    .principle-item p { font-size: 0.8rem; color: rgba(26, 26, 26, 0.7); line-height: 1.4; }
-    
-    .modal-footer-text { font-size: 0.95rem; line-height: 1.6; color: rgba(26, 26, 26, 0.8); margin-bottom: 40px; max-width: 52ch; }
-    
-    .modal-actions-light { display: flex; flex-direction: column; align-items: center; gap: 20px; }
-    .btn-clay { background: #C8AFA2; color: #fff; border: none; border-radius: 999px; padding: 12px 28px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; cursor: pointer; transition: all 0.3s; width: fit-content; text-align: center; box-shadow: 0 4px 12px rgba(200, 175, 162, 0.15); }
-    .btn-clay:hover { background: #b39b8f; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(200, 175, 162, 0.25); }
-    .btn-link { background: none; border: none; color: #C8AFA2; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; cursor: pointer; transition: opacity 0.3s; }
-    .btn-link:hover { opacity: 0.7; }
-     
-    @media (max-width: 900px) { 
-       .trust-modal-container-light { flex-direction: column; max-width: 600px; } 
-       .modal-split-layout { flex-direction: column; } 
-       .modal-left-pane { width: 100%; height: 380px; } 
-       .modal-right-pane { width: 100%; padding: 40px 24px; } 
-       .modal-principles-row { grid-template-columns: repeat(2, 1fr); gap: 24px; } 
-       .btn-clay { width: 100%; max-width: none; } 
-       
-       /* Mobile Badge Fix: Shrink footprint and remove redundant text */ 
-       .modal-name-badge { bottom: 16px; left: 16px; right: 16px; padding: 16px 20px; border-radius: 10px; } 
-       .badge-name { margin-bottom: 0; font-size: 0.8rem; } 
-       .badge-role { display: none; } /* Hidden on mobile to save space */ 
-       .badge-signature { font-size: 1.5rem; margin-top: 2px; } 
-     }
-/* ── WAITLIST & FOOTER ── */ 
-     .waitlist-card { background: rgba(97, 209, 196, 0.05); border: 1px solid rgba(97, 209, 196, 0.15); border-radius: 16px; padding: 32px 40px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-top: 16px; } 
-     .waitlist-info h3 { font-size: 1.1rem; font-weight: 500; color: #fff; margin-bottom: 4px; } 
-     .waitlist-info p { font-size: 0.9rem; color: var(--text-muted); } 
-     .waitlist-form { display: flex; gap: 8px; flex: 1; max-width: 420px; min-width: 280px; } 
-     .waitlist-form input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--card-border); border-radius: 8px; padding: 12px 16px; color: #fff; font-family: var(--ui-font); font-size: 0.9rem; outline: none; transition: border-color 0.3s; min-width: 0; } 
-     .waitlist-form input:focus { border-color: var(--teal); } 
-     .waitlist-form input::placeholder { color: rgba(255,255,255,0.3); } 
-     .waitlist-form button { background: var(--teal); color: #0c0a10; border: none; border-radius: 8px; padding: 0 24px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: opacity 0.3s; flex-shrink: 0; } 
-     .waitlist-form button:hover { opacity: 0.85; } 
-  
-     .site-footer { border-top: 1px solid var(--card-border); padding: 40px 24px; margin-top: auto; background: var(--bg-void); position: relative; z-index: 10; } 
-     .footer-content { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; } 
-     .footer-copy { font-size: 0.8rem; color: var(--text-faint); font-weight: 500; letter-spacing: 0.05em; } 
-     .footer-links { display: flex; gap: 32px; align-items: center; flex-wrap: wrap; } 
-     .footer-links a { font-size: 0.8rem; color: var(--text-muted); text-decoration: none; transition: color 0.3s; font-weight: 500; letter-spacing: 0.02em; } 
-     .footer-links a:hover { color: #fff; } 
-      
-     @media (max-width: 900px) {  
-       .waitlist-card { flex-direction: column; align-items: flex-start; padding: 24px; gap: 20px; }  
-       .waitlist-form { width: 100%; max-width: none; flex-wrap: wrap; } 
-       .waitlist-form input { width: 100%; min-width: 100%; } 
-       .waitlist-form button { width: 100%; padding: 14px 24px; } 
-       .footer-content { flex-direction: column; align-items: center; text-align: center; gap: 32px; } 
-       .footer-links { justify-content: center; gap: 24px; } 
-     } 
+    .reveal { animation: cinematicReveal .8s var(--ease-cinematic) both; }
+    @keyframes cinematicReveal {
+      0%   { opacity: 0; transform: translateY(18px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
 
   <!-- HEADER -->
   <div class="top-row">
-    <a href="/" aria-label="Inicio">
-      <img src="/assets/images/csc-logo.svg" alt="Criar Sin Culpas" style="height: 26px;">
+    <a href="/" aria-label="Inicio"
+       style="display:flex;flex-shrink:0;align-items:center;transition:transform .3s ease;"
+       onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+      <img src="/assets/images/csc-logo.svg" alt="Criar Sin Culpas"
+           style="height:clamp(26px,4vw,34px);width:auto !important;max-width:none;display:block;object-fit:contain;flex-shrink:0;margin-left:-4px;">
     </a>
-    <div style="display:flex; align-items:center; gap:16px;">
+    <div style="display:flex;align-items:center;gap:16px;">
       <nav class="nav-links">
         <a href="/apoyo/" class="active" data-i18n="nav_apoyo" data-es="Guías" data-en="Guides">Guías</a>
         <a href="/metodo" data-i18n="nav_metodo" data-es="El Método" data-en="Method">El Método</a>
-        <a href="#" style="opacity:0.45; pointer-events:none;" data-i18n="nav_aprende" data-es="Aprende (Pronto)" data-en="Learn (Soon)">Aprende (Pronto)</a>
+        <a href="#" style="opacity:.4;pointer-events:none;" data-i18n="nav_aprende" data-es="Aprende (Pronto)" data-en="Learn (Soon)">Aprende (Pronto)</a>
       </nav>
       <div class="lang-switcher">
         <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
@@ -300,13 +672,13 @@
   </div>
 
   <div class="hub-container">
-    
+
     <!-- 1. HERO -->
     <div class="hub-hero">
       <div class="hub-hero-bg">
         <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779225964/gRvUE3dA_mbifyu.png" alt="Madre e hijas en un momento de tensión">
       </div>
-      <div class="hub-hero-content reveal" style="animation-delay: 0.1s;">
+      <div class="hub-hero-content reveal" style="animation-delay:.1s;">
         <span class="eyebrow" data-i18n="hero_eyebrow" data-es="Apoyo para la crianza real" data-en="Support for real parenting">Apoyo para la crianza real</span>
         <h1 data-i18n="hero_h1" data-es="Cuando el momento ya se puso difícil" data-en="When the moment gets tough">Cuando el momento ya se puso difícil</h1>
         <p data-i18n="hero_p" data-es="Hay días que se sienten intensos y no sabemos por dónde empezar. Encuentra aquí una guía clara y simple para volver a la calma." data-en="There are days that feel intense and we don't know where to start. Find a clear and simple guide here to return to calm.">Hay días que se sienten intensos y no sabemos por dónde empezar. Encuentra aquí una guía clara y simple para volver a la calma.</p>
@@ -315,26 +687,16 @@
     </div>
 
     <!-- 2. GUIDES GRID -->
-    <section id="guias" class="reveal" style="animation-delay: 0.2s;">
+    <section id="guias" class="reveal" style="animation-delay:.2s;">
       <div class="section-header">
         <h2 data-i18n="guides_title" data-es="Guías para los momentos difíciles" data-en="Guides for difficult moments">Guías para los momentos difíciles</h2>
         <p data-i18n="guides_desc" data-es="Herramientas simples para ayudarte a responder con más calma cuando todo se siente intenso." data-en="Simple tools to help you respond more calmly when everything feels intense.">Herramientas simples para ayudarte a responder con más calma cuando todo se siente intenso.</p>
       </div>
-      
       <div class="guides-grid">
-        <!-- Pantallas -->
-        <a href="/apoyo/screen-time" class="guide-card track-guide" data-id="screen-time" style="--icon-color: #A78BFA; --icon-glow: rgba(167, 139, 250, 0.1);">
+
+        <a href="/apoyo/screen-time" class="guide-card track-guide" data-id="screen-time" style="--icon-color:#A78BFA;--icon-glow:rgba(167,139,250,.1);">
           <div class="guide-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <!-- Soft curved device -->
-              <path d="M5 7c0-1.5 1-2 3-2h8c2 0 3 .5 3 2v10c0 1.5-1 2-3 2H8c-2 0-3-.5-3-2z" />
-              <!-- Hypnotic interior wave -->
-              <path d="M9 12c0-1.5 1.5-2.5 3-2.5s3 1 3 2.5-1.5 2.5-3 2.5" />
-              <circle cx="12" cy="12" r="1" fill="currentColor" stroke="none" />
-              <!-- Floating sparks -->
-              <circle cx="15" cy="3" r="1.5" fill="currentColor" stroke="none" />
-              <circle cx="18" cy="5" r="1" fill="currentColor" stroke="none" />
-            </svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7c0-1.5 1-2 3-2h8c2 0 3 .5 3 2v10c0 1.5-1 2-3 2H8c-2 0-3-.5-3-2z"/><path d="M9 12c0-1.5 1.5-2.5 3-2.5s3 1 3 2.5-1.5 2.5-3 2.5"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="3" r="1.5" fill="currentColor" stroke="none"/><circle cx="18" cy="5" r="1" fill="currentColor" stroke="none"/></svg>
           </div>
           <div class="guide-info">
             <h3 data-i18n="g1_title" data-es="Pantallas" data-en="Screen Time">Pantallas</h3>
@@ -342,24 +704,10 @@
           </div>
           <div class="guide-arrow">→</div>
         </a>
-        
-        <!-- Desborde -->
-        <a href="/apoyo/emotional-escalation" class="guide-card track-guide" data-id="emotional-escalation" style="--icon-color: #E26D68; --icon-glow: rgba(226, 109, 104, 0.12);">
+
+        <a href="/apoyo/emotional-escalation" class="guide-card track-guide" data-id="emotional-escalation" style="--icon-color:#E26D68;--icon-glow:rgba(226,109,104,.12);">
           <div class="guide-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <!-- Base dashed line -->
-              <line x1="5" y1="19" x2="7" y2="19" />
-              <line x1="17" y1="19" x2="19" y2="19" />
-              <!-- Outer arch -->
-              <path d="M5 17c0-4.5 3.5-8 8-8s8 3.5 8 8" />
-              <!-- Inner arch -->
-              <path d="M8 17c0-2.5 2-4.5 4-4.5s4 2 4 4.5" />
-              <!-- Heart Center -->
-              <path d="M12 17l-1.5-1.5c-1-1-1.5-1.5-1.5-2 0-.8.7-1.5 1.5-1.5.5 0 1 .3 1.2.7.2-.4.7-.7 1.2-.7.8 0 1.5.7 1.5 1.5 0 .5-.5 1-1.5 2L12 17z" />
-              <!-- Embers/Sparks -->
-              <circle cx="12" cy="4" r="1.5" fill="currentColor" stroke="none"/>
-              <circle cx="14" cy="1.5" r="1.5" fill="currentColor" stroke="none"/>
-            </svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="19" x2="7" y2="19"/><line x1="17" y1="19" x2="19" y2="19"/><path d="M5 17c0-4.5 3.5-8 8-8s8 3.5 8 8"/><path d="M8 17c0-2.5 2-4.5 4-4.5s4 2 4 4.5"/><path d="M12 17l-1.5-1.5c-1-1-1.5-1.5-1.5-2 0-.8.7-1.5 1.5-1.5.5 0 1 .3 1.2.7.2-.4.7-.7 1.2-.7.8 0 1.5.7 1.5 1.5 0 .5-.5 1-1.5 2L12 17z"/><circle cx="12" cy="4" r="1.5" fill="currentColor" stroke="none"/><circle cx="14" cy="1.5" r="1.5" fill="currentColor" stroke="none"/></svg>
           </div>
           <div class="guide-info">
             <h3 data-i18n="g2_title" data-es="Desborde" data-en="Meltdowns">Desborde</h3>
@@ -368,19 +716,9 @@
           <div class="guide-arrow">→</div>
         </a>
 
-        <!-- Dormir -->
-        <a href="/apoyo/bedtime-resistance" class="guide-card track-guide" data-id="bedtime-resistance" style="--icon-color: #2DD4BF; --icon-glow: rgba(45, 212, 191, 0.1);">
+        <a href="/apoyo/bedtime-resistance" class="guide-card track-guide" data-id="bedtime-resistance" style="--icon-color:#2DD4BF;--icon-glow:rgba(45,212,191,.1);">
           <div class="guide-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <!-- Cradle Crescent Moon -->
-              <path d="M10 21.5A9.5 9.5 0 1 1 21.5 10 7.5 7.5 0 0 0 10 21.5z" />
-              <!-- Closed sleeping eye -->
-              <path d="M10 14.5c1.5 1 3.5.5 4.5-1" />
-              <path d="M12 15.5v1.5" />
-              <!-- Floating dream dust -->
-              <circle cx="17" cy="5" r="1.5" fill="currentColor" stroke="none" />
-              <circle cx="14" cy="2" r="1" fill="currentColor" stroke="none" />
-            </svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 21.5A9.5 9.5 0 1 1 21.5 10 7.5 7.5 0 0 0 10 21.5z"/><path d="M10 14.5c1.5 1 3.5.5 4.5-1"/><path d="M12 15.5v1.5"/><circle cx="17" cy="5" r="1.5" fill="currentColor" stroke="none"/><circle cx="14" cy="2" r="1" fill="currentColor" stroke="none"/></svg>
           </div>
           <div class="guide-info">
             <h3 data-i18n="g3_title" data-es="Dormir" data-en="Bedtime">Dormir</h3>
@@ -389,20 +727,9 @@
           <div class="guide-arrow">→</div>
         </a>
 
-        <!-- Hermanos -->
-        <a href="/apoyo/sibling-conflict" class="guide-card track-guide" data-id="sibling-conflict" style="--icon-color: #C084FC; --icon-glow: rgba(192, 132, 252, 0.1);">
+        <a href="/apoyo/sibling-conflict" class="guide-card track-guide" data-id="sibling-conflict" style="--icon-color:#C084FC;--icon-glow:rgba(192,132,252,.1);">
           <div class="guide-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <!-- Left intersecting shape -->
-              <path d="M9 10a3 3 0 1 0-6 0c0 3 2 6 5 8" />
-              <!-- Right intersecting shape -->
-              <path d="M15 10a3 3 0 1 1 6 0c0 3-2 6-5 8" />
-              <!-- Central friction spark -->
-              <path d="M12 11l1-2-2-1 1-2" />
-              <!-- Floating sparks -->
-              <circle cx="12" cy="3" r="1.5" fill="currentColor" stroke="none" />
-              <circle cx="15" cy="5" r="1" fill="currentColor" stroke="none" />
-            </svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 10a3 3 0 1 0-6 0c0 3 2 6 5 8"/><path d="M15 10a3 3 0 1 1 6 0c0 3-2 6-5 8"/><path d="M12 11l1-2-2-1 1-2"/><circle cx="12" cy="3" r="1.5" fill="currentColor" stroke="none"/><circle cx="15" cy="5" r="1" fill="currentColor" stroke="none"/></svg>
           </div>
           <div class="guide-info">
             <h3 data-i18n="g4_title" data-es="Hermanos" data-en="Siblings">Hermanos</h3>
@@ -411,20 +738,9 @@
           <div class="guide-arrow">→</div>
         </a>
 
-        <!-- Transiciones (Próximamente) -->
-        <div class="guide-card disabled-card" style="--icon-color: #FBBF24; --icon-glow: rgba(251, 191, 36, 0.1);">
+        <div class="guide-card disabled-card" style="--icon-color:#FBBF24;--icon-glow:rgba(251,191,36,.1);">
           <div class="guide-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <!-- Winding transition paths -->
-              <path d="M4 18c3 0 4-4 8-4s5 4 8 4" />
-              <path d="M4 12c3 0 4-4 8-4s5 4 8 4" />
-              <!-- Path markers -->
-              <circle cx="3" cy="18" r="1" fill="currentColor" stroke="none" />
-              <circle cx="21" cy="12" r="1" fill="currentColor" stroke="none" />
-              <!-- Floating transition sparks -->
-              <circle cx="12" cy="4" r="1.5" fill="currentColor" stroke="none" />
-              <circle cx="15" cy="2" r="1" fill="currentColor" stroke="none" />
-            </svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18c3 0 4-4 8-4s5 4 8 4"/><path d="M4 12c3 0 4-4 8-4s5 4 8 4"/><circle cx="3" cy="18" r="1" fill="currentColor" stroke="none"/><circle cx="21" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="4" r="1.5" fill="currentColor" stroke="none"/><circle cx="15" cy="2" r="1" fill="currentColor" stroke="none"/></svg>
           </div>
           <div class="guide-info">
             <h3 data-i18n="g5_title" data-es="Transiciones" data-en="Transitions">Transiciones</h3>
@@ -433,18 +749,9 @@
           <div class="coming-soon-badge" data-i18n="tag_soon" data-es="Pronto" data-en="Soon">Pronto</div>
         </div>
 
-        <!-- Salidas (Próximamente) -->
-        <div class="guide-card disabled-card" style="--icon-color: #60A5FA; --icon-glow: rgba(96, 165, 250, 0.1);">
+        <div class="guide-card disabled-card" style="--icon-color:#60A5FA;--icon-glow:rgba(96,165,250,.1);">
           <div class="guide-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-               <!-- Archway / Public Space -->
-               <path d="M6 22V10a6 6 0 0 1 12 0v12" />
-               <!-- Chaotic swirl exiting -->
-               <path d="M12 14c-2-2-3-1-3 1s2 2 3 0 3-1 3 1-1 2-3 2" />
-               <!-- Floating outing sparks -->
-               <circle cx="12" cy="4" r="1.5" fill="currentColor" stroke="none" />
-               <circle cx="8" cy="3" r="1" fill="currentColor" stroke="none" />
-             </svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V10a6 6 0 0 1 12 0v12"/><path d="M12 14c-2-2-3-1-3 1s2 2 3 0 3-1 3 1-1 2-3 2"/><circle cx="12" cy="4" r="1.5" fill="currentColor" stroke="none"/><circle cx="8" cy="3" r="1" fill="currentColor" stroke="none"/></svg>
           </div>
           <div class="guide-info">
             <h3 data-i18n="g6_title" data-es="Salidas" data-en="Outings">Salidas</h3>
@@ -452,11 +759,12 @@
           </div>
           <div class="coming-soon-badge" data-i18n="tag_soon" data-es="Pronto" data-en="Soon">Pronto</div>
         </div>
+
       </div>
     </section>
 
     <!-- 3. SOBRE NARI -->
-    <section class="reveal" style="animation-delay: 0.3s;">
+    <section class="reveal" style="animation-delay:.3s;">
       <div class="nari-card">
         <div class="nari-profile">
           <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779117777/nari-portrait_jzjwcw.png" alt="Nari Fateha">
@@ -472,157 +780,118 @@
     </section>
 
     <!-- 4. EL METODO -->
-    <section class="reveal" style="animation-delay: 0.4s;">
-      <div class="section-header flex-header"> 
-         <div> 
-           <h2 data-i18n="method_title" data-es="El método" data-en="The method">El método</h2> 
-           <p data-i18n="method_desc" data-es="Un sistema, no solo consejos sueltos." data-en="A system, not just random advice.">Un sistema, no solo consejos sueltos.</p> 
-         </div> 
-         <a href="/metodo" class="text-link method-deep-link" data-i18n="method_link" data-es="Conocer el método completo" data-en="Learn the full method">Conocer el método completo</a> 
-       </div> 
-      
-      <div class="method-accordion"> 
- 
-         <div class="method-row" role="button" tabindex="0" aria-expanded="false" data-accordion> 
-           <span class="row-num">01</span> 
-           <span class="row-title" data-i18n="m1_title" data-es="Pilar: Regulación emocional" data-en="Pillar: Emotional regulation">Pilar: Regulación emocional</span> 
-           <span class="row-desc" data-i18n="m1_desc" data-es="Qué hacer cuando todo se sale de control." data-en="What to do when everything spirals out of control.">Qué hacer cuando todo se sale de control.</span> 
-           <span class="row-icon">↓</span> 
-         </div> 
-         <div class="method-panel"> 
-           <p data-i18n="m1_panel_text" data-es="No puedes guiar a un niño si tú mismo estás en desborde. Este pilar trabaja primero contigo: reconocer la señal de alarma antes de que escale, y tener una respuesta lista en lugar de una reacción." data-en="You cannot guide a child when you yourself are overwhelmed. This pillar works with you first: recognizing the alarm signal before it escalates, and having a response ready instead of a reaction.">No puedes guiar a un niño si tú mismo estás en desborde. Este pilar trabaja primero contigo: reconocer la señal de alarma antes de que escale, y tener una respuesta lista en lugar de una reacción.</p> 
-           <a href="/metodo" class="panel-link" data-i18n="m_panel_link" data-es="Ver en el método →" data-en="See in the method →">Ver en el método →</a> 
-         </div> 
- 
-         <div class="method-row" role="button" tabindex="0" aria-expanded="false" data-accordion> 
-           <span class="row-num">02</span> 
-           <span class="row-title" data-i18n="m2_title" data-es="Pilar: Límites desde la calma" data-en="Pillar: Calm boundaries">Pilar: Límites desde la calma</span> 
-           <span class="row-desc" data-i18n="m2_desc" data-es="Cómo poner límites sin gritar." data-en="How to set boundaries without yelling.">Cómo poner límites sin gritar.</span> 
-           <span class="row-icon">↓</span> 
-         </div> 
-         <div class="method-panel"> 
-           <p data-i18n="m2_panel_text" data-es="Un límite dicho desde el agotamiento se convierte en amenaza. Este pilar muestra cómo sostener la estructura del hogar sin perder la conexión — ni la calma — en el intento." data-en="A boundary spoken from exhaustion becomes a threat. This pillar shows how to hold the structure of home without losing connection — or calm — in the process.">Un límite dicho desde el agotamiento se convierte en amenaza. Este pilar muestra cómo sostener la estructura del hogar sin perder la conexión — ni la calma — en el intento.</p> 
-           <a href="/metodo" class="panel-link" data-i18n="m_panel_link" data-es="Ver en el método →" data-en="See in the method →">Ver en el método →</a> 
-         </div> 
- 
-         <div class="method-row" role="button" tabindex="0" aria-expanded="false" data-accordion> 
-           <span class="row-num">03</span> 
-           <span class="row-title" data-i18n="m3_title" data-es="Pilar: Comunicación conectiva" data-en="Pillar: Connective communication">Pilar: Comunicación conectiva</span> 
-           <span class="row-desc" data-i18n="m3_desc" data-es="Cómo conectar antes de corregir." data-en="How to connect before correcting.">Cómo conectar antes de corregir.</span> 
-           <span class="row-icon">↓</span> 
-         </div> 
-         <div class="method-panel"> 
-           <p data-i18n="m3_panel_text" data-es="El niño que no se siente escuchado no está listo para escucharte. Este pilar enseña a entrar al mundo del niño primero — no para capitular, sino para abrir la puerta a que el cambio sea posible." data-en="A child who doesn't feel heard isn't ready to hear you. This pillar teaches you to enter the child's world first — not to capitulate, but to open the door to change.">El niño que no se siente escuchado no está listo para escucharte. Este pilar enseña a entrar al mundo del niño primero — no para capitular, sino para abrir la puerta a que el cambio sea posible.</p> 
-           <a href="/metodo" class="panel-link" data-i18n="m_panel_link" data-es="Ver en el método →" data-en="See in the method →">Ver en el método →</a> 
-         </div> 
- 
-         <div class="method-row" role="button" tabindex="0" aria-expanded="false" data-accordion> 
-           <span class="row-num">04</span> 
-           <span class="row-title" data-i18n="m4_title" data-es="Pilar: Autorregulación" data-en="Pillar: Self-regulation">Pilar: Autorregulación</span> 
-           <span class="row-desc" data-i18n="m4_desc" data-es="Cómo dejar de reaccionar desde el agotamiento." data-en="How to stop reacting from exhaustion.">Cómo dejar de reaccionar desde el agotamiento.</span> 
-           <span class="row-icon">↓</span> 
-         </div> 
-         <div class="method-panel"> 
-           <p data-i18n="m4_panel_text" data-es="Reaccionar desde el cansancio no es un fallo de carácter — es biología. Este pilar diseña un sistema estable para que la respuesta que das mañana sea distinta a la de hoy, sin depender de cuánto dormiste." data-en="Reacting from exhaustion is not a character flaw — it's biology. This pillar designs a stable system so the response you give tomorrow is different from today's, regardless of how much sleep you got.">Reaccionar desde el cansancio no es un fallo de carácter — es biología. Este pilar diseña un sistema estable para que la respuesta que das mañana sea distinta a la de hoy, sin depender de cuánto dormiste.</p> 
-           <a href="/metodo" class="panel-link" data-i18n="m_panel_link" data-es="Ver en el método →" data-en="See in the method →">Ver en el método →</a> 
-         </div> 
- 
-         <!-- Pull-Quote Teaser connecting to /metodo --> 
-         <div class="method-teaser-card"> 
-           <blockquote class="teaser-quote" data-i18n="teaser_quote" data-es="«No puedes guiar a un niño si tú mismo estás en desborde.»" data-en="«You cannot guide a child if you are emotionally overwhelmed.»">«No puedes guiar a un niño si tú mismo estás en desborde.»</blockquote> 
-           <div class="teaser-attr" data-i18n="teaser_attr" data-es="EL MÉTODO NARI" data-en="THE NARI METHOD">EL MÉTODO NARI</div> 
-         </div> 
- 
-       </div>
+    <section class="reveal" style="animation-delay:.4s;">
+      <div class="section-header flex-header">
+        <div>
+          <h2 data-i18n="method_title" data-es="El método" data-en="The method">El método</h2>
+          <p data-i18n="method_desc" data-es="Un sistema, no solo consejos sueltos." data-en="A system, not just random advice.">Un sistema, no solo consejos sueltos.</p>
+        </div>
+        <a href="/metodo" class="text-link method-deep-link" data-i18n="method_link" data-es="Conocer el método completo" data-en="Learn the full method">Conocer el método completo</a>
+      </div>
+
+      <div class="method-accordion">
+        <div class="method-row" role="button" tabindex="0" aria-expanded="false" data-accordion>
+          <span class="row-num">01</span>
+          <span class="row-title" data-i18n="m1_title" data-es="Pilar: Regulación emocional" data-en="Pillar: Emotional regulation">Pilar: Regulación emocional</span>
+          <span class="row-desc" data-i18n="m1_desc" data-es="Qué hacer cuando todo se sale de control." data-en="What to do when everything spirals out of control.">Qué hacer cuando todo se sale de control.</span>
+          <span class="row-icon">↓</span>
+        </div>
+        <div class="method-panel">
+          <p data-i18n="m1_panel_text" data-es="No puedes guiar a un niño si tú mismo estás en desborde. Este pilar trabaja primero contigo: reconocer la señal de alarma antes de que escale, y tener una respuesta lista en lugar de una reacción." data-en="You cannot guide a child when you yourself are overwhelmed. This pillar works with you first: recognizing the alarm signal before it escalates, and having a response ready instead of a reaction.">No puedes guiar a un niño si tú mismo estás en desborde. Este pilar trabaja primero contigo: reconocer la señal de alarma antes de que escale, y tener una respuesta lista en lugar de una reacción.</p>
+          <a href="/metodo" class="panel-link" data-i18n="m_panel_link" data-es="Ver en el método →" data-en="See in the method →">Ver en el método →</a>
+        </div>
+
+        <div class="method-row" role="button" tabindex="0" aria-expanded="false" data-accordion>
+          <span class="row-num">02</span>
+          <span class="row-title" data-i18n="m2_title" data-es="Pilar: Límites desde la calma" data-en="Pillar: Calm boundaries">Pilar: Límites desde la calma</span>
+          <span class="row-desc" data-i18n="m2_desc" data-es="Cómo poner límites sin gritar." data-en="How to set boundaries without yelling.">Cómo poner límites sin gritar.</span>
+          <span class="row-icon">↓</span>
+        </div>
+        <div class="method-panel">
+          <p data-i18n="m2_panel_text" data-es="Un límite dicho desde el agotamiento se convierte en amenaza. Este pilar muestra cómo sostener la estructura del hogar sin perder la conexión — ni la calma — en el intento." data-en="A boundary spoken from exhaustion becomes a threat. This pillar shows how to hold the structure of home without losing connection — or calm — in the process.">Un límite dicho desde el agotamiento se convierte en amenaza. Este pilar muestra cómo sostener la estructura del hogar sin perder la conexión — ni la calma — en el intento.</p>
+          <a href="/metodo" class="panel-link" data-i18n="m_panel_link" data-es="Ver en el método →" data-en="See in the method →">Ver en el método →</a>
+        </div>
+
+        <div class="method-row" role="button" tabindex="0" aria-expanded="false" data-accordion>
+          <span class="row-num">03</span>
+          <span class="row-title" data-i18n="m3_title" data-es="Pilar: Comunicación conectiva" data-en="Pillar: Connective communication">Pilar: Comunicación conectiva</span>
+          <span class="row-desc" data-i18n="m3_desc" data-es="Cómo conectar antes de corregir." data-en="How to connect before correcting.">Cómo conectar antes de corregir.</span>
+          <span class="row-icon">↓</span>
+        </div>
+        <div class="method-panel">
+          <p data-i18n="m3_panel_text" data-es="El niño que no se siente escuchado no está listo para escucharte. Este pilar enseña a entrar al mundo del niño primero — no para capitular, sino para abrir la puerta a que el cambio sea posible." data-en="A child who doesn't feel heard isn't ready to hear you. This pillar teaches you to enter the child's world first — not to capitulate, but to open the door to change.">El niño que no se siente escuchado no está listo para escucharte. Este pilar enseña a entrar al mundo del niño primero — no para capitular, sino para abrir la puerta a que el cambio sea posible.</p>
+          <a href="/metodo" class="panel-link" data-i18n="m_panel_link" data-es="Ver en el método →" data-en="See in the method →">Ver en el método →</a>
+        </div>
+
+        <div class="method-row" role="button" tabindex="0" aria-expanded="false" data-accordion>
+          <span class="row-num">04</span>
+          <span class="row-title" data-i18n="m4_title" data-es="Pilar: Autorregulación" data-en="Pillar: Self-regulation">Pilar: Autorregulación</span>
+          <span class="row-desc" data-i18n="m4_desc" data-es="Cómo dejar de reaccionar desde el agotamiento." data-en="How to stop reacting from exhaustion.">Cómo dejar de reaccionar desde el agotamiento.</span>
+          <span class="row-icon">↓</span>
+        </div>
+        <div class="method-panel">
+          <p data-i18n="m4_panel_text" data-es="Reaccionar desde el cansancio no es un fallo de carácter — es biología. Este pilar diseña un sistema estable para que la respuesta que das mañana sea distinta a la de hoy, sin depender de cuánto dormiste." data-en="Reacting from exhaustion is not a character flaw — it's biology. This pillar designs a stable system so the response you give tomorrow is different from today's, regardless of how much sleep you got.">Reaccionar desde el cansancio no es un fallo de carácter — es biología. Este pilar diseña un sistema estable para que la respuesta que das mañana sea distinta a la de hoy, sin depender de cuánto dormiste.</p>
+          <a href="/metodo" class="panel-link" data-i18n="m_panel_link" data-es="Ver en el método →" data-en="See in the method →">Ver en el método →</a>
+        </div>
+
+        <div class="method-teaser-card">
+          <blockquote class="teaser-quote" data-i18n="teaser_quote" data-es="«No puedes guiar a un niño si tú mismo estás en desborde.»" data-en="«You cannot guide a child if you are emotionally overwhelmed.»">«No puedes guiar a un niño si tú mismo estás en desborde.»</blockquote>
+          <div class="teaser-attr" data-i18n="teaser_attr" data-es="EL MÉTODO NARI" data-en="THE NARI METHOD">EL MÉTODO NARI</div>
+        </div>
+      </div>
     </section>
 
     <!-- 5. CAMINOS -->
-    <section class="reveal" style="animation-delay: 0.5s;">
+    <section class="reveal" style="animation-delay:.5s;">
       <div class="section-header flex-header">
         <div>
           <h2 data-i18n="paths_title" data-es="Caminos de aprendizaje" data-en="Learning paths">Caminos de aprendizaje</h2>
           <p data-i18n="paths_desc" data-es="Talleres, guías y programas para un cambio real." data-en="Workshops, guides, and programs for real change.">Talleres, guías y programas para un cambio real.</p>
         </div>
-        <a href="#" class="text-link" style="opacity: 0.5; pointer-events: none;" data-i18n="paths_link" data-es="Ver todos (Próximamente)" data-en="See all (Soon)">Ver todos (Próximamente)</a>
+        <a href="#" class="text-link" style="opacity:.4;pointer-events:none;" data-i18n="paths_link" data-es="Ver todos (Próximamente)" data-en="See all (Soon)">Ver todos (Próximamente)</a>
       </div>
 
       <div class="paths-grid">
-        <div class="path-card">
-          <div class="path-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FB7185" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
-          <div class="path-info">
-            <h4 data-i18n="p1_type" data-es="Taller" data-en="Workshop">Taller</h4>
-            <h3 data-i18n="p1_title" data-es="Criar desde la calma" data-en="Parenting from calm">Criar desde la calma</h3>
-          </div>
-          <div class="path-tag"><div class="tag-dot" style="background: #FB7185;"></div> <span data-i18n="tag_soon" data-es="Próximamente" data-en="Soon">Próximamente</span></div>
+        <div class="path-card"><div class="path-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FB7185" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div><div class="path-info"><h4 data-i18n="p1_type" data-es="Taller" data-en="Workshop">Taller</h4><h3 data-i18n="p1_title" data-es="Criar desde la calma" data-en="Parenting from calm">Criar desde la calma</h3></div><div class="path-tag"><div class="tag-dot" style="background:#FB7185;"></div><span data-i18n="tag_soon" data-es="Próximamente" data-en="Soon">Próximamente</span></div></div>
+        <div class="path-card"><div class="path-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div><div class="path-info"><h4 data-i18n="p2_type" data-es="Mini Guía" data-en="Mini Guide">Mini Guía</h4><h3 data-i18n="p2_title" data-es="Los primeros 5 minutos" data-en="The first 5 minutes">Los primeros 5 minutos</h3></div><div class="path-tag"><div class="tag-dot" style="background:#A78BFA;"></div><span data-i18n="tag_soon" data-es="Próximamente" data-en="Soon">Próximamente</span></div></div>
+        <div class="path-card"><div class="path-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg></div><div class="path-info"><h4 data-i18n="p3_type" data-es="Programa" data-en="Program">Programa</h4><h3 data-i18n="p3_title" data-es="Criar Sin Culpas: El Curso" data-en="Criar Sin Culpas: The Course">Criar Sin Culpas: El Curso</h3></div><div class="path-tag"><div class="tag-dot" style="background:#2DD4BF;"></div><span data-i18n="tag_soon" data-es="Próximamente" data-en="Soon">Próximamente</span></div></div>
+        <div class="path-card"><div class="path-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C084FC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div><div class="path-info"><h4 data-i18n="p4_type" data-es="Sesión 1:1" data-en="1:1 Session">Sesión 1:1</h4><h3 data-i18n="p4_title" data-es="Acompañamiento con Nari" data-en="Guidance with Nari">Acompañamiento con Nari</h3></div><div class="path-tag"><div class="tag-dot" style="background:#C084FC;"></div><span data-i18n="tag_soon" data-es="Próximamente" data-en="Soon">Próximamente</span></div></div>
+      </div>
+
+      <div class="waitlist-card">
+        <div class="waitlist-info">
+          <h3 data-i18n="waitlist_title" data-es="¿Quieres saber cuando estén listos?" data-en="Want to know when they're ready?">¿Quieres saber cuando estén listos?</h3>
+          <p data-i18n="waitlist_desc" data-es="Déjanos tu correo y te avisaremos antes que a nadie." data-en="Leave your email and we'll notify you before anyone else.">Déjanos tu correo y te avisaremos antes que a nadie.</p>
         </div>
-        
-        <div class="path-card">
-          <div class="path-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
-          <div class="path-info">
-            <h4 data-i18n="p2_type" data-es="Mini Guía" data-en="Mini Guide">Mini Guía</h4>
-            <h3 data-i18n="p2_title" data-es="Los primeros 5 minutos" data-en="The first 5 minutes">Los primeros 5 minutos</h3>
-          </div>
-          <div class="path-tag"><div class="tag-dot" style="background: #A78BFA;"></div> <span data-i18n="tag_soon" data-es="Próximamente" data-en="Soon">Próximamente</span></div>
-        </div>
+        <form class="waitlist-form" onsubmit="event.preventDefault();this.innerHTML='<p style=\'color:var(--teal);font-size:.92rem;font-weight:500;margin:0;padding:10px 0;\'>¡Gracias! Te avisaremos pronto.</p>';if(typeof trackSignal==='function')trackSignal('waitlist_joined',{location:'hub'});">
+          <input type="email" placeholder="Tu correo electrónico" required aria-label="Email">
+          <button type="submit" data-i18n="waitlist_btn" data-es="Avísame" data-en="Notify me">Avísame</button>
+        </form>
+      </div>
+    </section>
 
-        <div class="path-card">
-          <div class="path-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg></div>
-          <div class="path-info">
-            <h4 data-i18n="p3_type" data-es="Programa" data-en="Program">Programa</h4>
-            <h3 data-i18n="p3_title" data-es="Criar Sin Culpas: El Curso" data-en="Criar Sin Culpas: The Course">Criar Sin Culpas: El Curso</h3>
-          </div>
-          <div class="path-tag"><div class="tag-dot" style="background: #2DD4BF;"></div> <span data-i18n="tag_soon" data-es="Próximamente" data-en="Soon">Próximamente</span></div>
-        </div>
+  </div><!-- /hub-container -->
 
-        <div class="path-card"> 
-           <div class="path-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C084FC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div> 
-           <div class="path-info"> 
-             <h4 data-i18n="p4_type" data-es="Sesión 1:1" data-en="1:1 Session">Sesión 1:1</h4> 
-             <h3 data-i18n="p4_title" data-es="Acompañamiento con Nari" data-en="Guidance with Nari">Acompañamiento con Nari</h3> 
-           </div> 
-           <div class="path-tag"><div class="tag-dot" style="background: #C084FC;"></div> <span data-i18n="tag_soon" data-es="Próximamente" data-en="Soon">Próximamente</span></div> 
-         </div> 
-       </div> 
-  
-       <!-- Waitlist Audience Capture --> 
-       <div class="waitlist-card"> 
-         <div class="waitlist-info"> 
-           <h3 data-i18n="waitlist_title" data-es="¿Quieres saber cuando estén listos?" data-en="Want to know when they're ready?">¿Quieres saber cuando estén listos?</h3> 
-           <p data-i18n="waitlist_desc" data-es="Déjanos tu correo y te avisaremos antes que a nadie." data-en="Leave your email and we'll notify you before anyone else.">Déjanos tu correo y te avisaremos antes que a nadie.</p> 
-         </div> 
-         <form class="waitlist-form" onsubmit="event.preventDefault(); this.innerHTML='<p style=\'color:var(--teal); font-size:0.95rem; font-weight:500; margin:0; padding: 10px 0;\'>¡Gracias! Te avisaremos pronto.</p>'; if(typeof trackSignal==='function') trackSignal('waitlist_joined', {location:'hub'});"> 
-           <input type="email" placeholder="Tu correo electrónico" required aria-label="Email"> 
-           <button type="submit" data-i18n="waitlist_btn" data-es="Avísame" data-en="Notify me">Avísame</button> 
-         </form> 
-       </div> 
-  
-     </section>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <span class="footer-copy">© 2026 Criar Sin Culpas</span>
+      <div class="footer-links">
+        <a href="/privacidad" data-i18n="footer_privacy" data-es="Política de Privacidad" data-en="Privacy Policy">Política de Privacidad</a>
+        <a href="mailto:hola@criarsinculpas.com" data-i18n="footer_contact" data-es="Contacto" data-en="Contact">Contacto</a>
+        <a href="https://instagram.com/criarsinculpas" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </div>
+    </div>
+  </footer>
 
-  </div> <!-- End container --> 
-  
-   <!-- GLOBAL FOOTER --> 
-   <footer class="site-footer"> 
-     <div class="footer-content"> 
-       <span class="footer-copy">© 2026 Criar Sin Culpas</span> 
-       <div class="footer-links"> 
-         <a href="/privacidad" data-i18n="footer_privacy" data-es="Política de Privacidad" data-en="Privacy Policy">Política de Privacidad</a> 
-         <a href="mailto:hola@criarsinculpas.com" data-i18n="footer_contact" data-es="Contacto" data-en="Contact">Contacto</a> 
-         <a href="https://instagram.com/criarsinculpas" target="_blank" rel="noopener noreferrer">Instagram</a> 
-       </div> 
-     </div> 
-   </footer>
-
-  <!-- CONTEXTUAL TRUST MODAL (LIGHT EDITORIAL) -->
+  <!-- TRUST MODAL -->
   <div class="trust-modal-overlay" id="nariModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalHook">
     <div class="trust-modal-backdrop" id="nariModalCloseBg"></div>
     <div class="trust-modal-container-light">
-       
       <button class="trust-modal-close-light" id="nariModalCloseBtn" aria-label="Cerrar">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
       </button>
-
       <div class="modal-split-layout">
-        <!-- Left: Image & Name Card -->
         <div class="modal-left-pane">
           <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779216966/Nari_xwahmd.png" alt="Nari Fateha">
           <div class="modal-name-badge">
@@ -631,93 +900,29 @@
             <div class="badge-signature">Nari</div>
           </div>
         </div>
-
-        <!-- Right: Editorial Content --> 
-         <div class="modal-right-pane"> 
-           <div class="modal-eyebrow" data-i18n="nari_cta" data-es="CONOCE A NARI" data-en="MEET NARI">CONOCE A NARI</div> 
-           
-           <h2 id="modalHook" class="modal-hook-light" data-i18n="modal_hook2" data-es="Criar Sin Culpas nació desde momentos reales de agotamiento, culpa y búsqueda." data-en="Criar Sin Culpas was born from real moments of exhaustion, guilt, and searching."> 
-             Criar Sin Culpas nació desde momentos reales de agotamiento, culpa y búsqueda. 
-           </h2> 
-           
-           <hr class="modal-divider"> 
- 
-           <div class="modal-body-text"> 
-             <p data-i18n="modal_body_1" data-es="Nari Fateha es educadora de crianza consciente y creadora de este espacio." data-en="Nari Fateha is a conscious parenting educator and creator of this space.">Nari Fateha es educadora de crianza consciente y creadora de este espacio.</p> 
-             
-             <p data-i18n="modal_body_2" data-es="Después de escuchar patrones repetirse una y otra vez —y vivir muchos de ellos también desde su propia experiencia— entendió algo importante:" data-en="After hearing patterns repeat again and again —and living many of them from her own experience— she understood something important:">Después de escuchar patrones repetirse una y otra vez —y vivir muchos de ellos también desde su propia experiencia— entendió algo importante:</p> 
-             
-             <blockquote class="modal-quote" data-i18n="modal_body_3" data-es="Los padres no necesitan más juicio. Necesitan claridad cuando el momento ya se puso difícil." data-en="Parents don’t need more judgment. They need clarity when things have already become difficult.">Los padres no necesitan más juicio. Necesitan claridad cuando el momento ya se puso difícil.</blockquote> 
-           </div> 
- 
-           <div class="modal-eyebrow" style="margin-top: 8px;" data-i18n="modal_phil_eyebrow" data-es="SU ENFOQUE SE SOSTIENE EN 4 PRINCIPIOS" data-en="HER APPROACH RESTS ON 4 PRINCIPLES">SU ENFOQUE SE SOSTIENE EN 4 PRINCIPIOS</div> 
- 
-           <div class="modal-principles-row"> 
-             
-             <!-- Principle 1: Regular --> 
-             <div class="principle-item"> 
-               <div class="principle-icon"> 
-                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> 
-                   <!-- Calming wave --> 
-                   <path d="M3 14 Q 8 8, 12 14 T 21 14" /> 
-                   <circle cx="12" cy="6" r="1.5" fill="currentColor" stroke="none" /> 
-                 </svg> 
-               </div> 
-               <h4 data-i18n="p_reg_title" data-es="REGULAR PRIMERO" data-en="REGULATE FIRST">REGULAR PRIMERO</h4> 
-               <p data-i18n="p_reg_desc" data-es="La calma viene antes que la corrección." data-en="Calm comes before correction.">La calma viene antes que la corrección.</p> 
-             </div> 
- 
-             <!-- Principle 2: Conectar --> 
-             <div class="principle-item"> 
-               <div class="principle-icon"> 
-                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> 
-                   <!-- Continuous line heart --> 
-                   <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/> 
-                 </svg> 
-               </div> 
-               <h4 data-i18n="p_con_title" data-es="CONECTAR ANTES" data-en="CONNECT BEFORE">CONECTAR ANTES</h4> 
-               <p data-i18n="p_con_desc" data-es="El vínculo también es parte de la solución." data-en="Connection is also part of the solution.">El vínculo también es parte de la solución.</p> 
-             </div> 
- 
-             <!-- Principle 3: Herramientas --> 
-             <div class="principle-item"> 
-               <div class="principle-icon"> 
-                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> 
-                   <!-- Organic sprout/leaf --> 
-                   <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 1 8.3C18.4 15 15.1 20 11 20z"/> 
-                   <path d="M11 20c2.4-3.4 3.5-7.1 2.2-11.4"/> 
-                 </svg> 
-               </div> 
-               <h4 data-i18n="p_tool_title" data-es="HERRAMIENTAS REALES" data-en="REAL TOOLS">HERRAMIENTAS REALES</h4> 
-               <p data-i18n="p_tool_desc" data-es="Menos teoría. Más ayuda útil." data-en="Less theory. More useful help.">Menos teoría. Más ayuda útil.</p> 
-             </div> 
- 
-             <!-- Principle 4: Sin Perfección --> 
-             <div class="principle-item"> 
-               <div class="principle-icon"> 
-                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> 
-                   <!-- Enso (unclosed circle symbolizing letting go of perfection) --> 
-                   <path d="M18.36 19.36A9 9 0 1 1 21 12" /> 
-                   <circle cx="19" cy="7" r="1.5" fill="currentColor" stroke="none"/> 
-                 </svg> 
-               </div> 
-               <h4 data-i18n="p_guilt_title" data-es="SIN PERFECCIÓN" data-en="WITHOUT PERFECTION">SIN PERFECCIÓN</h4> 
-               <p data-i18n="p_guilt_desc" data-es="Criar sin culpa también significa dejar atrás la idea de hacerlo perfecto." data-en="Guilt-free parenting also means letting go of the idea of doing it perfectly.">Criar sin culpa también significa dejar atrás la idea de hacerlo perfecto.</p> 
-             </div> 
- 
-           </div> 
- 
-           <p class="modal-footer-text" data-i18n="modal_footer" data-es="Hoy, este espacio evoluciona hacia un ecosistema práctico de apoyo emocional: guías, herramientas y recursos diseñados para acompañarte en los momentos difíciles." data-en="Today, this space is evolving into a practical ecosystem of emotional support: guides, tools, and resources designed to support you in difficult moments."> 
-             Hoy, este espacio evoluciona hacia un ecosistema práctico de apoyo emocional: guías, herramientas y recursos diseñados para acompañarte en los momentos difíciles. 
-           </p> 
- 
-           <div class="modal-actions-light"> 
-             <button class="btn-clay close-modal-action" data-i18n="modal_clay_cta" data-es="EMPIEZA POR EL MOMENTO QUE MÁS NECESITAS HOY →" data-en="START WITH THE MOMENT YOU NEED MOST TODAY →">EMPIEZA POR EL MOMENTO QUE MÁS NECESITAS HOY →</button> 
-             <button class="btn-link close-modal-action" data-i18n="modal_link_cta" data-es="VOLVER A LAS GUÍAS" data-en="BACK TO GUIDES">VOLVER A LAS GUÍAS</button> 
-           </div> 
-         </div>
+        <div class="modal-right-pane">
+          <div class="modal-eyebrow" data-i18n="nari_cta" data-es="CONOCE A NARI" data-en="MEET NARI">CONOCE A NARI</div>
+          <h2 id="modalHook" class="modal-hook-light" data-i18n="modal_hook2" data-es="Criar Sin Culpas nació desde momentos reales de agotamiento, culpa y búsqueda." data-en="Criar Sin Culpas was born from real moments of exhaustion, guilt, and searching.">Criar Sin Culpas nació desde momentos reales de agotamiento, culpa y búsqueda.</h2>
+          <hr class="modal-divider">
+          <div class="modal-body-text">
+            <p data-i18n="modal_body_1" data-es="Nari Fateha es educadora de crianza consciente y creadora de este espacio." data-en="Nari Fateha is a conscious parenting educator and creator of this space.">Nari Fateha es educadora de crianza consciente y creadora de este espacio.</p>
+            <p data-i18n="modal_body_2" data-es="Después de escuchar patrones repetirse una y otra vez —y vivir muchos de ellos también desde su propia experiencia— entendió algo importante:" data-en="After hearing patterns repeat again and again —and living many of them from her own experience— she understood something important:">Después de escuchar patrones repetirse una y otra vez —y vivir muchos de ellos también desde su propia experiencia— entendió algo importante:</p>
+            <blockquote class="modal-quote" data-i18n="modal_body_3" data-es="Los padres no necesitan más juicio. Necesitan claridad cuando el momento ya se puso difícil." data-en="Parents don't need more judgment. They need clarity when things have already become difficult.">Los padres no necesitan más juicio. Necesitan claridad cuando el momento ya se puso difícil.</blockquote>
+          </div>
+          <div class="modal-eyebrow" style="margin-top:8px;" data-i18n="modal_phil_eyebrow" data-es="SU ENFOQUE SE SOSTIENE EN 4 PRINCIPIOS" data-en="HER APPROACH RESTS ON 4 PRINCIPLES">SU ENFOQUE SE SOSTIENE EN 4 PRINCIPIOS</div>
+          <div class="modal-principles-row">
+            <div class="principle-item"><div class="principle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14 Q 8 8, 12 14 T 21 14"/><circle cx="12" cy="6" r="1.5" fill="currentColor" stroke="none"/></svg></div><h4 data-i18n="p_reg_title" data-es="REGULAR PRIMERO" data-en="REGULATE FIRST">REGULAR PRIMERO</h4><p data-i18n="p_reg_desc" data-es="La calma viene antes que la corrección." data-en="Calm comes before correction.">La calma viene antes que la corrección.</p></div>
+            <div class="principle-item"><div class="principle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div><h4 data-i18n="p_con_title" data-es="CONECTAR ANTES" data-en="CONNECT BEFORE">CONECTAR ANTES</h4><p data-i18n="p_con_desc" data-es="El vínculo también es parte de la solución." data-en="Connection is also part of the solution.">El vínculo también es parte de la solución.</p></div>
+            <div class="principle-item"><div class="principle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 1 8.3C18.4 15 15.1 20 11 20z"/><path d="M11 20c2.4-3.4 3.5-7.1 2.2-11.4"/></svg></div><h4 data-i18n="p_tool_title" data-es="HERRAMIENTAS REALES" data-en="REAL TOOLS">HERRAMIENTAS REALES</h4><p data-i18n="p_tool_desc" data-es="Menos teoría. Más ayuda útil." data-en="Less theory. More useful help.">Menos teoría. Más ayuda útil.</p></div>
+            <div class="principle-item"><div class="principle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 19.36A9 9 0 1 1 21 12"/><circle cx="19" cy="7" r="1.5" fill="currentColor" stroke="none"/></svg></div><h4 data-i18n="p_guilt_title" data-es="SIN PERFECCIÓN" data-en="WITHOUT PERFECTION">SIN PERFECCIÓN</h4><p data-i18n="p_guilt_desc" data-es="Criar sin culpa también significa dejar atrás la idea de hacerlo perfecto." data-en="Guilt-free parenting also means letting go of the idea of doing it perfectly.">Criar sin culpa también significa dejar atrás la idea de hacerlo perfecto.</p></div>
+          </div>
+          <p class="modal-footer-text" data-i18n="modal_footer" data-es="Hoy, este espacio evoluciona hacia un ecosistema práctico de apoyo emocional: guías, herramientas y recursos diseñados para acompañarte en los momentos difíciles." data-en="Today, this space is evolving into a practical ecosystem of emotional support: guides, tools, and resources designed to support you in difficult moments.">Hoy, este espacio evoluciona hacia un ecosistema práctico de apoyo emocional: guías, herramientas y recursos diseñados para acompañarte en los momentos difíciles.</p>
+          <div class="modal-actions-light">
+            <button class="btn-clay close-modal-action" data-i18n="modal_clay_cta" data-es="EMPIEZA POR EL MOMENTO QUE MÁS NECESITAS HOY →" data-en="START WITH THE MOMENT YOU NEED MOST TODAY →">EMPIEZA POR EL MOMENTO QUE MÁS NECESITAS HOY →</button>
+            <button class="btn-link close-modal-action" data-i18n="modal_link_cta" data-es="VOLVER A LAS GUÍAS" data-en="BACK TO GUIDES">VOLVER A LAS GUÍAS</button>
+          </div>
+        </div>
       </div>
-
     </div>
   </div>
 
@@ -726,11 +931,8 @@
       function trackSignal(eventName, properties) {
         if (typeof plausible !== 'undefined') { plausible(eventName, { props: properties }); }
       }
-
-      // Bilingual Engine
       const STORAGE_KEY = 'lg_parent_lang';
       let currentLang = localStorage.getItem(STORAGE_KEY) || 'es';
-
       function applyLang(lang) {
         currentLang = lang;
         localStorage.setItem(STORAGE_KEY, lang);
@@ -743,106 +945,59 @@
           btn.setAttribute('aria-pressed', btn.getAttribute('data-lang') === lang ? 'true' : 'false');
         });
       }
-
       document.addEventListener('click', e => {
         const btn = e.target.closest('.lang-btn');
-        if (btn) {
-          applyLang(btn.getAttribute('data-lang'));
-          trackSignal('language_changed', { to_lang: currentLang, location: 'hub' });
-        }
+        if (btn) { applyLang(btn.getAttribute('data-lang')); trackSignal('language_changed', { to_lang: currentLang, location: 'hub' }); }
       });
       applyLang(currentLang);
-
-      // Track Guide Clicks
       document.querySelectorAll('.track-guide').forEach(card => {
-        card.addEventListener('click', () => {
-          trackSignal('card_opened', { guide: card.getAttribute('data-id') });
-        });
+        card.addEventListener('click', () => { trackSignal('card_opened', { guide: card.getAttribute('data-id') }); });
       });
-
-      // Contextual Trust Modal Logic
       const modalOverlay = document.getElementById('nariModal');
       const openModalBtns = document.querySelectorAll('.open-nari-modal');
       const closeBtn = document.getElementById('nariModalCloseBtn');
       const closeBg = document.getElementById('nariModalCloseBg');
-      const closeActionBtn = document.querySelector('.close-modal-action');
-
+      const closeActionBtns = document.querySelectorAll('.close-modal-action');
       function openModal() {
         if (!modalOverlay) return;
         modalOverlay.classList.add('is-open');
         modalOverlay.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
-         
-        // Defensive check to prevent crash if telemetry is blocked
-        if (typeof trackSignal === 'function') {
-          trackSignal('trust_modal_opened', { language: typeof currentLang !== 'undefined' ? currentLang : 'es' });
-        }
+        if (typeof trackSignal === 'function') trackSignal('trust_modal_opened', { language: currentLang });
       }
-
       function closeModal() {
         if (!modalOverlay) return;
         modalOverlay.classList.remove('is-open');
         modalOverlay.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
       }
-
-      if (openModalBtns.length > 0) {
-        openModalBtns.forEach(btn => btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          openModal();
-        }));
-      }
-
-      if(closeBtn) closeBtn.addEventListener('click', closeModal);
-      if(closeBg) closeBg.addEventListener('click', closeModal);
-       
-      if(closeActionBtn) {
-        closeActionBtn.addEventListener('click', () => {
-          closeModal();
-          // Smart UX: Scroll back to the guides section upon closing
-          const guidesSection = document.getElementById('guias');
-          if (guidesSection) {
-            guidesSection.scrollIntoView({ behavior: 'smooth' });
-          }
-        });
-      }
-
-      // Close on Escape key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('is-open')) {
-          closeModal();
-        }
+      openModalBtns.forEach(btn => btn.addEventListener('click', e => { e.preventDefault(); openModal(); }));
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      if (closeBg)  closeBg.addEventListener('click', closeModal);
+      closeActionBtns.forEach(btn => btn.addEventListener('click', () => {
+        closeModal();
+        const guidesSection = document.getElementById('guias');
+        if (guidesSection) guidesSection.scrollIntoView({ behavior: 'smooth' });
+      }));
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('is-open')) closeModal();
       });
-
-      // Method Accordion 
-       document.querySelectorAll('[data-accordion]').forEach(row => { 
-         row.addEventListener('click', () => { 
-           const isOpen = row.getAttribute('aria-expanded') === 'true'; 
-           // Close all 
-           document.querySelectorAll('[data-accordion]').forEach(r => { 
-             r.setAttribute('aria-expanded', 'false'); 
-             r.nextElementSibling.classList.remove('is-open'); 
-           }); 
-           // Open clicked if it was closed 
-           if (!isOpen) { 
-             row.setAttribute('aria-expanded', 'true'); 
-             row.nextElementSibling.classList.add('is-open'); 
-           } 
-         }); 
-         row.addEventListener('keydown', e => { 
-           if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); row.click(); } 
-         }); 
-       }); 
- 
-       // Mobile Menu
+      document.querySelectorAll('[data-accordion]').forEach(row => {
+        row.addEventListener('click', () => {
+          const isOpen = row.getAttribute('aria-expanded') === 'true';
+          document.querySelectorAll('[data-accordion]').forEach(r => {
+            r.setAttribute('aria-expanded', 'false');
+            r.nextElementSibling.classList.remove('is-open');
+          });
+          if (!isOpen) { row.setAttribute('aria-expanded', 'true'); row.nextElementSibling.classList.add('is-open'); }
+        });
+        row.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); row.click(); } });
+      });
       const menuBtn = document.querySelector('.mobile-menu-btn');
       const navLinks = document.querySelector('.nav-links');
-      if (menuBtn && navLinks) {
-        menuBtn.addEventListener('click', () => {
-          navLinks.classList.toggle('is-open');
-        });
-      }
+      if (menuBtn && navLinks) { menuBtn.addEventListener('click', () => { navLinks.classList.toggle('is-open'); }); }
     })();
   </script>
 </body>
 </html>
+I just created the exact same file in Trae's directory and  all I need is to tell him to use it to push it or to copy it to github somehow.. that is the only hng I dont know ow to ask it .. this is the apoo/index.html 
