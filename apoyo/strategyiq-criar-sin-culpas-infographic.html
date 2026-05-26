@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0F1012" />
+  <title>StrategyIQ · Criar Sin Culpas — Cinematic Editorial Infographic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --coral:#F96F6E;
+      --teal:#2ED3C6;
+      --bg:#0F1012;
+      --bg2:#0A0B0D;
+      --text:#F7F1EC;
+      --muted:rgba(247,241,236,.64);
+      --subtle:rgba(247,241,236,.42);
+      --faint:rgba(247,241,236,.18);
+      --line:rgba(255,255,255,.10);
+      --line2:rgba(255,255,255,.06);
+      --panel:rgba(255,255,255,.05);
+      --shadow:0 24px 90px rgba(0,0,0,.62), inset 0 1px 0 rgba(255,255,255,.08);
+      --shadow2:0 14px 50px rgba(0,0,0,.52), inset 0 1px 0 rgba(255,255,255,.06);
+      --r-xl:30px;
+      --r-lg:22px;
+      --r-md:16px;
+      --ease:cubic-bezier(.22,1,.36,1);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{min-height:100%}
+    body{
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1100px 720px at 18% 18%, rgba(249,111,110,.14), transparent 60%),
+        radial-gradient(980px 720px at 84% 82%, rgba(46,211,198,.12), transparent 58%),
+        radial-gradient(780px 520px at 56% 12%, rgba(255,255,255,.03), transparent 62%),
+        linear-gradient(180deg,var(--bg2),var(--bg));
+      overflow-x:hidden;
+    }
+    .grain{
+      position:fixed;inset:0;pointer-events:none;
+      opacity:.03;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size:180px 180px;
+      mix-blend-mode:overlay;
+    }
+    .wrap{position:relative;z-index:1;padding:56px 20px 70px;display:grid;place-items:center}
+    .frame{
+      width:min(1320px,100%);
+      border-radius:44px;
+      border:1px solid rgba(255,255,255,.09);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .frame::before{
+      content:"";
+      position:absolute;inset:-2px;pointer-events:none;
+      background:
+        radial-gradient(840px 560px at 12% 10%, rgba(249,111,110,.10), transparent 62%),
+        radial-gradient(820px 560px at 90% 88%, rgba(46,211,198,.10), transparent 62%),
+        radial-gradient(980px 680px at 52% 0%, rgba(255,255,255,.03), transparent 62%);
+      opacity:1;
+    }
+    .top{
+      position:relative;
+      padding:26px 26px 18px;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:20px;
+    }
+    .meta{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      min-width:0;
+    }
+    .kicker{
+      font-size:11px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:rgba(247,241,236,.54);
+      white-space:nowrap;
+    }
+    h1{
+      font-family:"Cormorant Garamond",serif;
+      font-weight:600;
+      font-size:clamp(24px,2.7vw,38px);
+      line-height:1.02;
+      letter-spacing:.01em;
+    }
+    .sub{
+      max-width:72ch;
+      color:rgba(247,241,236,.62);
+      font-size:13px;
+      line-height:1.5;
+    }
+    .chips{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.09);
+      color:rgba(247,241,236,.70);
+      font-size:12px;
+      backdrop-filter:blur(10px);
+    }
+    .dot{width:6px;height:6px;border-radius:50%}
+    .dot.coral{background:var(--coral);box-shadow:0 0 0 4px rgba(249,111,110,.12)}
+    .dot.teal{background:var(--teal);box-shadow:0 0 0 4px rgba(46,211,198,.10)}
+
+    .grid{
+      position:relative;
+      padding:18px 26px 26px;
+      display:grid;
+      grid-template-columns:1fr 64px 1fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    .divider{
+      position:relative;
+      display:grid;
+      place-items:center;
+    }
+    .divider::before{
+      content:"";
+      position:absolute;
+      top:8px;bottom:8px;left:50%;
+      width:1px;
+      background:linear-gradient(180deg, transparent, rgba(255,255,255,.14), transparent);
+      transform:translateX(-.5px);
+    }
+    .vs{
+      width:46px;height:46px;border-radius:18px;
+      display:grid;place-items:center;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      color:rgba(247,241,236,.70);
+      font-weight:700;
+      letter-spacing:.06em;
+      box-shadow:var(--shadow2);
+      backdrop-filter:blur(12px);
+    }
+
+    .col{
+      position:relative;
+      border-radius:var(--r-xl);
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      box-shadow:var(--shadow2);
+      overflow:hidden;
+    }
+    .col::before{
+      content:"";
+      position:absolute;inset:0;pointer-events:none;
+      background:
+        radial-gradient(520px 360px at 18% 0%, rgba(255,255,255,.03), transparent 60%),
+        radial-gradient(520px 360px at 90% 100%, rgba(255,255,255,.02), transparent 62%);
+      opacity:1;
+    }
+    .col.left::after{
+      content:"";
+      position:absolute;inset:-80px -120px -80px -120px;pointer-events:none;
+      background:
+        radial-gradient(820px 520px at 20% 22%, rgba(249,111,110,.08), transparent 66%),
+        radial-gradient(720px 520px at 80% 80%, rgba(249,111,110,.06), transparent 68%);
+      opacity:.9;
+      filter:saturate(.98);
+    }
+    .col.right::after{
+      content:"";
+      position:absolute;inset:-80px -120px -80px -120px;pointer-events:none;
+      background:
+        radial-gradient(820px 520px at 20% 20%, rgba(46,211,198,.08), transparent 66%),
+        radial-gradient(720px 520px at 84% 80%, rgba(46,211,198,.06), transparent 68%);
+      opacity:.9;
+      filter:saturate(.98);
+    }
+    .col-inner{
+      position:relative;
+      padding:18px 18px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      min-height:520px;
+    }
+    .col-hd{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .label{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      min-width:0;
+    }
+    .label .sup{
+      font-size:11px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:rgba(247,241,236,.56);
+    }
+    .label strong{
+      font-family:"Cormorant Garamond",serif;
+      font-weight:600;
+      font-size:22px;
+      line-height:1.08;
+      letter-spacing:.01em;
+    }
+    .timebox{
+      flex:0 0 auto;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:6px;
+      padding:12px 12px 10px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      backdrop-filter:blur(12px);
+    }
+    .timebox .t{
+      font-weight:700;
+      font-size:18px;
+      letter-spacing:.01em;
+    }
+    .timebox .t.coral{color:rgba(249,111,110,.92)}
+    .timebox .t.teal{color:rgba(46,211,198,.92)}
+    .timebox .b{
+      font-size:11px;
+      color:rgba(247,241,236,.56);
+      letter-spacing:.02em;
+      white-space:nowrap;
+    }
+
+    .bullets{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .item{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:12px 12px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.02);
+    }
+    .i-dot{
+      width:10px;height:10px;border-radius:50%;
+      margin-top:4px;
+      background:rgba(247,241,236,.30);
+      box-shadow:0 0 0 6px rgba(255,255,255,.03);
+      flex:0 0 auto;
+    }
+    .col.left .i-dot{
+      background:rgba(249,111,110,.65);
+      box-shadow:0 0 0 7px rgba(249,111,110,.08);
+    }
+    .col.right .i-dot{
+      background:rgba(46,211,198,.70);
+      box-shadow:0 0 0 7px rgba(46,211,198,.08);
+    }
+    .item .txt{
+      color:rgba(247,241,236,.70);
+      font-size:13px;
+      line-height:1.45;
+    }
+    .item .txt em{
+      color:rgba(247,241,236,.92);
+      font-style:normal;
+      font-weight:600;
+    }
+
+    .signals{
+      margin-top:auto;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+    }
+    .sigrow{
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.02);
+      padding:12px 12px 12px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .sigrow .cap{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .sigrow .cap span{
+      font-size:11px;
+      color:rgba(247,241,236,.56);
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+    .sigrow .cap b{
+      font-size:11px;
+      color:rgba(247,241,236,.68);
+      font-weight:600;
+      letter-spacing:.02em;
+      white-space:nowrap;
+    }
+    .sparkline{
+      position:relative;
+      height:78px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(260px 140px at 20% 0%, rgba(255,255,255,.03), transparent 60%),
+        rgba(255,255,255,.015);
+      overflow:hidden;
+    }
+    .sparkline svg{position:absolute;inset:0}
+    .sparkline .gridline{
+      stroke:rgba(255,255,255,.06);
+      stroke-width:1;
+      stroke-dasharray:3 6;
+    }
+    .sparkline .curve-left{
+      stroke:rgba(249,111,110,.90);
+      stroke-width:2.2;
+      fill:none;
+      filter:drop-shadow(0 10px 18px rgba(249,111,110,.20));
+    }
+    .sparkline .curve-right{
+      stroke:rgba(46,211,198,.92);
+      stroke-width:2.2;
+      fill:none;
+      filter:drop-shadow(0 10px 18px rgba(46,211,198,.18));
+    }
+    .sparkline .fill-left{
+      fill:rgba(249,111,110,.10);
+    }
+    .sparkline .fill-right{
+      fill:rgba(46,211,198,.10);
+    }
+    .cue{
+      position:absolute;
+      top:10px;
+      width:1px;
+      bottom:10px;
+      background:linear-gradient(180deg, transparent, rgba(255,255,255,.18), transparent);
+      opacity:.9;
+    }
+    .cue::after{
+      content:"";
+      position:absolute;
+      left:-5px;
+      top:12px;
+      width:11px;height:11px;border-radius:50%;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.04);
+      box-shadow:0 10px 28px rgba(0,0,0,.45);
+      backdrop-filter:blur(10px);
+    }
+    .cue.coral{background:linear-gradient(180deg, transparent, rgba(249,111,110,.55), transparent)}
+    .cue.teal{background:linear-gradient(180deg, transparent, rgba(46,211,198,.50), transparent)}
+    .cue.coral::after{border-color:rgba(249,111,110,.40);background:rgba(249,111,110,.10)}
+    .cue.teal::after{border-color:rgba(46,211,198,.38);background:rgba(46,211,198,.09)}
+
+    .timeline{
+      position:relative;
+      margin-top:10px;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      padding:16px 16px 14px;
+      overflow:hidden;
+      box-shadow:var(--shadow2);
+    }
+    .timeline::before{
+      content:"";
+      position:absolute;inset:0;pointer-events:none;
+      background:
+        radial-gradient(540px 300px at 10% 0%, rgba(249,111,110,.08), transparent 66%),
+        radial-gradient(540px 300px at 90% 100%, rgba(46,211,198,.08), transparent 66%);
+      opacity:.9;
+    }
+    .t-hd{
+      position:relative;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom:10px;
+    }
+    .t-hd strong{
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:rgba(247,241,236,.58);
+      font-weight:600;
+    }
+    .t-hd span{
+      font-size:12px;
+      color:rgba(247,241,236,.64);
+      white-space:nowrap;
+    }
+    .bar{
+      position:relative;
+      height:14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.02);
+      overflow:hidden;
+    }
+    .bar .fill{
+      position:absolute;inset:0;
+      background:
+        linear-gradient(90deg, rgba(249,111,110,.20), rgba(46,211,198,.16));
+      opacity:.65;
+      mask-image:linear-gradient(90deg, rgba(0,0,0,1), rgba(0,0,0,.6));
+    }
+    .ticks{
+      margin-top:10px;
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr 1fr 1fr;
+      gap:8px;
+      position:relative;
+    }
+    .tick{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.02);
+      padding:10px 10px 9px;
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      min-height:58px;
+    }
+    .tick b{
+      font-size:11px;
+      color:rgba(247,241,236,.72);
+      font-weight:600;
+      letter-spacing:.02em;
+    }
+    .tick i{
+      font-style:normal;
+      font-size:11px;
+      color:rgba(247,241,236,.54);
+      line-height:1.3;
+    }
+    .tick.coral{border-color:rgba(249,111,110,.20);background:rgba(249,111,110,.06)}
+    .tick.teal{border-color:rgba(46,211,198,.18);background:rgba(46,211,198,.05)}
+
+    .note{
+      position:relative;
+      padding:16px 26px 26px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:18px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+    .note .quote{
+      font-family:"Cormorant Garamond",serif;
+      font-size:20px;
+      line-height:1.2;
+      color:rgba(247,241,236,.92);
+      max-width:62ch;
+      letter-spacing:.01em;
+    }
+    .note .quote .c{color:rgba(249,111,110,.92)}
+    .note .quote .t{color:rgba(46,211,198,.92)}
+    .note .rhs{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      align-items:flex-end;
+      text-align:right;
+      color:rgba(247,241,236,.58);
+      font-size:12px;
+      white-space:nowrap;
+    }
+    .stamp{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      backdrop-filter:blur(12px);
+      box-shadow:0 12px 40px rgba(0,0,0,.5);
+    }
+    .stamp .s{
+      width:10px;height:10px;border-radius:50%;
+      background:linear-gradient(180deg, rgba(249,111,110,.96), rgba(46,211,198,.92));
+      box-shadow:0 0 0 7px rgba(255,255,255,.03);
+    }
+    .stamp span{
+      font-size:11px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:rgba(247,241,236,.68);
+      font-weight:600;
+    }
+
+    @media (max-width: 980px){
+      .top{flex-direction:column;align-items:flex-start}
+      .chips{justify-content:flex-start}
+      .grid{grid-template-columns:1fr;gap:14px}
+      .divider{display:none}
+      .col-inner{min-height:auto}
+      .note{flex-direction:column;align-items:flex-start}
+      .note .rhs{align-items:flex-start;text-align:left}
+      .ticks{grid-template-columns:1fr 1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <main class="wrap">
+    <section class="frame" aria-label="Cinematic editorial comparison infographic">
+      <header class="top">
+        <div class="meta">
+          <div class="kicker">StrategyIQ case study</div>
+          <h1>Criar Sin Culpas · From Content to Intervention</h1>
+          <div class="sub">A premium behavioral intelligence comparison: traditional parenting content creates friction and delay; Criar Sin Culpas delivers emotionally calming guidance in seconds, built for real-life escalation windows.</div>
+        </div>
+        <div class="chips" aria-label="Design attributes">
+          <div class="chip"><span class="dot coral"></span>Coral</div>
+          <div class="chip"><span class="dot teal"></span>Teal</div>
+          <div class="chip">Dark editorial</div>
+          <div class="chip">Evidence-based tone</div>
+        </div>
+      </header>
+
+      <div class="grid" role="group" aria-label="Left vs Right comparison">
+        <section class="col left" aria-label="Traditional parenting content experience (left)">
+          <div class="col-inner">
+            <div class="col-hd">
+              <div class="label">
+                <div class="sup">Left side</div>
+                <strong>Traditional content</strong>
+              </div>
+              <div class="timebox" aria-label="Time to help">
+                <div class="t coral">5+ minutes</div>
+                <div class="b">Slow discovery</div>
+              </div>
+            </div>
+
+            <div class="bullets" aria-label="Friction factors">
+              <div class="item"><span class="i-dot" aria-hidden="true"></span><div class="txt"><em>Long articles</em> in the middle of emotional heat.</div></div>
+              <div class="item"><span class="i-dot" aria-hidden="true"></span><div class="txt"><em>Scrolling</em> and scanning while regulation drops.</div></div>
+              <div class="item"><span class="i-dot" aria-hidden="true"></span><div class="txt"><em>Searching for answers</em> instead of taking action.</div></div>
+              <div class="item"><span class="i-dot" aria-hidden="true"></span><div class="txt"><em>Emotional friction</em> rises with more words.</div></div>
+              <div class="item"><span class="i-dot" aria-hidden="true"></span><div class="txt"><em>Information overload</em> when time is scarce.</div></div>
+            </div>
+
+            <div class="signals" aria-label="Signal overlays and escalation indicators">
+              <div class="sigrow">
+                <div class="cap">
+                  <span>Emotional escalation</span>
+                  <b>Rising pressure</b>
+                </div>
+                <div class="sparkline" aria-hidden="true">
+                  <div class="cue coral" style="left:72%"></div>
+                  <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                    <path class="gridline" d="M0 10 H100" />
+                    <path class="gridline" d="M0 20 H100" />
+                    <path class="gridline" d="M0 30 H100" />
+                    <path class="fill-left" d="M0 34 C 14 34, 18 32, 26 30 C 34 28, 40 26, 48 24 C 58 22, 62 18, 70 16 C 80 13, 86 9, 92 6 C 96 4, 98 3, 100 2 L100 40 L0 40 Z" />
+                    <path class="curve-left" d="M0 34 C 14 34, 18 32, 26 30 C 34 28, 40 26, 48 24 C 58 22, 62 18, 70 16 C 80 13, 86 9, 92 6 C 96 4, 98 3, 100 2" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="divider" aria-hidden="true">
+          <div class="vs">VS</div>
+        </div>
+
+        <section class="col right" aria-label="Criar Sin Culpas intervention system (right)">
+          <div class="col-inner">
+            <div class="col-hd">
+              <div class="label">
+                <div class="sup">Right side</div>
+                <strong>Intervention system</strong>
+              </div>
+              <div class="timebox" aria-label="Time to help">
+                <div class="t teal">48 seconds</div>
+                <div class="b">Support in seconds</div>
+              </div>
+            </div>
+
+            <div class="bullets" aria-label="Clarity factors">
+              <div class="item"><span class="i-dot" aria-hidden="true"></span><div class="txt"><em>Rapid emotional guidance</em> for the escalation window.</div></div>
+              <div class="item"><span class="i-dot" aria-hidden="true"></span><div class="txt"><em>Tactical intervention cards</em> with one clear move.</div></div>
+              <div class="item"><span class="i-dot" aria-hidden="true"></span><div class="txt"><em>Immediate usability</em> with minimal reading.</div></div>
+              <div class="item"><span class="i-dot" aria-hidden="true"></span><div class="txt"><em>Emotional clarity</em> through shorter, steadier language.</div></div>
+              <div class="item"><span class="i-dot" aria-hidden="true"></span><div class="txt"><em>Behavioral friction reduction</em> via structured protocols.</div></div>
+            </div>
+
+            <div class="signals" aria-label="Signal overlays and intervention timing cues">
+              <div class="sigrow">
+                <div class="cap">
+                  <span>Intervention timing</span>
+                  <b>Early stabilization</b>
+                </div>
+                <div class="sparkline" aria-hidden="true">
+                  <div class="cue teal" style="left:36%"></div>
+                  <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                    <path class="gridline" d="M0 10 H100" />
+                    <path class="gridline" d="M0 20 H100" />
+                    <path class="gridline" d="M0 30 H100" />
+                    <path class="fill-right" d="M0 30 C 10 28, 16 24, 24 20 C 34 15, 42 14, 52 15 C 62 16, 70 18, 78 20 C 88 22, 94 24, 100 24 L100 40 L0 40 Z" />
+                    <path class="curve-right" d="M0 30 C 10 28, 16 24, 24 20 C 34 15, 42 14, 52 15 C 62 16, 70 18, 78 20 C 88 22, 94 24, 100 24" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section class="timeline" aria-label="Minimal timeline visualization">
+        <div class="t-hd">
+          <strong>Timeline (minimal)</strong>
+          <span>Friction ↓ · clarity ↑</span>
+        </div>
+        <div class="bar" aria-hidden="true"><div class="fill"></div></div>
+        <div class="ticks" aria-label="Timing cues">
+          <div class="tick coral"><b>0–60s</b><i>Escalation window opens</i></div>
+          <div class="tick"><b>1–3m</b><i>Search + scroll begins</i></div>
+          <div class="tick coral"><b>5m+</b><i>Overload + delay</i></div>
+          <div class="tick teal"><b>0–48s</b><i>Card → action → stability</i></div>
+          <div class="tick teal"><b>1–2m</b><i>Protocol supports repair</i></div>
+        </div>
+      </section>
+
+      <footer class="note" aria-label="Strategic storytelling note">
+        <div class="quote">Replace <span class="c">information</span> with <span class="t">intervention</span>—and the caregiver moves from searching to steady action.</div>
+        <div class="rhs">
+          <div class="stamp"><span class="s" aria-hidden="true"></span><span>Behavioral friction reduction</span></div>
+          <div>Dark editorial · cinematic strategy doc tone</div>
+        </div>
+      </footer>
+    </section>
+  </main>
+</body>
+</html>

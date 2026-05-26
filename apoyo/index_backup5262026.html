@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <title data-i18n="title_tag" data-es="Espacio de Apoyo · Criar Sin Culpas" data-en="Support Space · Criar Sin Culpas">Espacio de Apoyo · Criar Sin Culpas</title>
+  <meta property="og:description" content="Un sistema de apoyo emocional para padres. Encuentra calma, claridad y herramientas prácticas para los momentos difíciles.">
+  <meta property="og:image" content="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779225964/gRvUE3dA_mbifyu.png">
+  <meta property="og:url" content="https://criarsinculpas.com">
+  <link rel="canonical" href="https://criarsinculpas.com">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- SnglIQ Telemetry Engine (Plausible) - Production Only -->
+  <script>
+    if (window.location.hostname === 'criarsinculpas.com' || window.location.hostname === 'www.criarsinculpas.com') {
+      var pl = document.createElement('script'); pl.defer = true;
+      pl.setAttribute('data-domain', 'criarsinculpas.com');
+      pl.src = 'https://plausible.io/js/script.js';
+      document.head.appendChild(pl);
+    }
+    window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) };
+  </script>
+
+  <style>
+    :root {
+      --bg-void:   #0a0807;
+      --bg-card:   rgba(255,255,255,.028);
+      --bg-card-hover: rgba(255,255,255,.06);
+      --card-border:   rgba(201,169,110,.1);
+      --card-border-hover: rgba(201,169,110,.2);
+
+      --text-main:  #F7F4F2;
+      --text-muted: rgba(247,244,242,.62);
+      --text-faint: rgba(247,244,242,.35);
+
+      --gold:       #C9A96E;
+      --gold-light: #e2c48a;
+      --gold-dark:  #9e7840;
+
+      --teal:  #61d1c4;
+      --teal-bg: rgba(97,209,196,.07);
+
+      --display-font: 'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
+      --ui-font: 'Inter', system-ui, -apple-system, sans-serif;
+
+      --ease-cinematic: cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html, body {
+      min-height: 100dvh; width: 100%;
+      overflow-x: hidden;
+      background-color: var(--bg-void);
+      color: var(--text-main);
+      font-family: var(--ui-font);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 0;
+      opacity: .028;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 0% 100%, rgba(110,60,15,.22) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 30% at 100% 0%, rgba(97,209,196,.04) 0%, transparent 60%);
+    }
+
+    .top-row {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 12px;
+      background: rgba(10,8,7,.45);
+      padding: max(18px, env(safe-area-inset-top)) 48px 16px 48px;
+      border-bottom: 1px solid rgba(201,169,110,.08);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .top-row::before {
+      content: ''; position: absolute; inset: 0; z-index: -1;
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    }
+    .nav-links { display: flex; gap: 36px; align-items: center; }
+    .nav-links a {
+      color: var(--text-muted); text-decoration: none;
+      font-size: .75rem; font-weight: 500;
+      letter-spacing: .06em; text-transform: uppercase;
+      transition: color .25s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+
+    .lang-switcher {
+      display: inline-flex; padding: 4px; gap: 4px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.04);
+    }
+    .lang-btn {
+      min-width: 40px; padding: 5px 10px; border-radius: 999px;
+      color: var(--text-muted); font-size: .68rem; font-weight: 700;
+      cursor: pointer; background: none; border: none; transition: all 260ms;
+    }
+    .lang-btn[aria-pressed='true'] { color: #fff; background: rgba(255,255,255,.1); }
+    .mobile-menu-btn { display: none; }
+
+    @media (max-width: 768px) {
+      .top-row { padding-left: 20px; padding-right: 20px; }
+      .nav-links {
+        position: fixed; inset: 0;
+        background: rgba(10,8,7,.98);
+        backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        z-index: 999; flex-direction: column;
+        align-items: center; justify-content: center;
+        gap: 40px; opacity: 0; pointer-events: none;
+        transition: all .4s var(--ease-cinematic);
+        transform: translateY(-10px);
+      }
+      .nav-links.is-open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+      .nav-links a { font-size: 1.3rem; }
+      .mobile-menu-btn {
+        display: flex; align-items: center; justify-content: center;
+        background: rgba(255,255,255,.04);
+        border: 1px solid rgba(255,255,255,.1); border-radius: 50%;
+        width: 44px; height: 44px; color: #fff; z-index: 1000; cursor: pointer;
+      }
+      .nav-links:not(.is-open) a { display: none; }
+      .nav-links.is-open a { display: block; }
+    }
+
+    .hub-container {
+      position: relative; z-index: 1;
+      max-width: 1000px; margin: 0 auto;
+      padding: 0 24px 80px 24px;
+      display: flex; flex-direction: column; gap: 64px;
+    }
+    section { display: flex; flex-direction: column; gap: 24px; }
+
+    .section-header h2 {
+      font-family: var(--display-font);
+      font-size: 2rem; font-weight: 500;
+      letter-spacing: .01em;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+    .section-header p { color: var(--text-muted); font-size: .92rem; max-width: 60ch; }
+    .section-header.flex-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+    .text-link {
+      color: var(--teal); text-decoration: none;
+      font-size: .82rem; font-weight: 500; transition: opacity .3s;
+    }
+    .text-link:hover { opacity: .75; }
+
+    .hub-hero {
+      position: relative;
+      padding: 72px 0 48px 0;
+      display: flex; flex-direction: column;
+      justify-content: center;
+      min-height: 46vh;
+      border-bottom: 1px solid rgba(201,169,110,.08);
+    }
+    .hub-hero-bg {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+    }
+    .hub-hero-bg img {
+      position: absolute; right: 0; top: 0;
+      width: 62%; height: 100%;
+      object-fit: cover; object-position: 0% 25%;
+      opacity: .72;
+      filter: brightness(.82) saturate(1.1) sepia(.14) hue-rotate(-6deg);
+      border-radius: 0 0 0 24px;
+    }
+    .hub-hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background:
+        linear-gradient(to right, var(--bg-void) 0%, var(--bg-void) 35%, rgba(10,8,7,0) 62%),
+        linear-gradient(to top, var(--bg-void) 0%, rgba(10,8,7,0) 22%),
+        radial-gradient(ellipse 50% 40% at 0% 100%, rgba(100,55,10,.35) 0%, transparent 60%);
+    }
+
+    .hub-hero-content {
+      position: relative; z-index: 2; max-width: 480px;
+    }
+
+    .eyebrow {
+      font-size: .68rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .1em;
+      color: var(--teal); margin-bottom: 14px; display: block;
+    }
+
+    .hub-hero h1 {
+      font-family: var(--display-font);
+      font-size: clamp(2.2rem, 4.5vw, 3rem);
+      line-height: 1.1; margin-bottom: 20px;
+      font-weight: 500; letter-spacing: .01em;
+    }
+    .hub-hero p {
+      color: var(--text-muted); font-size: .98rem;
+      margin-bottom: 28px; line-height: 1.65; max-width: 40ch;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 13px 26px;
+      background: var(--teal); color: #0a0807;
+      font-weight: 600; font-size: .92rem; border-radius: 999px;
+      text-decoration: none;
+      transition: transform .3s var(--ease-cinematic), box-shadow .3s;
+      box-shadow: 0 4px 18px rgba(97,209,196,.25);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(97,209,196,.35);
+    }
+
+    .guides-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    }
+    .guide-card {
+      background: var(--bg-card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px; padding: 18px;
+      display: flex; align-items: flex-start; gap: 14px;
+      text-decoration: none; color: var(--text-main);
+      transition: all .35s var(--ease-cinematic);
+      position: relative; overflow: hidden;
+    }
+    .guide-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(201,169,110,.04), transparent 60%);
+      opacity: 0; transition: opacity .35s;
+      pointer-events: none;
+    }
+    .guide-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--card-border-hover);
+      transform: translateY(-2px);
+    }
+    .guide-card:hover::before { opacity: 1; }
+
+    .guide-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      background: var(--icon-glow);
+      color: var(--icon-color);
+      border: 1px solid rgba(255,255,255,.05);
+    }
+    .guide-info h3 { font-size: .95rem; font-weight: 500; margin-bottom: 3px; }
+    .guide-info p  { font-size: .78rem; color: var(--text-muted); line-height: 1.4; }
+    .guide-arrow {
+      margin-left: auto; align-self: center;
+      color: var(--text-muted); opacity: 0;
+      transform: translateX(-8px);
+      transition: all .3s var(--ease-cinematic);
+    }
+    .guide-card:hover .guide-arrow { opacity: 1; transform: translateX(0); }
+
+    .disabled-card { opacity: .38; pointer-events: none; cursor: default; }
+    .coming-soon-badge {
+      font-size: .62rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .05em;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      padding: 3px 8px; border-radius: 6px;
+      color: var(--text-faint); margin-left: auto; align-self: center;
+    }
+
+    .nari-card {
+      background: var(--bg-card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px; padding: 22px;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 24px; flex-wrap: wrap;
+    }
+    .nari-profile { display: flex; align-items: center; gap: 16px; flex: 1; min-width: 280px; }
+    .nari-profile img {
+      width: 60px; height: 60px; border-radius: 50%; object-fit: cover;
+      border: 1px solid rgba(201,169,110,.25);
+      box-shadow: 0 4px 14px rgba(0,0,0,.4);
+    }
+    .nari-profile h3 { font-size: 1.05rem; font-weight: 500; margin-bottom: 3px; }
+    .nari-profile p { font-size: .82rem; color: var(--text-muted); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 22px;
+      background: rgba(201,169,110,.08);
+      border: 1px solid rgba(201,169,110,.2);
+      border-radius: 999px; color: var(--gold-light);
+      font-size: .88rem; text-decoration: none;
+      transition: background .3s, border-color .3s;
+    }
+    .btn-secondary:hover {
+      background: rgba(201,169,110,.14);
+      border-color: rgba(201,169,110,.35);
+    }
+
+    .method-accordion {
+      border: 1px solid var(--card-border);
+      border-radius: 16px; overflow: hidden;
+    }
+    .method-row {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--card-border);
+      display: flex; align-items: center; gap: 22px;
+      text-decoration: none; color: var(--text-main);
+      transition: background .25s; cursor: pointer;
+    }
+    .method-row:hover { background: var(--bg-card-hover); }
+    .method-row[aria-expanded="true"] { background: var(--bg-card-hover); }
+    .method-row[aria-expanded="true"] .row-icon { transform: rotate(180deg); }
+    .row-icon {
+      display: inline-block;
+      transition: transform .35s var(--ease-cinematic);
+      color: var(--text-faint);
+    }
+    .method-panel {
+      max-height: 0; overflow: hidden;
+      transition: max-height .45s var(--ease-cinematic), padding .35s var(--ease-cinematic);
+      padding: 0 22px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .method-panel.is-open { max-height: 300px; padding: 18px 22px 22px 22px; }
+    .method-panel p {
+      font-size: .88rem; color: var(--text-muted);
+      line-height: 1.65; max-width: 62ch; margin-bottom: 14px;
+    }
+    .panel-link {
+      font-size: .78rem; font-weight: 600;
+      color: var(--teal); text-decoration: none;
+      letter-spacing: .02em; transition: opacity .2s;
+    }
+    .panel-link:hover { opacity: .75; }
+    .method-row:last-child { border-bottom: none; }
+    .row-num { font-size: .78rem; color: var(--gold); font-family: monospace; font-weight: 600; }
+    .method-deep-link {
+      background: rgba(201,169,110,.1);
+      border: 1px solid rgba(201,169,110,.22);
+      color: var(--gold-light);
+      border-radius: 999px; padding: 6px 16px;
+      font-size: .76rem; font-weight: 600;
+      text-decoration: none; transition: background .3s;
+      display: inline-block;
+    }
+    .method-deep-link:hover { background: rgba(201,169,110,.18); }
+
+    .method-teaser-card {
+      background: rgba(10,8,7,.5);
+      padding: 22px 26px;
+      border-top: 1px solid var(--card-border);
+      border-left: 3px solid var(--gold);
+    }
+    .teaser-quote {
+      font-family: var(--display-font);
+      font-size: 1.1rem; font-style: italic;
+      color: var(--text-main); line-height: 1.5; margin-bottom: 6px;
+    }
+    .teaser-attr {
+      font-size: .62rem; font-weight: 700;
+      letter-spacing: .1em; color: var(--gold);
+      text-transform: uppercase;
+    }
+    .row-title { font-size: .92rem; font-weight: 500; flex-shrink: 0; width: 220px; }
+    .row-desc  { font-size: .82rem; color: var(--text-muted); flex: 1; }
+
+    .paths-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+    }
+    .path-card {
+      background: var(--bg-card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px; padding: 22px;
+      display: flex; flex-direction: column; gap: 14px;
+      opacity: .5; cursor: not-allowed;
+    }
+    .path-icon { color: var(--text-muted); }
+    .path-info h4 {
+      font-size: .7rem; font-weight: 700; color: var(--teal);
+      margin-bottom: 3px; text-transform: uppercase; letter-spacing: .05em;
+    }
+    .path-info h3 { font-size: .95rem; font-weight: 500; line-height: 1.3; }
+    .path-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px;
+      background: rgba(255,255,255,.04); border-radius: 999px;
+      font-size: .72rem; color: var(--text-muted);
+      margin-top: auto; width: fit-content;
+    }
+    .tag-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--teal); opacity: .5; }
+
+    .waitlist-card {
+      background: rgba(97,209,196,.04);
+      border: 1px solid rgba(97,209,196,.14);
+      border-radius: 16px; padding: 28px 36px;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 28px; flex-wrap: wrap;
+      margin-top: 14px;
+    }
+    .waitlist-info h3 { font-size: 1.05rem; font-weight: 500; color: #fff; margin-bottom: 3px; }
+    .waitlist-info p  { font-size: .87rem; color: var(--text-muted); }
+    .waitlist-form { display: flex; gap: 8px; flex: 1; max-width: 420px; min-width: 280px; }
+    .waitlist-form input {
+      flex: 1;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 8px; padding: 11px 14px;
+      color: #fff; font-family: var(--ui-font); font-size: .88rem;
+      outline: none; transition: border-color .3s; min-width: 0;
+    }
+    .waitlist-form input:focus { border-color: var(--teal); }
+    .waitlist-form input::placeholder { color: rgba(255,255,255,.28); }
+    .waitlist-form button {
+      background: var(--teal); color: #0a0807;
+      border: none; border-radius: 8px; padding: 0 22px;
+      font-weight: 600; font-size: .88rem;
+      cursor: pointer; transition: opacity .3s; flex-shrink: 0;
+    }
+    .waitlist-form button:hover { opacity: .85; }
+
+    .site-footer {
+      border-top: 1px solid rgba(201,169,110,.08);
+      padding: 36px 24px; margin-top: auto;
+      background: var(--bg-void); position: relative; z-index: 10;
+    }
+    .footer-content {
+      max-width: 1000px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 20px;
+    }
+    .footer-copy { font-size: .76rem; color: var(--text-faint); font-weight: 500; letter-spacing: .05em; }
+    .footer-links { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
+    .footer-links a {
+      font-size: .76rem; color: var(--text-muted);
+      text-decoration: none; transition: color .3s;
+      font-weight: 500; letter-spacing: .02em;
+    }
+    .footer-links a:hover { color: #fff; }
+
+    @media (max-width: 900px) {
+      .hub-hero-bg img { width: 100%; object-position: 0% 25%; }
+      .hub-hero-bg::after { background: linear-gradient(to top, var(--bg-void) 0%, var(--bg-void) 40%, rgba(10,8,7,0) 100%); }
+      .hub-hero { padding: 56px 0 36px; }
+      .guides-grid { grid-template-columns: repeat(2,1fr); gap: 10px; }
+      .guide-card { flex-direction: column; gap: 10px; padding: 14px; }
+      .guide-arrow { display: none; }
+      .nari-card { flex-direction: column; align-items: flex-start; }
+      .btn-secondary { width: 100%; justify-content: center; }
+      .section-header.flex-header { flex-direction: column; align-items: flex-start; }
+      .waitlist-card { flex-direction: column; align-items: flex-start; padding: 20px; gap: 16px; }
+      .waitlist-form { width: 100%; max-width: none; flex-wrap: wrap; }
+      .waitlist-form input { width: 100%; min-width: 100%; }
+      .waitlist-form button { width: 100%; padding: 14px 24px; }
+      .footer-content { flex-direction: column; align-items: center; text-align: center; gap: 28px; }
+      .footer-links { justify-content: center; gap: 20px; }
+      .paths-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 16px; margin: 0 -24px; padding: 0 24px 24px; }
+      .path-card { min-width: 240px; scroll-snap-align: start; }
+      .method-row { flex-direction: column; align-items: flex-start; gap: 6px; position: relative; }
+      .row-title { width: 100%; }
+      .row-icon { position: absolute; right: 22px; top: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="top-row">
+    <a href="/" aria-label="Inicio" style="display:flex;flex-shrink:0;align-items:center;transition:transform .3s ease;">
+      <img src="/assets/images/csc-logo.svg" alt="Criar Sin Culpas" style="height:clamp(26px,4vw,34px);width:auto !important;max-width:none;display:block;object-fit:contain;flex-shrink:0;margin-left:-4px;">
+    </a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <nav class="nav-links">
+        <a href="/apoyo/" class="active" data-i18n="nav_apoyo" data-es="Guías" data-en="Guides">Guías</a>
+        <a href="/metodo" data-i18n="nav_metodo" data-es="El Método" data-en="Method">El Método</a>
+        <a href="#" style="opacity:.4;pointer-events:none;" data-i18n="nav_aprende" data-es="Aprende (Pronto)" data-en="Learn (Soon)">Aprende (Pronto)</a>
+      </nav>
+      <div class="lang-switcher">
+        <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
+        <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button class="mobile-menu-btn" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="hub-container">
+
+    <!-- 1. HERO -->
+    <div class="hub-hero">
+      <div class="hub-hero-bg">
+        <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779225964/gRvUE3dA_mbifyu.png" alt="Madre e hijas en un momento de tensión">
+      </div>
+      <div class="hub-hero-content">
+        <span class="eyebrow" data-i18n="hero_eyebrow" data-es="Apoyo para la crianza real" data-en="Support for real parenting">Apoyo para la crianza real</span>
+        <h1 data-i18n="hero_h1" data-es="Cuando el momento ya se puso difícil" data-en="When the moment gets tough">Cuando el momento ya se puso difícil</h1>
+        <p data-i18n="hero_p" data-es="Hay días que se sienten intensos y no sabemos por dónde empezar. Encuentra aquí una guía clara y simple para volver a la calma." data-en="There are days that feel intense and we don't know where to start. Find a clear and simple guide here to return to calm.">Hay días que se sienten intensos y no sabemos por dónde empezar. Encuentra aquí una guía clara y simple para volver a la calma.</p>
+        <a href="#guias" class="btn-primary" data-i18n="hero_cta" data-es="¿Qué está pasando hoy?" data-en="What's happening today?">¿Qué está pasando hoy?</a>
+      </div>
+    </div>
+
+    <!-- 2. GUIDES GRID -->
+    <section id="guias">
+      <div class="section-header">
+        <h2 data-i18n="guides_title" data-es="Guías para los momentos difíciles" data-en="Guides for difficult moments">Guías para los momentos difíciles</h2>
+        <p data-i18n="guides_desc" data-es="Herramientas simples para ayudarte a responder con más calma cuando todo se siente intenso." data-en="Simple tools to help you respond more calmly when everything feels intense.">Herramientas simples para ayudarte a responder con más calma cuando todo se siente intenso.</p>
+      </div>
+      <div class="guides-grid">
+
+        <a href="/apoyo/screen-time" class="guide-card track-guide" data-id="screen-time" style="--icon-color:#A78BFA;--icon-glow:rgba(167,139,250,.1);">
+          <div class="guide-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7c0-1.5 1-2 3-2h8c2 0 3 .5 3 2v10c0 1.5-1 2-3 2H8c-2 0-3-.5-3-2z"/><path d="M9 12c0-1.5 1.5-2.5 3-2.5s3 1 3 2.5-1.5 2.5-3 2.5"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="3" r="1.5" fill="currentColor" stroke="none"/><circle cx="18" cy="5" r="1" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <div class="guide-info">
+            <h3 data-i18n="g1_title" data-es="Pantallas" data-en="Screen Time">Pantallas</h3>
+            <p data-i18n="g1_desc" data-es="No quiere apagar la pantalla." data-en="Won't turn off the screen.">No quiere apagar la pantalla.</p>
+          </div>
+          <div class="guide-arrow">→</div>
+        </a>
+
+        <a href="/apoyo/emotional-escalation" class="guide-card track-guide" id="emergencia" data-id="emotional-escalation" style="--icon-color:#E26D68;--icon-glow:rgba(226,109,104,.12);">
+          <div class="guide-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="19" x2="7" y2="19"/><line x1="17" y1="19" x2="19" y2="19"/><path d="M5 17c0-4.5 3.5-8 8-8s8 3.5 8 8"/><path d="M8 17c0-2.5 2-4.5 4-4.5s4 2 4 4.5"/><path d="M12 17l-1.5-1.5c-1-1-1.5-1.5-1.5-2 0-.8.7-1.5 1.5-1.5.5 0 1 .3 1.2.7.2-.4.7-.7 1.2-.7.8 0 1.5.7 1.5 1.5 0 .5-.5 1-1.5 2L12 17z"/><circle cx="12" cy="4" r="1.5" fill="currentColor" stroke="none"/><circle cx="14" cy="1.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <div class="guide-info">
+            <h3 data-i18n="g2_title" data-es="Desborde" data-en="Meltdowns">Desborde</h3>
+            <p data-i18n="g2_desc" data-es="Está llorando o gritando mucho." data-en="Crying or screaming intensely.">Está llorando o gritando mucho.</p>
+          </div>
+          <div class="guide-arrow">→</div>
+        </a>
+
+        <a href="/apoyo/bedtime-resistance" class="guide-card track-guide" data-id="bedtime-resistance" style="--icon-color:#2DD4BF;--icon-glow:rgba(45,212,191,.1);">
+          <div class="guide-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 21.5A9.5 9.5 0 1 1 21.5 10 7.5 7.5 0 0 0 10 21.5z"/><path d="M10 14.5c1.5 1 3.5.5 4.5-1"/><path d="M12 15.5v1.5"/><circle cx="17" cy="5" r="1.5" fill="currentColor" stroke="none"/><circle cx="14" cy="2" r="1" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <div class="guide-info">
+            <h3 data-i18n="g3_title" data-es="Dormir" data-en="Bedtime">Dormir</h3>
+            <p data-i18n="g3_desc" data-es="Se resiste a irse a dormir." data-en="Resists going to sleep.">Se resiste a irse a dormir.</p>
+          </div>
+          <div class="guide-arrow">→</div>
+        </a>
+
+        <a href="/apoyo/sibling-conflict" class="guide-card track-guide" data-id="sibling-conflict" style="--icon-color:#C084FC;--icon-glow:rgba(192,132,252,.1);">
+          <div class="guide-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 10a3 3 0 1 0-6 0c0 3 2 6 5 8"/><path d="M15 10a3 3 0 1 1 6 0c0 3-2 6-5 8"/><path d="M12 11l1-2-2-1 1-2"/><circle cx="12" cy="3" r="1.5" fill="currentColor" stroke="none"/><circle cx="15" cy="5" r="1" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <div class="guide-info">
+            <h3 data-i18n="g4_title" data-es="Hermanos" data-en="Siblings">Hermanos</h3>
+            <p data-i18n="g4_desc" data-es="Peleas y golpes entre ellos." data-en="Fighting and hitting each other.">Peleas y golpes entre ellos.</p>
+          </div>
+          <div class="guide-arrow">→</div>
+        </a>
+
+        <div class="guide-card disabled-card" style="--icon-color:#FBBF24;--icon-glow:rgba(251,191,36,.1);">
+          <div class="guide-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18c3 0 4-4 8-4s5 4 8 4"/><path d="M4 12c3 0 4-4 8-4s5 4 8 4"/><circle cx="3" cy="18" r="1" fill="currentColor" stroke="none"/><circle cx="21" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="4" r="1.5" fill="currentColor" stroke="none"/><circle cx="15" cy="2" r="1" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <div class="guide-info">
+            <h3 data-i18n="g5_title" data-es="Transiciones" data-en="Transitions">Transiciones</h3>
+            <p data-i18n="g5_desc" data-es="Le cuesta cambiar de actividad." data-en="Struggles to change activities.">Le cuesta cambiar de actividad.</p>
+          </div>
+          <div class="coming-soon-badge" data-i18n="tag_soon" data-es="Pronto" data-en="Soon">Pronto</div>
+        </div>
+
+        <div class="guide-card disabled-card" style="--icon-color:#60A5FA;--icon-glow:rgba(96,165,250,.1);">
+          <div class="guide-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V10a6 6 0 0 1 12 0v12"/><path d="M12 14c-2-2-3-1-3 1s2 2 3 0 3-1 3 1-1 2-3 2"/><circle cx="12" cy="4" r="1.5" fill="currentColor" stroke="none"/><circle cx="8" cy="3" r="1" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <div class="guide-info">
+            <h3 data-i18n="g6_title" data-es="Salidas" data-en="Outings">Salidas</h3>
+            <p data-i18n="g6_desc" data-es="Rabietas en lugares públicos." data-en="Tantrums in public places.">Rabietas en lugares públicos.</p>
+          </div>
+          <div class="coming-soon-badge" data-i18n="tag_soon" data-es="Pronto" data-en="Soon">Pronto</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. SOBRE NARI -->
+    <section>
+      <div class="nari-card">
+        <div class="nari-profile">
+          <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779117777/nari-portrait_jzjwcw.png" alt="Nari Fateha">
+          <div>
+            <h3>Sobre Nari</h3>
+            <p data-i18n="nari_desc" data-es="Educadora de crianza consciente. Creo este espacio desde mi propia experiencia como madre." data-en="Conscious parenting educator. I created this space from my own experience as a mother.">Educadora de crianza consciente. Creo este espacio desde mi propia experiencia como madre.</p>
+          </div>
+        </div>
+        <!-- Modal will be implemented later in UI passes -->
+        <a href="/metodo" class="btn-secondary">
+          <span data-i18n="nari_cta" data-es="Conoce a Nari" data-en="Meet Nari">Conoce a Nari</span> →
+        </a>
+      </div>
+    </section>
+
+    <!-- 4. EL METODO -->
+    <section>
+      <div class="section-header flex-header">
+        <div>
+          <h2 data-i18n="method_title" data-es="El método" data-en="The method">El método</h2>
+          <p data-i18n="method_desc" data-es="Un sistema, no solo consejos sueltos." data-en="A system, not just random advice.">Un sistema, no solo consejos sueltos.</p>
+        </div>
+        <a href="/metodo" class="text-link method-deep-link" data-i18n="method_link" data-es="Conocer el método completo" data-en="Learn the full method">Conocer el método completo</a>
+      </div>
+
+      <div class="method-accordion">
+        <div class="method-row" role="button" tabindex="0" aria-expanded="false" data-accordion>
+          <span class="row-num">01</span>
+          <span class="row-title" data-i18n="m1_title" data-es="Pilar: Regulación emocional" data-en="Pillar: Emotional regulation">Pilar: Regulación emocional</span>
+          <span class="row-desc" data-i18n="m1_desc" data-es="Qué hacer cuando todo se sale de control." data-en="What to do when everything spirals out of control.">Qué hacer cuando todo se sale de control.</span>
+          <span class="row-icon">↓</span>
+        </div>
+        <div class="method-panel">
+          <p data-i18n="m1_panel_text" data-es="No puedes guiar a un niño si tú mismo estás en desborde. Este pilar trabaja primero contigo: reconocer la señal de alarma antes de que escale, y tener una respuesta lista en lugar de una reacción." data-en="You cannot guide a child when you yourself are overwhelmed. This pillar works with you first: recognizing the alarm signal before it escalates, and having a response ready instead of a reaction.">No puedes guiar a un niño si tú mismo estás en desborde. Este pilar trabaja primero contigo: reconocer la señal de alarma antes de que escale, y tener una respuesta lista en lugar de una reacción.</p>
+          <a href="/metodo" class="panel-link" data-i18n="m_panel_link" data-es="Ver en el método →" data-en="See in the method →">Ver en el método →</a>
+        </div>
+
+        <div class="method-row" role="button" tabindex="0" aria-expanded="false" data-accordion>
+          <span class="row-num">02</span>
+          <span class="row-title" data-i18n="m2_title" data-es="Pilar: Límites desde la calma" data-en="Pillar: Calm boundaries">Pilar: Límites desde la calma</span>
+          <span class="row-desc" data-i18n="m2_desc" data-es="Cómo poner límites sin gritar." data-en="How to set boundaries without yelling.">Cómo poner límites sin gritar.</span>
+          <span class="row-icon">↓</span>
+        </div>
+        <div class="method-panel">
+          <p data-i18n="m2_panel_text" data-es="Un límite dicho desde el agotamiento se convierte en amenaza. Este pilar muestra cómo sostener la estructura del hogar sin perder la conexión — ni la calma — en el intento." data-en="A boundary spoken from exhaustion becomes a threat. This pillar shows how to hold the structure of home without losing connection — or calm — in the process.">Un límite dicho desde el agotamiento se convierte en amenaza. Este pilar muestra cómo sostener la estructura del hogar sin perder la conexión — ni la calma — en el intento.</p>
+          <a href="/metodo" class="panel-link" data-i18n="m_panel_link" data-es="Ver en el método →" data-en="See in the method →">Ver en el método →</a>
+        </div>
+
+        <div class="method-row" role="button" tabindex="0" aria-expanded="false" data-accordion>
+          <span class="row-num">03</span>
+          <span class="row-title" data-i18n="m3_title" data-es="Pilar: Comunicación conectiva" data-en="Pillar: Connective communication">Pilar: Comunicación conectiva</span>
+          <span class="row-desc" data-i18n="m3_desc" data-es="Cómo conectar antes de corregir." data-en="How to connect before correcting.">Cómo conectar antes de corregir.</span>
+          <span class="row-icon">↓</span>
+        </div>
+        <div class="method-panel">
+          <p data-i18n="m3_panel_text" data-es="El niño que no se siente escuchado no está listo para escucharte. Este pilar enseña a entrar al mundo del niño primero — no para capitular, sino para abrir la puerta a que el cambio sea posible." data-en="A child who doesn't feel heard isn't ready to hear you. This pillar teaches you to enter the child's world first — not to capitulate, but to open the door to change.">El niño que no se siente escuchado no está listo para escucharte. Este pilar enseña a entrar al mundo del niño primero — no para capitular, sino para abrir la puerta a que el cambio sea posible.</p>
+          <a href="/metodo" class="panel-link" data-i18n="m_panel_link" data-es="Ver en el método →" data-en="See in the method →">Ver en el método →</a>
+        </div>
+
+        <div class="method-row" role="button" tabindex="0" aria-expanded="false" data-accordion>
+          <span class="row-num">04</span>
+          <span class="row-title" data-i18n="m4_title" data-es="Pilar: Autorregulación" data-en="Pillar: Self-regulation">Pilar: Autorregulación</span>
+          <span class="row-desc" data-i18n="m4_desc" data-es="Cómo dejar de reaccionar desde el agotamiento." data-en="How to stop reacting from exhaustion.">Cómo dejar de reaccionar desde el agotamiento.</span>
+          <span class="row-icon">↓</span>
+        </div>
+        <div class="method-panel">
+          <p data-i18n="m4_panel_text" data-es="Reaccionar desde el cansancio no es un fallo de carácter — es biología. Este pilar diseña un sistema estable para que la respuesta que das mañana sea distinta a la de hoy, sin depender de cuánto dormiste." data-en="Reacting from exhaustion is not a character flaw — it's biology. This pillar designs a stable system so the response you give tomorrow is different from today's, regardless of how much sleep you got.">Reaccionar desde el cansancio no es un fallo de carácter — es biología. Este pilar diseña un sistema estable para que la respuesta que das mañana sea distinta a la de hoy, sin depender de cuánto dormiste.</p>
+          <a href="/metodo" class="panel-link" data-i18n="m_panel_link" data-es="Ver en el método →" data-en="See in the method →">Ver en el método →</a>
+        </div>
+
+        <div class="method-teaser-card">
+          <blockquote class="teaser-quote" data-i18n="teaser_quote" data-es="«No puedes guiar a un niño si tú mismo estás en desborde.»" data-en="«You cannot guide a child if you are emotionally overwhelmed.»">«No puedes guiar a un niño si tú mismo estás en desborde.»</blockquote>
+          <div class="teaser-attr" data-i18n="teaser_attr" data-es="EL MÉTODO NARI" data-en="THE NARI METHOD">EL MÉTODO NARI</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. CAMINOS -->
+    <section>
+      <div class="section-header flex-header">
+        <div>
+          <h2 data-i18n="paths_title" data-es="Caminos de aprendizaje" data-en="Learning paths">Caminos de aprendizaje</h2>
+          <p data-i18n="paths_desc" data-es="Talleres, guías y programas para un cambio real." data-en="Workshops, guides, and programs for real change.">Talleres, guías y programas para un cambio real.</p>
+        </div>
+        <a href="#" class="text-link" style="opacity:.4;pointer-events:none;" data-i18n="paths_link" data-es="Ver todos (Próximamente)" data-en="See all (Soon)">Ver todos (Próximamente)</a>
+      </div>
+
+      <div class="paths-grid">
+        <div class="path-card"><div class="path-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FB7185" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div><div class="path-info"><h4 data-i18n="p1_type" data-es="Taller" data-en="Workshop">Taller</h4><h3 data-i18n="p1_title" data-es="Criar desde la calma" data-en="Parenting from calm">Criar desde la calma</h3></div><div class="path-tag"><div class="tag-dot" style="background:#FB7185;"></div><span data-i18n="tag_soon" data-es="Próximamente" data-en="Soon">Próximamente</span></div></div>
+        <div class="path-card"><div class="path-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div><div class="path-info"><h4 data-i18n="p2_type" data-es="Mini Guía" data-en="Mini Guide">Mini Guía</h4><h3 data-i18n="p2_title" data-es="Los primeros 5 minutos" data-en="The first 5 minutes">Los primeros 5 minutos</h3></div><div class="path-tag"><div class="tag-dot" style="background:#A78BFA;"></div><span data-i18n="tag_soon" data-es="Próximamente" data-en="Soon">Próximamente</span></div></div>
+        <div class="path-card"><div class="path-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg></div><div class="path-info"><h4 data-i18n="p3_type" data-es="Programa" data-en="Program">Programa</h4><h3 data-i18n="p3_title" data-es="Criar Sin Culpas: El Curso" data-en="Criar Sin Culpas: The Course">Criar Sin Culpas: El Curso</h3></div><div class="path-tag"><div class="tag-dot" style="background:#2DD4BF;"></div><span data-i18n="tag_soon" data-es="Próximamente" data-en="Soon">Próximamente</span></div></div>
+        <div class="path-card"><div class="path-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C084FC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div><div class="path-info"><h4 data-i18n="p4_type" data-es="Sesión 1:1" data-en="1:1 Session">Sesión 1:1</h4><h3 data-i18n="p4_title" data-es="Acompañamiento con Nari" data-en="Guidance with Nari">Acompañamiento con Nari</h3></div><div class="path-tag"><div class="tag-dot" style="background:#C084FC;"></div><span data-i18n="tag_soon" data-es="Próximamente" data-en="Soon">Próximamente</span></div></div>
+      </div>
+
+      <div class="waitlist-card">
+        <div class="waitlist-info">
+          <h3 data-i18n="waitlist_title" data-es="¿Quieres saber cuando estén listos?" data-en="Want to know when they're ready?">¿Quieres saber cuando estén listos?</h3>
+          <p data-i18n="waitlist_desc" data-es="Déjanos tu correo y te avisaremos antes que a nadie." data-en="Leave your email and we'll notify you before anyone else.">Déjanos tu correo y te avisaremos antes que a nadie.</p>
+        </div>
+        <form class="waitlist-form" onsubmit="event.preventDefault();this.innerHTML='<p style=\'color:var(--teal);font-size:.92rem;font-weight:500;margin:0;padding:10px 0;\'>¡Gracias! Te avisaremos pronto.</p>';if(typeof trackSignal==='function')trackSignal('waitlist_joined',{location:'hub'});">
+          <input type="email" placeholder="Tu correo electrónico" required aria-label="Email">
+          <button type="submit" data-i18n="waitlist_btn" data-es="Avísame" data-en="Notify me">Avísame</button>
+        </form>
+      </div>
+    </section>
+
+  </div><!-- /hub-container -->
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <span class="footer-copy">© 2026 Criar Sin Culpas</span>
+      <div class="footer-links">
+        <a href="/privacidad" data-i18n="footer_privacy" data-es="Política de Privacidad" data-en="Privacy Policy">Política de Privacidad</a>
+        <a href="/cdn-cgi/l/email-protection#aac2c5c6cbeac9d8c3cbd8d9c3c4c9dfc6dacbd984c9c5c7" data-i18n="footer_contact" data-es="Contacto" data-en="Contact">Contacto</a>
+        <a href="https://instagram.com/criarsinculpas" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script>
+    (function () {
+      function trackSignal(eventName, properties) {
+        if (typeof plausible !== 'undefined') { plausible(eventName, { props: properties }); }
+      }
+      const STORAGE_KEY = 'lg_parent_lang';
+      let currentLang = localStorage.getItem(STORAGE_KEY) || 'es';
+      
+      function applyLang(lang) {
+        currentLang = lang;
+        localStorage.setItem(STORAGE_KEY, lang);
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const txt = el.getAttribute('data-' + lang);
+          if (txt) el.innerHTML = txt;
+        });
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+          btn.setAttribute('aria-pressed', btn.getAttribute('data-lang') === lang ? 'true' : 'false');
+        });
+      }
+      
+      document.addEventListener('click', e => {
+        const btn = e.target.closest('.lang-btn');
+        if (btn) { applyLang(btn.getAttribute('data-lang')); trackSignal('language_changed', { to_lang: currentLang, location: 'hub' }); }
+      });
+      applyLang(currentLang);
+
+      document.querySelectorAll('.track-guide').forEach(card => {
+        card.addEventListener('click', () => { trackSignal('card_opened', { guide: card.getAttribute('data-id') }); });
+      });
+
+      document.querySelectorAll('[data-accordion]').forEach(row => {
+        row.addEventListener('click', () => {
+          const isOpen = row.getAttribute('aria-expanded') === 'true';
+          document.querySelectorAll('[data-accordion]').forEach(r => {
+            r.setAttribute('aria-expanded', 'false');
+            r.nextElementSibling.classList.remove('is-open');
+          });
+          if (!isOpen) { row.setAttribute('aria-expanded', 'true'); row.nextElementSibling.classList.add('is-open'); }
+        });
+        row.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); row.click(); } });
+      });
+
+      const menuBtn = document.querySelector('.mobile-menu-btn');
+      const navLinks = document.querySelector('.nav-links');
+      if (menuBtn && navLinks) { menuBtn.addEventListener('click', () => { navLinks.classList.toggle('is-open'); }); }
+    })();
+  </script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"a6fdd4e7ff644527b91c6db4b97e68f5","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>

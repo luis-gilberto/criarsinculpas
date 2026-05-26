@@ -7,939 +7,1309 @@
   <meta name="description" content="Un sistema de apoyo emocional para padres. Encuentra calma, claridad y herramientas prácticas para los momentos difíciles.">
   <meta property="og:title" content="Criar Sin Culpas · Espacio de Apoyo">
   <meta property="og:url" content="https://criarsinculpas.com">
-  <link rel="canonical" href="https://criarsinculpas.com">
   <meta property="og:site_name" content="Criar Sin Culpas">
   <meta property="og:type" content="website">
+  <link rel="canonical" href="https://criarsinculpas.com">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
   <script>
-    if (window.location.hostname === 'criarsinculpas.com' || window.location.hostname === 'www.criarsinculpas.com') {
-      var pl = document.createElement('script'); pl.defer = true;
-      pl.setAttribute('data-domain', 'criarsinculpas.com');
-      pl.src = 'https://plausible.io/js/script.js';
-      document.head.appendChild(pl);
+    if (window.location.hostname === 'criarsinculpas.com') {
+      const script = document.createElement('script');
+      script.defer = true;
+      script.setAttribute('data-domain', 'criarsinculpas.com');
+      script.src = 'https://plausible.io/js/script.manual.js';
+      document.head.appendChild(script);
     }
-    window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) };
+
+    window.plausible = window.plausible || function() {
+      if (window.location.hostname !== 'criarsinculpas.com') {
+        console.log('Plausible [Local]:', arguments[0], arguments[1]);
+      }
+    };
   </script>
 
   <style>
-    /* ─────────────────────────────────────────
-       TOKENS
-    ───────────────────────────────────────── */
+    /* ═══════════════════════════════════════════
+       DESIGN TOKENS
+    ═══════════════════════════════════════════ */
     :root {
-      --bg-void: #0a0807;
-      --text-main: #F7F4F2;
-      --text-muted: rgba(247,244,242,.68);
-      --gold: #C9A96E;
-      --gold-light: #e2c48a;
-      --gold-dark: #9e7840;
-      --rose: #F0A0BE;
-      --teal: #61d1c4;
+      --void:        #0e0b12;
+      --void-mid:    #13101a;
+      --void-lift:   #1a1624;
+      --text:        #F2EEE9;
+      --text-dim:    rgba(242,238,233,.62);
+      --text-ghost:  rgba(242,238,233,.34);
+      --coral:       #ff7d73;
+      --coral-dim:   rgba(255,125,115,.18);
+      --coral-glow:  rgba(255,125,115,.10);
+      --teal:        #61d1c4;
+      --teal-dim:    rgba(97,209,196,.18);
+      --teal-glow:   rgba(97,209,196,.07);
+      --gold:        #C9A96E;
+      --gold-dim:    rgba(201,169,110,.15);
+      --rose:        #F0A0BE;
 
-      --display-font: 'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
-      --ui-font: 'Inter', system-ui, -apple-system, sans-serif;
-      --script-font: 'Great Vibes', cursive;
-      --ease-cinematic: cubic-bezier(0.2, 0.8, 0.2, 1);
-      --radius-pill: 999px;
-      --hero-photo: url('https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779147046/pexels-gustavo-fring-8770590_stewia.jpg');
+      --serif:  'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
+      --sans:   'DM Sans', system-ui, sans-serif;
+      --script: 'Great Vibes', cursive;
+
+      --ease-silk:    cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-cinema:  cubic-bezier(0.2, 0.8, 0.2, 1);
+      --pill: 999px;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-
-    /* DESKTOP: viewport-locked, no scroll */
-    html, body {
-      height: 100dvh; width: 100%;
-      overflow: hidden;
-      background-color: var(--bg-void);
+    *, *::before, *::after {
+      box-sizing: border-box; margin: 0; padding: 0;
+      -webkit-tap-highlight-color: transparent;
     }
+
+    html { scroll-behavior: smooth; }
     body {
-      font-family: var(--ui-font);
-      color: var(--text-main);
+      font-family: var(--sans);
+      background: var(--void);
+      color: var(--text);
       -webkit-font-smoothing: antialiased;
-      line-height: 1.5;
-      display: flex; flex-direction: column;
+      overflow-x: hidden;
+      position: relative;
     }
 
-    /* GRAIN */
+    /* ── Global ambient teal screen glow ── */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -30vh; right: -20vw;
+      width: 80vw; height: 80vh;
+      background: radial-gradient(ellipse at center, rgba(97,209,196,.05) 0%, transparent 68%);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ═══════════════════════════════════════════
+       GRAIN OVERLAY
+    ═══════════════════════════════════════════ */
     .grain {
-      position: fixed; inset: 0; pointer-events: none; z-index: 1;
-      opacity: .03;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size: 180px 180px;
+      position: fixed; inset: 0; z-index: 200;
+      pointer-events: none;
+      opacity: .028;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 192px;
     }
 
-    /* REVEALS */
-    @keyframes cinematicReveal {
-      from { opacity: 0; transform: translateY(16px); }
+    /* ═══════════════════════════════════════════
+       ANIMATIONS
+    ═══════════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    .reveal-1 { animation: cinematicReveal .9s ease-out .05s both; }
-    .reveal-2 { animation: cinematicReveal .9s ease-out .15s both; }
-    .reveal-3 { animation: cinematicReveal .9s ease-out .3s  both; }
-    .reveal-4 { animation: cinematicReveal .9s ease-out .45s both; }
-    .reveal-5 { animation: cinematicReveal .9s ease-out .6s  both; }
-
-    /* ─────────────────────────────────────────
-       NAV — floats over the photo on desktop
-    ───────────────────────────────────────── */
-    .top-row {
-      flex-shrink: 0;
-      display: flex; justify-content: space-between; align-items: center;
-      gap: 12px;
-      padding: max(18px, env(safe-area-inset-top)) 48px 16px 48px;
-      position: relative; z-index: 100;
-      /* Subtle glass — not opaque black */
-      background: rgba(10,8,7,.3);
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
     }
-    .top-row::before {
-      content: ''; position: absolute; inset: 0; z-index: -1;
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    @keyframes breathe {
+      0%, 100% { opacity: .5; transform: scale(1); }
+      50%       { opacity: .8; transform: scale(1.04); }
+    }
+    @keyframes pulse-ring {
+      0%   { transform: scale(.95); box-shadow: 0 0 0 0 rgba(97,209,196,.4); }
+      70%  { transform: scale(1);   box-shadow: 0 0 0 12px rgba(97,209,196,0); }
+      100% { transform: scale(.95); box-shadow: 0 0 0 0 rgba(97,209,196,0); }
+    }
+    @keyframes shimmer {
+      from { background-position: -200% center; }
+      to   { background-position: 200% center; }
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50%     { transform: translateY(-6px); }
+    }
+
+    .r1 { animation: fadeUp .9s var(--ease-silk) .05s both; }
+    .r2 { animation: fadeUp .9s var(--ease-silk) .18s both; }
+    .r3 { animation: fadeUp .9s var(--ease-silk) .32s both; }
+    .r4 { animation: fadeUp .9s var(--ease-silk) .46s both; }
+    .r5 { animation: fadeUp .9s var(--ease-silk) .60s both; }
+    .r6 { animation: fadeUp .9s var(--ease-silk) .74s both; }
+
+    /* ═══════════════════════════════════════════
+       ▌ NAV
+    ═══════════════════════════════════════════ */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: max(20px, env(safe-area-inset-top)) 56px 18px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      transition: background .4s, backdrop-filter .4s;
+    }
+    .nav.scrolled {
+      background: rgba(14,11,18,.78);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(255,255,255,.04);
     }
-    .nav-links { display: flex; gap: 32px; align-items: center; }
-    .nav-links a {
-      color: rgba(247,244,242,.75); text-decoration: none;
-      font-size: .75rem; font-weight: 500;
+    .nav-logo { display: flex; flex-shrink: 0; align-items: center; }
+    .nav-logo img {
+      height: clamp(26px, 3.8vw, 34px);
+      width: auto; display: block;
+      transition: opacity .3s;
+    }
+    .nav-logo:hover img { opacity: .8; }
+
+    .nav-center {
+      display: flex; align-items: center; gap: 36px;
+    }
+    .nav-center a {
+      color: var(--text-dim); text-decoration: none;
+      font-size: .72rem; font-weight: 500;
+      letter-spacing: .1em; text-transform: uppercase;
+      transition: color .25s;
+    }
+    .nav-center a:hover { color: var(--text); }
+    .nav-center a.dim { opacity: .35; pointer-events: none; cursor: default; }
+
+    .nav-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+
+    /* Lang Switcher */
+    .lang-pill {
+      display: inline-flex; padding: 3px; gap: 2px;
+      border-radius: var(--pill);
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.04);
+    }
+    .lang-btn {
+      min-width: 38px; padding: 5px 10px; border-radius: var(--pill);
+      font-size: .65rem; font-weight: 700; letter-spacing: .06em;
+      color: var(--text-ghost); background: none; border: none;
+      cursor: pointer; transition: all .25s;
+    }
+    .lang-btn[aria-pressed="true"] {
+      color: var(--text);
+      background: rgba(255,255,255,.1);
+      box-shadow: 0 1px 6px rgba(0,0,0,.3);
+    }
+
+    /* Hamburger */
+    .ham {
+      display: none;
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.05);
+      align-items: center; justify-content: center;
+      cursor: pointer; position: relative; z-index: 201;
+      transition: all .3s;
+      flex-shrink: 0;
+    }
+    .ham svg { color: var(--text); transition: all .3s; }
+    .ham .x { display: none; }
+    .ham.open .bars { display: none; }
+    .ham.open .x { display: block; }
+
+    /* Mobile nav drawer */
+    .mobile-nav {
+      display: none;
+      position: fixed; inset: 0; z-index: 150;
+      background: rgba(14,11,18,.97);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 44px; opacity: 0; pointer-events: none;
+      transition: opacity .4s var(--ease-cinema), transform .4s var(--ease-cinema);
+      transform: translateY(-8px);
+    }
+    .mobile-nav.open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .mobile-nav a {
+      font-family: var(--serif); font-size: 2rem; font-weight: 400;
+      color: var(--text-dim); text-decoration: none;
+      letter-spacing: .04em; transition: color .25s;
+    }
+    .mobile-nav a:hover { color: var(--text); }
+    .mobile-nav .lang-pill { margin-top: 8px; }
+
+    /* ═══════════════════════════════════════════
+       ▌ HERO · CINEMATIC FULL BLEED
+    ═══════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      overflow: hidden;
+    }
+
+    /* True full-bleed background photo */
+    .hero-photo {
+      position: absolute; inset: 0; z-index: 0;
+      background-image: url('https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779645663/A_cinematic_documentary-style_photograph_of_an_ex-1779645621021_dikbho.png');
+      background-size: cover;
+      background-position: 75% center;
+      filter: brightness(.82) saturate(1.1) sepia(.06);
+      transform: scale(1.04);
+      transition: transform 16s var(--ease-cinema), filter 1.2s ease;
+    }
+    .hero-photo.loaded {
+      transform: scale(1);
+      filter: brightness(.76) saturate(1.1) sepia(.06);
+    }
+
+    /* Layer 1: directional vignette · fades image into dark on the left */
+    .hero-overlay-dir {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background: linear-gradient(
+        to right,
+        rgba(14,11,18,.9)  0%,
+        rgba(14,11,18,.9)  20%,
+        rgba(14,11,18,.3)  50%,
+        transparent        100%
+      );
+    }
+
+    /* Layer 2: vertical gradient · pulls image into page void at the bottom */
+    .hero-overlay-vert {
+      position: absolute; inset: 0; z-index: 2; pointer-events: none;
+      background: linear-gradient(
+        to top,
+        var(--void)             0%,
+        rgba(14,11,18,.75)     28%,
+        rgba(14,11,18,.12)     58%,
+        rgba(14,11,18,0)       80%
+      );
+    }
+
+    /* Layer 3: warm coral blush at bottom-left (emotional warmth) */
+    .hero-overlay-blush {
+      position: absolute; inset: 0; z-index: 3; pointer-events: none;
+      background: radial-gradient(ellipse 55% 42% at 0% 102%, rgba(255,100,80,.1) 0%, transparent 62%);
+    }
+
+    /* Cinematic top bar · keeps it from looking cropped */
+    .hero-bar-top {
+      position: absolute; top: 0; left: 0; right: 0; z-index: 4;
+      height: clamp(56px, 8vh, 100px); pointer-events: none;
+      background: linear-gradient(to bottom, rgba(14,11,18,.55) 0%, transparent 100%);
+    }
+
+    /* Content layer */
+    .hero-body {
+      position: relative; z-index: 10;
+      max-width: 1300px; width: 100%;
+      margin: 0 auto;
+      padding: 0 56px 64px;
+    }
+
+    /* Status badge */
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 6px 18px; border-radius: var(--pill);
+      border: 1px solid rgba(97,209,196,.3);
+      background: rgba(97,209,196,.06);
+      margin-bottom: 28px;
+    }
+    .status-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--teal);
+      animation: pulse-ring 2.4s cubic-bezier(.455,.03,.515,.955) infinite;
+      flex-shrink: 0;
+    }
+    .status-badge span {
+      font-size: .62rem; font-weight: 500;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    /* Main headline */
+    .hero-headline {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 5.5vw, 5.8rem);
+      font-weight: 300;
+      line-height: 1.04;
+      letter-spacing: -.01em;
+      color: var(--text);
+      margin-bottom: 0;
+      max-width: 16ch;
+      text-shadow: 0 2px 10px rgba(0,0,0,.5);
+    }
+    .hero-headline em {
+      font-style: italic; font-weight: 400;
+      color: var(--coral);
+      text-shadow: 0 2px 14px rgba(255,100,80,.25);
+    }
+
+    /* Squiggle divider */
+    .squiggle {
+      display: block; margin: 22px 0;
+      opacity: .45;
+    }
+
+    /* Sub */
+    .hero-sub {
+      font-size: clamp(.92rem, 1.2vw, 1.05rem);
+      font-weight: 300;
+      color: var(--text-dim);
+      line-height: 1.74;
+      max-width: 44ch;
+      letter-spacing: .01em;
+      margin-bottom: 0;
+    }
+
+    /* Author strip */
+    .author-strip {
+      display: flex; align-items: center; gap: 14px;
+      margin-top: 32px;
+    }
+    .author-avatar {
+      width: 50px; height: 50px; border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid rgba(201,169,110,.3);
+      box-shadow: 0 0 0 4px rgba(201,169,110,.06);
+      flex-shrink: 0;
+    }
+    .author-name { font-size: .9rem; font-weight: 500; color: var(--text); }
+    .author-role { font-size: .73rem; color: var(--text-dim); margin-top: 2px; letter-spacing: .01em; }
+
+    /* ═══════════════════════════════════════════
+       ▌ CRISIS DIVERGENCE
+    ═══════════════════════════════════════════ */
+    .divergence {
+      position: relative; z-index: 10;
+      margin-top: 44px;
+      display: flex; gap: 14px; flex-wrap: wrap;
+      align-items: stretch;
+    }
+
+    /* Emergencia · high contrast, urgent clarity */
+    .entry-emergencia {
+      display: flex; flex-direction: column;
+      padding: 22px 28px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,125,115,.3);
+      background: rgba(255,125,115,.08);
+      cursor: pointer; text-decoration: none;
+      position: relative; overflow: hidden;
+      transition: all .4s var(--ease-silk);
+      min-width: 200px;
+      flex: 1 1 200px; max-width: 320px;
+    }
+    .entry-emergencia::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(255,125,115,.14) 0%, transparent 70%);
+      opacity: 0; transition: opacity .4s;
+    }
+    .entry-emergencia:hover {
+      border-color: rgba(255,125,115,.6);
+      background: rgba(255,125,115,.14);
+      transform: translateY(-2px);
+      box-shadow: 0 20px 44px rgba(255,100,90,.18), 0 0 0 1px rgba(255,125,115,.2);
+    }
+    .entry-emergencia:hover::before { opacity: 1; }
+
+    .entry-label {
+      font-size: .6rem; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    .entry-emergencia .entry-label { color: var(--coral); }
+
+    .entry-title {
+      font-family: var(--serif);
+      font-size: 1.5rem; font-weight: 600; line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .entry-emergencia .entry-title { color: var(--text); }
+
+    .entry-desc {
+      font-size: .78rem; color: var(--text-dim); line-height: 1.6;
+      margin-bottom: 16px; flex: 1;
+    }
+
+    .entry-arrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .75rem; font-weight: 600;
+      letter-spacing: .06em; text-transform: uppercase;
+      transition: gap .3s var(--ease-silk);
+    }
+    .entry-emergencia .entry-arrow { color: var(--coral); }
+    .entry-emergencia:hover .entry-arrow { gap: 14px; }
+
+    /* Contencion · soft, editorial, slower */
+    .entry-contencion {
+      display: flex; flex-direction: column;
+      padding: 22px 28px;
+      border-radius: 16px;
+      border: 1px solid rgba(97,209,196,.2);
+      background: rgba(97,209,196,.05);
+      cursor: pointer; text-decoration: none;
+      position: relative; overflow: hidden;
+      transition: all .5s var(--ease-silk);
+      min-width: 200px;
+      flex: 1 1 200px; max-width: 320px;
+    }
+    .entry-contencion::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(97,209,196,.1) 0%, transparent 70%);
+      opacity: 0; transition: opacity .5s;
+    }
+    .entry-contencion:hover {
+      border-color: rgba(97,209,196,.38);
+      background: rgba(97,209,196,.09);
+      transform: translateY(-2px);
+      box-shadow: 0 20px 44px rgba(97,209,196,.12), 0 0 0 1px rgba(97,209,196,.15);
+    }
+    .entry-contencion:hover::before { opacity: 1; }
+    .entry-contencion .entry-label { color: var(--teal); }
+    .entry-contencion .entry-title { color: var(--text); font-weight: 400; font-style: italic; }
+    .entry-contencion .entry-arrow { color: var(--teal); }
+    .entry-contencion:hover .entry-arrow { gap: 14px; }
+
+    /* ═══════════════════════════════════════════
+       ▌ SECTION SHELL
+    ═══════════════════════════════════════════ */
+    .section {
+      position: relative;
+      max-width: 1300px; margin: 0 auto;
+      padding: 80px 56px;
+    }
+    .section-full {
+      position: relative; overflow: hidden;
+      padding: 80px 0;
+    }
+    .section-inner {
+      max-width: 1300px; margin: 0 auto;
+      padding: 0 56px;
+    }
+
+    /* Luminosity backlighting for text blocks */
+    .luminate {
+      position: relative;
+    }
+    .luminate::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 140%; height: 140%;
+      background: radial-gradient(circle at center, rgba(255,255,255,.03) 0%, transparent 70%);
+      pointer-events: none; z-index: -1;
+    }
+
+    /* Section eyebrow */
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: .6rem; font-weight: 700; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--text-ghost);
+      margin-bottom: 18px;
+    }
+    .eyebrow::before {
+      content: '';
+      display: block; width: 24px; height: 1px;
+      background: currentColor;
+    }
+
+    /* ═══════════════════════════════════════════
+       ▌ PILLARS · THREE VALUE PROPOSITIONS
+    ═══════════════════════════════════════════ */
+    .pillars-section {
+      background: var(--void-mid);
+      border-top: 1px solid rgba(255,255,255,.04);
+      border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .pillar {
+      padding: 48px 44px;
+      position: relative;
+      transition: background .4s;
+    }
+    .pillar:not(:last-child)::after {
+      content: '';
+      position: absolute; top: 48px; bottom: 48px; right: 0;
+      width: 1px; background: rgba(255,255,255,.05);
+    }
+    .pillar:hover { background: rgba(255,255,255,.015); }
+
+    .pillar-num {
+      font-family: var(--serif);
+      font-size: .75rem; font-weight: 300;
+      color: var(--text-ghost);
+      letter-spacing: .1em;
+      margin-bottom: 24px;
+    }
+    .pillar-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      transition: border-color .4s, background .4s;
+    }
+    .pillar:hover .pillar-icon {
+      border-color: rgba(97,209,196,.25);
+      background: rgba(97,209,196,.06);
+    }
+    .pillar-icon svg { color: var(--teal); width: 20px; height: 20px; }
+    .pillar h3 {
+      font-family: var(--serif);
+      font-size: 1.3rem; font-weight: 600;
+      color: var(--text); margin-bottom: 10px;
+    }
+    .pillar p {
+      font-size: .82rem; color: var(--text-dim); line-height: 1.7;
+    }
+
+    /* ═══════════════════════════════════════════
+       ▌ MARQUEE · EMOTIONAL REASSURANCE
+    ═══════════════════════════════════════════ */
+    .marquee-strip {
+      overflow: hidden;
+      padding: 28px 0;
+      border-top: 1px solid rgba(255,255,255,.04);
+      border-bottom: 1px solid rgba(255,255,255,.04);
+      background: var(--void);
+    }
+    .marquee-track {
+      display: flex; gap: 0;
+      animation: marqueeScroll 24s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 28px;
+      padding: 0 40px; flex-shrink: 0;
+    }
+    .marquee-item span {
+      font-family: var(--serif);
+      font-size: 1.15rem; font-weight: 300; font-style: italic;
+      color: var(--text-dim);
+      letter-spacing: .03em;
+    }
+    .marquee-dot {
+      width: 4px; height: 4px; border-radius: 50%;
+      background: var(--coral); opacity: .5; flex-shrink: 0;
+    }
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ═══════════════════════════════════════════
+       ▌ GUIDES GRID
+    ═══════════════════════════════════════════ */
+    .guides-section { background: var(--void); }
+    .guides-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 24px; margin-bottom: 44px;
+    }
+    .guides-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300; line-height: 1.1;
+      color: var(--text);
+    }
+    .guides-title em { font-style: italic; color: var(--teal); }
+    .guides-view-all {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .72rem; font-weight: 500; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--text-dim);
+      text-decoration: none; white-space: nowrap;
+      transition: color .25s, gap .3s var(--ease-silk);
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .guides-view-all:hover { color: var(--text); gap: 12px; }
+
+    .guides-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .guide-card {
+      display: flex; flex-direction: column;
+      padding: 28px 24px 22px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.06);
+      background: var(--void-mid);
+      text-decoration: none;
+      position: relative; overflow: hidden;
+      transition: all .4s var(--ease-silk);
+      cursor: pointer;
+      group: true;
+    }
+    .guide-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(255,255,255,.04) 0%, transparent 70%);
+      opacity: 0; transition: opacity .4s;
+    }
+    .guide-card:hover {
+      border-color: rgba(255,255,255,.12);
+      transform: translateY(-4px);
+      box-shadow: 0 24px 56px rgba(0,0,0,.4);
+    }
+    .guide-card:hover::before { opacity: 1; }
+
+    .guide-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .58rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; padding: 4px 10px;
+      border-radius: var(--pill);
+      margin-bottom: 20px; width: fit-content;
+    }
+    .guide-tag.emergencia {
+      color: var(--coral);
+      background: var(--coral-dim);
+      border: 1px solid rgba(255,125,115,.2);
+    }
+    .guide-tag.contencion {
+      color: var(--teal);
+      background: var(--teal-dim);
+      border: 1px solid rgba(97,209,196,.2);
+    }
+
+    .guide-icon {
+      font-size: 1.6rem; margin-bottom: 16px; display: block;
+    }
+    .guide-icon svg { color: var(--teal); transition: color .3s; }
+    .guide-card:hover .guide-icon svg { color: var(--coral); }
+    .guide-card h3 {
+      font-family: var(--serif);
+      font-size: 1.15rem; font-weight: 600; line-height: 1.2;
+      color: var(--text); margin-bottom: 10px;
+      flex: 1;
+    }
+    .guide-card p {
+      font-size: .76rem; color: var(--text-dim); line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    .guide-arrow {
+      font-size: .7rem; font-weight: 600; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--text-ghost);
+      display: flex; align-items: center; gap: 6px;
+      margin-top: auto;
+      transition: color .3s, gap .3s var(--ease-silk);
+    }
+    .guide-card:hover .guide-arrow { color: var(--text); gap: 10px; }
+
+    /* ═══════════════════════════════════════════
+       ▌ TESTIMONIAL / QUOTE BAND
+    ═══════════════════════════════════════════ */
+    .quote-band {
+      position: relative; overflow: hidden;
+      background: var(--void-mid);
+      border-top: 1px solid rgba(255,255,255,.04);
+      border-bottom: 1px solid rgba(255,255,255,.04);
+      padding: 80px 56px;
+      text-align: center;
+    }
+    .quote-band::before {
+      content: '';
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse at center, rgba(255,125,115,.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .quote-mark {
+      font-family: var(--serif);
+      font-size: 5rem; line-height: .5;
+      color: var(--coral); opacity: .3;
+      margin-bottom: 24px; display: block;
+      font-style: italic;
+    }
+    .quote-text {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 3vw, 2.4rem);
+      font-weight: 300; font-style: italic;
+      color: var(--text); line-height: 1.3;
+      max-width: 28ch; margin: 0 auto;
+    }
+    .quote-text em { color: var(--coral); font-style: italic; font-weight: 400; }
+    .quote-attr {
+      margin-top: 28px; font-size: .75rem;
+      color: var(--text-ghost); letter-spacing: .08em;
+    }
+
+    /* ═══════════════════════════════════════════
+       ▌ NARI PROFILE
+    ═══════════════════════════════════════════ */
+    .nari-section {
+      background: var(--void);
+    }
+    .nari-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      align-items: center;
+    }
+    .nari-photo-wrap {
+      position: relative;
+    }
+    .nari-photo-frame {
+      position: relative; border-radius: 24px; overflow: hidden;
+      aspect-ratio: 4/5;
+    }
+    .nari-photo-frame img {
+      width: 100%; height: 100%; object-fit: cover;
+      object-position: center top;
+      filter: brightness(.88) contrast(1.05) saturate(.9) sepia(.08);
+    }
+    /* Ornamental corner lines */
+    .nari-photo-frame::before {
+      content: '';
+      position: absolute; inset: 12px;
+      border: 1px solid rgba(201,169,110,.2);
+      border-radius: 16px;
+      pointer-events: none; z-index: 2;
+    }
+    /* Gold gradient overlay at bottom */
+    .nari-photo-frame::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 45%;
+      background: linear-gradient(to top, rgba(14,11,18,.9) 0%, transparent 100%);
+      z-index: 1;
+    }
+    /* Floating credential badge */
+    .nari-badge {
+      position: absolute; bottom: -20px; right: -20px;
+      background: var(--void-lift);
+      border: 1px solid rgba(201,169,110,.25);
+      border-radius: 14px;
+      padding: 16px 20px;
+      box-shadow: 0 20px 44px rgba(0,0,0,.5);
+      z-index: 10;
+    }
+    .nari-badge-img {
+      position: absolute; bottom: -20px; right: -20px;
+      width: 220px; height: auto;
+      z-index: 10;
+      border-radius: 14px;
+      box-shadow: 0 20px 44px rgba(0,0,0,.5);
+    }
+    .nari-badge-num {
+      font-family: var(--serif);
+      font-size: 2rem; font-weight: 600; color: var(--gold); line-height: 1;
+    }
+    .nari-badge-label {
+      font-size: .65rem; font-weight: 500; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--text-dim);
+      margin-top: 4px;
+    }
+    .nari-content {}
+    .nari-name {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+      font-weight: 300; line-height: 1.05;
+      color: var(--text); margin-bottom: 20px;
+    }
+    .nari-name em { font-style: italic; color: var(--gold); }
+    .nari-bio {
+      font-size: .88rem; color: var(--text-dim); line-height: 1.78;
+      margin-bottom: 32px;
+    }
+    /* Credential pills */
+    .cred-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 36px; }
+    .cred-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: var(--pill);
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      font-size: .68rem; font-weight: 500; letter-spacing: .04em;
+      color: var(--text-dim);
+    }
+    .cred-pill::before {
+      content: ''; width: 4px; height: 4px; border-radius: 50%;
+      background: var(--teal); flex-shrink: 0;
+    }
+
+    /* ═══════════════════════════════════════════
+       ▌ CLOSING SCRIPT BANNER
+    ═══════════════════════════════════════════ */
+    .script-banner {
+      position: relative; overflow: hidden;
+      padding: 90px 56px; text-align: center;
+      background: var(--void-mid);
+      border-top: 1px solid rgba(255,255,255,.04);
+    }
+    .script-banner::before {
+      content: '';
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px; height: 350px;
+      background: radial-gradient(ellipse at center, rgba(97,209,196,.04) 0%, transparent 68%);
+      pointer-events: none;
+    }
+    .script-main {
+      font-family: var(--script);
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      color: var(--gold); opacity: .9;
+      text-shadow: 0 2px 18px rgba(201,169,110,.2);
+      display: block; line-height: 1.25; margin-bottom: 6px;
+    }
+    .script-sub {
+      font-family: var(--serif);
+      font-size: .88rem; font-style: italic;
+      color: var(--text-ghost); letter-spacing: .05em;
+      display: block; margin-bottom: 32px;
+    }
+    /* Final CTA */
+    .final-cta {
+      display: inline-flex; align-items: center; gap: 16px;
+      padding: 18px 44px; border-radius: var(--pill);
+      background: linear-gradient(135deg, #e8c07a 0%, #C9A96E 50%, #a07840 100%);
+      border: none; color: #1a0e06;
+      font-size: .9rem; font-weight: 600; letter-spacing: .04em;
+      text-decoration: none; text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 8px 28px rgba(180,130,60,.3);
+      transition: all .45s var(--ease-silk);
+    }
+    .final-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 48px rgba(180,130,60,.45);
+      filter: brightness(1.06);
+    }
+    .final-cta .arrow { transition: transform .4s var(--ease-silk); }
+    .final-cta:hover .arrow { transform: translateX(6px); }
+
+    /* ═══════════════════════════════════════════
+       ▌ FOOTER
+    ═══════════════════════════════════════════ */
+    footer {
+      background: var(--void);
+      border-top: 1px solid rgba(255,255,255,.04);
+      padding: 32px 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+    }
+    footer img { height: 22px; opacity: .5; }
+    .footer-copy {
+      font-size: .68rem; color: var(--text-ghost); letter-spacing: .04em;
+    }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-size: .68rem; color: var(--text-ghost); text-decoration: none;
       letter-spacing: .06em; text-transform: uppercase;
       transition: color .25s;
     }
-    .nav-links a:hover { color: #fff; }
-    .mobile-menu-btn { display: none; }
-
-    .lang-switcher {
-      display: inline-flex; padding: 4px; gap: 4px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(255,255,255,.1);
-      background: rgba(255,255,255,.05);
-      flex-shrink: 0;
-    }
-    .lang-btn {
-      min-width: 40px; padding: 5px 10px;
-      border-radius: var(--radius-pill);
-      color: var(--text-muted); font-size: .68rem; font-weight: 700;
-      letter-spacing: .05em; transition: all 260ms;
-      cursor: pointer; background: none; border: none;
-    }
-    .lang-btn[aria-pressed='true'] {
-      color: var(--text-main); background: rgba(255,255,255,.12);
-      box-shadow: 0 2px 10px rgba(0,0,0,.3);
-    }
-
-    /* ─────────────────────────────────────────
-       PAGE SHELL
-    ───────────────────────────────────────── */
-    .page-wrap {
-      flex: 1; min-height: 0;
-      position: relative; z-index: 2;
-      display: flex; flex-direction: column;
-      overflow: hidden;
-    }
-
-    /* ─────────────────────────────────────────
-       PHOTO — full bleed, warm tone
-    ───────────────────────────────────────── */
-    .hero-scene {
-      position: absolute; inset: 0;
-      z-index: 0; pointer-events: none; overflow: hidden;
-    }
-    .hero-scene__photo {
-      position: absolute; inset: 0;
-      background-image: var(--hero-photo);
-      background-size: cover;
-      background-position: 40% 35%;
-      filter: brightness(.75) saturate(1.1) sepia(.15) hue-rotate(-6deg);
-    }
-    .hero-scene__overlay {
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 55% 45% at 0% 100%, rgba(110,60,15,.5) 0%, transparent 65%),
-        linear-gradient(to top,  #0a0807 0%, rgba(10,8,7,.72) 38%, rgba(10,8,7,.0) 70%),
-        linear-gradient(to right, rgba(10,8,7,.85) 0%, rgba(10,8,7,.4) 45%, rgba(10,8,7,0) 75%);
-    }
-
-    /* ─────────────────────────────────────────
-       HERO — desktop: content fills left half,
-       anchors to bottom
-    ───────────────────────────────────────── */
-    .hero {
-      position: relative; z-index: 2;
-      flex: 1; min-height: 0;
-      display: flex; align-items: flex-end;
-      max-width: 1300px; margin: 0 auto;
-      padding: 0 48px 32px 48px; width: 100%;
-    }
-    .hero-content {
-      position: relative; z-index: 2;
-      display: flex; flex-direction: column;
-      align-items: flex-start;   /* LEFT aligned */
-      text-align: left;
-      max-width: 600px;
-    }
-
-    /* BRAND BADGE */
-    .brand-badge {
-      display: inline-flex; align-items: center; gap: 7px;
-      padding: 6px 16px; border-radius: var(--radius-pill);
-      border: 1px solid rgba(97,209,196,.45);
-      background: rgba(97,209,196,.06);
-      margin-bottom: 16px;
-      width: fit-content;
-    }
-    .brand-badge span {
-      font-size: .62rem; font-weight: 700;
-      letter-spacing: .14em; text-transform: uppercase;
-      color: var(--teal);
-    }
-    .brand-badge::before {
-      content: '';
-      width: 5px; height: 5px; border-radius: 50%;
-      background: var(--teal); opacity: .75; flex-shrink: 0;
-    }
-
-    /* HEADLINE — large, editorial, left */
-    .hero-context {
-      font-family: var(--display-font);
-      font-size: clamp(2.4rem, 3.8vw, 4rem);
-      line-height: 1.08; letter-spacing: .01em;
-      font-weight: 400; color: var(--text-main);
-      margin: 0 0 16px 0;
-    }
-    .text-rose { color: var(--rose); font-style: italic; font-weight: 700; }
-
-    /* SQUIGGLE */
-    .squiggle { display: block; margin: 0 0 16px 0; opacity: .55; }
-
-    /* SUBHEAD */
-    .subtitle {
-      font-size: clamp(.88rem, 1.2vw, 1rem);
-      font-weight: 400; color: rgba(247,244,242,.82);
-      line-height: 1.7; margin: 0; max-width: 42ch;
-    }
-
-    /* PROFILE */
-    .hero-profile {
-      display: flex; align-items: center; gap: 12px;
-      margin-top: 16px;
-    }
-    .hero-profile img {
-      width: 46px; height: 46px; border-radius: 50%; object-fit: cover;
-      border: 1px solid rgba(201,169,110,.35);
-      box-shadow: 0 4px 16px rgba(0,0,0,.45);
-      flex-shrink: 0;
-    }
-    .profile-text { display: flex; flex-direction: column; gap: 2px; }
-    .profile-name { font-size: .9rem; color: var(--text-main); font-weight: 600; }
-    .profile-role { font-size: .75rem; color: var(--text-muted); }
-
-    /* CTA — warm gold gradient */
-    .cta-wrapper { margin-top: 16px; }
-    .btn-premium {
-      display: inline-flex; align-items: center; gap: 14px;
-      padding: 16px 36px; border-radius: var(--radius-pill);
-      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 60%, var(--gold-dark) 100%);
-      border: none; color: #1a0e06;
-      font-size: .92rem; font-weight: 600; letter-spacing: .02em;
-      cursor: pointer; text-decoration: none;
-      transition: all 400ms var(--ease-cinematic);
-      box-shadow: 0 8px 24px rgba(180,130,60,.35);
-    }
-    .btn-premium:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 36px rgba(180,130,60,.5);
-      filter: brightness(1.06);
-    }
-    .btn-arrow { font-weight: 400; font-size: 1.1rem; transition: transform 400ms var(--ease-cinematic); }
-    .btn-premium:hover .btn-arrow { transform: translateX(5px); }
-
-    /* ─────────────────────────────────────────
-       GLASS PANEL
-    ───────────────────────────────────────── */
-    .glass-panel-wrapper {
-      flex-shrink: 0;
-      position: relative; z-index: 10;
-      max-width: 1200px; width: 100%;
-      margin: 0 auto;
-      padding: 0 48px 20px 48px;
-    }
-    .premium-glass-panel {
-      background: rgba(20,14,10,.6);
-      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
-      border: 1px solid rgba(201,169,110,.15);
-      border-top: 1px solid rgba(201,169,110,.22);
-      border-radius: 20px;
-      padding: 24px 40px 20px;
-      box-shadow: 0 16px 48px rgba(0,0,0,.4), inset 0 1px 0 rgba(201,169,110,.1);
-    }
-    .pillars-row {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      /* Vertical dividers between columns */
-      divide-x: 1px solid rgba(201,169,110,.1);
-      gap: 0;
-      padding-bottom: 16px; margin-bottom: 14px;
-      border-bottom: 1px solid rgba(201,169,110,.1);
-    }
-    /* Each pillar: consistent internal layout, centered vertically */
-    .pillar-premium {
-      display: flex; flex-direction: column;
-      align-items: flex-start;
-      gap: 0;
-      padding: 4px 28px 4px 0;
-    }
-    .pillar-premium:not(:last-child) {
-      border-right: 1px solid rgba(201,169,110,.1);
-      margin-right: 28px;
-    }
-
-    /* Icon: simple flex, no position:absolute tricks */
-    .pillar-icon-wrap {
-      display: flex; align-items: center; justify-content: center;
-      width: 40px; height: 40px; border-radius: 50%;
-      border: 1px solid rgba(201,169,110,.3);
-      background: rgba(201,169,110,.07);
-      margin-bottom: 10px;
-      flex-shrink: 0;
-      position: relative; /* for sparkle pseudo-elements */
-    }
-    .pillar-icon-box { display: none; } /* replaced by icon-wrap directly */
-    .pillar-icon-wrap svg { width: 17px; height: 17px; color: var(--gold); }
-    .pillar-icon-wrap::after {
-      content: '+'; position: absolute; top: -5px; right: -5px;
-      font-size: .55rem; font-weight: 700; line-height: 1;
-      color: var(--gold); opacity: .65;
-    }
-    .pillar-icon-wrap::before {
-      content: '·'; position: absolute; bottom: -3px; left: -5px;
-      font-size: .8rem; line-height: 1;
-      color: var(--gold); opacity: .38;
-    }
-
-    .pillar-premium h3 {
-      font-size: .85rem; font-weight: 600;
-      color: var(--gold); margin: 0 0 5px 0;
-      line-height: 1.2;
-    }
-    .pillar-premium p {
-      font-size: .78rem; color: rgba(247,244,242,.78);
-      line-height: 1.5; margin: 0;
-    }
-    .pillar-arrow {
-      display: none; /* cleaner without the arrows at this panel size */
-    }
-    .pillar-premium {
-      display: flex; flex-direction: column; gap: 10px; align-items: flex-start;
-    }
-
-    /* Icon wrap with sparkles */
-    .pillar-icon-wrap { position: relative; width: 46px; height: 46px; flex-shrink: 0; }
-    .pillar-icon-box {
-      width: 42px; height: 42px; border-radius: 50%;
-      border: 1px solid rgba(201,169,110,.32);
-      display: flex; justify-content: center; align-items: center;
-      color: var(--gold); background: rgba(201,169,110,.06);
-      position: absolute; top: 2px; left: 2px;
-    }
-    .pillar-icon-box svg { width: 18px; height: 18px; color: var(--gold); }
-    .pillar-icon-wrap::after {
-      content: '+'; position: absolute; top: -2px; right: -2px;
-      font-size: .6rem; font-weight: 700; line-height: 1;
-      color: var(--gold); opacity: .7;
-    }
-    .pillar-icon-wrap::before {
-      content: '·'; position: absolute; bottom: 0; left: -4px;
-      font-size: .9rem; font-weight: 700; line-height: 1;
-      color: var(--gold); opacity: .42;
-    }
-
-    /* pillar-premium defined above in glass panel section */
-    .pillar-premium h3 { font-size: .88rem; font-weight: 600; color: var(--gold); margin: 0; }
-    .pillar-premium p  { font-size: .78rem; color: var(--text-main); line-height: 1.5; margin: 0; opacity: .82; }
-    .pillar-arrow { color: var(--text-muted); font-size: .85rem; margin-top: auto; opacity: .45; transition: opacity .3s; }
-    .pillar-premium:hover .pillar-arrow { opacity: 1; color: var(--gold); }
-
-    /* Script footer */
-    .script-footer {
+    .footer-links a:hover { color: var(--text-dim); }
+    .footer-tagline {
+      width: 100%;
       text-align: center;
-      display: flex; flex-direction: column; align-items: center; gap: 2px;
+      font-family: var(--serif);
+      font-size: .82rem; font-style: italic;
+      color: var(--text-ghost);
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,.03);
+      letter-spacing: .03em;
     }
-    .script-line-1 {
-      font-family: var(--script-font);
-      font-size: clamp(1.4rem, 2vw, 2rem);
-      color: var(--gold); line-height: 1.2;
-      text-shadow: 0 2px 12px rgba(0,0,0,.6); opacity: .92;
-    }
-    .script-line-2 {
-      font-family: var(--display-font);
-      font-size: .78rem;
-      color: rgba(247,244,242,.55);
-      letter-spacing: .04em; font-style: italic;
-    }
-    .script-heart { margin-top: 4px; color: var(--rose); opacity: .75; }
 
-    /* ─────────────────────────────────────────
-       MOBILE — completely different rhythm
-       Photo bleeds wall-to-wall from pixel 0.
-       Nav is transparent overlay.
-       Hero fills ~100vh, left-aligned, large type.
-       Glass panel scrolls into view below.
-    ───────────────────────────────────────── */
+    /* ═══════════════════════════════════════════
+       ▌ MOBILE
+    ═══════════════════════════════════════════ */
     @media (max-width: 900px) {
-      /* Allow scroll on mobile */
-      html, body { height: auto; overflow: auto; }
-      .page-wrap { overflow: visible; min-height: 0; flex: none; }
+      .nav { padding: max(16px, env(safe-area-inset-top)) 22px 14px; }
+      .nav-center { display: none; }
+      .ham { display: flex; }
+      .mobile-nav { display: flex; }
 
-      /* Nav: fully transparent, photo shows through from row 0 */
-      .top-row {
-        background: transparent;
-        position: fixed; top: 0; left: 0; right: 0;
-        padding: max(16px, env(safe-area-inset-top)) 20px 14px 20px;
-        z-index: 200;
-      }
-      .top-row::before {
-        backdrop-filter: none; -webkit-backdrop-filter: none;
-        border-bottom: none;
-        background: linear-gradient(to bottom, rgba(10,8,7,.55) 0%, transparent 100%);
-      }
+      .hero { height: 100svh; }
+      .hero-body { padding: 0 24px 52px; }
+      .hero-photo { background-position: 72% center; }
+      .hero-headline { font-size: clamp(2.8rem, 12vw, 3.8rem); max-width: 100%; }
 
-      /* Mobile menu */
-      .nav-links {
-        position: fixed; inset: 0;
-        background: rgba(10,8,7,.97);
-        backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-        z-index: 999;
-        flex-direction: column; align-items: center; justify-content: center;
-        gap: 40px; opacity: 0; pointer-events: none;
-        transition: all .4s var(--ease-cinematic);
-        transform: translateY(-10px);
-      }
-      .nav-links.is-open { opacity: 1; pointer-events: auto; transform: translateY(0); }
-      .nav-links a { font-size: 1.3rem; letter-spacing: .1em; color: rgba(247,244,242,.9); }
-      .nav-links:not(.is-open) a { display: none; }
-      .nav-links.is-open a { display: block; }
+      .divergence { flex-direction: column; gap: 12px; }
+      .entry-emergencia,
+      .entry-contencion { max-width: 100%; }
 
-      .mobile-menu-btn {
-        display: flex; align-items: center; justify-content: center;
-        background: rgba(255,255,255,.08);
-        border: 1px solid rgba(255,255,255,.12); border-radius: 50%;
-        width: 44px; height: 44px; color: #fff;
-        z-index: 1000; position: relative; cursor: pointer;
-        transition: all .3s; flex-shrink: 0;
-      }
-      .mobile-menu-btn .close-icon { display: none; }
-      .mobile-menu-btn.is-active .menu-icon { display: none; }
-      .mobile-menu-btn.is-active .close-icon { display: flex; }
+      .section { padding: 60px 24px; }
+      .section-inner { padding: 0 24px; }
+      .section-full { padding: 60px 0; }
 
-      /* HERO SECTION — full viewport height, photo bleeds */
-      .hero-scene {
-        /* Not absolute inside page-wrap — needs to span the full hero section */
-        position: absolute;
+      .pillars-grid { grid-template-columns: 1fr; }
+      .pillar:not(:last-child)::after {
+        top: auto; bottom: 0; left: 24px; right: 24px;
+        width: auto; height: 1px;
       }
-      .hero-section-mobile {
-        position: relative;
-        min-height: 100svh;
-        display: flex; flex-direction: column; justify-content: flex-end;
-        padding: 0;
-        overflow: hidden;
-      }
-      /* Photo behind everything including nav */
-      .hero-section-mobile .hero-scene {
-        position: fixed; inset: 0; z-index: 0;
-      }
-      .hero-section-mobile .hero-scene__photo {
-        background-position: 40% 38%;
-        filter: brightness(.65) saturate(1.1) sepia(.18) hue-rotate(-6deg);
-      }
-      .hero-section-mobile .hero-scene__overlay {
-        background:
-          radial-gradient(ellipse 80% 50% at 50% 100%, rgba(10,8,7,.9) 0%, transparent 70%),
-          linear-gradient(to top, #0a0807 0%, rgba(10,8,7,.85) 30%, rgba(10,8,7,.15) 65%, rgba(10,8,7,0) 100%);
-      }
+      .pillar { padding: 36px 24px; }
 
-      /* Hero content: left-aligned, large, sits above bottom of screen */
-      .hero {
-        position: relative; z-index: 10;
-        flex: none;
-        display: flex; align-items: flex-end;
-        padding: 0 24px 40px 24px;
-        min-height: 100svh;
-        max-width: 100%;
-        margin: 0;
-      }
-      .hero-content {
-        align-items: flex-start; text-align: left;
-        max-width: 100%;
-      }
+      .guides-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .guides-header { flex-direction: column; align-items: flex-start; }
 
-      /* Much bigger headline on mobile */
-      .hero-context {
-        font-size: clamp(2.6rem, 10vw, 3.4rem);
-        line-height: 1.06;
-        margin-bottom: 14px;
-      }
-      .brand-badge { margin-bottom: 16px; }
-      .squiggle { margin-bottom: 14px; }
-      .subtitle { font-size: .9rem; max-width: 36ch; }
-      .hero-profile { margin-top: 20px; }
-      .cta-wrapper { margin-top: 20px; }
-      .btn-premium { width: 100%; justify-content: center; padding: 18px 28px; font-size: 1rem; }
+      .nari-inner { grid-template-columns: 1fr; gap: 48px; }
+      .nari-badge { bottom: -12px; right: 12px; }
+      .nari-badge-img { bottom: -12px; right: 12px; width: 180px; }
 
-      /* Glass panel: below the fold, feels like a natural next section */
-      .glass-panel-wrapper {
-        position: relative; z-index: 20;
-        padding: 0 16px 32px 16px;
-        margin-top: 0;
-        /* Slight negative overlap with hero bottom for continuity */
-        margin-top: -1px;
-        background: #0a0807;
-      }
-      .premium-glass-panel {
-        padding: 28px 20px 22px;
-        border-radius: 20px;
-        margin-top: 20px;
-        border-color: rgba(201,169,110,.12);
-      }
-      .pillars-row {
-        grid-template-columns: 1fr;
-        gap: 28px; padding-bottom: 22px; margin-bottom: 18px;
-      }
-      .pillar-premium { align-items: flex-start; text-align: left; }
-      /* On mobile, pillar layout is horizontal: icon left, text right */
-      .pillar-premium {
-        flex-direction: row; align-items: center; gap: 16px;
-      }
-      .pillar-text { display: flex; flex-direction: column; gap: 4px; }
-      .pillar-premium h3 { font-size: .92rem; }
-      .pillar-premium p  { font-size: .8rem; }
-      .pillar-arrow { display: none; } /* cleaner on mobile */
+      .quote-band { padding: 60px 24px; }
+      .script-banner { padding: 70px 24px; }
 
-      .script-line-1 { font-size: 2rem; }
-      .script-line-2 { font-size: .8rem; }
+      footer { padding: 24px; flex-direction: column; align-items: flex-start; gap: 14px; }
+      .footer-tagline { text-align: left; padding-top: 12px; }
+      .marquee-strip { padding: 20px 0; }
     }
 
-    /* Mid-range desktop tightening */
-    @media (min-width: 900px) and (max-width: 1100px) {
-      .hero { padding: 0 36px 24px 36px; }
-      .glass-panel-wrapper { padding: 0 36px 24px 36px; }
-      .premium-glass-panel { padding: 28px 36px 22px; }
-      .pillars-row { gap: 28px; }
+    @media (max-width: 480px) {
+      .guides-grid { grid-template-columns: 1fr; }
     }
+
+    /* ═══════════════════════════════════════════
+       SCROLL-TRIGGERED REVEALS (via IntersectionObserver)
+    ═══════════════════════════════════════════ */
+    .scroll-reveal {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity .85s var(--ease-silk), transform .85s var(--ease-silk);
+    }
+    .scroll-reveal.visible {
+      opacity: 1; transform: translateY(0);
+    }
+    .scroll-reveal.delay-1 { transition-delay: .1s; }
+    .scroll-reveal.delay-2 { transition-delay: .2s; }
+    .scroll-reveal.delay-3 { transition-delay: .32s; }
+    .scroll-reveal.delay-4 { transition-delay: .44s; }
   </style>
 </head>
 <body>
 
-  <div class="grain"></div>
+  <div class="grain" aria-hidden="true"></div>
 
-  <!-- NAV -->
-  <div class="top-row" style="flex-wrap:nowrap;">
-    <a href="/" aria-label="Criar Sin Culpas - Inicio"
-       style="display:flex;flex-shrink:0;align-items:center;transition:transform .3s ease;"
-       onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
-      <img src="/assets/images/csc-logo.svg" alt="Criar Sin Culpas"
-           style="height:clamp(26px,4vw,34px);width:auto !important;max-width:none;display:block;object-fit:contain;flex-shrink:0;margin-left:-4px;">
+  <!-- ─────── NAV ─────── -->
+  <nav class="nav" id="mainNav" role="navigation" aria-label="Navegación principal">
+    <a href="/index.html" class="nav-logo" aria-label="Criar Sin Culpas">
+      <img src="/assets/images/csc-logo.svg" alt="Criar Sin Culpas">
     </a>
-    <div style="display:flex;align-items:center;gap:16px;flex-wrap:nowrap;flex-shrink:0;">
-      <nav class="nav-links" style="white-space:nowrap;">
-        <a href="/apoyo/" data-i18n="nav_apoyo" data-es="Guías" data-en="Guides">Guías</a>
-        <a href="/metodo" data-i18n="nav_metodo" data-es="El Método" data-en="Method">El Método</a>
-        <a href="#" data-i18n="nav_aprende" data-es="Aprende (Pronto)" data-en="Learn (Soon)"
-           style="opacity:.4;cursor:default;pointer-events:none;">Aprende (Pronto)</a>
-      </nav>
-      <div class="lang-switcher" style="flex-shrink:0;">
+    <div class="nav-center">
+      <a href="/apoyo/"
+         data-i18n="nav_guias" data-es="Guías" data-en="Guides">Guías</a>
+      <a href="/metodo/index.html"
+         data-i18n="nav_metodo" data-es="El Método" data-en="The Method">El Método</a>
+      <a href="#" class="dim"
+         data-i18n="nav_aprende" data-es="Aprende (Pronto)" data-en="Learn (Soon)">Aprende (Pronto)</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-pill" role="group" aria-label="Idioma">
         <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
         <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
       </div>
-      <button class="mobile-menu-btn" aria-label="Menu" style="flex-shrink:0;">
-        <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="menu-icon"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-        <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="close-icon"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      <button class="ham" id="ham" aria-label="Abrir menú" aria-expanded="false">
+        <svg class="bars" width="20" height="20" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="8" x2="21" y2="8"/><line x1="3" y1="16" x2="21" y2="16"/>
+        </svg>
+        <svg class="x" width="20" height="20" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
       </button>
+    </div>
+  </nav>
+
+  <!-- Mobile drawer -->
+  <div class="mobile-nav" id="mobileNav" role="dialog" aria-label="Menú" aria-modal="true">
+    <a href="/apoyo/"
+       data-i18n="nav_guias_m" data-es="Guías" data-en="Guides">Guías</a>
+    <a href="/metodo/index.html"
+       data-i18n="nav_metodo_m" data-es="El Método" data-en="The Method">El Método</a>
+    <div class="lang-pill" role="group" aria-label="Idioma" style="margin-top:8px;">
+      <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
+      <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
     </div>
   </div>
 
-  <!-- PAGE SHELL (desktop) -->
-  <div class="page-wrap">
+  <!-- ─────── HERO ─────── -->
+  <section class="hero" aria-label="Inicio">
+    <div class="hero-photo" id="heroPhoto" aria-hidden="true"></div>
+    <div class="hero-overlay-dir"  aria-hidden="true"></div>
+    <div class="hero-overlay-vert" aria-hidden="true"></div>
+    <div class="hero-overlay-blush" aria-hidden="true"></div>
+    <div class="hero-bar-top"      aria-hidden="true"></div>
 
-    <!-- Photo — desktop -->
-    <div class="hero-scene reveal-1">
-      <div class="hero-scene__photo"></div>
-      <div class="hero-scene__overlay"></div>
-    </div>
+    <div class="hero-body">
 
-    <!-- HERO (desktop layout) -->
-    <main class="hero">
-      <div class="hero-content reveal-2">
+      <div class="status-badge r1" aria-hidden="true">
+        <span class="status-dot"></span>
+        <span data-i18n="status" data-es="Espacio de Apoyo · Activo" data-en="Support Space · Active">Espacio de Apoyo · Activo</span>
+      </div>
 
-        <div class="brand-badge">
-          <span>Criar Sin Culpas</span>
+      <h1 class="hero-headline r2"
+          data-i18n="hero_h1"
+          data-es="Porque <em>criar</em> no debería sentirse imposible."
+          data-en="Because <em>parenting</em> shouldn't feel impossible.">
+        Porque <em>criar</em> no debería sentirse imposible.
+      </h1>
+
+      <svg class="squiggle r3" width="80" height="14" viewBox="0 0 80 14" fill="none" aria-hidden="true">
+        <path d="M2 7 C9 2, 16 12, 23 7 C30 2, 37 12, 44 7 C51 2, 58 12, 65 7 C71 2, 77 12, 78 7"
+              stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      </svg>
+
+      <p class="hero-sub r3"
+         data-i18n="hero_sub"
+         data-es="Te acompaño a bajar la intensidad, recuperar tu centro y transformar el caos en calma · sin juicios y sin perfeccionismos."
+         data-en="I help you lower the intensity, recover your center, and transform chaos into calm · without judgment and without perfectionism.">
+        Te acompaño a bajar la intensidad, recuperar tu centro y transformar el caos en calma · sin juicios y sin perfeccionismos.
+      </p>
+
+      <div class="author-strip r4">
+        <img class="author-avatar"
+             src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779117777/nari-portrait_jzjwcw.png"
+             alt="Nari Fateha">
+        <div>
+          <div class="author-name">Nari Fateha</div>
+          <div class="author-role"
+               data-i18n="nari_role"
+               data-es="Educadora y creadora de Criar Sin Culpas"
+               data-en="Educator and creator of Criar Sin Culpas">Educadora y creadora de Criar Sin Culpas</div>
         </div>
+      </div>
 
-        <h1 class="hero-context"
-            data-i18n="portal_headline"
-            data-es="Porque <span class='text-rose'>criar</span> no debería sentirse imposible."
-            data-en="Because <span class='text-rose'>parenting</span> shouldn't feel impossible.">
-          Porque <span class="text-rose">criar</span> no debería sentirse imposible.
-        </h1>
+      <!-- CRISIS DIVERGENCE -->
+      <div class="divergence r5" role="navigation" aria-label="Punto de entrada">
 
-        <svg class="squiggle" width="72" height="14" viewBox="0 0 72 14" fill="none">
-          <path d="M2 7 C8 2, 14 12, 20 7 C26 2, 32 12, 38 7 C44 2, 50 12, 56 7 C62 2, 68 12, 70 7"
-                stroke="#C9A96E" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-        </svg>
+        <a href="/apoyo/index.html#emergencia" class="entry-emergencia js-telemetry" id="cta-emergencia" data-event-name="portal_entered" data-mode="emergencia" data-protocol="home_hero">
+          <span class="entry-label"
+                data-i18n="ent1_label" data-es="Emergencia" data-en="Emergency">Emergencia</span>
+          <span class="entry-title"
+                data-i18n="ent1_title"
+                data-es="Necesito ayuda ahora."
+                data-en="I need help right now.">Necesito ayuda ahora.</span>
+          <span class="entry-desc"
+                data-i18n="ent1_desc"
+                data-es="Rabietas, pantallas, sibling war. Entra aquí cuando estés en medio del caos."
+                data-en="Tantrums, screens, sibling war. Come here when you're in the middle of the chaos.">Rabietas, pantallas, sibling war. Entra aquí cuando estés en medio del caos.</span>
+          <span class="entry-arrow"
+                data-i18n="ent1_arrow" data-es="Entrar →" data-en="Enter →">Entrar →</span>
+        </a>
 
-        <p class="subtitle reveal-3"
-           data-i18n="portal_subheadline"
-           data-es="Te acompaño a bajar la intensidad, recuperar tu centro y transformar el caos en calma &mdash; sin juicios y sin perfeccionismos."
-           data-en="I help you lower the intensity, recover your center, and transform chaos into calm &mdash; without judgment and without perfectionism.">
-          Te acompaño a bajar la intensidad, recuperar tu centro y transformar el caos en calma &mdash; sin juicios y sin perfeccionismos.
-        </p>
-
-        <div class="hero-profile reveal-4">
-          <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779117777/nari-portrait_jzjwcw.png" alt="Nari Fateha">
-          <div class="profile-text">
-            <span class="profile-name">Nari Fateha</span>
-            <span class="profile-role"
-                  data-i18n="nari_role"
-                  data-es="Educadora y creadora de Criar Sin Culpas"
-                  data-en="Educator and creator of Criar Sin Culpas">Educadora y creadora de Criar Sin Culpas</span>
-          </div>
-        </div>
-
-        <div class="cta-wrapper reveal-5">
-          <a href="/apoyo" class="btn-premium" id="enter-btn">
-            <span data-i18n="portal_cta"
-                  data-es="Recibe apoyo que se sienta bien"
-                  data-en="Get support that feels right">Recibe apoyo que se sienta bien</span>
-            <span class="btn-arrow">→</span>
-          </a>
-        </div>
+        <a href="/metodo/index.html" class="entry-contencion js-telemetry" id="cta-contencion" data-event-name="portal_entered" data-mode="contencion" data-protocol="home_hero">
+          <span class="entry-label"
+                data-i18n="ent2_label" data-es="Contención" data-en="Restoration">Contención</span>
+          <span class="entry-title"
+                data-i18n="ent2_title"
+                data-es="Necesito recuperarme."
+                data-en="I need to restore myself.">Necesito recuperarme.</span>
+          <span class="entry-desc"
+                data-i18n="ent2_desc"
+                data-es="Agotamiento emocional, culpa, duda. Un lugar más lento y más gentil para ti."
+                data-en="Emotional exhaustion, guilt, doubt. A slower and gentler place for you.">Agotamiento emocional, culpa, duda. Un lugar más lento y más gentil para ti.</span>
+          <span class="entry-arrow"
+                data-i18n="ent2_arrow" data-es="Explorar →" data-en="Explore →">Explorar →</span>
+        </a>
 
       </div>
-    </main>
 
-    <!-- GLASS PANEL (desktop) -->
-    <div class="glass-panel-wrapper reveal-5">
-      <div class="premium-glass-panel">
-        <div class="pillars-row">
+    </div>
+  </section>
 
-          <div class="pillar-premium">
-            <div class="pillar-icon-wrap">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            </div>
-            <div class="pillar-text">
-              <h3 data-i18n="pill_1_title" data-es="Sin juicios" data-en="No judgments">Sin juicios</h3>
-              <p data-i18n="pill_1_desc" data-es="Te acompañamos como eres, con respeto y empatía." data-en="We support you as you are, with respect and empathy.">Te acompañamos como eres, con respeto y empatía.</p>
-            </div>
-            <div class="pillar-arrow">→</div>
-          </div>
+  <!-- ─────── MARQUEE ─────── -->
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-track" id="marqueeTrack">
+      <!-- items injected by JS for clean duplication -->
+    </div>
+  </div>
 
-          <div class="pillar-premium">
-            <div class="pillar-icon-wrap">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 1 8.3C18.4 15 15.1 20 11 20z"/><path d="M11 20c2.4-3.4 3.5-7.1 2.2-11.4"/></svg>
-            </div>
-            <div class="pillar-text">
-              <h3 data-i18n="pill_2_title" data-es="Herramientas reales" data-en="Real tools">Herramientas reales</h3>
-              <p data-i18n="pill_2_desc" data-es="Recursos prácticos para tu día a día, no solo teoría." data-en="Practical resources for your day to day, not just theory.">Recursos prácticos para tu día a día, no solo teoría.</p>
-            </div>
-            <div class="pillar-arrow">→</div>
-          </div>
+  <!-- ─────── PILLARS ─────── -->
+  <section class="section-full pillars-section">
+    <div class="section-inner">
+      <div class="pillars-grid">
 
-          <div class="pillar-premium">
-            <div class="pillar-icon-wrap">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <div class="pillar-text">
-              <h3 data-i18n="pill_3_title" data-es="Comunidad segura" data-en="Safe community">Comunidad segura</h3>
-              <p data-i18n="pill_3_desc" data-es="No estás sola. Aquí hay espacio para ti." data-en="You are not alone. There is space for you here.">No estás sola. Aquí hay espacio para ti.</p>
-            </div>
-            <div class="pillar-arrow">→</div>
-          </div>
-
-        </div>
-
-        <div class="script-footer">
-          <p class="script-line-1"
-             data-i18n="script_text"
-             data-es="Estás haciendo lo mejor que puedes."
-             data-en="You are doing the best you can.">Estás haciendo lo mejor que puedes.</p>
-          <p class="script-line-2"
-             data-i18n="script_sub"
-             data-es="Y eso ya es suficiente."
-             data-en="And that is enough.">Y eso ya es suficiente.</p>
-          <div class="script-heart">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <div class="pillar scroll-reveal">
+          <div class="pillar-num">01</div>
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
             </svg>
           </div>
+          <h3 data-i18n="p1_h" data-es="Sin juicios" data-en="No judgments">Sin juicios</h3>
+          <p data-i18n="p1_p" data-es="Te acompañamos como eres, con respeto y empatía. Aquí no hay madres ni padres perfectos, solo humanos intentándolo." data-en="We support you as you are, with respect and empathy. There are no perfect parents here, only humans trying.">Te acompañamos como eres, con respeto y empatía. Aquí no hay madres ni padres perfectos, solo humanos intentándolo.</p>
         </div>
 
-      </div>
-    </div>
-
-  </div><!-- /page-wrap -->
-
-  <!-- ─────────────────────────────────────────
-       MOBILE HERO — separate DOM section,
-       only visible on mobile via CSS.
-       Sits outside .page-wrap so the photo
-       can be position:fixed behind the nav.
-  ───────────────────────────────────────── -->
-  <style>
-    /* Hide mobile section on desktop */
-    .mobile-only { display: none; }
-    @media (max-width: 900px) {
-      /* Hide desktop page-wrap entirely */
-      .page-wrap { display: none !important; }
-      /* Show mobile section */
-      .mobile-only { display: block; }
-
-      .m-hero-wrap {
-        position: relative;
-        min-height: 100svh;
-        overflow: hidden;
-        display: flex; flex-direction: column; justify-content: flex-end;
-      }
-      /* Full-bleed photo — fixed so it extends behind nav */
-      .m-photo {
-        position: fixed; inset: 0; z-index: 0;
-        background-image: var(--hero-photo);
-        background-size: cover;
-        background-position: 40% 38%;
-        filter: brightness(.65) saturate(1.1) sepia(.18) hue-rotate(-6deg);
-      }
-      .m-overlay {
-        position: fixed; inset: 0; z-index: 1;
-        background:
-          linear-gradient(to top, #0a0807 0%, rgba(10,8,7,.88) 32%, rgba(10,8,7,.2) 62%, rgba(10,8,7,0) 100%);
-      }
-      /* Hero text — sits above the photo, left-aligned, large */
-      .m-hero-content {
-        position: relative; z-index: 10;
-        padding: 0 24px 44px 24px;
-        /* Push content below fixed nav height */
-        padding-top: max(80px, env(safe-area-inset-top) + 64px);
-        display: flex; flex-direction: column; align-items: flex-start;
-      }
-      .m-brand-badge {
-        display: inline-flex; align-items: center; gap: 7px;
-        padding: 6px 14px; border-radius: 999px;
-        border: 1px solid rgba(97,209,196,.45);
-        background: rgba(97,209,196,.06);
-        margin-bottom: 20px;
-      }
-      .m-brand-badge span {
-        font-size: .6rem; font-weight: 700;
-        letter-spacing: .14em; text-transform: uppercase;
-        color: var(--teal);
-      }
-      .m-brand-badge::before {
-        content: ''; width: 5px; height: 5px; border-radius: 50%;
-        background: var(--teal); opacity: .75; flex-shrink: 0;
-      }
-      .m-h1 {
-        font-family: var(--display-font);
-        font-size: clamp(2.8rem, 11vw, 3.6rem);
-        line-height: 1.06; font-weight: 400;
-        color: var(--text-main);
-        margin-bottom: 14px; letter-spacing: .01em;
-      }
-      .m-squiggle { margin-bottom: 14px; opacity: .55; }
-      .m-subtitle {
-        font-size: .9rem; color: rgba(247,244,242,.82);
-        line-height: 1.68; max-width: 34ch; margin-bottom: 0;
-      }
-      .m-profile {
-        display: flex; align-items: center; gap: 12px; margin-top: 22px;
-      }
-      .m-profile img {
-        width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
-        border: 1px solid rgba(201,169,110,.35);
-        box-shadow: 0 4px 14px rgba(0,0,0,.45);
-      }
-      .m-profile-name { font-size: .88rem; font-weight: 600; color: var(--text-main); }
-      .m-profile-role { font-size: .72rem; color: var(--text-muted); margin-top: 1px; }
-      .m-cta { margin-top: 22px; width: 100%; }
-      .m-btn {
-        display: flex; align-items: center; justify-content: center; gap: 12px;
-        width: 100%; padding: 18px 24px; border-radius: 999px;
-        background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 60%, var(--gold-dark) 100%);
-        color: #1a0e06; font-size: 1rem; font-weight: 600; letter-spacing: .02em;
-        text-decoration: none; border: none;
-        box-shadow: 0 8px 24px rgba(180,130,60,.35);
-        transition: all 400ms var(--ease-cinematic);
-      }
-
-      /* Glass panel below */
-      .m-glass-wrap {
-        position: relative; z-index: 20;
-        background: #0a0807;
-        padding: 20px 16px 32px;
-      }
-      .m-glass {
-        background: rgba(14,10,8,.9);
-        backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
-        border: 1px solid rgba(201,169,110,.12);
-        border-radius: 20px;
-        padding: 28px 20px 22px;
-        box-shadow: 0 16px 48px rgba(0,0,0,.5), inset 0 1px 0 rgba(201,169,110,.06);
-      }
-      .m-pillars { display: flex; flex-direction: column; gap: 24px; padding-bottom: 22px; margin-bottom: 20px; border-bottom: 1px solid rgba(201,169,110,.1); }
-      .m-pillar { display: flex; align-items: center; gap: 16px; }
-      .m-icon-wrap { position: relative; width: 52px; height: 52px; flex-shrink: 0; }
-      .m-icon-box {
-        width: 48px; height: 48px; border-radius: 50%;
-        border: 1px solid rgba(201,169,110,.3);
-        display: flex; justify-content: center; align-items: center;
-        background: rgba(201,169,110,.06);
-        position: absolute; top: 2px; left: 2px;
-      }
-      .m-icon-box svg { width: 19px; height: 19px; color: var(--gold); }
-      .m-icon-wrap::after { content: '+'; position: absolute; top: -2px; right: -2px; font-size: .6rem; font-weight: 700; color: var(--gold); opacity: .7; }
-      .m-icon-wrap::before { content: '·'; position: absolute; bottom: 0; left: -3px; font-size: .85rem; font-weight: 700; color: var(--gold); opacity: .4; }
-      .m-pillar-text h3 { font-size: .9rem; font-weight: 600; color: var(--gold); margin-bottom: 3px; }
-      .m-pillar-text p  { font-size: .8rem; color: rgba(247,244,242,.82); line-height: 1.5; }
-
-      .m-script { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 3px; }
-      .m-script-1 { font-family: var(--script-font); font-size: 2rem; color: var(--gold); opacity: .92; text-shadow: 0 2px 12px rgba(0,0,0,.5); }
-      .m-script-2 { font-family: var(--display-font); font-size: .8rem; color: rgba(247,244,242,.58); font-style: italic; letter-spacing: .04em; }
-      .m-heart { margin-top: 8px; color: var(--rose); opacity: .8; }
-    }
-  </style>
-
-  <!-- MOBILE SECTION (hidden on desktop) -->
-  <div class="mobile-only">
-    <!-- Fixed photo behind everything -->
-    <div class="m-photo"></div>
-    <div class="m-overlay"></div>
-
-    <!-- Full-height hero -->
-    <div class="m-hero-wrap">
-      <div class="m-hero-content reveal-2">
-
-        <div class="m-brand-badge"><span>Criar Sin Culpas</span></div>
-
-        <h1 class="m-h1"
-            data-i18n="m_headline"
-            data-es="Porque <span class='text-rose'>criar</span> no debería sentirse imposible."
-            data-en="Because <span class='text-rose'>parenting</span> shouldn't feel impossible.">
-          Porque <span class="text-rose">criar</span> no debería sentirse imposible.
-        </h1>
-
-        <svg class="m-squiggle" width="68" height="13" viewBox="0 0 72 14" fill="none">
-          <path d="M2 7 C8 2, 14 12, 20 7 C26 2, 32 12, 38 7 C44 2, 50 12, 56 7 C62 2, 68 12, 70 7"
-                stroke="#C9A96E" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-        </svg>
-
-        <p class="m-subtitle"
-           data-i18n="m_sub"
-           data-es="Te acompaño a bajar la intensidad, recuperar tu centro y transformar el caos en calma &mdash; sin juicios y sin perfeccionismos."
-           data-en="I help you lower the intensity, recover your center, and transform chaos into calm &mdash; without judgment and without perfectionism.">
-          Te acompaño a bajar la intensidad, recuperar tu centro y transformar el caos en calma &mdash; sin juicios y sin perfeccionismos.
-        </p>
-
-        <div class="m-profile">
-          <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779117777/nari-portrait_jzjwcw.png" alt="Nari Fateha">
-          <div>
-            <div class="m-profile-name">Nari Fateha</div>
-            <div class="m-profile-role"
-                 data-i18n="m_role"
-                 data-es="Educadora y creadora de Criar Sin Culpas"
-                 data-en="Educator and creator of Criar Sin Culpas">Educadora y creadora de Criar Sin Culpas</div>
-          </div>
-        </div>
-
-        <div class="m-cta">
-          <a href="/apoyo" class="m-btn" id="enter-btn-m">
-            <span data-i18n="m_cta"
-                  data-es="Recibe apoyo que se sienta bien"
-                  data-en="Get support that feels right">Recibe apoyo que se sienta bien</span>
-            <span>→</span>
-          </a>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Glass panel — scrolls into view naturally -->
-    <div class="m-glass-wrap">
-      <div class="m-glass">
-        <div class="m-pillars">
-
-          <div class="m-pillar">
-            <div class="m-icon-wrap">
-              <div class="m-icon-box">
-                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-              </div>
-            </div>
-            <div class="m-pillar-text">
-              <h3 data-i18n="m_p1_title" data-es="Sin juicios" data-en="No judgments">Sin juicios</h3>
-              <p data-i18n="m_p1_desc" data-es="Te acompañamos como eres, con respeto y empatía." data-en="We support you as you are, with respect and empathy.">Te acompañamos como eres, con respeto y empatía.</p>
-            </div>
-          </div>
-
-          <div class="m-pillar">
-            <div class="m-icon-wrap">
-              <div class="m-icon-box">
-                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 1 8.3C18.4 15 15.1 20 11 20z"/><path d="M11 20c2.4-3.4 3.5-7.1 2.2-11.4"/></svg>
-              </div>
-            </div>
-            <div class="m-pillar-text">
-              <h3 data-i18n="m_p2_title" data-es="Herramientas reales" data-en="Real tools">Herramientas reales</h3>
-              <p data-i18n="m_p2_desc" data-es="Recursos prácticos para tu día a día, no solo teoría." data-en="Practical resources for your day to day, not just theory.">Recursos prácticos para tu día a día, no solo teoría.</p>
-            </div>
-          </div>
-
-          <div class="m-pillar">
-            <div class="m-icon-wrap">
-              <div class="m-icon-box">
-                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-              </div>
-            </div>
-            <div class="m-pillar-text">
-              <h3 data-i18n="m_p3_title" data-es="Comunidad segura" data-en="Safe community">Comunidad segura</h3>
-              <p data-i18n="m_p3_desc" data-es="No estás sola. Aquí hay espacio para ti." data-en="You are not alone. There is space for you here.">No estás sola. Aquí hay espacio para ti.</p>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="m-script">
-          <p class="m-script-1"
-             data-i18n="m_script1"
-             data-es="Estás haciendo lo mejor que puedes."
-             data-en="You are doing the best you can.">Estás haciendo lo mejor que puedes.</p>
-          <p class="m-script-2"
-             data-i18n="m_script2"
-             data-es="Y eso ya es suficiente."
-             data-en="And that is enough.">Y eso ya es suficiente.</p>
-          <div class="m-heart">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        <div class="pillar scroll-reveal delay-1">
+          <div class="pillar-num">02</div>
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 1 8.3C18.4 15 15.1 20 11 20z"/>
+              <path d="M11 20c2.4-3.4 3.5-7.1 2.2-11.4"/>
             </svg>
           </div>
+          <h3 data-i18n="p2_h" data-es="Herramientas reales" data-en="Real tools">Herramientas reales</h3>
+          <p data-i18n="p2_p" data-es="Recursos prácticos para tu día a día, no solo teoría. Protocolos claros y frases concretas que puedes usar hoy." data-en="Practical resources for your day to day, not just theory. Clear protocols and concrete phrases you can use today.">Recursos prácticos para tu día a día, no solo teoría. Protocolos claros y frases concretas que puedes usar hoy.</p>
         </div>
+
+        <div class="pillar scroll-reveal delay-2">
+          <div class="pillar-num">03</div>
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3 data-i18n="p3_h" data-es="Comunidad segura" data-en="Safe community">Comunidad segura</h3>
+          <p data-i18n="p3_p" data-es="No estás sola. Aquí hay espacio para ti, para tu historia, para tus dudas y para tus noches difíciles." data-en="You are not alone. There is space for you, your story, your doubts, and your difficult nights.">No estás sola. Aquí hay espacio para ti, para tu historia, para tus dudas y para tus noches difíciles.</p>
+        </div>
+
       </div>
     </div>
-  </div><!-- /mobile-only -->
+  </section>
+
+  <!-- ─────── GUIDES GRID ─────── -->
+  <section class="section guides-section" aria-labelledby="guides-heading">
+    <div class="guides-header scroll-reveal">
+      <div>
+        <div class="eyebrow" data-i18n="guides_eyebrow" data-es="Protocolos de Apoyo" data-en="Support Protocols">Protocolos de Apoyo</div>
+        <h2 class="guides-title" id="guides-heading"
+            data-i18n="guides_h2"
+            data-es="Para cada momento <em>difícil</em>."
+            data-en="For every <em>difficult</em> moment.">Para cada momento <em>difícil</em>.</h2>
+      </div>
+        <a href="/metodo/index.html" class="guides-view-all"
+         data-i18n="guides_all" data-es="Ver todas las guías →" data-en="View all guides →">Ver todas las guías →</a>
+    </div>
+
+    <div class="guides-grid">
+
+      <a href="/apoyo/tiempo-pantalla" class="guide-card scroll-reveal">
+        <span class="guide-tag emergencia"
+              data-i18n="gtag_emer" data-es="Emergencia" data-en="Emergency">Emergencia</span>
+        <span class="guide-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="2"/></svg></span>
+        <h3 data-i18n="g1_h" data-es="Tiempo de Pantalla" data-en="Screen Time">Tiempo de Pantalla</h3>
+        <p data-i18n="g1_p" data-es="Estrategias claras para manejar el tiempo digital sin guerras ni culpa." data-en="Clear strategies for managing screen time without battles or guilt.">Estrategias claras para manejar el tiempo digital sin guerras ni culpa.</p>
+        <span class="guide-arrow"
+              data-i18n="g_arrow" data-es="Leer guía →" data-en="Read guide →">Leer guía →</span>
+      </a>
+
+      <a href="/apoyo/escalada-emocional" class="guide-card scroll-reveal delay-1">
+        <span class="guide-tag emergencia"
+              data-i18n="gtag_emer" data-es="Emergencia" data-en="Emergency">Emergencia</span>
+        <span class="guide-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12 C5 9, 8 15, 11 12 C14 9, 17 15, 22 12"/><path d="M2 17 C5 14, 8 20, 11 17 C14 14, 17 20, 22 17"/></svg></span>
+        <h3 data-i18n="g2_h" data-es="Escalada Emocional" data-en="Emotional Escalation">Escalada Emocional</h3>
+        <p data-i18n="g2_p" data-es="Cómo bajar la intensidad cuando todo se está desbordando, para ti y para ellos." data-en="How to lower the intensity when everything is overflowing, for you and for them.">Cómo bajar la intensidad cuando todo se está desbordando, para ti y para ellos.</p>
+        <span class="guide-arrow"
+              data-i18n="g_arrow" data-es="Leer guía →" data-en="Read guide →">Leer guía →</span>
+      </a>
+
+      <a href="/apoyo/resistencia-hora-dormir" class="guide-card scroll-reveal delay-2">
+        <span class="guide-tag contencion"
+              data-i18n="gtag_cont" data-es="Contención" data-en="Restoration">Contención</span>
+        <span class="guide-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+        <h3 data-i18n="g3_h" data-es="Resistencia al Sueño" data-en="Bedtime Resistance">Resistencia al Sueño</h3>
+        <p data-i18n="g3_p" data-es="Rituales y frases que transforman las noches difíciles en momentos de conexión." data-en="Rituals and phrases that transform difficult nights into moments of connection.">Rituales y frases que transforman las noches difíciles en momentos de conexión.</p>
+        <span class="guide-arrow"
+              data-i18n="g_arrow" data-es="Leer guía →" data-en="Read guide →">Leer guía →</span>
+      </a>
+
+      <a href="/apoyo/conflicto-entre-hermanos" class="guide-card scroll-reveal delay-3">
+        <span class="guide-tag contencion"
+              data-i18n="gtag_cont" data-es="Contención" data-en="Restoration">Contención</span>
+        <span class="guide-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+        <h3 data-i18n="g4_h" data-es="Conflicto entre Hermanos" data-en="Sibling Conflict">Conflicto entre Hermanos</h3>
+        <p data-i18n="g4_p" data-es="De árbitro agotado a facilitador sereno. Herramientas para mediar con calma." data-en="From exhausted referee to calm facilitator. Tools to mediate with ease.">De árbitro agotado a facilitador sereno. Herramientas para mediar con calma.</p>
+        <span class="guide-arrow"
+              data-i18n="g_arrow" data-es="Leer guía →" data-en="Read guide →">Leer guía →</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ─────── QUOTE BAND ─────── -->
+  <div class="quote-band luminate" role="blockquote">
+    <span class="quote-mark scroll-reveal" aria-hidden="true">"</span>
+    <p class="quote-text scroll-reveal delay-1"
+       data-i18n="quote_text"
+       data-es="Criar no es un examen. Es un <em>proceso</em> en el que se aprende mientras se vive."
+       data-en="Parenting is not a test. It's a <em>process</em> where you learn as you live.">
+       Criar no es un examen. Es un <em>proceso</em> en el que se aprende mientras se vive.
+    </p>
+    <p class="quote-attr scroll-reveal delay-2"
+       data-i18n="quote_attr" data-es="· Nari Fateha, Criar Sin Culpas" data-en="· Nari Fateha, Criar Sin Culpas">· Nari Fateha, Criar Sin Culpas</p>
+  </div>
+
+  <!-- ─────── NARI PROFILE ─────── -->
+  <section class="section nari-section" aria-labelledby="nari-heading">
+    <div class="nari-inner">
+      <div class="nari-photo-wrap scroll-reveal">
+        <div class="nari-photo-frame">
+          <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779216966/Nari_xwahmd.png" alt="Nari Fateha, educadora y creadora de Criar Sin Culpas" loading="lazy" style="filter: brightness(.88) contrast(1.05) saturate(.9) sepia(.08);">
+        </div>
+        <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779819496/badge_rpueml.png"
+             alt="10+ años acompañando a familias en momentos críticos de la crianza"
+             class="nari-badge-img">
+      </div>
+      <div class="nari-content scroll-reveal delay-2">
+        <div class="eyebrow"
+             data-i18n="nari_eyebrow" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</div>
+        <h2 class="nari-name" id="nari-heading"
+            data-i18n="nari_h"
+            data-es="Una educadora que sabe <em>lo que se siente.</em>"
+            data-en="An educator who knows <em>what it feels like.</em>">
+            Una educadora que sabe <em>lo que se siente.</em>
+        </h2>
+        <p class="nari-bio"
+           data-i18n="nari_bio"
+           data-es="Nari Fateha es educadora y creadora de Criar Sin Culpas, un espacio diseñado para acompañar a padres y madres en los momentos más intensos de la crianza. Su enfoque combina la neurociencia del desarrollo con la compasión y la práctica diaria, ayudando a miles de familias a transformar el caos en calma."
+           data-en="Nari Fateha is an educator and creator of Criar Sin Culpas, a space designed to support parents through the most intense moments of parenting. Her approach combines developmental neuroscience with compassion and daily practice, helping thousands of families transform chaos into calm.">
+          Nari Fateha es educadora y creadora de Criar Sin Culpas, un espacio diseñado para acompañar a padres y madres en los momentos más intensos de la crianza. Su enfoque combina la neurociencia del desarrollo con la compasión y la práctica diaria, ayudando a miles de familias a transformar el caos en calma.
+        </p>
+        <div class="cred-row">
+          <span class="cred-pill"
+                data-i18n="cred1" data-es="Educación consciente" data-en="Conscious parenting">Educación consciente</span>
+          <span class="cred-pill"
+                data-i18n="cred2" data-es="Neurociencia del desarrollo" data-en="Developmental neuroscience">Neurociencia del desarrollo</span>
+          <span class="cred-pill"
+                data-i18n="cred3" data-es="Regulación emocional" data-en="Emotional regulation">Regulación emocional</span>
+        </div>
+        <a href="/metodo" class="guides-view-all"
+           data-i18n="nari_link" data-es="Conoce el método →" data-en="Explore the method →">Conoce el método →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────── SCRIPT BANNER / FINAL CTA ─────── -->
+  <div class="script-banner">
+    <span class="script-main scroll-reveal"
+          data-i18n="script_1" data-es="Estás haciendo lo mejor que puedes." data-en="You are doing the best you can.">
+      Estás haciendo lo mejor que puedes.
+    </span>
+    <span class="script-sub scroll-reveal delay-1"
+          data-i18n="script_2" data-es="Y eso ya es suficiente." data-en="And that is enough.">
+      Y eso ya es suficiente.
+    </span>
+    <a href="/apoyo/" class="final-cta scroll-reveal delay-2" id="finalCta">
+      <span data-i18n="cta_final" data-es="Recibe apoyo que se sienta bien" data-en="Get support that feels right">Recibe apoyo que se sienta bien</span>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+
+  <!-- ─────── FOOTER ─────── -->
+  <footer role="contentinfo">
+    <a href="/" aria-label="Criar Sin Culpas">
+      <img src="/assets/images/csc-logo.svg" alt="Criar Sin Culpas">
+    </a>
+    <span class="footer-copy">© 2026 Criar Sin Culpas · Todos los derechos reservados.</span>
+    <nav class="footer-links" aria-label="Legal">
+      <a href="/privacidad" data-i18n="footer_priv" data-es="Privacidad" data-en="Privacy">Privacidad</a>
+      <a href="mailto:hola@criarsinculpas.com" data-i18n="footer_contact" data-es="Contacto" data-en="Contact">Contacto</a>
+      <a href="https://instagram.com/criarsinculpas" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </nav>
+    <p class="footer-tagline" data-i18n="footer_tagline" data-es="Este espacio fue creado con cuidado, para familias reales." data-en="This space was created with care, for real families.">Este espacio fue creado con cuidado, para familias reales.</p>
+  </footer>
 
   <script>
-  (function() {
-    function trackSignal(eventName, properties) {
-      if (typeof plausible !== 'undefined') { plausible(eventName, { props: properties }); }
-    }
-
+  (function () {
+    /* ── i18n ──────────────────────────────── */
     const STORAGE_KEY = 'lg_parent_lang';
-    let currentLang = localStorage.getItem(STORAGE_KEY) || 'es';
+    let lang = localStorage.getItem(STORAGE_KEY) || 'es';
 
-    function applyLang(lang) {
-      currentLang = lang;
-      localStorage.setItem(STORAGE_KEY, lang);
-      document.documentElement.lang = lang;
+    function applyLang(l) {
+      lang = l;
+      localStorage.setItem(STORAGE_KEY, l);
+      document.documentElement.lang = l;
       document.querySelectorAll('[data-i18n]').forEach(el => {
-        const txt = el.getAttribute('data-' + lang);
+        const txt = el.getAttribute('data-' + l);
         if (txt) el.innerHTML = txt;
       });
       document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.setAttribute('aria-pressed', btn.getAttribute('data-lang') === lang ? 'true' : 'false');
+        btn.setAttribute('aria-pressed', btn.getAttribute('data-lang') === l ? 'true' : 'false');
       });
     }
 
@@ -947,46 +1317,125 @@
       const btn = e.target.closest('.lang-btn');
       if (btn) {
         applyLang(btn.getAttribute('data-lang'));
-        trackSignal('language_changed', { to_lang: currentLang, location: 'portal' });
+        window.plausible && window.plausible('language_changed', { props: { to_lang: lang } });
       }
     });
 
-    applyLang(currentLang);
+    applyLang(lang);
 
-    // CTA click tracking + fade transition
-    ['enter-btn', 'enter-btn-m'].forEach(id => {
-      const btn = document.getElementById(id);
-      if (btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          const href = this.getAttribute('href');
-          trackSignal('portal_entered', { language: currentLang });
-          document.body.style.opacity = '0';
-          document.body.style.transition = 'opacity .6s ease';
-          setTimeout(() => { window.location.href = href; }, 600);
-        });
-      }
-    });
-
-    // Mobile menu
-    const menuBtn  = document.querySelector('.mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
-    if (menuBtn && navLinks) {
-      menuBtn.addEventListener('click', () => {
-        const isOpen = navLinks.classList.toggle('is-open');
-        menuBtn.classList.toggle('is-active');
-        document.body.style.overflow = isOpen ? 'hidden' : '';
-      });
-      navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          navLinks.classList.remove('is-open');
-          menuBtn.classList.remove('is-active');
-          document.body.style.overflow = '';
-        });
-      });
+    /* ── Nav scroll state ──────────────────── */
+    const nav = document.getElementById('mainNav');
+    function onScroll() {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
     }
-  })();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    /* ── Mobile menu ───────────────────────── */
+    const ham = document.getElementById('ham');
+    const mobileNav = document.getElementById('mobileNav');
+    ham.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      ham.classList.toggle('open', isOpen);
+      ham.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        ham.classList.remove('open');
+        ham.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+
+    /* ── Hero photo Ken Burns on load ─────── */
+    const heroPhoto = document.getElementById('heroPhoto');
+    if (heroPhoto) {
+      const img = new Image();
+      img.onload = () => heroPhoto.classList.add('loaded');
+      img.src = 'https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779645663/A_cinematic_documentary-style_photograph_of_an_ex-1779645621021_dikbho.png';
+    }
+
+    /* ── Marquee ───────────────────────────── */
+    const phrases_es = [
+      'Estás haciendo lo mejor que puedes',
+      'Nadie te dijo que sería así',
+      'El caos de hoy es la fortaleza de mañana',
+      'No estás sola',
+      'Criar es un acto de amor radical',
+      'Tus hijos te ven intentarlo',
+      'Ser suficiente ya es suficiente',
+    ];
+    const phrases_en = [
+      'You are doing the best you can',
+      'Nobody told you it would be like this',
+      'Today\'s chaos is tomorrow\'s strength',
+      'You are not alone',
+      'Parenting is an act of radical love',
+      'Your children see you trying',
+      'Being enough is already enough',
+    ];
+    function buildMarquee() {
+      const track = document.getElementById('marqueeTrack');
+      const phrases = lang === 'es' ? phrases_es : phrases_en;
+      const doubled = [...phrases, ...phrases];
+      track.innerHTML = doubled.map(p =>
+        `<span class="marquee-item"><span>${p}</span><span class="marquee-dot"></span></span>`
+      ).join('');
+    }
+    buildMarquee();
+    // Rebuild on language change
+    document.addEventListener('click', e => {
+      if (e.target.closest('.lang-btn')) buildMarquee();
+    });
+
+    /* ── Scroll reveals ────────────────────── */
+    const reveals = document.querySelectorAll('.scroll-reveal');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(en => {
+          if (en.isIntersecting) {
+            en.target.classList.add('visible');
+            io.unobserve(en.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      reveals.forEach(el => io.observe(el));
+    } else {
+      reveals.forEach(el => el.classList.add('visible'));
+    }
+
+    /* ── CTA tracking + fade out ───────────── */
+    function fadeNav(href, evt) {
+      evt && evt.preventDefault();
+      document.body.style.opacity = '0';
+      document.body.style.transition = 'opacity .55s ease';
+      setTimeout(() => { window.location.href = href; }, 560);
+    }
+
+    document.addEventListener('click', (e) => {
+      const el = e.target.closest('.js-telemetry');
+      if (!el) return;
+
+      const eventName = el.getAttribute('data-event-name');
+      if (eventName && window.plausible) {
+        const props = { language: lang };
+        const mode = el.getAttribute('data-mode');
+        const protocol = el.getAttribute('data-protocol');
+        if (mode) props.mode = mode;
+        if (protocol) props.protocol = protocol;
+        if (el.id) props.entry = el.id;
+        window.plausible(eventName, { props });
+      }
+
+      if (el.tagName === 'A') {
+        const href = el.getAttribute('href');
+        if (href) fadeNav(href, e);
+      }
+    });
+  }());
   </script>
 
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"a6fdd4e7ff644527b91c6db4b97e68f5","r":1}' crossorigin="anonymous"></script>
 </body>
 </html>

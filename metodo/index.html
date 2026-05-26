@@ -3,8 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-  <meta http-equiv="refresh" content="0; url=/metodo/index.html">
-  <script>window.location.replace('/metodo/index.html' + window.location.hash);</script>
   <title data-i18n="title_tag" data-es="El Método Nari · Criar Sin Culpas" data-en="The Nari Method · Criar Sin Culpas">El Método Nari · Criar Sin Culpas</title>
   <meta name="description" content="Un sistema de crianza para niños de alta demanda y padres desbordados. La Aceptación, Play OS y Crianza Neutral.">
   <meta property="og:title" content="El Método Nari · Criar Sin Culpas">
@@ -16,18 +14,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
   <script>
-    if (window.location.hostname === 'criarsinculpas.com' || window.location.hostname === 'www.criarsinculpas.com') {
-      var pl = document.createElement('script'); pl.defer = true;
-      pl.setAttribute('data-domain', 'criarsinculpas.com');
-      pl.src = 'https://plausible.io/js/script.js';
-      document.head.appendChild(pl);
+    if (window.location.hostname === 'criarsinculpas.com') {
+      const script = document.createElement('script');
+      script.defer = true;
+      script.setAttribute('data-domain', 'criarsinculpas.com');
+      script.src = 'https://plausible.io/js/script.manual.js';
+      document.head.appendChild(script);
     }
-    window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) };
+
+    window.plausible = window.plausible || function() {
+      if (window.location.hostname !== 'criarsinculpas.com') {
+        console.log('Plausible [Local]:', arguments[0], arguments[1]);
+      }
+    };
   </script>
 
   <style>
     /* ═══════════════════════════════════════════
-       TOKENS — canonical system
+       TOKENS · canonical system
     ═══════════════════════════════════════════ */
     :root {
       --void:       #0e0b12;
@@ -45,9 +49,9 @@
       --rose:       #F0A0BE;
 
       /* Chapter accent colors */
-      --ch1: #a78bfa;   /* violet — La Aceptación */
-      --ch2: #61d1c4;   /* teal   — Play OS */
-      --ch3: #ff7d73;   /* coral  — Crianza Neutral */
+      --ch1: #a78bfa;   /* violet · La Aceptación */
+      --ch2: #61d1c4;   /* teal   · Play OS */
+      --ch3: #ff7d73;   /* coral  · Crianza Neutral */
 
       --serif:  'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
       --sans:   'DM Sans', system-ui, sans-serif;
@@ -679,7 +683,7 @@
     <div class="nav-center">
       <a href="/apoyo/"
          data-i18n="nav_guias" data-es="Guías" data-en="Guides">Guías</a>
-      <a href="/metodo" class="active"
+      <a href="/metodo/index.html" class="active"
          data-i18n="nav_metodo" data-es="El Método" data-en="The Method">El Método</a>
       <a href="#" class="dim"
          data-i18n="nav_aprende" data-es="Aprende (Pronto)" data-en="Learn (Soon)">Aprende (Pronto)</a>
@@ -702,7 +706,7 @@
 
   <div class="mobile-nav" id="mobileNav" role="dialog" aria-label="Menú" aria-modal="true">
     <a href="/apoyo/" data-i18n="nav_guias_m" data-es="Guías" data-en="Guides">Guías</a>
-    <a href="/metodo" data-i18n="nav_metodo_m" data-es="El Método" data-en="The Method">El Método</a>
+    <a href="/metodo/index.html" data-i18n="nav_metodo_m" data-es="El Método" data-en="The Method">El Método</a>
     <div class="lang-pill" style="margin-top:8px;">
       <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
       <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
@@ -956,7 +960,7 @@
             <div class="details-body">
               <p data-i18n="ch3_acc1_p"
                  data-es="Cuando el adulto reacciona con intensidad, el niño no solo recibe un límite: también recibe la dosis máxima de atención. Ahí nace el aprendizaje equivocado."
-                 data-en="When the adult reacts with intensity, the child doesn't just receive a limit — they also receive the maximum dose of attention. That's where the wrong learning is born.">
+                 data-en="When the adult reacts with intensity, the child doesn't just receive a limit · they also receive the maximum dose of attention. That's where the wrong learning is born.">
                 Cuando el adulto reacciona con intensidad, el niño no solo recibe un límite: también recibe la dosis máxima de atención. Ahí nace el aprendizaje equivocado.
               </p>
             </div>
@@ -1102,8 +1106,7 @@
       const btn = e.target.closest('.lang-btn');
       if (btn) {
         applyLang(btn.getAttribute('data-lang'));
-        if (typeof plausible !== 'undefined')
-          plausible('language_changed', { props: { to_lang: lang, location: 'metodo' } });
+        window.plausible && window.plausible('language_changed', { props: { to_lang: lang, location: 'metodo' } });
       }
     });
 
@@ -1145,8 +1148,7 @@
     if (cta) {
       cta.addEventListener('click', e => {
         e.preventDefault();
-        if (typeof plausible !== 'undefined')
-          plausible('method_cta_clicked', { props: { language: lang } });
+        window.plausible && window.plausible('method_cta_clicked', { props: { language: lang } });
         document.body.style.opacity = '0';
         document.body.style.transition = 'opacity .55s ease';
         setTimeout(() => { window.location.href = cta.getAttribute('href'); }, 560);
@@ -1168,7 +1170,6 @@
       document.querySelectorAll('.scroll-reveal').forEach(el => el.classList.add('visible'));
     }
 
-    function plausible() {}
   }());
   </script>
 
