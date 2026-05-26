@@ -3,8 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-  <meta http-equiv="refresh" content="0; url=/metodo/index.html">
-  <script>window.location.replace('/metodo/index.html' + window.location.hash);</script>
   <title data-i18n="title_tag" data-es="El Método Nari · Criar Sin Culpas" data-en="The Nari Method · Criar Sin Culpas">El Método Nari · Criar Sin Culpas</title>
   <meta name="description" content="Un sistema de crianza para niños de alta demanda y padres desbordados. La Aceptación, Play OS y Crianza Neutral.">
   <meta property="og:title" content="El Método Nari · Criar Sin Culpas">
@@ -209,14 +207,14 @@
     }
 
     .content-wrap {
-      max-width: 820px; margin: 0 auto; width: 100%;
+      max-width: 1100px; margin: 0 auto; width: 100%;
     }
 
     /* ══════════════════════════════════════════
        SHARED SECTION STYLES
     ══════════════════════════════════════════ */
     .section {
-      padding: 80px 56px;
+      padding: 88px 56px;
       border-bottom: 1px solid rgba(255,255,255,.04);
     }
     .section:last-child { border-bottom: none; }
@@ -238,31 +236,37 @@
     .eyebrow.ch2::before { background: var(--ch2); }
     .eyebrow.ch3::before { background: var(--ch3); }
 
+    /* Chapter body copy sits in a narrower column for readability */
+    .chapter-body { max-width: 58ch; }
+    .map-desc { max-width: 58ch; }
+    .comparison-desc { max-width: 54ch; }
+
     /* ══════════════════════════════════════════
        HERO
     ══════════════════════════════════════════ */
     .hero-section {
-      padding: 72px 56px 80px;
-      text-align: center;
-      display: flex; flex-direction: column; align-items: center;
+      padding: 80px 56px 88px;
+      text-align: left;
+      display: flex; flex-direction: column; align-items: flex-start;
       border-bottom: 1px solid rgba(255,255,255,.04);
       position: relative; overflow: hidden;
     }
     .hero-section::before {
       content: '';
-      position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 800px; height: 400px;
-      background: radial-gradient(ellipse at center, rgba(167,139,250,.05) 0%, transparent 65%);
+      position: absolute; top: 50%; right: -10%;
+      transform: translateY(-50%);
+      width: 600px; height: 500px;
+      background: radial-gradient(ellipse at center, rgba(167,139,250,.06) 0%, transparent 65%);
       pointer-events: none;
     }
 
     .hero-title {
       font-family: var(--serif);
-      font-size: clamp(3rem, 7vw, 5.2rem);
+      font-size: clamp(3.2rem, 6.5vw, 6rem);
       font-weight: 300; line-height: 1.02;
       letter-spacing: -.02em; color: var(--text);
       margin-bottom: 20px; position: relative; z-index: 1;
+      max-width: 14ch;
     }
     .hero-title em {
       font-style: italic; font-weight: 400;
@@ -272,9 +276,9 @@
     }
 
     .hero-sub {
-      font-size: clamp(.92rem, 1.3vw, 1.05rem);
+      font-size: clamp(.92rem, 1.2vw, 1.05rem);
       font-weight: 300; color: var(--text-dim);
-      line-height: 1.7; max-width: 48ch;
+      line-height: 1.7; max-width: 44ch;
       margin-bottom: 40px; position: relative; z-index: 1;
     }
 
@@ -297,9 +301,9 @@
     }
     .hero-quote p {
       font-family: var(--serif);
-      font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+      font-size: clamp(1.05rem, 1.8vw, 1.35rem);
       font-weight: 300; font-style: italic;
-      color: var(--text); line-height: 1.45;
+      color: var(--text); line-height: 1.5;
     }
     .hero-quote cite {
       display: block; margin-top: 16px;
@@ -416,7 +420,7 @@
 
     .chapter-body {
       font-size: .92rem; color: var(--text-dim);
-      line-height: 1.8; margin-bottom: 32px; max-width: 62ch;
+      line-height: 1.8; margin-bottom: 32px;
     }
 
     /* ── ACCORDIONS ── */
@@ -642,7 +646,6 @@
 
       .section { padding: 60px 24px; }
       .hero-section { padding: 52px 24px 64px; }
-      .content-wrap { padding: 0; }
       .chapter-num { display: none; }
 
       .map-grid {
@@ -653,6 +656,9 @@
 
       .comparison-grid { grid-template-columns: 1fr; gap: 12px; }
       .closing-section { padding: 68px 24px; }
+
+      .hero-title { font-size: clamp(2.8rem, 11vw, 3.8rem); }
+      .chapter-title { font-size: clamp(1.8rem, 8vw, 2.6rem); }
 
       footer { padding: 24px; flex-direction: column; align-items: flex-start; gap: 14px; }
       .footer-tagline { text-align: left; padding-top: 12px; }
