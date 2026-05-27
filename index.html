@@ -1413,6 +1413,12 @@
       setTimeout(() => { window.location.href = href; }, 560);
     }
 
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        document.body.style.opacity = '1';
+      }
+    });
+
     document.addEventListener('click', (e) => {
       const el = e.target.closest('.js-telemetry');
       if (!el) return;

@@ -281,6 +281,13 @@
     }
     .guide-card:hover::before { opacity: 1; }
 
+    .highlight-emergency {
+      border-color: var(--coral) !important;
+      box-shadow: 0 0 30px rgba(255,125,115,0.3) !important;
+      transform: scale(1.02);
+      z-index: 20;
+    }
+
     /* Color variants per guide */
     .guide-card[data-id="screen-time"] {
       border-color: rgba(255,125,115,.1);
@@ -784,10 +791,7 @@
             Transiciones, salidas, rabietas públicas. Te avisamos antes que a nadie.
           </p>
         </div>
-        <form class="waitlist-form"
-              onsubmit="event.preventDefault();
-                        this.innerHTML='<p style=\'color:var(--teal);font-size:.92rem;font-weight:500;font-family:var(--serif);font-style:italic;margin:0;padding:10px 0;\'>Listo. Te avisamos pronto.</p>';
-                        if(typeof plausible!==\'undefined\')plausible(\'waitlist_joined\',{props:{location:\'apoyo\'}});">
+        <form class="waitlist-form" id="waitlist-form">
           <input type="email"
                  data-i18n-placeholder="waitlist_placeholder"
                  placeholder="Tu correo electrónico"
@@ -798,6 +802,7 @@
                   data-es="Avísame"
                   data-en="Notify me">Avísame</button>
         </form>
+        <div id="waitlist-success" class="hidden" style="display:none; text-align:center; font-family:var(--serif); font-style:italic; color:var(--teal); font-size:1.2rem;">¡Listo! Te avisaremos en cuanto las nuevas guías estén disponibles. Gracias por estar aquí. ♡</div>
       </div>
     </div>
 
@@ -829,6 +834,12 @@
   (function () {
     const STORAGE_KEY = 'lg_parent_lang';
     let lang = localStorage.getItem(STORAGE_KEY) || 'es';
+
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        document.body.style.opacity = '1';
+      }
+    });
 
     function applyLang(l) {
       lang = l;
@@ -892,6 +903,48 @@
           plausible('card_opened', { props: { guide: card.getAttribute('data-id'), language: lang } });
       });
     });
+
+    const waitlistForm = document.getElementById('waitlist-form');
+    const waitlistSuccess = document.getElementById('waitlist-success');
+    if (waitlistForm && waitlistSuccess) {
+      waitlistForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (waitlistForm.dataset.submitted === '1') return;
+        waitlistForm.dataset.submitted = '1';
+
+        waitlistForm.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        waitlistForm.style.opacity = '0';
+        waitlistForm.style.transform = 'translateY(8px)';
+
+        setTimeout(() => {
+          waitlistForm.style.display = 'none';
+          waitlistSuccess.style.display = 'block';
+          waitlistSuccess.style.opacity = '0';
+          waitlistSuccess.style.transform = 'translateY(8px)';
+          waitlistSuccess.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+          requestAnimationFrame(() => {
+            waitlistSuccess.style.opacity = '1';
+            waitlistSuccess.style.transform = 'translateY(0)';
+          });
+        }, 420);
+
+        if (window.plausible) window.plausible('waitlist_joined', { props: { location: 'apoyo_footer', language: lang } });
+      });
+    }
+
+    function applyEmergencyHash() {
+      const isEmergency = window.location.hash === '#emergencia';
+      const escalationCard = document.querySelector('.guide-card[data-id="emotional-escalation"]');
+      if (escalationCard) escalationCard.classList.toggle('highlight-emergency', isEmergency);
+
+      if (isEmergency) {
+        const guidesWrap = document.querySelector('.guides-wrap');
+        if (guidesWrap) guidesWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    window.addEventListener('hashchange', applyEmergencyHash);
+    applyEmergencyHash();
 
     /* Scroll reveals */
     if ('IntersectionObserver' in window) {
