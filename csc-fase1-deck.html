@@ -761,7 +761,13 @@
       opacity: 1; pointer-events: auto;
     }
     #journeyOverlay iframe {
-      width: 100%; height: 100%; border: none; display: block;
+      width: 100%;
+      height: calc(100% - 72px);
+      border: none;
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 72px;
     }
     .journey-close {
       position: absolute; top: 20px; right: 28px; z-index: 10;
