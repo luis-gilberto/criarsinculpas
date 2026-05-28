@@ -51,6 +51,11 @@
       overflow: hidden;
     }
 
+    /* Use dvh on supporting browsers for correct mobile viewport */
+    @supports (height: 100dvh) {
+      html, body { height: 100dvh; }
+    }
+
     /* ─── GRAIN ─── */
     body::before {
       content: '';
@@ -64,7 +69,7 @@
        PRESENTATION SHELL
     ═══════════════════════════════════════════ */
     .deck {
-      width: 100vw; height: 100vh;
+      width: 100vw; height: 100vh; height: 100dvh;
       position: relative; overflow: hidden;
     }
 
@@ -807,6 +812,182 @@
     .journey-close:hover { border-color: rgba(255,125,115,.4); color: var(--coral); }
     .journey-close::before { content: '←'; font-size: .8rem; }
 
+    /* ═══════════════════════════════════════════
+       MOBILE RESPONSIVE — ≤ 768px
+    ═══════════════════════════════════════════ */
+    @media (max-width: 768px) {
+
+      /* Allow vertical scrolling inside slides on mobile */
+      html, body { overflow: hidden; }
+
+      .deck { height: 100dvh; }
+
+      .slide {
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      /* Core padding: breathable but not cramped */
+      .slide-inner {
+        padding: 52px 24px 100px;
+      }
+      .slide-inner.split {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .slide-inner.centered {
+        padding: 60px 24px 100px;
+      }
+
+      /* ─── TYPOGRAPHY SCALE DOWN ─── */
+      .s01-title {
+        font-size: clamp(2.4rem, 10vw, 4rem);
+      }
+      .slide-title {
+        font-size: clamp(1.9rem, 7vw, 3rem) !important;
+        line-height: 1.08;
+      }
+      .s14-script {
+        font-size: clamp(2.4rem, 11vw, 4rem);
+      }
+      .pull-quote {
+        font-size: clamp(1.2rem, 5vw, 1.8rem);
+      }
+
+      /* ─── AUTHOR BLOCK ─── */
+      .s01-author {
+        position: relative;
+        bottom: auto; right: auto;
+        margin-top: 32px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      /* ─── PHASE TAG ─── */
+      .phase-tag {
+        top: 16px; right: 24px;
+      }
+
+      /* ─── 2-COL GRIDS → SINGLE COL ─── */
+      .evo-grid,
+      .ba-grid,
+      .invest-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      /* ─── 3-COL GRIDS → SINGLE COL ─── */
+      .method-grid,
+      .ph2-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      /* ─── 4-COL PROTOCOLS → 2-COL ─── */
+      .protocols-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      /* ─── 5-COL OS GRID → 2-COL ─── */
+      .os-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      /* ─── 4-COL FLOW RULES → 2-COL ─── */
+      .flow-rules {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      /* ─── FLOW ROW → VERTICAL ─── */
+      .flow-row {
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch;
+      }
+      .flow-arrow {
+        padding: 0;
+        text-align: center;
+        transform: rotate(90deg);
+        font-size: .9rem;
+      }
+
+      /* ─── DISCOVERY STEPS → VERTICAL ─── */
+      .discovery-steps {
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 28px;
+      }
+      .d-step {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,.05);
+        padding: 0 0 20px 0;
+      }
+      .d-step:last-child { border-bottom: none; padding-bottom: 0; }
+
+      /* ─── SLIDE 13 inline grid → 1-col ─── */
+      .slide[data-slide="13"] [style*="grid-template-columns:1fr 1fr"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        max-width: 100% !important;
+      }
+
+      /* ─── INTEL ITEMS: hide thumbnail on mobile ─── */
+      .journey-preview-thumb {
+        display: none;
+      }
+      .intel-item {
+        gap: 14px;
+        padding: 16px 18px;
+      }
+
+      /* ─── INVEST CARDS: tighten ─── */
+      .invest-card { padding: 24px 20px; }
+      .invest-price { font-size: 1.8rem; }
+      .invest-card.featured::before { display: none; }
+
+      /* ─── NAV BAR: compact ─── */
+      .nav-bar {
+        padding: 14px 20px 20px;
+      }
+      .key-hint { display: none; }
+      .nav-dots { gap: 5px; }
+      .dot { width: 3px; height: 3px; }
+      .dot.active { width: 14px; }
+      .nav-btn { width: 32px; height: 32px; font-size: 12px; }
+
+      /* ─── WATERMARK: smaller on mobile ─── */
+      .wm { width: 160px; height: 160px; bottom: -20px; right: -10px; }
+
+      /* ─── HANDOFF LIST ─── */
+      .handoff-item { padding: 14px 16px; gap: 12px; }
+
+      /* ─── PROTO CARDS ─── */
+      .proto-card { padding: 20px 16px; }
+
+      /* ─── METHOD CARDS ─── */
+      .method-card { padding: 24px 20px; }
+      .method-name { font-size: 1.25rem; }
+
+    }
+
+    /* ═══════════════════════════════════════════
+       SMALL PHONES — ≤ 390px
+    ═══════════════════════════════════════════ */
+    @media (max-width: 390px) {
+      .slide-inner { padding: 44px 18px 96px; }
+      .s01-title { font-size: clamp(2rem, 9vw, 3rem); }
+      .slide-title { font-size: clamp(1.7rem, 8vw, 2.6rem) !important; }
+      .protocols-grid { grid-template-columns: 1fr; }
+      .os-grid { grid-template-columns: 1fr 1fr; }
+      .invest-price { font-size: 1.6rem; }
+    }
+
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
@@ -1382,6 +1563,23 @@
 
   prevBtn.addEventListener('click', () => goTo(current - 1));
   nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  /* ─── TOUCH SWIPE ─── */
+  let touchStartX = 0, touchStartY = 0;
+  document.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  document.addEventListener('touchend', e => {
+    if (document.getElementById('journeyOverlay').classList.contains('open')) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    // Only treat as slide swipe if horizontal motion dominates and is meaningful
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 48) {
+      if (dx < 0) goTo(current + 1);
+      else         goTo(current - 1);
+    }
+  }, { passive: true });
 
   document.addEventListener('keydown', e => {
     if (document.getElementById('journeyOverlay').classList.contains('open')) {
