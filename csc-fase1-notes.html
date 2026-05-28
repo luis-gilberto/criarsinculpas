@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speaker Notes · CSC Fase I · Luis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0a090d; --card:#111014; --lift:#18161c;
+  --border:rgba(255,255,255,.06); --border2:rgba(255,255,255,.1);
+  --text:#f0ece5; --mid:#c8c0b8; --muted:#7a7270;
+  --coral:#ff7d73; --teal:#61d1c4; --gold:#C9A96E;
+  --red:#ff5f5f;
+  --sans:'Inter',system-ui,sans-serif;
+  --mono:'DM Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.65;-webkit-font-smoothing:antialiased;padding-bottom:80px}
+
+/* HEADER */
+.header{
+  position:sticky;top:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 52px;
+  background:rgba(10,9,13,.93);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.h-left{display:flex;align-items:center;gap:14px}
+.h-label{font-family:var(--mono);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.h-sep{width:1px;height:18px;background:var(--border2)}
+.h-title{font-family:var(--sans);font-size:.95rem;font-weight:400;color:var(--mid)}
+.h-right{font-family:var(--mono);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* PAGE */
+.page{max-width:860px;margin:0 auto;padding:52px 52px 0}
+
+/* SLIDE BLOCK */
+.slide-block{
+  padding:44px 0;
+  border-bottom:1px solid var(--border);
+}
+.slide-block:last-child{border-bottom:none}
+
+/* SLIDE HEADER */
+.slide-header{display:flex;align-items:baseline;gap:16px;margin-bottom:22px}
+.slide-num{
+  font-family:var(--mono);font-size:.56rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);flex-shrink:0;
+}
+.slide-name{
+  font-family:var(--sans);font-size:1.2rem;font-weight:300;
+  color:var(--mid);line-height:1.1;
+}
+
+/* DIRECTOR BADGES */
+.badges{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
+.badge{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:4px 11px;border-radius:999px;
+  font-family:var(--mono);font-size:.52rem;
+  font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+}
+.badge-pause  {color:var(--coral);border:1px solid rgba(255,125,115,.3);background:rgba(255,125,115,.06)}
+.badge-slow   {color:var(--gold); border:1px solid rgba(201,169,110,.3);background:rgba(201,169,110,.06)}
+.badge-calm   {color:var(--teal); border:1px solid rgba(97,209,196,.3); background:rgba(97,209,196,.06)}
+.badge-danger {color:var(--red);  border:1px solid rgba(255,95,95,.3);  background:rgba(255,95,95,.06)}
+.badge-silence{color:var(--mid);  border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04)}
+
+/* SCRIPT */
+.script{
+  font-family:var(--sans);
+  font-size:1.28rem;font-weight:300;font-style:normal;
+  color:var(--text);line-height:1.88;
+  max-width:62ch;
+}
+.script em{font-style:normal;font-weight:600;color:var(--text)}
+.script br{display:block;content:'';margin-top:.2em}
+
+/* DIRECTOR NOTE */
+.dir{
+  margin-top:18px;
+  padding:14px 18px;
+  border-radius:10px;
+  border-left:2px solid var(--coral);
+  background:rgba(255,125,115,.04);
+  font-family:var(--mono);font-size:.7rem;
+  color:var(--muted);line-height:1.7;letter-spacing:.02em;
+}
+.dir strong{color:var(--coral);font-weight:700}
+.dir.gold{border-left-color:var(--gold);background:rgba(201,169,110,.04)}
+.dir.gold strong{color:var(--gold)}
+.dir.teal{border-left-color:var(--teal);background:rgba(97,209,196,.04)}
+.dir.teal strong{color:var(--teal)}
+.dir.red{border-left-color:var(--red);background:rgba(255,95,95,.04)}
+.dir.red strong{color:var(--red)}
+
+/* JOURNEY BLOCK */
+.journey-block{
+  margin-top:20px;
+  padding:18px 22px;
+  border-radius:12px;
+  border:1px solid rgba(201,169,110,.2);
+  background:rgba(201,169,110,.04);
+}
+.journey-label{
+  font-family:var(--mono);font-size:.56rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:12px;
+}
+.journey-script{
+  font-family:var(--sans);font-size:1.05rem;font-weight:300;font-style:italic;
+  color:var(--mid);line-height:1.8;
+}
+.journey-dir{
+  margin-top:12px;
+  font-family:var(--mono);font-size:.65rem;color:var(--muted);
+  letter-spacing:.03em;line-height:1.65;
+}
+.journey-dir strong{color:var(--gold)}
+
+/* DIVIDER RULE */
+.rule{width:32px;height:1px;background:var(--gold);opacity:.3;margin:20px 0}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="h-left">
+    <span class="h-label">Speaker Notes</span>
+    <span class="h-sep"></span>
+    <span class="h-title">Criar Sin Culpas · Cierre de Fase I</span>
+  </div>
+  <div class="h-right">Luis · Solo para el presentador</div>
+</header>
+
+<div class="page">
+
+  <!-- 01 -->
+  <div class="slide-block">
+    <div class="slide-header">
+      <span class="slide-num">01 / 14</span>
+      <span class="slide-name">Entregando las llaves</span>
+    </div>
+    <p class="script">
+      "Hoy no quería hacer una presentación tradicional.<br><br>
+      Quería hacer algo un poco más honesto.<br><br>
+      Porque siento que durante estas semanas…<br><br>
+      Criar Sin Culpas dejó de ser solamente una idea o una página web.<br><br>
+      Y empezó a convertirse en un sistema real.<br><br>
+      Uno que ya tiene estructura,<br>
+      memoria,<br>
+      lenguaje,<br>
+      experiencia,<br>
+      y una forma propia de acompañar.<br><br>
+      Entonces hoy realmente se trata de cerrar Fase I…<br><br>
+      y entregarte las llaves de algo que ya está vivo."
+    </p>
+    <div class="rule"></div>
+    <div class="dir"><strong>PAUSA.</strong> Deja que esa última línea aterrice antes de avanzar.</div>
+  </div>
+
+  <!-- 02 -->
+  <div class="slide-block">
+    <div class="slide-header">
+      <span class="slide-num">02 / 14</span>
+      <span class="slide-name">Esto empezó como una web</span>
+    </div>
+    <p class="script">
+      "Creo que una de las cosas más interesantes de este proceso…<br><br>
+      es que el proyecto evolucionó mientras lo estábamos construyendo.<br><br>
+      Empezamos pensando más en contenido y presencia…<br><br>
+      y terminamos diseñando:<br><br>
+      protocolos,<br>
+      flujos,<br>
+      sistemas de apoyo,<br>
+      experiencia emocional,<br>
+      y una infraestructura que sostiene todo eso detrás."
+    </p>
+    <div class="rule"></div>
+    <p class="script">
+      "Y honestamente…<br><br>
+      creo que eso cambió completamente el nivel del proyecto."
+    </p>
+  </div>
+
+  <!-- 03 -->
+  <div class="slide-block">
+    <div class="slide-header">
+      <span class="slide-num">03 / 14</span>
+      <span class="slide-name">Urgencia emocional</span>
+    </div>
+    <div class="badges">
+      <span class="badge badge-slow">⟳ Baja el ritmo</span>
+      <span class="badge badge-danger">★ Momento más fuerte del deck</span>
+    </div>
+    <p class="script">
+      "Este probablemente fue el hallazgo más importante de toda la fase.<br><br>
+      Nos dimos cuenta de que no estábamos diseñando para consumo de contenido.<br><br>
+      Estábamos diseñando para momentos de intensidad emocional.<br><br>
+      Padres cansados.<br>
+      Saturados.<br>
+      Culpables.<br>
+      Abrumados.<br><br>
+      Y eso cambió completamente nuestras decisiones.<br><br>
+      Menos ruido.<br>
+      Menos carga cognitiva.<br>
+      Más calma.<br>
+      Más claridad.<br>
+      Más apoyo inmediato."
+    </p>
+    <div class="dir red"><strong>STOP.</strong> Deja que el slide respire. No sigas hablando.</div>
+  </div>
+
+  <!-- 04 -->
+  <div class="slide-block">
+    <div class="slide-header">
+      <span class="slide-num">04 / 14</span>
+      <span class="slide-name">La experiencia ahora respira</span>
+    </div>
+    <p class="script">
+      "El objetivo dejó de ser simplemente informar.<br><br>
+      Empezó a ser acompañar.<br><br>
+      Y creo que ahí fue donde el diseño empezó a alinearse de verdad con la filosofía de Criar Sin Culpas.<br><br>
+      Porque la experiencia ya no exige energía del usuario.<br><br>
+      Ahora intenta devolvérsela."
+    </p>
+    <div class="dir teal"><strong>Esa última línea importa.</strong> Dala despacio.</div>
+  </div>
+
+  <!-- 05 -->
+  <div class="slide-block">
+    <div class="slide-header">
+      <span class="slide-num">05 / 14</span>
+      <span class="slide-name">Cuatro puertas de entrada</span>
+    </div>
+    <p class="script">
+      "Las cuatro guías dejaron de sentirse como contenido aislado.<br><br>
+      Ahora funcionan más como puertas de entrada emocionales.<br><br>
+      Cada una responde a un momento real de tensión.<br><br>
+      Y eso hace que el sistema se sienta mucho más humano…<br><br>
+      porque entra por la experiencia del usuario, no por categorías abstractas."
+    </p>
+  </div>
+
+  <!-- 06 -->
+  <div class="slide-block">
+    <div class="slide-header">
+      <span class="slide-num">06 / 14</span>
+      <span class="slide-name">El Método Nari</span>
+    </div>
+    <p class="script">
+      "Otra cosa importante que pasó…<br><br>
+      es que tu intuición empezó a convertirse en estructura.<br><br>
+      Y eso es importante.<br><br>
+      Porque ahora ya no depende solamente de conversaciones, reels o explicaciones espontáneas.<br><br>
+      El método ya tiene forma.<br>
+      Ya tiene lenguaje.<br>
+      Ya tiene arquitectura."
+    </p>
+  </div>
+
+  <!-- 07 -->
+  <div class="slide-block">
+    <div class="slide-header">
+      <span class="slide-num">07 / 14</span>
+      <span class="slide-name">StrategyIQ · Inteligencia generada</span>
+    </div>
+    <div class="badges">
+      <span class="badge badge-danger">⚠ Tu slide más peligroso</span>
+      <span class="badge badge-calm">Grounded · Calm · Matter-of-fact</span>
+    </div>
+    <p class="script">
+      "Algo que no esperaba completamente…<br><br>
+      es que el proyecto también empezó a generar inteligencia.<br><br>
+      No solamente outputs.<br><br>
+      Sino hallazgos.<br>
+      Patrones.<br>
+      Decisiones reutilizables.<br>
+      Y documentación estratégica."
+    </p>
+    <div class="rule"></div>
+    <p class="script">
+      "Y eso es importante porque significa que el proyecto ahora puede aprender sobre sí mismo."
+    </p>
+    <div class="rule"></div>
+    <p class="script">
+      "Entonces aquí fue donde empezó a aparecer algo nuevo:<br><br>
+      memoria operativa."
+    </p>
+
+    <div class="journey-block">
+      <div class="journey-label">→ Abrir Journey Standalone aquí</div>
+      <div class="journey-script">
+        "Esto realmente es la historia del sistema."<br><br>
+        "No solamente qué hicimos…<br>
+        sino por qué."<br><br>
+        "Y cómo las decisiones fueron evolucionando."<br><br>
+        "Aquí es donde el proyecto deja de depender de memoria informal…<br>
+        y empieza a construir continuidad."
+      </div>
+      <div class="journey-dir">
+        <strong>Scroll lento.</strong> Narración mínima. El artefacto está haciendo el trabajo.<br>
+        <strong>No sobreexpliques.</strong> Deja que ella lo lea. Deja que el silencio trabaje.
+      </div>
+    </div>
+
+    <div class="dir red" style="margin-top:16px"><strong>NO OVERSELL.</strong> No te justifiques. Solo muéstralo y cállate.</div>
+  </div>
+
+  <!-- 08 -->
+  <div class="slide-block">
+    <div class="slide-header">
+      <span class="slide-num">08 / 14</span>
+      <span class="slide-name">Lo invisible también importa</span>
+    </div>
+    <p class="script">
+      "Creo que esta parte es probablemente una de las más importantes a largo plazo.<br><br>
+      Porque el sitio es solo la parte visible.<br><br>
+      Debajo de eso ahora existe:<br><br>
+      documentación,<br>
+      decisiones,<br>
+      contexto,<br>
+      señales,<br>
+      assets,<br>
+      timelines,<br>
+      y una memoria conectándolo todo."
+    </p>
+    <div class="rule"></div>
+    <p class="script">
+      "Y honestamente…<br><br>
+      eso es lo que hace que el sistema pueda crecer sin colapsar."
+    </p>
+  </div>
+
+  <!-- 09 -->
+  <div class="slide-block">
+    <div class="slide-header">
+      <span class="slide-num">09 / 14</span>
+      <span class="slide-name">Las llaves de Criar Sin Culpas</span>
+    </div>
+    <div class="badges">
+      <span class="badge badge-calm">Cálido · No transaccional</span>
+    </div>
+    <p class="script">
+      "Entonces…<br><br>
+      esta ya no es una entrega de archivos.<br><br>
+      Realmente es una entrega de un ecosistema funcional.<br><br>
+      Y la idea es que ahora tengas claridad sobre:<br><br>
+      dónde vive todo,<br>
+      cómo evoluciona,<br>
+      y cómo seguimos creciendo sin perder coherencia."
+    </p>
+  </div>
+
+  <!-- 10 -->
+  <div class="slide-block">
+    <div class="slide-header">
+      <span class="slide-num">10 / 14</span>
+      <span class="slide-name">Un ritmo simple</span>
+    </div>
+    <div class="badges">
+      <span class="badge badge-danger">N5 · Este slide importa mucho</span>
+    </div>
+    <p class="script">
+      "Y creo que aquí aprendimos algo importante también.<br><br>
+      El proyecto ya se volvió suficientemente interconectado…<br><br>
+      que necesitamos un ritmo operativo un poco más claro."
+    </p>
+    <div class="rule"></div>
+    <p class="script">
+      "No para volver esto complicado.<br><br>
+      Sino exactamente para evitar caos."
+    </p>
+    <div class="rule"></div>
+    <p class="script">
+      "Creo que lo que mejor funciona para nosotros…<br><br>
+      es que tú sigas trabajando de la manera más natural para ti:<br><br>
+      ideas,<br>
+      notas,<br>
+      voz,<br>
+      observaciones,<br>
+      inspiración…<br><br>
+      y luego yo traduzco eso estructuralmente dentro del sistema."
+    </p>
+    <div class="rule"></div>
+    <p class="script">
+      "Porque ahora el valor no está solo en el contenido.<br><br>
+      También está en la continuidad."
+    </p>
+    <div class="dir gold"><strong>PAUSA.</strong> Esa línea aterriza. No la atropelles.</div>
+  </div>
+
+  <!-- 11 -->
+  <div class="slide-block">
+    <div class="slide-header">
+      <span class="slide-num">11 / 14</span>
+      <span class="slide-name">Lo que viene · Fase II</span>
+    </div>
+    <p class="script">
+      "Fase II ya no se trata de construir la base.<br><br>
+      La base ya existe.<br><br>
+      Ahora se trata de:<br><br>
+      operacionalizar,<br>
+      observar señales reales,<br>
+      prepararnos para visibilidad más grande,<br>
+      y dejar que el sistema evolucione con intención."
+    </p>
+  </div>
+
+  <!-- 12 -->
+  <div class="slide-block">
+    <div class="slide-header">
+      <span class="slide-num">12 / 14</span>
+      <span class="slide-name">Propuesta de colaboración</span>
+    </div>
+    <div class="badges">
+      <span class="badge badge-danger">No te disculpes</span>
+      <span class="badge badge-danger">No sobreexpliques</span>
+      <span class="badge badge-danger">No negocies contra ti mismo</span>
+    </div>
+    <p class="script">
+      "Lo que intenté hacer aquí…<br><br>
+      fue separar dos niveles de colaboración posibles.<br><br>
+      Uno más estratégico y liviano.<br><br>
+      Y otro donde sigo participando activamente en evolución, implementación y crecimiento del sistema."
+    </p>
+    <div class="dir red"><strong>Cállate.</strong> Presenta las opciones. Luego espera. Deja que ella procese. El silencio es tuyo.</div>
+  </div>
+
+  <!-- 13 -->
+  <div class="slide-block">
+    <div class="slide-header">
+      <span class="slide-num">13 / 14</span>
+      <span class="slide-name">Criar sin culpa también necesita operar sin caos</span>
+    </div>
+    <div class="badges">
+      <span class="badge badge-slow">Lento · Reflexivo</span>
+    </div>
+    <p class="script">
+      "Creo que esta frase resume bastante bien lo que pasó.<br><br>
+      Criar Sin Culpas no solo necesita crecer.<br><br>
+      Necesita crecer sin caos.<br><br>
+      Y honestamente…<br><br>
+      siento que eso es exactamente lo que empezamos a construir aquí."
+    </p>
+  </div>
+
+  <!-- 14 -->
+  <div class="slide-block">
+    <div class="slide-header">
+      <span class="slide-num">14 / 14</span>
+      <span class="slide-name">Gracias</span>
+    </div>
+    <div class="badges">
+      <span class="badge badge-silence">Genuino · Sin apuro · Dos líneas. Nada más.</span>
+    </div>
+    <p class="script">
+      "Gracias por confiar en mí para construir esto contigo."<br><br>
+      "Creo que apenas estamos empezando."
+    </p>
+    <div class="dir red"><strong>No hay CTA.</strong> No preguntes nada. No pidas feedback. No llenes el silencio. Deja que el peso de todo lo que mostraste haga su trabajo.</div>
+  </div>
+
+</div>
+</body>
+</html>

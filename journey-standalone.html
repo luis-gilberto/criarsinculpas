@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Project Journey · Criar Sin Culpas · StrategyIQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0f0e11; --card:#161519; --lift:#1c1a20;
+  --border:rgba(255,255,255,.07); --border2:rgba(255,255,255,.12);
+  --text:#f0ece5; --mid:#c8c0b8; --muted:#8a8078;
+  --teal:#4ecdc4; --coral:#f96f6e; --gold:#e8c87a; --violet:#8d79ff;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --mono:'DM Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased; overflow-x: hidden;}
+a, a:visited { text-decoration: none; color: inherit; }
+a:hover { color: var(--teal); }
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.022;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px}
+
+/* SCROLL PROGRESS BAR */
+#spb{position:fixed;top:0;left:0;right:0;height:3px;z-index:300;background:rgba(255,255,255,.04)}
+#spf{height:100%;width:0%;background:linear-gradient(90deg,var(--teal),var(--gold),var(--coral));transition:width .1s linear;position:relative}
+#spf::after{content:'';position:absolute;right:-4px;top:-3.5px;width:10px;height:10px;border-radius:50%;background:var(--coral);box-shadow:0 0 10px var(--coral);}
+
+/* TOP BAR */
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(15,14,17,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.tb-left{display:flex;align-items:center;gap:16px}
+.tb-ey{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.tb-sep{width:1px;height:20px;background:var(--border)}
+.tb-title{font-family:var(--serif);font-size:1rem;font-weight:500}
+.tb-right{display:flex;align-items:center;gap:12px}
+.ltog{display:flex;gap:2px;padding:3px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.03)}
+.lbtn{padding:4px 10px;border-radius:999px;font-size:.62rem;font-weight:700;letter-spacing:.06em;color:var(--muted);background:none;border:none;cursor:pointer;transition:all .2s}
+.lbtn.on{color:var(--text);background:rgba(255,255,255,.1)}
+.backlink{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+.backlink:hover{color:var(--teal)}
+
+/* PAGE CONTENT (WITH CONTEXTUAL BLUR) */
+.page{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:64px 48px 100px; transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);}
+.page-blur { filter: blur(8px) brightness(0.6); pointer-events: none; }
+
+/* HEADER */
+.ey{font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:12px}
+.h1{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.4rem);font-weight:300;line-height:1.08;letter-spacing:-.01em;margin-bottom:10px}
+.h1 em{font-style:italic;font-weight:400;color:var(--coral)}
+.desc{font-size:.88rem;color:var(--muted);line-height:1.75;max-width:56ch;margin-bottom:48px}
+
+/* PROGRESS TRACK */
+.ptrack{padding-left:72px;margin-bottom:52px}
+.pbar-wrap{height:2px;background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden;margin-bottom:10px}
+.pbar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--teal),var(--gold),var(--coral));border-radius:999px;position:relative}
+
+/* JOURNEY & SPINE */
+.journey{position:relative;display:flex;flex-direction:column;gap:0}
+.spine-svg{position:absolute;left:10px;top:0;width:28px;height:100%;pointer-events:none;z-index:0;overflow:visible}
+#spineBase { stroke: rgba(255,255,255,0.05); }
+#spineDraw { transition: stroke-dashoffset 0.1s linear; }
+
+/* PHASE & NODES */
+.phase{position:relative;padding-left:72px;margin-bottom:48px}
+.node{position:absolute;left:10px;top:20px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.6rem;font-weight:700;z-index:2;background:var(--lift); border:1px solid var(--border); transition: all 0.6s cubic-bezier(0.16,1,0.3,1);}
+.node.active-node { transform: scale(1.3); box-shadow: 0 0 20px currentColor; border-color: #fff; }
+.node-done{background:var(--teal);color:#0f0e11}
+.node-active{background:var(--coral);color:#fff}
+
+/* FORENSIC PREVIEW ZOOM (LARGE & CENTERED) */
+#dpCard {
+  position: fixed;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -45%) scale(0.95);
+  z-index: 1001;
+  width: 90vw;
+  max-width: 850px;
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: 24px;
+  box-shadow: 0 50px 100px rgba(0,0,0,1);
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+#dpCard.visible { opacity: 1; transform: translate(-50%, -50%) scale(1); pointer-events: auto; }
+.preview-cradle { width: 100%; height: 62vh; background: #050406; display: flex; align-items: center; justify-content: center; padding: 40px; }
+.preview-img { max-width: 100%; max-height: 100%; object-fit: contain; box-shadow: 0 20px 80px rgba(0,0,0,0.8); border-radius: 4px; }
+.preview-info { padding: 30px 40px; display: flex; justify-content: space-between; align-items: center; gap: 30px; border-top: 1px solid var(--border); background: var(--card); }
+.preview-tag { font-family: var(--mono); font-size: 10px; text-transform: uppercase; color: var(--teal); letter-spacing: 0.2em; display: block; margin-bottom: 8px;}
+.preview-title { font-family: var(--serif); font-size: 24px; color: var(--text); font-weight: 300; line-height: 1.1; }
+.preview-btn {
+    padding: 16px 32px; background: var(--teal); color: var(--bg); text-decoration: none;
+    font-family: var(--mono); font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; border-radius: 99px; white-space: nowrap; transition: transform 0.3s;
+}
+.preview-btn:hover { transform: scale(1.05); }
+
+#dpOverlay {
+    position: fixed; inset: 0; background: rgba(14,11,18,0.5);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+}
+#dpOverlay.visible { opacity: 1; pointer-events: auto; }
+
+/* CONTENT STYLES (NO DELETIONS) */
+.card{border-radius:14px;border:1px solid var(--border);background:var(--card);overflow:hidden; transition:border-color .35s}
+.chead{padding:22px 26px 18px;border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.clabel{font-family:var(--mono);font-size:.56rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px;display:block}
+.ctitle{font-family:var(--serif);font-size:clamp(1.4rem,2.5vw,2rem);font-weight:400;line-height:1.1;margin-bottom:4px}
+.csub{font-size:.82rem;color:var(--muted);font-style:italic;font-family:var(--serif)}
+.badge{flex-shrink:0;padding:5px 13px;border-radius:999px;font-family:var(--mono);font-size:.55rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.badge-done{color:var(--teal);border:1px solid rgba(78,205,196,.2);background:rgba(78,205,196,.07)}
+.badge-prog{color:var(--gold);border:1px solid rgba(232,200,122,.2);background:rgba(232,200,122,.07)}
+.cbody{padding:22px 26px 24px}
+.narr{font-size:.88rem;color:var(--mid);line-height:1.78;margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.04)}
+.sublabel{font-family:var(--mono);font-size:.54rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.outcard{border-radius:10px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:20px; background: rgba(255,255,255,0.02); border: 1px solid var(--border);}
+.otag{font-family:var(--mono);font-size:.52rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px;display:block}
+.otag-t{color:var(--teal)}.otag-c{color:var(--coral)}
+.oname{font-size:.88rem;font-weight:500;margin-bottom:3px}
+.olink{flex-shrink:0;padding:7px 14px;border-radius:999px;font-family:var(--mono);font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:all .25s; color: var(--teal); border: 1px solid var(--teal);}
+.olink:hover { background: var(--teal); color: var(--bg); }
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-bottom:18px}
+.tile{padding:13px 15px;border-radius:10px;border:1px solid var(--border);background:var(--lift);text-decoration:none;color:var(--text);display:block;position:relative;transition:all .3s ease; cursor: pointer;}
+.tile:hover{border-color:var(--teal); transform: translateY(-2px);}
+.tile-origin { border-color: rgba(141,121,255,.2); }
+.tcode{font-family:var(--mono);font-size:.52rem;font-weight:700;color:var(--muted);margin-bottom:5px}
+.tname{font-size:.82rem;font-weight:500;margin-bottom:4px;line-height:1.3; color: var(--text);}
+.tdesc{font-size:.72rem;color:var(--muted);line-height:1.5;margin-bottom:8px}
+.method{border-radius:10px;padding:18px 20px;margin-bottom:20px;background:rgba(255,255,255,0.02);border:1px solid var(--border)}
+.msteps{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.mstep{padding:8px 10px;border-radius:7px;text-align:center;background:rgba(255,255,255,.03);border:1px solid var(--border)}
+.mstep-n{font-family:var(--mono);font-size:.5rem;color:var(--teal);display:block}
+.mstep-l{font-size:.72rem;font-weight:500}
+.dec{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border-radius:10px;background:rgba(232,200,122,.06);border:1px solid rgba(232,200,122,.18);margin-top:14px}
+.closing{padding-left:72px;margin-top:48px;padding-top:40px;border-top:1px solid rgba(255,255,255,.05)}
+.cquote{font-family:var(--serif);font-size:clamp(1.2rem,2.5vw,1.8rem);font-weight:300;font-style:italic;color:var(--mid);line-height:1.45;max-width:52ch;padding-left:20px;border-left:2px solid var(--teal);margin-bottom:12px}
+
+@media(max-width:700px){
+  .topbar{padding:12px 20px}
+  .page{padding:40px 20px 80px}
+  .preview-info { flex-direction: column; text-align: center; gap: 20px; padding: 20px; }
+  .preview-btn { width: 100%; }
+  .preview-cradle { height: 40vh; }
+}
+</style>
+</head>
+<body>
+
+<div id="spb"><div id="spf"></div></div>
+<div id="dpOverlay"></div>
+
+<!-- FORENSIC ZOOM MODAL -->
+<div id="dpCard">
+    <div class="preview-cradle"><img id="dpImg" class="preview-img" src="" alt="Evidence"></div>
+    <div class="preview-info">
+        <div><span id="dpTag" class="preview-tag"></span><div id="dpTitle" class="preview-title"></div></div>
+        <a id="dpAction" href="#" class="preview-btn" target="_blank">Open Full Document ↗</a>
+    </div>
+</div>
+
+<header class="topbar">
+  <div class="tb-left">
+    <span class="tb-ey">StrategyIQ · LG Ecosystem</span>
+    <span class="tb-sep"></span>
+    <span class="tb-title">Criar Sin Culpas</span>
+  </div>
+  <div class="tb-right">
+    <div class="ltog">
+      <button class="lbtn on" data-l="es">ES</button>
+      <button class="lbtn" data-l="en">EN</button>
+    </div>
+    <a href="https://nari.luis-gilberto.com" target="_blank" class="backlink">← Workspace</a>
+  </div>
+</header>
+
+<main class="page" id="mainContent">
+
+  <div class="rev">
+    <span class="ey">StrategyIQ · Criar Sin Culpas</span>
+    <h1 class="h1"><span class="es">De la claridad al <em>crecimiento.</em></span><span class="en">From clarity to <em>growth.</em></span></h1>
+    <p class="desc"><span class="es">No solo qué hicimos. También por qué lo hicimos. El registro completo de una transformación.</span><span class="en">Not only what we did. Also why we did it. The complete record of a transformation.</span></p>
+  </div>
+
+  <div class="ptrack">
+    <div class="pbar-wrap"><div id="pbarFill" class="pbar-fill"></div></div>
+    <div class="plabels">
+      <span class="plabel done"><span class="es">Diagnóstico ✓</span><span class="en">Diagnosis ✓</span></span>
+      <span class="plabel active"><span class="es">Arquitectura ◉</span><span class="en">Architecture ◉</span></span>
+      <span class="plabel active"><span class="es">Activación ●</span><span class="en">Activation ●</span></span>
+    </div>
+  </div>
+
+  <div class="journey" id="journey">
+
+    <svg class="spine-svg" id="spineSvg" aria-hidden="true">
+      <path id="spineBase" d="" fill="none" stroke-width="1.5" stroke-dasharray="4 6"/>
+      <path id="spineDraw" d="" fill="none" stroke="url(#sg2)" stroke-width="2" stroke-linecap="round" />
+      <defs>
+        <linearGradient id="sg2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#4ecdc4" />
+          <stop offset="50%" stop-color="#e8c87a" />
+          <stop offset="100%" stop-color="#f96f6e" />
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <!-- PHASE 01 -->
+    <div class="phase" id="ph1">
+      <div class="node node-done" id="n1">01</div>
+      <div class="card card-done" id="c1">
+        <div class="chead">
+          <div>
+            <span class="clabel clabel-done"><span class="es">Fase 01 · Diagnóstico</span><span class="en">Phase 01 · Diagnosis</span></span>
+            <div class="ctitle"><span class="es">Entender el negocio</span><span class="en">Understand the business</span></div>
+            <div class="csub"><span class="es">"¿Qué está pasando realmente aquí?"</span><span class="en">"What is actually happening here?"</span></div>
+          </div>
+          <div class="badge badge-done"><span class="es">CERTIFICADO ✓</span><span class="en">COMPLETED ✓</span></div>
+        </div>
+        <div class="cbody">
+          <p class="narr"><span class="es">Convertimos señales dispersas, contexto inicial y oportunidades abiertas en claridad estratégica. <strong>Identificamos el negocio real, el posicionamiento correcto y el tamaño de la oportunidad.</strong></span><span class="en">We turned scattered signals and open opportunities into strategic clarity. <strong>We identified the real business, the right positioning, and the size of the opportunity.</strong></span></p>
+          <div class="sublabel"><span class="es">Output principal</span><span class="en">Core output</span></div>
+          <div class="outcard out-teal">
+            <div><span class="otag otag-t"><span class="es">Diagnóstico Certificado</span><span class="en">Certified Diagnosis</span></span><div class="oname"><span class="es">Diagnóstico Estratégico · SIQ-01</span><span class="en">Strategic Diagnosis · SIQ-01</span></div><div class="odesc"><span class="es">Diagnóstico de Fase I certificado. Posicionamiento claro y definición de oportunidad.</span><span class="en">Phase I diagnosis certified. Clear positioning and opportunity definition.</span></div></div>
+            <a href="https://www.luis-gilberto.com/TheHub/clients/nari/files/SIQ-01_StrategicDiagnosis_CriarSinCulpas.pdf" target="_blank" class="olink olink-t"><span class="es">Abrir ↗</span><span class="en">Open ↗</span></a>
+          </div>
+          <div class="sublabel"><span class="es">Artefactos de soporte</span><span class="en">Supporting artifacts</span></div>
+          <div class="tiles">
+            <a href="files/SIQ_A00_EcosystemIntelligence_CSC.html" target="_blank" class="tile tile-origin" data-type="Origin Node · SIQ_A00" data-name="Ecosystem Intelligence" data-thumb="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779909363/asset_a2mnlkk3h_1779909181293_lav25z.jpg">
+              <div class="tcode">Origin Node · SIQ_A00</div><div class="tname">Ecosystem Intelligence</div><div class="tdesc"><span class="es">La investigación que pivotó el proyecto.</span><span class="en">The research that pivoted the project.</span></div><div class="tfoot"><span class="tlang">Phase 01</span><span class="tarr">↗</span></div>
+            </a>
+            <a href="files/SIQ_A01_SpeakerMediaKit_CSC.html" target="_blank" class="tile" data-type="A01 · Speaking" data-name="Speaker Positioning Kit" data-thumb="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779909363/asset_10hjev9pu_1779909181293_rg5pch.jpg">
+              <div class="tcode">A01</div><div class="tname"><span class="es">Kit de Posicionamiento para Ponentes</span><span class="en">Speaker Positioning Kit</span></div><div class="tdesc"><span class="es">Expresión externa del posicionamiento.</span><span class="en">External expression of positioning.</span></div><div class="tfoot"><span class="tlang">ES / EN</span><span class="tarr">↗</span></div>
+            </a>
+            <a href="/files/SIQ_A02_MonetizationReport_CSC_ES.html" target="_blank" class="tile" data-type="A02 · Strategy" data-name="Monetization Research" data-thumb="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779909363/asset_gfqo93sp9_1779909181293_uvmfxr.jpg">
+              <div class="tcode">A02 · Reporte</div><div class="tname"><span class="es">Investigación de Monetización</span><span class="en">Monetization Research</span></div><div class="tdesc"><span class="es">Realidad del mercado.</span><span class="en">Market reality.</span></div><div class="tfoot"><span class="tlang">ES / EN</span><span class="tarr">↗</span></div>
+            </a>
+          </div>
+          <div class="dec"><div class="dec-icon">⚡</div><div><div class="dec-label"><span class="es">Decisión estratégica · SR-001 + SR-002</span><span class="en">Strategic Decision · SR-001 + SR-002</span></div><div class="dec-text"><span class="es">La estrategia se enfocará en traducir los marcos de crianza existentes en una arquitectura de aprendizaje estructurada — no en aumentar la producción de contenido ni el tamaño de la audiencia.</span><span class="en">Strategy will focus on translating existing parenting frameworks into a structured learning architecture — not on increasing content production or audience size.</span></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 02 -->
+    <div class="phase" id="ph2">
+      <div class="node node-active" id="n2">02</div>
+      <div class="card card-active" id="c2">
+        <div class="chead">
+          <div>
+            <span class="clabel clabel-active"><span class="es">Fase 02 · Arquitectura · En Progreso</span><span class="en">Phase 02 · Architecture · In Progress</span></span>
+            <div class="ctitle"><span class="es">Construir el sistema</span><span class="en">Build the system</span></div>
+            <div class="csub"><span class="es">"Ahora construimos la máquina."</span><span class="en">"Now we build the machine."</span></div>
+          </div>
+          <div class="badge badge-prog"><span class="es">EN PROGRESO</span><span class="en">IN PROGRESS</span></div>
+        </div>
+        <div class="cbody">
+          <p class="narr"><span class="es">Convertimos los hallazgos en método, estructura comercial, activos de marca y un sistema operativo de trabajo. <strong>El negocio dejó de ser una intuición y se volvió un sistema.</strong></span><span class="en">We turned findings into methodology, commercial structure, and brand assets. <strong>The business stopped being intuition and became a system.</strong></span></p>
+          <div class="method">
+            <div class="mlabel"><span class="es">El corazón de todo · El Método Nari</span><span class="en">The heart of it all · The Nari Method</span></div>
+            <div class="mtitle"><span class="es">El motor de transformación de Criar Sin Culpas</span><span class="en">The transformation engine of Criar Sin Culpas</span></div>
+            <div class="msteps">
+              <div class="mstep"><span class="mstep-n">01</span><div class="mstep-l"><span class="es">Aceptar</span><span class="en">Accept</span></div></div>
+              <div class="mstep"><span class="mstep-n">02</span><div class="mstep-l"><span class="es">Estabilizar</span><span class="en">Stabilize</span></div></div>
+              <div class="mstep"><span class="mstep-n">03</span><div class="mstep-l"><span class="es">Conectar</span><span class="en">Connect</span></div></div>
+              <div class="mstep"><span class="mstep-n">04</span><div class="mstep-l"><span class="es">Guiar</span><span class="en">Guide</span></div></div>
+            </div>
+          </div>
+          <div class="sublabel"><span class="es">Output principal</span><span class="en">Core output</span></div>
+          <div class="outcard out-coral">
+            <div><span class="otag otag-c"><span class="es">Arquitectura Certificada</span><span class="en">Certified Architecture</span></span><div class="oname"><span class="es">Arquitectura del Programa · SIQ-02</span><span class="en">Program Architecture · SIQ-02</span></div><div class="odesc"><span class="es">50+ talleres convertidos en un recorrido de aprendizaje estructurado.</span><span class="en">50+ workshops converted into a structured learning journey.</span></div></div>
+            <a href="https://www.luis-gilberto.com/TheHub/clients/nari/files/SIQ-02_ProgramArchitecture_CriarSinCulpas.pdf" target="_blank" class="olink olink-c"><span class="es">Abrir ↗</span><span class="en">Open ↗</span></a>
+          </div>
+          <div class="sublabel"><span class="es">Artefactos de soporte</span><span class="en">Supporting artifacts</span></div>
+          <div class="tiles">
+            <a href="https://www.luis-gilberto.com/TheHub/clients/nari/files/SIQ-03_ProductArchitecture_CriarSinCulpas.pdf" target="_blank" class="tile" data-type="SIQ-03 · In Progress" data-name="Product Architecture" data-thumb="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779910372/asset_ldlp47u3c_1779909234617_y1xolo.jpg">
+              <div class="tcode"><span class="es">SIQ-03 · En Progreso</span><span class="en">SIQ-03 · In Progress</span></div><div class="tname"><span class="es">Arquitectura de Productos</span><span class="en">Product Architecture</span></div><div class="tdesc"><span class="es">Conversión del método en ofertas escalables.</span><span class="en">Converting the method into scalable offers.</span></div><div class="tfoot"><span class="tlang">ES / EN</span><span class="tarr">↗</span></div>
+            </a>
+            <a href="https://www.luis-gilberto.com/TheHub/clients/nari/files/SIQ_A02_CommercialActivationBrief_CSC.html" target="_blank" class="tile" data-type="A02 · Brief" data-name="Commercial Activation Brief" data-thumb="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779910373/asset_akcsfbmo2_1779910246779_ldsdi3.jpg">
+              <div class="tcode">A02 · Brief</div><div class="tname"><span class="es">Dossier de Activación Comercial</span><span class="en">Commercial Activation Brief</span></div><div class="tdesc"><span class="es">Dos motores de ingreso, tres escenarios.</span><span class="en">Two revenue engines, three scenarios.</span></div><div class="tfoot"><span class="tlang">ES / EN</span><span class="tarr">↗</span></div>
+            </a>
+            <a href="files/SIQ_A05_BrandPartnershipKit_CSC.html" target="_blank" class="tile" data-type="A05 · Brand" data-name="Brand Partnership Kit" data-thumb="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779909363/asset_p96i09vb7_1779909181293_xljw0t.jpg">
+              <div class="tcode">A05 · Brand</div><div class="tname"><span class="es">Kit de Alianzas de Marca</span><span class="en">Brand Partnership Kit</span></div><div class="tdesc"><span class="es">Activos listos para alianzas.</span><span class="en">Partnership-ready assets.</span></div><div class="tfoot"><span class="tlang">ES / EN</span><span class="tarr">↗</span></div>
+            </a>
+            <a href="https://criarsinculpas.com/brand" target="_blank" class="tile" data-type="Brand Book · Public" data-name="Brand System" data-thumb="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779910372/asset_wdwxbr4t5_1779910246779_fwzazk.jpg">
+              <div class="tcode">Brand Book</div><div class="tname"><span class="es">Sistema de Marca · Público</span><span class="en">Brand System · Public</span></div><div class="tdesc"><span class="es">Identidad visual, reglas de uso y activos.</span><span class="en">Visual identity and brand assets.</span></div><div class="tfoot"><span class="tlang">ES / EN</span><span class="tarr">↗</span></div>
+            </a>
+          </div>
+          <div class="dec"><div class="dec-icon">⚡</div><div><div class="dec-label"><span class="es">Decisión estratégica · SR-003</span><span class="en">Strategic Decision · SR-003</span></div><div class="dec-text"><span class="es">Tres segmentos de audiencia definidos: Avergonzados y abrumados · Sospechan Neurodivergencia · Conscientes pero sin herramientas.</span><span class="en">Three audience segments defined: Ashamed & Overwhelmed · Suspecting Neurodivergence · Under-Equipped & Aware.</span></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 03 -->
+    <div class="phase" id="ph3">
+      <div class="node node-live" id="n3">03</div>
+      <div class="card card-live" id="c3">
+        <div class="chead">
+          <div>
+            <span class="clabel clabel-live"><span class="es">Fase 03 · Activación · En Vivo</span><span class="en">Phase 03 · Activation · Live</span></span>
+            <div class="ctitle"><span class="es">Activar y crecer</span><span class="en">Activate and grow</span></div>
+            <div class="csub"><span class="es">"Ahora lo convertimos en ingresos."</span><span class="en">"Now we turn it into revenue."</span></div>
+          </div>
+          <div class="badge badge-live"><span class="es">ACTIVO</span><span class="en">LIVE</span></div>
+        </div>
+        <div class="cbody">
+          <p class="narr"><span class="es">Los protocolos ya no son una idea interna. <strong>Están en vivo, conectados al sitio y midiendo señales reales de uso en tiempo real.</strong></span><span class="en">The protocols are no longer internal. <strong>They are live, measuring real usage signals in real time.</strong></span></p>
+          <div class="sublabel"><span class="es">Artefactos activos</span><span class="en">Active artifacts</span></div>
+          <div class="tiles">
+            <a href="https://criarsinculpas.com" target="_blank" class="tile" data-type="Live Site" data-name="criarsinculpas.com" data-thumb="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779910373/asset_d6zxno5yt_1779910246779_kpru2o.jpg">
+              <div class="tcode"><span class="es">Sitio en vivo</span><span class="en">Live Site</span></div><div class="tname">criarsinculpas.com</div><div class="tfoot"><span class="tlang">ES / EN</span><span class="tarr">↗</span></div>
+            </a>
+            <a href="files/SIQ_A03_ProtocolSignalFramework_CSC.html" target="_blank" class="tile tile-signal" data-type="SIQ_A03 · SnglIQ" data-name="Protocol Signal Framework" data-thumb="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779909364/asset_zjkfffoyc_1779909181293_fwvwvg.jpg">
+              <div class="tcode">SIQ_A03 · SnglIQ</div><div class="tname"><span class="es">Marco de Señales de Protocolos</span><span class="en">Protocol Signal Framework</span></div><div class="tdesc"><span class="es">Inteligencia en vivo midiendo resonancia.</span><span class="en">Live intelligence measuring resonance.</span></div><div class="tfoot"><span class="tlang">ES / EN · Activo</span><span class="tarr">↗</span></div>
+            </a>
+          </div>
+          <div class="dec"><div class="dec-icon">⚡</div><div><div class="dec-label"><span class="es">Marco de señales activo · SIQ_A03</span><span class="en">Signal Framework active · SIQ_A03</span></div><div class="dec-text"><span class="es">Protocol Signal Framework desplegado. Plausible Analytics midiendo resonancia, comportamiento social e inteligencia de audiencia en los cuatro protocolos en tiempo real.</span><span class="en">Protocol Signal Framework deployed. Plausible Analytics measuring resonance and audience intelligence across all four protocols in real time.</span></div></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /journey -->
+
+  <div class="closing">
+    <div class="sublabel" style="margin-bottom:14px"><span class="es">Tesis de cierre</span><span class="en">Closing thesis</span></div>
+    <blockquote class="cquote" id="cq"><span class="es">La memoria operativa permite que Criar Sin Culpas crezca sin depender del caos, la memoria o la intuición del momento.</span><span class="en">Operational memory allows Criar Sin Culpas to grow without depending on chaos, memory, or moment-by-moment intuition.</span></blockquote>
+    <div class="cattr"><span class="es">Principio operativo · StrategyIQ · LG Ecosystem</span><span class="en">Operating principle · StrategyIQ · LG Ecosystem</span></div>
+  </div>
+
+</main>
+
+<script>
+(function(){
+
+/* ── LANGUAGE ── */
+let lang = localStorage.getItem('lg_parent_lang') || 'es';
+function applyLang(l){
+  lang = l;
+  localStorage.setItem('lg_parent_lang', l);
+  document.documentElement.lang = l;
+  document.querySelectorAll('.es,.en').forEach(el => {
+    el.style.display = el.classList.contains(l) ? '' : 'none';
+  });
+  document.querySelectorAll('.lbtn').forEach(b => b.classList.toggle('on', b.dataset.l === l));
+}
+document.querySelectorAll('.lbtn').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.l)));
+applyLang(lang);
+
+/* ── SCROLL PROGRESS BAR ── */
+const spf = document.getElementById('spf');
+const pbarFill = document.getElementById('pbarFill');
+
+function updateBar(){
+  const d = document.documentElement.scrollHeight - window.innerHeight;
+  const p = d > 0 ? (window.scrollY / d) * 100 : 0;
+  spf.style.width = p + '%';
+  spf.classList.toggle('on', p > 2);
+  spf.classList.toggle('done', p > 96);
+}
+
+/* ── SPINE ANIMATION ── */
+const journey = document.getElementById('journey');
+const spineBase = document.getElementById('spineBase');
+const spineDraw = document.getElementById('spineDraw');
+const spineSvg  = document.getElementById('spineSvg');
+
+function updateSpine(){
+  const jH = journey.offsetHeight;
+  spineSvg.style.height = jH + 'px';
+  spineBase.setAttribute('d', `M 14 28 L 14 ${jH - 30}`);
+  spineDraw.setAttribute('d', `M 14 28 L 14 ${jH - 30}`);
+  
+  const jTop = journey.offsetTop;
+  const wH = window.innerHeight;
+  const start = jTop - wH * 0.5;
+  const progress = Math.max(0, Math.min(1, (window.scrollY - start) / jH));
+
+  const totalLength = jH - 58;
+  spineDraw.style.strokeDasharray = totalLength;
+  spineDraw.style.strokeDashoffset = totalLength * (1 - progress);
+}
+
+/* ── REVEAL ON SCROLL ── */
+function reveal(){
+  const wH = window.innerHeight;
+  document.querySelectorAll('.rev, .ptrack, .cquote, .card, .node').forEach(el => {
+    if(el.getBoundingClientRect().top < wH * .88) {
+        el.classList.add('in');
+        // Pulse logic for nodes
+        if(el.classList.contains('node') && el.getBoundingClientRect().top < wH * 0.5) {
+            el.classList.add('active-node');
+        } else if (el.classList.contains('node')) {
+            el.classList.remove('active-node');
+        }
+    }
+  });
+}
+
+function onScroll(){ updateSpine(); updateBar(); reveal(); }
+window.addEventListener('scroll', onScroll, {passive:true});
+window.addEventListener('resize', updateSpine, {passive:true});
+requestAnimationFrame(() => { updateSpine(); updateBar(); reveal(); });
+
+/* ── FORENSIC PREVIEW ZOOM ── */
+const card = document.getElementById('dpCard');
+const overlay = document.getElementById('dpOverlay');
+const main = document.getElementById('mainContent');
+const dpImg = document.getElementById('dpImg');
+const dpTag = document.getElementById('dpTag');
+const dpTitle = document.getElementById('dpTitle');
+const dpBtn = document.getElementById('dpAction');
+
+let hoverTimer = null;
+
+function openZoom(el) {
+    const { type, name, thumb } = el.dataset;
+    dpImg.src = thumb;
+    dpTag.textContent = type;
+    dpTitle.textContent = name;
+    dpBtn.href = el.href || '#';
+    dpBtn.onclick = null; // clear any stale handler
+
+    overlay.classList.add('visible');
+    card.classList.add('visible');
+    if(main) main.classList.add('page-blur');
+}
+
+function closeZoom() {
+    card.classList.remove('visible');
+    overlay.classList.remove('visible');
+    if(main) main.classList.remove('page-blur');
+}
+
+// Click / tap to open (works on mobile too)
+document.querySelectorAll('.tile').forEach(tile => {
+    tile.addEventListener('click', e => {
+        e.preventDefault();
+        openZoom(tile);
+    });
+
+    // Hover preview on desktop (200ms delay to avoid flash)
+    tile.addEventListener('mouseenter', () => {
+        if(!tile.dataset.thumb) return;
+        hoverTimer = setTimeout(() => openZoom(tile), 200);
+    });
+    tile.addEventListener('mouseleave', () => {
+        clearTimeout(hoverTimer);
+        // Only close on mouseleave if the modal wasn't clicked into
+        if(!card.matches(':hover')) closeZoom();
+    });
+});
+
+// Keep modal open when hovering over it, close when leaving
+card.addEventListener('mouseleave', () => closeZoom());
+
+overlay.addEventListener('click', closeZoom);
+
+// ESC key to close
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeZoom(); });
+
+}());
+</script>
+</body>
+</html>
