@@ -1,9 +1,8 @@
-# Phase I closure assets (explicit routes)
-/journey-standalone  /journey-standalone.html  200
-/csc-fase1-deck      /csc-fase1-deck.html       200
-/csc-fase1-notes     /csc-fase1-notes.html      200
-
 # Legacy Redirects (Legacy path cleanup)
+/journey-standalone.html  /journey-standalone  301
+/csc-fase1-deck.html      /csc-fase1-deck      301
+/csc-fase1-notes.html     /csc-fase1-notes     301
+
 /tools/parent-support/* /apoyo/:splat 301
 /tools/parent-support /apoyo 301
 /tools/SIQ_SignalExtractor_Tool /signals 301
