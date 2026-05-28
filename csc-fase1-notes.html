@@ -22,6 +22,12 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.65;-webkit-font-smoothing:antialiased;padding-bottom:80px}
 
 /* HEADER */
+/* LANG TOGGLE */
+.ltog{display:flex;gap:2px;padding:3px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04)}
+.lbtn{padding:4px 11px;border-radius:999px;font-family:var(--mono);font-size:.58rem;font-weight:700;letter-spacing:.08em;color:var(--muted);background:none;border:none;cursor:pointer;transition:all .2s}
+.lbtn.on{color:var(--text);background:rgba(255,255,255,.1)}
+.es{}.en{display:none}
+
 .header{
   position:sticky;top:0;z-index:100;
   display:flex;align-items:center;justify-content:space-between;
@@ -135,7 +141,13 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
     <span class="h-sep"></span>
     <span class="h-title">Criar Sin Culpas · Cierre de Fase I</span>
   </div>
-  <div class="h-right">Luis · Solo para el presentador</div>
+  <div style="display:flex;align-items:center;gap:14px">
+    <div class="ltog">
+      <button class="lbtn on" data-l="es">ES</button>
+      <button class="lbtn" data-l="en">EN</button>
+    </div>
+    <div class="h-right"><span class="es">Solo para el presentador</span><span class="en">Presenter eyes only</span></div>
+  </div>
 </header>
 
 <div class="page">
@@ -144,10 +156,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
   <div class="slide-block">
     <div class="slide-header">
       <span class="slide-num">01 / 14</span>
-      <span class="slide-name">Entregando las llaves</span>
+      <span class="slide-name"><span class="es">Entregando las llaves</span><span class="en">Handing over the keys</span></span>
     </div>
     <p class="script">
-      "Hoy no quería hacer una presentación tradicional.<br><br>
+      <span class="es">"Hoy no quería hacer una presentación tradicional.<br><br>
       Quería hacer algo un poco más honesto.<br><br>
       Porque siento que durante estas semanas…<br><br>
       Criar Sin Culpas dejó de ser solamente una idea o una página web.<br><br>
@@ -158,20 +170,31 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
       experiencia,<br>
       y una forma propia de acompañar.<br><br>
       Entonces hoy realmente se trata de cerrar Fase I…<br><br>
-      y entregarte las llaves de algo que ya está vivo."
+      y entregarte las llaves de algo que ya está vivo."</span><span class="en" style="display:none">"Today I didn't want to give a traditional presentation.<br><br>
+      I wanted to do something a little more honest.<br><br>
+      Because I feel that over these weeks…<br><br>
+      Criar Sin Culpas stopped being just an idea or a website.<br><br>
+      And started becoming a real system.<br><br>
+      One that already has structure,<br>
+      memory,<br>
+      language,<br>
+      experience,<br>
+      and its own way of accompanying.<br><br>
+      So today this is really about closing Phase I…<br><br>
+      and handing you the keys to something that is already alive."</span>
     </p>
     <div class="rule"></div>
-    <div class="dir"><strong>PAUSA.</strong> Deja que esa última línea aterrice antes de avanzar.</div>
+    <div class="dir"><strong><strong><span class="es">PAUSA.</span><span class="en">PAUSE.</span></strong> <span class="es">Deja que esa última línea aterrice antes de avanzar.</span><span class="en">Let that last line land before moving on.</span></div>
   </div>
 
   <!-- 02 -->
   <div class="slide-block">
     <div class="slide-header">
       <span class="slide-num">02 / 14</span>
-      <span class="slide-name">Esto empezó como una web</span>
+      <span class="slide-name"><span class="es">Esto empezó como una web</span><span class="en">This started as a website</span></span>
     </div>
     <p class="script">
-      "Creo que una de las cosas más interesantes de este proceso…<br><br>
+      <span class="es">"Creo que una de las cosas más interesantes de este proceso…<br><br>
       es que el proyecto evolucionó mientras lo estábamos construyendo.<br><br>
       Empezamos pensando más en contenido y presencia…<br><br>
       y terminamos diseñando:<br><br>
@@ -179,12 +202,21 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
       flujos,<br>
       sistemas de apoyo,<br>
       experiencia emocional,<br>
-      y una infraestructura que sostiene todo eso detrás."
+      y una infraestructura que sostiene todo eso detrás."</span><span class="en" style="display:none">"I think one of the most interesting things about this process…<br><br>
+      is that the project evolved while we were building it.<br><br>
+      We started thinking more about content and presence…<br><br>
+      and ended up designing:<br><br>
+      protocols,<br>
+      flows,<br>
+      support systems,<br>
+      emotional experience,<br>
+      and an infrastructure that holds all of that behind the scenes."</span>
     </p>
     <div class="rule"></div>
     <p class="script">
-      "Y honestamente…<br><br>
-      creo que eso cambió completamente el nivel del proyecto."
+      <span class="es">"Y honestamente…<br><br>
+      creo que eso cambió completamente el nivel del proyecto."</span><span class="en" style="display:none">"And honestly…<br><br>
+      I think that completely changed the level of this project."</span>
     </p>
   </div>
 
@@ -192,14 +224,14 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
   <div class="slide-block">
     <div class="slide-header">
       <span class="slide-num">03 / 14</span>
-      <span class="slide-name">Urgencia emocional</span>
+      <span class="slide-name"><span class="es">Urgencia emocional</span><span class="en">Emotional urgency</span></span>
     </div>
     <div class="badges">
-      <span class="badge badge-slow">⟳ Baja el ritmo</span>
-      <span class="badge badge-danger">★ Momento más fuerte del deck</span>
+      <span class="badge badge-slow"><span class="es">⟳ Baja el ritmo</span><span class="en">⟳ Slow down</span></span>
+      <span class="badge badge-danger"><span class="es">★ Momento más fuerte del deck</span><span class="en">★ Strongest moment in the deck</span></span>
     </div>
     <p class="script">
-      "Este probablemente fue el hallazgo más importante de toda la fase.<br><br>
+      <span class="es">"Este probablemente fue el hallazgo más importante de toda la fase.<br><br>
       Nos dimos cuenta de que no estábamos diseñando para consumo de contenido.<br><br>
       Estábamos diseñando para momentos de intensidad emocional.<br><br>
       Padres cansados.<br>
@@ -211,39 +243,59 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
       Menos carga cognitiva.<br>
       Más calma.<br>
       Más claridad.<br>
-      Más apoyo inmediato."
+      Más apoyo inmediato."</span><span class="en" style="display:none">"This was probably the most important finding of the entire phase.<br><br>
+      We realized we weren't designing for content consumption.<br><br>
+      We were designing for moments of emotional intensity.<br><br>
+      Tired parents.<br>
+      Overwhelmed.<br>
+      Guilty.<br>
+      Saturated.<br><br>
+      And that completely changed our decisions.<br><br>
+      Less noise.<br>
+      Less cognitive load.<br>
+      More calm.<br>
+      More clarity.<br>
+      More immediate support."</span>
     </p>
-    <div class="dir red"><strong>STOP.</strong> Deja que el slide respire. No sigas hablando.</div>
+    <div class="dir red"><strong><strong><span class="es">STOP.</span><span class="en">STOP.</span></strong> <span class="es">Deja que el slide respire. No sigas hablando.</span><span class="en">Let the slide breathe. Don't keep talking.</span></div>
   </div>
 
   <!-- 04 -->
   <div class="slide-block">
     <div class="slide-header">
       <span class="slide-num">04 / 14</span>
-      <span class="slide-name">La experiencia ahora respira</span>
+      <span class="slide-name"><span class="es">La experiencia ahora respira</span><span class="en">The experience now breathes</span></span>
     </div>
     <p class="script">
-      "El objetivo dejó de ser simplemente informar.<br><br>
+      <span class="es">"El objetivo dejó de ser simplemente informar.<br><br>
       Empezó a ser acompañar.<br><br>
       Y creo que ahí fue donde el diseño empezó a alinearse de verdad con la filosofía de Criar Sin Culpas.<br><br>
       Porque la experiencia ya no exige energía del usuario.<br><br>
-      Ahora intenta devolvérsela."
+      Ahora intenta devolvérsela."</span><span class="en" style="display:none">"The goal stopped being simply to inform.<br><br>
+      It started being to accompany.<br><br>
+      And I think that's where the design really started aligning with the philosophy of Criar Sin Culpas.<br><br>
+      Because the experience no longer demands energy from the user.<br><br>
+      Now it tries to give it back."</span>
     </p>
-    <div class="dir teal"><strong>Esa última línea importa.</strong> Dala despacio.</div>
+    <div class="dir teal"><strong><span class="es">Esa última línea importa.</span><span class="en">That last line matters.</span></strong> <span class="es">Dala despacio.</span><span class="en">Deliver it slowly.</span></div>
   </div>
 
   <!-- 05 -->
   <div class="slide-block">
     <div class="slide-header">
       <span class="slide-num">05 / 14</span>
-      <span class="slide-name">Cuatro puertas de entrada</span>
+      <span class="slide-name"><span class="es">Cuatro puertas de entrada</span><span class="en">Four doors of entry</span></span>
     </div>
     <p class="script">
-      "Las cuatro guías dejaron de sentirse como contenido aislado.<br><br>
+      <span class="es">"Las cuatro guías dejaron de sentirse como contenido aislado.<br><br>
       Ahora funcionan más como puertas de entrada emocionales.<br><br>
       Cada una responde a un momento real de tensión.<br><br>
       Y eso hace que el sistema se sienta mucho más humano…<br><br>
-      porque entra por la experiencia del usuario, no por categorías abstractas."
+      porque entra por la experiencia del usuario, no por categorías abstractas."</span><span class="en" style="display:none">"The four guides stopped feeling like isolated content.<br><br>
+      Now they function more like emotional entry points.<br><br>
+      Each one responds to a real moment of tension.<br><br>
+      And that makes the system feel much more human…<br><br>
+      because it enters through the user's experience, not through abstract categories."</span>
     </p>
   </div>
 
@@ -251,16 +303,22 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
   <div class="slide-block">
     <div class="slide-header">
       <span class="slide-num">06 / 14</span>
-      <span class="slide-name">El Método Nari</span>
+      <span class="slide-name"><span class="es">El Método Nari</span><span class="en">The Nari Method</span></span>
     </div>
     <p class="script">
-      "Otra cosa importante que pasó…<br><br>
+      <span class="es">"Otra cosa importante que pasó…<br><br>
       es que tu intuición empezó a convertirse en estructura.<br><br>
       Y eso es importante.<br><br>
       Porque ahora ya no depende solamente de conversaciones, reels o explicaciones espontáneas.<br><br>
       El método ya tiene forma.<br>
       Ya tiene lenguaje.<br>
-      Ya tiene arquitectura."
+      Ya tiene arquitectura."</span><span class="en" style="display:none">"Another important thing that happened…<br><br>
+      is that your intuition started becoming structure.<br><br>
+      And that matters.<br><br>
+      Because now it no longer depends only on conversations, reels, or spontaneous explanations.<br><br>
+      The method already has shape.<br>
+      It already has language.<br>
+      It already has architecture."</span>
     </p>
   </div>
 
@@ -268,40 +326,52 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
   <div class="slide-block">
     <div class="slide-header">
       <span class="slide-num">07 / 14</span>
-      <span class="slide-name">StrategyIQ · Inteligencia generada</span>
+      <span class="slide-name"><span class="es">StrategyIQ · Inteligencia generada</span><span class="en">StrategyIQ · Intelligence generated</span></span>
     </div>
     <div class="badges">
-      <span class="badge badge-danger">⚠ Tu slide más peligroso</span>
-      <span class="badge badge-calm">Grounded · Calm · Matter-of-fact</span>
+      <span class="badge badge-danger"><span class="es">⚠ Tu slide más peligroso</span><span class="en">⚠ Your most dangerous slide</span></span>
+      <span class="badge badge-calm"><span class="es">Grounded · Calm · Matter-of-fact</span><span class="en">Grounded · Calm · Matter-of-fact</span></span>
     </div>
     <p class="script">
-      "Algo que no esperaba completamente…<br><br>
+      <span class="es">"Algo que no esperaba completamente…<br><br>
       es que el proyecto también empezó a generar inteligencia.<br><br>
       No solamente outputs.<br><br>
       Sino hallazgos.<br>
       Patrones.<br>
       Decisiones reutilizables.<br>
-      Y documentación estratégica."
+      Y documentación estratégica."</span><span class="en" style="display:none">"Something I didn't fully expect…<br><br>
+      is that the project also started generating intelligence.<br><br>
+      Not just outputs.<br><br>
+      But findings.<br>
+      Patterns.<br>
+      Reusable decisions.<br>
+      And strategic documentation."</span>
     </p>
     <div class="rule"></div>
     <p class="script">
-      "Y eso es importante porque significa que el proyecto ahora puede aprender sobre sí mismo."
+      <span class="es">"Y eso es importante porque significa que el proyecto ahora puede aprender sobre sí mismo."</span><span class="en" style="display:none">"And that matters because it means the project can now learn about itself."</span>
     </p>
     <div class="rule"></div>
     <p class="script">
-      "Entonces aquí fue donde empezó a aparecer algo nuevo:<br><br>
-      memoria operativa."
+      <span class="es">"Entonces aquí fue donde empezó a aparecer algo nuevo:<br><br>
+      memoria operativa."</span><span class="en" style="display:none">"And this is where something new started to emerge:<br><br>
+      operational memory."</span>
     </p>
 
     <div class="journey-block">
-      <div class="journey-label">→ Abrir Journey Standalone aquí</div>
+      <div class="journey-label"><span class="es">→ Abrir Journey Standalone aquí</span><span class="en">→ Open Journey Standalone here</span></div>
       <div class="journey-script">
-        "Esto realmente es la historia del sistema."<br><br>
+        <span class="es">"Esto realmente es la historia del sistema."<br><br>
         "No solamente qué hicimos…<br>
         sino por qué."<br><br>
         "Y cómo las decisiones fueron evolucionando."<br><br>
         "Aquí es donde el proyecto deja de depender de memoria informal…<br>
-        y empieza a construir continuidad."
+        y empieza a construir continuidad."</span><span class="en" style="display:none">"This is really the story of the system."<br><br>
+        "Not just what we did…<br>
+        but why."<br><br>
+        "And how the decisions kept evolving."<br><br>
+        "This is where the project stops depending on informal memory…<br>
+        and starts building continuity."</span>
       </div>
       <div class="journey-dir">
         <strong>Scroll lento.</strong> Narración mínima. El artefacto está haciendo el trabajo.<br>
@@ -309,17 +379,17 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
       </div>
     </div>
 
-    <div class="dir red" style="margin-top:16px"><strong>NO OVERSELL.</strong> No te justifiques. Solo muéstralo y cállate.</div>
+    <div class="dir red" style="margin-top:16px"><strong><strong><span class="es">NO OVERSELL.</span><span class="en">NO OVERSELL.</span></strong> <span class="es">No te justifiques. Solo muéstralo y cállate.</span><span class="en">Don't justify it. Just show it and stop talking.</span></div>
   </div>
 
   <!-- 08 -->
   <div class="slide-block">
     <div class="slide-header">
       <span class="slide-num">08 / 14</span>
-      <span class="slide-name">Lo invisible también importa</span>
+      <span class="slide-name"><span class="es">Lo invisible también importa</span><span class="en">The invisible also matters</span></span>
     </div>
     <p class="script">
-      "Creo que esta parte es probablemente una de las más importantes a largo plazo.<br><br>
+      <span class="es">"Creo que esta parte es probablemente una de las más importantes a largo plazo.<br><br>
       Porque el sitio es solo la parte visible.<br><br>
       Debajo de eso ahora existe:<br><br>
       documentación,<br>
@@ -328,12 +398,22 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
       señales,<br>
       assets,<br>
       timelines,<br>
-      y una memoria conectándolo todo."
+      y una memoria conectándolo todo."</span><span class="en" style="display:none">"I think this part is probably one of the most important in the long run.<br><br>
+      Because the site is only the visible part.<br><br>
+      Underneath that there is now:<br><br>
+      documentation,<br>
+      decisions,<br>
+      context,<br>
+      signals,<br>
+      assets,<br>
+      timelines,<br>
+      and a memory connecting it all."</span>
     </p>
     <div class="rule"></div>
     <p class="script">
-      "Y honestamente…<br><br>
-      eso es lo que hace que el sistema pueda crecer sin colapsar."
+      <span class="es">"Y honestamente…<br><br>
+      eso es lo que hace que el sistema pueda crecer sin colapsar."</span><span class="en" style="display:none">"And honestly…<br><br>
+      that's what allows the system to grow without collapsing."</span>
     </p>
   </div>
 
@@ -341,19 +421,25 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
   <div class="slide-block">
     <div class="slide-header">
       <span class="slide-num">09 / 14</span>
-      <span class="slide-name">Las llaves de Criar Sin Culpas</span>
+      <span class="slide-name"><span class="es">Las llaves de Criar Sin Culpas</span><span class="en">The keys to Criar Sin Culpas</span></span>
     </div>
     <div class="badges">
-      <span class="badge badge-calm">Cálido · No transaccional</span>
+      <span class="badge badge-calm"><span class="es">Cálido · No transaccional</span><span class="en">Warm · Not transactional</span></span>
     </div>
     <p class="script">
-      "Entonces…<br><br>
+      <span class="es">"Entonces…<br><br>
       esta ya no es una entrega de archivos.<br><br>
       Realmente es una entrega de un ecosistema funcional.<br><br>
       Y la idea es que ahora tengas claridad sobre:<br><br>
       dónde vive todo,<br>
       cómo evoluciona,<br>
-      y cómo seguimos creciendo sin perder coherencia."
+      y cómo seguimos creciendo sin perder coherencia."</span><span class="en" style="display:none">"So…<br><br>
+      this is no longer a file handoff.<br><br>
+      It really is the handoff of a functional ecosystem.<br><br>
+      And the idea is that you now have clarity about:<br><br>
+      where everything lives,<br>
+      how it evolves,<br>
+      and how we keep growing without losing coherence."</span>
     </p>
   </div>
 
@@ -361,54 +447,71 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
   <div class="slide-block">
     <div class="slide-header">
       <span class="slide-num">10 / 14</span>
-      <span class="slide-name">Un ritmo simple</span>
+      <span class="slide-name"><span class="es">Un ritmo simple</span><span class="en">A simple rhythm</span></span>
     </div>
     <div class="badges">
-      <span class="badge badge-danger">N5 · Este slide importa mucho</span>
+      <span class="badge badge-danger"><span class="es">N5 · Este slide importa mucho</span><span class="en">N5 · This slide matters a lot</span></span>
     </div>
     <p class="script">
-      "Y creo que aquí aprendimos algo importante también.<br><br>
+      <span class="es">"Y creo que aquí aprendimos algo importante también.<br><br>
       El proyecto ya se volvió suficientemente interconectado…<br><br>
-      que necesitamos un ritmo operativo un poco más claro."
+      que necesitamos un ritmo operativo un poco más claro."</span><span class="en" style="display:none">"And I think we learned something important here too.<br><br>
+      The project has become interconnected enough…<br><br>
+      that we need a slightly clearer operational rhythm."</span>
     </p>
     <div class="rule"></div>
     <p class="script">
-      "No para volver esto complicado.<br><br>
-      Sino exactamente para evitar caos."
+      <span class="es">"No para volver esto complicado.<br><br>
+      Sino exactamente para evitar caos."</span><span class="en" style="display:none">"Not to make this complicated.<br><br>
+      But precisely to avoid chaos."</span>
     </p>
     <div class="rule"></div>
     <p class="script">
-      "Creo que lo que mejor funciona para nosotros…<br><br>
+      <span class="es">"Creo que lo que mejor funciona para nosotros…<br><br>
       es que tú sigas trabajando de la manera más natural para ti:<br><br>
       ideas,<br>
       notas,<br>
       voz,<br>
       observaciones,<br>
       inspiración…<br><br>
-      y luego yo traduzco eso estructuralmente dentro del sistema."
+      y luego yo traduzco eso estructuralmente dentro del sistema."</span><span class="en" style="display:none">"I think what works best for us…<br><br>
+      is that you keep working in the most natural way for you:<br><br>
+      ideas,<br>
+      notes,<br>
+      voice,<br>
+      observations,<br>
+      inspiration…<br><br>
+      and then I translate that structurally inside the system."</span>
     </p>
     <div class="rule"></div>
     <p class="script">
-      "Porque ahora el valor no está solo en el contenido.<br><br>
-      También está en la continuidad."
+      <span class="es">"Porque ahora el valor no está solo en el contenido.<br><br>
+      También está en la continuidad."</span><span class="en" style="display:none">"Because now the value isn't just in the content.<br><br>
+      It's also in the continuity."</span>
     </p>
-    <div class="dir gold"><strong>PAUSA.</strong> Esa línea aterriza. No la atropelles.</div>
+    <div class="dir gold"><strong><strong><span class="es">PAUSA.</span><span class="en">PAUSE.</span></strong> <span class="es">Esa línea aterriza. No la atropelles.</span><span class="en">That line lands. Don't rush past it.</span></div>
   </div>
 
   <!-- 11 -->
   <div class="slide-block">
     <div class="slide-header">
       <span class="slide-num">11 / 14</span>
-      <span class="slide-name">Lo que viene · Fase II</span>
+      <span class="slide-name"><span class="es">Lo que viene · Fase II</span><span class="en">What comes next · Phase II</span></span>
     </div>
     <p class="script">
-      "Fase II ya no se trata de construir la base.<br><br>
+      <span class="es">"Fase II ya no se trata de construir la base.<br><br>
       La base ya existe.<br><br>
       Ahora se trata de:<br><br>
       operacionalizar,<br>
       observar señales reales,<br>
       prepararnos para visibilidad más grande,<br>
-      y dejar que el sistema evolucione con intención."
+      y dejar que el sistema evolucione con intención."</span><span class="en" style="display:none">"Phase II is no longer about building the foundation.<br><br>
+      The foundation already exists.<br><br>
+      Now it's about:<br><br>
+      operationalizing,<br>
+      observing real signals,<br>
+      preparing for greater visibility,<br>
+      and letting the system evolve with intention."</span>
     </p>
   </div>
 
@@ -416,37 +519,44 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
   <div class="slide-block">
     <div class="slide-header">
       <span class="slide-num">12 / 14</span>
-      <span class="slide-name">Propuesta de colaboración</span>
+      <span class="slide-name"><span class="es">Propuesta de colaboración</span><span class="en">Collaboration proposal</span></span>
     </div>
     <div class="badges">
-      <span class="badge badge-danger">No te disculpes</span>
-      <span class="badge badge-danger">No sobreexpliques</span>
-      <span class="badge badge-danger">No negocies contra ti mismo</span>
+      <span class="badge badge-danger"><span class="es">No te disculpes</span><span class="en">Don't apologize</span></span>
+      <span class="badge badge-danger"><span class="es">No sobreexpliques</span><span class="en">Don't over-explain</span></span>
+      <span class="badge badge-danger"><span class="es">No negocies contra ti mismo</span><span class="en">Don't negotiate against yourself</span></span>
     </div>
     <p class="script">
-      "Lo que intenté hacer aquí…<br><br>
+      <span class="es">"Lo que intenté hacer aquí…<br><br>
       fue separar dos niveles de colaboración posibles.<br><br>
       Uno más estratégico y liviano.<br><br>
-      Y otro donde sigo participando activamente en evolución, implementación y crecimiento del sistema."
+      Y otro donde sigo participando activamente en evolución, implementación y crecimiento del sistema."</span><span class="en" style="display:none">"What I tried to do here…<br><br>
+      was separate two possible levels of collaboration.<br><br>
+      One more strategic and light.<br><br>
+      And another where I continue to actively participate in the evolution, implementation, and growth of the system."</span>
     </p>
-    <div class="dir red"><strong>Cállate.</strong> Presenta las opciones. Luego espera. Deja que ella procese. El silencio es tuyo.</div>
+    <div class="dir red"><strong><strong><span class="es">Cállate.</span><span class="en">Shut up.</span></strong> <span class="es">Presenta las opciones. Luego espera. Deja que ella procese. El silencio es tuyo.</span><span class="en">Present the options. Then wait. Let her process. The silence is yours.</span></div>
   </div>
 
   <!-- 13 -->
   <div class="slide-block">
     <div class="slide-header">
       <span class="slide-num">13 / 14</span>
-      <span class="slide-name">Criar sin culpa también necesita operar sin caos</span>
+      <span class="slide-name"><span class="es">Criar sin culpa también necesita operar sin caos</span><span class="en">Parenting without guilt also needs to operate without chaos</span></span>
     </div>
     <div class="badges">
-      <span class="badge badge-slow">Lento · Reflexivo</span>
+      <span class="badge badge-slow"><span class="es">Lento · Reflexivo</span><span class="en">Slow · Reflective</span></span>
     </div>
     <p class="script">
-      "Creo que esta frase resume bastante bien lo que pasó.<br><br>
+      <span class="es">"Creo que esta frase resume bastante bien lo que pasó.<br><br>
       Criar Sin Culpas no solo necesita crecer.<br><br>
       Necesita crecer sin caos.<br><br>
       Y honestamente…<br><br>
-      siento que eso es exactamente lo que empezamos a construir aquí."
+      siento que eso es exactamente lo que empezamos a construir aquí."</span><span class="en" style="display:none">"I think this phrase sums up pretty well what happened.<br><br>
+      Criar Sin Culpas doesn't just need to grow.<br><br>
+      It needs to grow without chaos.<br><br>
+      And honestly…<br><br>
+      I feel that's exactly what we started building here."</span>
     </p>
   </div>
 
@@ -454,18 +564,35 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
   <div class="slide-block">
     <div class="slide-header">
       <span class="slide-num">14 / 14</span>
-      <span class="slide-name">Gracias</span>
+      <span class="slide-name"><span class="es">Gracias</span><span class="en">Thank you</span></span>
     </div>
     <div class="badges">
-      <span class="badge badge-silence">Genuino · Sin apuro · Dos líneas. Nada más.</span>
+      <span class="badge badge-silence"><span class="es">Genuino · Sin apuro · Dos líneas. Nada más.</span><span class="en">Genuine · No rush · Two lines. Nothing more.</span></span>
     </div>
     <p class="script">
-      "Gracias por confiar en mí para construir esto contigo."<br><br>
-      "Creo que apenas estamos empezando."
+      <span class="es">"Gracias por confiar en mí para construir esto contigo."<br><br>
+      "Creo que apenas estamos empezando."</span><span class="en" style="display:none">"Thank you for trusting me to build this with you."<br><br>
+      "I think we're just getting started."</span>
     </p>
-    <div class="dir red"><strong>No hay CTA.</strong> No preguntes nada. No pidas feedback. No llenes el silencio. Deja que el peso de todo lo que mostraste haga su trabajo.</div>
+    <div class="dir red"><strong><strong><span class="es">No hay CTA.</span><span class="en">No CTA.</span></strong> <span class="es">No preguntes nada. No pidas feedback. No llenes el silencio. Deja que el peso de todo lo que mostraste haga su trabajo.</span><span class="en">Don't ask anything. Don't ask for feedback. Don't fill the silence. Let the weight of everything you showed do its work.</span></div>
   </div>
 
 </div>
+<script>
+(function(){
+  const KEY = 'lg_deck_lang';
+  let lang = localStorage.getItem(KEY) || 'es';
+  function apply(l){
+    lang = l;
+    localStorage.setItem(KEY, l);
+    document.querySelectorAll('.es,.en').forEach(el=>{
+      el.style.display = el.classList.contains(l) ? (el.tagName === 'SPAN' ? 'inline' : 'block') : 'none';
+    });
+    document.querySelectorAll('.lbtn').forEach(b=>b.classList.toggle('on',b.dataset.l===l));
+  }
+  document.querySelectorAll('.lbtn').forEach(b=>b.addEventListener('click',()=>apply(b.dataset.l)));
+  apply(lang);
+}());
+</script>
 </body>
 </html>

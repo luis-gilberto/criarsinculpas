@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Criar Sin Culpas · Cierre de Fase I</title>
+  <title><span class="es">Criar Sin Culpas · Cierre de Fase I</span><span class="en">Criar Sin Culpas · Phase I Close</span></title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
@@ -152,6 +152,26 @@
       font-size: .58rem; color: var(--text-ghost);
       letter-spacing: .08em;
     }
+
+    /* ─── LANG TOGGLE ─── */
+    .lang-toggle-deck {
+      display: flex; gap: 2px; padding: 3px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.04);
+    }
+    .lang-btn-deck {
+      padding: 4px 11px; border-radius: 999px;
+      font-family: var(--mono); font-size: .58rem;
+      font-weight: 700; letter-spacing: .08em;
+      color: var(--text-ghost); background: none; border: none;
+      cursor: pointer; transition: all .2s;
+    }
+    .lang-btn-deck.active {
+      color: var(--text); background: rgba(255,255,255,.1);
+    }
+    .es { }
+    .en { display: none; } /* initial — JS overrides */
 
     /* ═══════════════════════════════════════════
        SHARED SLIDE ELEMENTS
@@ -761,13 +781,10 @@
       opacity: 1; pointer-events: auto;
     }
     #journeyOverlay iframe {
-      width: 100%;
-      height: calc(100% - 72px);
-      border: none;
-      display: block;
       position: absolute;
-      left: 0;
-      top: 72px;
+      top: 56px; left: 0; right: 0;
+      width: 100%; height: calc(100% - 56px);
+      border: none; display: block;
     }
     .journey-close {
       position: absolute; top: 20px; right: 28px; z-index: 10;
@@ -798,46 +815,46 @@
       <div class="slide-inner bottom">
         <div class="wm"><img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778272963/CSC_Logo_Grayscale_k6uitt.png" alt=""></div>
         <p class="s01-kicker">Luis · StrategyIQ → Nari</p>
-        <h1 class="s01-title">Entregando<br>las <em>llaves.</em></h1>
-        <p class="s01-sub">Hoy cerramos la Fase I con una plataforma viva, más clara, más útil y más alineada con tu forma de acompañar.</p>
-        <div class="s01-badge">Criar Sin Culpas · Cierre de Fase I</div>
+        <h1 class="s01-title"><span class="es">Entregando<br>las <em>llaves.</em></span><span class="en">Handing over<br>the <em>keys.</em></span></h1>
+        <p class="s01-sub"><span class="es">Hoy cerramos la Fase I con una plataforma viva, más clara, más útil y más alineada con tu forma de acompañar.</span><span class="en">Today we close Phase I with a living platform — clearer, more useful, and more aligned with the way you support families.</span></p>
+        <div class="s01-badge"><span class="es">Criar Sin Culpas · Cierre de Fase I</span><span class="en">Criar Sin Culpas · Phase I Close</span></div>
       </div>
       <div class="s01-author">
         <img class="s01-avatar" src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779216966/Nari_xwahmd.png" alt="Nari Fateha" style="filter: brightness(.88) contrast(1.05) saturate(.9) sepia(.08);">
         <div>
           <div class="s01-author-name">Nari Fateha</div>
-          <div class="s01-author-role">Educadora y creadora de Criar Sin Culpas</div>
+          <div class="s01-author-role"><span class="es">Educadora y creadora de Criar Sin Culpas</span><span class="en">Educator and creator of Criar Sin Culpas</span></div>
         </div>
       </div>
-      <div class="phase-tag">Fase I · Cierre · 01 / 14</div>
+      <div class="phase-tag"><span class="es">Fase I · Cierre · 01 / 14</span><span class="en">Phase I · Close · 01 / 14</span></div>
     </div>
 
     <!-- ═══ SLIDE 02 — EVOLUCIÓN ═══ -->
     <div class="slide" data-slide="2">
       <div class="slide-inner">
         <div class="slide-num">02 / 14</div>
-        <div class="eyebrow">Lo que Fase I se volvió</div>
-        <h2 class="slide-title">Esto empezó como una web.<br><em>Se convirtió en un sistema.</em></h2>
+        <div class="eyebrow"><span class="es">Lo que Fase I se volvió</span><span class="en">What Phase I became</span></div>
+        <h2 class="slide-title"><span class="es">Esto empezó como una web.<br><em>Se convirtió en un sistema.</em></span><span class="en">This started as a website.<br><em>It became a system.</em></span></h2>
         <div class="evo-grid">
           <div class="evo-item">
             <span class="evo-num">01</span>
-            <div class="evo-title">Guías para momentos difíciles</div>
-            <div class="evo-desc">Cuatro protocolos de apoyo inmediato para los momentos más intensos de la crianza.</div>
+            <div class="evo-title"><span class="es">Guías para momentos difíciles</span><span class="en">Guides for difficult moments</span></div>
+            <div class="evo-desc"><span class="es">Cuatro protocolos de apoyo inmediato para los momentos más intensos de la crianza.</span><span class="en">Four immediate support protocols for the most intense parenting moments.</span></div>
           </div>
           <div class="evo-item">
             <span class="evo-num">02</span>
-            <div class="evo-title">Método central articulado</div>
-            <div class="evo-desc">La intuición clínica de Nari estructurada en tres capítulos navegables.</div>
+            <div class="evo-title"><span class="es">Método central articulado</span><span class="en">Core method articulated</span></div>
+            <div class="evo-desc"><span class="es">La intuición clínica de Nari estructurada en tres capítulos navegables.</span><span class="en">Nari's clinical intuition structured into three navigable chapters.</span></div>
           </div>
           <div class="evo-item">
             <span class="evo-num">03</span>
-            <div class="evo-title">Experiencia visual calmada</div>
-            <div class="evo-desc">Un sistema cinématográfico que respira y acompaña el estado emocional del usuario.</div>
+            <div class="evo-title"><span class="es">Experiencia visual calmada</span><span class="en">Calmed visual experience</span></div>
+            <div class="evo-desc"><span class="es">Un sistema cinématográfico que respira y acompaña el estado emocional del usuario.</span><span class="en">A cinematic system that breathes and accompanies the user's emotional state.</span></div>
           </div>
           <div class="evo-item">
             <span class="evo-num">04</span>
-            <div class="evo-title">Base para crecimiento futuro</div>
-            <div class="evo-desc">Infraestructura, decisiones y documentación lista para la Fase II.</div>
+            <div class="evo-title"><span class="es">Base para crecimiento futuro</span><span class="en">Foundation for future growth</span></div>
+            <div class="evo-desc"><span class="es">Infraestructura, decisiones y documentación lista para la Fase II.</span><span class="en">Infrastructure, decisions, and documentation ready for Phase II.</span></div>
           </div>
         </div>
         <div class="wm"><img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778272963/CSC_Logo_Grayscale_k6uitt.png" alt=""></div>
@@ -875,17 +892,17 @@
       <!-- LEFT: Quote + steps -->
       <div class="slide-inner" style="justify-content:center; position:relative; z-index:3; max-width:50%;">
         <div class="slide-num" style="color:rgba(242,238,233,.25);">03 / 14</div>
-        <div class="eyebrow coral">Descubrimiento estratégico</div>
+        <div class="eyebrow coral"><span class="es">Descubrimiento estratégico</span><span class="en">Strategic discovery</span></div>
         <div class="pull-quote" style="max-width:22ch; margin-bottom:16px; font-size:clamp(1.6rem, 2.8vw, 2.6rem);">
-          No estábamos diseñando para lectura.<br>Estábamos diseñando para <em>urgencia emocional.</em>
+          <span class="es">No estábamos diseñando para lectura.<br>Estábamos diseñando para <em>urgencia emocional.</em></span><span class="en">We weren't designing for reading.<br>We were designing for <em>emotional urgency.</em></span>
         </div>
-        <div class="quote-attr">— Hallazgo de Fase I</div>
+        <div class="quote-attr"><span class="es">— Hallazgo de Fase I</span><span class="en">— Phase I Finding</span></div>
         <div class="discovery-steps" style="max-width:480px; margin-top:48px;">
-          <div class="d-step"><span class="d-step-num">01</span><span class="d-step-label">Menos ruido</span></div>
-          <div class="d-step"><span class="d-step-num">02</span><span class="d-step-label">Menos carga cognitiva</span></div>
-          <div class="d-step"><span class="d-step-num">03</span><span class="d-step-label">Más calma</span></div>
-          <div class="d-step"><span class="d-step-num">04</span><span class="d-step-label">Más claridad</span></div>
-          <div class="d-step"><span class="d-step-num">05</span><span class="d-step-label">Apoyo inmediato</span></div>
+          <div class="d-step"><span class="d-step-num">01</span><span class="d-step-label"><span class="es">Menos ruido</span><span class="en">Less noise</span></span></div>
+          <div class="d-step"><span class="d-step-num">02</span><span class="d-step-label"><span class="es">Menos carga cognitiva</span><span class="en">Less cognitive load</span></span></div>
+          <div class="d-step"><span class="d-step-num">03</span><span class="d-step-label"><span class="es">Más calma</span><span class="en">More calm</span></span></div>
+          <div class="d-step"><span class="d-step-num">04</span><span class="d-step-label"><span class="es">Más claridad</span><span class="en">More clarity</span></span></div>
+          <div class="d-step"><span class="d-step-num">05</span><span class="d-step-label"><span class="es">Apoyo inmediato</span><span class="en">Immediate support</span></span></div>
         </div>
       </div>
     </div>
@@ -904,25 +921,25 @@
         linear-gradient(to top, rgba(14,11,18,.6) 0%, transparent 40%);"></div>
       <div class="slide-inner" style="position:relative;z-index:2;">
         <div class="slide-num">04 / 14</div>
-        <div class="eyebrow teal">Cambios en el sitio</div>
-        <h2 class="slide-title">La experiencia ahora <em>respira.</em></h2>
+        <div class="eyebrow teal"><span class="es">Cambios en el sitio</span><span class="en">Site changes</span></div>
+        <h2 class="slide-title"><span class="es">La experiencia ahora <em>respira.</em></span><span class="en">The experience now <em>breathes.</em></span></h2>
         <div class="ba-grid">
           <div class="ba-col before">
-            <span class="ba-label">— Antes</span>
+            <span class="ba-label"><span class="es">— Antes</span><span class="en">— Before</span></span>
             <ul class="ba-list">
-              <li>Más contenido que contención.</li>
-              <li>Más navegación que acompañamiento.</li>
-              <li>Más explicación que acción.</li>
-              <li>La experiencia exigía energía del usuario.</li>
+              <li><span class="es">Más contenido que contención.</span><span class="en">More content than containment.</span></li>
+              <li><span class="es">Más navegación que acompañamiento.</span><span class="en">More navigation than accompaniment.</span></li>
+              <li><span class="es">Más explicación que acción.</span><span class="en">More explanation than action.</span></li>
+              <li><span class="es">La experiencia exigía energía del usuario.</span><span class="en">The experience demanded energy from the user.</span></li>
             </ul>
           </div>
           <div class="ba-col after">
-            <span class="ba-label">— Ahora</span>
+            <span class="ba-label"><span class="es">— Ahora</span><span class="en">— Now</span></span>
             <ul class="ba-list">
-              <li>Entrada clara y directa.</li>
-              <li>Guías por momento real, no categoría abstracta.</li>
-              <li>Tono emocionalmente seguro.</li>
-              <li>Diseño calmado que acompaña el estado.</li>
+              <li><span class="es">Entrada clara y directa.</span><span class="en">Clear and direct entry.</span></li>
+              <li><span class="es">Guías por momento real, no categoría abstracta.</span><span class="en">Guides by real moment, not abstract category.</span></li>
+              <li><span class="es">Tono emocionalmente seguro.</span><span class="en">Emotionally safe tone.</span></li>
+              <li><span class="es">Diseño calmado que acompaña el estado.</span><span class="en">Calmed design that accompanies the emotional state.</span></li>
             </ul>
           </div>
         </div>
@@ -934,41 +951,41 @@
     <div class="slide" data-slide="5">
       <div class="slide-inner">
         <div class="slide-num">05 / 14</div>
-        <div class="eyebrow teal">Protocolos de Apoyo</div>
-        <h2 class="slide-title">Cuatro puertas de <em>entrada.</em></h2>
-        <p class="slide-sub" style="margin-bottom:0;">Cada guía responde a un momento real, no a una categoría abstracta.</p>
+        <div class="eyebrow teal"><span class="es">Protocolos de Apoyo</span><span class="en">Support Protocols</span></div>
+        <h2 class="slide-title"><span class="es">Cuatro puertas de <em>entrada.</em></span><span class="en">Four doors of <em>entry.</em></span></h2>
+        <p class="slide-sub" style="margin-bottom:0;"><span class="es">Cada guía responde a un momento real, no a una categoría abstracta.</span><span class="en">Each guide responds to a real moment, not an abstract category.</span></p>
         <div class="protocols-grid">
           <div class="proto-card">
             <span class="proto-num" style="color:var(--coral);">01</span>
             <div class="proto-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="2"/></svg>
             </div>
-            <div class="proto-title">Pantallas</div>
-            <div class="proto-desc">Para los momentos en que la tecnología se vuelve un campo de batalla.</div>
+            <div class="proto-title"><span class="es">Pantallas</span><span class="en">Screens</span></div>
+            <div class="proto-desc"><span class="es">Para los momentos en que la tecnología se vuelve un campo de batalla.</span><span class="en">For the moments when technology becomes a battlefield.</span></div>
           </div>
           <div class="proto-card">
             <span class="proto-num" style="color:var(--coral);">02</span>
             <div class="proto-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 12 C5 9, 8 15, 11 12 C14 9, 17 15, 22 12"/><path d="M2 17 C5 14, 8 20, 11 17 C14 14, 17 20, 22 17"/></svg>
             </div>
-            <div class="proto-title">Escalada emocional</div>
-            <div class="proto-desc">Cuando la intensidad ya pasó el umbral y se necesita contención inmediata.</div>
+            <div class="proto-title"><span class="es">Escalada emocional</span><span class="en">Emotional escalation</span></div>
+            <div class="proto-desc"><span class="es">Cuando la intensidad ya pasó el umbral y se necesita contención inmediata.</span><span class="en">When the intensity has crossed the threshold and immediate containment is needed.</span></div>
           </div>
           <div class="proto-card">
             <span class="proto-num" style="color:var(--teal);">03</span>
             <div class="proto-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
             </div>
-            <div class="proto-title">Sueño</div>
-            <div class="proto-desc">Las noches que se sienten interminables y los ciclos que se rompen.</div>
+            <div class="proto-title"><span class="es">Sueño</span><span class="en">Sleep</span></div>
+            <div class="proto-desc"><span class="es">Las noches que se sienten interminables y los ciclos que se rompen.</span><span class="en">The nights that feel endless and the cycles that break.</span></div>
           </div>
           <div class="proto-card">
             <span class="proto-num" style="color:var(--teal);">04</span>
             <div class="proto-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
             </div>
-            <div class="proto-title">Hermanos</div>
-            <div class="proto-desc">La dinámica entre hermanos como territorio emocional propio.</div>
+            <div class="proto-title"><span class="es">Hermanos</span><span class="en">Siblings</span></div>
+            <div class="proto-desc"><span class="es">La dinámica entre hermanos como territorio emocional propio.</span><span class="en">The sibling dynamic as its own emotional territory.</span></div>
           </div>
         </div>
         <div class="wm"><img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778272963/CSC_Logo_Grayscale_k6uitt.png" alt=""></div>
@@ -979,23 +996,23 @@
     <div class="slide" data-slide="6">
       <div class="slide-inner">
         <div class="slide-num">06 / 14</div>
-        <div class="eyebrow gold">El Método</div>
-        <h2 class="slide-title">Una forma propia de <em>acompañar.</em></h2>
+        <div class="eyebrow gold"><span class="es">El Método</span><span class="en">The Method</span></div>
+        <h2 class="slide-title"><span class="es">Una forma propia de <em>acompañar.</em></span><span class="en">A unique way to <em>accompany.</em></span></h2>
         <div class="method-grid">
           <div class="method-card ch1">
-            <span class="method-ch">Capítulo 01</span>
+            <span class="method-ch"><span class="es">Capítulo 01</span><span class="en">Chapter 01</span></span>
             <div class="method-name"><em>Aceptación</em></div>
-            <div class="method-desc">El punto de partida emocional, antes de cualquier acción. Dejar de pelear con la realidad.</div>
+            <div class="method-desc"><span class="es">El punto de partida emocional, antes de cualquier acción. Dejar de pelear con la realidad.</span><span class="en">The emotional starting point, before any action. Stop fighting reality.</span></div>
           </div>
           <div class="method-card ch2">
-            <span class="method-ch">Capítulo 02</span>
+            <span class="method-ch"><span class="es">Capítulo 02</span><span class="en">Chapter 02</span></span>
             <div class="method-name"><em>Play OS</em></div>
-            <div class="method-desc">El juego como sistema operativo de la conexión. Conectar antes de corregir.</div>
+            <div class="method-desc"><span class="es">El juego como sistema operativo de la conexión. Conectar antes de corregir.</span><span class="en">Play as the operating system of connection. Connect before correcting.</span></div>
           </div>
           <div class="method-card ch3">
-            <span class="method-ch">Capítulo 03</span>
+            <span class="method-ch"><span class="es">Capítulo 03</span><span class="en">Chapter 03</span></span>
             <div class="method-name"><em>Crianza Neutral</em></div>
-            <div class="method-desc">Una forma de criar sin etiquetas, sin culpas, sin recetas. Diseñar el sistema, no reaccionar.</div>
+            <div class="method-desc"><span class="es">Una forma de criar sin etiquetas, sin culpas, sin recetas. Diseñar el sistema, no reaccionar.</span><span class="en">A way to parent without labels, without guilt, without scripts. Design the system, don't just react.</span></div>
           </div>
         </div>
         <div class="wm"><img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778272963/CSC_Logo_Grayscale_k6uitt.png" alt=""></div>
@@ -1006,44 +1023,44 @@
     <div class="slide" data-slide="7">
       <div class="slide-inner">
         <div class="slide-num">07 / 14</div>
-        <div class="eyebrow coral">StrategyIQ · Caso vivo</div>
-        <h2 class="slide-title">El proyecto también<br>generó <em>inteligencia.</em></h2>
+        <div class="eyebrow coral"><span class="es">StrategyIQ · Caso vivo</span><span class="en">StrategyIQ · Live case</span></div>
+        <h2 class="slide-title"><span class="es">El proyecto también<br>generó <em>inteligencia.</em></span><span class="en">The project also<br>generated <em>intelligence.</em></span></h2>
         <div class="intel-list">
 
           <!-- Card 01 — links to Signal Framework -->
           <a class="intel-item" href="https://nari.luis-gilberto.com/files/SIQ_A03_ProtocolSignalFramework_CSC" target="_blank">
             <span class="intel-num">01</span>
             <div>
-              <div class="intel-title">StrategyIQ documentó el hallazgo.</div>
-              <div class="intel-desc">El insight quedó capturado como activo estratégico, no solo como decisión interna.</div>
+              <div class="intel-title"><span class="es">StrategyIQ documentó el hallazgo.</span><span class="en">StrategyIQ documented the finding.</span></div>
+              <div class="intel-desc"><span class="es">El insight quedó capturado como activo estratégico, no solo como decisión interna.</span><span class="en">The insight was captured as a strategic asset, not just an internal decision.</span></div>
             </div>
             <span class="intel-arrow">→</span>
-            <span class="intel-proof">Ver framework ↗</span>
+            <span class="intel-proof"><span class="es">Ver framework ↗</span><span class="en">View framework ↗</span></span>
           </a>
 
           <!-- Card 02 — links to live protocols -->
           <a class="intel-item" href="https://criarsinculpas.com/apoyo/" target="_blank">
             <span class="intel-num">02</span>
             <div>
-              <div class="intel-title">El sitio valida la tesis.</div>
-              <div class="intel-desc">La experiencia en producción demuestra que la hipótesis funciona en el mundo real.</div>
+              <div class="intel-title"><span class="es">El sitio valida la tesis.</span><span class="en">The site validates the thesis.</span></div>
+              <div class="intel-desc"><span class="es">La experiencia en producción demuestra que la hipótesis funciona en el mundo real.</span><span class="en">The production experience proves the hypothesis works in the real world.</span></div>
             </div>
             <span class="intel-arrow">→</span>
-            <span class="intel-proof">Ver experiencia live ↗</span>
+            <span class="intel-proof"><span class="es">Ver experiencia live ↗</span><span class="en">View live experience ↗</span></span>
           </a>
 
           <!-- Card 03 — journey cinematic reveal -->
           <div class="intel-item card03" onclick="openJourney()">
             <span class="intel-num">03</span>
             <div>
-              <div class="intel-title">La tesis fortalece el sitio.</div>
-              <div class="intel-desc">Cada nueva iteración se apoya en el marco, no en la opinión del momento.</div>
+              <div class="intel-title"><span class="es">La tesis fortalece el sitio.</span><span class="en">The thesis strengthens the site.</span></div>
+              <div class="intel-desc"><span class="es">Cada nueva iteración se apoya en el marco, no en la opinión del momento.</span><span class="en">Every new iteration is grounded in the framework, not in the opinion of the moment.</span></div>
             </div>
             <div class="journey-preview-thumb">
               <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779909364/asset_zjkfffoyc_1779909181293_fwvwvg.jpg" alt="Project Journey">
             </div>
             <span class="intel-arrow">→</span>
-            <span class="intel-proof">Ver evolución ↗</span>
+            <span class="intel-proof"><span class="es">Ver evolución ↗</span><span class="en">View evolution ↗</span></span>
           </div>
 
         </div>
@@ -1053,7 +1070,7 @@
 
     <!-- ─── JOURNEY OVERLAY ─── -->
     <div id="journeyOverlay">
-      <button class="journey-close" onclick="closeJourney()">Volver a la presentación</button>
+      <button class="journey-close" onclick="closeJourney()"><span class="es">Volver a la presentación</span><span class="en">Back to presentation</span></button>
       <iframe id="journeyFrame" src="" title="Project Journey · Criar Sin Culpas"></iframe>
     </div>
 
@@ -1061,33 +1078,33 @@
     <div class="slide" data-slide="8">
       <div class="slide-inner">
         <div class="slide-num">08 / 14</div>
-        <div class="eyebrow">Sistema operativo</div>
-        <h2 class="slide-title">Lo invisible también <em>importa.</em></h2>
-        <p class="slide-sub">Detrás del sitio existe una infraestructura que sostiene cada decisión.</p>
+        <div class="eyebrow"><span class="es">Sistema operativo</span><span class="en">Operating system</span></div>
+        <h2 class="slide-title"><span class="es">Lo invisible también <em>importa.</em></span><span class="en">The invisible also <em>matters.</em></span></h2>
+        <p class="slide-sub"><span class="es">Detrás del sitio existe una infraestructura que sostiene cada decisión.</span><span class="en">Behind the site exists an infrastructure that supports every decision.</span></p>
         <div style="display:grid; grid-template-columns: repeat(5,1fr); gap:12px; margin-top:32px;">
           <div class="os-item">
             <span class="os-icon">🧭</span>
-            <div class="os-label">Workspace estratégico</div>
+            <div class="os-label"><span class="es">Workspace estratégico</span><span class="en">Strategic workspace</span></div>
           </div>
           <div class="os-item">
             <span class="os-icon">📋</span>
-            <div class="os-label">Registro de decisiones</div>
+            <div class="os-label"><span class="es">Registro de decisiones</span><span class="en">Decision log</span></div>
           </div>
           <div class="os-item">
             <span class="os-icon">📁</span>
-            <div class="os-label">Documentos organizados</div>
+            <div class="os-label"><span class="es">Documentos organizados</span><span class="en">Organized documents</span></div>
           </div>
           <div class="os-item">
             <span class="os-icon">📅</span>
-            <div class="os-label">Línea de tiempo</div>
+            <div class="os-label"><span class="es">Línea de tiempo</span><span class="en">Timeline</span></div>
           </div>
           <div class="os-item">
             <span class="os-icon">📡</span>
-            <div class="os-label">Señales → acciones</div>
+            <div class="os-label"><span class="es">Señales → acciones</span><span class="en">Signals → actions</span></div>
           </div>
         </div>
         <div class="pull-quote teal" style="margin-top:36px; font-size:1.1rem;">
-          No solo qué hicimos. También <em>por qué lo hicimos.</em>
+          <span class="es">No solo qué hicimos. También <em>por qué lo hicimos.</em></span><span class="en">Not just what we did. Also <em>why we did it.</em></span>
         </div>
         <div class="wm"><img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778272963/CSC_Logo_Grayscale_k6uitt.png" alt=""></div>
       </div>
@@ -1098,34 +1115,34 @@
       <div class="slide-inner">
         <div class="slide-num">09 / 14</div>
         <div class="eyebrow teal">Handoff</div>
-        <h2 class="slide-title">Las llaves de<br><em>Criar Sin Culpas.</em></h2>
+        <h2 class="slide-title"><span class="es">Las llaves de<br><em>Criar Sin Culpas.</em></span><span class="en">The keys to<br><em>Criar Sin Culpas.</em></span></h2>
         <div class="handoff-list">
           <div class="handoff-item">
             <div class="handoff-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
             <div>
-              <div class="handoff-text">Acceso al sitio</div>
-              <div class="handoff-sub">Producción + staging, credenciales y rutas listas.</div>
+              <div class="handoff-text"><span class="es">Acceso al sitio</span><span class="en">Site access</span></div>
+              <div class="handoff-sub"><span class="es">Producción + staging, credenciales y rutas listas.</span><span class="en">Production + staging, credentials and paths ready.</span></div>
             </div>
           </div>
           <div class="handoff-item">
             <div class="handoff-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
             <div>
-              <div class="handoff-text">Acceso a documentos clave</div>
-              <div class="handoff-sub">Workspace organizado por área, con permisos definidos.</div>
+              <div class="handoff-text"><span class="es">Acceso a documentos clave</span><span class="en">Key document access</span></div>
+              <div class="handoff-sub"><span class="es">Workspace organizado por área, con permisos definidos.</span><span class="en">Workspace organized by area, with defined permissions.</span></div>
             </div>
           </div>
           <div class="handoff-item">
             <div class="handoff-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
             <div>
-              <div class="handoff-text">Flujo de revisión</div>
-              <div class="handoff-sub">Un proceso simple para aprobar o pedir ajustes.</div>
+              <div class="handoff-text"><span class="es">Flujo de revisión</span><span class="en">Review flow</span></div>
+              <div class="handoff-sub"><span class="es">Un proceso simple para aprobar o pedir ajustes.</span><span class="en">A simple process to approve or request adjustments.</span></div>
             </div>
           </div>
           <div class="handoff-item">
             <div class="handoff-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
             <div>
-              <div class="handoff-text">Base lista para evolucionar</div>
-              <div class="handoff-sub">Todo construido para crecer sin tener que reempezar.</div>
+              <div class="handoff-text"><span class="es">Base lista para evolucionar</span><span class="en">Foundation ready to evolve</span></div>
+              <div class="handoff-sub"><span class="es">Todo construido para crecer sin tener que reempezar.</span><span class="en">Everything built to grow without having to start over.</span></div>
             </div>
           </div>
         </div>
@@ -1137,22 +1154,22 @@
     <div class="slide" data-slide="10">
       <div class="slide-inner">
         <div class="slide-num">10 / 14</div>
-        <div class="eyebrow">Cómo trabajamos</div>
-        <h2 class="slide-title">Un ritmo <em>simple.</em></h2>
+        <div class="eyebrow"><span class="es">Cómo trabajamos</span><span class="en">How we work</span></div>
+        <h2 class="slide-title"><span class="es">Un ritmo <em>simple.</em></span><span class="en">A <em>simple</em> rhythm.</span></h2>
         <div class="flow-row">
           <div class="flow-node">
             <span class="flow-node-who">Nari</span>
-            <span class="flow-node-action">Texto o nota de voz</span>
+            <span class="flow-node-action"><span class="es">Texto o nota de voz</span><span class="en">Text or voice note</span></span>
           </div>
           <span class="flow-arrow">→</span>
           <div class="flow-node">
             <span class="flow-node-who">Luis</span>
-            <span class="flow-node-action">Organiza la idea</span>
+            <span class="flow-node-action"><span class="es">Organiza la idea</span><span class="en">Organizes the idea</span></span>
           </div>
           <span class="flow-arrow">→</span>
           <div class="flow-node">
             <span class="flow-node-who">Staging</span>
-            <span class="flow-node-action">Propuesta compartida</span>
+            <span class="flow-node-action"><span class="es">Propuesta compartida</span><span class="en">Shared proposal</span></span>
           </div>
           <span class="flow-arrow">→</span>
           <div class="flow-node">
@@ -1162,63 +1179,63 @@
         </div>
         <div class="flow-rules">
           <div class="flow-rule">
-            <span class="flow-rule-label">Ideas crudas</span>
-            <span class="flow-rule-val">Por texto, sin formatear.</span>
+            <span class="flow-rule-label"><span class="es">Ideas crudas</span><span class="en">Raw ideas</span></span>
+            <span class="flow-rule-val"><span class="es">Por texto, sin formatear.</span><span class="en">By text, unformatted.</span></span>
           </div>
           <div class="flow-rule">
-            <span class="flow-rule-label">Una reunión</span>
-            <span class="flow-rule-val">Semanal, una sola.</span>
+            <span class="flow-rule-label"><span class="es">Una reunión</span><span class="en">One meeting</span></span>
+            <span class="flow-rule-val"><span class="es">Semanal, una sola.</span><span class="en">Weekly, just one.</span></span>
           </div>
           <div class="flow-rule">
-            <span class="flow-rule-label">Aprobaciones</span>
-            <span class="flow-rule-val">Claras y rápidas.</span>
+            <span class="flow-rule-label"><span class="es">Aprobaciones</span><span class="en">Approvals</span></span>
+            <span class="flow-rule-val"><span class="es">Claras y rápidas.</span><span class="en">Clear and fast.</span></span>
           </div>
           <div class="flow-rule">
             <span class="flow-rule-label">48 horas</span>
-            <span class="flow-rule-val">Para decisiones urgentes.</span>
+            <span class="flow-rule-val"><span class="es">Para decisiones urgentes.</span><span class="en">For urgent decisions.</span></span>
           </div>
         </div>
         <div class="wm"><img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778272963/CSC_Logo_Grayscale_k6uitt.png" alt=""></div>
       </div>
     </div>
 
-    <!-- ═══ SLIDE 11 — FASE II ═══ -->
+    <!-- ═══ SLIDE 11 — <span class="es">FASE I</span><span class="en">PHASE I</span>I ═══ -->
     <div class="slide" data-slide="11">
       <div class="slide-inner">
         <div class="slide-num">11 / 14</div>
-        <div class="eyebrow coral">Fase II</div>
-        <h2 class="slide-title">Lo que <em>viene.</em></h2>
-        <p class="slide-sub" style="margin-bottom:0;">Operacionalización + preparación para crecimiento.</p>
+        <div class="eyebrow coral"><span class="es">Fase II</span><span class="en">Phase II</span></div>
+        <h2 class="slide-title"><span class="es">Lo que <em>viene.</em></span><span class="en">What <em>comes next.</em></span></h2>
+        <p class="slide-sub" style="margin-bottom:0;"><span class="es">Operacionalización + preparación para crecimiento.</span><span class="en">Operationalization + preparation for growth.</span></p>
         <div class="ph2-grid">
           <div class="ph2-item">
             <span class="ph2-num">01</span>
-            <div class="ph2-title">Preparar tráfico</div>
-            <div class="ph2-desc">Netflix · documental · visibilidad pública.</div>
+            <div class="ph2-title"><span class="es">Preparar tráfico</span><span class="en">Prepare traffic</span></div>
+            <div class="ph2-desc"><span class="es">Netflix · documental · visibilidad pública.</span><span class="en">Netflix · documentary · public visibility.</span></div>
           </div>
           <div class="ph2-item">
             <span class="ph2-num">02</span>
-            <div class="ph2-title">Lista de espera</div>
-            <div class="ph2-desc">Optimizar conversión y experiencia de espera.</div>
+            <div class="ph2-title"><span class="es">Lista de espera</span><span class="en">Waitlist</span></div>
+            <div class="ph2-desc"><span class="es">Optimizar conversión y experiencia de espera.</span><span class="en">Optimize conversion and waitlist experience.</span></div>
           </div>
           <div class="ph2-item">
             <span class="ph2-num">03</span>
-            <div class="ph2-title">Datos de uso</div>
-            <div class="ph2-desc">Revisar señales reales y ajustar.</div>
+            <div class="ph2-title"><span class="es">Datos de uso</span><span class="en">Usage data</span></div>
+            <div class="ph2-desc"><span class="es">Revisar señales reales y ajustar.</span><span class="en">Review real signals and adjust.</span></div>
           </div>
           <div class="ph2-item">
             <span class="ph2-num">04</span>
-            <div class="ph2-title">Fortalecer guías</div>
-            <div class="ph2-desc">Profundizar las cuatro puertas existentes.</div>
+            <div class="ph2-title"><span class="es">Fortalecer guías</span><span class="en">Strengthen guides</span></div>
+            <div class="ph2-desc"><span class="es">Profundizar las cuatro puertas existentes.</span><span class="en">Deepen the four existing entry points.</span></div>
           </div>
           <div class="ph2-item">
             <span class="ph2-num">05</span>
-            <div class="ph2-title">Comunicación comercial</div>
-            <div class="ph2-desc">Activar conversión sin perder tono.</div>
+            <div class="ph2-title"><span class="es">Comunicación comercial</span><span class="en">Commercial communication</span></div>
+            <div class="ph2-desc"><span class="es">Activar conversión sin perder tono.</span><span class="en">Activate conversion without losing tone.</span></div>
           </div>
           <div class="ph2-item">
             <span class="ph2-num">06</span>
-            <div class="ph2-title">Productos · alianzas</div>
-            <div class="ph2-desc">Definir próximos pasos estratégicos.</div>
+            <div class="ph2-title"><span class="es">Productos · alianzas</span><span class="en">Products · partnerships</span></div>
+            <div class="ph2-desc"><span class="es">Definir próximos pasos estratégicos.</span><span class="en">Define next strategic steps.</span></div>
           </div>
         </div>
         <div class="wm"><img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1778272963/CSC_Logo_Grayscale_k6uitt.png" alt=""></div>
@@ -1229,31 +1246,31 @@
     <div class="slide" data-slide="12">
       <div class="slide-inner">
         <div class="slide-num">12 / 14</div>
-        <div class="eyebrow gold">Inversión · Ciclos de 8 semanas</div>
-        <h2 class="slide-title">Propuesta de <em>colaboración.</em></h2>
+        <div class="eyebrow gold"><span class="es">Inversión · Ciclos de 8 semanas</span><span class="en">Investment · 8-week cycles</span></div>
+        <h2 class="slide-title"><span class="es">Propuesta de <em>colaboración.</em></span><span class="en">Collaboration <em>proposal.</em></span></h2>
         <div class="invest-grid">
           <div class="invest-card">
-            <span class="invest-tier">Opción 01</span>
-            <div class="invest-name">Strategic Partner</div>
+            <span class="invest-tier"><span class="es">Opción 01</span><span class="en">Option 01</span></span>
+            <div class="invest-name"><span class="es">Strategic Partner</span><span class="en">Strategic Partner</span></div>
             <div class="invest-price">$3,500 <span>USD / mes</span></div>
             <ul class="invest-features">
-              <li>1 reunión semanal</li>
-              <li>Soporte estratégico async</li>
-              <li>Gestión del roadmap</li>
-              <li>Revisión de señales</li>
-              <li>Optimización ligera del sitio + workspace</li>
+              <li><span class="es">1 reunión semanal</span><span class="en">1 weekly meeting</span></li>
+              <li><span class="es">Soporte estratégico async</span><span class="en">Async strategic support</span></li>
+              <li><span class="es">Gestión del roadmap</span><span class="en">Roadmap management</span></li>
+              <li><span class="es">Revisión de señales</span><span class="en">Signal review</span></li>
+              <li><span class="es">Optimización ligera del sitio + workspace</span><span class="en">Light site + workspace optimization</span></li>
             </ul>
           </div>
           <div class="invest-card featured">
-            <span class="invest-tier">Opción 02</span>
-            <div class="invest-name">Strategic + Operational Partner</div>
+            <span class="invest-tier"><span class="es">Opción 02</span><span class="en">Option 02</span></span>
+            <div class="invest-name"><span class="es">Strategic + Operational Partner</span><span class="en">Strategic + Operational Partner</span></div>
             <div class="invest-price">$4,500 <span>USD / mes</span></div>
             <ul class="invest-features">
-              <li>Todo lo anterior, más:</li>
-              <li>Implementación activa</li>
-              <li>Nuevos flujos y producción de materiales</li>
-              <li>Evolución del sistema</li>
-              <li>Preparación documental · comercial</li>
+              <li><span class="es">Todo lo anterior, más:</span><span class="en">Everything above, plus:</span></li>
+              <li><span class="es">Implementación activa</span><span class="en">Active implementation</span></li>
+              <li><span class="es">Nuevos flujos y producción de materiales</span><span class="en">New flows and materials production</span></li>
+              <li><span class="es">Evolución del sistema</span><span class="en">System evolution</span></li>
+              <li><span class="es">Preparación documental · comercial</span><span class="en">Documentary · commercial preparation</span></li>
             </ul>
           </div>
         </div>
@@ -1266,19 +1283,19 @@
       <div class="bg-photo s13-bg"></div>
       <div class="slide-inner" style="justify-content:center;">
         <div class="slide-num" style="color:rgba(242,238,233,.2);">13 / 14</div>
-        <div class="eyebrow" style="margin-bottom:24px;">Fase I → Fase II</div>
+        <div class="eyebrow" style="margin-bottom:24px;"><span class="es">Fase I → Fase II</span><span class="en">Phase I → Phase II</span></div>
         <h2 class="slide-title" style="font-size: clamp(2.4rem, 5vw, 5.5rem); max-width:18ch;">
-          Criar sin culpa también necesita<br>operar sin <em class="coral">caos.</em>
+          <span class="es">Criar sin culpa también necesita<br>operar sin <em class="coral">caos.</em></span><span class="en">Parenting without guilt also needs<br>to operate without <em class="coral">chaos.</em></span>
         </h2>
         <div class="rule" style="margin: 28px 0;"></div>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:560px;">
           <div style="padding:20px 24px; border-radius:14px; border:1px solid rgba(255,255,255,.06); background:var(--void-mid);">
             <div style="font-family:var(--mono); font-size:.58rem; color:var(--text-ghost); letter-spacing:.12em; margin-bottom:8px;">FASE I</div>
-            <div style="font-family:var(--serif); font-size:1.1rem; color:var(--text-dim);">Construyó la base.</div>
+            <div style="font-family:var(--serif); font-size:1.1rem; color:var(--text-dim);"><span class="es">Construyó la base.</span><span class="en">Built the foundation.</span></div>
           </div>
           <div style="padding:20px 24px; border-radius:14px; border:1px solid rgba(97,209,196,.2); background:rgba(97,209,196,.04);">
-            <div style="font-family:var(--mono); font-size:.58rem; color:var(--teal); letter-spacing:.12em; margin-bottom:8px;">FASE II</div>
-            <div style="font-family:var(--serif); font-size:1.1rem; color:var(--text);">Convierte la base en crecimiento sostenido.</div>
+            <div style="font-family:var(--mono); font-size:.58rem; color:var(--teal); letter-spacing:.12em; margin-bottom:8px;"><span class="es">FASE II</span><span class="en">PHASE II</span></div>
+            <div style="font-family:var(--serif); font-size:1.1rem; color:var(--text);"><span class="es">Convierte la base en crecimiento sostenido.</span><span class="en">Turns the foundation into sustained growth.</span></div>
           </div>
         </div>
       </div>
@@ -1289,15 +1306,15 @@
       <div class="bg-photo s14-bg"></div>
       <div class="slide-inner centered">
         <div class="slide-num" style="color:rgba(242,238,233,.2);">14 / 14</div>
-        <p class="s14-script">Gracias, Nari.</p>
+        <p class="s14-script"><span class="es"><span class="es">Gracias, Nari.</span><span class="en">Thank you, Nari.</span></span><span class="en">Thank you, Nari.</span></p>
         <svg class="squiggle" width="80" height="13" viewBox="0 0 80 14" fill="none">
           <path d="M2 7 C9 2, 16 12, 23 7 C30 2, 37 12, 44 7 C51 2, 58 12, 65 7 C71 2, 77 12, 78 7" stroke="#C9A96E" stroke-width="1.4" stroke-linecap="round" fill="none"/>
         </svg>
         <p style="font-family:var(--serif); font-size:1.1rem; font-style:italic; color:var(--text-dim); max-width:36ch; line-height:1.65; margin-bottom:28px;">
-          Esto fue creado con cuidado, para familias reales.
+          <span class="es"><span class="es"><span class="es">Esto fue creado con cuidado, para familias reales.</span><span class="en">This was built with care, for real families.</span></span><span class="en">This was built with care, for real families.</span></span><span class="en">This was built with care, for real families.</span>
         </p>
         <div style="font-family:var(--mono); font-size:.6rem; color:var(--text-ghost); letter-spacing:.12em;">
-          Luis · StrategyIQ → Criar Sin Culpas · Cierre de Fase I
+          <span class="es">Luis · StrategyIQ → Criar Sin Culpas · Cierre de Fase I</span><span class="en">Luis · StrategyIQ → Criar Sin Culpas · Phase I Close</span>
         </div>
       </div>
     </div>
@@ -1311,9 +1328,15 @@
       <span class="key-hint">← → · Space</span>
       <span class="nav-counter" id="navCounter">01 / 14</span>
     </div>
-    <div class="nav-buttons">
-      <button class="nav-btn" id="prevBtn" disabled>←</button>
-      <button class="nav-btn" id="nextBtn">→</button>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="lang-toggle-deck">
+        <button class="lang-btn-deck active" data-lang="es">ES</button>
+        <button class="lang-btn-deck" data-lang="en">EN</button>
+      </div>
+      <div class="nav-buttons">
+        <button class="nav-btn" id="prevBtn" disabled>←</button>
+        <button class="nav-btn" id="nextBtn">→</button>
+      </div>
     </div>
   </div>
 
@@ -1362,6 +1385,29 @@
     if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'ArrowDown') { e.preventDefault(); goTo(current + 1); }
     if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')  { e.preventDefault(); goTo(current - 1); }
   });
+}());
+
+/* ─── LANGUAGE TOGGLE ─── */
+(function() {
+  const LANG_KEY = 'lg_deck_lang';
+  let lang = localStorage.getItem(LANG_KEY) || 'es';
+
+  function applyLang(l) {
+    lang = l;
+    localStorage.setItem(LANG_KEY, l);
+    document.querySelectorAll('.es, .en').forEach(el => {
+      el.style.display = el.classList.contains(l) ? (el.tagName === 'SPAN' ? 'inline' : 'block') : 'none';
+    });
+    document.querySelectorAll('.lang-btn-deck').forEach(b => {
+      b.classList.toggle('active', b.dataset.lang === l);
+    });
+  }
+
+  document.querySelectorAll('.lang-btn-deck').forEach(b => {
+    b.addEventListener('click', () => applyLang(b.dataset.lang));
+  });
+
+  applyLang(lang);
 }());
 
 /* ─── JOURNEY OVERLAY ─── */
