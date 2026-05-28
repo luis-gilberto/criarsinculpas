@@ -8,6 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+a { color: inherit !important; text-decoration: none !important; }
+.tile, .olink, .backlink { color: var(--text) !important; }
+.tile:hover, .olink:hover, .backlink:hover { color: var(--teal) !important; }
 :root {
   --bg:#0f0e11; --card:#161519; --lift:#1c1a20;
   --border:rgba(255,255,255,.07); --border2:rgba(255,255,255,.12);
@@ -20,8 +23,6 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased; overflow-x: hidden;}
-a, a:visited { text-decoration: none; color: inherit; }
-a:hover { color: var(--teal); }
 body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.022;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px}
 
 /* SCROLL PROGRESS BAR */
@@ -74,7 +75,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 #dpCard {
   position: fixed;
   left: 50%; top: 50%;
-  transform: translate(-50%, -45%) scale(0.95);
+  transform: translate(-50%, -50%) scale(0.95);
   z-index: 1001;
   width: 90vw;
   max-width: 850px;
@@ -89,7 +90,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
   display: flex;
   flex-direction: column;
 }
-#dpCard.visible { opacity: 1; transform: translate(-50%, -50%) scale(1); pointer-events: auto; }
+#dpCard.visible { opacity: 1; transform: translate(-50%, -50%) scale(1); pointer-events: none; }
 .preview-cradle { width: 100%; height: 62vh; background: #050406; display: flex; align-items: center; justify-content: center; padding: 40px; }
 .preview-img { max-width: 100%; max-height: 100%; object-fit: contain; box-shadow: 0 20px 80px rgba(0,0,0,0.8); border-radius: 4px; }
 .preview-info { padding: 30px 40px; display: flex; justify-content: space-between; align-items: center; gap: 30px; border-top: 1px solid var(--border); background: var(--card); }
@@ -451,13 +452,8 @@ document.querySelectorAll('.tile').forEach(tile => {
     });
     tile.addEventListener('mouseleave', () => {
         clearTimeout(hoverTimer);
-        // Only close on mouseleave if the modal wasn't clicked into
-        if(!card.matches(':hover')) closeZoom();
     });
 });
-
-// Keep modal open when hovering over it, close when leaving
-card.addEventListener('mouseleave', () => closeZoom());
 
 overlay.addEventListener('click', closeZoom);
 
