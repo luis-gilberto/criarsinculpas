@@ -44,7 +44,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .tb-right{
   display:flex;
   align-items:center;
-  gap:24px;
+  gap:24px; /* Force breathing room between elements */
   flex-shrink:0;
 }
 .ltog{display:flex;gap:2px;padding:3px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.03)}
@@ -156,8 +156,8 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 
 @media(max-width:700px){
   .topbar{padding:12px 20px}
-  .tb-right{gap:12px}
-  .backlink{font-size:10px}
+  .tb-right{gap:12px;}
+  .backlink{font-size:10px;} /* Slightly smaller on mobile to prevent crowding */
   .page{padding:40px 20px 80px}
   .preview-info { flex-direction: column; text-align: center; gap: 20px; padding: 20px; }
   .preview-btn { width: 100%; }
