@@ -631,6 +631,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 (function(){
   const KEY = 'lg_deck_lang';
   let lang = localStorage.getItem(KEY) || 'es';
+  window.addEventListener('pageshow', (e) => { if (e.persisted) document.body.style.opacity = '1'; });
   function apply(l){
     lang = l;
     localStorage.setItem(KEY, l);

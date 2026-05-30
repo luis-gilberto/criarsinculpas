@@ -1083,7 +1083,7 @@
         <div class="pull-quote" style="max-width:22ch; margin-bottom:16px; font-size:clamp(1.6rem, 2.8vw, 2.6rem);">
           <span class="es">No estábamos diseñando para lectura.<br>Estábamos diseñando para <em>urgencia emocional.</em></span><span class="en">We weren't designing for reading.<br>We were designing for <em>emotional urgency.</em></span>
         </div>
-        <div class="quote-attr"><span class="es">— Hallazgo de Fase I</span><span class="en">— Phase I Finding</span></div>
+        <div class="quote-attr"><span class="es">· Hallazgo de Fase I</span><span class="en">· Phase I Finding</span></div>
         <div class="discovery-steps" style="max-width:480px; margin-top:48px;">
           <div class="d-step"><span class="d-step-num">01</span><span class="d-step-label"><span class="es">Menos ruido</span><span class="en">Less noise</span></span></div>
           <div class="d-step"><span class="d-step-num">02</span><span class="d-step-label"><span class="es">Menos carga cognitiva</span><span class="en">Less cognitive load</span></span></div>
@@ -1112,7 +1112,7 @@
         <h2 class="slide-title"><span class="es">La experiencia ahora <em>respira.</em></span><span class="en">The experience now <em>breathes.</em></span></h2>
         <div class="ba-grid">
           <div class="ba-col before">
-            <span class="ba-label"><span class="es">— Antes</span><span class="en">— Before</span></span>
+            <span class="ba-label"><span class="es">· Antes</span><span class="en">· Before</span></span>
             <ul class="ba-list">
               <li><span class="es">Más contenido que contención.</span><span class="en">More content than containment.</span></li>
               <li><span class="es">Más navegación que acompañamiento.</span><span class="en">More navigation than accompaniment.</span></li>
@@ -1121,7 +1121,7 @@
             </ul>
           </div>
           <div class="ba-col after">
-            <span class="ba-label"><span class="es">— Ahora</span><span class="en">— Now</span></span>
+            <span class="ba-label"><span class="es">· Ahora</span><span class="en">· Now</span></span>
             <ul class="ba-list">
               <li><span class="es">Entrada clara y directa.</span><span class="en">Clear and direct entry.</span></li>
               <li><span class="es">Guías por momento real, no categoría abstracta.</span><span class="en">Guides by real moment, not abstract category.</span></li>
@@ -1606,6 +1606,8 @@
 (function() {
   const LANG_KEY = 'lg_deck_lang';
   let lang = localStorage.getItem(LANG_KEY) || 'es';
+
+  window.addEventListener('pageshow', (e) => { if (e.persisted) document.body.style.opacity = '1'; });
 
   function applyLang(l) {
     lang = l;

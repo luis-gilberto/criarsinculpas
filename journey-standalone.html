@@ -365,6 +365,8 @@ function applyLang(l){
 document.querySelectorAll('.lbtn').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.l)));
 applyLang(lang);
 
+window.addEventListener('pageshow', (e) => { if (e.persisted) document.body.style.opacity = '1'; });
+
 /* ── SCROLL PROGRESS BAR ── */
 const spf = document.getElementById('spf');
 const pbarFill = document.getElementById('pbarFill');

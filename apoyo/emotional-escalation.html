@@ -750,7 +750,7 @@
 
             <p class="hero-lead" style="margin-top: 10px;" data-i18n="esc_hero_p2" data-es="Respira un momento. No estás fallando. Tu calma ayuda más que mil explicaciones. No necesitas arreglarlo todo en ese momento." data-en="Take a breath. You are not failing. Your calm helps more than a thousand explanations. You don't need to fix everything right then.">Respira un momento. No estás fallando. Tu calma ayuda más que mil explicaciones. No necesitas arreglarlo todo en ese momento.</p>
 
-            <p class="hero-intro" data-i18n="intro_body" data-es="Aquí tienes frases cortas para usar en el momento, sin explicar, sin corregir, sin entrar en lucha." data-en="Here are short phrases to use in the moment — no explaining, no correcting, no power struggle.">Aquí tienes frases cortas para usar en el momento, sin explicar, sin corregir, sin entrar en lucha.</p>
+            <p class="hero-intro" data-i18n="intro_body" data-es="Aquí tienes frases cortas para usar en el momento, sin explicar, sin corregir, sin entrar en lucha." data-en="Here are short phrases to use in the moment · no explaining, no correcting, no power struggle.">Aquí tienes frases cortas para usar en el momento, sin explicar, sin corregir, sin entrar en lucha.</p>
             <!-- Mobile cards (shown here, hidden on desktop — desktop shows in right column) -->
             <div id="mobile-cards-section">
               <span class="sec-lbl" data-i18n="cards_intro" data-es="Elige tu respuesta · Toca para copiar" data-en="Choose your response · Tap to copy">Elige tu respuesta · Toca para copiar</span>
@@ -908,6 +908,8 @@
     // ─────────────────────────────────────────
     let lang = localStorage.getItem('lg_parent_lang') || 'es';
     let isDesktop = false;
+
+    window.addEventListener('pageshow', (e) => { if (e.persisted) document.body.style.opacity = '1'; });
 
     const toast    = document.getElementById('toast');
     const toastMsg = document.getElementById('toast-msg');

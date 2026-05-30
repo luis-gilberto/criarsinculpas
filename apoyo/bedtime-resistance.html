@@ -842,6 +842,8 @@
     // ─────────────────────────────────────────
     let lang = localStorage.getItem('lg_parent_lang') || 'es';
     let isDesktop = false;
+
+    window.addEventListener('pageshow', (e) => { if (e.persisted) document.body.style.opacity = '1'; });
     const toast    = document.getElementById('toast');
     const toastMsg = document.getElementById('toast-msg');
     let toastTimer;

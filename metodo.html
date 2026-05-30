@@ -1091,6 +1091,8 @@
     const STORAGE_KEY = 'lg_parent_lang';
     let lang = localStorage.getItem(STORAGE_KEY) || 'es';
 
+    window.addEventListener('pageshow', (e) => { if (e.persisted) document.body.style.opacity = '1'; });
+
     function applyLang(l) {
       lang = l;
       localStorage.setItem(STORAGE_KEY, l);

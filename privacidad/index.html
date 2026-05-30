@@ -633,6 +633,8 @@
 
   <script>
   (function () {
+    window.addEventListener('pageshow', (e) => { if (e.persisted) document.body.style.opacity = '1'; });
+
     const STORAGE_KEY = 'lg_parent_lang';
     let lang = localStorage.getItem(STORAGE_KEY) || 'es';
 
