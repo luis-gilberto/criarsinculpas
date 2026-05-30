@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <title>Criar Sin Culpas · Aprender</title>
+  <meta name="description" content="The First 5 Minutes. A calm-response guide for lowering the intensity before escalation.">
+  <link rel="canonical" href="https://criarsinculpas.com/aprende/">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <script>
+    if (window.location.hostname === 'criarsinculpas.com') {
+      const script = document.createElement('script');
+      script.defer = true;
+      script.setAttribute('data-domain', 'criarsinculpas.com');
+      script.src = 'https://plausible.io/js/script.manual.js';
+      document.head.appendChild(script);
+    }
+
+    window.plausible = window.plausible || function() {
+      if (window.location.hostname !== 'criarsinculpas.com') {
+        console.log('Plausible [Local]:', arguments[0], arguments[1]);
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --void:        #0e0b12;
+      --void-mid:    #13101a;
+      --void-lift:   #1a1624;
+      --text:        #F2EEE9;
+      --text-dim:    rgba(242,238,233,.62);
+      --text-ghost:  rgba(242,238,233,.34);
+      --gold:        #C9A96E;
+
+      --serif:  'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
+      --sans:   'DM Sans', system-ui, sans-serif;
+
+      --ease-silk:   cubic-bezier(0.16, 1, 0.3, 1);
+      --pill: 999px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body {
+      font-family: var(--sans);
+      background: var(--void);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100dvh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse at 70% 10%, rgba(201,169,110,.06) 0%, transparent 55%),
+        radial-gradient(ellipse at 20% 90%, rgba(201,169,110,.035) 0%, transparent 60%);
+    }
+
+    .grain {
+      position: fixed; inset: 0; z-index: 1;
+      pointer-events: none; opacity: .022;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 192px;
+    }
+
+    main {
+      position: relative; z-index: 2;
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: max(88px, 12vh) 22px 56px;
+    }
+
+    .hero {
+      width: 100%;
+      max-width: 980px;
+      padding: 56px 52px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.07);
+      background: rgba(255,255,255,.03);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; inset: -30%;
+      background: radial-gradient(circle at 40% 30%, rgba(201,169,110,.10), transparent 55%);
+      pointer-events: none;
+      opacity: .7;
+    }
+
+    .hero > * { position: relative; z-index: 1; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: rgba(201,169,110,.7);
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(2.4rem, 4.8vw, 4.1rem);
+      letter-spacing: .01em;
+      line-height: 1.05;
+      margin-bottom: 14px;
+    }
+
+    .subcopy {
+      font-size: 1.02rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+      margin-bottom: 10px;
+      max-width: 62ch;
+    }
+
+    .paragraph {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: rgba(242,238,233,.70);
+      line-height: 1.65;
+      max-width: 62ch;
+      margin-bottom: 26px;
+    }
+
+    .waitlist-row {
+      display: flex;
+      gap: 10px;
+      max-width: 520px;
+      width: 100%;
+      margin-top: 6px;
+    }
+
+    .waitlist-row input {
+      flex: 1;
+      min-width: 0;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 12px;
+      padding: 14px 18px;
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: .92rem;
+      outline: none;
+      transition: border-color .3s var(--ease-silk);
+    }
+
+    .waitlist-row input:focus { border-color: rgba(201,169,110,.55); }
+    .waitlist-row input::placeholder { color: var(--text-ghost); }
+
+    .waitlist-row button {
+      border: none;
+      border-radius: 12px;
+      padding: 14px 22px;
+      font-family: var(--sans);
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      background: rgba(201,169,110,.92);
+      color: #0e0b12;
+      box-shadow: 0 10px 34px rgba(0,0,0,.28);
+      transition: transform .35s var(--ease-silk), box-shadow .35s var(--ease-silk), background .35s var(--ease-silk);
+      flex-shrink: 0;
+    }
+
+    .waitlist-row button:hover {
+      transform: translateY(-1px);
+      background: rgba(201,169,110,1);
+      box-shadow: 0 14px 42px rgba(0,0,0,.38);
+    }
+
+    #waitlist-success {
+      display: none;
+      text-align: left;
+      font-family: var(--serif);
+      font-style: italic;
+      color: rgba(201,169,110,.95);
+      font-size: 1.2rem;
+      line-height: 1.6;
+      max-width: 62ch;
+      margin-top: 6px;
+    }
+
+    @media (max-width: 740px) {
+      .hero { padding: 42px 26px; }
+      .waitlist-row { flex-direction: column; max-width: none; }
+      .waitlist-row button { width: 100%; padding: 16px 22px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <main>
+    <section class="hero" aria-label="Aprender">
+      <div class="eyebrow">CRIAR SIN CULPAS · APRENDER</div>
+      <h1>The First 5 Minutes.</h1>
+      <p class="subcopy">A calm-response guide for lowering the intensity before escalation.</p>
+      <p class="paragraph">Designed for overwhelmed moments. Built to create clarity before conflict grows.</p>
+
+      <form class="waitlist-row" id="waitlist-form">
+        <input type="email" placeholder="Email address" required aria-label="Email address">
+        <button type="submit">Notify me when available</button>
+      </form>
+
+      <div id="waitlist-success">Thank you. We’ll notify you when it’s available.</div>
+    </section>
+  </main>
+
+  <script>
+  (function () {
+    const waitlistForm = document.getElementById('waitlist-form');
+    const waitlistSuccess = document.getElementById('waitlist-success');
+    if (!waitlistForm || !waitlistSuccess) return;
+
+    waitlistForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (waitlistForm.dataset.submitted === '1') return;
+      waitlistForm.dataset.submitted = '1';
+
+      waitlistForm.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      waitlistForm.style.opacity = '0';
+      waitlistForm.style.transform = 'translateY(8px)';
+
+      setTimeout(() => {
+        waitlistForm.style.display = 'none';
+        waitlistSuccess.style.display = 'block';
+        waitlistSuccess.style.opacity = '0';
+        waitlistSuccess.style.transform = 'translateY(8px)';
+        waitlistSuccess.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        requestAnimationFrame(() => {
+          waitlistSuccess.style.opacity = '1';
+          waitlistSuccess.style.transform = 'translateY(0)';
+        });
+      }, 420);
+
+      if (window.plausible) window.plausible('waitlist_joined', { props: { location: 'aprende_hero' } });
+    });
+  })();
+  </script>
+</body>
+</html>
