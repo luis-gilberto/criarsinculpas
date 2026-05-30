@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="es" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-  <title>Criar Sin Culpas · Aprender</title>
-  <meta name="description" content="The First 5 Minutes. A calm-response guide for lowering the intensity before escalation.">
+  <title data-i18n="title_tag" data-es="Criar Sin Culpas · Aprender" data-en="Criar Sin Culpas · Learn">Criar Sin Culpas · Aprender</title>
+  <meta name="description" data-i18n-meta="description" data-es="Los Primeros 5 Minutos. Una guía de respuesta rápida para bajar la intensidad antes del desborde. Diseñado para momentos de agobio." data-en="The First 5 Minutes. A calm-response guide for lowering intensity before escalation. Designed for overwhelmed moments." content="Los Primeros 5 Minutos. Una guía de respuesta rápida para bajar la intensidad antes del desborde. Diseñado para momentos de agobio.">
   <link rel="canonical" href="https://criarsinculpas.com/aprende/">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,6 +53,9 @@
       min-height: 100dvh;
       overflow-x: hidden;
     }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { color: var(--gold); }
 
     body::before {
       content: '';
@@ -220,22 +223,52 @@
 
   <main>
     <section class="hero" aria-label="Aprender">
-      <div class="eyebrow">CRIAR SIN CULPAS · APRENDER</div>
-      <h1>The First 5 Minutes.</h1>
-      <p class="subcopy">A calm-response guide for lowering the intensity before escalation.</p>
-      <p class="paragraph">Designed for overwhelmed moments. Built to create clarity before conflict grows.</p>
+      <div class="eyebrow" data-i18n="hero_eyebrow" data-es="CRIAR SIN CULPAS · APRENDER" data-en="CRIAR SIN CULPAS · LEARN">CRIAR SIN CULPAS · APRENDER</div>
+      <h1 data-i18n="hero_headline" data-es="Los Primeros 5 Minutos." data-en="The First 5 Minutes.">Los Primeros 5 Minutos.</h1>
+      <p class="subcopy" data-i18n="hero_subcopy" data-es="Una guía de respuesta rápida para bajar la intensidad antes del desborde. Diseñado para momentos de agobio." data-en="A calm-response guide for lowering intensity before escalation. Designed for overwhelmed moments.">Una guía de respuesta rápida para bajar la intensidad antes del desborde. Diseñado para momentos de agobio.</p>
 
       <form class="waitlist-row" id="waitlist-form">
-        <input type="email" placeholder="Email address" required aria-label="Email address">
-        <button type="submit">Notify me when available</button>
+        <input type="email" data-i18n-placeholder="waitlist_placeholder" placeholder="Tu correo electrónico" required aria-label="Tu correo electrónico">
+        <button type="submit" data-i18n="hero_cta" data-es="Avísame cuando esté disponible" data-en="Notify me when available">Avísame cuando esté disponible</button>
       </form>
 
-      <div id="waitlist-success">Thank you. We’ll notify you when it’s available.</div>
+      <div id="waitlist-success" data-i18n="waitlist_success" data-es="Gracias. Te avisaremos cuando esté disponible." data-en="Thank you. We’ll notify you when it’s available.">Gracias. Te avisaremos cuando esté disponible.</div>
     </section>
   </main>
 
   <script>
   (function () {
+    const STORAGE_KEY = 'lg_parent_lang';
+    let lang = localStorage.getItem(STORAGE_KEY) || 'es';
+
+    window.addEventListener('pageshow', (e) => { if (e.persisted) document.body.style.opacity = '1'; });
+
+    function applyLang(l) {
+      lang = l;
+      localStorage.setItem(STORAGE_KEY, l);
+      document.documentElement.lang = l;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const txt = el.getAttribute('data-' + l);
+        if (txt) el.innerHTML = txt;
+      });
+      document.querySelectorAll('[data-i18n-meta]').forEach(el => {
+        const txt = el.getAttribute('data-' + l);
+        if (txt) el.setAttribute('content', txt);
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        const map = {
+          waitlist_placeholder: { es: 'Tu correo electrónico', en: 'Your email address' }
+        };
+        if (map[key]) {
+          el.placeholder = map[key][l];
+          el.setAttribute('aria-label', map[key][l]);
+        }
+      });
+    }
+
+    applyLang(lang);
+
     const waitlistForm = document.getElementById('waitlist-form');
     const waitlistSuccess = document.getElementById('waitlist-success');
     if (!waitlistForm || !waitlistSuccess) return;
@@ -261,7 +294,7 @@
         });
       }, 420);
 
-      if (window.plausible) window.plausible('waitlist_joined', { props: { location: 'aprende_hero' } });
+      if (window.plausible) window.plausible('waitlist_joined', { props: { location: 'aprende_hero', language: lang } });
     });
   })();
   </script>
