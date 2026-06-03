@@ -1,3 +1,11 @@
+# Method page — canonical URL: /metodo/
+/metodo.html           /metodo/  301
+/metodo/index.html     /metodo/  301
+/metodo                /metodo/  301
+/method.html           /metodo/  301
+/method                /metodo/  301
+/method/               /metodo/  301
+
 # Legacy Redirects (Legacy path cleanup)
 /journey-standalone.html  /journey-standalone  301
 /csc-fase1-deck.html      /csc-fase1-deck      301

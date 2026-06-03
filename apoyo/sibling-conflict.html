@@ -13,7 +13,7 @@
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=DM+Mono&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- SnglIQ Telemetry Engine (Plausible) - Production Only -->
   <script>
@@ -38,20 +38,23 @@
       --cloud:    #F5F0EB;
 
       /* Page palette — violet variant */
-      --bg-1: #1a0e0c;
-      --bg-2: #120908;
-      --bg-3: #150c0a;
+      --bg-1: #0b0a0f;
+      --bg-2: #08070b;
+      --bg-3: #0b0a0f;
       --bg-card: rgba(255,255,255,.045);
       --bg-card-hover: rgba(255,255,255,.072);
       --text: #f7f1ec;
       --muted: rgba(247,241,236,.62);
       --subtle: rgba(247,241,236,.35);
       --faint:  rgba(247,241,236,.18);
+      --void-mid:      #13101a;
+      --text-ghost:    rgba(247,241,236,.38);
+      --text-body:     #e5e7eb;
 
-      --accent:        #C084FC;
-      --accent-glow:   rgba(192,132,252,.2);
-      --accent-border: rgba(192,132,252,.28);
-      --accent-bg:     rgba(192,132,252,.08);
+      --accent:        #61d1c4;
+      --accent-glow:   rgba(97,209,196,.2);
+      --accent-border: rgba(97,209,196,.28);
+      --accent-bg:     rgba(97,209,196,.08);
 
       --ok:           #cbc1ff;
       --ok-bg:        rgba(203,193,255,.1);
@@ -102,10 +105,10 @@
     .orbs, .grain { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
     .orbs {
       background:
-        radial-gradient(ellipse 65% 55% at -5% -10%, rgba(192,132,252,.28) 0%, transparent 65%),
-        radial-gradient(ellipse 55% 50% at 108% 108%, rgba(180,50,140,.28) 0%, transparent 65%),
-        radial-gradient(ellipse 75% 55% at 50% 28%, rgba(192,132,252,.1) 0%, transparent 60%),
-        linear-gradient(160deg, #120908 0%, #150c0a 100%);
+        radial-gradient(ellipse 65% 55% at -5% -10%, rgba(97,209,196,.28) 0%, transparent 65%),
+        radial-gradient(ellipse 55% 50% at 108% 108%, rgba(40,150,160,.26) 0%, transparent 65%),
+        radial-gradient(ellipse 75% 55% at 50% 28%, rgba(97,209,196,.10) 0%, transparent 60%),
+        linear-gradient(160deg, #0b0a0f 0%, #08070b 100%);
     }
     .grain {
       z-index: 1; opacity: .022;
@@ -203,7 +206,7 @@
     .ey-lbl { font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--subtle); }
     .ey-pill {
       padding: 3px 10px; border-radius: var(--radius-pill);
-      background: rgba(192,132,252,.14); border: 1px solid rgba(192,132,252,.22);
+      background: rgba(97,209,196,.14); border: 1px solid rgba(97,209,196,.22);
       color: var(--ok); font-size: .67rem; font-weight: 700;
     }
 
@@ -261,7 +264,7 @@
     }
     .phrase-card::before {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(192,132,252,.04), transparent 60%);
+      background: linear-gradient(135deg, rgba(97,209,196,.04), transparent 60%);
       pointer-events: none;
     }
     .phrase-card:hover { background: var(--bg-card-hover); }
@@ -446,6 +449,108 @@
     }
 
     /* ─────────────────────────────────────────
+       ORIENTATION · BREADCRUMB · NEXT STEP
+    ───────────────────────────────────────── */
+    .orient-block {
+      background: var(--void-mid);
+      border-bottom: 1px solid rgba(75,173,168,.35);
+      padding: clamp(32px, 6vw, 56px) var(--gutter-mobile);
+    }
+    .orient-inner { max-width: var(--content-max); margin: 0 auto; }
+    .orient-label {
+      font-family: 'DM Mono', monospace;
+      font-size: .68rem; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: 20px;
+    }
+    .orient-headline {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(1.65rem, 4.5vw, 2.4rem);
+      line-height: 1.22; color: var(--text);
+      max-width: 28ch; margin-bottom: 16px;
+    }
+    .orient-sub {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: .95rem; font-weight: 400;
+      color: var(--text-body); max-width: 42ch;
+      line-height: 1.65; margin-bottom: 28px;
+    }
+    .orient-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .orient-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 13px 22px; border-radius: var(--radius-pill);
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: .88rem; font-weight: 500;
+      transition: transform .2s var(--ease-out), background .2s, border-color .2s;
+    }
+    .orient-btn:active { transform: scale(0.98); }
+    .orient-btn-primary {
+      color: var(--obsidian); background: var(--teal);
+      border: 1px solid rgba(75,173,168,.5);
+    }
+    .orient-btn-primary:hover { filter: brightness(1.06); }
+    .orient-btn-ghost {
+      color: var(--text-body); background: transparent;
+      border: 1px solid rgba(255,255,255,.14);
+    }
+    .orient-btn-ghost:hover { border-color: rgba(75,173,168,.4); color: #fff; }
+
+    .proto-trail {
+      max-width: var(--content-max); margin: 0 auto;
+      padding: 20px var(--gutter-mobile) 8px;
+    }
+    .proto-breadcrumb {
+      font-family: 'DM Mono', monospace;
+      font-size: .68rem; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--text-ghost);
+      margin-bottom: 8px;
+    }
+    .proto-breadcrumb a { color: var(--text-ghost); transition: color .2s; }
+    .proto-breadcrumb a:hover { color: var(--teal); }
+    .proto-breadcrumb .bc-sep { margin: 0 .45em; opacity: .7; }
+    .proto-progress {
+      font-family: 'DM Mono', monospace;
+      font-size: .68rem; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--text-body);
+    }
+
+    .next-step-path {
+      margin-top: 36px; padding: 28px 24px;
+      border-radius: var(--radius-xl);
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border); text-align: center;
+    }
+    .next-step-copy {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: .92rem; color: var(--text-body);
+      line-height: 1.6; margin-bottom: 18px;
+      max-width: 36ch; margin-left: auto; margin-right: auto;
+    }
+    .next-step-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: .9rem; font-weight: 500; color: var(--teal);
+      padding: 12px 20px; border-radius: var(--radius-pill);
+      border: 1px solid rgba(75,173,168,.35);
+      background: rgba(75,173,168,.08);
+      transition: transform .2s, background .2s;
+    }
+    .next-step-cta:hover { background: rgba(75,173,168,.14); }
+    .next-step-cta:active { transform: scale(0.98); }
+
+    @media (min-width: 640px) {
+      .orient-block { padding-left: 32px; padding-right: 32px; }
+      .proto-trail { padding-left: 32px; padding-right: 32px; }
+    }
+    @media (min-width: 900px) {
+      .orient-block { padding-left: 48px; padding-right: 48px; }
+      .proto-trail { padding-left: 48px; padding-right: 48px; }
+      .next-step-path { text-align: left; padding: 32px; }
+      .next-step-copy { margin-left: 0; }
+    }
+
+    /* ─────────────────────────────────────────
        ANIMATIONS
     ───────────────────────────────────────── */
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
@@ -484,9 +589,45 @@
       </div>
     </nav>
 
+    <!-- STRATEGIC FLASHLIGHT -->
+    <section class="orient-block" aria-label="Orientación rápida">
+      <div class="orient-inner">
+        <p class="orient-label"
+           data-i18n="orient_label"
+           data-es="[ GUÍA RÁPIDA · APOYO EN CRISIS ]"
+           data-en="[ QUICK GUIDE · CRISIS SUPPORT ]">[ GUÍA RÁPIDA · APOYO EN CRISIS ]</p>
+        <h2 class="orient-headline"
+            data-i18n="orient_headline"
+            data-es="Cuando tus hijos se pelean, empieza por bajar la intensidad."
+            data-en="When your kids fight, start by lowering the intensity.">Cuando tus hijos se pelean, empieza por bajar la intensidad.</h2>
+        <p class="orient-sub"
+           data-i18n="orient_sub"
+           data-es="Frases concretas para separar, validar y poner límites sin elegir bandos."
+           data-en="Concrete phrases to separate, validate, and set limits without picking sides.">Frases concretas para separar, validar y poner límites sin elegir bandos.</p>
+        <div class="orient-actions">
+          <a href="#protocol-content" class="orient-btn orient-btn-primary"
+             data-i18n="orient_btn_step" data-es="Ver el primer paso" data-en="See the first step">Ver el primer paso</a>
+          <a href="/apoyo/index.html" class="orient-btn orient-btn-ghost js-full-guide"
+             data-i18n="orient_btn_hub" data-es="Ver la guía completa" data-en="See the full guide">Ver la guía completa</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BREADCRUMB + PROGRESS -->
+    <div class="proto-trail">
+      <nav class="proto-breadcrumb" aria-label="Ruta">
+        <a href="/apoyo/index.html" data-i18n="bc_guias" data-es="Guías" data-en="Guides">Guías</a>
+        <span class="bc-sep">·</span>
+        <span data-i18n="bc_topic" data-es="Peleas entre hermanos" data-en="Sibling Conflict">Peleas entre hermanos</span>
+        <span class="bc-sep">·</span>
+        <span id="bc-step-label">Paso 1</span>
+      </nav>
+      <p class="proto-progress" id="proto-progress" aria-live="polite">Paso 1 de 4 · Separa</p>
+    </div>
+
     <main class="content-wrapper">
 
-      <section class="hero-section">
+      <section class="hero-section" id="protocol-content">
         <div class="hero-grid">
 
           <!-- Left: text + primer -->
@@ -499,22 +640,22 @@
             <!-- Illo (mobile only) -->
             <div class="hero-illo-wrap" aria-hidden="true">
               <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="28" cy="22" r="8" stroke="#d17ee9" stroke-width="1.6" opacity=".9"/>
-                <line x1="28" y1="30" x2="28" y2="56" stroke="#d17ee9" stroke-width="1.6" stroke-linecap="round" opacity=".9"/>
-                <path d="M28 40 Q34 45 40 43" stroke="#d17ee9" stroke-width="1.5" stroke-linecap="round" opacity=".85"/>
-                <path d="M28 40 Q22 45 16 43" stroke="#d17ee9" stroke-width="1.5" stroke-linecap="round" opacity=".55"/>
-                <path d="M28 56 Q24 66 21 78" stroke="#d17ee9" stroke-width="1.5" stroke-linecap="round" opacity=".7"/>
-                <path d="M28 56 Q32 66 35 78" stroke="#d17ee9" stroke-width="1.5" stroke-linecap="round" opacity=".7"/>
-                <circle cx="82" cy="22" r="8" stroke="#d17ee9" stroke-width="1.6" opacity=".9"/>
-                <line x1="82" y1="30" x2="82" y2="56" stroke="#d17ee9" stroke-width="1.6" stroke-linecap="round" opacity=".9"/>
-                <path d="M82 40 Q76 45 70 43" stroke="#d17ee9" stroke-width="1.5" stroke-linecap="round" opacity=".85"/>
-                <path d="M82 40 Q88 45 94 43" stroke="#d17ee9" stroke-width="1.5" stroke-linecap="round" opacity=".55"/>
-                <path d="M82 56 Q78 66 75 78" stroke="#d17ee9" stroke-width="1.5" stroke-linecap="round" opacity=".7"/>
-                <path d="M82 56 Q86 66 89 78" stroke="#d17ee9" stroke-width="1.5" stroke-linecap="round" opacity=".7"/>
-                <line x1="42" y1="48" x2="68" y2="48" stroke="#d17ee9" stroke-width=".9" stroke-dasharray="3 4" stroke-linecap="round" opacity=".22"/>
-                <path d="M42 8 Q55 2 68 8" stroke="#d17ee9" stroke-width="1.5" stroke-linecap="round" opacity=".45"/>
-                <path d="M42 8 Q42 14 46 16" stroke="#d17ee9" stroke-width="1.3" stroke-linecap="round" opacity=".35"/>
-                <path d="M68 8 Q68 14 64 16" stroke="#d17ee9" stroke-width="1.3" stroke-linecap="round" opacity=".35"/>
+                <circle cx="28" cy="22" r="8" stroke="#61d1c4" stroke-width="1.6" opacity=".9"/>
+                <line x1="28" y1="30" x2="28" y2="56" stroke="#61d1c4" stroke-width="1.6" stroke-linecap="round" opacity=".9"/>
+                <path d="M28 40 Q34 45 40 43" stroke="#61d1c4" stroke-width="1.5" stroke-linecap="round" opacity=".85"/>
+                <path d="M28 40 Q22 45 16 43" stroke="#61d1c4" stroke-width="1.5" stroke-linecap="round" opacity=".55"/>
+                <path d="M28 56 Q24 66 21 78" stroke="#61d1c4" stroke-width="1.5" stroke-linecap="round" opacity=".7"/>
+                <path d="M28 56 Q32 66 35 78" stroke="#61d1c4" stroke-width="1.5" stroke-linecap="round" opacity=".7"/>
+                <circle cx="82" cy="22" r="8" stroke="#61d1c4" stroke-width="1.6" opacity=".9"/>
+                <line x1="82" y1="30" x2="82" y2="56" stroke="#61d1c4" stroke-width="1.6" stroke-linecap="round" opacity=".9"/>
+                <path d="M82 40 Q76 45 70 43" stroke="#61d1c4" stroke-width="1.5" stroke-linecap="round" opacity=".85"/>
+                <path d="M82 40 Q88 45 94 43" stroke="#61d1c4" stroke-width="1.5" stroke-linecap="round" opacity=".55"/>
+                <path d="M82 56 Q78 66 75 78" stroke="#61d1c4" stroke-width="1.5" stroke-linecap="round" opacity=".7"/>
+                <path d="M82 56 Q86 66 89 78" stroke="#61d1c4" stroke-width="1.5" stroke-linecap="round" opacity=".7"/>
+                <line x1="42" y1="48" x2="68" y2="48" stroke="#61d1c4" stroke-width=".9" stroke-dasharray="3 4" stroke-linecap="round" opacity=".22"/>
+                <path d="M42 8 Q55 2 68 8" stroke="#61d1c4" stroke-width="1.5" stroke-linecap="round" opacity=".45"/>
+                <path d="M42 8 Q42 14 46 16" stroke="#61d1c4" stroke-width="1.3" stroke-linecap="round" opacity=".35"/>
+                <path d="M68 8 Q68 14 64 16" stroke="#61d1c4" stroke-width="1.3" stroke-linecap="round" opacity=".35"/>
               </svg>
             </div>
 
@@ -574,7 +715,7 @@
             </div>
           </div>
 
-          <div class="accordion" data-topic="after_storm">
+          <div class="accordion" data-topic="after_storm" id="step-after">
             <button type="button" class="acc-trig">
               <span data-i18n="acc3_title" data-es="Después (cuando todo se calme)" data-en="After (when everything is calm)">Después (cuando todo se calme)</span>
               <span class="acc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
@@ -585,6 +726,17 @@
             </div>
           </div>
         </div>
+
+        <!-- NEXT STEP PATH -->
+        <section class="next-step-path" aria-label="Siguiente paso">
+          <p class="next-step-copy"
+             data-i18n="next_step_copy"
+             data-es="Cuando la intensidad baje un poco, puedes pasar al siguiente paso."
+             data-en="When the intensity eases a little, you can move to the next step.">Cuando la intensidad baje un poco, puedes pasar al siguiente paso.</p>
+          <a href="?step=2#protocol-content" class="next-step-cta js-next-step" id="next-step-link"
+             data-from="1" data-to="2"
+             data-i18n="next_step_cta" data-es="Siguiente paso →" data-en="Next step →">Siguiente paso →</a>
+        </section>
 
         <!-- CROSS-PROTOCOL -->
         <section class="cross-protocol">
@@ -674,6 +826,51 @@
                   en: 'When you are calm, it inspires trust and safety in them.' }
       }
     ];
+
+    // ─────────────────────────────────────────
+    // PROTOCOL ORIENTATION
+    // ─────────────────────────────────────────
+    const PROTOCOL = {
+      name: 'sibling_conflict',
+      steps: [
+        { es: 'Separa', en: 'Separate' },
+        { es: 'Valida', en: 'Validate' },
+        { es: 'Limita', en: 'Limit' },
+        { es: 'Repara', en: 'Repair' }
+      ],
+      crossNext: { href: '/apoyo/emotional-escalation', to: 'emotional_escalation' }
+    };
+
+    function getStepNum() {
+      const n = parseInt(new URLSearchParams(location.search).get('step') || '1', 10);
+      return Math.min(Math.max(n, 1), PROTOCOL.steps.length);
+    }
+
+    function updateStepUI() {
+      const step = getStepNum();
+      const total = PROTOCOL.steps.length;
+      const stepName = lang === 'es' ? PROTOCOL.steps[step - 1].es : PROTOCOL.steps[step - 1].en;
+      const pasoLabel = lang === 'es' ? 'Paso' : 'Step';
+      const deLabel = lang === 'es' ? 'de' : 'of';
+
+      const bcStep = document.getElementById('bc-step-label');
+      const progress = document.getElementById('proto-progress');
+      const nextLink = document.getElementById('next-step-link');
+      if (!bcStep || !progress || !nextLink) return;
+
+      bcStep.textContent = pasoLabel + ' ' + step;
+      progress.textContent = pasoLabel + ' ' + step + ' ' + deLabel + ' ' + total + ' · ' + stepName;
+
+      if (step < total) {
+        nextLink.href = '?step=' + (step + 1) + '#protocol-content';
+        nextLink.dataset.from = String(step);
+        nextLink.dataset.to = String(step + 1);
+      } else {
+        nextLink.href = PROTOCOL.crossNext.href;
+        nextLink.dataset.from = String(step);
+        nextLink.dataset.to = PROTOCOL.crossNext.to;
+      }
+    }
 
     // ─────────────────────────────────────────
     // TELEMETRY
@@ -799,7 +996,16 @@
       });
 
       renderCards(l);
+      updateStepUI();
     }
+
+    document.querySelector('.js-full-guide')?.addEventListener('click', () => {
+      trackSignal('full_guide_requested', { protocol: PROTOCOL.name });
+    });
+    document.getElementById('next-step-link')?.addEventListener('click', () => {
+      const link = document.getElementById('next-step-link');
+      trackSignal('next_step_triggered', { from: link.dataset.from, to: link.dataset.to });
+    });
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.addEventListener('click', () => applyLang(btn.dataset.lang));
