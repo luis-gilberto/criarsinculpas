@@ -140,7 +140,7 @@
        TOAST
     ───────────────────────────────────────── */
     .toast {
-      position: fixed; bottom: 96px; left: 50%;
+      position: fixed; bottom: 32px; left: 50%;
       transform: translate(-50%, 20px) scale(0.95);
       opacity: 0; visibility: hidden;
       background: rgba(22, 30, 42, 0.92);
@@ -163,7 +163,7 @@
     .page-shell {
       position: relative; z-index: 2;
       min-height: 100vh;
-      padding-bottom: 100px;
+      padding-bottom: 56px;
     }
 
     /* ─────────────────────────────────────────
@@ -306,6 +306,27 @@
     }
 
     /* ─────────────────────────────────────────
+       ARC INTRO — reads the 1·2·3 progression
+    ───────────────────────────────────────── */
+    .arc-intro {
+      display: flex; align-items: center; gap: 10px;
+      margin: 36px 0 14px;
+    }
+    .arc-intro .sec-lbl { margin: 0; }
+    .arc-track {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-left: auto; flex-shrink: 0;
+    }
+    .arc-dot {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 18px; height: 18px; border-radius: 50%;
+      font-family: 'DM Mono', monospace; font-size: .58rem; font-weight: 700;
+      color: var(--accent); background: var(--accent-bg);
+      border: 1px solid var(--accent-border);
+    }
+    .arc-arrow { color: var(--faint); font-size: .7rem; }
+
+    /* ─────────────────────────────────────────
        PHRASE CARDS — mobile
     ───────────────────────────────────────── */
     .phrase-grid {
@@ -345,7 +366,21 @@
     .pc-top {
       display: flex; width: 100%;
       align-items: center; justify-content: space-between;
-      margin-bottom: 2px;
+      gap: 12px; margin-bottom: 2px;
+    }
+    .pc-id { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .pc-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; border-radius: 50%;
+      flex-shrink: 0;
+      font-family: 'DM Mono', monospace; font-size: .78rem; font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-bg);
+      border: 1px solid var(--accent-border);
+      transition: color .2s, background .2s, border-color .2s;
+    }
+    .phrase-card[aria-pressed='true'] .pc-num {
+      color: var(--success); background: var(--success-bg); border-color: rgba(53,208,110,.4);
     }
     .pc-mode {
       font-size: .7rem; font-weight: 800;
@@ -366,6 +401,28 @@
     }
     .phrase-card[aria-pressed='true'] .pc-copy {
       background: var(--success); color: #000;
+    }
+
+    /* Intensity meter — shows where on the arc this beat sits */
+    .pc-meter {
+      display: flex; align-items: center; gap: 8px;
+      margin: 2px 0 4px;
+    }
+    .pc-bars { display: inline-flex; align-items: flex-end; gap: 3px; }
+    .pc-bar {
+      width: 4px; border-radius: 2px;
+      background: rgba(255,255,255,.16);
+      transition: background .2s;
+    }
+    .pc-bar.b1 { height: 7px; }
+    .pc-bar.b2 { height: 11px; }
+    .pc-bar.b3 { height: 15px; }
+    .pc-bar.lit { background: var(--accent); }
+    .phrase-card[aria-pressed='true'] .pc-bar.lit { background: var(--success); }
+    .pc-int-label {
+      font-size: .62rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .06em;
+      color: var(--subtle);
     }
 
     .pc-when {
@@ -532,34 +589,6 @@
     .sc-btn.wa:hover { background: rgba(53,208,110,.18); }
 
     /* ─────────────────────────────────────────
-       STICKY FOOTER
-    ───────────────────────────────────────── */
-    .sticky-footer-wrap {
-      position: fixed; bottom: 0; left: 0; right: 0;
-      padding: 8px 20px max(20px, env(safe-area-inset-bottom));
-      background: linear-gradient(0deg, var(--bg-2) 50%, transparent 100%);
-      pointer-events: none; z-index: 30;
-    }
-    .sticky-footer {
-      max-width: 440px; margin: 0 auto;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 11px 20px;
-      border-radius: var(--radius-pill);
-      background: rgba(14,12,10,.92);
-      border: 1px solid rgba(255,255,255,.09);
-      box-shadow: 0 10px 32px rgba(0,0,0,.6);
-      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-      pointer-events: auto;
-      overflow: hidden;
-    }
-    .sticky-step {
-      font-size: clamp(.6rem, 2.5vw, .7rem); font-weight: 600;
-      text-transform: uppercase; letter-spacing: .03em;
-      color: rgba(255,255,255,.45); white-space: nowrap;
-    }
-    .sticky-sep { color: rgba(255,255,255,.18); font-size: .7rem; }
-
-    /* ─────────────────────────────────────────
        TABLET (640px+)
     ───────────────────────────────────────── */
     @media (min-width: 640px) {
@@ -587,7 +616,7 @@
        DESKTOP (900px+) — editorial two-column
     ───────────────────────────────────────── */
     @media (min-width: 900px) {
-      body { font-size: 17px; padding-bottom: 0; }
+      body { font-size: 17px; }
 
       .p-nav { padding-left: 48px; padding-right: 48px; border-radius: 0; }
       .p-nav .content-nav-inner { max-width: var(--content-max); margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; }
@@ -620,21 +649,15 @@
       }
 
       .hero-illo-wrap {
-        display: none; /* Hidden on desktop, illo integrated in text column */
+        display: none;
       }
 
-      .primer {
-        margin-top: 32px;
-        padding: 22px 26px;
-      }
-
-      /* Override: phrase grid goes into sticky column on desktop */
-      /* We restructure DOM via JS for desktop layout */
+      /* Cards stack vertically in the sticky column on desktop */
       .phrase-grid {
         grid-template-columns: 1fr;
         gap: 12px;
       }
-      .sec-lbl-cards { margin-top: 0; margin-bottom: 14px; }
+      .arc-intro { margin-top: 0; margin-bottom: 14px; }
       .phrase-card {
         padding: 22px 24px;
         border-radius: 18px;
@@ -646,26 +669,20 @@
         max-width: 680px;
       }
 
-      /* Accordion stacks more spaciously */
       .accordion-stack { gap: 12px; margin-top: 48px; }
       .acc-trig { padding: 20px 24px; font-size: .95rem; }
       .acc-body.is-open { padding: 4px 24px 28px; }
 
-      /* Cross protocol */
       .cross-protocol { margin-top: 48px; padding: 28px 32px; text-align: left; }
       .cp-link { padding: 18px 24px; }
 
-      /* Share panel */
       .share-panel { margin-top: 32px; padding: 28px 32px; }
       .share-sub { max-width: none; }
       .share-actions { grid-template-columns: 1fr 1fr; }
-
-      /* Sticky footer hidden on desktop (nav always visible) */
-      .sticky-footer-wrap { display: none; }
     }
 
     /* ─────────────────────────────────────────
-       ORIENTATION · BREADCRUMB · NEXT STEP
+       ORIENTATION · BREADCRUMB
     ───────────────────────────────────────── */
     .orient-block {
       background: var(--void-mid);
@@ -720,40 +737,10 @@
       font-family: 'DM Mono', monospace;
       font-size: .68rem; letter-spacing: .15em;
       text-transform: uppercase; color: var(--text-ghost);
-      margin-bottom: 8px;
     }
     .proto-breadcrumb a { color: var(--text-ghost); transition: color .2s; }
     .proto-breadcrumb a:hover { color: var(--teal); }
     .proto-breadcrumb .bc-sep { margin: 0 .45em; opacity: .7; }
-    .proto-progress {
-      font-family: 'DM Mono', monospace;
-      font-size: .68rem; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--text-body);
-    }
-
-    .next-step-path {
-      margin-top: 36px; padding: 28px 24px;
-      border-radius: var(--radius-xl);
-      background: rgba(255,255,255,.03);
-      border: 1px solid var(--border); text-align: center;
-    }
-    .next-step-copy {
-      font-family: 'DM Sans', system-ui, sans-serif;
-      font-size: .92rem; color: var(--text-body);
-      line-height: 1.6; margin-bottom: 18px;
-      max-width: 36ch; margin-left: auto; margin-right: auto;
-    }
-    .next-step-cta {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-family: 'DM Sans', system-ui, sans-serif;
-      font-size: .9rem; font-weight: 500; color: var(--teal);
-      padding: 12px 20px; border-radius: var(--radius-pill);
-      border: 1px solid rgba(75,173,168,.35);
-      background: rgba(75,173,168,.08);
-      transition: transform .2s, background .2s;
-    }
-    .next-step-cta:hover { background: rgba(75,173,168,.14); }
-    .next-step-cta:active { transform: scale(0.98); }
 
     @media (min-width: 640px) {
       .orient-block { padding-left: 32px; padding-right: 32px; }
@@ -762,8 +749,6 @@
     @media (min-width: 900px) {
       .orient-block { padding-left: 48px; padding-right: 48px; }
       .proto-trail { padding-left: 48px; padding-right: 48px; }
-      .next-step-path { text-align: left; padding: 32px; }
-      .next-step-copy { margin-left: 0; }
     }
 
     /* ─────────────────────────────────────────
@@ -776,14 +761,6 @@
     @keyframes fadeIn {
       from { opacity: 0; }
       to   { opacity: 1; }
-    }
-
-    /* ─────────────────────────────────────────
-       DESKTOP LAYOUT OVERRIDE (cards sticky col)
-    ───────────────────────────────────────── */
-    @media (min-width: 900px) {
-      /* sec-lbl inside cards column */
-      .hero-cards-col .sec-lbl { margin-top: 0; margin-bottom: 14px; }
     }
   </style>
 </head>
@@ -835,27 +812,24 @@
             data-en="When emotions overflow, start by containing without correcting.">Cuando la emoción se desborda, empieza por contener sin corregir.</h2>
         <p class="orient-sub"
            data-i18n="orient_sub"
-           data-es="Frases cortas para acompañar la intensidad sin entrar en lucha."
-           data-en="Short phrases to stay with the intensity without entering a power struggle.">Frases cortas para acompañar la intensidad sin entrar en lucha.</p>
+           data-es="Tres frases para acompañar la intensidad sin entrar en lucha. Elige la que encaje con el momento."
+           data-en="Three phrases to stay with the intensity without entering a power struggle. Pick the one that fits the moment.">Tres frases para acompañar la intensidad sin entrar en lucha. Elige la que encaje con el momento.</p>
         <div class="orient-actions">
           <a href="#protocol-content" class="orient-btn orient-btn-primary"
-             data-i18n="orient_btn_step" data-es="Ver el primer paso" data-en="See the first step">Ver el primer paso</a>
+             data-i18n="orient_btn_phrases" data-es="Ver las frases" data-en="See the phrases">Ver las frases</a>
           <a href="/apoyo/index.html" class="orient-btn orient-btn-ghost js-full-guide"
              data-i18n="orient_btn_hub" data-es="Ver la guía completa" data-en="See the full guide">Ver la guía completa</a>
         </div>
       </div>
     </section>
 
-    <!-- BREADCRUMB + PROGRESS -->
+    <!-- BREADCRUMB (location only) -->
     <div class="proto-trail">
       <nav class="proto-breadcrumb" aria-label="Ruta">
         <a href="/apoyo/index.html" data-i18n="bc_guias" data-es="Guías" data-en="Guides">Guías</a>
         <span class="bc-sep">·</span>
         <span data-i18n="bc_topic" data-es="Escalada emocional" data-en="Emotional Escalation">Escalada emocional</span>
-        <span class="bc-sep">·</span>
-        <span id="bc-step-label">Paso 1</span>
       </nav>
-      <p class="proto-progress" id="proto-progress" aria-live="polite">Paso 1 de 3 · Validación</p>
     </div>
 
     <!-- MAIN -->
@@ -865,7 +839,7 @@
       <section class="hero-section" id="protocol-content">
         <div class="hero-grid">
 
-          <!-- Left: text + primer (mobile: full width) -->
+          <!-- Left: text + intro (mobile: full width) -->
           <div class="hero-text">
             <div class="eyebrow">
               <span class="ey-lbl" data-i18n="eyebrow" data-es="Apoyo en crisis" data-en="Crisis Support">Apoyo en crisis</span>
@@ -891,19 +865,30 @@
 
             <p class="hero-lead" style="margin-top: 10px;" data-i18n="esc_hero_p2" data-es="Respira un momento. No estás fallando. Tu calma ayuda más que mil explicaciones. No necesitas arreglarlo todo en ese momento." data-en="Take a breath. You are not failing. Your calm helps more than a thousand explanations. You don't need to fix everything right then.">Respira un momento. No estás fallando. Tu calma ayuda más que mil explicaciones. No necesitas arreglarlo todo en ese momento.</p>
 
-            <p class="hero-intro" data-i18n="intro_body" data-es="Aquí tienes frases cortas para usar en el momento, sin explicar, sin corregir, sin entrar en lucha." data-en="Here are short phrases to use in the moment · no explaining, no correcting, no power struggle.">Aquí tienes frases cortas para usar en el momento, sin explicar, sin corregir, sin entrar en lucha.</p>
+            <p class="hero-intro" data-i18n="intro_body" data-es="Las tres frases siguen la intensidad del momento: de menos a más. Mira la barra de cada una y elige la que encaje con cómo está tu hijo ahora." data-en="The three phrases follow the intensity of the moment, from low to high. Check each one's meter and pick the one that matches how your child is right now.">Las tres frases siguen la intensidad del momento: de menos a más. Mira la barra de cada una y elige la que encaje con cómo está tu hijo ahora.</p>
+
             <!-- Mobile cards (shown here, hidden on desktop — desktop shows in right column) -->
             <div id="mobile-cards-section">
-              <span class="sec-lbl" data-i18n="cards_intro" data-es="Elige tu respuesta · Toca para copiar" data-en="Choose your response · Tap to copy">Elige tu respuesta · Toca para copiar</span>
+              <div class="arc-intro">
+                <span class="sec-lbl" data-i18n="cards_intro" data-es="De menos a más intensidad · Toca para copiar" data-en="From low to high intensity · Tap to copy">De menos a más intensidad · Toca para copiar</span>
+                <span class="arc-track" aria-hidden="true">
+                  <span class="arc-dot">1</span><span class="arc-arrow">→</span><span class="arc-dot">2</span><span class="arc-arrow">→</span><span class="arc-dot">3</span>
+                </span>
+              </div>
               <div class="phrase-grid" id="phrase-grid-mobile">
-                <!-- Cards injected by JS on mobile, moved to desktop col on wide screens -->
+                <!-- Cards injected by JS -->
               </div>
             </div>
           </div>
 
           <!-- Right: sticky cards column (desktop only) -->
           <div class="hero-cards-col" id="desktop-cards-col" style="display:none;">
-            <span class="sec-lbl sec-lbl-cards" data-i18n="cards_intro" data-es="Elige tu respuesta · Toca para copiar" data-en="Choose your response · Tap to copy">Elige tu respuesta · Toca para copiar</span>
+            <div class="arc-intro">
+              <span class="sec-lbl" data-i18n="cards_intro" data-es="De menos a más intensidad · Toca para copiar" data-en="From low to high intensity · Tap to copy">De menos a más intensidad · Toca para copiar</span>
+              <span class="arc-track" aria-hidden="true">
+                <span class="arc-dot">1</span><span class="arc-arrow">→</span><span class="arc-dot">2</span><span class="arc-arrow">→</span><span class="arc-dot">3</span>
+              </span>
+            </div>
             <div class="phrase-grid" id="phrase-grid-desktop"></div>
           </div>
 
@@ -947,17 +932,6 @@
           </div>
         </div>
 
-        <!-- NEXT STEP PATH -->
-        <section class="next-step-path" aria-label="Siguiente paso">
-          <p class="next-step-copy"
-             data-i18n="next_step_copy"
-             data-es="Cuando la intensidad baje un poco, puedes pasar al siguiente paso."
-             data-en="When the intensity eases a little, you can move to the next step.">Cuando la intensidad baje un poco, puedes pasar al siguiente paso.</p>
-          <a href="?step=2#protocol-content" class="next-step-cta js-next-step" id="next-step-link"
-             data-from="1" data-to="2"
-             data-i18n="next_step_cta" data-es="Siguiente paso →" data-en="Next step →">Siguiente paso →</a>
-        </section>
-
         <!-- CROSS-PROTOCOL -->
         <section class="cross-protocol">
           <p class="cp-eyebrow">
@@ -994,28 +968,19 @@
     </main><!-- /content-wrapper -->
   </div><!-- /page-shell -->
 
-  <!-- STICKY FOOTER (mobile/tablet only) -->
-  <div class="sticky-footer-wrap">
-    <div class="sticky-footer">
-      <span class="sticky-step" style="color:#fff" data-i18n="footer_s2" data-es="Validación" data-en="Validate">Validación</span>
-      <span class="sticky-sep">→</span>
-      <span class="sticky-step" data-i18n="footer_s3" data-es="Regulación" data-en="Regulate">Regulación</span>
-      <span class="sticky-sep">→</span>
-      <span class="sticky-step" data-i18n="footer_s4" data-es="Protección" data-en="Protect">Protección</span>
-    </div>
-  </div>
-
   <script>
   (function () {
     'use strict';
 
     // ─────────────────────────────────────────
-    // CARD DATA (source of truth)
+    // CARD DATA (source of truth) — the 3-beat arc
+    // intensity.level drives the meter (1 = lowest, 3 = peak)
     // ─────────────────────────────────────────
     const cards = [
       {
         mode: 'contener',
         title:  { es: 'Contener',         en: 'Contain' },
+        intensity: { level: 1, label: { es: 'Empieza', en: 'Starting' } },
         when:   { es: '<strong>Cuándo:</strong> Empieza la intensidad. Tu hijo aún te escucha.',
                   en: '<strong>When:</strong> The intensity is starting. Your child can still hear you.' },
         phrase: { es: 'Veo que estás muy molesto. Aquí estoy.',
@@ -1026,6 +991,7 @@
       {
         mode: 'regular',
         title:  { es: 'Regular juntos',   en: 'Regulate together' },
+        intensity: { level: 2, label: { es: 'Sube', en: 'Rising' } },
         when:   { es: '<strong>Cuándo:</strong> La emoción está subiendo. Necesita tu ritmo.',
                   en: '<strong>When:</strong> The emotion is rising. They need your rhythm.' },
         phrase: { es: 'Vamos poco a poco.',
@@ -1036,6 +1002,7 @@
       {
         mode: 'proteger',
         title:  { es: 'Sostener + proteger', en: 'Hold + protect' },
+        intensity: { level: 3, label: { es: 'Pico', en: 'Peak' } },
         when:   { es: '<strong>Cuándo:</strong> Hay llanto fuerte. Ahora mismo solo necesita que no escalemos más.',
                   en: '<strong>When:</strong> There is heavy crying. Right now, they just need us not to escalate further.' },
         phrase: { es: 'No hace falta seguir escalando.',
@@ -1045,58 +1012,20 @@
       }
     ];
 
-    // ─────────────────────────────────────────
-    // PROTOCOL ORIENTATION
-    // ─────────────────────────────────────────
-    const PROTOCOL = {
-      name: 'emotional_escalation',
-      steps: [
-        { es: 'Validación', en: 'Validate' },
-        { es: 'Regulación', en: 'Regulate' },
-        { es: 'Protección', en: 'Protect' }
-      ],
-      crossNext: { href: '/apoyo/bedtime-resistance', to: 'bedtime_resistance' }
-    };
-
-    function getStepNum() {
-      const n = parseInt(new URLSearchParams(location.search).get('step') || '1', 10);
-      return Math.min(Math.max(n, 1), PROTOCOL.steps.length);
-    }
-
-    function updateStepUI() {
-      const step = getStepNum();
-      const total = PROTOCOL.steps.length;
-      const stepName = lang === 'es' ? PROTOCOL.steps[step - 1].es : PROTOCOL.steps[step - 1].en;
-      const pasoLabel = lang === 'es' ? 'Paso' : 'Step';
-      const deLabel = lang === 'es' ? 'de' : 'of';
-
-      const bcStep = document.getElementById('bc-step-label');
-      const progress = document.getElementById('proto-progress');
-      const nextLink = document.getElementById('next-step-link');
-      if (!bcStep || !progress || !nextLink) return;
-
-      bcStep.textContent = pasoLabel + ' ' + step;
-      progress.textContent = pasoLabel + ' ' + step + ' ' + deLabel + ' ' + total + ' · ' + stepName;
-
-      if (step < total) {
-        nextLink.href = '?step=' + (step + 1) + '#protocol-content';
-        nextLink.dataset.from = String(step);
-        nextLink.dataset.to = String(step + 1);
-      } else {
-        nextLink.href = PROTOCOL.crossNext.href;
-        nextLink.dataset.from = String(step);
-        nextLink.dataset.to = PROTOCOL.crossNext.to;
-      }
-    }
+    const PROTOCOL_NAME = 'emotional_escalation';
 
     // ─────────────────────────────────────────
     // TELEMETRY
     // ─────────────────────────────────────────
+    // layout_version is merged into EVERY event automatically, so pre/post-rebuild
+    // data can be cleanly segmented in Plausible without touching individual calls.
+    const LAYOUT_VERSION = 'arc_v2';
     function trackSignal(eventName, properties) {
+      const props = Object.assign({ layout_version: LAYOUT_VERSION }, properties || {});
       if (typeof plausible !== 'undefined') {
-        plausible(eventName, { props: properties });
+        plausible(eventName, { props: props });
       }
-      console.log('[SnglIQ Captured]:', eventName, properties);
+      console.log('[SnglIQ Captured]:', eventName, props);
     }
 
     // ─────────────────────────────────────────
@@ -1119,19 +1048,37 @@
     }
 
     // ─────────────────────────────────────────
+    // INTENSITY METER MARKUP
+    // ─────────────────────────────────────────
+    function meterMarkup(level, label) {
+      const bar = (n) => `<span class="pc-bar b${n}${n <= level ? ' lit' : ''}"></span>`;
+      return `
+        <div class="pc-meter" aria-label="Intensidad ${level} de 3">
+          <span class="pc-bars">${bar(1)}${bar(2)}${bar(3)}</span>
+          <span class="pc-int-label">${label}</span>
+        </div>`;
+    }
+
+    // ─────────────────────────────────────────
     // BUILD CARD ELEMENT
     // ─────────────────────────────────────────
-    function buildCard(card, l) {
+    function buildCard(card, index, l) {
+      const num = index + 1;
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'phrase-card';
       btn.setAttribute('data-mode', card.mode);
+      btn.setAttribute('data-intensity', String(card.intensity.level));
       btn.setAttribute('aria-pressed', 'false');
       btn.innerHTML = `
         <span class="pc-top">
-          <span class="pc-mode">${card.title[l]}</span>
+          <span class="pc-id">
+            <span class="pc-num">${num}</span>
+            <span class="pc-mode">${card.title[l]}</span>
+          </span>
           <span class="pc-copy">${l === 'es' ? 'Copiar' : 'Copy'}</span>
         </span>
+        ${meterMarkup(card.intensity.level, card.intensity.label[l])}
         <p class="pc-when">${card.when[l]}</p>
         <p class="pc-phrase">${card.phrase[l]}</p>
         <span class="pc-hint">${card.hint[l]}</span>
@@ -1143,24 +1090,23 @@
     // RENDER CARDS
     // ─────────────────────────────────────────
     function renderCards(l) {
-      const mobileGrid  = document.getElementById('phrase-grid-mobile');
-      const desktopGrid = document.getElementById('phrase-grid-desktop');
+      const mobileGrid    = document.getElementById('phrase-grid-mobile');
+      const desktopGrid   = document.getElementById('phrase-grid-desktop');
       const mobileSection = document.getElementById('mobile-cards-section');
-      const desktopCol = document.getElementById('desktop-cards-col');
+      const desktopCol    = document.getElementById('desktop-cards-col');
 
       mobileGrid.innerHTML = '';
       desktopGrid.innerHTML = '';
 
-      cards.forEach(card => {
-        const cardMobile  = buildCard(card, l);
-        const cardDesktop = buildCard(card, l);
+      cards.forEach((card, i) => {
+        const cardMobile  = buildCard(card, i, l);
+        const cardDesktop = buildCard(card, i, l);
         attachCardEvents(cardMobile);
         attachCardEvents(cardDesktop);
         mobileGrid.appendChild(cardMobile);
         desktopGrid.appendChild(cardDesktop);
       });
 
-      // Show/hide correct column
       if (isDesktop) {
         mobileSection.style.display = 'none';
         desktopCol.style.display = 'block';
@@ -1177,19 +1123,18 @@
       card.addEventListener('click', () => {
         const phrase = card.querySelector('.pc-phrase').textContent.trim();
         const mode   = card.getAttribute('data-mode');
+        const level  = Number(card.getAttribute('data-intensity')); // 1 | 2 | 3 escalation level
 
         navigator.clipboard.writeText(phrase).then(() => {
-          // Reset all cards in both grids
           document.querySelectorAll('.phrase-card').forEach(c => {
             c.setAttribute('aria-pressed', 'false');
-            const cp = c.querySelector('.pc-copy');
-            cp.textContent = lang === 'es' ? 'Copiar' : 'Copy';
+            c.querySelector('.pc-copy').textContent = lang === 'es' ? 'Copiar' : 'Copy';
           });
-          // Activate
           card.setAttribute('aria-pressed', 'true');
           card.querySelector('.pc-copy').textContent = lang === 'es' ? '¡Copiado!' : 'Copied!';
           showToast(lang === 'es' ? '¡Copiado! Úsalo ahora.' : 'Copied! Use it now.');
-          trackSignal('phrase_copied', { mode, language: lang, protocol: 'emotional_escalation' });
+          // The card a parent copies = the escalation level they came looking for.
+          trackSignal('phrase_copied', { mode, level, language: lang, protocol: PROTOCOL_NAME });
 
           setTimeout(() => {
             card.setAttribute('aria-pressed', 'false');
@@ -1217,17 +1162,11 @@
         btn.setAttribute('aria-pressed', btn.dataset.lang === l ? 'true' : 'false');
       });
 
-      // Re-render cards in new language
       renderCards(l);
-      updateStepUI();
     }
 
     document.querySelector('.js-full-guide')?.addEventListener('click', () => {
-      trackSignal('full_guide_requested', { protocol: PROTOCOL.name });
-    });
-    document.getElementById('next-step-link')?.addEventListener('click', () => {
-      const link = document.getElementById('next-step-link');
-      trackSignal('next_step_triggered', { from: link.dataset.from, to: link.dataset.to });
+      trackSignal('full_guide_requested', { protocol: PROTOCOL_NAME });
     });
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -1255,16 +1194,14 @@
 
       trigger.addEventListener('click', () => {
         const isOpen = acc.hasAttribute('open');
-        // Close all
         document.querySelectorAll('.accordion').forEach(a => {
           a.removeAttribute('open');
           a.querySelector('.acc-body').classList.remove('is-open');
         });
-        // Open clicked if was closed
         if (!isOpen) {
           acc.setAttribute('open', '');
           body.classList.add('is-open');
-          trackSignal('card_opened', { topic, protocol: 'emotional_escalation' });
+          trackSignal('card_opened', { topic, protocol: PROTOCOL_NAME });
         }
       });
     });
@@ -1275,7 +1212,7 @@
     const crossLink = document.querySelector('.cp-link');
     if (crossLink) {
       crossLink.addEventListener('click', () => {
-        trackSignal('cross_nav', { from: 'emotional_escalation', to: 'bedtime_resistance' });
+        trackSignal('cross_nav', { from: PROTOCOL_NAME, to: 'bedtime_resistance' });
       });
     }
 
@@ -1295,7 +1232,7 @@
     if (btnWa) {
       btnWa.addEventListener('click', () => {
         const d = getShareData();
-        trackSignal('share_whatsapp', { protocol: 'emotional_escalation', context: 'caregiver_alignment' });
+        trackSignal('share_whatsapp', { protocol: PROTOCOL_NAME, context: 'caregiver_alignment' });
         window.open('https://wa.me/?text=' + encodeURIComponent(d.text + d.url), '_blank');
       });
     }
@@ -1305,7 +1242,7 @@
       btnCopy.addEventListener('click', () => {
         const d = getShareData();
         navigator.clipboard.writeText(d.url);
-        trackSignal('share_copy_link', { protocol: 'emotional_escalation' });
+        trackSignal('share_copy_link', { protocol: PROTOCOL_NAME });
         showToast(lang === 'es' ? '¡Enlace copiado!' : 'Link copied!');
       });
     }
@@ -1318,6 +1255,5 @@
   })();
   </script>
 
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"a6fdd4e7ff644527b91c6db4b97e68f5","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>

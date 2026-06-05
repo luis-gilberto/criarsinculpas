@@ -1,3 +1,6 @@
+### 2. Bedtime Resistance (`bedtime-resistance.html`)
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -140,7 +143,7 @@
        TOAST
     ───────────────────────────────────────── */
     .toast {
-      position: fixed; bottom: 96px; left: 50%;
+      position: fixed; bottom: 32px; left: 50%;
       transform: translate(-50%, 20px) scale(0.95);
       opacity: 0; visibility: hidden;
       background: rgba(10, 22, 20, 0.92);
@@ -163,7 +166,7 @@
     .page-shell {
       position: relative; z-index: 2;
       min-height: 100vh;
-      padding-bottom: 100px;
+      padding-bottom: 56px;
     }
 
     /* ─────────────────────────────────────────
@@ -299,7 +302,7 @@
     }
 
     /* ─────────────────────────────────────────
-       SECTION LABEL
+       SECTION LABEL & ARC INTRO
     ───────────────────────────────────────── */
     .sec-lbl {
       display: block;
@@ -308,6 +311,24 @@
       letter-spacing: .09em; text-transform: uppercase;
       color: var(--faint);
     }
+    
+    .arc-intro {
+      display: flex; align-items: center; gap: 10px;
+      margin: 36px 0 14px;
+    }
+    .arc-intro .sec-lbl { margin: 0; }
+    .arc-track {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-left: auto; flex-shrink: 0;
+    }
+    .arc-dot {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 18px; height: 18px; border-radius: 50%;
+      font-family: 'DM Mono', monospace; font-size: .58rem; font-weight: 700;
+      color: var(--accent); background: var(--accent-bg);
+      border: 1px solid var(--accent-border);
+    }
+    .arc-arrow { color: var(--faint); font-size: .7rem; }
 
     /* ─────────────────────────────────────────
        PHRASE CARDS
@@ -350,6 +371,22 @@
       align-items: center; justify-content: space-between;
       margin-bottom: 2px;
     }
+    
+    .pc-id { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .pc-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; border-radius: 50%;
+      flex-shrink: 0;
+      font-family: 'DM Mono', monospace; font-size: .78rem; font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-bg);
+      border: 1px solid var(--accent-border);
+      transition: color .2s, background .2s, border-color .2s;
+    }
+    .phrase-card[aria-pressed='true'] .pc-num {
+      color: var(--success); background: var(--success-bg); border-color: rgba(53,208,110,.4);
+    }
+    
     .pc-mode {
       font-size: .7rem; font-weight: 800;
       letter-spacing: .08em; text-transform: uppercase;
@@ -366,6 +403,27 @@
       transition: all .2s; flex-shrink: 0;
     }
     .phrase-card[aria-pressed='true'] .pc-copy { background: var(--success); color: #000; }
+
+    .pc-meter {
+      display: flex; align-items: center; gap: 8px;
+      margin: 2px 0 4px;
+    }
+    .pc-bars { display: inline-flex; align-items: flex-end; gap: 3px; }
+    .pc-bar {
+      width: 4px; border-radius: 2px;
+      background: rgba(255,255,255,.16);
+      transition: background .2s;
+    }
+    .pc-bar.b1 { height: 7px; }
+    .pc-bar.b2 { height: 11px; }
+    .pc-bar.b3 { height: 15px; }
+    .pc-bar.lit { background: var(--accent); }
+    .phrase-card[aria-pressed='true'] .pc-bar.lit { background: var(--success); }
+    .pc-int-label {
+      font-size: .62rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .06em;
+      color: var(--subtle);
+    }
 
     .pc-when {
       font-size: .82rem; color: var(--muted);
@@ -512,33 +570,6 @@
     .sc-btn.wa:hover { background: rgba(53,208,110,.18); }
 
     /* ─────────────────────────────────────────
-       STICKY FOOTER
-    ───────────────────────────────────────── */
-    .sticky-footer-wrap {
-      position: fixed; bottom: 0; left: 0; right: 0;
-      padding: 8px 20px max(20px, env(safe-area-inset-bottom));
-      background: linear-gradient(0deg, var(--bg-2) 50%, transparent 100%);
-      pointer-events: none; z-index: 30;
-    }
-    .sticky-footer {
-      max-width: 440px; margin: 0 auto;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 11px 20px;
-      border-radius: var(--radius-pill);
-      background: rgba(14,20,18,.92);
-      border: 1px solid rgba(255,255,255,.09);
-      box-shadow: 0 10px 32px rgba(0,0,0,.6);
-      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-      pointer-events: auto; overflow: hidden;
-    }
-    .sticky-step {
-      font-size: clamp(.6rem, 2.5vw, .7rem); font-weight: 600;
-      text-transform: uppercase; letter-spacing: .03em;
-      color: rgba(255,255,255,.45); white-space: nowrap;
-    }
-    .sticky-sep { color: rgba(255,255,255,.18); font-size: .7rem; }
-
-    /* ─────────────────────────────────────────
        TABLET (640px+)
     ───────────────────────────────────────── */
     @media (min-width: 640px) {
@@ -560,7 +591,7 @@
        DESKTOP (900px+)
     ───────────────────────────────────────── */
     @media (min-width: 900px) {
-      body { font-size: 17px; padding-bottom: 0; }
+      body { font-size: 17px; }
 
       .p-nav { padding-left: 48px; padding-right: 48px; border-radius: 0; }
       .nav-logo img { height: 60px; }
@@ -581,7 +612,7 @@
       .hero-illo-wrap { display: none; }
 
       .phrase-grid { grid-template-columns: 1fr; gap: 12px; }
-      .sec-lbl-cards { margin-top: 0; margin-bottom: 14px; }
+      .arc-intro { margin-top: 0; margin-bottom: 14px; }
       .phrase-card { padding: 22px 24px; border-radius: 18px; }
       .pc-phrase { font-size: 1.25rem; }
 
@@ -597,12 +628,10 @@
       .share-panel { margin-top: 32px; padding: 28px 32px; }
       .share-sub { max-width: none; }
       .share-actions { grid-template-columns: 1fr 1fr; }
-
-      .sticky-footer-wrap { display: none; }
     }
 
     /* ─────────────────────────────────────────
-       ORIENTATION · BREADCRUMB · NEXT STEP
+       ORIENTATION · BREADCRUMB
     ───────────────────────────────────────── */
     .orient-block {
       background: var(--void-mid);
@@ -657,40 +686,10 @@
       font-family: 'DM Mono', monospace;
       font-size: .68rem; letter-spacing: .15em;
       text-transform: uppercase; color: var(--text-ghost);
-      margin-bottom: 8px;
     }
     .proto-breadcrumb a { color: var(--text-ghost); transition: color .2s; }
     .proto-breadcrumb a:hover { color: var(--teal); }
     .proto-breadcrumb .bc-sep { margin: 0 .45em; opacity: .7; }
-    .proto-progress {
-      font-family: 'DM Mono', monospace;
-      font-size: .68rem; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--text-body);
-    }
-
-    .next-step-path {
-      margin-top: 36px; padding: 28px 24px;
-      border-radius: var(--radius-xl);
-      background: rgba(255,255,255,.03);
-      border: 1px solid var(--border); text-align: center;
-    }
-    .next-step-copy {
-      font-family: 'DM Sans', system-ui, sans-serif;
-      font-size: .92rem; color: var(--text-body);
-      line-height: 1.6; margin-bottom: 18px;
-      max-width: 36ch; margin-left: auto; margin-right: auto;
-    }
-    .next-step-cta {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-family: 'DM Sans', system-ui, sans-serif;
-      font-size: .9rem; font-weight: 500; color: var(--teal);
-      padding: 12px 20px; border-radius: var(--radius-pill);
-      border: 1px solid rgba(75,173,168,.35);
-      background: rgba(75,173,168,.08);
-      transition: transform .2s, background .2s;
-    }
-    .next-step-cta:hover { background: rgba(75,173,168,.14); }
-    .next-step-cta:active { transform: scale(0.98); }
 
     @media (min-width: 640px) {
       .orient-block { padding-left: 32px; padding-right: 32px; }
@@ -699,8 +698,6 @@
     @media (min-width: 900px) {
       .orient-block { padding-left: 48px; padding-right: 48px; }
       .proto-trail { padding-left: 48px; padding-right: 48px; }
-      .next-step-path { text-align: left; padding: 32px; }
-      .next-step-copy { margin-left: 0; }
     }
 
     /* ─────────────────────────────────────────
@@ -765,23 +762,20 @@
            data-en="Firm, calm phrases for nights when everyone is already exhausted.">Frases firmes y calmadas para las noches en las que todos ya están cansados.</p>
         <div class="orient-actions">
           <a href="#protocol-content" class="orient-btn orient-btn-primary"
-             data-i18n="orient_btn_step" data-es="Ver el primer paso" data-en="See the first step">Ver el primer paso</a>
+             data-i18n="orient_btn_phrases" data-es="Ver las frases" data-en="See the phrases">Ver las frases</a>
           <a href="/apoyo/index.html" class="orient-btn orient-btn-ghost js-full-guide"
              data-i18n="orient_btn_hub" data-es="Ver la guía completa" data-en="See the full guide">Ver la guía completa</a>
         </div>
       </div>
     </section>
 
-    <!-- BREADCRUMB + PROGRESS -->
+    <!-- BREADCRUMB -->
     <div class="proto-trail">
       <nav class="proto-breadcrumb" aria-label="Ruta">
         <a href="/apoyo/index.html" data-i18n="bc_guias" data-es="Guías" data-en="Guides">Guías</a>
         <span class="bc-sep">·</span>
         <span data-i18n="bc_topic" data-es="Resistencia al sueño" data-en="Bedtime Resistance">Resistencia al sueño</span>
-        <span class="bc-sep">·</span>
-        <span id="bc-step-label">Paso 1</span>
       </nav>
-      <p class="proto-progress" id="proto-progress" aria-live="polite">Paso 1 de 3 · Anticipa</p>
     </div>
 
     <main class="content-wrapper">
@@ -825,14 +819,24 @@
 
             <!-- Mobile cards -->
             <div id="mobile-cards-section">
-              <span class="sec-lbl" data-i18n="cards_intro" data-es="Elige tu respuesta · Toca para copiar" data-en="Choose your response · Tap to copy">Elige tu respuesta · Toca para copiar</span>
+              <div class="arc-intro">
+                <span class="sec-lbl" data-i18n="cards_intro" data-es="De menos a más resistencia · Toca para copiar" data-en="From least to most resistance · Tap to copy">De menos a más resistencia · Toca para copiar</span>
+                <span class="arc-track" aria-hidden="true">
+                  <span class="arc-dot">1</span><span class="arc-arrow">→</span><span class="arc-dot">2</span><span class="arc-arrow">→</span><span class="arc-dot">3</span>
+                </span>
+              </div>
               <div class="phrase-grid" id="phrase-grid-mobile"></div>
             </div>
           </div>
 
           <!-- Right: sticky cards (desktop only) -->
           <div class="hero-cards-col" id="desktop-cards-col" style="display:none;">
-            <span class="sec-lbl sec-lbl-cards" data-i18n="cards_intro" data-es="Elige tu respuesta · Toca para copiar" data-en="Choose your response · Tap to copy">Elige tu respuesta · Toca para copiar</span>
+            <div class="arc-intro">
+              <span class="sec-lbl" data-i18n="cards_intro" data-es="De menos a más resistencia · Toca para copiar" data-en="From least to most resistance · Tap to copy">De menos a más resistencia · Toca para copiar</span>
+              <span class="arc-track" aria-hidden="true">
+                <span class="arc-dot">1</span><span class="arc-arrow">→</span><span class="arc-dot">2</span><span class="arc-arrow">→</span><span class="arc-dot">3</span>
+              </span>
+            </div>
             <div class="phrase-grid" id="phrase-grid-desktop"></div>
           </div>
 
@@ -881,17 +885,6 @@
           </div>
         </div>
 
-        <!-- NEXT STEP PATH -->
-        <section class="next-step-path" aria-label="Siguiente paso">
-          <p class="next-step-copy"
-             data-i18n="next_step_copy"
-             data-es="Cuando la intensidad baje un poco, puedes pasar al siguiente paso."
-             data-en="When the intensity eases a little, you can move to the next step.">Cuando la intensidad baje un poco, puedes pasar al siguiente paso.</p>
-          <a href="?step=2#protocol-content" class="next-step-cta js-next-step" id="next-step-link"
-             data-from="1" data-to="2"
-             data-i18n="next_step_cta" data-es="Siguiente paso →" data-en="Next step →">Siguiente paso →</a>
-        </section>
-
         <!-- CROSS-PROTOCOL -->
         <section class="cross-protocol">
           <p class="cp-eyebrow">
@@ -914,11 +907,11 @@
           <div class="share-actions">
             <button type="button" class="sc-btn wa share-wa">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51h-.57c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              <span data-i18n="share_btn_wa" data-es="Enviar por WhatsApp" data-en="Send via WhatsApp">Enviar por WhatsApp</span>
+              <span data-i18n="share_wa" data-es="Enviar por WhatsApp" data-en="Send via WhatsApp">Enviar por WhatsApp</span>
             </button>
             <button type="button" class="sc-btn share-copy">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-              <span data-i18n="share_btn_copy" data-es="Copiar Link" data-en="Copy Link">Copiar Link</span>
+              <span data-i18n="share_btn_copy" data-es="Copiar enlace" data-en="Copy Link">Copiar enlace</span>
             </button>
           </div>
         </div>
@@ -927,17 +920,6 @@
 
     </main>
   </div><!-- /page-shell -->
-
-  <!-- STICKY FOOTER (mobile/tablet only) -->
-  <div class="sticky-footer-wrap">
-    <div class="sticky-footer">
-      <span class="sticky-step" data-i18n="footer_s1" data-es="Anticipa" data-en="Prepare">Anticipa</span>
-      <span class="sticky-sep">→</span>
-      <span class="sticky-step" style="color:#fff" data-i18n="footer_s2" data-es="Guía" data-en="Guide">Guía</span>
-      <span class="sticky-sep">→</span>
-      <span class="sticky-step" data-i18n="footer_s3" data-es="Mantén" data-en="Hold">Mantén</span>
-    </div>
-  </div>
 
   <script>
   (function () {
@@ -950,6 +932,7 @@
       {
         mode: 'anticipar',
         title:  { es: 'Anticipar', en: 'Prepare' },
+        intensity: { level: 1, label: { es: 'Margen', en: 'Buffer' } },
         when:   { es: '<strong>Cuándo:</strong> Todavía hay margen.',
                   en: '<strong>When:</strong> There is still time.' },
         phrase: { es: 'En 10 minutos vamos a ir a dormir. Pongo el timer ahora para que sepas cuándo cambiamos.',
@@ -960,6 +943,7 @@
       {
         mode: 'guiar',
         title:  { es: 'Guiar', en: 'Guide' },
+        intensity: { level: 2, label: { es: 'Resistencia', en: 'Resisting' } },
         when:   { es: '<strong>Cuándo:</strong> Empieza la resistencia.',
                   en: '<strong>When:</strong> Resistance begins.' },
         phrase: { es: 'Veo que sigues jugando. El juguete se queda aquí. Ahora terminamos. Mañana seguimos.',
@@ -970,6 +954,7 @@
       {
         mode: 'firme_calma',
         title:  { es: 'Firme + calma', en: 'Firm + calm' },
+        intensity: { level: 3, label: { es: 'Límite', en: 'Boundary' } },
         when:   { es: '<strong>Cuándo:</strong> El límite ya llegó.',
                   en: '<strong>When:</strong> The boundary is here.' },
         phrase: { es: 'Veo que no quieres parar. El timer ya sonó. Ahora vamos a dormir. Te acompaño.',
@@ -980,57 +965,15 @@
     ];
 
     // ─────────────────────────────────────────
-    // PROTOCOL ORIENTATION
-    // ─────────────────────────────────────────
-    const PROTOCOL = {
-      name: 'bedtime_resistance',
-      steps: [
-        { es: 'Anticipa', en: 'Prepare' },
-        { es: 'Guía', en: 'Guide' },
-        { es: 'Mantén', en: 'Hold' }
-      ],
-      crossNext: { href: '/apoyo/emotional-escalation', to: 'emotional_escalation' }
-    };
-
-    function getStepNum() {
-      const n = parseInt(new URLSearchParams(location.search).get('step') || '1', 10);
-      return Math.min(Math.max(n, 1), PROTOCOL.steps.length);
-    }
-
-    function updateStepUI() {
-      const step = getStepNum();
-      const total = PROTOCOL.steps.length;
-      const stepName = lang === 'es' ? PROTOCOL.steps[step - 1].es : PROTOCOL.steps[step - 1].en;
-      const pasoLabel = lang === 'es' ? 'Paso' : 'Step';
-      const deLabel = lang === 'es' ? 'de' : 'of';
-
-      const bcStep = document.getElementById('bc-step-label');
-      const progress = document.getElementById('proto-progress');
-      const nextLink = document.getElementById('next-step-link');
-      if (!bcStep || !progress || !nextLink) return;
-
-      bcStep.textContent = pasoLabel + ' ' + step;
-      progress.textContent = pasoLabel + ' ' + step + ' ' + deLabel + ' ' + total + ' · ' + stepName;
-
-      if (step < total) {
-        nextLink.href = '?step=' + (step + 1) + '#protocol-content';
-        nextLink.dataset.from = String(step);
-        nextLink.dataset.to = String(step + 1);
-      } else {
-        nextLink.href = PROTOCOL.crossNext.href;
-        nextLink.dataset.from = String(step);
-        nextLink.dataset.to = PROTOCOL.crossNext.to;
-      }
-    }
-
-    // ─────────────────────────────────────────
     // TELEMETRY
     // ─────────────────────────────────────────
+    const LAYOUT_VERSION = 'arc_v2';
     function trackSignal(eventName, properties) {
+      const props = Object.assign({ layout_version: LAYOUT_VERSION }, properties || {});
       if (typeof plausible !== 'undefined') {
-        plausible(eventName, { props: properties });
+        plausible(eventName, { props: props });
       }
-      console.log('[SnglIQ Captured]:', eventName, properties);
+      console.log('[SnglIQ Captured]:', eventName, props);
     }
 
     // ─────────────────────────────────────────
@@ -1052,19 +995,37 @@
     }
 
     // ─────────────────────────────────────────
+    // INTENSITY METER MARKUP
+    // ─────────────────────────────────────────
+    function meterMarkup(level, label) {
+      const bar = (n) => `<span class="pc-bar b${n}${n <= level ? ' lit' : ''}"></span>`;
+      return `
+        <div class="pc-meter" aria-label="Resistencia ${level} de 3">
+          <span class="pc-bars">${bar(1)}${bar(2)}${bar(3)}</span>
+          <span class="pc-int-label">${label}</span>
+        </div>`;
+    }
+
+    // ─────────────────────────────────────────
     // BUILD CARD
     // ─────────────────────────────────────────
-    function buildCard(card, l) {
+    function buildCard(card, index, l) {
+      const num = index + 1;
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'phrase-card';
       btn.setAttribute('data-mode', card.mode);
+      btn.setAttribute('data-intensity', String(card.intensity.level));
       btn.setAttribute('aria-pressed', 'false');
       btn.innerHTML = `
         <span class="pc-top">
-          <span class="pc-mode">${card.title[l]}</span>
+          <span class="pc-id">
+            <span class="pc-num">${num}</span>
+            <span class="pc-mode">${card.title[l]}</span>
+          </span>
           <span class="pc-copy">${l === 'es' ? 'Copiar' : 'Copy'}</span>
         </span>
+        ${meterMarkup(card.intensity.level, card.intensity.label[l])}
         <p class="pc-when">${card.when[l]}</p>
         <p class="pc-phrase">${card.phrase[l]}</p>
         <span class="pc-hint">${card.hint[l]}</span>
@@ -1084,9 +1045,9 @@
       mobileGrid.innerHTML  = '';
       desktopGrid.innerHTML = '';
 
-      cards.forEach(card => {
-        const cm = buildCard(card, l);
-        const cd = buildCard(card, l);
+      cards.forEach((card, i) => {
+        const cm = buildCard(card, i, l);
+        const cd = buildCard(card, i, l);
         attachCardEvents(cm);
         attachCardEvents(cd);
         mobileGrid.appendChild(cm);
@@ -1109,6 +1070,7 @@
       card.addEventListener('click', () => {
         const phrase = card.querySelector('.pc-phrase').textContent.trim();
         const mode   = card.getAttribute('data-mode');
+        const level  = Number(card.getAttribute('data-intensity'));
 
         navigator.clipboard.writeText(phrase).then(() => {
           document.querySelectorAll('.phrase-card').forEach(c => {
@@ -1118,7 +1080,7 @@
           card.setAttribute('aria-pressed', 'true');
           card.querySelector('.pc-copy').textContent = lang === 'es' ? '¡Copiado!' : 'Copied!';
           showToast(lang === 'es' ? '¡Copiado! Úsalo ahora.' : 'Copied! Use it now.');
-          trackSignal('phrase_copied', { mode, language: lang, protocol: 'bedtime_resistance' });
+          trackSignal('phrase_copied', { mode, level, language: lang, protocol: 'bedtime_resistance' });
 
           setTimeout(() => {
             card.setAttribute('aria-pressed', 'false');
@@ -1147,15 +1109,10 @@
       });
 
       renderCards(l);
-      updateStepUI();
     }
 
     document.querySelector('.js-full-guide')?.addEventListener('click', () => {
-      trackSignal('full_guide_requested', { protocol: PROTOCOL.name });
-    });
-    document.getElementById('next-step-link')?.addEventListener('click', () => {
-      const link = document.getElementById('next-step-link');
-      trackSignal('next_step_triggered', { from: link.dataset.from, to: link.dataset.to });
+      trackSignal('full_guide_requested', { protocol: 'bedtime_resistance' });
     });
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -1229,7 +1186,7 @@
         const d = getShareData();
         navigator.clipboard.writeText(d.url);
         trackSignal('share_copy_link', { protocol: 'bedtime_resistance' });
-        showToast(lang === 'es' ? 'Link copiado' : 'Link copied');
+        showToast(lang === 'es' ? '¡Enlace copiado!' : 'Link copied!');
       });
     }
 
@@ -1243,3 +1200,4 @@
 
 </body>
 </html>
+```

@@ -132,7 +132,7 @@
        TOAST
     ───────────────────────────────────────── */
     .toast {
-      position: fixed; bottom: 96px; left: 50%;
+      position: fixed; bottom: 32px; left: 50%;
       transform: translate(-50%, 20px) scale(0.95);
       opacity: 0; visibility: hidden;
       background: rgba(20, 12, 28, 0.92);
@@ -152,7 +152,7 @@
     /* ─────────────────────────────────────────
        LAYOUT SHELL
     ───────────────────────────────────────── */
-    .page-shell { position: relative; z-index: 2; min-height: 100vh; padding-bottom: 100px; }
+    .page-shell { position: relative; z-index: 2; min-height: 100vh; padding-bottom: 56px; }
 
     /* ─────────────────────────────────────────
        NAV
@@ -242,9 +242,27 @@
     .primer-main { font-size: .92rem; font-weight: 400; line-height: 1.55; color: rgba(255,255,255,.88); }
 
     /* ─────────────────────────────────────────
-       SECTION LABEL
+       SECTION LABEL & ARC INTRO
     ───────────────────────────────────────── */
     .sec-lbl { display: block; margin: 36px 0 12px; font-size: .67rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; color: var(--faint); }
+    
+    .arc-intro {
+      display: flex; align-items: center; gap: 10px;
+      margin: 36px 0 14px;
+    }
+    .arc-intro .sec-lbl { margin: 0; }
+    .arc-track {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-left: auto; flex-shrink: 0;
+    }
+    .arc-dot {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 18px; height: 18px; border-radius: 50%;
+      font-family: 'DM Mono', monospace; font-size: .58rem; font-weight: 700;
+      color: var(--accent); background: var(--accent-bg);
+      border: 1px solid var(--accent-border);
+    }
+    .arc-arrow { color: var(--faint); font-size: .7rem; }
 
     /* ─────────────────────────────────────────
        PHRASE CARDS
@@ -277,6 +295,22 @@
     }
 
     .pc-top { display: flex; width: 100%; align-items: center; justify-content: space-between; margin-bottom: 2px; }
+    
+    .pc-id { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .pc-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; border-radius: 50%;
+      flex-shrink: 0;
+      font-family: 'DM Mono', monospace; font-size: .78rem; font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-bg);
+      border: 1px solid var(--accent-border);
+      transition: color .2s, background .2s, border-color .2s;
+    }
+    .phrase-card[aria-pressed='true'] .pc-num {
+      color: var(--success); background: var(--success-bg); border-color: rgba(53,208,110,.4);
+    }
+    
     .pc-mode { font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); transition: color .2s; }
     .phrase-card[aria-pressed='true'] .pc-mode { color: var(--success); }
 
@@ -287,6 +321,27 @@
       transition: all .2s; flex-shrink: 0;
     }
     .phrase-card[aria-pressed='true'] .pc-copy { background: var(--success); color: #000; }
+
+    .pc-meter {
+      display: flex; align-items: center; gap: 8px;
+      margin: 2px 0 4px;
+    }
+    .pc-bars { display: inline-flex; align-items: flex-end; gap: 3px; }
+    .pc-bar {
+      width: 4px; border-radius: 2px;
+      background: rgba(255,255,255,.16);
+      transition: background .2s;
+    }
+    .pc-bar.b1 { height: 7px; }
+    .pc-bar.b2 { height: 11px; }
+    .pc-bar.b3 { height: 15px; }
+    .pc-bar.lit { background: var(--accent); }
+    .phrase-card[aria-pressed='true'] .pc-bar.lit { background: var(--success); }
+    .pc-int-label {
+      font-size: .62rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .06em;
+      color: var(--subtle);
+    }
 
     .pc-when { font-size: .82rem; color: var(--muted); line-height: 1.5; font-weight: 400; }
     .pc-when strong { color: rgba(255,255,255,.92); font-weight: 700; }
@@ -375,28 +430,6 @@
     .sc-btn.wa:hover { background: rgba(53,208,110,.18); }
 
     /* ─────────────────────────────────────────
-       STICKY FOOTER
-    ───────────────────────────────────────── */
-    .sticky-footer-wrap {
-      position: fixed; bottom: 0; left: 0; right: 0;
-      padding: 8px 20px max(20px, env(safe-area-inset-bottom));
-      background: linear-gradient(0deg, var(--bg-2) 50%, transparent 100%);
-      pointer-events: none; z-index: 30;
-    }
-    .sticky-footer {
-      max-width: 440px; margin: 0 auto;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 11px 20px; border-radius: var(--radius-pill);
-      background: rgba(14,12,10,.92);
-      border: 1px solid rgba(255,255,255,.09);
-      box-shadow: 0 10px 32px rgba(0,0,0,.6);
-      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-      pointer-events: auto; overflow: hidden;
-    }
-    .sticky-step { font-size: clamp(.6rem, 2.5vw, .7rem); font-weight: 600; text-transform: uppercase; letter-spacing: .03em; color: rgba(255,255,255,.45); white-space: nowrap; }
-    .sticky-sep { color: rgba(255,255,255,.18); font-size: .7rem; }
-
-    /* ─────────────────────────────────────────
        TABLET (640px+)
     ───────────────────────────────────────── */
     @media (min-width: 640px) {
@@ -415,7 +448,7 @@
        DESKTOP (900px+)
     ───────────────────────────────────────── */
     @media (min-width: 900px) {
-      body { font-size: 17px; padding-bottom: 0; }
+      body { font-size: 17px; }
       .p-nav { padding-left: 48px; padding-right: 48px; border-radius: 0; }
       .nav-logo img { height: 60px; }
       .content-wrapper { padding: 0 48px; }
@@ -429,7 +462,7 @@
       .hero-illo-wrap { display: none; }
 
       .phrase-grid { grid-template-columns: 1fr; gap: 12px; }
-      .sec-lbl-cards { margin-top: 0; margin-bottom: 14px; }
+      .arc-intro { margin-top: 0; margin-bottom: 14px; }
       .phrase-card { padding: 22px 24px; border-radius: 18px; }
       .pc-phrase { font-size: 1.25rem; }
 
@@ -444,12 +477,10 @@
       .share-panel { margin-top: 32px; padding: 28px 32px; }
       .share-sub { max-width: none; }
       .share-actions { grid-template-columns: 1fr 1fr; }
-
-      .sticky-footer-wrap { display: none; }
     }
 
     /* ─────────────────────────────────────────
-       ORIENTATION · BREADCRUMB · NEXT STEP
+       ORIENTATION · BREADCRUMB
     ───────────────────────────────────────── */
     .orient-block {
       background: var(--void-mid);
@@ -504,40 +535,10 @@
       font-family: 'DM Mono', monospace;
       font-size: .68rem; letter-spacing: .15em;
       text-transform: uppercase; color: var(--text-ghost);
-      margin-bottom: 8px;
     }
     .proto-breadcrumb a { color: var(--text-ghost); transition: color .2s; }
     .proto-breadcrumb a:hover { color: var(--teal); }
     .proto-breadcrumb .bc-sep { margin: 0 .45em; opacity: .7; }
-    .proto-progress {
-      font-family: 'DM Mono', monospace;
-      font-size: .68rem; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--text-body);
-    }
-
-    .next-step-path {
-      margin-top: 36px; padding: 28px 24px;
-      border-radius: var(--radius-xl);
-      background: rgba(255,255,255,.03);
-      border: 1px solid var(--border); text-align: center;
-    }
-    .next-step-copy {
-      font-family: 'DM Sans', system-ui, sans-serif;
-      font-size: .92rem; color: var(--text-body);
-      line-height: 1.6; margin-bottom: 18px;
-      max-width: 36ch; margin-left: auto; margin-right: auto;
-    }
-    .next-step-cta {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-family: 'DM Sans', system-ui, sans-serif;
-      font-size: .9rem; font-weight: 500; color: var(--teal);
-      padding: 12px 20px; border-radius: var(--radius-pill);
-      border: 1px solid rgba(75,173,168,.35);
-      background: rgba(75,173,168,.08);
-      transition: transform .2s, background .2s;
-    }
-    .next-step-cta:hover { background: rgba(75,173,168,.14); }
-    .next-step-cta:active { transform: scale(0.98); }
 
     @media (min-width: 640px) {
       .orient-block { padding-left: 32px; padding-right: 32px; }
@@ -546,8 +547,6 @@
     @media (min-width: 900px) {
       .orient-block { padding-left: 48px; padding-right: 48px; }
       .proto-trail { padding-left: 48px; padding-right: 48px; }
-      .next-step-path { text-align: left; padding: 32px; }
-      .next-step-copy { margin-left: 0; }
     }
 
     /* ─────────────────────────────────────────
@@ -606,23 +605,20 @@
            data-en="Concrete phrases to separate, validate, and set limits without picking sides.">Frases concretas para separar, validar y poner límites sin elegir bandos.</p>
         <div class="orient-actions">
           <a href="#protocol-content" class="orient-btn orient-btn-primary"
-             data-i18n="orient_btn_step" data-es="Ver el primer paso" data-en="See the first step">Ver el primer paso</a>
+             data-i18n="orient_btn_phrases" data-es="Ver las frases" data-en="See the phrases">Ver las frases</a>
           <a href="/apoyo/index.html" class="orient-btn orient-btn-ghost js-full-guide"
              data-i18n="orient_btn_hub" data-es="Ver la guía completa" data-en="See the full guide">Ver la guía completa</a>
         </div>
       </div>
     </section>
 
-    <!-- BREADCRUMB + PROGRESS -->
+    <!-- BREADCRUMB -->
     <div class="proto-trail">
       <nav class="proto-breadcrumb" aria-label="Ruta">
         <a href="/apoyo/index.html" data-i18n="bc_guias" data-es="Guías" data-en="Guides">Guías</a>
         <span class="bc-sep">·</span>
         <span data-i18n="bc_topic" data-es="Peleas entre hermanos" data-en="Sibling Conflict">Peleas entre hermanos</span>
-        <span class="bc-sep">·</span>
-        <span id="bc-step-label">Paso 1</span>
       </nav>
-      <p class="proto-progress" id="proto-progress" aria-live="polite">Paso 1 de 4 · Separa</p>
     </div>
 
     <main class="content-wrapper">
@@ -671,14 +667,24 @@
 
             <!-- Mobile cards -->
             <div id="mobile-cards-section">
-              <span class="sec-lbl" data-i18n="cards_intro" data-es="Elige tu respuesta · Toca para copiar" data-en="Choose your response · Tap to copy">Elige tu respuesta · Toca para copiar</span>
+              <div class="arc-intro">
+                <span class="sec-lbl" data-i18n="cards_intro" data-es="De menos a más intensidad · Toca para copiar" data-en="From low to high intensity · Tap to copy">De menos a más intensidad · Toca para copiar</span>
+                <span class="arc-track" aria-hidden="true">
+                  <span class="arc-dot">1</span><span class="arc-arrow">→</span><span class="arc-dot">2</span><span class="arc-arrow">→</span><span class="arc-dot">3</span>
+                </span>
+              </div>
               <div class="phrase-grid" id="phrase-grid-mobile"></div>
             </div>
           </div>
 
           <!-- Right: sticky cards (desktop only) -->
           <div class="hero-cards-col" id="desktop-cards-col" style="display:none;">
-            <span class="sec-lbl sec-lbl-cards" data-i18n="cards_intro" data-es="Elige tu respuesta · Toca para copiar" data-en="Choose your response · Tap to copy">Elige tu respuesta · Toca para copiar</span>
+            <div class="arc-intro">
+              <span class="sec-lbl" data-i18n="cards_intro" data-es="De menos a más intensidad · Toca para copiar" data-en="From low to high intensity · Tap to copy">De menos a más intensidad · Toca para copiar</span>
+              <span class="arc-track" aria-hidden="true">
+                <span class="arc-dot">1</span><span class="arc-arrow">→</span><span class="arc-dot">2</span><span class="arc-arrow">→</span><span class="arc-dot">3</span>
+              </span>
+            </div>
             <div class="phrase-grid" id="phrase-grid-desktop"></div>
           </div>
 
@@ -727,17 +733,6 @@
           </div>
         </div>
 
-        <!-- NEXT STEP PATH -->
-        <section class="next-step-path" aria-label="Siguiente paso">
-          <p class="next-step-copy"
-             data-i18n="next_step_copy"
-             data-es="Cuando la intensidad baje un poco, puedes pasar al siguiente paso."
-             data-en="When the intensity eases a little, you can move to the next step.">Cuando la intensidad baje un poco, puedes pasar al siguiente paso.</p>
-          <a href="?step=2#protocol-content" class="next-step-cta js-next-step" id="next-step-link"
-             data-from="1" data-to="2"
-             data-i18n="next_step_cta" data-es="Siguiente paso →" data-en="Next step →">Siguiente paso →</a>
-        </section>
-
         <!-- CROSS-PROTOCOL -->
         <section class="cross-protocol">
           <p class="cp-eyebrow">
@@ -774,19 +769,6 @@
     </main>
   </div><!-- /page-shell -->
 
-  <!-- STICKY FOOTER (mobile/tablet only) — 4 steps -->
-  <div class="sticky-footer-wrap">
-    <div class="sticky-footer">
-      <span class="sticky-step" style="color:#fff" data-i18n="footer_s1" data-es="Separa" data-en="Separate">Separa</span>
-      <span class="sticky-sep">→</span>
-      <span class="sticky-step" data-i18n="footer_s2" data-es="Valida" data-en="Validate">Valida</span>
-      <span class="sticky-sep">→</span>
-      <span class="sticky-step" data-i18n="footer_s3" data-es="Limita" data-en="Limit">Limita</span>
-      <span class="sticky-sep">→</span>
-      <span class="sticky-step" data-i18n="footer_s4" data-es="Repara" data-en="Repair">Repara</span>
-    </div>
-  </div>
-
   <script>
   (function () {
     'use strict';
@@ -798,6 +780,7 @@
       {
         mode: 'separar',
         title:  { es: 'Separar',        en: 'Separate' },
+        intensity: { level: 1, label: { es: 'Sube', en: 'Rising' } },
         when:   { es: '<strong>Cuándo:</strong> Va subiendo la tensión; aún no explota.',
                   en: "<strong>When:</strong> Tension is rising; it hasn't exploded yet." },
         phrase: { es: 'Voy a separarles un momento. Ya está subiendo demasiado.',
@@ -808,6 +791,7 @@
       {
         mode: 'validar',
         title:  { es: 'Validar',        en: 'Validate' },
+        intensity: { level: 2, label: { es: 'Pico', en: 'Peak' } },
         when:   { es: '<strong>Cuándo:</strong> Ya hay llanto o enojo.',
                   en: "<strong>When:</strong> There's already crying or anger." },
         phrase: { es: 'Veo que ambos están muy molestos. Primero bajemos esto.',
@@ -818,6 +802,7 @@
       {
         mode: 'limitar',
         title:  { es: 'Limitar',        en: 'Set the limit' },
+        intensity: { level: 3, label: { es: 'Riesgo', en: 'Risk' } },
         when:   { es: '<strong>Cuándo:</strong> Hay golpes, empujones o riesgo.',
                   en: '<strong>When:</strong> There is hitting, pushing, or risk.' },
         phrase: { es: 'No voy a dejar que se lastimen.',
@@ -828,58 +813,15 @@
     ];
 
     // ─────────────────────────────────────────
-    // PROTOCOL ORIENTATION
-    // ─────────────────────────────────────────
-    const PROTOCOL = {
-      name: 'sibling_conflict',
-      steps: [
-        { es: 'Separa', en: 'Separate' },
-        { es: 'Valida', en: 'Validate' },
-        { es: 'Limita', en: 'Limit' },
-        { es: 'Repara', en: 'Repair' }
-      ],
-      crossNext: { href: '/apoyo/emotional-escalation', to: 'emotional_escalation' }
-    };
-
-    function getStepNum() {
-      const n = parseInt(new URLSearchParams(location.search).get('step') || '1', 10);
-      return Math.min(Math.max(n, 1), PROTOCOL.steps.length);
-    }
-
-    function updateStepUI() {
-      const step = getStepNum();
-      const total = PROTOCOL.steps.length;
-      const stepName = lang === 'es' ? PROTOCOL.steps[step - 1].es : PROTOCOL.steps[step - 1].en;
-      const pasoLabel = lang === 'es' ? 'Paso' : 'Step';
-      const deLabel = lang === 'es' ? 'de' : 'of';
-
-      const bcStep = document.getElementById('bc-step-label');
-      const progress = document.getElementById('proto-progress');
-      const nextLink = document.getElementById('next-step-link');
-      if (!bcStep || !progress || !nextLink) return;
-
-      bcStep.textContent = pasoLabel + ' ' + step;
-      progress.textContent = pasoLabel + ' ' + step + ' ' + deLabel + ' ' + total + ' · ' + stepName;
-
-      if (step < total) {
-        nextLink.href = '?step=' + (step + 1) + '#protocol-content';
-        nextLink.dataset.from = String(step);
-        nextLink.dataset.to = String(step + 1);
-      } else {
-        nextLink.href = PROTOCOL.crossNext.href;
-        nextLink.dataset.from = String(step);
-        nextLink.dataset.to = PROTOCOL.crossNext.to;
-      }
-    }
-
-    // ─────────────────────────────────────────
     // TELEMETRY
     // ─────────────────────────────────────────
+    const LAYOUT_VERSION = 'arc_v2';
     function trackSignal(eventName, properties) {
+      const props = Object.assign({ layout_version: LAYOUT_VERSION }, properties || {});
       if (typeof plausible !== 'undefined') {
-        plausible(eventName, { props: properties });
+        plausible(eventName, { props: props });
       }
-      console.log('[SnglIQ Captured]:', eventName, properties);
+      console.log('[SnglIQ Captured]:', eventName, props);
     }
 
     // ─────────────────────────────────────────
@@ -901,19 +843,37 @@
     }
 
     // ─────────────────────────────────────────
+    // INTENSITY METER MARKUP
+    // ─────────────────────────────────────────
+    function meterMarkup(level, label) {
+      const bar = (n) => `<span class="pc-bar b${n}${n <= level ? ' lit' : ''}"></span>`;
+      return `
+        <div class="pc-meter" aria-label="Intensidad ${level} de 3">
+          <span class="pc-bars">${bar(1)}${bar(2)}${bar(3)}</span>
+          <span class="pc-int-label">${label}</span>
+        </div>`;
+    }
+
+    // ─────────────────────────────────────────
     // BUILD CARD
     // ─────────────────────────────────────────
-    function buildCard(card, l) {
+    function buildCard(card, index, l) {
+      const num = index + 1;
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'phrase-card';
       btn.setAttribute('data-mode', card.mode);
+      btn.setAttribute('data-intensity', String(card.intensity.level));
       btn.setAttribute('aria-pressed', 'false');
       btn.innerHTML = `
         <span class="pc-top">
-          <span class="pc-mode">${card.title[l]}</span>
+          <span class="pc-id">
+            <span class="pc-num">${num}</span>
+            <span class="pc-mode">${card.title[l]}</span>
+          </span>
           <span class="pc-copy">${l === 'es' ? 'Copiar' : 'Copy'}</span>
         </span>
+        ${meterMarkup(card.intensity.level, card.intensity.label[l])}
         <p class="pc-when">${card.when[l]}</p>
         <p class="pc-phrase">${card.phrase[l]}</p>
         <span class="pc-hint">${card.hint[l]}</span>
@@ -933,9 +893,9 @@
       mobileGrid.innerHTML  = '';
       desktopGrid.innerHTML = '';
 
-      cards.forEach(card => {
-        const cm = buildCard(card, l);
-        const cd = buildCard(card, l);
+      cards.forEach((card, i) => {
+        const cm = buildCard(card, i, l);
+        const cd = buildCard(card, i, l);
         attachCardEvents(cm);
         attachCardEvents(cd);
         mobileGrid.appendChild(cm);
@@ -958,6 +918,7 @@
       card.addEventListener('click', () => {
         const phrase = card.querySelector('.pc-phrase').textContent.trim();
         const mode   = card.getAttribute('data-mode');
+        const level  = Number(card.getAttribute('data-intensity'));
 
         navigator.clipboard.writeText(phrase).then(() => {
           document.querySelectorAll('.phrase-card').forEach(c => {
@@ -967,7 +928,7 @@
           card.setAttribute('aria-pressed', 'true');
           card.querySelector('.pc-copy').textContent = lang === 'es' ? '¡Copiado!' : 'Copied!';
           showToast(lang === 'es' ? '¡Copiado! Úsalo ahora.' : 'Copied! Use it now.');
-          trackSignal('phrase_copied', { mode, language: lang, protocol: 'sibling_conflict' });
+          trackSignal('phrase_copied', { mode, level, language: lang, protocol: 'sibling_conflict' });
 
           setTimeout(() => {
             card.setAttribute('aria-pressed', 'false');
@@ -996,15 +957,10 @@
       });
 
       renderCards(l);
-      updateStepUI();
     }
 
     document.querySelector('.js-full-guide')?.addEventListener('click', () => {
-      trackSignal('full_guide_requested', { protocol: PROTOCOL.name });
-    });
-    document.getElementById('next-step-link')?.addEventListener('click', () => {
-      const link = document.getElementById('next-step-link');
-      trackSignal('next_step_triggered', { from: link.dataset.from, to: link.dataset.to });
+      trackSignal('full_guide_requested', { protocol: 'sibling_conflict' });
     });
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
