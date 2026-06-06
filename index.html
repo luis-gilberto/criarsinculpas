@@ -13,7 +13,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
   <script>
     if (window.location.hostname === 'criarsinculpas.com') {
@@ -23,7 +23,6 @@
       script.src = 'https://plausible.io/js/script.manual.js';
       document.head.appendChild(script);
     }
-
     window.plausible = window.plausible || function() {
       if (window.location.hostname !== 'criarsinculpas.com') {
         console.log('Plausible [Local]:', arguments[0], arguments[1]);
@@ -32,942 +31,227 @@
   </script>
 
   <style>
-    /* ═══════════════════════════════════════════
-       DESIGN TOKENS
-    ═══════════════════════════════════════════ */
+    /* ═══════════════ DESIGN TOKENS ═══════════════ */
     :root {
-      --void:        #0e0b12;
-      --void-mid:    #13101a;
-      --void-lift:   #1a1624;
-      --text:        #F2EEE9;
-      --text-dim:    rgba(242,238,233,.62);
-      --text-ghost:  rgba(242,238,233,.34);
-      --coral:       #ff7d73;
-      --coral-dim:   rgba(255,125,115,.18);
-      --coral-glow:  rgba(255,125,115,.10);
-      --teal:        #61d1c4;
-      --teal-dim:    rgba(97,209,196,.18);
-      --teal-glow:   rgba(97,209,196,.07);
-      --gold:        #C9A96E;
-      --gold-dim:    rgba(201,169,110,.15);
-      --rose:        #F0A0BE;
+      --void:#0e0b12; --void-mid:#13101a; --void-lift:#1a1624;
+      --text:#F2EEE9; --text-dim:rgba(242,238,233,.62); --text-ghost:rgba(242,238,233,.34);
+      --coral:#ff7d73; --coral-dim:rgba(255,125,115,.18);
+      --teal:#61d1c4; --teal-dim:rgba(97,209,196,.18);
+      --gold:#C9A96E; --gold-dim:rgba(201,169,110,.15);
+      --serif:'Cormorant Garamond','Iowan Old Style',Georgia,serif;
+      --sans:'DM Sans',system-ui,sans-serif;
+      --ease-silk:cubic-bezier(.16,1,.3,1);
+      --ease-cinema:cubic-bezier(.2,.8,.2,1);
+      --pill:999px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--sans);background:var(--void);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative;}
+    a{color:inherit;text-decoration:none;}
+    body::before{content:'';position:fixed;top:-30vh;right:-20vw;width:80vw;height:80vh;background:radial-gradient(ellipse at center,rgba(97,209,196,.05) 0%,transparent 68%);pointer-events:none;z-index:0;}
 
-      --serif:  'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
-      --sans:   'DM Sans', system-ui, sans-serif;
-      --script: 'Great Vibes', cursive;
+    /* ═══════════════ GRAIN ═══════════════ */
+    .grain{position:fixed;inset:0;z-index:200;pointer-events:none;opacity:.028;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:192px;}
 
-      --ease-silk:    cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-cinema:  cubic-bezier(0.2, 0.8, 0.2, 1);
-      --pill: 999px;
-    }
+    /* ═══════════════ ANIMATIONS ═══════════════ */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes pulse-ring{0%{transform:scale(.95);box-shadow:0 0 0 0 rgba(97,209,196,.4);}70%{transform:scale(1);box-shadow:0 0 0 12px rgba(97,209,196,0);}100%{transform:scale(.95);box-shadow:0 0 0 0 rgba(97,209,196,0);}}
+    .r1{animation:fadeUp .9s var(--ease-silk) .05s both;} .r2{animation:fadeUp .9s var(--ease-silk) .18s both;}
+    .r3{animation:fadeUp .9s var(--ease-silk) .32s both;} .r4{animation:fadeUp .9s var(--ease-silk) .46s both;}
+    .r5{animation:fadeUp .9s var(--ease-silk) .60s both;}
 
-    *, *::before, *::after {
-      box-sizing: border-box; margin: 0; padding: 0;
-      -webkit-tap-highlight-color: transparent;
-    }
+    /* ═══════════════ NAV ═══════════════ */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:max(20px,env(safe-area-inset-top)) 56px 18px;display:flex;align-items:center;justify-content:space-between;gap:16px;transition:background .4s,backdrop-filter .4s;}
+    .nav.scrolled{background:rgba(14,11,18,.78);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.04);}
+    .wordmark{display:flex;flex-direction:column;line-height:1;flex-shrink:0;}
+    .wordmark .wm-top{font-family:var(--serif);font-weight:600;font-size:1.45rem;letter-spacing:.22em;color:var(--gold);}
+    .wordmark .wm-bot{font-family:var(--serif);font-style:italic;font-weight:400;font-size:.92rem;letter-spacing:.04em;color:var(--gold);opacity:.85;margin-top:2px;padding-left:.22em;}
+    .nav-center{display:flex;align-items:center;gap:34px;}
+    .nav-center a{color:var(--text-dim);font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;transition:color .25s;position:relative;padding:4px 0;}
+    .nav-center a:hover{color:var(--text);}
+    .nav-center a.active{color:var(--text);}
+    .nav-center a.active::after{content:'';position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--gold);}
+    .nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0;}
+    .lang-pill{display:inline-flex;padding:3px;gap:2px;border-radius:var(--pill);border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);}
+    .lang-btn{min-width:36px;padding:5px 9px;border-radius:var(--pill);font-size:.64rem;font-weight:700;letter-spacing:.06em;color:var(--text-ghost);background:none;border:none;cursor:pointer;transition:all .25s;}
+    .lang-btn[aria-pressed="true"]{color:var(--text);background:rgba(255,255,255,.1);box-shadow:0 1px 6px rgba(0,0,0,.3);}
+    .btn-enter{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:var(--pill);border:1px solid rgba(201,169,110,.45);color:var(--gold);font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:all .3s;background:rgba(201,169,110,.04);}
+    .btn-enter:hover{background:rgba(201,169,110,.12);border-color:var(--gold);}
+    .btn-enter svg{width:14px;height:14px;}
+    .ham{display:none;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);align-items:center;justify-content:center;cursor:pointer;position:relative;z-index:201;transition:all .3s;flex-shrink:0;}
+    .ham svg{color:var(--text);} .ham .x{display:none;}
+    .ham.open .bars{display:none;} .ham.open .x{display:block;}
+    .mobile-nav{display:none;position:fixed;inset:0;z-index:150;background:rgba(14,11,18,.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);flex-direction:column;align-items:center;justify-content:center;gap:36px;opacity:0;pointer-events:none;transition:opacity .4s var(--ease-cinema),transform .4s var(--ease-cinema);transform:translateY(-8px);}
+    .mobile-nav.open{opacity:1;pointer-events:auto;transform:translateY(0);}
+    .mobile-nav a{font-family:var(--serif);font-size:1.9rem;font-weight:400;color:var(--text-dim);letter-spacing:.04em;transition:color .25s;}
+    .mobile-nav a:hover{color:var(--text);}
 
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--sans);
-      background: var(--void);
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-      position: relative;
-    }
+    /* ═══════════════ HERO ═══════════════ */
+    .hero{position:relative;height:100vh;min-height:600px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;}
+    .hero-photo{position:absolute;inset:0;z-index:0;background-image:url('https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779645663/A_cinematic_documentary-style_photograph_of_an_ex-1779645621021_dikbho.png');background-size:cover;background-position:75% center;filter:brightness(.82) saturate(1.1) sepia(.06);transform:scale(1.04);transition:transform 16s var(--ease-cinema),filter 1.2s ease;}
+    .hero-photo.loaded{transform:scale(1);filter:brightness(.76) saturate(1.1) sepia(.06);}
+    .hero-overlay-dir{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to right,rgba(14,11,18,.92) 0%,rgba(14,11,18,.9) 22%,rgba(14,11,18,.32) 52%,transparent 100%);}
+    .hero-overlay-vert{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(to top,var(--void) 0%,rgba(14,11,18,.75) 28%,rgba(14,11,18,.12) 58%,rgba(14,11,18,0) 80%);}
+    .hero-overlay-blush{position:absolute;inset:0;z-index:3;pointer-events:none;background:radial-gradient(ellipse 55% 42% at 0% 102%,rgba(255,100,80,.1) 0%,transparent 62%);}
+    .hero-bar-top{position:absolute;top:0;left:0;right:0;z-index:4;height:clamp(56px,8vh,100px);pointer-events:none;background:linear-gradient(to bottom,rgba(14,11,18,.55) 0%,transparent 100%);}
+    .hero-body{position:relative;z-index:10;max-width:1300px;width:100%;margin:0 auto;padding:0 56px 64px;}
+    .status-badge{display:inline-flex;align-items:center;gap:9px;padding:6px 18px;border-radius:var(--pill);border:1px solid rgba(97,209,196,.3);background:rgba(97,209,196,.06);margin-bottom:26px;}
+    .status-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse-ring 2.4s cubic-bezier(.455,.03,.515,.955) infinite;flex-shrink:0;}
+    .status-badge span{font-size:.62rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);}
+    .hero-headline{font-family:var(--serif);font-size:clamp(3rem,5.5vw,5.8rem);font-weight:300;line-height:1.04;letter-spacing:-.01em;color:var(--text);max-width:15ch;text-shadow:0 2px 10px rgba(0,0,0,.5);}
+    .hero-headline em{font-style:italic;font-weight:400;color:var(--coral);text-shadow:0 2px 14px rgba(255,100,80,.25);}
+    .squiggle{display:block;margin:22px 0;opacity:.5;}
+    .hero-sub{font-size:clamp(.92rem,1.2vw,1.05rem);font-weight:400;color:rgba(242,238,233,.74);line-height:1.74;max-width:46ch;letter-spacing:.01em;}
 
-    a { color: inherit; text-decoration: none; }
-    a:hover { color: var(--teal); }
+    /* ═══════════════ DIVERGENCE ═══════════════ */
+    .divergence{position:relative;z-index:10;margin-top:40px;display:flex;gap:16px;flex-wrap:wrap;align-items:stretch;}
+    .entry{display:flex;flex-direction:column;padding:24px 28px;border-radius:18px;cursor:pointer;position:relative;overflow:hidden;transition:all .4s var(--ease-silk);min-width:220px;flex:1 1 280px;max-width:360px;}
+    .entry-emergencia{border:1px solid rgba(255,125,115,.32);background:rgba(255,125,115,.085);}
+    .entry-emergencia:hover{border-color:rgba(255,125,115,.6);background:rgba(255,125,115,.13);transform:translateY(-2px);box-shadow:0 20px 44px rgba(255,100,90,.18);}
+    .entry-contencion{border:1px solid rgba(97,209,196,.22);background:rgba(255,255,255,.018);}
+    .entry-contencion:hover{border-color:rgba(97,209,196,.4);background:rgba(97,209,196,.06);transform:translateY(-2px);box-shadow:0 20px 44px rgba(97,209,196,.12);}
+    .entry-label{font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px;}
+    .entry-emergencia .entry-label{color:var(--coral);} .entry-contencion .entry-label{color:var(--teal);}
+    .entry-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;}
+    .entry-title{font-family:var(--serif);font-size:1.55rem;line-height:1.12;color:var(--text);}
+    .entry-emergencia .entry-title{font-weight:600;} .entry-contencion .entry-title{font-weight:400;font-style:italic;}
+    .entry-arrowbtn{flex-shrink:0;width:38px;height:38px;border-radius:50%;border:1px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all .3s var(--ease-silk);}
+    .entry-emergencia .entry-arrowbtn{color:var(--coral);} .entry-contencion .entry-arrowbtn{color:var(--teal);}
+    .entry:hover .entry-arrowbtn{transform:translateX(3px);}
+    .entry-rule{height:1px;background:rgba(255,255,255,.08);margin:16px 0;}
+    .entry-foot{display:flex;align-items:center;gap:12px;}
+    .entry-ico{flex-shrink:0;width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;}
+    .entry-emergencia .entry-ico svg{color:var(--coral);} .entry-contencion .entry-ico svg{color:var(--teal);}
+    .entry-desc{font-size:.78rem;color:var(--text-dim);line-height:1.55;}
 
-    /* ── Global ambient teal screen glow ── */
-    body::before {
-      content: '';
-      position: fixed;
-      top: -30vh; right: -20vw;
-      width: 80vw; height: 80vh;
-      background: radial-gradient(ellipse at center, rgba(97,209,196,.05) 0%, transparent 68%);
-      pointer-events: none; z-index: 0;
-    }
+    /* ═══════════════ AFFIRMATION ROW ═══════════════ */
+    .affirm{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:14px 8px;padding:30px 56px;border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04);background:var(--void);}
+    .affirm-item{display:inline-flex;align-items:center;gap:11px;}
+    .affirm-item svg{color:var(--gold);width:16px;height:16px;flex-shrink:0;opacity:.85;}
+    .affirm-item span{font-family:var(--serif);font-size:1.06rem;font-style:italic;font-weight:300;color:var(--text-dim);letter-spacing:.02em;}
+    .affirm-sep{width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.45;margin:0 18px;}
 
-    /* ═══════════════════════════════════════════
-       GRAIN OVERLAY
-    ═══════════════════════════════════════════ */
-    .grain {
-      position: fixed; inset: 0; z-index: 200;
-      pointer-events: none;
-      opacity: .028;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size: 192px;
-    }
+    /* ═══════════════ SECTION SHELL ═══════════════ */
+    .section{position:relative;max-width:1300px;margin:0 auto;padding:96px 56px;}
+    .section-full{position:relative;overflow:hidden;padding:96px 0;}
+    .section-inner{max-width:1300px;margin:0 auto;padding:0 56px;}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text-ghost);}
+    .eyebrow-center{display:flex;justify-content:center;text-align:center;margin-bottom:14px;letter-spacing:.22em;color:var(--gold);opacity:.85;}
 
-    /* ═══════════════════════════════════════════
-       ANIMATIONS
-    ═══════════════════════════════════════════ */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(22px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-    @keyframes breathe {
-      0%, 100% { opacity: .5; transform: scale(1); }
-      50%       { opacity: .8; transform: scale(1.04); }
-    }
-    @keyframes pulse-ring {
-      0%   { transform: scale(.95); box-shadow: 0 0 0 0 rgba(97,209,196,.4); }
-      70%  { transform: scale(1);   box-shadow: 0 0 0 12px rgba(97,209,196,0); }
-      100% { transform: scale(.95); box-shadow: 0 0 0 0 rgba(97,209,196,0); }
-    }
-    @keyframes shimmer {
-      from { background-position: -200% center; }
-      to   { background-position: 200% center; }
-    }
-    @keyframes float {
-      0%,100% { transform: translateY(0); }
-      50%     { transform: translateY(-6px); }
-    }
+    /* ═══════════════ PILLARS ═══════════════ */
+    .pillars-section{background:var(--void-mid);border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04);}
+    .pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:18px;}
+    .pillar{padding:8px 44px;position:relative;text-align:center;display:flex;flex-direction:column;align-items:center;}
+    .pillar:not(:last-child)::after{content:'';position:absolute;top:6px;bottom:6px;right:0;width:1px;background:rgba(255,255,255,.06);}
+    .pillar-icon{width:52px;height:52px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;}
+    .pillar-icon svg{width:30px;height:30px;}
+    .pillar.p-gold .pillar-icon svg{color:var(--gold);}
+    .pillar.p-teal .pillar-icon svg{color:var(--teal);}
+    .pillar.p-coral .pillar-icon svg{color:var(--coral);}
+    .pillar h3{font-family:var(--serif);font-size:1.4rem;font-weight:500;color:var(--text);margin-bottom:12px;}
+    .pillar p{font-size:.84rem;color:rgba(242,238,233,.7);line-height:1.7;max-width:30ch;}
 
-    .r1 { animation: fadeUp .9s var(--ease-silk) .05s both; }
-    .r2 { animation: fadeUp .9s var(--ease-silk) .18s both; }
-    .r3 { animation: fadeUp .9s var(--ease-silk) .32s both; }
-    .r4 { animation: fadeUp .9s var(--ease-silk) .46s both; }
-    .r5 { animation: fadeUp .9s var(--ease-silk) .60s both; }
-    .r6 { animation: fadeUp .9s var(--ease-silk) .74s both; }
+    /* ═══════════════ PROTOCOLS ═══════════════ */
+    .guides-section{background:var(--void);}
+    .guides-head{text-align:center;margin-bottom:48px;}
+    .guides-title{font-family:var(--serif);font-size:clamp(2rem,3.6vw,3rem);font-weight:300;line-height:1.1;color:var(--text);}
+    .guides-title em{font-style:italic;color:var(--coral);}
+    .guides-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+    .guide-card{display:flex;flex-direction:column;padding:30px 26px 24px;border-radius:18px;border:1px solid rgba(255,255,255,.06);background:var(--void-mid);position:relative;overflow:hidden;transition:all .4s var(--ease-silk);cursor:pointer;}
+    .guide-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(255,255,255,.04) 0%,transparent 70%);opacity:0;transition:opacity .4s;}
+    .guide-card:hover{border-color:rgba(255,255,255,.12);transform:translateY(-4px);box-shadow:0 24px 56px rgba(0,0,0,.4);}
+    .guide-card:hover::before{opacity:1;}
+    .guide-icon{margin-bottom:18px;display:block;}
+    .guide-icon svg{width:30px;height:30px;color:var(--gold);transition:color .3s;}
+    .guide-card:hover .guide-icon svg{color:var(--coral);}
+    .guide-card h3{font-family:var(--serif);font-size:1.32rem;font-weight:500;line-height:1.15;color:var(--text);margin-bottom:4px;}
+    .guide-sub{font-size:.74rem;color:var(--gold);letter-spacing:.02em;margin-bottom:14px;opacity:.85;}
+    .guide-card p{font-size:.78rem;color:var(--text-dim);line-height:1.6;margin-bottom:20px;flex:1;}
+    .guide-states{display:flex;gap:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.05);}
+    .state-tag{display:inline-flex;align-items:center;gap:7px;font-size:.68rem;color:var(--text-dim);letter-spacing:.02em;}
+    .state-tag::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+    .state-tag.emer::before{background:var(--coral);} .state-tag.cont::before{background:var(--teal);}
+    .guides-foot{display:flex;justify-content:center;margin-top:40px;}
+    .link-pill{display:inline-flex;align-items:center;gap:9px;font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);padding:12px 26px;border-radius:var(--pill);border:1px solid rgba(201,169,110,.3);transition:all .3s var(--ease-silk);}
+    .link-pill:hover{color:var(--gold);border-color:var(--gold);gap:14px;}
 
-    /* ═══════════════════════════════════════════
-       ▌ NAV
-    ═══════════════════════════════════════════ */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: max(20px, env(safe-area-inset-top)) 56px 18px;
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
-      transition: background .4s, backdrop-filter .4s;
-    }
-    .nav.scrolled {
-      background: rgba(14,11,18,.78);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,.04);
-    }
-    .nav-logo { display: flex; flex-shrink: 0; align-items: center; }
-    .nav-logo img {
-      height: clamp(26px, 3.8vw, 34px);
-      width: auto; display: block;
-      transition: opacity .3s;
-    }
-    .nav-logo:hover img { opacity: .8; }
+    /* ═══════════════ NARI BAND ═══════════════ */
+    .nari-section{background:var(--void-mid);border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04);position:relative;overflow:hidden;}
+    .nari-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:680px;height:340px;background:radial-gradient(ellipse at center,rgba(255,125,115,.05) 0%,transparent 70%);pointer-events:none;}
+    .nari-grid{position:relative;display:grid;grid-template-columns:0.95fr 1fr auto;gap:56px;align-items:center;}
+    .nari-left{display:flex;gap:28px;align-items:center;}
+    .nari-photo{width:190px;flex-shrink:0;border-radius:18px;overflow:hidden;aspect-ratio:4/5;position:relative;}
+    .nari-photo::before{content:'';position:absolute;inset:9px;border:1px solid rgba(201,169,110,.25);border-radius:11px;z-index:2;pointer-events:none;}
+    .nari-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:brightness(.9) contrast(1.04) saturate(.92) sepia(.06);}
+    .nari-quote{position:relative;}
+    .nari-quote .qmark{font-family:var(--serif);font-style:italic;font-size:3rem;line-height:.4;color:var(--coral);opacity:.4;display:block;margin-bottom:10px;}
+    .nari-quote blockquote{font-family:var(--serif);font-size:1.5rem;font-weight:300;font-style:italic;line-height:1.32;color:var(--text);}
+    .nari-quote cite{display:block;margin-top:16px;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--gold);}
+    .nari-bio-col{}
+    .nari-bio-col h3{font-family:var(--serif);font-size:1.7rem;font-weight:400;color:var(--text);margin-bottom:14px;}
+    .nari-bio-col p{font-size:.84rem;color:var(--text-dim);line-height:1.72;margin-bottom:22px;}
+    .nari-tags{display:flex;flex-wrap:wrap;gap:8px;}
+    .nari-tag{display:inline-flex;align-items:center;gap:7px;padding:6px 14px;border-radius:var(--pill);border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);font-size:.68rem;color:var(--text-dim);letter-spacing:.02em;}
+    .nari-tag svg{width:13px;height:13px;}
+    .nari-tag.t1 svg{color:var(--gold);} .nari-tag.t2 svg{color:var(--teal);}
+    .nari-tag.t3 svg{color:var(--coral);} .nari-tag.t4 svg{color:var(--gold);}
+    .nari-seal{flex-shrink:0;width:148px;height:148px;border-radius:50%;border:1px solid rgba(201,169,110,.4);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:3px;position:relative;}
+    .nari-seal::before{content:'';position:absolute;inset:7px;border:1px solid rgba(201,169,110,.18);border-radius:50%;}
+    .seal-pre{font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);}
+    .seal-num{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--gold);line-height:1;}
+    .seal-post{font-size:.46rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);line-height:1.5;}
+    .seal-heart{color:var(--coral);font-size:.7rem;margin-top:2px;}
 
-    .nav-center {
-      display: flex; align-items: center; gap: 36px;
-    }
-    .nav-center a {
-      color: var(--text-dim); text-decoration: none;
-      font-size: .72rem; font-weight: 500;
-      letter-spacing: .1em; text-transform: uppercase;
-      transition: color .25s;
-    }
-    .nav-center a:hover { color: var(--text); }
-    .nav-center a.dim { opacity: .35; pointer-events: none; cursor: default; }
+    /* ═══════════════ CLOSING CTA ═══════════════ */
+    .cta-band{position:relative;overflow:hidden;padding:96px 56px;text-align:center;background:var(--void);}
+    .cta-band::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:760px;height:380px;background:radial-gradient(ellipse at center,rgba(255,125,115,.06) 0%,transparent 68%);pointer-events:none;}
+    .cta-line1{font-family:var(--serif);font-size:clamp(1.8rem,3.4vw,2.8rem);font-weight:300;color:var(--text);line-height:1.2;display:block;}
+    .cta-line2{font-family:var(--serif);font-size:clamp(1.8rem,3.4vw,2.8rem);font-weight:400;font-style:italic;color:var(--coral);line-height:1.2;display:block;margin-bottom:34px;}
+    .cta-btn{display:inline-flex;align-items:center;gap:14px;padding:17px 40px;border-radius:var(--pill);background:var(--coral);color:#2a0f0b;font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;box-shadow:0 8px 30px rgba(255,100,90,.28);transition:all .45s var(--ease-silk);}
+    .cta-btn:hover{transform:translateY(-3px);box-shadow:0 18px 48px rgba(255,100,90,.4);filter:brightness(1.05);}
+    .cta-btn .arrow{transition:transform .4s var(--ease-silk);}
+    .cta-btn:hover .arrow{transform:translateX(6px);}
 
-    .nav-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    /* ═══════════════ FOOTER ═══════════════ */
+    footer{background:var(--void);border-top:1px solid rgba(255,255,255,.05);padding:64px 56px 28px;}
+    .footer-grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;}
+    .footer-brand .wordmark{margin-bottom:16px;}
+    .footer-brand p{font-size:.78rem;color:var(--text-ghost);line-height:1.7;max-width:30ch;}
+    .footer-col h4{font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);margin-bottom:18px;}
+    .footer-col a{display:block;font-size:.8rem;color:var(--text-ghost);margin-bottom:11px;transition:color .25s;}
+    .footer-col a:hover{color:var(--text-dim);}
+    .footer-social{display:flex;gap:12px;}
+    .footer-social a{width:38px;height:38px;border-radius:50%;border:1px solid rgba(201,169,110,.3);display:flex;align-items:center;justify-content:center;color:var(--gold);transition:all .3s;}
+    .footer-social a:hover{background:rgba(201,169,110,.1);border-color:var(--gold);}
+    .footer-social svg{width:16px;height:16px;}
+    .footer-bottom{max-width:1300px;margin:48px auto 0;padding-top:22px;border-top:1px solid rgba(255,255,255,.04);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+    .footer-bottom span{font-size:.66rem;color:var(--text-ghost);letter-spacing:.03em;}
 
-    /* Lang Switcher */
-    .lang-pill {
-      display: inline-flex; padding: 3px; gap: 2px;
-      border-radius: var(--pill);
-      border: 1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.04);
-    }
-    .lang-btn {
-      min-width: 38px; padding: 5px 10px; border-radius: var(--pill);
-      font-size: .65rem; font-weight: 700; letter-spacing: .06em;
-      color: var(--text-ghost); background: none; border: none;
-      cursor: pointer; transition: all .25s;
-    }
-    .lang-btn[aria-pressed="true"] {
-      color: var(--text);
-      background: rgba(255,255,255,.1);
-      box-shadow: 0 1px 6px rgba(0,0,0,.3);
-    }
+    /* ═══════════════ SCROLL REVEALS ═══════════════ */
+    .scroll-reveal{opacity:0;transform:translateY(20px);transition:opacity .85s var(--ease-silk),transform .85s var(--ease-silk);}
+    .scroll-reveal.visible{opacity:1;transform:translateY(0);}
+    .scroll-reveal.delay-1{transition-delay:.1s;} .scroll-reveal.delay-2{transition-delay:.2s;}
+    .scroll-reveal.delay-3{transition-delay:.32s;} .scroll-reveal.delay-4{transition-delay:.44s;}
 
-    /* Hamburger */
-    .ham {
-      display: none;
-      width: 44px; height: 44px; border-radius: 50%;
-      border: 1px solid rgba(255,255,255,.1);
-      background: rgba(255,255,255,.05);
-      align-items: center; justify-content: center;
-      cursor: pointer; position: relative; z-index: 201;
-      transition: all .3s;
-      flex-shrink: 0;
-    }
-    .ham svg { color: var(--text); transition: all .3s; }
-    .ham .x { display: none; }
-    .ham.open .bars { display: none; }
-    .ham.open .x { display: block; }
-
-    /* Mobile nav drawer */
-    .mobile-nav {
-      display: none;
-      position: fixed; inset: 0; z-index: 150;
-      background: rgba(14,11,18,.97);
-      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-      flex-direction: column; align-items: center; justify-content: center;
-      gap: 44px; opacity: 0; pointer-events: none;
-      transition: opacity .4s var(--ease-cinema), transform .4s var(--ease-cinema);
-      transform: translateY(-8px);
-    }
-    .mobile-nav.open { opacity: 1; pointer-events: auto; transform: translateY(0); }
-    .mobile-nav a {
-      font-family: var(--serif); font-size: 2rem; font-weight: 400;
-      color: var(--text-dim); text-decoration: none;
-      letter-spacing: .04em; transition: color .25s;
-    }
-    .mobile-nav a:hover { color: var(--text); }
-    .mobile-nav .lang-pill { margin-top: 8px; }
-
-    /* ═══════════════════════════════════════════
-       ▌ HERO · CINEMATIC FULL BLEED
-    ═══════════════════════════════════════════ */
-    .hero {
-      position: relative;
-      height: 100vh;
-      min-height: 600px;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      overflow: hidden;
-    }
-
-    /* True full-bleed background photo */
-    .hero-photo {
-      position: absolute; inset: 0; z-index: 0;
-      background-image: url('https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779645663/A_cinematic_documentary-style_photograph_of_an_ex-1779645621021_dikbho.png');
-      background-size: cover;
-      background-position: 75% center;
-      filter: brightness(.82) saturate(1.1) sepia(.06);
-      transform: scale(1.04);
-      transition: transform 16s var(--ease-cinema), filter 1.2s ease;
-    }
-    .hero-photo.loaded {
-      transform: scale(1);
-      filter: brightness(.76) saturate(1.1) sepia(.06);
-    }
-
-    /* Layer 1: directional vignette · fades image into dark on the left */
-    .hero-overlay-dir {
-      position: absolute; inset: 0; z-index: 1; pointer-events: none;
-      background: linear-gradient(
-        to right,
-        rgba(14,11,18,.9)  0%,
-        rgba(14,11,18,.9)  20%,
-        rgba(14,11,18,.3)  50%,
-        transparent        100%
-      );
-    }
-
-    /* Layer 2: vertical gradient · pulls image into page void at the bottom */
-    .hero-overlay-vert {
-      position: absolute; inset: 0; z-index: 2; pointer-events: none;
-      background: linear-gradient(
-        to top,
-        var(--void)             0%,
-        rgba(14,11,18,.75)     28%,
-        rgba(14,11,18,.12)     58%,
-        rgba(14,11,18,0)       80%
-      );
-    }
-
-    /* Layer 3: warm coral blush at bottom-left (emotional warmth) */
-    .hero-overlay-blush {
-      position: absolute; inset: 0; z-index: 3; pointer-events: none;
-      background: radial-gradient(ellipse 55% 42% at 0% 102%, rgba(255,100,80,.1) 0%, transparent 62%);
-    }
-
-    /* Cinematic top bar · keeps it from looking cropped */
-    .hero-bar-top {
-      position: absolute; top: 0; left: 0; right: 0; z-index: 4;
-      height: clamp(56px, 8vh, 100px); pointer-events: none;
-      background: linear-gradient(to bottom, rgba(14,11,18,.55) 0%, transparent 100%);
-    }
-
-    /* Content layer */
-    .hero-body {
-      position: relative; z-index: 10;
-      max-width: 1300px; width: 100%;
-      margin: 0 auto;
-      padding: 0 56px 64px;
-    }
-
-    /* Status badge */
-    .status-badge {
-      display: inline-flex; align-items: center; gap: 9px;
-      padding: 6px 18px; border-radius: var(--pill);
-      border: 1px solid rgba(97,209,196,.3);
-      background: rgba(97,209,196,.06);
-      margin-bottom: 28px;
-    }
-    .status-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--teal);
-      animation: pulse-ring 2.4s cubic-bezier(.455,.03,.515,.955) infinite;
-      flex-shrink: 0;
-    }
-    .status-badge span {
-      font-size: .62rem; font-weight: 500;
-      letter-spacing: .12em; text-transform: uppercase;
-      color: var(--teal);
-    }
-
-    /* Main headline */
-    .hero-headline {
-      font-family: var(--serif);
-      font-size: clamp(3rem, 5.5vw, 5.8rem);
-      font-weight: 300;
-      line-height: 1.04;
-      letter-spacing: -.01em;
-      color: var(--text);
-      margin-bottom: 0;
-      max-width: 16ch;
-      text-shadow: 0 2px 10px rgba(0,0,0,.5);
-    }
-    .hero-headline em {
-      font-style: italic; font-weight: 400;
-      color: var(--coral);
-      text-shadow: 0 2px 14px rgba(255,100,80,.25);
-    }
-
-    /* Squiggle divider */
-    .squiggle {
-      display: block; margin: 22px 0;
-      opacity: .45;
-    }
-
-    /* Sub */
-    .hero-sub {
-      font-size: clamp(.92rem, 1.2vw, 1.05rem);
-      font-weight: 400;
-      color: rgba(242,238,233,.74);
-      line-height: 1.74;
-      max-width: 44ch;
-      letter-spacing: .01em;
-      margin-bottom: 0;
-    }
-
-    /* Author strip */
-    .author-strip {
-      display: flex; align-items: center; gap: 14px;
-      margin-top: 32px;
-    }
-    .author-avatar {
-      width: 50px; height: 50px; border-radius: 50%;
-      object-fit: cover;
-      border: 1px solid rgba(201,169,110,.3);
-      box-shadow: 0 0 0 4px rgba(201,169,110,.06);
-      flex-shrink: 0;
-    }
-    .author-name { font-size: .9rem; font-weight: 500; color: var(--text); }
-    .author-role { font-size: .73rem; color: var(--text-dim); margin-top: 2px; letter-spacing: .01em; }
-
-    /* ═══════════════════════════════════════════
-       ▌ CRISIS DIVERGENCE
-    ═══════════════════════════════════════════ */
-    .divergence {
-      position: relative; z-index: 10;
-      margin-top: 44px;
-      display: flex; gap: 14px; flex-wrap: wrap;
-      align-items: stretch;
-    }
-
-    /* Emergencia · high contrast, urgent clarity */
-    .entry-emergencia {
-      display: flex; flex-direction: column;
-      padding: 22px 28px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,125,115,.3);
-      background: rgba(255,125,115,.08);
-      cursor: pointer; text-decoration: none;
-      position: relative; overflow: hidden;
-      transition: all .4s var(--ease-silk);
-      min-width: 200px;
-      flex: 1 1 200px; max-width: 320px;
-    }
-    .entry-emergencia::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(255,125,115,.14) 0%, transparent 70%);
-      opacity: 0; transition: opacity .4s;
-    }
-    .entry-emergencia:hover {
-      border-color: rgba(255,125,115,.6);
-      background: rgba(255,125,115,.14);
-      transform: translateY(-2px);
-      box-shadow: 0 20px 44px rgba(255,100,90,.18), 0 0 0 1px rgba(255,125,115,.2);
-    }
-    .entry-emergencia:hover::before { opacity: 1; }
-
-    .entry-label {
-      font-size: .6rem; font-weight: 700; letter-spacing: .14em;
-      text-transform: uppercase; margin-bottom: 8px;
-    }
-    .entry-emergencia .entry-label { color: var(--coral); }
-
-    .entry-title {
-      font-family: var(--serif);
-      font-size: 1.5rem; font-weight: 600; line-height: 1.15;
-      margin-bottom: 8px;
-    }
-    .entry-emergencia .entry-title { color: var(--text); }
-
-    .entry-desc {
-      font-size: .78rem; color: var(--text-dim); line-height: 1.6;
-      margin-bottom: 16px; flex: 1;
-    }
-
-    .entry-arrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: .75rem; font-weight: 600;
-      letter-spacing: .06em; text-transform: uppercase;
-      transition: gap .3s var(--ease-silk);
-    }
-    .entry-emergencia .entry-arrow { color: var(--coral); }
-    .entry-emergencia:hover .entry-arrow { gap: 14px; }
-
-    /* Contencion · soft, editorial, slower */
-    .entry-contencion {
-      display: flex; flex-direction: column;
-      padding: 22px 28px;
-      border-radius: 16px;
-      border: 1px solid rgba(97,209,196,.2);
-      background: rgba(97,209,196,.05);
-      cursor: pointer; text-decoration: none;
-      position: relative; overflow: hidden;
-      transition: all .5s var(--ease-silk);
-      min-width: 200px;
-      flex: 1 1 200px; max-width: 320px;
-    }
-    .entry-contencion::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(97,209,196,.1) 0%, transparent 70%);
-      opacity: 0; transition: opacity .5s;
-    }
-    .entry-contencion:hover {
-      border-color: rgba(97,209,196,.38);
-      background: rgba(97,209,196,.09);
-      transform: translateY(-2px);
-      box-shadow: 0 20px 44px rgba(97,209,196,.12), 0 0 0 1px rgba(97,209,196,.15);
-    }
-    .entry-contencion:hover::before { opacity: 1; }
-    .entry-contencion .entry-label { color: var(--teal); }
-    .entry-contencion .entry-title { color: var(--text); font-weight: 400; font-style: italic; }
-    .entry-contencion .entry-arrow { color: var(--teal); }
-    .entry-contencion:hover .entry-arrow { gap: 14px; }
-
-    /* ═══════════════════════════════════════════
-       ▌ SECTION SHELL
-    ═══════════════════════════════════════════ */
-    .section {
-      position: relative;
-      max-width: 1300px; margin: 0 auto;
-      padding: 80px 56px;
-    }
-    .section-full {
-      position: relative; overflow: hidden;
-      padding: 80px 0;
-    }
-    .section-inner {
-      max-width: 1300px; margin: 0 auto;
-      padding: 0 56px;
-    }
-
-    /* Luminosity backlighting for text blocks */
-    .luminate {
-      position: relative;
-    }
-    .luminate::before {
-      content: '';
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 140%; height: 140%;
-      background: radial-gradient(circle at center, rgba(255,255,255,.03) 0%, transparent 70%);
-      pointer-events: none; z-index: -1;
-    }
-
-    /* Section eyebrow */
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-size: .6rem; font-weight: 700; letter-spacing: .16em;
-      text-transform: uppercase; color: var(--text-ghost);
-      margin-bottom: 18px;
-    }
-    .eyebrow::before {
-      content: '';
-      display: block; width: 24px; height: 1px;
-      background: currentColor;
-    }
-
-    /* ═══════════════════════════════════════════
-       ▌ PILLARS · THREE VALUE PROPOSITIONS
-    ═══════════════════════════════════════════ */
-    .pillars-section {
-      background: var(--void-mid);
-      border-top: 1px solid rgba(255,255,255,.04);
-      border-bottom: 1px solid rgba(255,255,255,.04);
-    }
-    .pillars-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-    }
-    .pillar {
-      padding: 48px 44px;
-      position: relative;
-      transition: background .4s;
-    }
-    .pillar:not(:last-child)::after {
-      content: '';
-      position: absolute; top: 48px; bottom: 48px; right: 0;
-      width: 1px; background: rgba(255,255,255,.05);
-    }
-    .pillar:hover { background: rgba(255,255,255,.015); }
-
-    .pillar-num {
-      font-family: var(--serif);
-      font-size: .75rem; font-weight: 300;
-      color: var(--text-ghost);
-      letter-spacing: .1em;
-      margin-bottom: 24px;
-    }
-    .pillar-icon {
-      width: 44px; height: 44px; border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.03);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 20px;
-      transition: border-color .4s, background .4s;
-    }
-    .pillar:hover .pillar-icon {
-      border-color: rgba(97,209,196,.25);
-      background: rgba(97,209,196,.06);
-    }
-    .pillar-icon svg { color: var(--teal); width: 20px; height: 20px; }
-    .pillar h3 {
-      font-family: var(--serif);
-      font-size: 1.3rem; font-weight: 600;
-      color: var(--text); margin-bottom: 10px;
-    }
-    .pillar p {
-      font-size: .82rem; color: rgba(242,238,233,.74); line-height: 1.7;
-    }
-
-    /* ═══════════════════════════════════════════
-       ▌ MARQUEE · EMOTIONAL REASSURANCE
-    ═══════════════════════════════════════════ */
-    .marquee-strip {
-      overflow: hidden;
-      padding: 28px 0;
-      border-top: 1px solid rgba(255,255,255,.04);
-      border-bottom: 1px solid rgba(255,255,255,.04);
-      background: var(--void);
-    }
-    .marquee-track {
-      display: flex; gap: 0;
-      animation: marqueeScroll 24s linear infinite;
-      white-space: nowrap;
-    }
-    .marquee-item {
-      display: inline-flex; align-items: center; gap: 28px;
-      padding: 0 40px; flex-shrink: 0;
-    }
-    .marquee-item span {
-      font-family: var(--serif);
-      font-size: 1.15rem; font-weight: 300; font-style: italic;
-      color: var(--text-dim);
-      letter-spacing: .03em;
-    }
-    .marquee-dot {
-      width: 4px; height: 4px; border-radius: 50%;
-      background: var(--coral); opacity: .5; flex-shrink: 0;
-    }
-    @keyframes marqueeScroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    /* ═══════════════════════════════════════════
-       ▌ GUIDES GRID
-    ═══════════════════════════════════════════ */
-    .guides-section { background: var(--void); }
-    .guides-header {
-      display: flex; align-items: flex-end; justify-content: space-between;
-      gap: 24px; margin-bottom: 44px;
-    }
-    .guides-title {
-      font-family: var(--serif);
-      font-size: clamp(2rem, 3.5vw, 3rem);
-      font-weight: 300; line-height: 1.1;
-      color: var(--text);
-    }
-    .guides-title em { font-style: italic; color: var(--teal); }
-    .guides-view-all {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: .72rem; font-weight: 500; letter-spacing: .08em;
-      text-transform: uppercase; color: var(--text-dim);
-      text-decoration: none; white-space: nowrap;
-      transition: color .25s, gap .3s var(--ease-silk);
-      padding-bottom: 6px;
-      border-bottom: 1px solid rgba(255,255,255,.1);
-    }
-    .guides-view-all:hover { color: var(--text); gap: 12px; }
-
-    .guides-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-
-    .guide-card {
-      display: flex; flex-direction: column;
-      padding: 28px 24px 22px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.06);
-      background: var(--void-mid);
-      text-decoration: none;
-      position: relative; overflow: hidden;
-      transition: all .4s var(--ease-silk);
-      cursor: pointer;
-      group: true;
-    }
-    .guide-card::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(circle at 50% 0%, rgba(255,255,255,.04) 0%, transparent 70%);
-      opacity: 0; transition: opacity .4s;
-    }
-    .guide-card:hover {
-      border-color: rgba(255,255,255,.12);
-      transform: translateY(-4px);
-      box-shadow: 0 24px 56px rgba(0,0,0,.4);
-    }
-    .guide-card:hover::before { opacity: 1; }
-
-    .guide-tag {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: .58rem; font-weight: 700; letter-spacing: .12em;
-      text-transform: uppercase; padding: 4px 10px;
-      border-radius: var(--pill);
-      margin-bottom: 20px; width: fit-content;
-    }
-    .guide-tag.emergencia {
-      color: var(--coral);
-      background: var(--coral-dim);
-      border: 1px solid rgba(255,125,115,.2);
-    }
-    .guide-tag.contencion {
-      color: var(--teal);
-      background: var(--teal-dim);
-      border: 1px solid rgba(97,209,196,.2);
-    }
-
-    .guide-icon {
-      font-size: 1.6rem; margin-bottom: 16px; display: block;
-    }
-    .guide-icon svg { color: var(--teal); transition: color .3s; }
-    .guide-card:hover .guide-icon svg { color: var(--coral); }
-    .guide-card h3 {
-      font-family: var(--serif);
-      font-size: 1.15rem; font-weight: 600; line-height: 1.2;
-      color: var(--text); margin-bottom: 10px;
-      flex: 1;
-    }
-    .guide-card p {
-      font-size: .76rem; color: var(--text-dim); line-height: 1.65;
-      margin-bottom: 20px;
-    }
-    .guide-arrow {
-      font-size: .7rem; font-weight: 600; letter-spacing: .06em;
-      text-transform: uppercase; color: var(--text-ghost);
-      display: flex; align-items: center; gap: 6px;
-      margin-top: auto;
-      transition: color .3s, gap .3s var(--ease-silk);
-    }
-    .guide-card:hover .guide-arrow { color: var(--text); gap: 10px; }
-
-    /* ═══════════════════════════════════════════
-       ▌ TESTIMONIAL / QUOTE BAND
-    ═══════════════════════════════════════════ */
-    .quote-band {
-      position: relative; overflow: hidden;
-      background: var(--void-mid);
-      border-top: 1px solid rgba(255,255,255,.04);
-      border-bottom: 1px solid rgba(255,255,255,.04);
-      padding: 80px 56px;
-      text-align: center;
-    }
-    .quote-band::before {
-      content: '';
-      position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 600px; height: 300px;
-      background: radial-gradient(ellipse at center, rgba(255,125,115,.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .quote-mark {
-      font-family: var(--serif);
-      font-size: 5rem; line-height: .5;
-      color: var(--coral); opacity: .3;
-      margin-bottom: 24px; display: block;
-      font-style: italic;
-    }
-    .quote-text {
-      font-family: var(--serif);
-      font-size: clamp(1.5rem, 3vw, 2.4rem);
-      font-weight: 300; font-style: italic;
-      color: var(--text); line-height: 1.3;
-      max-width: 28ch; margin: 0 auto;
-    }
-    .quote-text em { color: var(--coral); font-style: italic; font-weight: 400; }
-    .quote-attr {
-      margin-top: 28px; font-size: .75rem;
-      color: var(--text-ghost); letter-spacing: .08em;
-    }
-
-    /* ═══════════════════════════════════════════
-       ▌ NARI PROFILE
-    ═══════════════════════════════════════════ */
-    .nari-section {
-      background: var(--void);
-    }
-    .nari-inner {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
-      align-items: center;
-    }
-    .nari-photo-wrap {
-      position: relative;
-    }
-    .nari-photo-frame {
-      position: relative; border-radius: 24px; overflow: hidden;
-      aspect-ratio: 4/5;
-    }
-    .nari-photo-frame img {
-      width: 100%; height: 100%; object-fit: cover;
-      object-position: center top;
-      filter: brightness(.88) contrast(1.05) saturate(.9) sepia(.08);
-    }
-    /* Ornamental corner lines */
-    .nari-photo-frame::before {
-      content: '';
-      position: absolute; inset: 12px;
-      border: 1px solid rgba(201,169,110,.2);
-      border-radius: 16px;
-      pointer-events: none; z-index: 2;
-    }
-    /* Gold gradient overlay at bottom */
-    .nari-photo-frame::after {
-      content: '';
-      position: absolute; bottom: 0; left: 0; right: 0; height: 45%;
-      background: linear-gradient(to top, rgba(14,11,18,.9) 0%, transparent 100%);
-      z-index: 1;
-    }
-    /* Floating credential badge */
-    .nari-badge {
-      position: absolute; bottom: -20px; right: -20px;
-      background: var(--void-lift);
-      border: 1px solid rgba(201,169,110,.25);
-      border-radius: 14px;
-      padding: 16px 20px;
-      box-shadow: 0 20px 44px rgba(0,0,0,.5);
-      z-index: 10;
-    }
-    .nari-badge-img {
-      position: absolute; bottom: -20px; right: -20px;
-      width: 220px; height: auto;
-      z-index: 10;
-      border-radius: 14px;
-      box-shadow: 0 20px 44px rgba(0,0,0,.5);
-    }
-    .nari-badge-num {
-      font-family: var(--serif);
-      font-size: 2rem; font-weight: 600; color: var(--gold); line-height: 1;
-    }
-    .nari-badge-label {
-      font-size: .65rem; font-weight: 500; letter-spacing: .1em;
-      text-transform: uppercase; color: var(--text-dim);
-      margin-top: 4px;
-    }
-    .nari-content {}
-    .nari-name {
-      font-family: var(--serif);
-      font-size: clamp(2.2rem, 3.5vw, 3.2rem);
-      font-weight: 300; line-height: 1.05;
-      color: var(--text); margin-bottom: 20px;
-    }
-    .nari-name em { font-style: italic; color: var(--gold); }
-    .nari-bio {
-      font-size: .88rem; color: var(--text-dim); line-height: 1.78;
-      margin-bottom: 32px;
-    }
-    /* Credential pills */
-    .cred-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 36px; }
-    .cred-pill {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 14px; border-radius: var(--pill);
-      border: 1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.03);
-      font-size: .68rem; font-weight: 500; letter-spacing: .04em;
-      color: var(--text-dim);
-    }
-    .cred-pill::before {
-      content: ''; width: 4px; height: 4px; border-radius: 50%;
-      background: var(--teal); flex-shrink: 0;
-    }
-
-    /* ═══════════════════════════════════════════
-       ▌ CLOSING SCRIPT BANNER
-    ═══════════════════════════════════════════ */
-    .script-banner {
-      position: relative; overflow: hidden;
-      padding: 90px 56px; text-align: center;
-      background: var(--void-mid);
-      border-top: 1px solid rgba(255,255,255,.04);
-    }
-    .script-banner::before {
-      content: '';
-      position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 700px; height: 350px;
-      background: radial-gradient(ellipse at center, rgba(97,209,196,.04) 0%, transparent 68%);
-      pointer-events: none;
-    }
-    .script-main {
-      font-family: var(--script);
-      font-size: clamp(2.4rem, 5vw, 4.2rem);
-      color: var(--gold); opacity: .9;
-      text-shadow: 0 2px 18px rgba(201,169,110,.2);
-      display: block; line-height: 1.25; margin-bottom: 6px;
-    }
-    .script-sub {
-      font-family: var(--serif);
-      font-size: .88rem; font-style: italic;
-      color: var(--text-ghost); letter-spacing: .05em;
-      display: block; margin-bottom: 32px;
-    }
-    /* Final CTA */
-    .final-cta {
-      display: inline-flex; align-items: center; gap: 16px;
-      padding: 18px 44px; border-radius: var(--pill);
-      background: linear-gradient(135deg, #e8c07a 0%, #C9A96E 50%, #a07840 100%);
-      border: none; color: #1a0e06;
-      font-size: .9rem; font-weight: 600; letter-spacing: .04em;
-      text-decoration: none; text-transform: uppercase;
-      cursor: pointer;
-      box-shadow: 0 8px 28px rgba(180,130,60,.3);
-      transition: all .45s var(--ease-silk);
-    }
-    .final-cta:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 48px rgba(180,130,60,.45);
-      filter: brightness(1.06);
-    }
-    .final-cta .arrow { transition: transform .4s var(--ease-silk); }
-    .final-cta:hover .arrow { transform: translateX(6px); }
-
-    /* ═══════════════════════════════════════════
-       ▌ FOOTER
-    ═══════════════════════════════════════════ */
-    footer {
-      background: var(--void);
-      border-top: 1px solid rgba(255,255,255,.04);
-      padding: 32px 56px;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 16px; flex-wrap: wrap;
-    }
-    footer img { height: 22px; opacity: .5; }
-    .footer-copy {
-      font-size: .68rem; color: var(--text-ghost); letter-spacing: .04em;
-    }
-    .footer-links { display: flex; gap: 24px; }
-    .footer-links a {
-      font-size: .68rem; color: var(--text-ghost); text-decoration: none;
-      letter-spacing: .06em; text-transform: uppercase;
-      transition: color .25s;
-    }
-    .footer-links a:hover { color: var(--text-dim); }
-    .footer-tagline {
-      width: 100%;
-      text-align: center;
-      font-family: var(--serif);
-      font-size: .82rem; font-style: italic;
-      color: var(--text-ghost);
-      padding-top: 16px;
-      border-top: 1px solid rgba(255,255,255,.03);
-      letter-spacing: .03em;
-    }
-
-    /* ═══════════════════════════════════════════
-       ▌ MOBILE
-    ═══════════════════════════════════════════ */
-    @media (max-width: 900px) {
-      .nav { padding: max(16px, env(safe-area-inset-top)) 22px 14px; }
-      .nav-center { display: none; }
-      .ham { display: flex; }
-      .mobile-nav { display: flex; }
-
-      .hero { height: auto; min-height: 100svh; }
-      .hero-body { padding: max(100px, 14vh) 24px 44px; }
-      .hero-photo { background-position: 72% center; }
-      .hero-headline { font-size: clamp(2.8rem, 12vw, 3.8rem); max-width: 100%; }
-
-      .divergence { flex-direction: column; gap: 12px; }
-      .entry-emergencia,
-      .entry-contencion { max-width: 100%; }
-
-      .section { padding: 60px 24px; }
-      .section-inner { padding: 0 24px; }
-      .section-full { padding: 60px 0; }
-
-      .pillars-grid { grid-template-columns: 1fr; }
-      .pillar:not(:last-child)::after {
-        top: auto; bottom: 0; left: 24px; right: 24px;
-        width: auto; height: 1px;
-      }
-      .pillar { padding: 36px 24px; }
-
-      .guides-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-      .guides-header { flex-direction: column; align-items: flex-start; }
-
-      .nari-inner { grid-template-columns: 1fr; gap: 48px; }
-      .nari-badge { bottom: -12px; right: 12px; }
-      .nari-badge-img { bottom: -12px; right: 12px; width: 180px; }
-
-      .quote-band { padding: 60px 24px; }
-      .script-banner { padding: 70px 24px; }
-
-      footer { padding: 24px; flex-direction: column; align-items: flex-start; gap: 14px; }
-      .footer-tagline { text-align: left; padding-top: 12px; }
-      .marquee-strip { padding: 20px 0; }
-    }
-
-    @media (max-width: 480px) {
-      .guides-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ═══════════════════════════════════════════
-       SCROLL-TRIGGERED REVEALS (via IntersectionObserver)
-    ═══════════════════════════════════════════ */
-    .scroll-reveal {
-      opacity: 0; transform: translateY(20px);
-      transition: opacity .85s var(--ease-silk), transform .85s var(--ease-silk);
-    }
-    .scroll-reveal.visible {
-      opacity: 1; transform: translateY(0);
-    }
-    .scroll-reveal.delay-1 { transition-delay: .1s; }
-    .scroll-reveal.delay-2 { transition-delay: .2s; }
-    .scroll-reveal.delay-3 { transition-delay: .32s; }
-    .scroll-reveal.delay-4 { transition-delay: .44s; }
+    /* ═══════════════ MOBILE ═══════════════ */
+    @media(max-width:980px){
+      .nav{padding:max(16px,env(safe-area-inset-top)) 22px 14px;}
+      .nav-center{display:none;} .btn-enter{display:none;} .ham{display:flex;} .mobile-nav{display:flex;}
+      .hero{height:auto;min-height:100svh;} .hero-body{padding:max(104px,15vh) 24px 44px;}
+      .hero-photo{background-position:72% center;} .hero-headline{font-size:clamp(2.7rem,11vw,3.8rem);max-width:100%;}
+      .divergence{flex-direction:column;gap:12px;} .entry{max-width:100%;}
+      .affirm{flex-direction:column;gap:16px;padding:26px 24px;} .affirm-sep{display:none;}
+      .section{padding:64px 24px;} .section-inner{padding:0 24px;} .section-full{padding:64px 0;}
+      .pillars-grid{grid-template-columns:1fr;gap:40px;}
+      .pillar{padding:0 24px;} .pillar:not(:last-child)::after{display:none;}
+      .guides-grid{grid-template-columns:1fr 1fr;gap:12px;}
+      .nari-grid{grid-template-columns:1fr;gap:40px;justify-items:center;text-align:center;}
+      .nari-left{flex-direction:column;text-align:center;} .nari-quote .qmark{margin:0 auto 8px;}
+      .nari-tags{justify-content:center;}
+      .cta-band{padding:72px 24px;}
+      footer{padding:48px 24px 24px;} .footer-grid{grid-template-columns:1fr 1fr;gap:32px;} .footer-brand{grid-column:1/-1;}
+    }
+    @media(max-width:560px){ .guides-grid{grid-template-columns:1fr;} .footer-grid{grid-template-columns:1fr;} .footer-bottom{flex-direction:column;gap:8px;} }
   </style>
 </head>
 <body>
@@ -976,337 +260,300 @@
 
   <!-- ─────── NAV ─────── -->
   <nav class="nav" id="mainNav" role="navigation" aria-label="Navegación principal">
-    <a href="/index.html" class="nav-logo" aria-label="Criar Sin Culpas">
-      <img src="/assets/images/csc-logo.svg" alt="Criar Sin Culpas">
+    <a href="/" class="wordmark" aria-label="Criar Sin Culpas">
+      <span class="wm-top">CRIAR</span>
+      <span class="wm-bot">sin culpas</span>
     </a>
     <div class="nav-center">
-      <a href="/apoyo/"
-         data-i18n="nav_guias" data-es="Guías" data-en="Guides">Guías</a>
-      <a href="/metodo/"
-         data-i18n="nav_metodo" data-es="El Método" data-en="The Method">El Método</a>
-      <a href="#" class="dim"
-         data-i18n="nav_aprende" data-es="Aprende (Pronto)" data-en="Learn (Soon)">Aprende (Pronto)</a>
+      <a href="#top" class="active" data-i18n="nav_inicio" data-es="Inicio" data-en="Home">Inicio</a>
+      <a href="#protocolos" data-i18n="nav_protocolos" data-es="Protocolos" data-en="Protocols">Protocolos</a>
+      <a href="#sobre-nari" data-i18n="nav_nari" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
+      <a href="/comunidad/" data-i18n="nav_comunidad" data-es="Comunidad" data-en="Community">Comunidad</a>
+      <a href="/recursos/" data-i18n="nav_recursos" data-es="Recursos" data-en="Resources">Recursos</a>
     </div>
     <div class="nav-right">
       <div class="lang-pill" role="group" aria-label="Idioma">
         <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
         <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
       </div>
+      <a href="/apoyo/" class="btn-enter js-telemetry" data-event-name="nav_enter_clicked" data-i18n="nav_enter" data-es="Entrar / Registrarme" data-en="Enter / Sign up">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span data-i18n="nav_enter_t" data-es="Entrar / Registrarme" data-en="Enter / Sign up">Entrar / Registrarme</span>
+      </a>
       <button class="ham" id="ham" aria-label="Abrir menú" aria-expanded="false">
-        <svg class="bars" width="20" height="20" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <line x1="3" y1="8" x2="21" y2="8"/><line x1="3" y1="16" x2="21" y2="16"/>
-        </svg>
-        <svg class="x" width="20" height="20" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
+        <svg class="bars" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="8" x2="21" y2="8"/><line x1="3" y1="16" x2="21" y2="16"/></svg>
+        <svg class="x" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
   </nav>
 
-  <!-- Mobile drawer -->
   <div class="mobile-nav" id="mobileNav" role="dialog" aria-label="Menú" aria-modal="true">
-    <a href="/apoyo/"
-       data-i18n="nav_guias_m" data-es="Guías" data-en="Guides">Guías</a>
-    <a href="/metodo/"
-       data-i18n="nav_metodo_m" data-es="El Método" data-en="The Method">El Método</a>
-    <div class="lang-pill" role="group" aria-label="Idioma" style="margin-top:8px;">
+    <a href="#top" data-i18n="nav_inicio_m" data-es="Inicio" data-en="Home">Inicio</a>
+    <a href="#protocolos" data-i18n="nav_protocolos_m" data-es="Protocolos" data-en="Protocols">Protocolos</a>
+    <a href="#sobre-nari" data-i18n="nav_nari_m" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
+    <a href="/comunidad/" data-i18n="nav_comunidad_m" data-es="Comunidad" data-en="Community">Comunidad</a>
+    <a href="/recursos/" data-i18n="nav_recursos_m" data-es="Recursos" data-en="Resources">Recursos</a>
+    <a href="/apoyo/" class="btn-enter" style="display:inline-flex;" data-i18n="nav_enter_m" data-es="Entrar / Registrarme" data-en="Enter / Sign up">Entrar / Registrarme</a>
+    <div class="lang-pill" role="group" aria-label="Idioma">
       <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
       <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
     </div>
   </div>
 
   <!-- ─────── HERO ─────── -->
-  <section class="hero" aria-label="Inicio">
+  <section class="hero" id="top" aria-label="Inicio">
     <div class="hero-photo" id="heroPhoto" aria-hidden="true"></div>
-    <div class="hero-overlay-dir"  aria-hidden="true"></div>
+    <div class="hero-overlay-dir" aria-hidden="true"></div>
     <div class="hero-overlay-vert" aria-hidden="true"></div>
     <div class="hero-overlay-blush" aria-hidden="true"></div>
-    <div class="hero-bar-top"      aria-hidden="true"></div>
+    <div class="hero-bar-top" aria-hidden="true"></div>
 
     <div class="hero-body">
-
       <div class="status-badge r1" aria-hidden="true">
         <span class="status-dot"></span>
         <span data-i18n="status" data-es="Espacio de Apoyo · Activo" data-en="Support Space · Active">Espacio de Apoyo · Activo</span>
       </div>
 
-      <h1 class="hero-headline r2"
-          data-i18n="hero_h1"
-          data-es="Porque <em>criar</em> no debería sentirse imposible."
-          data-en="Because <em>parenting</em> shouldn't feel impossible.">
-        Porque <em>criar</em> no debería sentirse imposible.
+      <h1 class="hero-headline r2" data-i18n="hero_h1"
+          data-es="Porque criar no debería sentirse <em>imposible.</em>"
+          data-en="Because parenting shouldn't feel <em>impossible.</em>">
+        Porque criar no debería sentirse <em>imposible.</em>
       </h1>
 
       <svg class="squiggle r3" width="80" height="14" viewBox="0 0 80 14" fill="none" aria-hidden="true">
-        <path d="M2 7 C9 2, 16 12, 23 7 C30 2, 37 12, 44 7 C51 2, 58 12, 65 7 C71 2, 77 12, 78 7"
-              stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M2 7 C9 2, 16 12, 23 7 C30 2, 37 12, 44 7 C51 2, 58 12, 65 7 C71 2, 77 12, 78 7" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round" fill="none"/>
       </svg>
 
-      <p class="hero-sub r3"
-         data-i18n="hero_sub"
-         data-es="Te acompaño a bajar la intensidad, recuperar tu centro y transformar el caos en calma · sin juicios y sin perfeccionismos."
-         data-en="I help you lower the intensity, recover your center, and transform chaos into calm · without judgment and without perfectionism.">
-        Te acompaño a bajar la intensidad, recuperar tu centro y transformar el caos en calma · sin juicios y sin perfeccionismos.
+      <p class="hero-sub r3" data-i18n="hero_sub"
+         data-es="Un espacio de apoyo para bajar la intensidad, recuperar claridad y acompañar los momentos difíciles · sin culpa ni perfeccionismo."
+         data-en="A support space to lower the intensity, recover clarity, and accompany the hard moments · without guilt or perfectionism.">
+        Un espacio de apoyo para bajar la intensidad, recuperar claridad y acompañar los momentos difíciles · sin culpa ni perfeccionismo.
       </p>
 
-      <div class="author-strip r4">
-        <img class="author-avatar"
-             src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779117777/nari-portrait_jzjwcw.png"
-             alt="Nari Fateha">
-        <div>
-          <div class="author-name">Nari Fateha</div>
-          <div class="author-role"
-               data-i18n="nari_role"
-               data-es="Educadora y creadora de Criar Sin Culpas"
-               data-en="Educator and creator of Criar Sin Culpas">Educadora y creadora de Criar Sin Culpas</div>
-        </div>
-      </div>
-
-      <!-- CRISIS DIVERGENCE -->
       <div class="divergence r5" role="navigation" aria-label="Punto de entrada">
-
-        <a href="/apoyo/index.html#emergencia" class="entry-emergencia js-telemetry" id="cta-emergencia" data-event-name="portal_entered" data-mode="emergencia" data-protocol="home_hero">
-          <span class="entry-label"
-                data-i18n="ent1_label" data-es="Emergencia" data-en="Emergency">Emergencia</span>
-          <span class="entry-title"
-                data-i18n="ent1_title"
-                data-es="Necesito ayuda ahora."
-                data-en="I need help right now.">Necesito ayuda ahora.</span>
-          <span class="entry-desc"
-                data-i18n="ent1_desc"
-                data-es="Rabietas, pantallas, sibling war. Entra aquí cuando estés en medio del caos."
-                data-en="Tantrums, screens, sibling war. Come here when you're in the middle of the chaos.">Rabietas, pantallas, sibling war. Entra aquí cuando estés en medio del caos.</span>
-          <span class="entry-arrow"
-                data-i18n="ent1_arrow" data-es="Entrar →" data-en="Enter →">Entrar →</span>
+        <a href="/apoyo/index.html#emergencia" class="entry entry-emergencia js-telemetry" id="cta-emergencia" data-event-name="portal_entered" data-mode="emergencia" data-protocol="home_hero">
+          <span class="entry-label" data-i18n="ent1_label" data-es="En medio del caos" data-en="In the middle of the chaos">En medio del caos</span>
+          <div class="entry-top">
+            <span class="entry-title" data-i18n="ent1_title" data-es="Necesito ayuda ahora" data-en="I need help now">Necesito ayuda ahora</span>
+            <span class="entry-arrowbtn" aria-hidden="true">→</span>
+          </div>
+          <div class="entry-rule"></div>
+          <div class="entry-foot">
+            <span class="entry-ico" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+            <span class="entry-desc" data-i18n="ent1_desc" data-es="Protocolos breves para pantallas, desbordes, sueño y conflictos entre hermanos." data-en="Short protocols for screens, meltdowns, sleep, and sibling conflict.">Protocolos breves para pantallas, desbordes, sueño y conflictos entre hermanos.</span>
+          </div>
         </a>
 
-        <a href="/metodo/" class="entry-contencion js-telemetry" id="cta-contencion" data-event-name="portal_entered" data-mode="contencion" data-protocol="home_hero">
-          <span class="entry-label"
-                data-i18n="ent2_label" data-es="Contención" data-en="Restoration">Contención</span>
-          <span class="entry-title"
-                data-i18n="ent2_title"
-                data-es="Necesito recuperarme."
-                data-en="I need to restore myself.">Necesito recuperarme.</span>
-          <span class="entry-desc"
-                data-i18n="ent2_desc"
-                data-es="Agotamiento emocional, culpa, duda. Un lugar más lento y más gentil para ti."
-                data-en="Emotional exhaustion, guilt, doubt. A slower and gentler place for you.">Agotamiento emocional, culpa, duda. Un lugar más lento y más gentil para ti.</span>
-          <span class="entry-arrow"
-                data-i18n="ent2_arrow" data-es="Explorar →" data-en="Explore →">Explorar →</span>
+        <a href="/metodo/" class="entry entry-contencion js-telemetry" id="cta-contencion" data-event-name="portal_entered" data-mode="contencion" data-protocol="home_hero">
+          <span class="entry-label" data-i18n="ent2_label" data-es="Después del momento difícil" data-en="After the hard moment">Después del momento difícil</span>
+          <div class="entry-top">
+            <span class="entry-title" data-i18n="ent2_title" data-es="Necesito recuperarme" data-en="I need to recover">Necesito recuperarme</span>
+            <span class="entry-arrowbtn" aria-hidden="true">→</span>
+          </div>
+          <div class="entry-rule"></div>
+          <div class="entry-foot">
+            <span class="entry-ico" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 1 8.3C18.4 15 15.1 20 11 20z"/><path d="M11 20c2.4-3.4 3.5-7.1 2.2-11.4"/></svg></span>
+            <span class="entry-desc" data-i18n="ent2_desc" data-es="Un camino más lento para entender lo que pasó y volver a tu centro." data-en="A slower path to understand what happened and return to your center.">Un camino más lento para entender lo que pasó y volver a tu centro.</span>
+          </div>
         </a>
-
       </div>
-
     </div>
   </section>
 
-  <!-- ─────── MARQUEE ─────── -->
-  <div class="marquee-strip" aria-hidden="true">
-    <div class="marquee-track" id="marqueeTrack">
-      <!-- items injected by JS for clean duplication -->
-    </div>
+  <!-- ─────── AFFIRMATION ─────── -->
+  <div class="affirm" aria-label="Recordatorios">
+    <span class="affirm-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 4.8L18 9.4l-4.4 1.6L12 16l-1.6-5L6 9.4l4.4-1.6L12 3z"/></svg>
+      <span data-i18n="aff1" data-es="No tienes que hacerlo perfecto." data-en="You don't have to do it perfectly.">No tienes que hacerlo perfecto.</span>
+    </span>
+    <span class="affirm-sep" aria-hidden="true"></span>
+    <span class="affirm-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <span data-i18n="aff2" data-es="Primero calma, luego claridad." data-en="First calm, then clarity.">Primero calma, luego claridad.</span>
+    </span>
+    <span class="affirm-sep" aria-hidden="true"></span>
+    <span class="affirm-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 1 8.3C18.4 15 15.1 20 11 20z"/><path d="M11 20c2.4-3.4 3.5-7.1 2.2-11.4"/></svg>
+      <span data-i18n="aff3" data-es="El vínculo también se repara." data-en="The bond can be repaired too.">El vínculo también se repara.</span>
+    </span>
   </div>
 
   <!-- ─────── PILLARS ─────── -->
   <section class="section-full pillars-section">
     <div class="section-inner">
+      <div class="eyebrow-center scroll-reveal" data-i18n="pillars_eyebrow" data-es="Nuestros Pilares" data-en="Our Pillars">Nuestros Pilares</div>
       <div class="pillars-grid">
-
-        <div class="pillar scroll-reveal">
-          <div class="pillar-num">01</div>
-          <div class="pillar-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-            </svg>
-          </div>
-          <h3 data-i18n="p1_h" data-es="Sin juicios" data-en="No judgments">Sin juicios</h3>
-          <p data-i18n="p1_p" data-es="Te acompañamos como eres, con respeto y empatía. Aquí no hay madres ni padres perfectos, solo humanos intentándolo." data-en="We support you as you are, with respect and empathy. There are no perfect parents here, only humans trying.">Te acompañamos como eres, con respeto y empatía. Aquí no hay madres ni padres perfectos, solo humanos intentándolo.</p>
+        <div class="pillar p-gold scroll-reveal">
+          <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <h3 data-i18n="p1_h" data-es="Credibilidad emocional" data-en="Emotional credibility">Credibilidad emocional</h3>
+          <p data-i18n="p1_p" data-es="Hablamos desde la experiencia real, no desde la teoría vacía." data-en="We speak from real experience, not from empty theory.">Hablamos desde la experiencia real, no desde la teoría vacía.</p>
         </div>
-
-        <div class="pillar scroll-reveal delay-1">
-          <div class="pillar-num">02</div>
-          <div class="pillar-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
-              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 1 8.3C18.4 15 15.1 20 11 20z"/>
-              <path d="M11 20c2.4-3.4 3.5-7.1 2.2-11.4"/>
-            </svg>
-          </div>
-          <h3 data-i18n="p2_h" data-es="Herramientas reales" data-en="Real tools">Herramientas reales</h3>
-          <p data-i18n="p2_p" data-es="Recursos prácticos para tu día a día, no solo teoría. Protocolos claros y frases concretas que puedes usar hoy." data-en="Practical resources for your day to day, not just theory. Clear protocols and concrete phrases you can use today.">Recursos prácticos para tu día a día, no solo teoría. Protocolos claros y frases concretas que puedes usar hoy.</p>
+        <div class="pillar p-teal scroll-reveal delay-1">
+          <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 1 8.3C18.4 15 15.1 20 11 20z"/><path d="M11 20c2.4-3.4 3.5-7.1 2.2-11.4"/></svg></div>
+          <h3 data-i18n="p2_h" data-es="Guía práctica" data-en="Practical guidance">Guía práctica</h3>
+          <p data-i18n="p2_p" data-es="Herramientas claras para momentos reales, no para familias imaginarias." data-en="Clear tools for real moments, not for imaginary families.">Herramientas claras para momentos reales, no para familias imaginarias.</p>
         </div>
-
-        <div class="pillar scroll-reveal delay-2">
-          <div class="pillar-num">03</div>
-          <div class="pillar-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-            </svg>
-          </div>
-          <h3 data-i18n="p3_h" data-es="Comunidad segura" data-en="Safe community">Comunidad segura</h3>
-          <p data-i18n="p3_p" data-es="No estás sola. Aquí hay espacio para ti, para tu historia, para tus dudas y para tus noches difíciles." data-en="You are not alone. There is space for you, your story, your doubts, and your difficult nights.">No estás sola. Aquí hay espacio para ti, para tu historia, para tus dudas y para tus noches difíciles.</p>
+        <div class="pillar p-coral scroll-reveal delay-2">
+          <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3 data-i18n="p3_h" data-es="Intimidad cultural" data-en="Cultural intimacy">Intimidad cultural</h3>
+          <p data-i18n="p3_p" data-es="Un lenguaje emocional pensado para familias latinas, sin traducción forzada." data-en="An emotional language made for Latino families, without forced translation.">Un lenguaje emocional pensado para familias latinas, sin traducción forzada.</p>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ─────── GUIDES GRID ─────── -->
-  <section class="section guides-section" aria-labelledby="guides-heading">
-    <div class="guides-header scroll-reveal">
-      <div>
-        <div class="eyebrow" data-i18n="guides_eyebrow" data-es="Protocolos de Apoyo" data-en="Support Protocols">Protocolos de Apoyo</div>
-        <h2 class="guides-title" id="guides-heading"
-            data-i18n="guides_h2"
-            data-es="Para cada momento <em>difícil</em>."
-            data-en="For every <em>difficult</em> moment.">Para cada momento <em>difícil</em>.</h2>
-      </div>
-        <a href="/apoyo/index.html" class="guides-view-all"
-         data-i18n="guides_all" data-es="Ver todas las guías →" data-en="View all guides →">Ver todas las guías →</a>
+  <!-- ─────── PROTOCOLS ─────── -->
+  <section class="section guides-section" id="protocolos" aria-labelledby="guides-heading">
+    <div class="guides-head scroll-reveal">
+      <div class="eyebrow-center" data-i18n="guides_eyebrow" data-es="Protocolos de Apoyo" data-en="Support Protocols">Protocolos de Apoyo</div>
+      <h2 class="guides-title" id="guides-heading" data-i18n="guides_h2"
+          data-es="Herramientas para los momentos que <em>sí pasan.</em>"
+          data-en="Tools for the moments that <em>actually happen.</em>">Herramientas para los momentos que <em>sí pasan.</em></h2>
     </div>
 
     <div class="guides-grid">
-
       <a href="/apoyo/screen-time" class="guide-card scroll-reveal">
-        <span class="guide-tag emergencia"
-              data-i18n="gtag_emer" data-es="Emergencia" data-en="Emergency">Emergencia</span>
-        <span class="guide-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="2"/></svg></span>
-        <h3 data-i18n="g1_h" data-es="Tiempo de Pantalla" data-en="Screen Time">Tiempo de Pantalla</h3>
-        <p data-i18n="g1_p" data-es="Estrategias claras para manejar el tiempo digital sin guerras ni culpa." data-en="Clear strategies for managing screen time without battles or guilt.">Estrategias claras para manejar el tiempo digital sin guerras ni culpa.</p>
-        <span class="guide-arrow"
-              data-i18n="g_arrow" data-es="Leer guía →" data-en="Read guide →">Leer guía →</span>
+        <span class="guide-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="2"/></svg></span>
+        <h3 data-i18n="g1_h" data-es="Pantallas" data-en="Screens">Pantallas</h3>
+        <div class="guide-sub" data-i18n="g1_s" data-es="Límite sin guerra" data-en="Limits without war">Límite sin guerra</div>
+        <p data-i18n="g1_p" data-es="Cuando apagar la pantalla se convierte en batalla." data-en="When turning off the screen becomes a battle.">Cuando apagar la pantalla se convierte en batalla.</p>
+        <div class="guide-states">
+          <span class="state-tag emer" data-i18n="st_emer" data-es="En el momento" data-en="In the moment">En el momento</span>
+          <span class="state-tag cont" data-i18n="st_cont" data-es="Después" data-en="After">Después</span>
+        </div>
       </a>
 
       <a href="/apoyo/emotional-escalation" class="guide-card scroll-reveal delay-1">
-        <span class="guide-tag emergencia"
-              data-i18n="gtag_emer" data-es="Emergencia" data-en="Emergency">Emergencia</span>
-        <span class="guide-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12 C5 9, 8 15, 11 12 C14 9, 17 15, 22 12"/><path d="M2 17 C5 14, 8 20, 11 17 C14 14, 17 20, 22 17"/></svg></span>
-        <h3 data-i18n="g2_h" data-es="Escalada Emocional" data-en="Emotional Escalation">Escalada Emocional</h3>
-        <p data-i18n="g2_p" data-es="Cómo bajar la intensidad cuando todo se está desbordando, para ti y para ellos." data-en="How to lower the intensity when everything is overflowing, for you and for them.">Cómo bajar la intensidad cuando todo se está desbordando, para ti y para ellos.</p>
-        <span class="guide-arrow"
-              data-i18n="g_arrow" data-es="Leer guía →" data-en="Read guide →">Leer guía →</span>
+        <span class="guide-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12 C5 9, 8 15, 11 12 C14 9, 17 15, 22 12"/><path d="M2 17 C5 14, 8 20, 11 17 C14 14, 17 20, 22 17"/></svg></span>
+        <h3 data-i18n="g2_h" data-es="Desbordes" data-en="Meltdowns">Desbordes</h3>
+        <div class="guide-sub" data-i18n="g2_s" data-es="Calma en crisis" data-en="Calm in crisis">Calma en crisis</div>
+        <p data-i18n="g2_p" data-es="Cuando la emoción ya desbordó a todos." data-en="When the emotion has already overflowed everyone.">Cuando la emoción ya desbordó a todos.</p>
+        <div class="guide-states">
+          <span class="state-tag emer" data-i18n="st_emer" data-es="En el momento" data-en="In the moment">En el momento</span>
+          <span class="state-tag cont" data-i18n="st_cont" data-es="Después" data-en="After">Después</span>
+        </div>
       </a>
 
       <a href="/apoyo/bedtime-resistance" class="guide-card scroll-reveal delay-2">
-        <span class="guide-tag contencion"
-              data-i18n="gtag_cont" data-es="Contención" data-en="Restoration">Contención</span>
-        <span class="guide-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
-        <h3 data-i18n="g3_h" data-es="Resistencia al Sueño" data-en="Bedtime Resistance">Resistencia al Sueño</h3>
-        <p data-i18n="g3_p" data-es="Rituales y frases que transforman las noches difíciles en momentos de conexión." data-en="Rituals and phrases that transform difficult nights into moments of connection.">Rituales y frases que transforman las noches difíciles en momentos de conexión.</p>
-        <span class="guide-arrow"
-              data-i18n="g_arrow" data-es="Leer guía →" data-en="Read guide →">Leer guía →</span>
+        <span class="guide-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+        <h3 data-i18n="g3_h" data-es="Sueño" data-en="Sleep">Sueño</h3>
+        <div class="guide-sub" data-i18n="g3_s" data-es="Ritual y reparación" data-en="Ritual and repair">Ritual y reparación</div>
+        <p data-i18n="g3_p" data-es="Cuando dormir se vuelve una negociación infinita." data-en="When bedtime becomes an endless negotiation.">Cuando dormir se vuelve una negociación infinita.</p>
+        <div class="guide-states">
+          <span class="state-tag emer" data-i18n="st_emer" data-es="En el momento" data-en="In the moment">En el momento</span>
+          <span class="state-tag cont" data-i18n="st_cont" data-es="Después" data-en="After">Después</span>
+        </div>
       </a>
 
       <a href="/apoyo/sibling-conflict" class="guide-card scroll-reveal delay-3">
-        <span class="guide-tag contencion"
-              data-i18n="gtag_cont" data-es="Contención" data-en="Restoration">Contención</span>
-        <span class="guide-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
-        <h3 data-i18n="g4_h" data-es="Conflicto entre Hermanos" data-en="Sibling Conflict">Conflicto entre Hermanos</h3>
-        <p data-i18n="g4_p" data-es="De árbitro agotado a facilitador sereno. Herramientas para mediar con calma." data-en="From exhausted referee to calm facilitator. Tools to mediate with ease.">De árbitro agotado a facilitador sereno. Herramientas para mediar con calma.</p>
-        <span class="guide-arrow"
-              data-i18n="g_arrow" data-es="Leer guía →" data-en="Read guide →">Leer guía →</span>
+        <span class="guide-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <h3 data-i18n="g4_h" data-es="Hermanos" data-en="Siblings">Hermanos</h3>
+        <div class="guide-sub" data-i18n="g4_s" data-es="Separar, validar, limitar" data-en="Separate, validate, limit">Separar, validar, limitar</div>
+        <p data-i18n="g4_p" data-es="Cuando mediar entre hermanos te deja agotada." data-en="When mediating between siblings leaves you exhausted.">Cuando mediar entre hermanos te deja agotada.</p>
+        <div class="guide-states">
+          <span class="state-tag emer" data-i18n="st_emer" data-es="En el momento" data-en="In the moment">En el momento</span>
+          <span class="state-tag cont" data-i18n="st_cont" data-es="Después" data-en="After">Después</span>
+        </div>
       </a>
+    </div>
 
+    <div class="guides-foot scroll-reveal">
+      <a href="/apoyo/index.html" class="link-pill" data-i18n="guides_all" data-es="Ver todos los protocolos →" data-en="View all protocols →">Ver todos los protocolos →</a>
     </div>
   </section>
 
-  <!-- ─────── QUOTE BAND ─────── -->
-  <div class="quote-band luminate" role="blockquote">
-    <span class="quote-mark scroll-reveal" aria-hidden="true">"</span>
-    <p class="quote-text scroll-reveal delay-1"
-       data-i18n="quote_text"
-       data-es="Criar no es un examen. Es un <em>proceso</em> en el que se aprende mientras se vive."
-       data-en="Parenting is not a test. It's a <em>process</em> where you learn as you live.">
-       Criar no es un examen. Es un <em>proceso</em> en el que se aprende mientras se vive.
-    </p>
-    <p class="quote-attr scroll-reveal delay-2"
-       data-i18n="quote_attr" data-es="· Nari Fateha, Criar Sin Culpas" data-en="· Nari Fateha, Criar Sin Culpas">· Nari Fateha, Criar Sin Culpas</p>
-  </div>
-
-  <!-- ─────── NARI PROFILE ─────── -->
-  <section class="section nari-section" aria-labelledby="nari-heading">
-    <div class="nari-inner">
-      <div class="nari-photo-wrap scroll-reveal">
-        <div class="nari-photo-frame">
-          <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779216966/Nari_xwahmd.png" alt="Nari Fateha, educadora y creadora de Criar Sin Culpas" loading="lazy" style="filter: brightness(.88) contrast(1.05) saturate(.9) sepia(.08);">
+  <!-- ─────── NARI BAND ─────── -->
+  <section class="section nari-section" id="sobre-nari" aria-labelledby="nari-heading">
+    <div class="nari-grid">
+      <div class="nari-left scroll-reveal">
+        <div class="nari-photo">
+          <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779216966/Nari_xwahmd.png" alt="Nari Fateha, educadora y creadora de Criar Sin Culpas" loading="lazy">
         </div>
-        <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779819496/badge_rpueml.png"
-             alt="10+ años acompañando a familias en momentos críticos de la crianza"
-             class="nari-badge-img">
+        <div class="nari-quote">
+          <span class="qmark" aria-hidden="true">"</span>
+          <blockquote data-i18n="nari_quote"
+            data-es="Criar no es un examen. Es un proceso. Y no tienes que hacerlo sola."
+            data-en="Parenting is not a test. It's a process. And you don't have to do it alone.">Criar no es un examen. Es un proceso. Y no tienes que hacerlo sola.</blockquote>
+          <cite data-i18n="nari_cite" data-es="— Nari" data-en="— Nari">— Nari</cite>
+        </div>
       </div>
-      <div class="nari-content scroll-reveal delay-2">
-        <div class="eyebrow"
-             data-i18n="nari_eyebrow" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</div>
-        <h2 class="nari-name" id="nari-heading"
-            data-i18n="nari_h"
-            data-es="Una educadora que sabe <em>lo que se siente.</em>"
-            data-en="An educator who knows <em>what it feels like.</em>">
-            Una educadora que sabe <em>lo que se siente.</em>
-        </h2>
-        <p class="nari-bio"
-           data-i18n="nari_bio"
-           data-es="Nari Fateha es educadora y creadora de Criar Sin Culpas, un espacio diseñado para acompañar a padres y madres en los momentos más intensos de la crianza. Su enfoque combina la neurociencia del desarrollo con la compasión y la práctica diaria, ayudando a miles de familias a transformar el caos en calma."
-           data-en="Nari Fateha is an educator and creator of Criar Sin Culpas, a space designed to support parents through the most intense moments of parenting. Her approach combines developmental neuroscience with compassion and daily practice, helping thousands of families transform chaos into calm.">
-          Nari Fateha es educadora y creadora de Criar Sin Culpas, un espacio diseñado para acompañar a padres y madres en los momentos más intensos de la crianza. Su enfoque combina la neurociencia del desarrollo con la compasión y la práctica diaria, ayudando a miles de familias a transformar el caos en calma.
-        </p>
-        <div class="cred-row">
-          <span class="cred-pill"
-                data-i18n="cred1" data-es="Educación consciente" data-en="Conscious parenting">Educación consciente</span>
-          <span class="cred-pill"
-                data-i18n="cred2" data-es="Neurociencia del desarrollo" data-en="Developmental neuroscience">Neurociencia del desarrollo</span>
-          <span class="cred-pill"
-                data-i18n="cred3" data-es="Regulación emocional" data-en="Emotional regulation">Regulación emocional</span>
+
+      <div class="nari-bio-col scroll-reveal delay-1">
+        <h3 id="nari-heading" data-i18n="nari_h" data-es="Conoce a Nari" data-en="Meet Nari">Conoce a Nari</h3>
+        <p data-i18n="nari_bio"
+           data-es="Educadora, madre y fundadora de Criar Sin Culpas. Combina formación, experiencia y vida real para acompañar a familias latinas en los momentos más intensos de la crianza."
+           data-en="Educator, mother, and founder of Criar Sin Culpas. She blends training, experience, and real life to accompany Latino families through the most intense moments of parenting.">Educadora, madre y fundadora de Criar Sin Culpas. Combina formación, experiencia y vida real para acompañar a familias latinas en los momentos más intensos de la crianza.</p>
+        <div class="nari-tags">
+          <span class="nari-tag t1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg><span data-i18n="cred1" data-es="Crianza consciente" data-en="Conscious parenting">Crianza consciente</span></span>
+          <span class="nari-tag t2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span data-i18n="cred2" data-es="Regulación emocional" data-en="Emotional regulation">Regulación emocional</span></span>
+          <span class="nari-tag t3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span data-i18n="cred3" data-es="Cultura latina" data-en="Latino culture">Cultura latina</span></span>
+          <span class="nari-tag t4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg><span data-i18n="cred4" data-es="Herramientas prácticas" data-en="Practical tools">Herramientas prácticas</span></span>
         </div>
-        <a href="/metodo/" class="guides-view-all"
-           data-i18n="nari_link" data-es="Conoce el método →" data-en="Explore the method →">Conoce el método →</a>
+      </div>
+
+      <div class="nari-seal scroll-reveal delay-2" aria-label="Más de 10 años acompañando familias">
+        <span class="seal-pre" data-i18n="seal_pre" data-es="Más de" data-en="More than">Más de</span>
+        <span class="seal-num">10</span>
+        <span class="seal-post" data-i18n="seal_post" data-es="Años acompañando familias" data-en="Years guiding families">Años acompañando familias</span>
+        <span class="seal-heart" aria-hidden="true">♥</span>
       </div>
     </div>
   </section>
 
-  <!-- ─────── SCRIPT BANNER / FINAL CTA ─────── -->
-  <div class="script-banner">
-    <span class="script-main scroll-reveal"
-          data-i18n="script_1" data-es="Estás haciendo lo mejor que puedes." data-en="You are doing the best you can.">
-      Estás haciendo lo mejor que puedes.
-    </span>
-    <span class="script-sub scroll-reveal delay-1"
-          data-i18n="script_2" data-es="Y eso ya es suficiente." data-en="And that is enough.">
-      Y eso ya es suficiente.
-    </span>
-    <a href="/apoyo/" class="final-cta scroll-reveal delay-2" id="finalCta">
-      <span data-i18n="cta_final" data-es="Recibe apoyo que se sienta bien" data-en="Get support that feels right">Recibe apoyo que se sienta bien</span>
-      <span class="arrow">→</span>
+  <!-- ─────── CLOSING CTA ─────── -->
+  <div class="cta-band">
+    <span class="cta-line1 scroll-reveal" data-i18n="cta_l1" data-es="Estás haciendo lo mejor que puedes." data-en="You are doing the best you can.">Estás haciendo lo mejor que puedes.</span>
+    <span class="cta-line2 scroll-reveal delay-1" data-i18n="cta_l2" data-es="Y no tienes que hacerlo sola." data-en="And you don't have to do it alone.">Y no tienes que hacerlo sola.</span>
+    <a href="/apoyo/" class="cta-btn scroll-reveal delay-2 js-telemetry" id="finalCta" data-event-name="portal_entered" data-mode="emergencia" data-protocol="home_closing">
+      <span data-i18n="cta_btn" data-es="Entrar al espacio de apoyo" data-en="Enter the support space">Entrar al espacio de apoyo</span>
+      <span class="arrow" aria-hidden="true">→</span>
     </a>
   </div>
 
   <!-- ─────── FOOTER ─────── -->
   <footer role="contentinfo">
-    <a href="/" aria-label="Criar Sin Culpas">
-      <img src="/assets/images/csc-logo.svg" alt="Criar Sin Culpas">
-    </a>
-    <span class="footer-copy">© 2026 Criar Sin Culpas · Todos los derechos reservados.</span>
-    <nav class="footer-links" aria-label="Legal">
-      <a href="/privacidad" data-i18n="footer_priv" data-es="Privacidad" data-en="Privacy">Privacidad</a>
-      <a href="mailto:hola@criarsinculpas.com" data-i18n="footer_contact" data-es="Contacto" data-en="Contact">Contacto</a>
-      <a href="https://instagram.com/criarsinculpas" target="_blank" rel="noopener noreferrer">Instagram</a>
-    </nav>
-    <p class="footer-tagline" data-i18n="footer_tagline" data-es="Este espacio fue creado con cuidado, para familias reales." data-en="This space was created with care, for real families.">Este espacio fue creado con cuidado, para familias reales.</p>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="wordmark"><span class="wm-top">CRIAR</span><span class="wm-bot">sin culpas</span></span>
+        <p data-i18n="foot_tag" data-es="Un espacio de apoyo emocional para padres que quieren criar con conexión, no con culpa." data-en="An emotional support space for parents who want to raise with connection, not guilt.">Un espacio de apoyo emocional para padres que quieren criar con conexión, no con culpa.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="foot_nav" data-es="Navegación" data-en="Navigation">Navegación</h4>
+        <a href="#top" data-i18n="nav_inicio_f" data-es="Inicio" data-en="Home">Inicio</a>
+        <a href="#protocolos" data-i18n="nav_protocolos_f" data-es="Protocolos" data-en="Protocols">Protocolos</a>
+        <a href="#sobre-nari" data-i18n="nav_nari_f" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
+        <a href="/comunidad/" data-i18n="nav_comunidad_f" data-es="Comunidad" data-en="Community">Comunidad</a>
+        <a href="/recursos/" data-i18n="nav_recursos_f" data-es="Recursos" data-en="Resources">Recursos</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="foot_legal" data-es="Legal" data-en="Legal">Legal</h4>
+        <a href="/terminos" data-i18n="foot_terms" data-es="Términos de Uso" data-en="Terms of Use">Términos de Uso</a>
+        <a href="/privacidad" data-i18n="foot_priv" data-es="Política de Privacidad" data-en="Privacy Policy">Política de Privacidad</a>
+        <a href="/descargo" data-i18n="foot_disc" data-es="Descargo de Responsabilidad" data-en="Disclaimer">Descargo de Responsabilidad</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="foot_follow" data-es="Síguenos" data-en="Follow us">Síguenos</h4>
+        <div class="footer-social">
+          <a href="https://instagram.com/criarsinculpas" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M22.5 6.4a2.8 2.8 0 0 0-2-2C18.9 4 12 4 12 4s-6.9 0-8.5.4a2.8 2.8 0 0 0-2 2A29 29 0 0 0 1 12a29 29 0 0 0 .5 5.6 2.8 2.8 0 0 0 2 2C5 20 12 20 12 20s6.9 0 8.5-.4a2.8 2.8 0 0 0 2-2A29 29 0 0 0 23 12a29 29 0 0 0-.5-5.6z"/><polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 3v3.2a4.8 4.8 0 0 0 4 4.7v3.1a7.8 7.8 0 0 1-4-1.1v5.3A6.2 6.2 0 1 1 9.8 12v3.3A2.9 2.9 0 1 0 12 18V3h4z"/></svg></a>
+          <a href="/contacto" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="foot_copy" data-es="© 2026 Criar Sin Culpas. Todos los derechos reservados." data-en="© 2026 Criar Sin Culpas. All rights reserved.">© 2026 Criar Sin Culpas. Todos los derechos reservados.</span>
+      <span data-i18n="foot_med" data-es="Esto no reemplaza orientación médica o profesional." data-en="This does not replace medical or professional guidance.">Esto no reemplaza orientación médica o profesional.</span>
+    </div>
   </footer>
 
   <script>
   (function () {
-    /* ── i18n ──────────────────────────────── */
+    /* ── i18n ── */
     const STORAGE_KEY = 'lg_parent_lang';
     let lang = localStorage.getItem(STORAGE_KEY) || 'es';
-
     function applyLang(l) {
-      lang = l;
-      localStorage.setItem(STORAGE_KEY, l);
-      document.documentElement.lang = l;
+      lang = l; localStorage.setItem(STORAGE_KEY, l); document.documentElement.lang = l;
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const txt = el.getAttribute('data-' + l);
         if (txt) el.innerHTML = txt;
@@ -1315,25 +562,17 @@
         btn.setAttribute('aria-pressed', btn.getAttribute('data-lang') === l ? 'true' : 'false');
       });
     }
-
     document.addEventListener('click', e => {
       const btn = e.target.closest('.lang-btn');
-      if (btn) {
-        applyLang(btn.getAttribute('data-lang'));
-        window.plausible && window.plausible('language_changed', { props: { to_lang: lang } });
-      }
+      if (btn) { applyLang(btn.getAttribute('data-lang')); window.plausible && window.plausible('language_changed', { props: { to_lang: lang } }); }
     });
-
     applyLang(lang);
 
-    /* ── Nav scroll state ──────────────────── */
+    /* ── Nav scroll state ── */
     const nav = document.getElementById('mainNav');
-    function onScroll() {
-      nav.classList.toggle('scrolled', window.scrollY > 60);
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
 
-    /* ── Mobile menu ───────────────────────── */
+    /* ── Mobile menu ── */
     const ham = document.getElementById('ham');
     const mobileNav = document.getElementById('mobileNav');
     ham.addEventListener('click', () => {
@@ -1342,16 +581,12 @@
       ham.setAttribute('aria-expanded', isOpen);
       document.body.style.overflow = isOpen ? 'hidden' : '';
     });
-    mobileNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileNav.classList.remove('open');
-        ham.classList.remove('open');
-        ham.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      });
-    });
+    mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      mobileNav.classList.remove('open'); ham.classList.remove('open');
+      ham.setAttribute('aria-expanded', 'false'); document.body.style.overflow = '';
+    }));
 
-    /* ── Hero photo Ken Burns on load ─────── */
+    /* ── Hero ken burns ── */
     const heroPhoto = document.getElementById('heroPhoto');
     if (heroPhoto) {
       const img = new Image();
@@ -1359,73 +594,27 @@
       img.src = 'https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779645663/A_cinematic_documentary-style_photograph_of_an_ex-1779645621021_dikbho.png';
     }
 
-    /* ── Marquee ───────────────────────────── */
-    const phrases_es = [
-      'Estás haciendo lo mejor que puedes',
-      'Nadie te dijo que sería así',
-      'El caos de hoy es la fortaleza de mañana',
-      'No estás sola',
-      'Criar es un acto de amor radical',
-      'Tus hijos te ven intentarlo',
-      'Ser suficiente ya es suficiente',
-    ];
-    const phrases_en = [
-      'You are doing the best you can',
-      'Nobody told you it would be like this',
-      'Today\'s chaos is tomorrow\'s strength',
-      'You are not alone',
-      'Parenting is an act of radical love',
-      'Your children see you trying',
-      'Being enough is already enough',
-    ];
-    function buildMarquee() {
-      const track = document.getElementById('marqueeTrack');
-      const phrases = lang === 'es' ? phrases_es : phrases_en;
-      const doubled = [...phrases, ...phrases];
-      track.innerHTML = doubled.map(p =>
-        `<span class="marquee-item"><span>${p}</span><span class="marquee-dot"></span></span>`
-      ).join('');
-    }
-    buildMarquee();
-    // Rebuild on language change
-    document.addEventListener('click', e => {
-      if (e.target.closest('.lang-btn')) buildMarquee();
-    });
-
-    /* ── Scroll reveals ────────────────────── */
+    /* ── Scroll reveals ── */
     const reveals = document.querySelectorAll('.scroll-reveal');
     if ('IntersectionObserver' in window) {
       const io = new IntersectionObserver((entries) => {
-        entries.forEach(en => {
-          if (en.isIntersecting) {
-            en.target.classList.add('visible');
-            io.unobserve(en.target);
-          }
-        });
+        entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); } });
       }, { threshold: 0.12 });
       reveals.forEach(el => io.observe(el));
-    } else {
-      reveals.forEach(el => el.classList.add('visible'));
-    }
+    } else { reveals.forEach(el => el.classList.add('visible')); }
 
-    /* ── CTA tracking + fade out ───────────── */
+    /* ── Telemetry + page fade on entry links ── */
     function fadeNav(href, evt) {
+      if (!href || href.charAt(0) === '#') return; /* let in-page anchors scroll normally */
       evt && evt.preventDefault();
-      document.body.style.opacity = '0';
       document.body.style.transition = 'opacity .55s ease';
+      document.body.style.opacity = '0';
       setTimeout(() => { window.location.href = href; }, 560);
     }
-
-    window.addEventListener('pageshow', (event) => {
-      if (event.persisted) {
-        document.body.style.opacity = '1';
-      }
-    });
-
+    window.addEventListener('pageshow', (e) => { if (e.persisted) document.body.style.opacity = '1'; });
     document.addEventListener('click', (e) => {
       const el = e.target.closest('.js-telemetry');
       if (!el) return;
-
       const eventName = el.getAttribute('data-event-name');
       if (eventName && window.plausible) {
         const props = { language: lang };
@@ -1436,15 +625,9 @@
         if (el.id) props.entry = el.id;
         window.plausible(eventName, { props });
       }
-
-      if (el.tagName === 'A') {
-        const href = el.getAttribute('href');
-        if (href) fadeNav(href, e);
-      }
+      if (el.tagName === 'A') fadeNav(el.getAttribute('href'), e);
     });
   }());
   </script>
-
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"a6fdd4e7ff644527b91c6db4b97e68f5","r":1}' crossorigin="anonymous"></script>
 </body>
 </html>
