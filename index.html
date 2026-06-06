@@ -71,6 +71,12 @@
     .nav-center a:hover{color:var(--text);}
     .nav-center a.active{color:var(--text);}
     .nav-center a.active::after{content:'';position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--gold);}
+    .soon{cursor:default;color:var(--text-ghost);}
+    .nav-center .soon{display:inline-flex;align-items:center;gap:8px;opacity:.55;font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:4px 0;}
+    .soon-tag{font-size:.5rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,169,110,.4);border-radius:var(--pill);padding:2px 6px;opacity:.9;white-space:nowrap;}
+    .mobile-nav .soon{display:inline-flex;align-items:center;gap:12px;opacity:.5;font-family:var(--serif);font-size:1.9rem;letter-spacing:.04em;}
+    .mobile-nav .soon .soon-tag{font-family:var(--sans);}
+    .footer-col .soon{display:flex;align-items:center;gap:8px;opacity:.5;font-size:.8rem;margin-bottom:11px;}
     .nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0;}
     .lang-pill{display:inline-flex;padding:3px;gap:2px;border-radius:var(--pill);border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);}
     .lang-btn{min-width:36px;padding:5px 9px;border-radius:var(--pill);font-size:.64rem;font-weight:700;letter-spacing:.06em;color:var(--text-ghost);background:none;border:none;cursor:pointer;transition:all .25s;}
@@ -234,9 +240,15 @@
     .scroll-reveal.delay-3{transition-delay:.32s;} .scroll-reveal.delay-4{transition-delay:.44s;}
 
     /* ═══════════════ MOBILE ═══════════════ */
+    /* Tablet and down: collapse the nav to the hamburger drawer */
+    @media(max-width:1200px){
+      .nav{padding:max(18px,env(safe-area-inset-top)) 32px 16px;}
+      .nav-center{display:none;}
+      .ham{display:flex;}
+      .mobile-nav{display:flex;}
+    }
     @media(max-width:980px){
       .nav{padding:max(16px,env(safe-area-inset-top)) 22px 14px;}
-      .nav-center{display:none;} .btn-enter{display:none;} .ham{display:flex;} .mobile-nav{display:flex;}
       .hero{height:auto;min-height:100svh;} .hero-body{padding:max(104px,15vh) 24px 44px;}
       .hero-photo{background-position:72% center;} .hero-headline{font-size:clamp(2.7rem,11vw,3.8rem);max-width:100%;}
       .divergence{flex-direction:column;gap:12px;} .entry{max-width:100%;}
@@ -268,18 +280,14 @@
       <a href="#top" class="active" data-i18n="nav_inicio" data-es="Inicio" data-en="Home">Inicio</a>
       <a href="#protocolos" data-i18n="nav_protocolos" data-es="Protocolos" data-en="Protocols">Protocolos</a>
       <a href="#sobre-nari" data-i18n="nav_nari" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
-      <a href="/comunidad/" data-i18n="nav_comunidad" data-es="Comunidad" data-en="Community">Comunidad</a>
-      <a href="/recursos/" data-i18n="nav_recursos" data-es="Recursos" data-en="Resources">Recursos</a>
+      <span class="soon"><span data-i18n="nav_comunidad" data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></span>
+      <span class="soon"><span data-i18n="nav_recursos" data-es="Recursos" data-en="Resources">Recursos</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></span>
     </div>
     <div class="nav-right">
       <div class="lang-pill" role="group" aria-label="Idioma">
         <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
         <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
       </div>
-      <a href="/apoyo/" class="btn-enter js-telemetry" data-event-name="nav_enter_clicked" data-i18n="nav_enter" data-es="Entrar / Registrarme" data-en="Enter / Sign up">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        <span data-i18n="nav_enter_t" data-es="Entrar / Registrarme" data-en="Enter / Sign up">Entrar / Registrarme</span>
-      </a>
       <button class="ham" id="ham" aria-label="Abrir menú" aria-expanded="false">
         <svg class="bars" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="8" x2="21" y2="8"/><line x1="3" y1="16" x2="21" y2="16"/></svg>
         <svg class="x" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -291,9 +299,8 @@
     <a href="#top" data-i18n="nav_inicio_m" data-es="Inicio" data-en="Home">Inicio</a>
     <a href="#protocolos" data-i18n="nav_protocolos_m" data-es="Protocolos" data-en="Protocols">Protocolos</a>
     <a href="#sobre-nari" data-i18n="nav_nari_m" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
-    <a href="/comunidad/" data-i18n="nav_comunidad_m" data-es="Comunidad" data-en="Community">Comunidad</a>
-    <a href="/recursos/" data-i18n="nav_recursos_m" data-es="Recursos" data-en="Resources">Recursos</a>
-    <a href="/apoyo/" class="btn-enter" style="display:inline-flex;" data-i18n="nav_enter_m" data-es="Entrar / Registrarme" data-en="Enter / Sign up">Entrar / Registrarme</a>
+    <span class="soon"><span data-i18n="nav_comunidad_m" data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></span>
+    <span class="soon"><span data-i18n="nav_recursos_m" data-es="Recursos" data-en="Resources">Recursos</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></span>
     <div class="lang-pill" role="group" aria-label="Idioma">
       <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
       <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
@@ -522,8 +529,8 @@
         <a href="#top" data-i18n="nav_inicio_f" data-es="Inicio" data-en="Home">Inicio</a>
         <a href="#protocolos" data-i18n="nav_protocolos_f" data-es="Protocolos" data-en="Protocols">Protocolos</a>
         <a href="#sobre-nari" data-i18n="nav_nari_f" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
-        <a href="/comunidad/" data-i18n="nav_comunidad_f" data-es="Comunidad" data-en="Community">Comunidad</a>
-        <a href="/recursos/" data-i18n="nav_recursos_f" data-es="Recursos" data-en="Resources">Recursos</a>
+        <span class="soon"><span data-i18n="nav_comunidad_f" data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></span>
+        <span class="soon"><span data-i18n="nav_recursos_f" data-es="Recursos" data-en="Resources">Recursos</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></span>
       </div>
       <div class="footer-col">
         <h4 data-i18n="foot_legal" data-es="Legal" data-en="Legal">Legal</h4>
@@ -535,9 +542,7 @@
         <h4 data-i18n="foot_follow" data-es="Síguenos" data-en="Follow us">Síguenos</h4>
         <div class="footer-social">
           <a href="https://instagram.com/criarsinculpas" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M22.5 6.4a2.8 2.8 0 0 0-2-2C18.9 4 12 4 12 4s-6.9 0-8.5.4a2.8 2.8 0 0 0-2 2A29 29 0 0 0 1 12a29 29 0 0 0 .5 5.6 2.8 2.8 0 0 0 2 2C5 20 12 20 12 20s6.9 0 8.5-.4a2.8 2.8 0 0 0 2-2A29 29 0 0 0 23 12a29 29 0 0 0-.5-5.6z"/><polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"/></svg></a>
-          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 3v3.2a4.8 4.8 0 0 0 4 4.7v3.1a7.8 7.8 0 0 1-4-1.1v5.3A6.2 6.2 0 1 1 9.8 12v3.3A2.9 2.9 0 1 0 12 18V3h4z"/></svg></a>
-          <a href="/contacto" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
+          <a href="mailto:hello@criarsinculpas.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
         </div>
       </div>
     </div>
