@@ -25,6 +25,9 @@
     .wordmark{display:flex;flex-direction:column;line-height:1;}
     .wordmark .wm-top{font-family:var(--serif);font-weight:600;font-size:1.25rem;letter-spacing:.22em;color:var(--gold);}
     .wordmark .wm-bot{font-family:var(--serif);font-style:italic;font-size:.82rem;color:var(--gold);opacity:.85;margin-top:2px;padding-left:.22em;}
+    .nav-logo{display:inline-flex;align-items:center;flex-shrink:0;}
+    .nav-logo img{height:clamp(26px,3.8vw,34px);width:auto;display:block;transition:opacity .3s;}
+    .nav-logo:hover img{opacity:.85;}
     .bar-right{display:flex;align-items:center;gap:16px;}
     .back{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);transition:color .25s;}
     .back:hover{color:var(--text);}
@@ -53,7 +56,7 @@
   <div class="grain" aria-hidden="true"></div>
 
   <header class="bar">
-    <a href="/" class="wordmark" aria-label="Criar Sin Culpas"><span class="wm-top">CRIAR</span><span class="wm-bot">sin culpas</span></a>
+    <a href="/" class="nav-logo" aria-label="Criar Sin Culpas"><img src="/assets/images/csc-logo.svg" alt="Criar Sin Culpas"></a>
     <div class="bar-right">
       <a href="/" class="back" data-i18n="back" data-es="Volver al inicio" data-en="Back to home">Volver al inicio</a>
       <div class="lang-pill" role="group" aria-label="Idioma">

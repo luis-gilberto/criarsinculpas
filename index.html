@@ -66,6 +66,9 @@
     .wordmark{display:flex;flex-direction:column;line-height:1;flex-shrink:0;}
     .wordmark .wm-top{font-family:var(--serif);font-weight:600;font-size:1.45rem;letter-spacing:.22em;color:var(--gold);}
     .wordmark .wm-bot{font-family:var(--serif);font-style:italic;font-weight:400;font-size:.92rem;letter-spacing:.04em;color:var(--gold);opacity:.85;margin-top:2px;padding-left:.22em;}
+    .nav-logo{display:inline-flex;align-items:center;flex-shrink:0;}
+    .nav-logo img{height:clamp(26px,3.8vw,34px);width:auto;display:block;transition:opacity .3s;}
+    .nav-logo:hover img{opacity:.85;}
     .nav-center{display:flex;align-items:center;gap:34px;}
     .nav-center a{color:var(--text-dim);font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;transition:color .25s;position:relative;padding:4px 0;}
     .nav-center a:hover{color:var(--text);}
@@ -272,10 +275,7 @@
 
   <!-- ─────── NAV ─────── -->
   <nav class="nav" id="mainNav" role="navigation" aria-label="Navegación principal">
-    <a href="/" class="wordmark" aria-label="Criar Sin Culpas">
-      <span class="wm-top">CRIAR</span>
-      <span class="wm-bot">sin culpas</span>
-    </a>
+    <a href="/" class="nav-logo" aria-label="Criar Sin Culpas"><img src="/assets/images/csc-logo.svg" alt="Criar Sin Culpas"></a>
     <div class="nav-center">
       <a href="#top" class="active" data-i18n="nav_inicio" data-es="Inicio" data-en="Home">Inicio</a>
       <a href="#protocolos" data-i18n="nav_protocolos" data-es="Protocolos" data-en="Protocols">Protocolos</a>
