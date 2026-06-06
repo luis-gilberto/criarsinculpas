@@ -21,16 +21,15 @@
 /* ── DESIGN TOKENS ───────────────────────────────────────── */
 :root {
   /* Color Palette */
-  --csc-purple:    #3D2B5E;  /* Anchor — warmer plum, sparing type + structure */
-  --csc-plum-deep: #201C16;  /* Deep warm near-black — dramatic dark fields */
-  --csc-lavender:  #8B7AB5;  /* Support accent — deeper, less pastel */
-  --csc-lilac:     #EDE8F5;  /* Soft fill only — never a full section wash */
-  --csc-coral:     #D4634A;  /* Pulse — emotional signature, promoted */
-  --csc-teal:      #4A9A8C;  /* Guide — clarity accent, promoted */
-  --csc-paper:     #FAF3EA;  /* Primary canvas — warm linen, dominant */
-  --csc-sand:      #F3E9D8;  /* Secondary warm canvas */
-  --csc-ink:       #4A3B2E;  /* Body text — warm taupe-ink, not cold purple */
-  --csc-muted:     #8A7568;  /* Muted body — warm taupe */
+  --csc-navy:      #1F2E46;  /* Anchor — navy, sparing type + structure */
+  --csc-navy-deep: #1F2E46;  /* Deep navy — dramatic dark fields */
+  --csc-slate:     #8599AD;  /* Support accent — calm slate blue */
+  --csc-slate-lt:  #A7B6C6;  /* Guide — light slate, clarity accent */
+  --csc-peach:     #F4A88A;  /* Pulse — emotional signature, warm accent */
+  --csc-blush:     #FCE7DD;  /* Soft fill — warm light tint */
+  --csc-cream:     #FAF6F2;  /* Primary canvas — warm cream, dominant */
+  --csc-ink:       #2D3340;  /* Body text — navy-tinted ink */
+  --csc-muted:     #6F7787;  /* Muted body — slate gray */
 
   /* Typography */
   --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
@@ -55,9 +54,9 @@
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 
   /* Shadows */
-  --shadow-soft: 0 2px 16px rgba(62, 42, 107, 0.06);
-  --shadow-card: 0 4px 32px rgba(62, 42, 107, 0.08);
-  --shadow-lift: 0 12px 48px rgba(62, 42, 107, 0.14);
+  --shadow-soft: 0 2px 16px rgba(31, 46, 70, 0.06);
+  --shadow-card: 0 4px 32px rgba(31, 46, 70, 0.08);
+  --shadow-lift: 0 12px 48px rgba(31, 46, 70, 0.14);
 }
 
 /* ── RESET & BASE ────────────────────────────────────────── */
@@ -74,7 +73,7 @@ body {
   font-weight: 400;
   line-height: 1.6;
   color: var(--csc-ink);
-  background-color: var(--csc-paper);
+  background-color: var(--csc-cream);
   overflow-x: hidden;
 }
 
@@ -90,7 +89,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   left: 0;
   height: 2px;
   width: 0%;
-  background: var(--csc-coral);
+  background: var(--csc-peach);
   z-index: 9999;
   transition: width 0.1s linear;
 }
@@ -114,7 +113,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: rgba(251, 247, 241, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 1px 0 rgba(62, 42, 107, 0.08);
+  box-shadow: 0 1px 0 rgba(31, 46, 70, 0.08);
 }
 
 .nav-logo {
@@ -122,7 +121,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-size: 1.25rem;
   font-weight: 600;
   letter-spacing: 0.1em;
-  color: var(--csc-purple);
+  color: var(--csc-navy);
   transition: opacity 0.2s;
 }
 .nav-logo:hover { opacity: 0.7; }
@@ -136,7 +135,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--csc-purple);
+  color: var(--csc-navy);
   opacity: 0.65;
   transition: opacity 0.2s;
 }
@@ -152,7 +151,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: block;
   width: 22px;
   height: 1.5px;
-  background: var(--csc-purple);
+  background: var(--csc-navy);
   transition: transform 0.3s var(--ease-out), opacity 0.3s;
 }
 
@@ -184,13 +183,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: var(--font-serif);
   font-size: clamp(3rem, 8vw, 7rem);
   font-weight: 300;
-  color: var(--csc-purple);
+  color: var(--csc-navy);
   line-height: 1;
 }
 .chapter-rule {
   width: 60px;
   height: 1px;
-  background: var(--csc-purple);
+  background: var(--csc-navy);
 }
 
 /* ── SECTION HEADERS ─────────────────────────────────────── */
@@ -201,7 +200,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--csc-coral);
+  color: var(--csc-peach);
   margin-bottom: var(--space-md);
   display: block;
 }
@@ -211,7 +210,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-size: clamp(2.2rem, 5vw, 4rem);
   font-weight: 400;
   line-height: 1.15;
-  color: var(--csc-purple);
+  color: var(--csc-navy);
   margin-bottom: var(--space-md);
 }
 
@@ -244,7 +243,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--csc-plum-deep);
+  background-color: var(--csc-navy-deep);
   position: relative;
   overflow: hidden;
   padding: 0;
@@ -254,7 +253,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(ellipse 80% 60% at 20% 80%, rgba(184, 165, 214, 0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 60% at 20% 80%, rgba(133, 153, 173, 0.15) 0%, transparent 60%),
     radial-gradient(ellipse 60% 80% at 80% 20%, rgba(249, 111, 110, 0.08) 0%, transparent 50%);
   pointer-events: none;
 }
@@ -272,7 +271,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 400;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(184, 165, 214, 0.8);
+  color: rgba(133, 153, 173, 0.8);
   margin-bottom: var(--space-xl);
   display: block;
   animation: fadeUp 1s var(--ease-out) 0.2s both;
@@ -292,12 +291,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-size: clamp(3.5rem, 10vw, 8rem);
   font-weight: 300;
   line-height: 1;
-  color: var(--csc-paper);
+  color: var(--csc-cream);
   letter-spacing: -0.01em;
 }
 .cover-title__line--italic {
   font-style: italic;
-  color: var(--csc-lavender);
+  color: var(--csc-slate);
 }
 
 .cover-tagline {
@@ -305,7 +304,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-size: clamp(1rem, 2.5vw, 1.4rem);
   font-weight: 300;
   font-style: italic;
-  color: rgba(243, 231, 240, 0.7);
+  color: rgba(252, 231, 221, 0.7);
   margin-bottom: var(--space-lg);
   animation: fadeUp 1s var(--ease-out) 0.6s both;
 }
@@ -313,7 +312,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .cover-divider {
   width: 40px;
   height: 1px;
-  background: rgba(184, 165, 214, 0.4);
+  background: rgba(133, 153, 173, 0.4);
   margin: 0 auto var(--space-lg);
   animation: scaleIn 0.8s var(--ease-out) 0.7s both;
 }
@@ -322,7 +321,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-size: clamp(0.85rem, 1.8vw, 1rem);
   font-weight: 300;
   line-height: 1.8;
-  color: rgba(243, 231, 240, 0.55);
+  color: rgba(252, 231, 221, 0.55);
   margin-bottom: var(--space-xl);
   animation: fadeUp 1s var(--ease-out) 0.8s both;
 }
@@ -335,11 +334,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(184, 165, 214, 0.8);
+  color: rgba(133, 153, 173, 0.8);
   transition: color 0.2s, gap 0.2s;
   animation: fadeUp 1s var(--ease-out) 1s both;
 }
-.cover-cta:hover { color: var(--csc-lavender); gap: var(--space-md); }
+.cover-cta:hover { color: var(--csc-slate); gap: var(--space-md); }
 
 .cover-chapter-label {
   position: absolute;
@@ -348,7 +347,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: var(--font-serif);
   font-size: 6rem;
   font-weight: 300;
-  color: rgba(184, 165, 214, 0.06);
+  color: rgba(133, 153, 173, 0.06);
   line-height: 1;
   pointer-events: none;
 }
@@ -357,7 +356,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    STORY
    ============================================================ */
 .section--story {
-  background: var(--csc-paper);
+  background: var(--csc-cream);
 }
 
 .container--story {
@@ -376,7 +375,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-size: clamp(1.25rem, 2.5vw, 1.6rem);
   font-weight: 400;
   line-height: 1.6;
-  color: var(--csc-purple);
+  color: var(--csc-navy);
   max-width: 760px;
 }
 
@@ -404,8 +403,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  border: 1.5px solid var(--csc-lavender);
-  background: var(--csc-paper);
+  border: 1.5px solid var(--csc-slate);
+  background: var(--csc-cream);
   flex-shrink: 0;
   position: relative;
   z-index: 1;
@@ -414,7 +413,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .timeline-line {
   flex: 1;
   width: 1px;
-  background: linear-gradient(to bottom, var(--csc-lavender), transparent);
+  background: linear-gradient(to bottom, var(--csc-slate), transparent);
   margin-top: var(--space-sm);
   min-height: 60px;
 }
@@ -428,7 +427,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--csc-coral);
+  color: var(--csc-peach);
   margin-bottom: var(--space-sm);
   display: block;
 }
@@ -437,7 +436,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: var(--font-serif);
   font-size: clamp(1.4rem, 3vw, 2rem);
   font-weight: 500;
-  color: var(--csc-purple);
+  color: var(--csc-navy);
   margin-bottom: var(--space-md);
 }
 
@@ -458,7 +457,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: var(--font-serif);
   font-size: 2.4rem;
   font-weight: 600;
-  color: var(--csc-purple);
+  color: var(--csc-navy);
   line-height: 1;
 }
 .stat-label {
@@ -469,7 +468,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 .story-pullquote {
   padding: clamp(32px, 5vw, 56px) clamp(24px, 5vw, 64px);
-  background: var(--csc-purple);
+  background: var(--csc-navy);
   border-radius: 2px;
   position: relative;
   overflow: hidden;
@@ -481,7 +480,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   left: 20px;
   font-family: var(--font-serif);
   font-size: 12rem;
-  color: rgba(184, 165, 214, 0.08);
+  color: rgba(133, 153, 173, 0.08);
   line-height: 1;
   pointer-events: none;
 }
@@ -492,14 +491,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 400;
   font-style: italic;
   line-height: 1.5;
-  color: var(--csc-paper);
+  color: var(--csc-cream);
 }
 
 /* ============================================================
    MANIFESTO
    ============================================================ */
 .section--manifesto {
-  background: var(--csc-sand);
+  background: var(--csc-blush);
   overflow: hidden;
 }
 
@@ -511,7 +510,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: var(--font-serif);
   font-size: clamp(10rem, 30vw, 28rem);
   font-weight: 700;
-  color: rgba(62, 42, 107, 0.03);
+  color: rgba(31, 46, 70, 0.03);
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
@@ -536,9 +535,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-size: clamp(1.2rem, 2.5vw, 1.75rem);
   font-weight: 400;
   line-height: 1.55;
-  color: var(--csc-purple);
+  color: var(--csc-navy);
   padding: clamp(24px, 4vw, 40px) 0;
-  border-bottom: 1px solid rgba(62, 42, 107, 0.12);
+  border-bottom: 1px solid rgba(31, 46, 70, 0.12);
 }
 .manifesto-statement:first-child { padding-top: 0; }
 .manifesto-statement--em {
@@ -556,11 +555,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .pillar {
   padding: var(--space-lg);
   background: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(62, 42, 107, 0.08);
+  border: 1px solid rgba(31, 46, 70, 0.08);
   border-radius: 2px;
 }
 .pillar-icon {
-  color: var(--csc-purple);
+  color: var(--csc-navy);
   margin-bottom: var(--space-md);
   opacity: 0.6;
 }
@@ -568,7 +567,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: var(--font-serif);
   font-size: 1.15rem;
   font-weight: 600;
-  color: var(--csc-purple);
+  color: var(--csc-navy);
   margin-bottom: var(--space-sm);
 }
 .pillar-body {
@@ -581,7 +580,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   text-align: center;
   margin-top: clamp(48px, 8vw, 96px);
   padding-top: clamp(48px, 8vw, 96px);
-  border-top: 1px solid rgba(62, 42, 107, 0.12);
+  border-top: 1px solid rgba(31, 46, 70, 0.12);
 }
 
 .closing-text {
@@ -592,7 +591,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .closing-text--big {
   font-size: clamp(1.5rem, 3.5vw, 2.5rem);
-  color: var(--csc-purple);
+  color: var(--csc-navy);
   font-weight: 500;
   margin: var(--space-sm) 0;
 }
@@ -602,20 +601,20 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: var(--font-serif);
   font-style: italic;
   font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-  color: var(--csc-purple);
+  color: var(--csc-navy);
   line-height: 1.5;
 }
 .manifesto-footer-quote__em {
   font-size: clamp(1.4rem, 3vw, 2rem);
   font-weight: 600;
-  color: var(--csc-coral);
+  color: var(--csc-peach);
 }
 
 /* ============================================================
    ECOSYSTEM
    ============================================================ */
 .section--ecosystem {
-  background: var(--csc-paper);
+  background: var(--csc-cream);
 }
 
 .container--ecosystem {
@@ -634,7 +633,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   position: relative;
   padding: clamp(24px, 4vw, 40px);
   background: #fff;
-  border: 1px solid rgba(62, 42, 107, 0.08);
+  border: 1px solid rgba(31, 46, 70, 0.08);
   border-radius: 2px;
   overflow: hidden;
   transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
@@ -658,7 +657,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: var(--font-serif);
   font-size: 3.5rem;
   font-weight: 300;
-  color: rgba(62, 42, 107, 0.12);
+  color: rgba(31, 46, 70, 0.12);
   line-height: 1;
 }
 
@@ -667,9 +666,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--csc-purple);
+  color: var(--csc-navy);
   padding: 4px 10px;
-  border: 1px solid var(--csc-lavender);
+  border: 1px solid var(--csc-slate);
   border-radius: 100px;
 }
 .eco-platform-tag--gold {
@@ -681,7 +680,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: var(--font-serif);
   font-size: clamp(1.3rem, 2.5vw, 1.7rem);
   font-weight: 500;
-  color: var(--csc-purple);
+  color: var(--csc-navy);
   margin-bottom: var(--space-md);
 }
 
@@ -695,7 +694,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: var(--font-serif);
   font-style: italic;
   font-size: 1rem;
-  color: var(--csc-purple);
+  color: var(--csc-navy);
   margin-bottom: 0;
 }
 
@@ -709,7 +708,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: var(--font-serif);
   font-size: 2rem;
   font-weight: 600;
-  color: var(--csc-purple);
+  color: var(--csc-navy);
   line-height: 1;
 }
 .eco-metric__label {
@@ -728,8 +727,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 500;
   letter-spacing: 0.1em;
   padding: 4px 12px;
-  background: var(--csc-lilac);
-  color: var(--csc-purple);
+  background: var(--csc-blush);
+  color: var(--csc-navy);
   border-radius: 100px;
 }
 
@@ -740,10 +739,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   right: 0;
   height: 3px;
 }
-.eco-accent--coral   { background: var(--csc-coral); }
-.eco-accent--purple  { background: var(--csc-purple); }
-.eco-accent--teal    { background: var(--csc-teal); }
-.eco-accent--lavender { background: var(--csc-lavender); }
+.eco-accent--coral   { background: var(--csc-peach); }
+.eco-accent--purple  { background: var(--csc-navy); }
+.eco-accent--teal    { background: var(--csc-slate-lt); }
+.eco-accent--lavender { background: var(--csc-slate); }
 
 .ecosystem-flow {
   margin-top: var(--space-xl);
@@ -752,7 +751,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .flow-line {
   height: 1px;
-  background: linear-gradient(to right, transparent, var(--csc-lavender), transparent);
+  background: linear-gradient(to right, transparent, var(--csc-slate), transparent);
   margin-bottom: var(--space-md);
 }
 .flow-label {
@@ -767,7 +766,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    IDENTITY
    ============================================================ */
 .section--identity {
-  background: var(--csc-sand);
+  background: var(--csc-blush);
 }
 
 .container--identity {
@@ -784,10 +783,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: var(--font-serif);
   font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 400;
-  color: var(--csc-purple);
+  color: var(--csc-navy);
   margin-bottom: var(--space-md);
   padding-bottom: var(--space-md);
-  border-bottom: 1px solid rgba(62, 42, 107, 0.15);
+  border-bottom: 1px solid rgba(31, 46, 70, 0.15);
 }
 
 .identity-block-intro {
@@ -810,7 +809,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: #fff;
   border-radius: 2px;
   overflow: hidden;
-  border: 1px solid rgba(62, 42, 107, 0.06);
+  border: 1px solid rgba(31, 46, 70, 0.06);
   transition: transform 0.25s var(--ease-out);
 }
 .color-swatch:hover { transform: translateY(-2px); }
@@ -888,7 +887,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   gap: var(--space-xl);
   padding: clamp(24px, 4vw, 40px);
   background: #fff;
-  border: 1px solid rgba(62, 42, 107, 0.06);
+  border: 1px solid rgba(31, 46, 70, 0.06);
   border-radius: 2px;
 }
 
@@ -899,7 +898,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--csc-coral);
+  color: var(--csc-peach);
   display: block;
   margin-bottom: var(--space-md);
 }
@@ -908,7 +907,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: var(--font-serif);
   font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 300;
-  color: var(--csc-purple);
+  color: var(--csc-navy);
   line-height: 1.1;
 }
 .specimen-italic {
@@ -930,7 +929,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--csc-coral);
+  color: var(--csc-peach);
   margin-bottom: var(--space-sm);
 }
 .type-desc {
@@ -947,9 +946,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .weight-sample {
   font-family: var(--font-serif);
   font-size: 0.9rem;
-  color: var(--csc-purple);
+  color: var(--csc-navy);
   padding: 4px 12px;
-  background: var(--csc-lilac);
+  background: var(--csc-blush);
   border-radius: 100px;
 }
 .weight-sample--inter { font-family: var(--font-sans); }
@@ -958,7 +957,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .type-hierarchy {
   background: #fff;
   padding: clamp(24px, 4vw, 40px);
-  border: 1px solid rgba(62, 42, 107, 0.06);
+  border: 1px solid rgba(31, 46, 70, 0.06);
   border-radius: 2px;
 }
 .hierarchy-list { display: flex; flex-direction: column; }
@@ -968,7 +967,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   gap: var(--space-md);
   align-items: baseline;
   padding: var(--space-md) 0;
-  border-bottom: 1px solid rgba(62, 42, 107, 0.06);
+  border-bottom: 1px solid rgba(31, 46, 70, 0.06);
 }
 .hierarchy-item:last-child { border-bottom: none; }
 
@@ -979,7 +978,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   text-transform: uppercase;
   color: var(--csc-muted);
 }
-.h-sample { color: var(--csc-purple); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.h-sample { color: var(--csc-navy); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .h-sample--h1 { font-family: var(--font-serif); font-size: 1.8rem; font-weight: 300; font-style: italic; }
 .h-sample--h2 { font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; }
 .h-sample--h3 { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 600; }
@@ -1004,7 +1003,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .photo-principle {
   padding: clamp(24px, 3vw, 36px);
   border-radius: 2px;
-  border: 1px solid rgba(62, 42, 107, 0.06);
+  border: 1px solid rgba(31, 46, 70, 0.06);
 }
 .photo-principle--do { background: rgba(75, 173, 168, 0.04); }
 .photo-principle--dont { background: rgba(249, 111, 110, 0.04); }
@@ -1022,13 +1021,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   padding: 3px 10px;
   border-radius: 100px;
 }
-.principle-badge--do { background: var(--csc-teal); color: #fff; }
-.principle-badge--dont { background: var(--csc-coral); color: #fff; }
+.principle-badge--do { background: var(--csc-slate-lt); color: #fff; }
+.principle-badge--dont { background: var(--csc-peach); color: #fff; }
 .principle-title {
   font-family: var(--font-serif);
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--csc-purple);
+  color: var(--csc-navy);
 }
 
 .principle-list { display: flex; flex-direction: column; gap: var(--space-sm); }
@@ -1043,7 +1042,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   content: '—';
   position: absolute;
   left: 0;
-  color: var(--csc-lavender);
+  color: var(--csc-slate);
 }
 
 .photo-mood { margin-top: var(--space-lg); }
@@ -1053,12 +1052,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 400;
   letter-spacing: 0.05em;
   padding: 6px 16px;
-  border: 1px solid var(--csc-lavender);
+  border: 1px solid var(--csc-slate);
   border-radius: 100px;
-  color: var(--csc-purple);
+  color: var(--csc-navy);
   transition: background 0.2s, color 0.2s;
 }
-.mood-tag:hover { background: var(--csc-purple); color: #fff; border-color: var(--csc-purple); }
+.mood-tag:hover { background: var(--csc-navy); color: #fff; border-color: var(--csc-navy); }
 
 /* DESIGN PRINCIPLES */
 .principles-grid {
@@ -1069,7 +1068,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .design-principle {
   padding: clamp(24px, 3vw, 36px);
   background: #fff;
-  border: 1px solid rgba(62, 42, 107, 0.06);
+  border: 1px solid rgba(31, 46, 70, 0.06);
   border-radius: 2px;
 }
 .dp-number {
@@ -1077,7 +1076,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-size: 2.5rem;
   font-weight: 300;
   font-style: italic;
-  color: var(--csc-lavender);
+  color: var(--csc-slate);
   display: block;
   margin-bottom: var(--space-md);
 }
@@ -1085,7 +1084,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: var(--font-serif);
   font-size: 1.15rem;
   font-weight: 600;
-  color: var(--csc-purple);
+  color: var(--csc-navy);
   margin-bottom: var(--space-sm);
 }
 .dp-body {
@@ -1098,7 +1097,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    VOICE & TONE
    ============================================================ */
 .section--voice {
-  background: var(--csc-paper);
+  background: var(--csc-cream);
 }
 
 .container--voice {
@@ -1117,7 +1116,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .voice-attribute {
   padding: clamp(24px, 4vw, 40px);
   background: #fff;
-  border: 1px solid rgba(62, 42, 107, 0.07);
+  border: 1px solid rgba(31, 46, 70, 0.07);
   border-radius: 2px;
 }
 
@@ -1128,14 +1127,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin-bottom: var(--space-lg);
 }
 .va-icon {
-  color: var(--csc-lavender);
+  color: var(--csc-slate);
   font-size: 0.8rem;
 }
 .va-title {
   font-family: var(--font-serif);
   font-size: clamp(1.1rem, 2.5vw, 1.5rem);
   font-weight: 500;
-  color: var(--csc-purple);
+  color: var(--csc-navy);
 }
 
 .va-contrast {
@@ -1160,7 +1159,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: inline-block;
   width: fit-content;
 }
-.va-badge--do { background: var(--csc-teal); color: #fff; }
+.va-badge--do { background: var(--csc-slate-lt); color: #fff; }
 .va-badge--dont { background: rgba(249, 111, 110, 0.15); color: #B84444; }
 
 .va-do p, .va-dont p {
@@ -1173,14 +1172,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* VOICE WORD CLOUD */
 .voice-summary {
   padding: clamp(32px, 5vw, 56px);
-  background: var(--csc-purple);
+  background: var(--csc-navy);
   border-radius: 2px;
 }
 .vs-title {
   font-family: var(--font-serif);
   font-size: clamp(1.2rem, 2.5vw, 1.6rem);
   font-weight: 400;
-  color: var(--csc-paper);
+  color: var(--csc-cream);
   margin-bottom: var(--space-lg);
   text-align: center;
 }
@@ -1194,18 +1193,18 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .vw {
   font-family: var(--font-serif);
   font-size: 1rem;
-  color: rgba(184, 165, 214, 0.65);
+  color: rgba(133, 153, 173, 0.65);
   transition: color 0.2s;
 }
-.vw:hover { color: var(--csc-lavender); }
-.vw--lg { font-size: 1.4rem; color: rgba(184, 165, 214, 0.8); }
-.vw--em { font-style: italic; font-size: 1.1rem; color: var(--csc-coral); }
+.vw:hover { color: var(--csc-slate); }
+.vw--lg { font-size: 1.4rem; color: rgba(133, 153, 173, 0.8); }
+.vw--em { font-style: italic; font-size: 1.1rem; color: var(--csc-peach); }
 
 /* ============================================================
    ASSETS
    ============================================================ */
 .section--assets {
-  background: var(--csc-sand);
+  background: var(--csc-blush);
 }
 
 .container--assets {
@@ -1224,7 +1223,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .asset-category {
   background: #fff;
   padding: clamp(24px, 3vw, 36px);
-  border: 1px solid rgba(62, 42, 107, 0.06);
+  border: 1px solid rgba(31, 46, 70, 0.06);
   border-radius: 2px;
 }
 
@@ -1234,14 +1233,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   gap: var(--space-md);
   margin-bottom: var(--space-lg);
   padding-bottom: var(--space-md);
-  border-bottom: 1px solid rgba(62, 42, 107, 0.08);
+  border-bottom: 1px solid rgba(31, 46, 70, 0.08);
 }
-.ac-icon { color: var(--csc-lavender); }
+.ac-icon { color: var(--csc-slate); }
 .ac-title {
   font-family: var(--font-serif);
   font-size: 1.15rem;
   font-weight: 600;
-  color: var(--csc-purple);
+  color: var(--csc-navy);
 }
 
 .asset-list { display: flex; flex-direction: column; gap: var(--space-sm); }
@@ -1251,7 +1250,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   justify-content: space-between;
   gap: var(--space-sm);
   padding: var(--space-sm) 0;
-  border-bottom: 1px solid rgba(62, 42, 107, 0.04);
+  border-bottom: 1px solid rgba(31, 46, 70, 0.04);
 }
 .asset-item:last-child { border-bottom: none; }
 
@@ -1273,16 +1272,16 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 500;
   letter-spacing: 0.06em;
   padding: 5px 12px;
-  border: 1px solid var(--csc-lavender);
+  border: 1px solid var(--csc-slate);
   border-radius: 100px;
-  color: var(--csc-purple);
+  color: var(--csc-navy);
   transition: background 0.2s, color 0.2s, border-color 0.2s;
   cursor: pointer;
   white-space: nowrap;
   display: inline-block;
   text-decoration: none;
 }
-.asset-btn:hover { background: var(--csc-purple); color: #fff; border-color: var(--csc-purple); }
+.asset-btn:hover { background: var(--csc-navy); color: #fff; border-color: var(--csc-navy); }
 .asset-btn--coming { opacity: 0.45; pointer-events: none; }
 
 /* TOKENS PANEL */
@@ -1308,12 +1307,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: rgba(255,255,255,0.05);
   font-size: 0.78rem;
   font-weight: 500;
-  color: var(--csc-lavender);
+  color: var(--csc-slate);
   letter-spacing: 0.1em;
 }
 .tokens-close {
   font-size: 1.2rem;
-  color: var(--csc-lavender);
+  color: var(--csc-slate);
   opacity: 0.7;
   transition: opacity 0.2s;
 }
@@ -1327,14 +1326,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: 'Courier New', monospace;
   font-size: 0.78rem;
   line-height: 1.8;
-  color: rgba(243, 231, 240, 0.85);
+  color: rgba(252, 231, 221, 0.85);
 }
 
 /* ============================================================
    CLOSING
    ============================================================ */
 .section--closing {
-  background: var(--csc-plum-deep);
+  background: var(--csc-navy-deep);
   text-align: center;
   padding: var(--space-3xl) var(--container-pad);
   position: relative;
@@ -1346,7 +1345,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 60% at 50% 50%, rgba(184, 165, 214, 0.08) 0%, transparent 70%);
+    radial-gradient(ellipse 60% 60% at 50% 50%, rgba(133, 153, 173, 0.08) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -1362,7 +1361,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(184, 165, 214, 0.5);
+  color: rgba(133, 153, 173, 0.5);
   margin-bottom: var(--space-xl);
   display: block;
 }
@@ -1371,7 +1370,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: var(--font-serif);
   font-size: clamp(2rem, 6vw, 5rem);
   font-weight: 300;
-  color: var(--csc-paper);
+  color: var(--csc-cream);
   line-height: 1.2;
   margin-bottom: var(--space-md);
 }
@@ -1380,7 +1379,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: var(--font-serif);
   font-size: clamp(1.2rem, 3vw, 2rem);
   font-weight: 400;
-  color: var(--csc-coral);
+  color: var(--csc-peach);
   margin-bottom: var(--space-xl);
 }
 
@@ -1389,7 +1388,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(184, 165, 214, 0.45);
+  color: rgba(133, 153, 173, 0.45);
 }
 
 /* ============================================================
@@ -1420,21 +1419,21 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-size: 1.2rem;
   font-weight: 600;
   letter-spacing: 0.1em;
-  color: var(--csc-lavender);
+  color: var(--csc-slate);
 }
 .footer-name {
   font-size: 0.8rem;
-  color: rgba(184, 165, 214, 0.6);
+  color: rgba(133, 153, 173, 0.6);
   letter-spacing: 0.08em;
 }
 .footer-copy {
   font-size: 0.75rem;
-  color: rgba(184, 165, 214, 0.4);
+  color: rgba(133, 153, 173, 0.4);
   letter-spacing: 0.06em;
 }
 .footer-legal {
   font-size: 0.68rem;
-  color: rgba(184, 165, 214, 0.25);
+  color: rgba(133, 153, 173, 0.25);
 }
 
 /* ============================================================
@@ -1492,7 +1491,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ── SCROLL NAV ACTIVE STATE ─────────────────────────────── */
-.nav-links a.active { opacity: 1; color: var(--csc-coral); }
+.nav-links a.active { opacity: 1; color: var(--csc-peach); }
 
 </style>
 </head>
@@ -1752,56 +1751,56 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
           <p class="identity-block-intro">Cada color en el sistema tiene un rol emocional preciso. No son decorativos — son funcionales, intencionados y cargados de significado.</p>
 
           <div class="color-palette">
-            <div class="color-swatch color-swatch--lg" style="--swatch-bg:#FAF3EA; --swatch-text:#3D2B5E;" data-reveal>
+            <div class="color-swatch color-swatch--lg" style="--swatch-bg:#FAF6F2; --swatch-text:#1F2E46;" data-reveal>
               <div class="swatch-block"></div>
               <div class="swatch-info">
-                <span class="swatch-name">Warm Paper</span>
-                <span class="swatch-hex">#FAF3EA</span>
+                <span class="swatch-name">Cream</span>
+                <span class="swatch-hex">#FAF6F2</span>
                 <span class="swatch-role">El fondo — La página en blanco cálida de toda la experiencia. El lienzo dominante.</span>
               </div>
             </div>
 
-            <div class="color-swatch" style="--swatch-bg:#3D2B5E; --swatch-text:#FAF3EA;" data-reveal>
+            <div class="color-swatch" style="--swatch-bg:#1F2E46; --swatch-text:#FAF6F2;" data-reveal>
               <div class="swatch-block"></div>
               <div class="swatch-info">
-                <span class="swatch-name">Deep Plum</span>
-                <span class="swatch-hex">#3D2B5E</span>
+                <span class="swatch-name">Navy</span>
+                <span class="swatch-hex">#1F2E46</span>
                 <span class="swatch-role">El ancla — Confianza, calma, autoridad emocional. Usado con intención.</span>
               </div>
             </div>
 
-            <div class="color-swatch" style="--swatch-bg:#D4634A; --swatch-text:#FAF3EA;" data-reveal>
+            <div class="color-swatch" style="--swatch-bg:#F4A88A; --swatch-text:#FAF6F2;" data-reveal>
               <div class="swatch-block"></div>
               <div class="swatch-info">
-                <span class="swatch-name">Coral</span>
-                <span class="swatch-hex">#D4634A</span>
+                <span class="swatch-name">Peach</span>
+                <span class="swatch-hex">#F4A88A</span>
                 <span class="swatch-role">El pulso — Calidez relacional, humanidad, énfasis emocional. La firma de la marca.</span>
               </div>
             </div>
 
-            <div class="color-swatch" style="--swatch-bg:#4A9A8C; --swatch-text:#FAF3EA;" data-reveal>
+            <div class="color-swatch" style="--swatch-bg:#A7B6C6; --swatch-text:#FAF6F2;" data-reveal>
               <div class="swatch-block"></div>
               <div class="swatch-info">
-                <span class="swatch-name">Teal</span>
-                <span class="swatch-hex">#4A9A8C</span>
+                <span class="swatch-name">Light Slate</span>
+                <span class="swatch-hex">#A7B6C6</span>
                 <span class="swatch-role">La guía — Claridad, equilibrio, confianza práctica.</span>
               </div>
             </div>
 
-            <div class="color-swatch" style="--swatch-bg:#F3E9D8; --swatch-text:#3D2B5E;" data-reveal>
+            <div class="color-swatch" style="--swatch-bg:#FCE7DD; --swatch-text:#1F2E46;" data-reveal>
               <div class="swatch-block"></div>
               <div class="swatch-info">
-                <span class="swatch-name">Warm Sand</span>
-                <span class="swatch-hex">#F3E9D8</span>
+                <span class="swatch-name">Blush</span>
+                <span class="swatch-hex">#FCE7DD</span>
                 <span class="swatch-role">El respiro — Lienzo secundario para crear ritmo entre secciones.</span>
               </div>
             </div>
 
-            <div class="color-swatch" style="--swatch-bg:#8B7AB5; --swatch-text:#FAF3EA;" data-reveal>
+            <div class="color-swatch" style="--swatch-bg:#8599AD; --swatch-text:#FAF6F2;" data-reveal>
               <div class="swatch-block"></div>
               <div class="swatch-info">
-                <span class="swatch-name">Lavender</span>
-                <span class="swatch-hex">#8B7AB5</span>
+                <span class="swatch-name">Slate Blue</span>
+                <span class="swatch-hex">#8599AD</span>
                 <span class="swatch-role">El acento de apoyo — Suavidad, empatía. Usado con moderación.</span>
               </div>
             </div>
@@ -1811,20 +1810,20 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
             <h4 class="usage-title">Jerarquía de uso</h4>
             <div class="usage-bars">
               <div class="usage-bar">
-                <div class="usage-bar__fill" style="width:65%; background:#FAF3EA; border:1px solid #E0D5C5;"></div>
-                <span class="usage-bar__label">Warm Paper / Sand — 65% del lienzo</span>
+                <div class="usage-bar__fill" style="width:65%; background:#FAF6F2; border:1px solid #FCE7DD;"></div>
+                <span class="usage-bar__label">Cream / Blush — 65% del lienzo</span>
               </div>
               <div class="usage-bar">
-                <div class="usage-bar__fill" style="width:15%; background:#3D2B5E;"></div>
-                <span class="usage-bar__label">Deep Plum — 15% (estructura y tipografía)</span>
+                <div class="usage-bar__fill" style="width:15%; background:#1F2E46;"></div>
+                <span class="usage-bar__label">Navy — 15% (estructura y tipografía)</span>
               </div>
               <div class="usage-bar">
-                <div class="usage-bar__fill" style="width:12%; background:#D4634A;"></div>
-                <span class="usage-bar__label">Coral — 12% (énfasis emocional)</span>
+                <div class="usage-bar__fill" style="width:12%; background:#F4A88A;"></div>
+                <span class="usage-bar__label">Peach — 12% (énfasis emocional)</span>
               </div>
               <div class="usage-bar">
-                <div class="usage-bar__fill" style="width:8%; background:#4A9A8C;"></div>
-                <span class="usage-bar__label">Teal — 8% (guía y claridad)</span>
+                <div class="usage-bar__fill" style="width:8%; background:#A7B6C6;"></div>
+                <span class="usage-bar__label">Light Slate — 8% (guía y claridad)</span>
               </div>
             </div>
           </div>
@@ -2231,13 +2230,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
           </div>
           <pre class="tokens-code"><code>:root {
   /* Color Palette */
-  --csc-purple:  #3D2B5E;
-  --csc-lavender: #8B7AB5;
-  --csc-lilac:   #EDE8F5;
-  --csc-coral:   #D4634A;
-  --csc-teal:    #4A9A8C;
-  --csc-paper:   #FAF3EA;
-  --csc-sand:    #F3E9D8;
+  --csc-navy:     #1F2E46;
+  --csc-slate:    #8599AD;
+  --csc-slate-lt: #A7B6C6;
+  --csc-peach:    #F4A88A;
+  --csc-blush:    #FCE7DD;
+  --csc-cream:    #FAF6F2;
 
   /* Typography */
   --font-serif:  'Cormorant Garamond', Georgia, serif;
@@ -2499,8 +2497,8 @@ function showToast(message) {
     bottom: 32px;
     left: 50%;
     transform: translateX(-50%) translateY(8px);
-    background: var(--csc-ink, #4A3B2E);
-    color: #FAF3EA;
+    background: var(--csc-ink, #2D3340);
+    color: #FAF6F2;
     font-family: 'Inter', sans-serif;
     font-size: 0.78rem;
     letter-spacing: 0.04em;
