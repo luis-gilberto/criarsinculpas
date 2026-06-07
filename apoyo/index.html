@@ -1,14 +1,25 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
+<html lang="es" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <title data-i18n="title_tag" data-es="Espacio de Apoyo · Criar Sin Culpas" data-en="Support Space · Criar Sin Culpas">Espacio de Apoyo · Criar Sin Culpas</title>
-  <meta name="description" content="Un sistema de apoyo emocional para padres. Encuentra calma, claridad y herramientas prácticas para los momentos difíciles.">
-  <meta property="og:title" content="Espacio de Apoyo · Criar Sin Culpas">
-  <meta property="og:description" content="Un sistema de apoyo emocional para padres. Encuentra calma, claridad y herramientas prácticas para los momentos difíciles.">
-  <meta property="og:image" content="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1779225964/gRvUE3dA_mbifyu.png">
+  <!-- Open Graph / social share -->
+  <meta property="og:type" content="website">
   <meta property="og:url" content="https://criarsinculpas.com/apoyo/">
+  <meta property="og:site_name" content="Criar Sin Culpas">
+  <meta property="og:title" content="Criar Sin Culpas, crianza consciente sin la culpa">
+  <meta property="og:description" content="Protocolos calmados y prácticos para los momentos difíciles de la crianza. Acompañamiento consciente, sin juicio.">
+  <meta property="og:image" content="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1780818555/ChatGPT_Image_Jun_7_2026_12_48_33_AM_1_ytg3g4.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Criar Sin Culpas, crianza consciente">
+  <meta property="og:locale" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Criar Sin Culpas, crianza consciente sin la culpa">
+  <meta name="twitter:description" content="Protocolos calmados y prácticos para los momentos difíciles de la crianza. Acompañamiento consciente, sin juicio.">
+  <meta name="twitter:image" content="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1780818555/ChatGPT_Image_Jun_7_2026_12_48_33_AM_1_ytg3g4.png">
+  <meta name="description" content="Un sistema de apoyo emocional para padres. Encuentra calma, claridad y herramientas prácticas para los momentos difíciles.">
   <link rel="canonical" href="https://criarsinculpas.com/apoyo/">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,21 +44,27 @@
 
   <style>
     /* ═══════════════════════════════════════════
-       TOKENS · identical to index.html
+       TOKENS · v2 Light Theme
     ═══════════════════════════════════════════ */
     :root {
-      --void:        #0e0b12;
-      --void-mid:    #0b0a0f;
-      --void-lift:   #1a1624;
-      --text:        #F2EEE9;
-      --text-dim:    rgba(242,238,233,.62);
-      --text-ghost:  rgba(242,238,233,.34);
-      --coral:       #ff7d73;
-      --coral-dim:   rgba(255,125,115,.18);
-      --teal:        #61d1c4;
-      --teal-dim:    rgba(97,209,196,.18);
-      --gold:        #C9A96E;
-      --rose:        #F0A0BE;
+      --void:        #FAF6F2;
+      --void-mid:    #FCE7DD;
+      --void-lift:   #FFFFFF;
+      --text:        #1F2E46;
+      --text-dim:    rgba(31,46,70,.66);
+      --text-ghost:  rgba(31,46,70,.42);
+      
+      --coral:       #F4A88A;
+      --coral-dim:   rgba(244,168,138,.20);
+      --coral-ink:   #D96B47;
+      
+      --teal:        #8599AD;
+      --teal-dim:    rgba(133,153,173,.18);
+      
+      --gold:        #1F2E46;
+      --gold-dim:    rgba(31,46,70,.12);
+      
+      --navy:        #1F2E46;
 
       --serif:  'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
       --sans:   'DM Sans', system-ui, sans-serif;
@@ -76,28 +93,26 @@
     a { color: inherit; text-decoration: none; }
     a:hover { color: var(--teal); }
 
-    /* Ambient teal glow · top right */
+    /* Ambient glows */
     body::before {
       content: '';
       position: fixed; top: -30vh; right: -20vw;
       width: 80vw; height: 80vh;
-      background: radial-gradient(ellipse at center, rgba(97,209,196,.04) 0%, transparent 68%);
+      background: radial-gradient(ellipse at center, rgba(133,153,173,.06) 0%, transparent 68%);
       pointer-events: none; z-index: 0;
     }
-
-    /* Warm coral breath · bottom left */
     body::after {
       content: '';
       position: fixed; bottom: -20vh; left: -10vw;
       width: 60vw; height: 60vh;
-      background: radial-gradient(ellipse at center, rgba(255,125,115,.04) 0%, transparent 68%);
+      background: radial-gradient(ellipse at center, rgba(244,168,138,.06) 0%, transparent 68%);
       pointer-events: none; z-index: 0;
     }
 
     /* ── GRAIN ── */
     .grain {
       position: fixed; inset: 0; z-index: 200;
-      pointer-events: none; opacity: .025;
+      pointer-events: none; opacity: .028;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 192px;
     }
@@ -108,14 +123,9 @@
       to   { opacity: 1; transform: translateY(0); }
     }
     @keyframes pulse-ring {
-      0%   { transform: scale(.95); box-shadow: 0 0 0 0 rgba(97,209,196,.4); }
-      70%  { transform: scale(1);   box-shadow: 0 0 0 10px rgba(97,209,196,0); }
-      100% { transform: scale(.95); box-shadow: 0 0 0 0 rgba(97,209,196,0); }
-    }
-    @keyframes shimmer {
-      0%   { opacity: .4; }
-      50%  { opacity: .8; }
-      100% { opacity: .4; }
+      0%   { transform: scale(.95); box-shadow: 0 0 0 0 rgba(133,153,173,.4); }
+      70%  { transform: scale(1);   box-shadow: 0 0 0 10px rgba(133,153,173,0); }
+      100% { transform: scale(.95); box-shadow: 0 0 0 0 rgba(133,153,173,0); }
     }
 
     .r1 { animation: fadeUp .9s var(--ease-silk) .05s both; }
@@ -128,15 +138,15 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       padding: max(20px, env(safe-area-inset-top)) 56px 18px;
       display: flex; align-items: center; justify-content: space-between; gap: 16px;
-      transition: background .4s;
+      transition: background .4s, backdrop-filter .4s;
     }
     .nav.scrolled {
-      background: rgba(14,11,18,.82);
+      background: rgba(250,247,241,.78);
       backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,.04);
+      border-bottom: 1px solid rgba(31,46,70,.04);
     }
     .nav-logo { display: flex; flex-shrink: 0; align-items: center; }
-    .nav-logo img { height: clamp(24px, 3.5vw, 32px); width: auto; display: block; transition: opacity .3s; }
+    .nav-logo img { height: clamp(24px, 3.5vw, 32px); width: auto; display: block; transition: opacity .3s; filter: brightness(.65) saturate(1.4) hue-rotate(-5deg); }
     .nav-logo:hover img { opacity: .8; }
     .nav-center { display: flex; align-items: center; gap: 36px; }
     .nav-center a {
@@ -152,8 +162,8 @@
     .lang-pill {
       display: inline-flex; padding: 3px; gap: 2px;
       border-radius: var(--pill);
-      border: 1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(31,46,70,.08);
+      background: rgba(31,46,70,.04);
     }
     .lang-btn {
       min-width: 38px; padding: 5px 10px; border-radius: var(--pill);
@@ -162,13 +172,13 @@
       cursor: pointer; transition: all .25s;
     }
     .lang-btn[aria-pressed="true"] {
-      color: var(--text); background: rgba(255,255,255,.1);
-      box-shadow: 0 1px 6px rgba(0,0,0,.3);
+      color: var(--text); background: rgba(31,46,70,.1);
+      box-shadow: 0 1px 6px rgba(0,0,0,.1);
     }
 
     .ham {
       display: none; width: 44px; height: 44px; border-radius: 50%;
-      border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.05);
+      border: 1px solid rgba(31,46,70,.1); background: rgba(31,46,70,.05);
       align-items: center; justify-content: center;
       cursor: pointer; z-index: 201; flex-shrink: 0; transition: all .3s;
     }
@@ -179,7 +189,7 @@
 
     .mobile-nav {
       display: none; position: fixed; inset: 0; z-index: 150;
-      background: rgba(14,11,18,.97);
+      background: rgba(250,247,241,.97);
       backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
       flex-direction: column; align-items: center; justify-content: center;
       gap: 44px; opacity: 0; pointer-events: none;
@@ -203,7 +213,7 @@
     }
 
     /* ══════════════════════════════════════════
-       HEADER · minimal, breathing
+       HEADER
     ══════════════════════════════════════════ */
     .page-header {
       max-width: 1100px; margin: 0 auto; width: 100%;
@@ -229,29 +239,28 @@
       max-width: 18ch;
     }
     .page-title em {
-      font-style: italic; font-weight: 400; color: var(--coral);
+      font-style: italic; font-weight: 400; color: var(--coral-ink);
     }
 
     .page-sub {
       margin-top: 14px;
       font-size: clamp(.88rem, 1.1vw, .98rem);
-      font-weight: 400; color: rgba(242,238,233,.74);
+      font-weight: 400; color: rgba(31,46,70,.74);
       line-height: 1.7; max-width: 48ch;
     }
 
     /* ══════════════════════════════════════════
-       GUIDES · the whole point of the page
+       GUIDES
     ══════════════════════════════════════════ */
     .guides-wrap {
       max-width: 1100px; margin: 0 auto; width: 100%;
       padding: 0 56px 64px;
     }
 
-    /* 2×2 on desktop, 1 col on mobile */
     .guides-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
+      gap: 16px;
     }
 
     /* Base card */
@@ -259,18 +268,18 @@
       display: flex; flex-direction: column;
       padding: 32px 32px 28px;
       border-radius: 20px;
-      border: 1px solid rgba(255,255,255,.06);
-      background: var(--void-mid);
+      border: 1px solid rgba(31,46,70,.08);
+      background: var(--void-lift);
       text-decoration: none;
       position: relative; overflow: hidden;
       cursor: pointer;
+      box-shadow: 0 2px 6px rgba(31,46,70,.05), 0 16px 38px rgba(31,46,70,.03);
       transition: transform .45s var(--ease-silk),
                   box-shadow .45s var(--ease-silk),
                   border-color .45s var(--ease-silk),
                   background .45s var(--ease-silk);
     }
 
-    /* Luminous radial on hover · each card has its own color temp */
     .guide-card::before {
       content: '';
       position: absolute; inset: 0;
@@ -280,60 +289,20 @@
     }
     .guide-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 28px 64px rgba(0,0,0,.45);
+      box-shadow: 0 6px 14px rgba(31,46,70,.08), 0 30px 64px rgba(31,46,70,.12);
+      border-color: rgba(31,46,70,.16);
     }
     .guide-card:hover::before { opacity: 1; }
 
-    .highlight-emergency {
-      border-color: var(--coral) !important;
-      box-shadow: 0 0 30px rgba(255,125,115,0.3) !important;
-      transform: scale(1.02);
-      z-index: 20;
-    }
-
     /* Color variants per guide */
-    .guide-card[data-id="screen-time"] {
-      border-color: rgba(255,125,115,.1);
-    }
-    .guide-card[data-id="screen-time"]::before {
-      background: radial-gradient(ellipse 80% 60% at 100% 0%, rgba(255,125,115,.08) 0%, transparent 70%);
-    }
-    .guide-card[data-id="screen-time"]:hover {
-      border-color: rgba(255,125,115,.25);
-      background: rgba(255,125,115,.04);
-    }
-
-    .guide-card[data-id="emotional-escalation"] {
-      border-color: rgba(255,125,115,.1);
-    }
+    .guide-card[data-id="screen-time"]::before,
     .guide-card[data-id="emotional-escalation"]::before {
-      background: radial-gradient(ellipse 80% 60% at 0% 100%, rgba(255,100,80,.1) 0%, transparent 70%);
-    }
-    .guide-card[data-id="emotional-escalation"]:hover {
-      border-color: rgba(255,125,115,.25);
-      background: rgba(255,100,80,.05);
+      background: radial-gradient(ellipse 80% 60% at 100% 0%, rgba(244,168,138,.08) 0%, transparent 70%);
     }
 
-    .guide-card[data-id="bedtime-resistance"] {
-      border-color: rgba(97,209,196,.08);
-    }
-    .guide-card[data-id="bedtime-resistance"]::before {
-      background: radial-gradient(ellipse 80% 60% at 100% 100%, rgba(97,209,196,.08) 0%, transparent 70%);
-    }
-    .guide-card[data-id="bedtime-resistance"]:hover {
-      border-color: rgba(97,209,196,.22);
-      background: rgba(97,209,196,.03);
-    }
-
-    .guide-card[data-id="sibling-conflict"] {
-      border-color: rgba(97,209,196,.08);
-    }
+    .guide-card[data-id="bedtime-resistance"]::before,
     .guide-card[data-id="sibling-conflict"]::before {
-      background: radial-gradient(ellipse 80% 60% at 0% 0%, rgba(97,209,196,.07) 0%, transparent 70%);
-    }
-    .guide-card[data-id="sibling-conflict"]:hover {
-      border-color: rgba(97,209,196,.22);
-      background: rgba(97,209,196,.03);
+      background: radial-gradient(ellipse 80% 60% at 100% 100%, rgba(133,153,173,.08) 0%, transparent 70%);
     }
 
     /* Card inner layout */
@@ -351,57 +320,53 @@
       text-transform: uppercase; width: fit-content;
     }
     .card-tag.emergencia {
-      color: var(--coral); background: var(--coral-dim);
-      border: 1px solid rgba(255,125,115,.2);
+      color: var(--coral-ink); background: var(--coral-dim);
+      border: 1px solid rgba(244,168,138,.3);
     }
     .card-tag.contencion {
       color: var(--teal); background: var(--teal-dim);
-      border: 1px solid rgba(97,209,196,.2);
+      border: 1px solid rgba(133,153,173,.3);
     }
 
     /* Card icon */
     .card-icon {
       width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
-      border: 1px solid rgba(255,255,255,.07);
-      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(31,46,70,.08);
+      background: rgba(31,46,70,.03);
       transition: border-color .4s, background .4s;
     }
     .guide-card[data-id="screen-time"]:hover .card-icon,
     .guide-card[data-id="emotional-escalation"]:hover .card-icon {
-      border-color: rgba(255,125,115,.25);
-      background: rgba(255,125,115,.08);
+      border-color: rgba(244,168,138,.3);
+      background: rgba(244,168,138,.1);
     }
     .guide-card[data-id="screen-time"]:hover .card-icon svg,
-    .guide-card[data-id="emotional-escalation"]:hover .card-icon svg { color: var(--coral); }
+    .guide-card[data-id="emotional-escalation"]:hover .card-icon svg { color: var(--coral-ink); }
 
     .guide-card[data-id="bedtime-resistance"]:hover .card-icon,
     .guide-card[data-id="sibling-conflict"]:hover .card-icon {
-      border-color: rgba(97,209,196,.25);
-      background: rgba(97,209,196,.08);
+      border-color: rgba(133,153,173,.3);
+      background: rgba(133,153,173,.1);
     }
     .guide-card[data-id="bedtime-resistance"]:hover .card-icon svg,
     .guide-card[data-id="sibling-conflict"]:hover .card-icon svg { color: var(--teal); }
 
     .card-icon svg { color: var(--text-ghost); width: 20px; height: 20px; transition: color .4s; }
 
-    /* Emotional state · the primary read */
+    /* Emotional state */
     .card-feeling {
       font-family: var(--serif);
       font-size: clamp(1.3rem, 2vw, 1.7rem);
-      font-weight: 400; line-height: 1.15;
+      font-weight: 500; line-height: 1.15;
       color: var(--text); margin-bottom: 8px;
       letter-spacing: -.01em;
       transition: color .3s;
     }
-    .guide-card[data-id="screen-time"]:hover .card-feeling,
-    .guide-card[data-id="emotional-escalation"]:hover .card-feeling {
-      color: rgba(242,238,233,.95);
-    }
 
-    /* Topic label · secondary */
+    /* Topic label */
     .card-topic {
-      font-size: .72rem; font-weight: 500;
+      font-size: .72rem; font-weight: 600;
       color: var(--text-ghost); letter-spacing: .06em;
       text-transform: uppercase; margin-bottom: 16px;
     }
@@ -421,7 +386,7 @@
       transition: color .3s, gap .35s var(--ease-silk);
     }
     .guide-card[data-id="screen-time"]:hover .card-cta,
-    .guide-card[data-id="emotional-escalation"]:hover .card-cta { color: var(--coral); gap: 14px; }
+    .guide-card[data-id="emotional-escalation"]:hover .card-cta { color: var(--coral-ink); gap: 14px; }
     .guide-card[data-id="bedtime-resistance"]:hover .card-cta,
     .guide-card[data-id="sibling-conflict"]:hover .card-cta { color: var(--teal); gap: 14px; }
 
@@ -431,11 +396,11 @@
     .content-divider {
       max-width: 1100px; margin: 0 auto; width: 100%;
       padding: 0 56px;
-      border: none; border-top: 1px solid rgba(255,255,255,.04);
+      border: none; border-top: 1px solid rgba(31,46,70,.06);
     }
 
     /* ══════════════════════════════════════════
-       WAITLIST · single action, zero friction
+       WAITLIST · Navy Contrast Block
     ══════════════════════════════════════════ */
     .waitlist-wrap {
       max-width: 1100px; margin: 0 auto; width: 100%;
@@ -445,31 +410,32 @@
     .waitlist-card {
       display: flex; align-items: center;
       justify-content: space-between; gap: 40px;
-      padding: 36px 44px;
+      padding: 44px 50px;
       border-radius: 20px;
-      border: 1px solid rgba(97,209,196,.12);
-      background: rgba(97,209,196,.03);
+      border: none;
+      background: var(--navy);
       position: relative; overflow: hidden;
       flex-wrap: wrap;
+      box-shadow: 0 30px 80px rgba(31,46,70,.24);
     }
     .waitlist-card::before {
       content: '';
       position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
       width: 120%; height: 200%;
-      background: radial-gradient(ellipse at center, rgba(97,209,196,.04) 0%, transparent 65%);
+      background: radial-gradient(ellipse at right, rgba(244,168,138,.12) 0%, transparent 65%);
       pointer-events: none;
     }
 
     .waitlist-text { position: relative; z-index: 1; }
     .waitlist-title {
       font-family: var(--serif);
-      font-size: clamp(1.2rem, 2vw, 1.6rem);
-      font-weight: 400; color: var(--text);
+      font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+      font-weight: 300; color: var(--void);
       margin-bottom: 6px; line-height: 1.2;
     }
     .waitlist-sub {
-      font-size: .82rem; color: var(--text-dim); line-height: 1.6;
+      font-size: .88rem; color: rgba(250,246,242,.7); line-height: 1.6;
     }
 
     .waitlist-form {
@@ -479,26 +445,26 @@
     }
     .waitlist-form input {
       flex: 1; min-width: 0;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.09);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
       border-radius: 12px; padding: 13px 18px;
-      color: var(--text); font-family: var(--sans); font-size: .88rem;
+      color: #fff; font-family: var(--sans); font-size: .88rem;
       outline: none; transition: border-color .3s;
     }
-    .waitlist-form input:focus { border-color: rgba(97,209,196,.4); }
-    .waitlist-form input::placeholder { color: var(--text-ghost); }
+    .waitlist-form input:focus { border-color: rgba(244,168,138,.4); }
+    .waitlist-form input::placeholder { color: rgba(255,255,255,.4); }
     .waitlist-form button {
-      background: linear-gradient(135deg, rgba(97,209,196,.9) 0%, rgba(75,180,170,.9) 100%);
-      color: var(--void); border: none; border-radius: 12px;
+      background: var(--coral);
+      color: var(--navy); border: none; border-radius: 12px;
       padding: 13px 24px; font-family: var(--sans);
-      font-size: .82rem; font-weight: 600; letter-spacing: .04em;
+      font-size: .82rem; font-weight: 700; letter-spacing: .06em;
       cursor: pointer; flex-shrink: 0; white-space: nowrap;
       transition: all .35s var(--ease-silk);
-      box-shadow: 0 4px 18px rgba(97,209,196,.2);
+      box-shadow: 0 4px 18px rgba(244,168,138,.2);
     }
     .waitlist-form button:hover {
       transform: translateY(-1px);
-      box-shadow: 0 8px 28px rgba(97,209,196,.3);
+      box-shadow: 0 8px 28px rgba(244,168,138,.35);
     }
 
     /* ══════════════════════════════════════════
@@ -519,14 +485,14 @@
     ══════════════════════════════════════════ */
     footer {
       background: var(--void);
-      border-top: 1px solid rgba(255,255,255,.04);
+      border-top: 1px solid rgba(31,46,70,.06);
       padding: 32px 56px;
       display: flex; align-items: center; justify-content: space-between;
       gap: 16px; flex-wrap: wrap;
       position: relative; z-index: 10;
       margin-top: auto;
     }
-    footer img { height: 22px; opacity: .5; }
+    footer img { height: 22px; opacity: .8; filter: brightness(.65) saturate(1.4) hue-rotate(-5deg); }
     .footer-copy { font-size: .68rem; color: var(--text-ghost); letter-spacing: .04em; }
     .footer-links { display: flex; gap: 24px; }
     .footer-links a {
@@ -539,7 +505,7 @@
       font-family: var(--serif);
       font-size: .82rem; font-style: italic;
       color: var(--text-ghost); padding-top: 16px;
-      border-top: 1px solid rgba(255,255,255,.03);
+      border-top: 1px solid rgba(31,46,70,.04);
       letter-spacing: .03em;
     }
 
@@ -579,7 +545,7 @@
   <!-- ─────── NAV ─────── -->
   <nav class="nav" id="mainNav" role="navigation" aria-label="Navegación principal">
     <a href="/index.html" class="nav-logo" aria-label="Criar Sin Culpas">
-      <img src="/assets/images/csc-logo.svg" alt="Criar Sin Culpas">
+      <img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas">
     </a>
     <div class="nav-center">
       <a href="/apoyo/" class="active"
@@ -652,7 +618,7 @@
             <span class="card-tag emergencia"
                   data-i18n="tag_emergencia" data-es="Emergencia" data-en="Emergency">Emergencia</span>
             <div class="card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="5" y="2" width="14" height="20" rx="2"/>
                 <line x1="12" y1="18" x2="12.01" y2="18" stroke-width="2"/>
               </svg>
@@ -685,7 +651,7 @@
             <span class="card-tag emergencia"
                   data-i18n="tag_emergencia" data-es="Emergencia" data-en="Emergency">Emergencia</span>
             <div class="card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M2 12 C5 9, 8 15, 11 12 C14 9, 17 15, 22 12"/>
                 <path d="M2 17 C5 14, 8 20, 11 17 C14 14, 17 20, 22 17"/>
               </svg>
@@ -718,7 +684,7 @@
             <span class="card-tag contencion"
                   data-i18n="tag_contencion" data-es="Contención" data-en="Restoration">Contención</span>
             <div class="card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
               </svg>
             </div>
@@ -750,7 +716,7 @@
             <span class="card-tag contencion"
                   data-i18n="tag_contencion" data-es="Contención" data-en="Restoration">Contención</span>
             <div class="card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
               </svg>
             </div>
@@ -805,7 +771,7 @@
                   data-es="Avísame"
                   data-en="Notify me">Avísame</button>
         </form>
-        <div id="waitlist-success" class="hidden" style="display:none; text-align:center; font-family:var(--serif); font-style:italic; color:var(--teal); font-size:1.2rem;">¡Listo! Te avisaremos en cuanto las nuevas guías estén disponibles. Gracias por estar aquí. ♡</div>
+        <div id="waitlist-success" class="hidden" style="display:none; text-align:center; font-family:var(--serif); font-style:italic; color:var(--coral); font-size:1.2rem;">¡Listo! Te avisaremos en cuanto las nuevas guías estén disponibles. Gracias por estar aquí. ♡</div>
       </div>
     </div>
 
@@ -814,13 +780,13 @@
   <!-- ─────── FOOTER ─────── -->
   <footer role="contentinfo">
     <a href="/index.html" aria-label="Criar Sin Culpas">
-      <img src="/assets/images/csc-logo.svg" alt="Criar Sin Culpas">
+      <img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas">
     </a>
     <span class="footer-copy">© 2026 Criar Sin Culpas · Todos los derechos reservados.</span>
     <nav class="footer-links" aria-label="Legal">
       <a href="/privacidad"
          data-i18n="footer_priv" data-es="Privacidad" data-en="Privacy">Privacidad</a>
-      <a href="mailto:hola@criarsinculpas.com"
+      <a href="mailto:hello@criarsinculpas.com"
          data-i18n="footer_contact" data-es="Contacto" data-en="Contact">Contacto</a>
       <a href="https://instagram.com/criarsinculpas"
          target="_blank" rel="noopener noreferrer">Instagram</a>
@@ -965,7 +931,5 @@
     }
   }());
   </script>
-
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"a6fdd4e7ff644527b91c6db4b97e68f5","r":1}' crossorigin="anonymous"></script>
 </body>
 </html>
