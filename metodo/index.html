@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <meta name="theme-color" content="#FAF6F2">
   <title data-i18n="title_tag" data-es="El Método Nari · Criar Sin Culpas" data-en="The Nari Method · Criar Sin Culpas">El Método Nari · Criar Sin Culpas</title>
   <!-- Open Graph / social share -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://criarsinculpas.com/metodo/">
   <meta property="og:site_name" content="Criar Sin Culpas">
   <meta property="og:title" content="Criar Sin Culpas, crianza consciente sin la culpa">
-  <meta property="og:description" content="Protocolos calmados y prácticos para los momentos difíciles de la crianza. Acompañamiento consciente, sin juicio.">
+  <meta property="og:description" content="Un sistema de crianza para niños de alta demanda y padres desbordados. La Aceptación, Play OS y Crianza Neutral.">
   <meta property="og:image" content="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1780818555/ChatGPT_Image_Jun_7_2026_12_48_33_AM_1_ytg3g4.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -17,14 +18,14 @@
   <meta property="og:locale" content="es_ES">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Criar Sin Culpas, crianza consciente sin la culpa">
-  <meta name="twitter:description" content="Protocolos calmados y prácticos para los momentos difíciles de la crianza. Acompañamiento consciente, sin juicio.">
+  <meta name="twitter:description" content="Un sistema de crianza para niños de alta demanda y padres desbordados.">
   <meta name="twitter:image" content="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1780818555/ChatGPT_Image_Jun_7_2026_12_48_33_AM_1_ytg3g4.png">
   <meta name="description" content="Un sistema de crianza para niños de alta demanda y padres desbordados. La Aceptación, Play OS y Crianza Neutral.">
   <link rel="canonical" href="https://criarsinculpas.com/metodo/">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
   <script>
     if (window.location.hostname === 'criarsinculpas.com') {
@@ -43,7 +44,7 @@
 
   <style>
     /* ═══════════════════════════════════════════
-       TOKENS · v2 Light Theme
+       TOKENS · CSC v2 Light Theme (locked)
     ═══════════════════════════════════════════ */
     :root {
       --void:       #FAF6F2;
@@ -52,16 +53,14 @@
       --text:       #1F2E46;
       --text-dim:   rgba(31,46,70,.66);
       --text-ghost: rgba(31,46,70,.42);
-      
+
       --coral:      #F4A88A;
+      --coral-ink:  #D96B47;
       --coral-dim:  rgba(244,168,138,.15);
-      
+
       --teal:       #8599AD;
       --teal-dim:   rgba(133,153,173,.15);
-      
-      --gold:       #1F2E46;
-      --gold-dim:   rgba(31,46,70,.15);
-      
+
       --navy:       #1F2E46;
 
       /* Chapter accent colors */
@@ -71,7 +70,6 @@
 
       --serif:  'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
       --sans:   'DM Sans', system-ui, sans-serif;
-      --script: 'Great Vibes', cursive;
 
       --ease-silk:   cubic-bezier(0.16, 1, 0.3, 1);
       --ease-cinema: cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -131,11 +129,11 @@
       from { opacity: 0; transform: translateY(22px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-
     .r1 { animation: fadeUp .9s var(--ease-silk) .05s both; }
     .r2 { animation: fadeUp .9s var(--ease-silk) .18s both; }
     .r3 { animation: fadeUp .9s var(--ease-silk) .32s both; }
     .r4 { animation: fadeUp .9s var(--ease-silk) .46s both; }
+    .r5 { animation: fadeUp .9s var(--ease-silk) .60s both; }
 
     /* ── NAV ── */
     .nav {
@@ -222,10 +220,7 @@
       padding-top: max(88px, 11vh);
       display: flex; flex-direction: column;
     }
-
-    .content-wrap {
-      max-width: 820px; margin: 0 auto; width: 100%;
-    }
+    .content-wrap { max-width: 820px; margin: 0 auto; width: 100%; }
 
     /* ══════════════════════════════════════════
        SHARED SECTION STYLES
@@ -250,6 +245,44 @@
     .eyebrow.ch2 { color: var(--ch2); }
     .eyebrow.ch3 { color: var(--ch3); }
 
+    /* keyword pill (replaces old phrase-badge) */
+    .kw {
+      font-style: normal; font-weight: 500;
+      background: var(--void-mid);
+      padding: 1px 7px; border-radius: 6px;
+      color: var(--text); white-space: nowrap;
+    }
+
+    /* ══════════════════════════════════════════
+       MONOLINE ILLUSTRATION (protocol language)
+    ══════════════════════════════════════════ */
+    .illo-frame {
+      background: var(--void-mid);
+      border-radius: 20px;
+      padding: 18px 26px;
+      margin: 0 auto;
+      max-width: 420px;
+    }
+    .illo-frame svg { width: 100%; height: auto; display: block; }
+    .illo-frame .gl {
+      fill: none; stroke: var(--navy); stroke-width: 2.2;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .illo-frame .ga {
+      fill: none; stroke: var(--coral-ink); stroke-width: 2.2;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .ch1-section .illo-frame .ga { stroke: var(--ch1); }
+    .ch2-section .illo-frame .ga { stroke: var(--ch2); }
+    .ch3-section .illo-frame .ga { stroke: var(--ch3); }
+    .illo-dot { fill: var(--coral-ink); }
+    .illo-fill { fill: var(--navy); }
+    .illo-caption {
+      text-align: center; margin-top: 14px;
+      font-family: var(--serif); font-style: italic;
+      font-size: .92rem; color: var(--text-ghost);
+    }
+
     /* ══════════════════════════════════════════
        HERO
     ══════════════════════════════════════════ */
@@ -268,7 +301,6 @@
       background: radial-gradient(ellipse at center, rgba(167,182,198,.12) 0%, transparent 65%);
       pointer-events: none;
     }
-
     .hero-title {
       font-family: var(--serif);
       font-size: clamp(3rem, 7vw, 5.2rem);
@@ -276,17 +308,14 @@
       letter-spacing: -.02em; color: var(--text);
       margin-bottom: 20px; position: relative; z-index: 1;
     }
-    .hero-title em {
-      font-style: italic; font-weight: 400;
-      color: var(--teal);
-    }
-
+    .hero-title em { font-style: italic; font-weight: 400; color: var(--teal); }
     .hero-sub {
       font-size: clamp(.92rem, 1.3vw, 1.05rem);
       font-weight: 300; color: var(--text-dim);
-      line-height: 1.7; max-width: 48ch;
-      margin-bottom: 40px; position: relative; z-index: 1;
+      line-height: 1.7; max-width: 56ch;
+      margin-bottom: 36px; position: relative; z-index: 1;
     }
+    .hero-illo { width: 100%; max-width: 460px; margin-bottom: 40px; position: relative; z-index: 1; }
 
     /* Opening quote block */
     .hero-quote {
@@ -295,14 +324,12 @@
       border-radius: 20px;
       border: 1px solid rgba(31,46,70,.07);
       background: #FFFFFF;
-      position: relative; overflow: hidden;
-      z-index: 1;
+      position: relative; overflow: hidden; z-index: 1;
       box-shadow: 0 4px 20px rgba(31,46,70,.03);
     }
     .hero-quote::before {
       content: '';
-      position: absolute; top: 0; left: 0; right: 0;
-      height: 3px;
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
       background: linear-gradient(90deg, var(--ch1), var(--teal), var(--coral));
     }
     .hero-quote p {
@@ -321,8 +348,6 @@
     /* ══════════════════════════════════════════
        ARCHITECTURE MAP
     ══════════════════════════════════════════ */
-    .map-section {}
-
     .map-title {
       font-family: var(--serif);
       font-size: clamp(1.8rem, 3.5vw, 2.8rem);
@@ -333,14 +358,12 @@
       font-size: .9rem; color: var(--text-dim);
       line-height: 1.75; max-width: 58ch; margin-bottom: 48px;
     }
-
     .map-grid {
       display: grid; grid-template-columns: 1fr 32px 1fr 32px 1fr;
       gap: 0; align-items: start;
     }
-
     .map-node {
-      padding: 28px 24px;
+      padding: 26px 22px 24px;
       border-radius: 18px;
       border: 1px solid rgba(31,46,70,.08);
       background: #FFFFFF;
@@ -349,16 +372,27 @@
       box-shadow: 0 4px 14px rgba(31,46,70,.04);
     }
     .map-node::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
     }
     .map-node.n1::before { background: var(--ch1); }
     .map-node.n2::before { background: var(--ch2); }
     .map-node.n3::before { background: var(--ch3); }
-    
     .map-node.n1:hover { border-color: rgba(167,182,198,.4); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(31,46,70,.08); }
     .map-node.n2:hover { border-color: rgba(133,153,173,.4); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(31,46,70,.08); }
     .map-node.n3:hover { border-color: rgba(217,107,71,.4); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(31,46,70,.08); }
+
+    .node-glyph {
+      width: 46px; height: 46px; margin-bottom: 16px;
+      border-radius: 12px; background: var(--void-mid);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .node-glyph svg { width: 30px; height: 30px; display: block; }
+    .node-glyph .gl { fill: none; stroke: var(--navy); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+    .node-glyph .ga { fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+    .n1 .node-glyph .ga { stroke: var(--ch1); }
+    .n2 .node-glyph .ga { stroke: var(--ch2); }
+    .n3 .node-glyph .ga { stroke: var(--ch3); }
+    .node-glyph .dot { fill: var(--coral-ink); }
 
     .node-chapter {
       font-size: .58rem; font-weight: 700; letter-spacing: .14em;
@@ -367,61 +401,56 @@
     .n1 .node-chapter { color: var(--ch1); }
     .n2 .node-chapter { color: var(--ch2); }
     .n3 .node-chapter { color: var(--ch3); }
-
     .node-title {
       font-family: var(--serif);
       font-size: 1.3rem; font-weight: 500;
       color: var(--text); line-height: 1.15; margin-bottom: 8px;
     }
-    .node-sub {
-      font-size: .75rem; color: var(--text-ghost); line-height: 1.5;
-    }
+    .node-sub { font-size: .75rem; color: var(--text-ghost); line-height: 1.5; }
 
     .map-arrow {
       display: flex; align-items: center; justify-content: center;
-      padding-top: 52px;
-      color: var(--text-ghost); font-size: 1rem; opacity: .6;
+      padding-top: 64px; color: var(--text-ghost); font-size: 1rem; opacity: .6;
+    }
+    .map-coda {
+      margin-top: 40px; padding: 24px 28px;
+      border-radius: 16px; background: rgba(133,153,173,.05);
+      border: 1px solid rgba(133,153,173,.16);
+      font-family: var(--serif); font-size: 1.05rem; font-style: italic;
+      color: var(--text-dim); line-height: 1.6;
     }
 
     /* ══════════════════════════════════════════
        CHAPTER SECTIONS
     ══════════════════════════════════════════ */
-    .chapter-section {}
-
     .chapter-num {
       font-family: var(--serif);
       font-size: clamp(4rem, 10vw, 7rem);
-      font-weight: 300; line-height: 1;
-      letter-spacing: -.04em;
-      opacity: .05; position: absolute;
-      right: 56px; top: 64px;
-      pointer-events: none; user-select: none;
-      color: var(--text);
+      font-weight: 300; line-height: 1; letter-spacing: -.04em;
+      opacity: .05; position: absolute; right: 56px; top: 64px;
+      pointer-events: none; user-select: none; color: var(--text);
     }
     .chapter-section { position: relative; }
-
-    .chapter-header { margin-bottom: 32px; }
+    .chapter-header { margin-bottom: 28px; }
     .chapter-title {
       font-family: var(--serif);
       font-size: clamp(2rem, 4vw, 3.2rem);
       font-weight: 400; line-height: 1.05;
-      color: var(--text); margin-bottom: 0;
-      letter-spacing: -.01em;
+      color: var(--text); margin-bottom: 0; letter-spacing: -.01em;
     }
     .chapter-title em { font-style: italic; font-weight: 500; }
     .ch1-section .chapter-title em { color: var(--ch1); }
     .ch2-section .chapter-title em { color: var(--ch2); }
     .ch3-section .chapter-title em { color: var(--ch3); }
 
-    /* Editorial pull quote */
+    .chapter-illo { margin: 0 0 28px; }
+
     .chapter-editorial {
       font-family: var(--serif);
       font-size: clamp(1.15rem, 2vw, 1.45rem);
       font-style: italic; font-weight: 400;
-      line-height: 1.5; color: var(--text-dim);
-      padding: 20px 0 20px 24px;
-      border-left: 2px solid;
-      margin: 28px 0 28px;
+      line-height: 1.5; padding: 20px 0 20px 24px;
+      border-left: 2px solid; margin: 28px 0;
     }
     .ch1-section .chapter-editorial { border-color: var(--ch1); color: var(--ch1); }
     .ch2-section .chapter-editorial { border-color: var(--ch2); color: var(--ch2); }
@@ -434,31 +463,25 @@
 
     /* ── ACCORDIONS ── */
     .accordion-list { display: flex; flex-direction: column; gap: 10px; }
-
     details {
-      border-radius: 16px;
-      border: 1px solid rgba(31,46,70,.08);
+      border-radius: 16px; border: 1px solid rgba(31,46,70,.08);
       background: #FFFFFF;
       transition: border-color .35s, background .35s, transform .35s var(--ease-silk), box-shadow .35s;
       overflow: hidden;
     }
     details:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(31,46,70,.04); }
-
     .ch1-section details[open] { border-color: rgba(167,182,198,.4); }
     .ch2-section details[open] { border-color: rgba(133,153,173,.4); }
     .ch3-section details[open] { border-color: rgba(217,107,71,.4); }
-
     summary {
       padding: 20px 24px;
       font-family: var(--serif);
       font-size: 1.15rem; font-weight: 500;
       cursor: pointer; list-style: none;
       display: flex; justify-content: space-between; align-items: center;
-      color: var(--text); gap: 12px;
-      transition: color .25s;
+      color: var(--text); gap: 12px; transition: color .25s;
     }
     summary::-webkit-details-marker { display: none; }
-
     .summary-icon {
       width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
       border: 1px solid rgba(31,46,70,.1);
@@ -470,78 +493,164 @@
     .ch1-section details[open] .summary-icon { color: var(--ch1); border-color: var(--ch1); }
     .ch2-section details[open] .summary-icon { color: var(--ch2); border-color: var(--ch2); }
     .ch3-section details[open] .summary-icon { color: var(--ch3); border-color: var(--ch3); }
-
-    .details-body {
-      padding: 4px 24px 24px;
-    }
+    .details-body { padding: 4px 24px 24px; }
     .details-body p {
       font-size: .88rem; color: var(--text-dim);
       line-height: 1.78; margin-bottom: 14px;
     }
     .details-body p:last-child { margin-bottom: 0; }
+    .details-body .pull {
+      font-family: var(--serif); font-style: italic;
+      font-size: 1.05rem; line-height: 1.5; margin: 16px 0;
+    }
+    .ch1-section .details-body .pull { color: var(--ch1); }
+    .ch2-section .details-body .pull { color: var(--ch2); }
+    .ch3-section .details-body .pull { color: var(--coral-ink); }
 
-    /* Equation cards inside details */
-    .eq-card {
-      padding: 18px 22px; border-radius: 12px;
-      margin-top: 12px;
+    /* Ordered/structured lists inside details */
+    .m-list { list-style: none; counter-reset: m; margin: 6px 0 4px; }
+    .m-list li {
+      position: relative; padding: 0 0 0 38px; margin-bottom: 14px;
+      font-size: .88rem; color: var(--text-dim); line-height: 1.7;
     }
-    .eq-card.positive {
-      background: rgba(133,153,173,.05);
-      border: 1px solid rgba(133,153,173,.18);
+    .m-list li:last-child { margin-bottom: 0; }
+    .m-list li::before {
+      counter-increment: m; content: counter(m, decimal-leading-zero);
+      position: absolute; left: 0; top: 1px;
+      font-family: var(--serif); font-size: .95rem; font-weight: 600;
+      color: var(--text-ghost);
     }
-    .eq-card.negative {
-      background: rgba(217,107,71,.05);
-      border: 1px solid rgba(217,107,71,.18);
+    .ch1-section .m-list li::before { color: var(--ch1); }
+    .ch2-section .m-list li::before { color: var(--ch2); }
+    .ch3-section .m-list li::before { color: var(--ch3); }
+    .m-list li strong { color: var(--text); font-weight: 600; }
+
+    /* Equation cards */
+    .eq-card { padding: 18px 22px; border-radius: 12px; margin-top: 12px; }
+    .eq-card.positive { background: rgba(133,153,173,.06); border: 1px solid rgba(133,153,173,.18); }
+    .eq-card.negative { background: rgba(217,107,71,.06); border: 1px solid rgba(217,107,71,.18); }
+    .eq-label {
+      font-size: .58rem; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; margin-bottom: 8px; display: block;
     }
+    .eq-card.positive .eq-label { color: var(--teal); }
+    .eq-card.negative .eq-label { color: var(--coral-ink); }
     .eq-text {
-      font-family: var(--serif);
-      font-size: 1.2rem; font-weight: 500;
-      color: var(--text); line-height: 1.3;
+      font-family: var(--serif); font-size: 1.2rem; font-weight: 500;
+      color: var(--text); line-height: 1.3; margin-bottom: 8px !important;
     }
+    .eq-card p:last-child { font-size: .82rem; color: var(--text-dim); margin: 0; }
+
+    /* Two-pattern grid */
+    .pattern-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+    .pattern-card { padding: 18px 20px; border-radius: 12px; background: rgba(31,46,70,.02); border: 1px solid rgba(31,46,70,.07); }
+    .pattern-card h5 {
+      font-family: var(--serif); font-size: 1.05rem; font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .pattern-card.bad h5 { color: var(--coral-ink); }
+    .pattern-card.good h5 { color: var(--teal); }
+    .pattern-card p { font-size: .82rem !important; margin: 0 !important; }
+
+    /* Pillars */
+    .pillars { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; }
+    .pillar {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 14px 16px; border-radius: 12px;
+      background: rgba(31,46,70,.02); border: 1px solid rgba(31,46,70,.06);
+    }
+    .pillar svg { flex-shrink: 0; margin-top: 2px; }
+    .pillar p { margin: 0 !important; }
+    .pillar strong { color: var(--text); font-weight: 600; }
 
     /* ══════════════════════════════════════════
-       COMPARISON TABLE
+       COMPARISON
     ══════════════════════════════════════════ */
-    .comparison-section {}
-
     .comparison-title {
       font-family: var(--serif);
       font-size: clamp(1.8rem, 3.5vw, 2.8rem);
       font-weight: 400; color: var(--text);
       margin-bottom: 12px; line-height: 1.08;
     }
+    .comparison-lede {
+      font-family: var(--serif); font-style: italic;
+      font-size: clamp(1.1rem, 1.8vw, 1.35rem); line-height: 1.5;
+      color: var(--text); max-width: 60ch; margin-bottom: 18px;
+    }
     .comparison-desc {
       font-size: .9rem; color: var(--text-dim);
-      line-height: 1.75; max-width: 54ch; margin-bottom: 44px;
+      line-height: 1.75; max-width: 58ch; margin-bottom: 44px;
     }
-
-    .comparison-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
-    }
+    .comparison-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .comp-card {
       padding: 28px 24px; border-radius: 18px;
-      border: 1px solid rgba(31,46,70,.08);
-      background: #FFFFFF;
+      border: 1px solid rgba(31,46,70,.08); background: #FFFFFF;
       transition: transform .4s var(--ease-silk), box-shadow .4s var(--ease-silk);
     }
     .comp-card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(31,46,70,.06); }
-    
-    .comp-card.featured {
-      border-color: rgba(133,153,173,.3);
-      background: rgba(133,153,173,.04);
-    }
+    .comp-card.featured { border-color: rgba(133,153,173,.3); background: rgba(133,153,173,.04); }
     .comp-card-label {
       font-size: .6rem; font-weight: 700; letter-spacing: .14em;
       text-transform: uppercase; margin-bottom: 14px; display: block;
     }
     .comp-card h3 {
-      font-family: var(--serif);
-      font-size: 1.25rem; font-weight: 500;
+      font-family: var(--serif); font-size: 1.25rem; font-weight: 500;
       color: var(--text); margin-bottom: 12px; line-height: 1.2;
     }
-    .comp-card p {
-      font-size: .82rem; color: var(--text-dim); line-height: 1.7;
+    .comp-card p { font-size: .82rem; color: var(--text-dim); line-height: 1.7; }
+
+    /* ══════════════════════════════════════════
+       KEYNOTE
+    ══════════════════════════════════════════ */
+    .keynote-title {
+      font-family: var(--serif);
+      font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+      font-weight: 400; color: var(--text);
+      margin-bottom: 14px; line-height: 1.12;
     }
+    .keynote-desc { font-size: .9rem; color: var(--text-dim); line-height: 1.75; max-width: 60ch; margin-bottom: 36px; }
+    .acts { display: flex; flex-direction: column; gap: 12px; }
+    .act {
+      display: flex; align-items: flex-start; gap: 22px;
+      padding: 24px 26px; border-radius: 16px;
+      background: #FFFFFF; border: 1px solid rgba(31,46,70,.08);
+      transition: transform .4s var(--ease-silk), box-shadow .4s var(--ease-silk);
+    }
+    .act:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(31,46,70,.05); }
+    .act-num {
+      font-family: var(--serif); font-size: 2.4rem; font-weight: 600;
+      line-height: 1; flex-shrink: 0;
+    }
+    .act:nth-child(1) .act-num { color: var(--ch1); }
+    .act:nth-child(2) .act-num { color: var(--ch2); }
+    .act:nth-child(3) .act-num { color: var(--ch3); }
+    .act h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 500; margin-bottom: 6px; color: var(--text); }
+    .act p { font-size: .85rem; color: var(--text-dim); line-height: 1.65; }
+    .audiences {
+      margin-top: 32px; padding: 26px 28px; border-radius: 16px;
+      background: rgba(133,153,173,.05); border: 1px solid rgba(133,153,173,.18);
+    }
+    .audiences h4 { font-family: var(--serif); font-size: 1.25rem; font-weight: 500; color: var(--teal); margin-bottom: 10px; }
+    .audiences p { font-size: .85rem; color: var(--text-dim); line-height: 1.7; }
+    .audiences strong { color: var(--text); font-weight: 600; }
+
+    /* ══════════════════════════════════════════
+       EDITORIAL CLOSE
+    ══════════════════════════════════════════ */
+    .editorial-close {
+      text-align: center; padding: 12px 0 4px;
+    }
+    .ec-kicker {
+      font-size: .6rem; font-weight: 700; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--coral-ink); margin-bottom: 16px;
+    }
+    .ec-headline {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 300; line-height: 1.08; color: var(--text);
+      margin-bottom: 16px; letter-spacing: -.01em;
+    }
+    .ec-body { font-size: .92rem; color: var(--text-dim); line-height: 1.8; max-width: 56ch; margin: 0 auto; }
 
     /* ══════════════════════════════════════════
        CLOSING CTA BAND
@@ -562,13 +671,11 @@
       background: radial-gradient(ellipse at center, rgba(244,168,138,.1) 0%, transparent 65%);
       pointer-events: none;
     }
-
     .closing-script {
       font-family: var(--serif);
       font-size: clamp(2.2rem, 5vw, 3.8rem);
       color: #FAF6F2; opacity: .95; font-weight: 300;
-      line-height: 1.2; margin-bottom: 6px;
-      position: relative; z-index: 1;
+      line-height: 1.2; margin-bottom: 6px; position: relative; z-index: 1;
     }
     .closing-sub {
       font-family: var(--serif);
@@ -576,22 +683,17 @@
       color: var(--coral); letter-spacing: .02em;
       margin-bottom: 36px; position: relative; z-index: 1;
     }
-
     .btn-primary {
       display: inline-flex; align-items: center; gap: 14px;
       padding: 16px 40px; border-radius: var(--pill);
-      background: var(--coral);
-      color: var(--navy); text-decoration: none;
+      background: var(--coral); color: var(--navy); text-decoration: none;
       font-size: .88rem; font-weight: 600; letter-spacing: .04em;
       text-transform: uppercase;
       box-shadow: 0 8px 28px rgba(244,168,138,.25);
       transition: all .45s var(--ease-silk);
       position: relative; z-index: 1;
     }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 44px rgba(244,168,138,.4);
-    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 44px rgba(244,168,138,.4); }
     .btn-primary .arrow { transition: transform .4s var(--ease-silk); }
     .btn-primary:hover .arrow { transform: translateX(6px); }
 
@@ -615,8 +717,7 @@
       border-top: 1px solid rgba(31,46,70,.06);
       padding: 32px 56px;
       display: flex; align-items: center; justify-content: space-between;
-      gap: 16px; flex-wrap: wrap;
-      position: relative; z-index: 10;
+      gap: 16px; flex-wrap: wrap; position: relative; z-index: 10;
     }
     footer img { height: 22px; opacity: .8; filter: brightness(.65) saturate(1.4) hue-rotate(-5deg); }
     .footer-copy { font-size: .68rem; color: var(--text-ghost); letter-spacing: .04em; }
@@ -630,8 +731,7 @@
       width: 100%; text-align: center;
       font-family: var(--serif); font-size: .82rem; font-style: italic;
       color: var(--text-ghost); padding-top: 16px;
-      border-top: 1px solid rgba(31,46,70,.04);
-      letter-spacing: .03em;
+      border-top: 1px solid rgba(31,46,70,.04); letter-spacing: .03em;
     }
 
     /* ══════════════════════════════════════════
@@ -648,17 +748,23 @@
       .content-wrap { padding: 0; }
       .chapter-num { display: none; }
 
-      .map-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
+      .map-grid { grid-template-columns: 1fr; gap: 12px; }
       .map-arrow { display: none; }
 
       .comparison-grid { grid-template-columns: 1fr; gap: 12px; }
+      .pattern-grid { grid-template-columns: 1fr; }
       .closing-section { padding: 68px 24px; }
 
       footer { padding: 24px; flex-direction: column; align-items: flex-start; gap: 14px; }
       .footer-tagline { text-align: left; padding-top: 12px; }
+    }
+
+    /* ══════════════════════════════════════════
+       REDUCED MOTION
+    ══════════════════════════════════════════ */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+      .scroll-reveal { opacity: 1 !important; transform: none !important; }
     }
   </style>
 </head>
@@ -680,12 +786,9 @@
       </a>
     </div>
     <div class="nav-center">
-      <a href="/apoyo/"
-         data-i18n="nav_guias" data-es="Guías" data-en="Guides">Guías</a>
-      <a href="/metodo/" class="active"
-         data-i18n="nav_metodo" data-es="El Método" data-en="The Method">El Método</a>
-      <a href="#" class="dim"
-         data-i18n="nav_aprende" data-es="Aprende (Pronto)" data-en="Learn (Soon)">Aprende (Pronto)</a>
+      <a href="/apoyo/" data-i18n="nav_guias" data-es="Guías" data-en="Guides">Guías</a>
+      <a href="/metodo/" class="active" data-i18n="nav_metodo" data-es="El Método" data-en="The Method">El Método</a>
+      <a href="#" class="dim" data-i18n="nav_aprende" data-es="Aprende (Pronto)" data-en="Learn (Soon)">Aprende (Pronto)</a>
     </div>
     <div class="nav-right">
       <div class="lang-pill" role="group" aria-label="Idioma">
@@ -718,49 +821,52 @@
 
       <!-- ── HERO ── -->
       <section class="section hero-section">
-        <div class="eyebrow r1"
-             data-i18n="hero_eyebrow"
-             data-es="Método central · Criar Sin Culpas"
-             data-en="Core method · Criar Sin Culpas">Método central · Criar Sin Culpas</div>
+        <div class="eyebrow r1" data-i18n="hero_eyebrow" data-es="Método central · Criar Sin Culpas" data-en="Core method · Criar Sin Culpas">Método central · Criar Sin Culpas</div>
 
-        <h1 class="hero-title r2"
-            data-i18n="hero_title"
-            data-es="El <em>Método</em> Nari"
-            data-en="The Nari <em>Method</em>">El <em>Método</em> Nari</h1>
+        <h1 class="hero-title r2" data-i18n="hero_title" data-es="El <em>Método</em> Nari" data-en="The Nari <em>Method</em>">El <em>Método</em> Nari</h1>
 
-        <p class="hero-sub r3"
-           data-i18n="hero_sub"
-           data-es="Un sistema de crianza para niños de alta demanda y padres desbordados."
-           data-en="A parenting system for high-demand children and overwhelmed parents.">
-          Un sistema de crianza para niños de alta demanda y padres desbordados.
+        <p class="hero-sub r3" data-i18n="hero_sub"
+           data-es="Un sistema de crianza para niños de alta demanda y padres desbordados. No es una colección de hacks para apagar incendios. Es una forma de ordenar la experiencia: primero recuperas al adulto, luego recuperas el vínculo, y solo entonces recuperas la dirección."
+           data-en="A parenting system for high-demand children and overwhelmed parents. It is not a collection of hacks for putting out fires. It is a way to bring order to the experience: first you recover the adult, then you recover the bond, and only then do you recover direction.">
+          Un sistema de crianza para niños de alta demanda y padres desbordados. No es una colección de hacks para apagar incendios. Es una forma de ordenar la experiencia: primero recuperas al adulto, luego recuperas el vínculo, y solo entonces recuperas la dirección.
         </p>
 
-        <div class="hero-quote r4">
+        <!-- Hero monoline illustration -->
+        <div class="hero-illo r4" aria-hidden="true">
+          <div class="illo-frame">
+            <svg viewBox="0 0 320 150" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+              <path class="gl" d="M44 128 L276 128" stroke-opacity=".16"/>
+              <!-- adult -->
+              <circle cx="96" cy="58" r="14" class="gl"/>
+              <path class="gl" d="M96 72 C97 90, 93 106, 90 122"/>
+              <path class="gl" d="M94 88 C120 92, 142 100, 162 104"/>
+              <!-- child -->
+              <circle cx="212" cy="82" r="10" class="gl"/>
+              <path class="gl" d="M212 92 C213 102, 211 112, 210 122"/>
+              <path class="gl" d="M212 98 C196 100, 182 102, 170 104"/>
+              <!-- connecting arc -->
+              <path class="ga" d="M99 47 C140 18, 184 18, 210 70"/>
+              <circle cx="154" cy="30" r="3.2" class="illo-dot"/>
+            </svg>
+          </div>
+          <p class="illo-caption" data-i18n="hero_illo_cap" data-es="Recuperar al adulto. Recuperar el vínculo. Recuperar la dirección." data-en="Recover the adult. Recover the bond. Recover direction.">Recuperar al adulto. Recuperar el vínculo. Recuperar la dirección.</p>
+        </div>
+
+        <div class="hero-quote r5">
           <p data-i18n="hero_quote"
              data-es="No puedes guiar a un niño si estás emocionalmente desbordado. No puedes conectar si estás intentando controlar. Y no puedes cambiar la conducta sin cambiar el sistema que la sostiene."
              data-en="You cannot guide a child if you are emotionally overwhelmed. You cannot connect if you are trying to control. And you cannot change behavior without changing the system that sustains it.">
             No puedes guiar a un niño si estás emocionalmente desbordado. No puedes conectar si estás intentando controlar. Y no puedes cambiar la conducta sin cambiar el sistema que la sostiene.
           </p>
-          <cite data-i18n="hero_cite"
-                data-es="Nari Fateha · Criar Sin Culpas"
-                data-en="Nari Fateha · Criar Sin Culpas">Nari Fateha · Criar Sin Culpas</cite>
+          <cite data-i18n="hero_cite" data-es="Nari Fateha · Criar Sin Culpas" data-en="Nari Fateha · Criar Sin Culpas">Nari Fateha · Criar Sin Culpas</cite>
         </div>
       </section>
 
       <!-- ── ARCHITECTURE MAP ── -->
       <section class="section map-section scroll-reveal">
-        <div class="eyebrow"
-             data-i18n="map_eyebrow"
-             data-es="La arquitectura completa"
-             data-en="The complete architecture">La arquitectura completa</div>
-
-        <h2 class="map-title"
-            data-i18n="map_title"
-            data-es="Tres ideas. Un solo sistema."
-            data-en="Three ideas. One system.">Tres ideas. Un solo sistema.</h2>
-
-        <p class="map-desc"
-           data-i18n="map_desc"
+        <div class="eyebrow" data-i18n="map_eyebrow" data-es="La arquitectura completa" data-en="The complete architecture">La arquitectura completa</div>
+        <h2 class="map-title" data-i18n="map_title" data-es="Tres ideas. Un solo sistema." data-en="Three ideas. One system.">Tres ideas. Un solo sistema.</h2>
+        <p class="map-desc" data-i18n="map_desc"
            data-es="Primero dejas de pelear con la realidad. Luego entras al mundo del niño. Después diseñas una respuesta que no alimente el mismo patrón que quieres cambiar."
            data-en="First you stop fighting reality. Then you enter the child's world. Then you design a response that doesn't feed the same pattern you want to change.">
           Primero dejas de pelear con la realidad. Luego entras al mundo del niño. Después diseñas una respuesta que no alimente el mismo patrón que quieres cambiar.
@@ -768,31 +874,55 @@
 
         <div class="map-grid">
           <div class="map-node n1">
-            <span class="node-chapter"
-                  data-i18n="node1_ch" data-es="Capítulo 01" data-en="Chapter 01">Capítulo 01</span>
-            <h3 class="node-title"
-                data-i18n="node1_title" data-es="La Aceptación" data-en="Acceptance">La Aceptación</h3>
-            <p class="node-sub"
-               data-i18n="node1_sub" data-es="La mente del adulto" data-en="The adult's mind">La mente del adulto</p>
+            <div class="node-glyph" aria-hidden="true">
+              <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path class="gl" d="M9 40 L39 40" stroke-opacity=".22"/>
+                <path class="gl" d="M16 40 L16 19 Q16 12 24 12 Q32 12 32 19 L32 40"/>
+                <path class="ga" d="M32 19 L40 15"/>
+                <circle cx="24" cy="23" r="2.4" class="dot"/>
+              </svg>
+            </div>
+            <span class="node-chapter" data-i18n="node1_ch" data-es="Capítulo 01" data-en="Chapter 01">Capítulo 01</span>
+            <h3 class="node-title" data-i18n="node1_title" data-es="La Aceptación" data-en="Acceptance">La Aceptación</h3>
+            <p class="node-sub" data-i18n="node1_sub" data-es="La mente del adulto" data-en="The adult's mind">La mente del adulto</p>
           </div>
           <div class="map-arrow">→</div>
           <div class="map-node n2">
-            <span class="node-chapter"
-                  data-i18n="node2_ch" data-es="Capítulo 02" data-en="Chapter 02">Capítulo 02</span>
+            <div class="node-glyph" aria-hidden="true">
+              <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path class="gl" d="M9 40 L39 40" stroke-opacity=".22"/>
+                <circle cx="15" cy="32" r="3.2" class="gl"/>
+                <circle cx="33" cy="32" r="3.2" class="gl"/>
+                <path class="ga" d="M15 30 Q24 10 33 30"/>
+                <circle cx="24" cy="16" r="2.6" class="dot"/>
+              </svg>
+            </div>
+            <span class="node-chapter" data-i18n="node2_ch" data-es="Capítulo 02" data-en="Chapter 02">Capítulo 02</span>
             <h3 class="node-title">Play OS</h3>
-            <p class="node-sub"
-               data-i18n="node2_sub" data-es="El puente hacia el niño" data-en="Bridge to the child">El puente hacia el niño</p>
+            <p class="node-sub" data-i18n="node2_sub" data-es="El puente hacia el niño" data-en="Bridge to the child">El puente hacia el niño</p>
           </div>
           <div class="map-arrow">→</div>
           <div class="map-node n3">
-            <span class="node-chapter"
-                  data-i18n="node3_ch" data-es="Capítulo 03" data-en="Chapter 03">Capítulo 03</span>
-            <h3 class="node-title"
-                data-i18n="node3_title" data-es="Crianza Neutral" data-en="Neutral Parenting">Crianza Neutral</h3>
-            <p class="node-sub"
-               data-i18n="node3_sub" data-es="El sistema de conducta" data-en="Behavior system">El sistema de conducta</p>
+            <div class="node-glyph" aria-hidden="true">
+              <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path class="gl" d="M9 40 L39 40" stroke-opacity=".22"/>
+                <rect x="14" y="13" width="20" height="25" rx="4" class="gl"/>
+                <path class="gl" d="M14 23 L34 23"/>
+                <path class="ga" d="M14 31 L34 31"/>
+                <circle cx="24" cy="18" r="2.2" class="dot"/>
+              </svg>
+            </div>
+            <span class="node-chapter" data-i18n="node3_ch" data-es="Capítulo 03" data-en="Chapter 03">Capítulo 03</span>
+            <h3 class="node-title" data-i18n="node3_title" data-es="Crianza Neutral" data-en="Neutral Parenting">Crianza Neutral</h3>
+            <p class="node-sub" data-i18n="node3_sub" data-es="El sistema de conducta" data-en="Behavior system">El sistema de conducta</p>
           </div>
         </div>
+
+        <p class="map-coda" data-i18n="map_coda"
+           data-es="El orden importa. Sin aceptación, el adulto corrige desde el desborde. Sin conexión, el niño escucha desde la defensa. Sin sistema, la conducta vuelve a organizarse alrededor del caos."
+           data-en="Order matters. Without acceptance, the adult corrects from a place of overwhelm. Without connection, the child listens from a defensive posture. Without a system, behavior reorganizes itself around chaos.">
+          El orden importa. Sin aceptación, el adulto corrige desde el desborde. Sin conexión, el niño escucha desde la defensa. Sin sistema, la conducta vuelve a organizarse alrededor del caos.
+        </p>
       </section>
 
       <!-- ── CAPÍTULO 01: LA ACEPTACIÓN ── -->
@@ -800,39 +930,66 @@
         <span class="chapter-num" aria-hidden="true">01</span>
 
         <div class="chapter-header">
-          <div class="eyebrow ch1"
-               data-i18n="ch1_lbl" data-es="Capítulo 01" data-en="Chapter 01">Capítulo 01</div>
-          <h2 class="chapter-title"
-              data-i18n="ch1_title"
-              data-es="La Puerta de la <em>Aceptación</em>"
-              data-en="The Door of <em>Acceptance</em>">La Puerta de la <em>Aceptación</em></h2>
+          <div class="eyebrow ch1" data-i18n="ch1_lbl" data-es="Capítulo 01" data-en="Chapter 01">Capítulo 01</div>
+          <h2 class="chapter-title" data-i18n="ch1_title" data-es="La Puerta de la <em>Aceptación</em>" data-en="The Door of <em>Acceptance</em>">La Puerta de la <em>Aceptación</em></h2>
         </div>
 
-        <blockquote class="chapter-editorial"
-             data-i18n="ch1_quote"
+        <div class="chapter-illo" aria-hidden="true">
+          <div class="illo-frame">
+            <svg viewBox="0 0 300 150" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+              <path class="gl" d="M44 128 L256 128" stroke-opacity=".16"/>
+              <!-- doorway -->
+              <path class="gl" d="M118 126 L118 58 Q118 42 150 42 Q182 42 182 58 L182 126"/>
+              <!-- door swung open -->
+              <path class="ga" d="M182 58 L214 48 L214 116 L182 126"/>
+              <!-- figure pausing at threshold -->
+              <circle cx="150" cy="84" r="9" class="gl"/>
+              <path class="gl" d="M150 93 C151 104, 149 114, 148 124"/>
+              <path class="gl" d="M150 100 L138 108"/>
+              <path class="gl" d="M150 100 L162 108"/>
+              <circle cx="150" cy="64" r="2.6" class="illo-dot"/>
+            </svg>
+          </div>
+        </div>
+
+        <blockquote class="chapter-editorial" data-i18n="ch1_quote"
              data-es="Aquí no empiezas corrigiendo. Empiezas dejando de pelear."
              data-en="Here you don't start by correcting. You start by stopping the fight.">
           Aquí no empiezas corrigiendo. Empiezas dejando de pelear.
         </blockquote>
 
-        <p class="chapter-body"
-           data-i18n="ch1_body"
+        <p class="chapter-body" data-i18n="ch1_body"
            data-es="La aceptación no baja la exigencia del día. Baja la guerra interna. Ese cambio le devuelve al adulto la capacidad de mirar con precisión, no solo con cansancio."
            data-en="Acceptance doesn't lower the demands of the day. It lowers the internal war. That shift gives the adult back the ability to see with precision, not just with exhaustion.">
           La aceptación no baja la exigencia del día. Baja la guerra interna. Ese cambio le devuelve al adulto la capacidad de mirar con precisión, no solo con cansancio.
         </p>
 
         <div class="accordion-list">
-          <details>
+          <details open>
             <summary>
               <span data-i18n="ch1_acc1_t" data-es="Observación central" data-en="Core Observation">Observación central</span>
               <span class="summary-icon">+</span>
             </summary>
             <div class="details-body">
-              <p data-i18n="ch1_acc1_p"
+              <p data-i18n="ch1_acc1_p1"
                  data-es="El mayor obstáculo para una crianza efectiva no es el comportamiento del niño. Es el momento en que el adulto deja de ver la situación con claridad y empieza a pelear con ella por dentro."
-                 data-en="The greatest obstacle to effective parenting is not the child's behavior. It's the moment when the adult stops seeing the situation clearly and starts fighting it internally.">
+                 data-en="The greatest obstacle to effective parenting is not the child's behavior. It is the moment when the adult stops seeing the situation clearly and starts fighting it internally.">
                 El mayor obstáculo para una crianza efectiva no es el comportamiento del niño. Es el momento en que el adulto deja de ver la situación con claridad y empieza a pelear con ella por dentro.
+              </p>
+              <p data-i18n="ch1_acc1_p2"
+                 data-es="La culpa, la vergüenza, la frustración y la presión social crean una carga emocional secundaria que ocupa el lugar de la estrategia. El problema ya no es solo lo que está pasando: también es todo lo que el adulto siente que eso dice sobre él."
+                 data-en="Guilt, shame, frustration, and social pressure create a secondary emotional burden that takes the place of strategy. The problem is no longer just what is happening: it is also everything the adult feels that says about them.">
+                La culpa, la vergüenza, la frustración y la presión social crean una carga emocional secundaria que ocupa el lugar de la estrategia. El problema ya no es solo lo que está pasando: también es todo lo que el adulto siente que eso dice sobre él.
+              </p>
+              <p class="pull" data-i18n="ch1_acc1_pull"
+                 data-es="“La aceptación no es una habilidad blanda. Es la base sólida que hace posible cualquier otra estrategia.”"
+                 data-en="“Acceptance is not a soft skill. It is the solid foundation that makes every other strategy possible.”">
+                “La aceptación no es una habilidad blanda. Es la base sólida que hace posible cualquier otra estrategia.”
+              </p>
+              <p data-i18n="ch1_acc1_p3"
+                 data-es="Esta es la base del <em class='kw'>Sistema Raíz</em>. Sin cruzar la <em class='kw'>Puerta de la Aceptación</em>, todo lo demás falla."
+                 data-en="This is the foundation of the <em class='kw'>Root System</em>. Without crossing the <em class='kw'>Door of Acceptance</em>, everything else fails.">
+                Esta es la base del <em class="kw">Sistema Raíz</em>. Sin cruzar la <em class="kw">Puerta de la Aceptación</em>, todo lo demás falla.
               </p>
             </div>
           </details>
@@ -843,23 +1000,65 @@
               <span class="summary-icon">+</span>
             </summary>
             <div class="details-body">
-              <p data-i18n="ch1_acc2_p"
-                 data-es="No todo el dolor pesa igual. Hay un dolor que pertenece a la realidad, y otro que aparece cuando peleamos con ella."
-                 data-en="Not all pain weighs the same. There is pain that belongs to reality, and pain that appears when we fight it.">
-                No todo el dolor pesa igual. Hay un dolor que pertenece a la realidad, y otro que aparece cuando peleamos con ella.
+              <p data-i18n="ch1_acc2_p1"
+                 data-es="No todo el dolor pesa igual. Hay un dolor que pertenece a la realidad, y otro que aparece cuando peleamos con ella. En la crianza de alta demanda ya existe un dolor real: el cansancio, la incertidumbre, la intensidad, el duelo por lo que imaginabas y no fue."
+                 data-en="Not all pain weighs the same. There is pain that belongs to reality, and pain that appears when we fight it. High-demand parenting already carries real pain: exhaustion, uncertainty, intensity, grief for what you imagined and what wasn't.">
+                No todo el dolor pesa igual. Hay un dolor que pertenece a la realidad, y otro que aparece cuando peleamos con ella. En la crianza de alta demanda ya existe un dolor real: el cansancio, la incertidumbre, la intensidad, el duelo por lo que imaginabas y no fue.
               </p>
               <div class="eq-card positive">
-                <p class="eq-text"
-                   data-i18n="ch1_eq1"
-                   data-es="Dolor + Aceptación = Dolor Manejable"
-                   data-en="Pain + Acceptance = Manageable Pain">Dolor + Aceptación = Dolor Manejable</p>
+                <span class="eq-label" data-i18n="ch1_eq1_lbl" data-es="Camino regulado" data-en="Regulated path">Camino regulado</span>
+                <p class="eq-text" data-i18n="ch1_eq1" data-es="Dolor + Aceptación = Dolor manejable" data-en="Pain + Acceptance = Manageable pain">Dolor + Aceptación = Dolor manejable</p>
+                <p data-i18n="ch1_eq1_sub" data-es="El dolor no desaparece, pero se vuelve legible, manejable y estratégicamente habitable." data-en="Pain doesn't disappear, but it becomes readable, manageable, and strategically livable.">El dolor no desaparece, pero se vuelve legible, manejable y estratégicamente habitable.</p>
               </div>
               <div class="eq-card negative">
-                <p class="eq-text"
-                   data-i18n="ch1_eq2"
-                   data-es="Dolor + Negación = Sufrimiento y Desgaste"
-                   data-en="Pain + Denial = Suffering and Exhaustion">Dolor + Negación = Sufrimiento y Desgaste</p>
+                <span class="eq-label" data-i18n="ch1_eq2_lbl" data-es="Camino reactivo" data-en="Reactive path">Camino reactivo</span>
+                <p class="eq-text" data-i18n="ch1_eq2" data-es="Dolor + Negación = Sufrimiento" data-en="Pain + Denial = Suffering">Dolor + Negación = Sufrimiento</p>
+                <p data-i18n="ch1_eq2_sub" data-es="La negación crea una segunda capa de dolor: culpa, resistencia, vergüenza y desgaste innecesario." data-en="Denial creates a second layer of pain: guilt, resistance, shame, and unnecessary exhaustion.">La negación crea una segunda capa de dolor: culpa, resistencia, vergüenza y desgaste innecesario.</p>
               </div>
+              <p class="pull" data-i18n="ch1_acc2_pull"
+                 data-es="“La resistencia es el Ruido del Sistema que bloquea la estrategia.”"
+                 data-en="“Resistance is the System Noise that blocks strategy.”">
+                “La resistencia es el Ruido del Sistema que bloquea la estrategia.”
+              </p>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span data-i18n="ch1_acc3_t" data-es="Las Cuatro Vías" data-en="The Four Paths">Las Cuatro Vías</span>
+              <span class="summary-icon">+</span>
+            </summary>
+            <div class="details-body">
+              <p data-i18n="ch1_acc3_p"
+                 data-es="Cuando una familia entra en una etapa difícil, en realidad no tiene mil opciones. Tiene cuatro. La aceptación no resuelve todo, pero sí abre el acceso a las únicas tres vías que pueden producir movimiento real."
+                 data-en="When a family enters a difficult phase, they don't actually have a thousand options. They have four. Acceptance doesn't solve everything, but it does open access to the only three paths that can produce real movement.">
+                Cuando una familia entra en una etapa difícil, en realidad no tiene mil opciones. Tiene cuatro. La aceptación no resuelve todo, pero sí abre el acceso a las únicas tres vías que pueden producir movimiento real.
+              </p>
+              <ol class="m-list">
+                <li><strong data-i18n="ch1_p1_t" data-es="Resolver el problema:" data-en="Solve the problem:">Resolver el problema:</strong> <span data-i18n="ch1_p1_d" data-es="intervenir sobre lo que sí puede cambiarse, con precisión en lugar de pánico." data-en="intervene on what can be changed, with precision instead of panic.">intervenir sobre lo que sí puede cambiarse, con precisión en lugar de pánico.</span></li>
+                <li><strong data-i18n="ch1_p2_t" data-es="Cambiar cómo nos sentimos:" data-en="Change how we feel:">Cambiar cómo nos sentimos:</strong> <span data-i18n="ch1_p2_d" data-es="pasar de una interpretación reactiva a una interpretación regulada." data-en="shift from a reactive interpretation to a regulated one.">pasar de una interpretación reactiva a una interpretación regulada.</span></li>
+                <li><strong data-i18n="ch1_p3_t" data-es="Tolerar lo que hoy no cambia:" data-en="Tolerate what cannot change today:">Tolerar lo que hoy no cambia:</strong> <span data-i18n="ch1_p3_d" data-es="sostener la realidad sin volverla más pesada de lo que ya es." data-en="hold reality without making it heavier than it already is.">sostener la realidad sin volverla más pesada de lo que ya es.</span></li>
+                <li><strong data-i18n="ch1_p4_t" data-es="Quedarse en resistencia:" data-en="Stay in resistance:">Quedarse en resistencia:</strong> <span data-i18n="ch1_p4_d" data-es="repetir la pelea interna y seguir sin dirección." data-en="repeat the internal fight and continue without direction.">repetir la pelea interna y seguir sin dirección.</span></li>
+              </ol>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span data-i18n="ch1_acc4_t" data-es="Lo que cambia cuando aceptas" data-en="What Changes When You Accept">Lo que cambia cuando aceptas</span>
+              <span class="summary-icon">+</span>
+            </summary>
+            <div class="details-body">
+              <p data-i18n="ch1_acc4_p1"
+                 data-es="Al dejar de resistir la realidad del niño (su neurodiversidad, su alta demanda o su temperamento), el adulto recupera su ancho de banda cognitivo."
+                 data-en="By stopping resistance to the child's reality (their neurodiversity, high demand, or temperament), the adult recovers their cognitive bandwidth.">
+                Al dejar de resistir la realidad del niño (su neurodiversidad, su alta demanda o su temperamento), el adulto recupera su ancho de banda cognitivo.
+              </p>
+              <p data-i18n="ch1_acc4_p2"
+                 data-es="Solo en este estado de calma mental podemos aplicar herramientas conductuales efectivas, construyendo un puente seguro hacia el niño."
+                 data-en="Only in this state of mental calm can we apply effective behavioral tools, building a secure bridge toward the child.">
+                Solo en este estado de calma mental podemos aplicar herramientas conductuales efectivas, construyendo un puente seguro hacia el niño.
+              </p>
             </div>
           </details>
         </div>
@@ -870,39 +1069,67 @@
         <span class="chapter-num" aria-hidden="true">02</span>
 
         <div class="chapter-header">
-          <div class="eyebrow ch2"
-               data-i18n="ch2_lbl" data-es="Capítulo 02" data-en="Chapter 02">Capítulo 02</div>
-          <h2 class="chapter-title"
-              data-i18n="ch2_title"
-              data-es="<em>Play OS</em>"
-              data-en="<em>Play OS</em>"><em>Play OS</em></h2>
+          <div class="eyebrow ch2" data-i18n="ch2_lbl" data-es="Capítulo 02" data-en="Chapter 02">Capítulo 02</div>
+          <h2 class="chapter-title" data-i18n="ch2_title" data-es="<em>Play OS</em>" data-en="<em>Play OS</em>"><em>Play OS</em></h2>
         </div>
 
-        <blockquote class="chapter-editorial"
-             data-i18n="ch2_quote"
+        <div class="chapter-illo" aria-hidden="true">
+          <div class="illo-frame">
+            <svg viewBox="0 0 300 150" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+              <path class="gl" d="M44 128 L256 128" stroke-opacity=".16"/>
+              <!-- adult -->
+              <circle cx="84" cy="64" r="12" class="gl"/>
+              <path class="gl" d="M84 76 C85 94, 81 108, 80 122"/>
+              <path class="gl" d="M84 84 C100 78, 114 76, 128 80"/>
+              <!-- child -->
+              <circle cx="216" cy="74" r="9" class="gl"/>
+              <path class="gl" d="M216 83 C217 98, 215 110, 214 122"/>
+              <path class="gl" d="M216 90 C202 84, 190 84, 178 88"/>
+              <!-- play arc + ball -->
+              <path class="ga" d="M130 80 C150 36, 184 36, 176 86"/>
+              <circle cx="152" cy="40" r="4.4" class="illo-dot"/>
+            </svg>
+          </div>
+        </div>
+
+        <blockquote class="chapter-editorial" data-i18n="ch2_quote"
              data-es="Aquí no corriges. Conectas."
              data-en="Here you don't correct. You connect.">
           Aquí no corriges. Conectas.
         </blockquote>
 
-        <p class="chapter-body"
-           data-i18n="ch2_body"
+        <p class="chapter-body" data-i18n="ch2_body"
            data-es="Play OS no infantiliza la crianza. La vuelve inteligible para el sistema nervioso del niño. Primero seguridad, luego apertura, después aprendizaje."
            data-en="Play OS doesn't infantilize parenting. It makes it intelligible to the child's nervous system. First safety, then openness, then learning.">
           Play OS no infantiliza la crianza. La vuelve inteligible para el sistema nervioso del niño. Primero seguridad, luego apertura, después aprendizaje.
         </p>
 
         <div class="accordion-list">
-          <details>
+          <details open>
             <summary>
               <span data-i18n="ch2_acc1_t" data-es="La idea central" data-en="The Central Idea">La idea central</span>
               <span class="summary-icon">+</span>
             </summary>
             <div class="details-body">
-              <p data-i18n="ch2_acc1_p"
-                 data-es="El juego no es entretenimiento. Es el lenguaje operativo del niño cuando todavía no puede organizar la experiencia con lógica adulta o conversación racional."
-                 data-en="Play is not entertainment. It is the child's operating language when they cannot yet organize experience through adult logic or rational conversation.">
-                El juego no es entretenimiento. Es el lenguaje operativo del niño cuando todavía no puede organizar la experiencia con lógica adulta o conversación racional.
+              <p data-i18n="ch2_acc1_p1"
+                 data-es="El juego no es entretenimiento. Es el lenguaje operativo del niño cuando todavía no puede organizar la experiencia con lógica adulta, autocontrol sostenido o conversación racional."
+                 data-en="Play is not entertainment. It is the child's operating language when they cannot yet organize experience through adult logic, sustained self-control, or rational conversation.">
+                El juego no es entretenimiento. Es el lenguaje operativo del niño cuando todavía no puede organizar la experiencia con lógica adulta, autocontrol sostenido o conversación racional.
+              </p>
+              <p data-i18n="ch2_acc1_p2"
+                 data-es="Ahí procesa, ensaya, descarga, repite, prueba y vuelve a intentar. Por eso, cuando el adulto entra desde el juego, no está distrayendo la conducta: está entrando por la puerta correcta."
+                 data-en="That's where they process, rehearse, discharge, repeat, test, and try again. So when the adult enters through play, they're not distracting from the behavior: they're entering through the right door.">
+                Ahí procesa, ensaya, descarga, repite, prueba y vuelve a intentar. Por eso, cuando el adulto entra desde el juego, no está distrayendo la conducta: está entrando por la puerta correcta.
+              </p>
+              <p class="pull" data-i18n="ch2_acc1_pull"
+                 data-es="“El juego no es lo opuesto a la disciplina. Es la puerta de entrada a la disciplina.”"
+                 data-en="“Play is not the opposite of discipline. It is the gateway to discipline.”">
+                “El juego no es lo opuesto a la disciplina. Es la puerta de entrada a la disciplina.”
+              </p>
+              <p data-i18n="ch2_acc1_p3"
+                 data-es="A esto le llamamos el <em class='kw'>Sistema Operativo del Juego</em>."
+                 data-en="We call this the <em class='kw'>Play Operating System</em>.">
+                A esto le llamamos el <em class="kw">Sistema Operativo del Juego</em>.
               </p>
             </div>
           </details>
@@ -913,11 +1140,59 @@
               <span class="summary-icon">+</span>
             </summary>
             <div class="details-body">
-              <p data-i18n="ch2_acc2_p"
-                 data-es="El error no es poner límites. El error es intentar que el niño reciba el límite en un canal que su sistema nervioso todavía no puede abrir. Por eso priorizamos la conexión antes de corrección."
-                 data-en="The mistake isn't setting limits. The mistake is trying to get the child to receive the limit on a channel their nervous system cannot yet open. That's why we prioritize connection before correction.">
-                El error no es poner límites. El error es intentar que el niño reciba el límite en un canal que su sistema nervioso todavía no puede abrir. Por eso priorizamos la conexión antes de corrección.
+              <p data-i18n="ch2_acc2_p1"
+                 data-es="Mucha de la fricción cotidiana no nace de mala intención. Nace de un <em class='kw'>desajuste de idioma</em>. El adulto habla desde la instrucción, la prisa y la corrección. El niño, especialmente cuando está cargado, habla desde la exploración, la repetición y el juego."
+                 data-en="Much of everyday friction doesn't come from bad intentions. It comes from a <em class='kw'>language mismatch</em>. The adult speaks from instruction, urgency, and correction. The child, especially when overwhelmed, speaks from exploration, repetition, and play.">
+                Mucha de la fricción cotidiana no nace de mala intención. Nace de un <em class="kw">desajuste de idioma</em>. El adulto habla desde la instrucción, la prisa y la corrección. El niño, especialmente cuando está cargado, habla desde la exploración, la repetición y el juego.
               </p>
+              <p data-i18n="ch2_acc2_p2"
+                 data-es="El error no es poner límites. El error es intentar que el niño reciba el límite en un canal que su sistema nervioso todavía no puede abrir. Por eso priorizamos la <em class='kw'>conexión antes de corrección</em>."
+                 data-en="The mistake isn't setting limits. The mistake is trying to get the child to receive the limit on a channel their nervous system cannot yet open. That's why we prioritize <em class='kw'>connection before correction</em>.">
+                El error no es poner límites. El error es intentar que el niño reciba el límite en un canal que su sistema nervioso todavía no puede abrir. Por eso priorizamos la <em class="kw">conexión antes de corrección</em>.
+              </p>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span data-i18n="ch2_acc3_t" data-es="Dos patrones" data-en="Two Patterns">Dos patrones</span>
+              <span class="summary-icon">+</span>
+            </summary>
+            <div class="details-body">
+              <div class="pattern-grid">
+                <div class="pattern-card bad">
+                  <h5 data-i18n="ch2_pat1_t" data-es="A través de la autoridad" data-en="Through authority">A través de la autoridad</h5>
+                  <p data-i18n="ch2_pat1_p" data-es="Corregir → Resistencia del niño → Más disciplina del padre → Escalada emocional." data-en="Correct → Child's resistance → More parental discipline → Emotional escalation.">Corregir → Resistencia del niño → Más disciplina del padre → Escalada emocional.</p>
+                </div>
+                <div class="pattern-card good">
+                  <h5 data-i18n="ch2_pat2_t" data-es="A través del juego" data-en="Through play">A través del juego</h5>
+                  <p data-i18n="ch2_pat2_p" data-es="Unirse al juego → Se genera conexión → Regulación natural → El aprendizaje se hace posible." data-en="Join the play → Connection is generated → Natural regulation → Learning becomes possible.">Unirse al juego → Se genera conexión → Regulación natural → El aprendizaje se hace posible.</p>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span data-i18n="ch2_acc4_t" data-es="Lo que hace el juego" data-en="What Play Does">Lo que hace el juego</span>
+              <span class="summary-icon">+</span>
+            </summary>
+            <div class="details-body">
+              <p data-i18n="ch2_acc4_p"
+                 data-es="El juego opera en el cerebro y en la relación familiar bajo cuatro mecanismos esenciales, creando una <em class='kw'>zona de seguridad psicológica</em>:"
+                 data-en="Play operates in the brain and in family relationships through four essential mechanisms, creating a <em class='kw'>zone of psychological safety</em>:">
+                El juego opera en el cerebro y en la relación familiar bajo cuatro mecanismos esenciales, creando una <em class="kw">zona de seguridad psicológica</em>:
+              </p>
+              <ol class="m-list">
+                <li><strong data-i18n="ch2_m1_t" data-es="Liberación emocional:" data-en="Emotional release:">Liberación emocional:</strong> <span data-i18n="ch2_m1_d" data-es="descarga natural de tensión acumulada." data-en="natural discharge of accumulated tension.">descarga natural de tensión acumulada.</span></li>
+                <li><strong data-i18n="ch2_m2_t" data-es="Exploración de identidad:" data-en="Identity exploration:">Exploración de identidad:</strong> <span data-i18n="ch2_m2_d" data-es="el niño prueba roles sin el peso del juicio adulto." data-en="the child tests roles without the weight of adult judgment.">el niño prueba roles sin el peso del juicio adulto.</span></li>
+                <li><strong data-i18n="ch2_m3_t" data-es="Ensayo de la vida real:" data-en="Real-life rehearsal:">Ensayo de la vida real:</strong> <span data-i18n="ch2_m3_d" data-es="practicar límites y control de impulsos de forma segura." data-en="practicing limits and impulse control in a safe setting.">practicar límites y control de impulsos de forma segura.</span></li>
+                <li><strong data-i18n="ch2_m4_t" data-es="Conexión cuidador-niño:" data-en="Caregiver-child connection:">Conexión cuidador-niño:</strong> <span data-i18n="ch2_m4_d" data-es="la verdadera moneda relacional que compra la cooperación futura." data-en="the true relational currency that purchases future cooperation.">la verdadera moneda relacional que compra la cooperación futura.</span></li>
+              </ol>
+              <div class="eq-card positive" style="margin-top:18px;">
+                <span class="eq-label" data-i18n="ch2_pillars_lbl" data-es="Los tres pilares de Play OS" data-en="The three pillars of Play OS">Los tres pilares de Play OS</span>
+                <p data-i18n="ch2_pillars_p" data-es="Autorregulación parental · Conexión antes de corrección · Juego como medio de intervención." data-en="Parental self-regulation · Connection before correction · Play as an intervention tool.">Autorregulación parental · Conexión antes de corrección · Juego como medio de intervención.</p>
+              </div>
             </div>
           </details>
         </div>
@@ -928,50 +1203,129 @@
         <span class="chapter-num" aria-hidden="true">03</span>
 
         <div class="chapter-header">
-          <div class="eyebrow ch3"
-               data-i18n="ch3_lbl" data-es="Capítulo 03" data-en="Chapter 03">Capítulo 03</div>
-          <h2 class="chapter-title"
-              data-i18n="ch3_title"
-              data-es="<em>Crianza</em> Neutral"
-              data-en="<em>Neutral</em> Parenting"><em>Crianza</em> Neutral</h2>
+          <div class="eyebrow ch3" data-i18n="ch3_lbl" data-es="Capítulo 03" data-en="Chapter 03">Capítulo 03</div>
+          <h2 class="chapter-title" data-i18n="ch3_title" data-es="<em>Crianza</em> Neutral" data-en="<em>Neutral</em> Parenting"><em>Crianza</em> Neutral</h2>
         </div>
 
-        <blockquote class="chapter-editorial"
-             data-i18n="ch3_quote"
+        <div class="chapter-illo" aria-hidden="true">
+          <div class="illo-frame">
+            <svg viewBox="0 0 300 150" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+              <path class="gl" d="M40 128 L260 128" stroke-opacity=".16"/>
+              <!-- steady adult -->
+              <circle cx="86" cy="60" r="12" class="gl"/>
+              <path class="gl" d="M86 72 C87 92, 85 108, 84 124"/>
+              <path class="gl" d="M86 84 C102 88, 116 92, 130 96"/>
+              <!-- structured framework -->
+              <rect x="174" y="56" width="64" height="66" rx="8" class="gl"/>
+              <path class="gl" d="M174 78 L238 78"/>
+              <path class="gl" d="M174 100 L238 100"/>
+              <!-- neutral-alignment row + connector -->
+              <path class="ga" d="M130 96 C150 96, 162 90, 174 86"/>
+              <circle cx="206" cy="67" r="3.2" class="illo-dot"/>
+            </svg>
+          </div>
+        </div>
+
+        <blockquote class="chapter-editorial" data-i18n="ch3_quote"
              data-es="Aquí no reaccionas. Diseñas el sistema."
              data-en="Here you don't react. You design the system.">
           Aquí no reaccionas. Diseñas el sistema.
         </blockquote>
 
-        <p class="chapter-body"
-           data-i18n="ch3_body"
+        <p class="chapter-body" data-i18n="ch3_body"
            data-es="Crianza Neutral no es frialdad. Es claridad sin descarga emocional. Diseña una respuesta estable para que el niño deje de aprender a través del caos."
-           data-en="Neutral Parenting is not coldness. It's clarity without emotional discharge. It designs a stable response so the child stops learning through chaos.">
+           data-en="Neutral Parenting is not coldness. It is clarity without emotional discharge. It designs a stable response so the child stops learning through chaos.">
           Crianza Neutral no es frialdad. Es claridad sin descarga emocional. Diseña una respuesta estable para que el niño deje de aprender a través del caos.
         </p>
 
         <div class="accordion-list">
-          <details>
+          <details open>
             <summary>
               <span data-i18n="ch3_acc1_t" data-es="El ciclo que hay que romper" data-en="The Cycle That Must Be Broken">El ciclo que hay que romper</span>
               <span class="summary-icon">+</span>
             </summary>
             <div class="details-body">
-              <p data-i18n="ch3_acc1_p"
-                 data-es="Cuando el adulto reacciona con intensidad, el niño no solo recibe un límite: también recibe la dosis máxima de atención. Ahí nace el aprendizaje equivocado."
-                 data-en="When the adult reacts with intensity, the child doesn't just receive a limit · they also receive the maximum dose of attention. That's where the wrong learning is born.">
-                Cuando el adulto reacciona con intensidad, el niño no solo recibe un límite: también recibe la dosis máxima de atención. Ahí nace el aprendizaje equivocado.
+              <p data-i18n="ch3_acc1_p1"
+                 data-es="El verdadero <em class='kw'>punto de apalancamiento</em> no es el comportamiento del niño, sino la respuesta que el sistema adulto repite alrededor de ese comportamiento. Cuando el adulto reacciona con intensidad, el niño no solo recibe un límite: también recibe la dosis máxima de atención. Ahí nace el aprendizaje equivocado."
+                 data-en="The true <em class='kw'>leverage point</em> is not the child's behavior, but the response the adult system keeps repeating around that behavior. When the adult reacts with intensity, the child doesn't just receive a limit: they also receive the maximum dose of attention. That's where the wrong learning is born.">
+                El verdadero <em class="kw">punto de apalancamiento</em> no es el comportamiento del niño, sino la respuesta que el sistema adulto repite alrededor de ese comportamiento. Cuando el adulto reacciona con intensidad, el niño no solo recibe un límite: también recibe la dosis máxima de atención. Ahí nace el aprendizaje equivocado.
+              </p>
+              <p data-i18n="ch3_acc1_p2" data-es="Este es el ciclo inconsciente de cinco pasos que perpetúa el caos:" data-en="This is the unconscious five-step cycle that perpetuates chaos:">Este es el ciclo inconsciente de cinco pasos que perpetúa el caos:</p>
+              <ol class="m-list">
+                <li data-i18n="ch3_c1" data-es="Desregulación del niño." data-en="Child dysregulation.">Desregulación del niño.</li>
+                <li data-i18n="ch3_c2" data-es="Reacción emocional del padre (gritos, enojo, explicaciones largas)." data-en="Parent's emotional reaction (shouting, anger, long explanations).">Reacción emocional del padre (gritos, enojo, explicaciones largas).</li>
+                <li data-i18n="ch3_c3" data-es="Aumento drástico de atención sobre la mala conducta." data-en="Drastic increase in attention on the bad behavior.">Aumento drástico de atención sobre la mala conducta.</li>
+                <li data-i18n="ch3_c4" data-es="El niño aprende neurológicamente que la escalada funciona para conectar." data-en="The child neurologically learns that escalation works to connect.">El niño aprende neurológicamente que la escalada funciona para conectar.</li>
+                <li data-i18n="ch3_c5" data-es="Repetición e intensificación de la conducta." data-en="Repetition and intensification of the behavior.">Repetición e intensificación de la conducta.</li>
+              </ol>
+              <p class="pull" data-i18n="ch3_acc1_pull"
+                 data-es="“Estamos cambiando la moneda de Atención Negativa a Alineación Neutral.”"
+                 data-en="“We are changing the currency from Negative Attention to Neutral Alignment.”">
+                “Estamos cambiando la moneda de Atención Negativa a Alineación Neutral.”
               </p>
             </div>
           </details>
 
           <details>
             <summary>
-              <span data-i18n="ch3_acc2_t" data-es="Qué cambia en la práctica" data-en="What Changes in Practice">Qué cambia en la práctica</span>
+              <span data-i18n="ch3_acc2_t" data-es="Los ocho módulos" data-en="The Eight Modules">Los ocho módulos</span>
               <span class="summary-icon">+</span>
             </summary>
             <div class="details-body">
               <p data-i18n="ch3_acc2_p"
+                 data-es="El Método Nari no depende del humor del día ni de la fuerza de voluntad del adulto. Cambia la estructura de respuesta. Por eso se vuelve enseñable, repetible y escalable dentro de la vida real. Lo hacemos a través de ocho módulos operativos:"
+                 data-en="The Nari Method doesn't depend on the day's mood or the adult's willpower. It changes the response structure. That's why it becomes teachable, repeatable, and scalable within real life. We do this through eight operational modules:">
+                El Método Nari no depende del humor del día ni de la fuerza de voluntad del adulto. Cambia la estructura de respuesta. Por eso se vuelve enseñable, repetible y escalable dentro de la vida real. Lo hacemos a través de ocho módulos operativos:
+              </p>
+              <ol class="m-list">
+                <li><strong data-i18n="ch3_m1_t" data-es="Pre-enmarcar expectativas:" data-en="Pre-framing expectations:">Pre-enmarcar expectativas:</strong> <span data-i18n="ch3_m1_d" data-es="claridad antes de que ocurra la situación." data-en="clarity before the situation occurs.">claridad antes de que ocurra la situación.</span></li>
+                <li><strong data-i18n="ch3_m2_t" data-es="Redirección de atención:" data-en="Attention redirection:">Redirección de atención:</strong> <span data-i18n="ch3_m2_d" data-es="guiar la mente hacia lo útil." data-en="guiding the mind toward what's useful.">guiar la mente hacia lo útil.</span></li>
+                <li><strong data-i18n="ch3_m3_t" data-es="Advertencias de transición:" data-en="Transition warnings:">Advertencias de transición:</strong> <span data-i18n="ch3_m3_d" data-es="respetar el ritmo neurológico del niño." data-en="respecting the child's neurological rhythm.">respetar el ritmo neurológico del niño.</span></li>
+                <li><strong data-i18n="ch3_m4_t" data-es="Espejo emocional:" data-en="Emotional mirroring:">Espejo emocional:</strong> <span data-i18n="ch3_m4_d" data-es="reflejar el sentimiento sin ceder al límite." data-en="reflecting the feeling without yielding on the limit.">reflejar el sentimiento sin ceder al límite.</span></li>
+                <li><strong data-i18n="ch3_m5_t" data-es="Tono neutral:" data-en="Neutral tone:">Tono neutral:</strong> <span data-i18n="ch3_m5_d" data-es="eliminar el combustible emocional del conflicto." data-en="removing the emotional fuel from conflict.">eliminar el combustible emocional del conflicto.</span></li>
+                <li><strong data-i18n="ch3_m6_t" data-es="Refuerzo positivo:" data-en="Positive reinforcement:">Refuerzo positivo:</strong> <span data-i18n="ch3_m6_d" data-es="regar las flores, no la maleza." data-en="water the flowers, not the weeds.">regar las flores, no la maleza.</span></li>
+                <li><strong data-i18n="ch3_m7_t" data-es="Opciones estructuradas:" data-en="Structured options:">Opciones estructuradas:</strong> <span data-i18n="ch3_m7_d" data-es="entregar autonomía dentro de contenedores seguros." data-en="delivering autonomy within safe containers.">entregar autonomía dentro de contenedores seguros.</span></li>
+                <li><strong data-i18n="ch3_m8_t" data-es="Consecuencias lógicas:" data-en="Logical consequences:">Consecuencias lógicas:</strong> <span data-i18n="ch3_m8_d" data-es="resultados naturales, no castigos arbitrarios." data-en="natural results, not arbitrary punishments.">resultados naturales, no castigos arbitrarios.</span></li>
+              </ol>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span data-i18n="ch3_acc3_t" data-es="Los tres pilares" data-en="The Three Pillars">Los tres pilares</span>
+              <span class="summary-icon">+</span>
+            </summary>
+            <div class="details-body">
+              <p data-i18n="ch3_acc3_p" data-es="Todo el sistema de Crianza Neutral descansa sobre tres apoyos estructurales:" data-en="The entire Neutral Parenting system rests on three structural supports:">Todo el sistema de Crianza Neutral descansa sobre tres apoyos estructurales:</p>
+              <div class="pillars">
+                <div class="pillar">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8599AD" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <p><strong data-i18n="ch3_pl1_t" data-es="Autorregulación de los padres:" data-en="Parental self-regulation:">Autorregulación de los padres:</strong> <span data-i18n="ch3_pl1_d" data-es="el ancla del hogar." data-en="the home's anchor.">el ancla del hogar.</span></p>
+                </div>
+                <div class="pillar">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D96B47" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+                  <p><strong data-i18n="ch3_pl2_t" data-es="Estructuras predecibles:" data-en="Predictable structures:">Estructuras predecibles:</strong> <span data-i18n="ch3_pl2_d" data-es="el niño sabe qué esperar y qué sucederá." data-en="the child knows what to expect and what will happen.">el niño sabe qué esperar y qué sucederá.</span></p>
+                </div>
+                <div class="pillar">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8599AD" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  <p><strong data-i18n="ch3_pl3_t" data-es="Refuerzo de atención positiva:" data-en="Positive attention reinforcement:">Refuerzo de atención positiva:</strong> <span data-i18n="ch3_pl3_d" data-es="se alimenta lo que se quiere ver crecer." data-en="feed what you want to see grow.">se alimenta lo que se quiere ver crecer.</span></p>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span data-i18n="ch3_acc4_t" data-es="Qué cambia en la práctica" data-en="What Changes in Practice">Qué cambia en la práctica</span>
+              <span class="summary-icon">+</span>
+            </summary>
+            <div class="details-body">
+              <p data-i18n="ch3_acc4_p1"
+                 data-es="La pregunta deja de ser “¿cómo hago que pare ya?” y pasa a ser “¿qué respuesta mía deja de reforzar esto y qué estructura lo hace más fácil mañana?”. Ese cambio de pregunta ya es parte del método."
+                 data-en="The question shifts from “how do I make it stop now?” to “what response of mine stops reinforcing this, and what structure makes it easier tomorrow?” That change of question is already part of the method.">
+                La pregunta deja de ser “¿cómo hago que pare ya?” y pasa a ser “¿qué respuesta mía deja de reforzar esto y qué estructura lo hace más fácil mañana?”. Ese cambio de pregunta ya es parte del método.
+              </p>
+              <p data-i18n="ch3_acc4_p2"
                  data-es="La casa no se vuelve perfecta. Se vuelve más predecible, menos reactiva y muchísimo más enseñable."
                  data-en="The home doesn't become perfect. It becomes more predictable, less reactive, and far more teachable.">
                 La casa no se vuelve perfecta. Se vuelve más predecible, menos reactiva y muchísimo más enseñable.
@@ -983,54 +1337,96 @@
 
       <!-- ── COMPARISON ── -->
       <section class="section comparison-section scroll-reveal">
-        <div class="eyebrow"
-             data-i18n="diff_eyebrow"
-             data-es="Lo que cambia de verdad"
-             data-en="What really changes">Lo que cambia de verdad</div>
-
-        <h2 class="comparison-title"
-            data-i18n="diff_title"
-            data-es="Por qué esto es diferente."
-            data-en="Why this is different.">Por qué esto es diferente.</h2>
-
-        <p class="comparison-desc"
-           data-i18n="diff_desc"
-           data-es="La mayoría de los enfoques corrigen la conducta demasiado pronto. Este método corrige primero el sistema que la produce, la sostiene y la refuerza."
-           data-en="Most approaches correct behavior too soon. This method first corrects the system that produces, sustains, and reinforces it.">
-          La mayoría de los enfoques corrigen la conducta demasiado pronto. Este método corrige primero el sistema que la produce, la sostiene y la refuerza.
+        <div class="eyebrow" data-i18n="diff_eyebrow" data-es="Lo que cambia de verdad" data-en="What really changes">Lo que cambia de verdad</div>
+        <h2 class="comparison-title" data-i18n="diff_title" data-es="Por qué esto es diferente." data-en="Why this is different.">Por qué esto es diferente.</h2>
+        <p class="comparison-lede" data-i18n="diff_lede"
+           data-es="“El Método Nari no empieza corrigiendo al niño. Empieza estabilizando al adulto, conectando con el niño y luego rediseñando el sistema de conducta.”"
+           data-en="“The Nari Method doesn't start by correcting the child. It starts by stabilizing the adult, connecting with the child, and then redesigning the behavior system.”">
+          “El Método Nari no empieza corrigiendo al niño. Empieza estabilizando al adulto, conectando con el niño y luego rediseñando el sistema de conducta.”
+        </p>
+        <p class="comparison-desc" data-i18n="diff_desc"
+           data-es="Lo diferente no es solo la secuencia. Es el punto de entrada. La mayoría de los enfoques corrigen la conducta demasiado pronto. Este método corrige primero el sistema que la produce, la sostiene y la refuerza."
+           data-en="What's different isn't just the sequence. It's the entry point. Most approaches correct behavior too soon. This method first corrects the system that produces, sustains, and reinforces it.">
+          Lo diferente no es solo la secuencia. Es el punto de entrada. La mayoría de los enfoques corrigen la conducta demasiado pronto. Este método corrige primero el sistema que la produce, la sostiene y la refuerza.
         </p>
 
         <div class="comparison-grid">
           <div class="comp-card scroll-reveal d1">
-            <span class="comp-card-label" style="color:var(--coral-ink);"
-                  data-i18n="diff_c1_lbl" data-es="Foco Tradicional" data-en="Traditional Focus">Foco Tradicional</span>
+            <span class="comp-card-label" style="color:var(--coral-ink);" data-i18n="diff_c1_lbl" data-es="Foco tradicional" data-en="Traditional focus">Foco tradicional</span>
             <h3 data-i18n="diff_c1_h" data-es="Corregir la conducta" data-en="Correct the behavior">Corregir la conducta</h3>
-            <p data-i18n="diff_c1_p"
-               data-es="Mira la conducta como el problema y se apura a corregirla con control."
-               data-en="Views behavior as the problem and rushes to correct it with control.">
-              Mira la conducta como el problema y se apura a corregirla con control.
-            </p>
+            <p data-i18n="diff_c1_p" data-es="Mira la conducta como el problema principal y se apura a corregirla con premios, castigos o control." data-en="Views behavior as the main problem and rushes to correct it with rewards, punishments, or control.">Mira la conducta como el problema principal y se apura a corregirla con premios, castigos o control.</p>
           </div>
           <div class="comp-card scroll-reveal d2">
-            <span class="comp-card-label" style="color:var(--text-ghost);"
-                  data-i18n="diff_c2_lbl" data-es="El Vacío" data-en="The Gap">El Vacío</span>
-            <h3 data-i18n="diff_c2_h" data-es="Ignorar el adulto" data-en="Ignoring the adult">Ignorar el adulto</h3>
-            <p data-i18n="diff_c2_p"
-               data-es="Olvida el estado del adulto y el vínculo de seguridad con el niño."
-               data-en="Forgets the adult's emotional state and the secure bond with the child.">
-              Olvida el estado del adulto y el vínculo de seguridad con el niño.
-            </p>
+            <span class="comp-card-label" style="color:var(--text-ghost);" data-i18n="diff_c2_lbl" data-es="Lo que deja fuera" data-en="What it leaves out">Lo que deja fuera</span>
+            <h3 data-i18n="diff_c2_h" data-es="Ignorar el sistema" data-en="Ignoring the system">Ignorar el sistema</h3>
+            <p data-i18n="diff_c2_p" data-es="Olvida el estado del adulto, la seguridad del vínculo y el sistema de refuerzo que el niño aprende mientras todo eso ocurre." data-en="Forgets the adult's state, the security of the bond, and the reinforcement system the child learns while all of that happens.">Olvida el estado del adulto, la seguridad del vínculo y el sistema de refuerzo que el niño aprende mientras todo eso ocurre.</p>
           </div>
           <div class="comp-card featured scroll-reveal d3">
-            <span class="comp-card-label" style="color:var(--navy);"
-                  data-i18n="diff_c3_lbl" data-es="El Método Nari" data-en="The Nari Method">El Método Nari</span>
+            <span class="comp-card-label" style="color:var(--navy);" data-i18n="diff_c3_lbl" data-es="El Método Nari" data-en="The Nari Method">El Método Nari</span>
             <h3 data-i18n="diff_c3_h" data-es="Reordenar la escena" data-en="Reorder the scene">Reordenar la escena</h3>
-            <p data-i18n="diff_c3_p"
-               data-es="Regula al adulto, conecta al niño y rediseña el sistema que produce la conducta."
-               data-en="Regulates the adult, connects the child, redesigns the system that produces the behavior.">
-              Regula al adulto, conecta al niño y rediseña el sistema que produce la conducta.
-            </p>
+            <p data-i18n="diff_c3_p" data-es="Primero regula al adulto, luego abre al niño a la conexión y después instala un sistema que deja de premiar el caos." data-en="First regulates the adult, then opens the child to connection, then installs a system that stops rewarding chaos.">Primero regula al adulto, luego abre al niño a la conexión y después instala un sistema que deja de premiar el caos.</p>
           </div>
+        </div>
+      </section>
+
+      <!-- ── KEYNOTE ── -->
+      <section class="section keynote-section scroll-reveal">
+        <div class="eyebrow" data-i18n="key_eyebrow" data-es="Versión keynote" data-en="Keynote version">Versión keynote</div>
+        <h2 class="keynote-title" data-i18n="key_title"
+            data-es="Antes de corregir: las tres decisiones que transforman la crianza"
+            data-en="Before you correct: the three decisions that transform parenting">
+          Antes de corregir: las tres decisiones que transforman la crianza
+        </h2>
+        <p class="keynote-desc" data-i18n="key_desc"
+           data-es="En formato keynote, el Método Nari se convierte en un recorrido de tres decisiones que cualquier audiencia puede seguir sin perder profundidad. No simplifica el sistema: lo vuelve memorable, enseñable y accionable."
+           data-en="In keynote format, the Nari Method becomes a journey through three decisions that any audience can follow without losing depth. It doesn't simplify the system: it makes it memorable, teachable, and actionable.">
+          En formato keynote, el Método Nari se convierte en un recorrido de tres decisiones que cualquier audiencia puede seguir sin perder profundidad. No simplifica el sistema: lo vuelve memorable, enseñable y accionable.
+        </p>
+
+        <div class="acts">
+          <div class="act">
+            <span class="act-num">01</span>
+            <div>
+              <h3 data-i18n="act1_t" data-es="Estabilizar al adulto" data-en="Stabilize the adult">Estabilizar al adulto</h3>
+              <p data-i18n="act1_p" data-es="Cruzar la puerta de la aceptación, eliminar la culpa paralizante y entender la ecuación del dolor." data-en="Cross the door of acceptance, eliminate paralyzing guilt, and understand the pain equation.">Cruzar la puerta de la aceptación, eliminar la culpa paralizante y entender la ecuación del dolor.</p>
+            </div>
+          </div>
+          <div class="act">
+            <span class="act-num">02</span>
+            <div>
+              <h3 data-i18n="act2_t" data-es="Conectar con el niño" data-en="Connect with the child">Conectar con el niño</h3>
+              <p data-i18n="act2_p" data-es="Entrar al mundo del niño mediante Play OS, desactivando el sistema nervioso defensivo." data-en="Enter the child's world through Play OS, deactivating the defensive nervous system.">Entrar al mundo del niño mediante Play OS, desactivando el sistema nervioso defensivo.</p>
+            </div>
+          </div>
+          <div class="act">
+            <span class="act-num">03</span>
+            <div>
+              <h3 data-i18n="act3_t" data-es="Rediseñar la conducta" data-en="Redesign the behavior">Rediseñar la conducta</h3>
+              <p data-i18n="act3_p" data-es="Implementar la Crianza Neutral mediante módulos repetibles sin perder la calma." data-en="Implement Neutral Parenting through repeatable modules without losing calm.">Implementar la Crianza Neutral mediante módulos repetibles sin perder la calma.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="audiences">
+          <h4 data-i18n="aud_t" data-es="Audiencias ideales" data-en="Ideal audiences">Audiencias ideales</h4>
+          <p data-i18n="aud_p"
+             data-es="Funciona especialmente bien en <strong>colegios, comunidades de padres, foros de bienestar familiar, redes de apoyo en neurodiversidad y congresos de desarrollo infantil</strong>, porque ofrece una narrativa clara, una secuencia enseñable y un lenguaje que combina contención emocional con estructura práctica."
+             data-en="Works especially well in <strong>schools, parent communities, family wellness forums, neurodiversity support networks, and child development conferences</strong>, because it offers a clear narrative, a teachable sequence, and a language that combines emotional containment with practical structure.">
+            Funciona especialmente bien en <strong>colegios, comunidades de padres, foros de bienestar familiar, redes de apoyo en neurodiversidad y congresos de desarrollo infantil</strong>, porque ofrece una narrativa clara, una secuencia enseñable y un lenguaje que combina contención emocional con estructura práctica.
+          </p>
+        </div>
+      </section>
+
+      <!-- ── EDITORIAL CLOSE ── -->
+      <section class="section scroll-reveal">
+        <div class="editorial-close">
+          <div class="ec-kicker" data-i18n="ec_kicker" data-es="Cierre editorial" data-en="Editorial close">Cierre editorial</div>
+          <div class="ec-headline" data-i18n="ec_head" data-es="Aceptar. Conectar. Diseñar." data-en="Accept. Connect. Design.">Aceptar. Conectar. Diseñar.</div>
+          <p class="ec-body" data-i18n="ec_body"
+             data-es="Ese es el orden. No porque suene bonito, sino porque es el único que devuelve regulación al adulto, seguridad al niño y coherencia al sistema completo sin perder humanidad en el proceso."
+             data-en="That is the order. Not because it sounds nice, but because it is the only one that returns regulation to the adult, security to the child, and coherence to the complete system, without losing humanity in the process.">
+            Ese es el orden. No porque suene bonito, sino porque es el único que devuelve regulación al adulto, seguridad al niño y coherencia al sistema completo sin perder humanidad en el proceso.
+          </p>
         </div>
       </section>
 
@@ -1038,22 +1434,10 @@
 
     <!-- ── CLOSING CTA ── -->
     <div class="closing-section">
-      <span class="closing-script scroll-reveal"
-            data-i18n="closing_script"
-            data-es="El sistema cambia cuando tú cambias."
-            data-en="The system changes when you change.">
-        El sistema cambia cuando tú cambias.
-      </span>
-      <span class="closing-sub scroll-reveal"
-            data-i18n="closing_sub"
-            data-es="Empieza con las guías."
-            data-en="Start with the guides.">
-        Empieza con las guías.
-      </span>
+      <span class="closing-script scroll-reveal" data-i18n="closing_script" data-es="El sistema cambia cuando tú cambias." data-en="The system changes when you change.">El sistema cambia cuando tú cambias.</span>
+      <span class="closing-sub scroll-reveal" data-i18n="closing_sub" data-es="Empieza con las guías." data-en="Start with the guides.">Empieza con las guías.</span>
       <a href="/apoyo/" class="btn-primary scroll-reveal" id="closingCta">
-        <span data-i18n="closing_cta"
-              data-es="Ver los protocolos de apoyo"
-              data-en="View the support protocols">Ver los protocolos de apoyo</span>
+        <span data-i18n="closing_cta" data-es="Ver los protocolos de apoyo" data-en="View the support protocols">Ver los protocolos de apoyo</span>
         <span class="arrow">→</span>
       </a>
     </div>
@@ -1067,15 +1451,11 @@
     </a>
     <span class="footer-copy">© 2026 Criar Sin Culpas · Todos los derechos reservados.</span>
     <nav class="footer-links" aria-label="Legal">
-      <a href="/privacidad"
-         data-i18n="footer_priv" data-es="Privacidad" data-en="Privacy">Privacidad</a>
-      <a href="mailto:hello@criarsinculpas.com"
-         data-i18n="footer_contact" data-es="Contacto" data-en="Contact">Contacto</a>
-      <a href="https://instagram.com/criarsinculpas"
-         target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="/privacidad" data-i18n="footer_priv" data-es="Privacidad" data-en="Privacy">Privacidad</a>
+      <a href="mailto:hello@criarsinculpas.com" data-i18n="footer_contact" data-es="Contacto" data-en="Contact">Contacto</a>
+      <a href="https://instagram.com/criarsinculpas" target="_blank" rel="noopener noreferrer">Instagram</a>
     </nav>
-    <p class="footer-tagline"
-       data-i18n="footer_tagline"
+    <p class="footer-tagline" data-i18n="footer_tagline"
        data-es="Este espacio fue creado con cuidado, para familias reales."
        data-en="This space was created with care, for real families.">
       Este espacio fue creado con cuidado, para familias reales.
@@ -1096,7 +1476,7 @@
       document.documentElement.lang = l;
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const txt = el.getAttribute('data-' + l);
-        if (txt) el.innerHTML = txt;
+        if (txt !== null) el.innerHTML = txt;
       });
       document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.setAttribute('aria-pressed', btn.getAttribute('data-lang') === l ? 'true' : 'false');
@@ -1170,10 +1550,8 @@
     } else {
       document.querySelectorAll('.scroll-reveal').forEach(el => el.classList.add('visible'));
     }
-
   }());
   </script>
 
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"a6fdd4e7ff644527b91c6db4b97e68f5","r":1}' crossorigin="anonymous"></script>
 </body>
 </html>
