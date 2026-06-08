@@ -2,13 +2,30 @@
 <html lang="es" data-theme="light">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title data-i18n="title_tag" data-es="Términos de Uso · Criar Sin Culpas" data-en="Terms of Use · Criar Sin Culpas">Términos de Uso · Criar Sin Culpas</title>
-  <meta name="robots" content="index,follow">
-  <link rel="canonical" href="https://criarsinculpas.com/terminos">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <title data-i18n="title_tag" data-es="Política de Privacidad · Criar Sin Culpas" data-en="Privacy Policy · Criar Sin Culpas">Política de Privacidad · Criar Sin Culpas</title>
+  <meta name="description" content="Nuestra política de privacidad y manejo de datos.">
+  <link rel="canonical" href="https://criarsinculpas.com/privacidad">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <script>
+    if (window.location.hostname === 'criarsinculpas.com') {
+      const script = document.createElement('script');
+      script.defer = true;
+      script.setAttribute('data-domain', 'criarsinculpas.com');
+      script.src = 'https://plausible.io/js/script.manual.js';
+      document.head.appendChild(script);
+    }
+    window.plausible = window.plausible || function() {
+      if (window.location.hostname !== 'criarsinculpas.com') {
+        console.log('Plausible [Local]:', arguments[0], arguments[1]);
+      }
+    };
+  </script>
+
   <style>
     :root {
       --void:        #FAF6F2;
@@ -22,136 +39,634 @@
       --serif:  'Cormorant Garamond', Georgia, serif;
       --sans:   'DM Sans', system-ui, sans-serif;
       --pill: 999px;
+      --ease-cinema: cubic-bezier(0.2, 0.8, 0.2, 1);
+      --ease-silk:   cubic-bezier(0.16, 1, 0.3, 1);
     }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    body{background:var(--void);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.7;}
-    a{color:inherit;text-decoration:none;}
-    .grain{position:fixed;inset:0;z-index:50;pointer-events:none;opacity:.028;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:192px;}
-    .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:24px 40px;border-bottom:1px solid rgba(31,46,70,.06);position:sticky;top:0;background:rgba(250,247,241,.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);z-index:20;}
-    .nav-logo{display:inline-flex;align-items:center;flex-shrink:0;}
-    .nav-logo img{height:clamp(26px,3.8vw,34px);width:auto;display:block;transition:opacity .3s;filter:brightness(.65) saturate(1.4) hue-rotate(-5deg);}
-    .nav-logo:hover img{opacity:.85;}
-    .bar-right{display:flex;align-items:center;gap:16px;}
-    .back{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);transition:color .25s;}
-    .back:hover{color:var(--text);}
-    .lang-pill{display:inline-flex;padding:3px;gap:2px;border-radius:var(--pill);border:1px solid rgba(31,46,70,.08);background:rgba(31,46,70,.04);}
-    .lang-btn{min-width:34px;padding:5px 8px;border-radius:var(--pill);font-size:.62rem;font-weight:700;letter-spacing:.06em;color:var(--text-ghost);background:none;border:none;cursor:pointer;transition:all .25s;}
-    .lang-btn[aria-pressed="true"]{color:var(--text);background:#fff;box-shadow:0 1px 4px rgba(31,46,70,.08);}
-    main{max-width:760px;margin:0 auto;padding:72px 32px 96px;position:relative;z-index:1;}
-    .eyebrow{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);opacity:.85;display:block;margin-bottom:16px;}
-    h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,5vw,3.6rem);line-height:1.06;letter-spacing:-.01em;margin-bottom:14px;color:var(--text);}
-    .updated{font-size:.78rem;color:var(--text-ghost);letter-spacing:.02em;margin-bottom:44px;}
-    .lead{font-size:1.02rem;color:var(--text-dim);margin-bottom:48px;line-height:1.8;}
-    section{margin-bottom:40px;}
-    h2{font-family:var(--serif);font-weight:500;font-size:1.5rem;color:var(--text);margin-bottom:12px;display:flex;gap:14px;align-items:baseline;}
-    h2 .n{font-family:var(--sans);font-size:.7rem;font-weight:700;color:var(--coral-ink);letter-spacing:.06em;flex-shrink:0;padding-top:6px;}
-    section p{font-size:.92rem;color:var(--text-dim);margin-bottom:12px;}
-    section p:last-child{margin-bottom:0;}
-    .ph{color:var(--coral-ink);font-weight:500;}
-    a.inline{color:var(--teal);border-bottom:1px solid rgba(133,153,173,.4);transition:opacity .2s;}
-    a.inline:hover{opacity:.7;}
-    footer{border-top:1px solid rgba(31,46,70,.06);padding:32px 40px;text-align:center;position:relative;z-index:1;}
-    footer .fnote{font-size:.7rem;color:var(--text-ghost);letter-spacing:.03em;}
-    footer .fnote.italic{font-family:var(--serif);font-style:italic;margin-top:8px;}
-    @media(max-width:640px){.bar{padding:18px 22px;}main{padding:48px 22px 72px;}h2{flex-direction:column;gap:4px;}}
+
+    *, *::before, *::after {
+      box-sizing: border-box; margin: 0; padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--void);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100dvh;
+      display: flex; flex-direction: column;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; top: -30vh; right: -20vw;
+      width: 80vw; height: 80vh;
+      background: radial-gradient(ellipse at center, rgba(133,153,173,.05) 0%, transparent 68%);
+      pointer-events: none; z-index: 0;
+    }
+
+    .grain {
+      position: fixed; inset: 0; z-index: 200;
+      pointer-events: none; opacity: .028;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 192px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse-ring {
+      0%   { box-shadow: 0 0 0 0 rgba(133,153,173,.35); }
+      70%  { box-shadow: 0 0 0 10px rgba(133,153,173,0); }
+      100% { box-shadow: 0 0 0 0 rgba(133,153,173,0); }
+    }
+
+    .r1 { animation: fadeUp .9s var(--ease-silk) .05s both; }
+    .r2 { animation: fadeUp .9s var(--ease-silk) .18s both; }
+    .r3 { animation: fadeUp .9s var(--ease-silk) .32s both; }
+
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: max(20px, env(safe-area-inset-top)) 56px 18px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      transition: background .4s, backdrop-filter .4s;
+    }
+    .nav.scrolled {
+      background: rgba(250,247,241,.82);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(31,46,70,.05);
+    }
+    .nav-logo { display: flex; flex-shrink: 0; align-items: center; }
+    .nav-logo img { height: clamp(24px, 3.5vw, 32px); width: auto; display: block; filter: brightness(.65) saturate(1.4) hue-rotate(-5deg); transition: opacity .3s; }
+    .nav-logo:hover img { opacity: .8; }
+    
+    .nav-center { display: flex; align-items: center; gap: 36px; }
+    .nav-center a {
+      color: var(--text-dim); text-decoration: none;
+      font-size: .72rem; font-weight: 500;
+      letter-spacing: .1em; text-transform: uppercase;
+      transition: color .25s;
+    }
+    .nav-center a:hover { color: var(--text); }
+    .nav-center a.dim { opacity: .4; pointer-events: none; }
+    .nav-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+
+    .lang-pill {
+      display: inline-flex; padding: 3px; gap: 2px;
+      border-radius: var(--pill);
+      border: 1px solid rgba(31,46,70,.08);
+      background: rgba(31,46,70,.04);
+    }
+    .lang-btn {
+      min-width: 38px; padding: 5px 10px; border-radius: var(--pill);
+      font-size: .65rem; font-weight: 700; letter-spacing: .06em;
+      color: var(--text-ghost); background: none; border: none;
+      cursor: pointer; transition: all .25s;
+    }
+    .lang-btn[aria-pressed="true"] {
+      color: var(--text); background: #fff;
+      box-shadow: 0 1px 4px rgba(31,46,70,.08);
+    }
+
+    .ham {
+      display: none; width: 44px; height: 44px; border-radius: 50%;
+      border: 1px solid rgba(31,46,70,.1); background: rgba(31,46,70,.05);
+      align-items: center; justify-content: center;
+      cursor: pointer; z-index: 201; transition: all .3s; flex-shrink: 0;
+    }
+    .ham svg { color: var(--text); }
+    .ham .x { display: none; }
+    .ham.open .bars { display: none; }
+    .ham.open .x { display: block; }
+
+    .mobile-nav {
+      display: none; position: fixed; inset: 0; z-index: 150;
+      background: rgba(250,247,241,.97);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 44px; opacity: 0; pointer-events: none;
+      transition: opacity .4s var(--ease-cinema), transform .4s var(--ease-cinema);
+      transform: translateY(-8px);
+    }
+    .mobile-nav.open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .mobile-nav a {
+      font-family: var(--serif); font-size: 2rem; font-weight: 400;
+      color: var(--text-dim); text-decoration: none; letter-spacing: .04em;
+      transition: color .25s;
+    }
+    .mobile-nav a:hover { color: var(--text); }
+
+    .page-wrap {
+      flex: 1; position: relative; z-index: 2;
+      padding-top: max(88px, 10vh);
+    }
+
+    .legal-hero {
+      max-width: 800px; margin: 0 auto;
+      padding: 64px 56px 56px;
+      text-align: center;
+    }
+
+    .breadcrumb {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .62rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--text-ghost);
+      margin-bottom: 32px;
+    }
+    .breadcrumb a { color: var(--text-ghost); text-decoration: none; transition: color .25s; }
+    .breadcrumb a:hover { color: var(--teal); }
+    .breadcrumb-sep { opacity: .4; }
+
+    .legal-title {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 400; line-height: 1.05;
+      color: var(--text); margin-bottom: 20px;
+      letter-spacing: -.01em;
+    }
+    .legal-title em { font-style: italic; color: var(--teal); }
+
+    .legal-lead {
+      font-family: var(--serif);
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      font-weight: 400; font-style: italic;
+      color: var(--text-dim); line-height: 1.6;
+      max-width: 46ch; margin: 0 auto 28px;
+    }
+
+    .updated-pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 5px 14px; border-radius: var(--pill);
+      border: 1px solid rgba(31,46,70,.1);
+      background: rgba(31,46,70,.03);
+      font-size: .62rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .updated-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--teal); flex-shrink: 0;
+      animation: pulse-ring 2.8s ease infinite;
+    }
+
+    .section-divider {
+      max-width: 800px; margin: 0 auto;
+      padding: 0 56px;
+      border: none; border-top: 1px solid rgba(31,46,70,.06);
+    }
+
+    .legal-content {
+      max-width: 800px; margin: 0 auto;
+      padding: 0 56px 100px;
+      display: flex; flex-direction: column; gap: 0;
+    }
+
+    .legal-section {
+      padding: 48px 0;
+      border-bottom: 1px solid rgba(31,46,70,.06);
+      position: relative;
+    }
+    .legal-section:last-child { border-bottom: none; }
+
+    .section-head {
+      display: flex; align-items: flex-start; gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .section-marker {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 6px; flex-shrink: 0; padding-top: 4px;
+    }
+    .section-num {
+      font-family: var(--serif);
+      font-size: .8rem; font-weight: 500;
+      color: var(--text-ghost); letter-spacing: .1em;
+      line-height: 1;
+    }
+    .section-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      border: 1px solid rgba(31,46,70,.1);
+      background: #FFFFFF;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color .4s, background .4s;
+    }
+    .legal-section:hover .section-icon {
+      border-color: rgba(133,153,173,.3);
+      background: rgba(133,153,173,.1);
+    }
+    .section-icon svg { color: var(--teal); width: 16px; height: 16px; transition: color .4s; }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+      font-weight: 500; line-height: 1.1;
+      color: var(--text); letter-spacing: -.01em;
+    }
+
+    .legal-section p {
+      font-size: .9rem; color: var(--text-dim);
+      line-height: 1.8; margin-bottom: 14px;
+      max-width: 62ch;
+      padding-left: 56px;
+    }
+    .legal-section p:last-child { margin-bottom: 0; }
+    .legal-section a {
+      color: var(--teal); text-decoration: none;
+      font-weight: 500; transition: opacity .25s;
+    }
+    .legal-section a:hover { opacity: .75; }
+
+    .email-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 12px 20px; border-radius: 12px;
+      border: 1px solid rgba(133,153,173,.2);
+      background: #FFFFFF;
+      font-family: var(--sans);
+      font-size: .9rem; letter-spacing: .02em;
+      color: var(--text) !important;
+      margin-top: 8px;
+      transition: all .35s var(--ease-silk) !important;
+    }
+    .email-link:hover {
+      border-color: rgba(133,153,173,.4) !important;
+      background: rgba(133,153,173,.1) !important;
+      transform: translateY(-1px);
+    }
+    .email-link svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--teal); }
+
+    .scroll-reveal {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity .8s var(--ease-silk), transform .8s var(--ease-silk);
+    }
+    .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
+    .scroll-reveal.delay-1 { transition-delay: .08s; }
+    .scroll-reveal.delay-2 { transition-delay: .16s; }
+    .scroll-reveal.delay-3 { transition-delay: .24s; }
+    .scroll-reveal.delay-4 { transition-delay: .32s; }
+    .scroll-reveal.delay-5 { transition-delay: .40s; }
+
+    footer {
+      background: var(--void);
+      border-top: 1px solid rgba(31,46,70,.06);
+      padding: 32px 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+      position: relative; z-index: 10;
+    }
+    footer img { height: 22px; opacity: .8; filter: brightness(.65) saturate(1.4) hue-rotate(-5deg); }
+    .footer-copy { font-size: .68rem; color: var(--text-ghost); letter-spacing: .04em; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-size: .68rem; color: var(--text-ghost); text-decoration: none;
+      letter-spacing: .06em; text-transform: uppercase; transition: color .25s;
+    }
+    .footer-links a:hover { color: var(--text-dim); }
+    .footer-tagline {
+      width: 100%; text-align: center;
+      font-family: var(--serif);
+      font-size: .82rem; font-style: italic;
+      color: var(--text-ghost); padding-top: 16px;
+      border-top: 1px solid rgba(31,46,70,.04);
+      letter-spacing: .03em;
+    }
+
+    @media (max-width: 900px) {
+      .nav { padding: max(16px, env(safe-area-inset-top)) 22px 14px; }
+      .nav-center { display: none; }
+      .ham { display: flex; }
+      .mobile-nav { display: flex; }
+
+      .legal-hero { padding: 48px 24px 40px; }
+      .section-divider { padding: 0 24px; }
+      .legal-content { padding: 0 24px 80px; }
+
+      .legal-title { font-size: clamp(2rem, 10vw, 2.8rem); }
+      .legal-section p { padding-left: 0; max-width: 100%; }
+      .section-head { gap: 14px; }
+
+      footer { padding: 24px; flex-direction: column; align-items: flex-start; gap: 14px; }
+      .footer-tagline { text-align: left; padding-top: 12px; }
+    }
   </style>
 </head>
 <body>
+
   <div class="grain" aria-hidden="true"></div>
 
-  <header class="bar">
-    <a href="/" class="nav-logo" aria-label="Criar Sin Culpas"><img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas"></a>
-    <div class="bar-right">
-      <a href="/" class="back" data-i18n="back" data-es="Volver al inicio" data-en="Back to home">Volver al inicio</a>
+  <!-- ─────── NAV ─────── -->
+  <nav class="nav" id="mainNav" role="navigation" aria-label="Navegación principal">
+    <a href="/index.html" class="nav-logo" aria-label="Criar Sin Culpas">
+      <img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas">
+    </a>
+    <div class="nav-center">
+      <a href="/apoyo/" data-i18n="nav_guias" data-es="Guías" data-en="Guides">Guías</a>
+      <a href="/metodo/" data-i18n="nav_metodo" data-es="El Método" data-en="The Method">El Método</a>
+      <a href="#" class="dim" data-i18n="nav_aprende" data-es="Aprende (Pronto)" data-en="Learn (Soon)">Aprende (Pronto)</a>
+    </div>
+    <div class="nav-right">
       <div class="lang-pill" role="group" aria-label="Idioma">
         <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
         <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
       </div>
+      <button class="ham" id="ham" aria-label="Abrir menú" aria-expanded="false">
+        <svg class="bars" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="8" x2="21" y2="8"/><line x1="3" y1="16" x2="21" y2="16"/>
+        </svg>
+        <svg class="x" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
     </div>
-  </header>
+  </nav>
 
-  <main>
-    <span class="eyebrow" data-i18n="eyebrow" data-es="Legal" data-en="Legal">Legal</span>
-    <h1 data-i18n="h1" data-es="Términos de Uso" data-en="Terms of Use">Términos de Uso</h1>
-    <p class="updated" data-i18n="updated" data-es="Última actualización: [[fecha]]" data-en="Last updated: [[date]]">Última actualización: <span class="ph">[[fecha]]</span></p>
+  <div class="mobile-nav" id="mobileNav" role="dialog" aria-label="Menú" aria-modal="true">
+    <a href="/apoyo/" data-i18n="nav_guias_m" data-es="Guías" data-en="Guides">Guías</a>
+    <a href="/metodo/" data-i18n="nav_metodo_m" data-es="El Método" data-en="The Method">El Método</a>
+    <div class="lang-pill" style="margin-top:8px;">
+      <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
+      <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
 
-    <p class="lead" data-i18n="lead"
-       data-es="Bienvenida a Criar Sin Culpas. Estos Términos de Uso regulan el acceso y el uso del sitio criarsinculpas.com y de su contenido. Al usar el sitio, aceptas estos términos."
-       data-en="Welcome to Criar Sin Culpas. These Terms of Use govern access to and use of the criarsinculpas.com website and its content. By using the site, you accept these terms.">Bienvenida a Criar Sin Culpas. Estos Términos de Uso regulan el acceso y el uso del sitio criarsinculpas.com y de su contenido. Al usar el sitio, aceptas estos términos.</p>
+  <!-- ─────── PAGE ─────── -->
+  <main class="page-wrap">
 
-    <section>
-      <h2><span class="n">01</span><span data-i18n="s1h" data-es="Aceptación de los términos" data-en="Acceptance of terms">Aceptación de los términos</span></h2>
-      <p data-i18n="s1p" data-es="Al acceder o usar criarsinculpas.com aceptas quedar vinculada por estos Términos. Si no estás de acuerdo con ellos, por favor no uses el sitio." data-en="By accessing or using criarsinculpas.com you agree to be bound by these Terms. If you do not agree with them, please do not use the site.">Al acceder o usar criarsinculpas.com aceptas quedar vinculada por estos Términos. Si no estás de acuerdo con ellos, por favor no uses el sitio.</p>
-    </section>
+    <!-- Hero header -->
+    <header class="legal-hero">
 
-    <section>
-      <h2><span class="n">02</span><span data-i18n="s2h" data-es="Naturaleza del contenido" data-en="Nature of the content">Naturaleza del contenido</span></h2>
-      <p data-i18n="s2p" data-es="Criar Sin Culpas ofrece contenido educativo e informativo sobre crianza, regulación emocional y bienestar familiar. El contenido no constituye asesoramiento médico, psicológico, terapéutico, legal ni profesional, y no sustituye la consulta con un profesional calificado. El uso del sitio no crea ninguna relación profesional, médica ni terapéutica." data-en="Criar Sin Culpas provides educational and informational content about parenting, emotional regulation, and family wellbeing. The content does not constitute medical, psychological, therapeutic, legal, or professional advice, and does not replace consultation with a qualified professional. Use of the site does not create any professional, medical, or therapeutic relationship.">Criar Sin Culpas ofrece contenido educativo e informativo sobre crianza, regulación emocional y bienestar familiar. El contenido no constituye asesoramiento médico, psicológico, terapéutico, legal ni profesional, y no sustituye la consulta con un profesional calificado. El uso del sitio no crea ninguna relación profesional, médica ni terapéutica.</p>
-    </section>
+      <div class="breadcrumb r1">
+        <a href="/index.html" data-i18n="bc_home" data-es="Inicio" data-en="Home">Inicio</a>
+        <span class="breadcrumb-sep">·</span>
+        <span data-i18n="bc_current" data-es="Privacidad" data-en="Privacy">Privacidad</span>
+      </div>
 
-    <section>
-      <h2><span class="n">03</span><span data-i18n="s3h" data-es="Uso permitido" data-en="Permitted use">Uso permitido</span></h2>
-      <p data-i18n="s3p" data-es="Puedes usar el sitio para fines personales y no comerciales. Te comprometes a no usarlo de forma ilegal, a no interferir con su funcionamiento ni a intentar acceder a áreas restringidas sin autorización." data-en="You may use the site for personal, non-commercial purposes. You agree not to use it unlawfully, not to interfere with its operation, and not to attempt to access restricted areas without authorization.">Puedes usar el sitio para fines personales y no comerciales. Te comprometes a no usarlo de forma ilegal, a no interferir con su funcionamiento ni a intentar acceder a áreas restringidas sin autorización.</p>
-    </section>
+      <h1 class="legal-title r2"
+          data-i18n="page_title"
+          data-es="Política de <em>Privacidad</em>"
+          data-en="Privacy <em>Policy</em>">
+        Política de <em>Privacidad</em>
+      </h1>
 
-    <section>
-      <h2><span class="n">04</span><span data-i18n="s4h" data-es="Propiedad intelectual" data-en="Intellectual property">Propiedad intelectual</span></h2>
-      <p data-i18n="s4p" data-es="Todo el contenido del sitio (textos, diseño, marca, logotipos y materiales) es propiedad de [[nombre legal de la empresa]] o se utiliza con licencia, y está protegido por las leyes de propiedad intelectual. No puedes reproducirlo, distribuirlo ni crear obras derivadas sin nuestra autorización previa por escrito." data-en="All site content (text, design, brand, logos, and materials) is owned by [[legal entity name]] or used under license, and is protected by intellectual property laws. You may not reproduce, distribute, or create derivative works from it without our prior written permission.">Todo el contenido del sitio (textos, diseño, marca, logotipos y materiales) es propiedad de <span class="ph">[[nombre legal de la empresa]]</span> o se utiliza con licencia, y está protegido por las leyes de propiedad intelectual. No puedes reproducirlo, distribuirlo ni crear obras derivadas sin nuestra autorización previa por escrito.</p>
-    </section>
+      <p class="legal-lead r3"
+         data-i18n="page_lead"
+         data-es="Creemos que la confianza también se construye siendo transparentes sobre cómo cuidamos tu información."
+         data-en="We believe that trust is also built by being transparent about how we care for your information.">
+        Creemos que la confianza también se construye siendo transparentes sobre cómo cuidamos tu información.
+      </p>
 
-    <section>
-      <h2><span class="n">05</span><span data-i18n="s5h" data-es="Cuentas y registro" data-en="Accounts and registration">Cuentas y registro</span></h2>
-      <p data-i18n="s5p" data-es="Si en el futuro se habilita el registro de cuentas, serás responsable de mantener la confidencialidad de tus credenciales y de toda la actividad realizada bajo tu cuenta." data-en="If account registration is enabled in the future, you will be responsible for keeping your credentials confidential and for all activity carried out under your account.">Si en el futuro se habilita el registro de cuentas, serás responsable de mantener la confidencialidad de tus credenciales y de toda la actividad realizada bajo tu cuenta.</p>
-    </section>
+      <div class="updated-pill r3">
+        <span class="updated-dot"></span>
+        <span data-i18n="page_updated" data-es="Última actualización: Mayo 2026" data-en="Last updated: May 2026">Última actualización: Mayo 2026</span>
+      </div>
 
-    <section>
-      <h2><span class="n">06</span><span data-i18n="s6h" data-es="Enlaces y servicios de terceros" data-en="Third-party links and services">Enlaces y servicios de terceros</span></h2>
-      <p data-i18n="s6p" data-es="El sitio puede incluir enlaces a sitios o servicios de terceros. No controlamos ni respondemos por su contenido, sus políticas ni sus prácticas." data-en="The site may include links to third-party sites or services. We do not control and are not responsible for their content, policies, or practices.">El sitio puede incluir enlaces a sitios o servicios de terceros. No controlamos ni respondemos por su contenido, sus políticas ni sus prácticas.</p>
-    </section>
+    </header>
 
-    <section>
-      <h2><span class="n">07</span><span data-i18n="s7h" data-es="Exención de garantías" data-en="Disclaimer of warranties">Exención de garantías</span></h2>
-      <p data-i18n="s7p" data-es="El sitio y su contenido se ofrecen tal cual y según disponibilidad, sin garantías de ningún tipo, expresas o implícitas. No garantizamos que el contenido sea exacto, completo o adecuado para tu situación particular." data-en="The site and its content are provided as is and as available, without warranties of any kind, express or implied. We do not guarantee that the content is accurate, complete, or suitable for your particular situation.">El sitio y su contenido se ofrecen tal cual y según disponibilidad, sin garantías de ningún tipo, expresas o implícitas. No garantizamos que el contenido sea exacto, completo o adecuado para tu situación particular.</p>
-    </section>
+    <hr class="section-divider">
 
-    <section>
-      <h2><span class="n">08</span><span data-i18n="s8h" data-es="Limitación de responsabilidad" data-en="Limitation of liability">Limitación de responsabilidad</span></h2>
-      <p data-i18n="s8p" data-es="En la máxima medida permitida por la ley, [[nombre legal de la empresa]] no será responsable por daños directos, indirectos, incidentales o consecuentes derivados del uso o de la imposibilidad de uso del sitio o de su contenido." data-en="To the maximum extent permitted by law, [[legal entity name]] shall not be liable for any direct, indirect, incidental, or consequential damages arising from the use of, or inability to use, the site or its content.">En la máxima medida permitida por la ley, <span class="ph">[[nombre legal de la empresa]]</span> no será responsable por daños directos, indirectos, incidentales o consecuentes derivados del uso o de la imposibilidad de uso del sitio o de su contenido.</p>
-    </section>
+    <!-- Legal sections -->
+    <div class="legal-content">
 
-    <section>
-      <h2><span class="n">09</span><span data-i18n="s9h" data-es="Cambios en los términos" data-en="Changes to these terms">Cambios en los términos</span></h2>
-      <p data-i18n="s9p" data-es="Podemos actualizar estos Términos en cualquier momento. La versión vigente será siempre la publicada en esta página, junto con su fecha de actualización." data-en="We may update these Terms at any time. The version in force will always be the one published on this page, together with its update date.">Podemos actualizar estos Términos en cualquier momento. La versión vigente será siempre la publicada en esta página, junto con su fecha de actualización.</p>
-    </section>
+      <div class="legal-section scroll-reveal">
+        <div class="section-head">
+          <div class="section-marker">
+            <span class="section-num">01</span>
+            <div class="section-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+          </div>
+          <h2 class="section-title"
+              data-i18n="sec1_h" data-es="Tu privacidad importa" data-en="Your privacy matters">Tu privacidad importa</h2>
+        </div>
+        <p data-i18n="sec1_p"
+           data-es="En Criar Sin Culpas, respetamos profundamente tu privacidad y tus datos. No vendemos información personal a terceros ni utilizamos herramientas invasivas de rastreo publicitario. Este documento explica exactamente qué información recopilamos y por qué."
+           data-en="At Criar Sin Culpas, we deeply respect your privacy and your data. We do not sell personal information to third parties or use invasive advertising tracking tools. This document explains exactly what information we collect and why.">
+          En Criar Sin Culpas, respetamos profundamente tu privacidad y tus datos. No vendemos información personal a terceros ni utilizamos herramientas invasivas de rastreo publicitario. Este documento explica exactamente qué información recopilamos y por qué.
+        </p>
+      </div>
 
-    <section>
-      <h2><span class="n">10</span><span data-i18n="s10h" data-es="Ley aplicable" data-en="Governing law">Ley aplicable</span></h2>
-      <p data-i18n="s10p" data-es="Estos Términos se rigen por las leyes de [[jurisdicción · ej. Estado de Washington, EE. UU.]], sin perjuicio de los derechos que te correspondan como consumidora en tu lugar de residencia." data-en="These Terms are governed by the laws of [[jurisdiction, e.g. State of Washington, USA]], without prejudice to any rights you may have as a consumer in your place of residence.">Estos Términos se rigen por las leyes de <span class="ph">[[jurisdicción · ej. Estado de Washington, EE. UU.]]</span>, sin perjuicio de los derechos que te correspondan como consumidora en tu lugar de residencia.</p>
-    </section>
+      <div class="legal-section scroll-reveal delay-1">
+        <div class="section-head">
+          <div class="section-marker">
+            <span class="section-num">02</span>
+            <div class="section-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
+              </svg>
+            </div>
+          </div>
+          <h2 class="section-title"
+              data-i18n="sec2_h" data-es="Análisis sin cookies (Plausible)" data-en="Cookie-free analytics (Plausible)">Análisis sin cookies (Plausible)</h2>
+        </div>
+        <p data-i18n="sec2_p"
+           data-es="Para entender qué guías son más útiles para las familias, utilizamos Plausible Analytics. Elegimos Plausible porque es un sistema respetuoso con la privacidad: no utiliza cookies y no recopila datos personales. Solo recibimos información agregada y anónima sobre el tráfico del sitio."
+           data-en="To understand which guides are most useful for families, we use Plausible Analytics. We chose Plausible because it is privacy-friendly: it does not use cookies and does not collect personal data. We only receive aggregated, anonymous information about site traffic.">
+          Para entender qué guías son más útiles para las familias, utilizamos Plausible Analytics. Elegimos Plausible porque es un sistema respetuoso con la privacidad: no utiliza cookies y no recopila datos personales. Solo recibimos información agregada y anónima sobre el tráfico del sitio.
+        </p>
+      </div>
 
-    <section>
-      <h2><span class="n">11</span><span data-i18n="s11h" data-es="Contacto" data-en="Contact">Contacto</span></h2>
-      <p data-i18n="s11p" data-es="Para cualquier consulta sobre estos Términos, escríbenos a" data-en="For any questions about these Terms, write to us at">Para cualquier consulta sobre estos Términos, escríbenos a</p>
-      <p><a class="inline" href="mailto:hello@criarsinculpas.com">hello@criarsinculpas.com</a></p>
-    </section>
+      <div class="legal-section scroll-reveal delay-2">
+        <div class="section-head">
+          <div class="section-marker">
+            <span class="section-num">03</span>
+            <div class="section-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+          </div>
+          <h2 class="section-title"
+              data-i18n="sec3_h" data-es="Lista de espera y correos" data-en="Waitlist and emails">Lista de espera y correos</h2>
+        </div>
+        <p data-i18n="sec3_p1"
+           data-es="Si decides unirte a nuestra lista de espera, te pediremos tu dirección de correo electrónico. Utilizamos esta información exclusivamente para enviarte actualizaciones, recursos y novedades relacionadas con Criar Sin Culpas."
+           data-en="If you decide to join our waitlist, we will ask for your email address. We use this information exclusively to send you updates, resources, and news related to Criar Sin Culpas.">
+          Si decides unirte a nuestra lista de espera, te pediremos tu dirección de correo electrónico. Utilizamos esta información exclusivamente para enviarte actualizaciones, recursos y novedades relacionadas con Criar Sin Culpas.
+        </p>
+        <p data-i18n="sec3_p2"
+           data-es="Puedes darte de baja en cualquier momento haciendo clic en el enlace al final de nuestros correos."
+           data-en="You can unsubscribe at any time by clicking the link at the bottom of our emails.">
+          Puedes darte de baja en cualquier momento haciendo clic en el enlace al final de nuestros correos.
+        </p>
+      </div>
+
+      <div class="legal-section scroll-reveal delay-3">
+        <div class="section-head">
+          <div class="section-marker">
+            <span class="section-num">04</span>
+            <div class="section-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </div>
+          </div>
+          <h2 class="section-title"
+              data-i18n="sec4_h" data-es="Privacidad infantil" data-en="Children's privacy">Privacidad infantil</h2>
+        </div>
+        <p data-i18n="sec4_p"
+           data-es="Este sitio está dirigido a padres, madres y cuidadores. No recopilamos intencionalmente información personal de menores de edad."
+           data-en="This site is intended for parents and caregivers. We do not intentionally collect personal information from minors.">
+          Este sitio está dirigido a padres, madres y cuidadores. No recopilamos intencionalmente información personal de menores de edad.
+        </p>
+      </div>
+
+      <div class="legal-section scroll-reveal delay-4">
+        <div class="section-head">
+          <div class="section-marker">
+            <span class="section-num">05</span>
+            <div class="section-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 1 8.3C18.4 15 15.1 20 11 20z"/>
+                <path d="M11 20c2.4-3.4 3.5-7.1 2.2-11.4"/>
+              </svg>
+            </div>
+          </div>
+          <h2 class="section-title"
+              data-i18n="sec5_h" data-es="Límites del apoyo" data-en="Support boundaries">Límites del apoyo</h2>
+        </div>
+        <p data-i18n="sec5_p1"
+           data-es="Criar Sin Culpas ofrece herramientas educativas y acompañamiento emocional general. Este espacio no reemplaza atención médica, psicológica o terapéutica profesional."
+           data-en="Criar Sin Culpas offers educational tools and general emotional support. This space does not replace professional medical, psychological, or therapeutic care.">
+          Criar Sin Culpas ofrece herramientas educativas y acompañamiento emocional general. Este espacio no reemplaza atención médica, psicológica o terapéutica profesional.
+        </p>
+        <p data-i18n="sec5_p2"
+           data-es="Si tú o tu familia están atravesando una situación de crisis severa, recomendamos buscar apoyo profesional inmediato."
+           data-en="If you or your family are going through a severe crisis, we recommend seeking immediate professional support.">
+          Si tú o tu familia están atravesando una situación de crisis severa, recomendamos buscar apoyo profesional inmediato.
+        </p>
+      </div>
+
+      <div class="legal-section scroll-reveal delay-5">
+        <div class="section-head">
+          <div class="section-marker">
+            <span class="section-num">06</span>
+            <div class="section-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <polyline points="17 11 19 13 23 9"/>
+              </svg>
+            </div>
+          </div>
+          <h2 class="section-title"
+              data-i18n="sec6_h" data-es="Tus derechos y contacto" data-en="Your rights and contact">Tus derechos y contacto</h2>
+        </div>
+        <p data-i18n="sec6_p"
+           data-es="Tienes derecho a acceder, rectificar o solicitar la eliminación de tu información personal. Escríbenos directamente a:"
+           data-en="You have the right to access, rectify, or request the deletion of your personal information. Write directly to us at:">
+          Tienes derecho a acceder, rectificar o solicitar la eliminación de tu información personal. Escríbenos directamente a:
+        </p>
+        <p style="padding-left: 56px;">
+          <a href="mailto:hola@criarsinculpas.com" class="email-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            hola@criarsinculpas.com
+          </a>
+        </p>
+      </div>
+
+    </div>
   </main>
 
-  <footer>
-    <p class="fnote" data-i18n="foot_copy" data-es="© 2026 Criar Sin Culpas. Todos los derechos reservados." data-en="© 2026 Criar Sin Culpas. All rights reserved.">© 2026 Criar Sin Culpas. Todos los derechos reservados.</p>
-    <p class="fnote italic" data-i18n="foot_med" data-es="Esto no reemplaza orientación médica o profesional." data-en="This does not replace medical or professional guidance.">Esto no reemplaza orientación médica o profesional.</p>
+  <!-- ─────── FOOTER ─────── -->
+  <footer role="contentinfo">
+    <a href="/index.html" aria-label="Criar Sin Culpas">
+      <img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas">
+    </a>
+    <span class="footer-copy">© 2026 Criar Sin Culpas · Todos los derechos reservados.</span>
+    <nav class="footer-links" aria-label="Legal">
+      <a href="/privacidad"
+         data-i18n="footer_priv" data-es="Privacidad" data-en="Privacy">Privacidad</a>
+      <a href="mailto:hola@criarsinculpas.com"
+         data-i18n="footer_contact" data-es="Contacto" data-en="Contact">Contacto</a>
+      <a href="https://instagram.com/criarsinculpas" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </nav>
+    <p class="footer-tagline"
+       data-i18n="footer_tagline"
+       data-es="Este espacio fue creado con cuidado, para familias reales."
+       data-en="This space was created with care, for real families.">
+      Este espacio fue creado con cuidado, para familias reales.
+    </p>
   </footer>
 
   <script>
-  (function(){
-    const KEY='lg_parent_lang';
-    let lang=localStorage.getItem(KEY)||'es';
-    function apply(l){
-      lang=l;localStorage.setItem(KEY,l);document.documentElement.lang=l;
-      document.querySelectorAll('[data-i18n]').forEach(el=>{const t=el.getAttribute('data-'+l);if(t)el.innerHTML=t;});
-      document.querySelectorAll('.lang-btn').forEach(b=>b.setAttribute('aria-pressed',b.getAttribute('data-lang')===l?'true':'false'));
+  (function () {
+    window.addEventListener('pageshow', (e) => { if (e.persisted) document.body.style.opacity = '1'; });
+
+    const STORAGE_KEY = 'lg_parent_lang';
+    let lang = localStorage.getItem(STORAGE_KEY) || 'es';
+
+    function applyLang(l) {
+      lang = l;
+      localStorage.setItem(STORAGE_KEY, l);
+      document.documentElement.lang = l;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const txt = el.getAttribute('data-' + l);
+        if (txt) el.innerHTML = txt;
+      });
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.setAttribute('aria-pressed', btn.getAttribute('data-lang') === l ? 'true' : 'false');
+      });
     }
-    document.addEventListener('click',e=>{const b=e.target.closest('.lang-btn');if(b)apply(b.getAttribute('data-lang'));});
-    apply(lang);
+
+    document.addEventListener('click', e => {
+      const btn = e.target.closest('.lang-btn');
+      if (btn) {
+        applyLang(btn.getAttribute('data-lang'));
+        plausible && plausible('language_changed', { props: { to_lang: lang, location: 'privacy' } });
+      }
+    });
+
+    applyLang(lang);
+
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    /* Mobile menu */
+    const ham = document.getElementById('ham');
+    const mobileNav = document.getElementById('mobileNav');
+    if (ham && mobileNav) {
+      ham.addEventListener('click', () => {
+        const isOpen = mobileNav.classList.toggle('open');
+        ham.classList.toggle('open', isOpen);
+        ham.setAttribute('aria-expanded', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+      mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileNav.classList.remove('open');
+          ham.classList.remove('open');
+          ham.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+
+    /* Scroll reveals */
+    const reveals = document.querySelectorAll('.scroll-reveal');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(en => {
+          if (en.isIntersecting) {
+            en.target.classList.add('visible');
+            io.unobserve(en.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      reveals.forEach(el => io.observe(el));
+    } else {
+      reveals.forEach(el => el.classList.add('visible'));
+    }
+
   }());
   </script>
 </body>
