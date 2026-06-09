@@ -214,7 +214,7 @@
           <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Audios descargables para escuchar en movimiento.</li> 
           <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> 8 Cuadernos de trabajo interactivos (PDF).</li> 
         </ul> 
-        <a href="#waitlist" class="btn btn-outline">Unirme a la lista de espera</a> 
+        <a href="#waitlist" class="btn btn-outline plan-select" data-plan="El Programa a tu ritmo (Pago Único)">Unirme a la lista de espera</a> 
       </div> 
       
       <div class="price-card featured"> 
@@ -227,7 +227,7 @@
           <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Sesión grupal en vivo de Q&A mensual con Nari.</li> 
           <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Biblioteca de recursos y escenarios resueltos.</li> 
         </ul> 
-        <a href="#waitlist" class="btn btn-solid">Unirme a la lista de espera</a> 
+        <a href="#waitlist" class="btn btn-solid plan-select" data-plan="Acompañamiento Activo (Suscripción)">Unirme a la lista de espera</a> 
       </div> 
     </div> 
   </section>
@@ -238,8 +238,14 @@
       <h3 style="font-family: var(--serif); font-size: 2.2rem; font-weight: 400; color: var(--navy); margin-bottom: 16px;">Las inscripciones abren pronto</h3> 
       <p style="color: var(--text-dim); margin-bottom: 32px; font-size: 1rem; line-height: 1.6;">Estamos afinando los últimos detalles de la plataforma. Déjanos tu correo y te avisaremos 24 horas antes que a nadie, con un beneficio especial de lanzamiento.</p> 
       
-      <form id="waitlist-form" style="display: flex; gap: 12px; width: 100%; max-width: 440px; margin: 0 auto; flex-wrap: wrap;"> 
-        <input type="email" placeholder="Tu correo electrónico" required style="flex: 1; min-width: 220px; padding: 16px 20px; border-radius: 12px; border: 1px solid rgba(31,46,70,.2); font-family: var(--sans); font-size: 0.95rem; outline: none; transition: border-color 0.3s;"> 
+      <p id="plan-indicator" style="font-size: 0.85rem; font-weight: 600; color: var(--coral-ink); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; display: none;"> 
+        Modalidad elegida: <span id="plan-name" style="color: var(--navy);">Ninguna</span> 
+      </p> 
+
+      <!-- Note: Replace YOUR_ENDPOINT_URL with a Formspree or Web3Forms endpoint to receive emails --> 
+      <form id="waitlist-form" action="YOUR_ENDPOINT_URL" method="POST" style="display: flex; gap: 12px; width: 100%; max-width: 440px; margin: 0 auto; flex-wrap: wrap;"> 
+        <input type="hidden" name="Modalidad_Elegida" id="hidden-plan" value="General (No especificó)"> 
+        <input type="email" name="Email" placeholder="Tu correo electrónico" required style="flex: 1; min-width: 220px; padding: 16px 20px; border-radius: 12px; border: 1px solid rgba(31,46,70,.2); font-family: var(--sans); font-size: 0.95rem; outline: none; transition: border-color 0.3s;"> 
         <button type="submit" class="btn btn-solid" style="width: auto; padding: 16px 32px; border-radius: 12px; box-shadow: 0 4px 16px rgba(244,168,138,.3);">Avísame</button> 
       </form> 
       <p id="waitlist-success" style="display: none; color: var(--coral-ink); font-family: var(--serif); font-size: 1.4rem; font-style: italic; margin-top: 16px;">¡Lista! Te avisaremos muy pronto. ♡</p> 
@@ -247,11 +253,47 @@
   </section> 
 
   <script> 
-    document.getElementById('waitlist-form')?.addEventListener('submit', function(e) { 
+    // Handle Plan Selection 
+    document.querySelectorAll('.plan-select').forEach(btn => { 
+      btn.addEventListener('click', function(e) { 
+        const plan = this.getAttribute('data-plan'); 
+        document.getElementById('hidden-plan').value = plan; 
+        document.getElementById('plan-name').innerText = plan; 
+        document.getElementById('plan-indicator').style.display = 'block'; 
+      }); 
+    }); 
+
+    // Handle Form Submission 
+    const form = document.getElementById('waitlist-form'); 
+    form.addEventListener('submit', async function(e) { 
       e.preventDefault(); 
-      this.style.display = 'none'; 
+      
+      const planElegido = document.getElementById('hidden-plan').value; 
+      
+      // Plausible Telemetry: Send the chosen plan to your analytics dashboard 
+      if (typeof window.plausible !== 'undefined') { 
+        window.plausible('waitlist_joined', {props: {location: 'inscripcion_sales', plan: planElegido}}); 
+      } 
+
+      // If an action URL is set, send the data in the background 
+      const actionUrl = form.getAttribute('action'); 
+      if (actionUrl && actionUrl !== 'YOUR_ENDPOINT_URL') { 
+        const formData = new FormData(form); 
+        try { 
+          await fetch(actionUrl, { 
+            method: 'POST', 
+            body: formData, 
+            headers: { 'Accept': 'application/json' } 
+          }); 
+        } catch (error) { 
+          console.error('Form submission failed', error); 
+        } 
+      } 
+
+      // Show Success State 
+      form.style.display = 'none'; 
+      document.getElementById('plan-indicator').style.display = 'none'; 
       document.getElementById('waitlist-success').style.display = 'block'; 
-      if (typeof window.plausible !== 'undefined') { window.plausible('waitlist_joined', {props: {location: 'inscripcion_sales'}}); } 
     }); 
   </script> 
   
