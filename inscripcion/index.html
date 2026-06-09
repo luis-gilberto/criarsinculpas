@@ -23,179 +23,141 @@
       --sans:   'DM Sans', system-ui, sans-serif;
       --ease: cubic-bezier(0.16, 1, 0.3, 1);
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--sans);
-      background: var(--void);
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
+    body { font-family: var(--sans); background: var(--void); color: var(--text); overflow-x: hidden; }
     a { text-decoration: none; color: inherit; }
-
-    /* Ambient Glows */
-    body::before {
-      content: ''; position: absolute; top: -10vh; right: -10vw;
-      width: 60vw; height: 60vh;
-      background: radial-gradient(ellipse at center, rgba(244,168,138,.08) 0%, transparent 68%);
-      pointer-events: none; z-index: 0;
-    }
-
+    
     .grain {
-      position: fixed; inset: 0; z-index: 200; pointer-events: none; opacity: .025;
+      position: fixed; inset: 0; z-index: 200; pointer-events: none; opacity: .035;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     .reveal { animation: fadeUp 0.8s var(--ease) both; }
     .d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.2s; } .d3 { animation-delay: 0.3s; }
-
-    /* Minimal Nav for Checkout */
-    .checkout-nav {
-      padding: 32px 56px; display: flex; align-items: center; justify-content: space-between;
-      position: relative; z-index: 10;
-    }
+    
+    .checkout-nav { padding: 32px 56px; display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 10; }
     .checkout-nav img { height: 32px; filter: brightness(.65) saturate(1.4) hue-rotate(-5deg); }
     .back-link { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-ghost); transition: color 0.2s; }
     .back-link:hover { color: var(--text); }
-
-    /* HERO */
-    .hero {
-      max-width: 800px; margin: 0 auto; padding: 48px 24px 80px; text-align: center; position: relative; z-index: 10;
+    
+    .hero { 
+      padding: 64px 24px 100px; text-align: center; position: relative; z-index: 10;
+      background-image: url('https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1780787875/ChatGPT_Image_Jun_6_2026_04_11_26_PM_7_kwjtlh.png');
+      background-size: cover; background-position: center;
     }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(250,247,241,0.85) 0%, rgba(250,247,241,0.95) 60%, var(--void) 100%);
+      z-index: -1;
+    }
+    
+    .hero-inner { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
+    
     .eyebrow {
       display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em;
       text-transform: uppercase; color: var(--coral-ink); margin-bottom: 24px;
-      padding: 6px 14px; border: 1px solid rgba(217,107,71,.2); border-radius: 999px;
-      background: rgba(244,168,138,.1);
+      padding: 6px 16px; border: 1px solid rgba(217,107,71,.2); border-radius: 999px; background: rgba(250,247,241,.8);
+      box-shadow: 0 4px 12px rgba(217,107,71,.05);
     }
-    .hero h1 {
-      font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 4.2rem);
-      font-weight: 300; line-height: 1.05; color: var(--navy); margin-bottom: 24px;
-    }
+    .hero h1 { font-family: var(--serif); font-size: clamp(3rem, 6vw, 4.8rem); font-weight: 300; line-height: 1.05; color: var(--navy); margin-bottom: 24px; letter-spacing: -0.01em; }
     .hero h1 em { font-style: italic; color: var(--teal); font-weight: 400; }
-    .hero p {
-      font-size: 1.1rem; line-height: 1.6; color: var(--text-dim); max-width: 56ch; margin: 0 auto;
-    }
-
-    /* CURRICULUM */
-    .curriculum {
-      max-width: 1000px; margin: 0 auto; padding: 0 24px 80px; position: relative; z-index: 10;
-    }
-    .section-title {
-      text-align: center; font-family: var(--serif); font-size: 2.2rem;
-      font-weight: 400; color: var(--navy); margin-bottom: 48px;
-    }
-    .module-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;
-    }
-    .module-card {
-      background: var(--void-lift); border: 1px solid rgba(31,46,70,.06);
-      border-radius: 16px; padding: 28px; box-shadow: 0 4px 20px rgba(31,46,70,.03);
-    }
-    .mod-num { font-family: var(--serif); font-size: 1.4rem; color: var(--teal); opacity: 0.8; line-height: 1; margin-bottom: 12px; display: block; }
-    .mod-title { font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
-    .mod-desc { font-size: 0.85rem; color: var(--text-dim); line-height: 1.6; }
-
-    /* PRICING */
-    .pricing {
-      max-width: 900px; margin: 0 auto; padding: 40px 24px 100px; position: relative; z-index: 10;
-    }
-    .pricing-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
-    }
+    .hero p { font-size: 1.15rem; line-height: 1.6; color: var(--text-dim); max-width: 50ch; margin: 0 auto; }
     
-    .price-card {
-      background: var(--void-lift); border: 1px solid rgba(31,46,70,.08);
-      border-radius: 20px; padding: 40px 32px; display: flex; flex-direction: column;
+    .curriculum { max-width: 1000px; margin: 0 auto; padding: 0 24px 100px; position: relative; z-index: 10; }
+    .section-title { text-align: center; font-family: var(--serif); font-size: 2.6rem; font-weight: 300; color: var(--navy); margin-bottom: 64px; }
+    
+    .module-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px; }
+    .module-card { 
+      background: var(--void-lift); border: 1px solid rgba(31,46,70,.06); 
+      border-radius: 20px; padding: 32px 40px; 
+      box-shadow: 0 12px 32px rgba(31,46,70,.03);
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: center;
+      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+    }
+    .module-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(31,46,70,.08); }
+    .mod-num { 
+      position: absolute; right: 24px; top: -10px;
+      font-family: var(--serif); font-size: 6rem; font-weight: 300; 
+      color: rgba(133,153,173,.06); line-height: 1; pointer-events: none;
+    }
+    .mod-title { font-family: var(--serif); font-size: 1.4rem; font-weight: 500; color: var(--navy); margin-bottom: 12px; position: relative; z-index: 1; }
+    .mod-desc { font-size: 0.9rem; color: var(--text-dim); line-height: 1.6; position: relative; z-index: 1; }
+    
+    .pricing { max-width: 960px; margin: 0 auto; padding: 40px 24px 120px; position: relative; z-index: 10; }
+    .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+    
+    .price-card { 
+      background: var(--void-lift); border: 1px solid rgba(31,46,70,.08); 
+      border-radius: 24px; padding: 48px 40px; display: flex; flex-direction: column; 
       box-shadow: 0 12px 40px rgba(31,46,70,.05); position: relative; overflow: hidden;
     }
-    .price-card.featured {
-      background: var(--navy); color: var(--void);
-      box-shadow: 0 24px 60px rgba(31,46,70,.15);
-      border: none;
+    .price-card.featured { 
+      background: var(--navy); color: #fff; 
+      box-shadow: 0 32px 80px rgba(31,46,70,.25); border: none; 
+      padding: 56px 40px; /* Slightly taller to emphasize */
     }
-    .price-card.featured::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--coral);
-    }
-
-    .tier-name { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+    .price-card.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: var(--coral); }
+    
+    .tier-name { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 16px; }
     .price-card.featured .tier-name { color: var(--coral); }
     .price-card:not(.featured) .tier-name { color: var(--teal); }
-
-    .price-amount { font-family: var(--serif); font-size: 3.5rem; font-weight: 300; line-height: 1; margin-bottom: 8px; }
-    .price-sub { font-size: 0.85rem; color: var(--text-ghost); margin-bottom: 32px; }
-    .price-card.featured .price-sub { color: rgba(250,247,241,.6); }
-
-    .feature-list { list-style: none; margin-bottom: 40px; flex: 1; }
-    .feature-list li {
-      font-size: 0.9rem; line-height: 1.5; margin-bottom: 16px; display: flex; gap: 12px; align-items: flex-start;
-    }
-    .feature-list li::before {
-      content: '✓'; color: var(--teal); font-weight: 700;
-    }
-    .price-card.featured .feature-list li::before { color: var(--coral); }
-    .price-card.featured .feature-list li { color: rgba(250,247,241,.9); }
-
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      width: 100%; padding: 16px; border-radius: var(--pill); font-size: 0.9rem; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.3s var(--ease); cursor: pointer;
-    }
-    .btn-outline {
-      background: transparent; color: var(--navy); border: 1px solid var(--navy);
-    }
-    .btn-outline:hover { background: rgba(31,46,70,.05); transform: translateY(-2px); }
     
-    .btn-solid {
-      background: var(--coral); color: var(--navy); border: none;
+    .price-amount { font-family: var(--serif); font-size: 4.2rem; font-weight: 300; line-height: 1; margin-bottom: 8px; letter-spacing: -0.02em; }
+    .price-sub { font-size: 0.9rem; color: var(--text-ghost); margin-bottom: 40px; font-style: italic; font-family: var(--serif); }
+    .price-card.featured .price-sub { color: rgba(250,247,241,.6); }
+    
+    .feature-list { list-style: none; margin-bottom: 48px; flex: 1; }
+    .feature-list li { font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px; display: flex; gap: 16px; align-items: flex-start; }
+    .feature-list li svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; }
+    
+    .btn { 
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px; 
+      width: 100%; padding: 18px; border-radius: var(--pill); font-size: 0.85rem; font-weight: 700; 
+      text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.4s var(--ease); cursor: pointer; 
     }
-    .btn-solid:hover { background: #ECA083; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(244,168,138,.3); }
-
-    /* SECURE FOOTER */
-    .secure-footer {
-      text-align: center; padding: 32px 24px; border-top: 1px solid rgba(31,46,70,.06);
-      font-size: 0.75rem; color: var(--text-ghost);
-    }
-
-    @media (max-width: 800px) {
-      .checkout-nav { padding: 24px; }
+    .btn-outline { background: transparent; color: var(--navy); border: 1px solid rgba(31,46,70,.2); }
+    .btn-outline:hover { border-color: var(--navy); background: rgba(31,46,70,.03); transform: translateY(-2px); }
+    .btn-solid { background: var(--coral); color: var(--navy); border: none; box-shadow: 0 8px 24px rgba(244,168,138,.25); }
+    .btn-solid:hover { background: #ECA083; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(244,168,138,.4); }
+    
+    .secure-footer { text-align: center; padding: 40px 24px; border-top: 1px solid rgba(31,46,70,.06); font-size: 0.8rem; color: var(--text-ghost); }
+    
+    @media (max-width: 800px) { 
+      .checkout-nav { padding: 24px; } 
       .pricing-grid { grid-template-columns: 1fr; }
+      .price-card.featured { padding: 48px 32px; }
+      .module-grid { grid-template-columns: 1fr; }
     }
   </style>
+
+  <!-- VIP CURTAIN -->
   <meta name="robots" content="noindex, nofollow">
   <script>
     if (sessionStorage.getItem('csc_vip_access') !== 'granted') {
       const pass = prompt('Área Privada. Ingrese la clave de acceso para ver la demo:');
-      if (pass === 'NARI2026') {
-        sessionStorage.setItem('csc_vip_access', 'granted');
-      } else {
-        document.documentElement.innerHTML = '<body style="background:#FAF6F2; color:#1F2E46; display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif;"><h2>Acceso Denegado</h2></body>';
-        throw new Error('Acceso denegado');
-      }
+      if (pass === 'NARI2026') { sessionStorage.setItem('csc_vip_access', 'granted'); } 
+      else { document.documentElement.innerHTML = '<body style="background:#FAF6F2; color:#1F2E46; display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif;"><h2>Acceso Denegado</h2></body>'; throw new Error('Acceso denegado'); }
     }
   </script>
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
-
   <nav class="checkout-nav reveal">
     <a href="/metodo"><img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas"></a>
     <a href="/metodo" class="back-link">← Volver al Método</a>
   </nav>
-
+  
   <header class="hero">
-    <span class="eyebrow reveal d1">Inscripción Abierta</span>
-    <h1 class="reveal d2">Entiendes la teoría.<br><em>Ahora vamos a aplicarla.</em></h1>
-    <p class="reveal d3">Los protocolos te ayudan en la crisis. El Método Nari de 8 Módulos cambia el sistema desde la raíz para que las crisis dejen de dominar tus días.</p>
+    <div class="hero-inner">
+      <span class="eyebrow reveal d1">Inscripción Abierta</span>
+      <h1 class="reveal d2">Entiendes la teoría.<br><em>Ahora vamos a aplicarla.</em></h1>
+      <p class="reveal d3">Los protocolos te ayudan en la crisis. El Método Nari de 8 Módulos cambia el sistema desde la raíz para que las crisis dejen de dominar tus días.</p>
+    </div>
   </header>
-
+  
   <section class="curriculum reveal d3">
     <h2 class="section-title">El Programa de 8 Módulos</h2>
     <div class="module-grid">
@@ -241,50 +203,65 @@
       </div>
     </div>
   </section>
-
+  
   <section class="pricing reveal d3">
     <h2 class="section-title">Elige tu modalidad</h2>
     <div class="pricing-grid">
-      
-      <!-- Option 1: One Time -->
       <div class="price-card">
         <span class="tier-name">El Programa a tu ritmo</span>
         <div class="price-amount">$149</div>
         <p class="price-sub">Pago único. Acceso de por vida.</p>
-        
         <ul class="feature-list">
-          <li>Acceso inmediato a los 8 Módulos en video.</li>
-          <li>Audios descargables para escuchar en movimiento.</li>
-          <li>8 Cuadernos de trabajo (PDF) para aplicación práctica.</li>
-          <li>Actualizaciones futuras del contenido sin costo.</li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Acceso inmediato a los 8 Módulos en video.
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Audios descargables para escuchar en movimiento.
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            8 Cuadernos de trabajo (PDF) para aplicación práctica.
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Actualizaciones futuras del contenido sin costo.
+          </li>
         </ul>
-
-        <a href="/checkout/lifetime" class="btn btn-outline">Empezar ahora</a>
+        <a href="#demo" class="btn btn-outline">Empezar ahora</a>
       </div>
-
-      <!-- Option 2: Subscription (Featured) -->
+      
       <div class="price-card featured">
         <span class="tier-name">Acompañamiento Activo</span>
-        <div class="price-amount">$29<span style="font-size:1.2rem;">/mes</span></div>
+        <div class="price-amount">$29<span style="font-size:1.2rem; opacity:0.7;">/mes</span></div>
         <p class="price-sub">Cancela en cualquier momento.</p>
-        
         <ul class="feature-list">
-          <li><strong>Todo el programa de 8 módulos.</strong></li>
-          <li>Acceso a la Comunidad Privada de padres CSC.</li>
-          <li>Sesión grupal en vivo de Q&A mensual con Nari.</li>
-          <li>Biblioteca de recursos y escenarios resueltos.</li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <strong>Todo el programa de 8 módulos.</strong>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Acceso a la Comunidad Privada de padres CSC.
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Sesión grupal en vivo de Q&A mensual con Nari.
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Biblioteca de recursos y escenarios resueltos.
+          </li>
         </ul>
-
-        <a href="/checkout/monthly" class="btn btn-solid">Unirme a la comunidad</a>
+        <a href="#demo" class="btn btn-solid">Unirme a la comunidad</a>
       </div>
-
     </div>
   </section>
-
+  
   <footer class="secure-footer reveal d3">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right:4px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right:6px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
     Pago seguro y encriptado. 100% de garantía de devolución en 7 días.
   </footer>
-
 </body>
 </html>
