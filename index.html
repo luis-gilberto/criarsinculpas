@@ -101,8 +101,10 @@
     .ham.open .bars{display:none;} .ham.open .x{display:block;}
     .mobile-nav{display:none;position:fixed;inset:0;z-index:150;background:rgba(250,247,241,.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);flex-direction:column;align-items:center;justify-content:center;gap:36px;opacity:0;pointer-events:none;transition:opacity .4s var(--ease-cinema),transform .4s var(--ease-cinema);transform:translateY(-8px);}
     .mobile-nav.open{opacity:1;pointer-events:auto;transform:translateY(0);}
+    .nav-center a.dim{opacity:.5;pointer-events:none;}
     .mobile-nav a{font-family:var(--serif);font-size:1.9rem;font-weight:400;color:var(--text-dim);letter-spacing:.04em;transition:color .25s;}
-    .mobile-nav a:hover{color:var(--text);}
+    .mobile-nav a:hover,.mobile-nav a.active{color:var(--text);}
+    .mobile-nav a.dim{opacity:.5;pointer-events:none;}
 
     /* ═══════════════ HERO ═══════════════ */
     .hero{position:relative;height:100vh;min-height:600px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;}
@@ -296,11 +298,12 @@
   <nav class="nav" id="mainNav" role="navigation" aria-label="Navegación principal">
     <a href="/" class="nav-logo" aria-label="Criar Sin Culpas"><img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas"></a>
     <div class="nav-center">
-      <a href="#top" class="active" data-i18n="nav_inicio" data-es="Inicio" data-en="Home">Inicio</a>
-      <a href="#protocolos" data-i18n="nav_protocolos" data-es="Protocolos" data-en="Protocols">Protocolos</a>
-      <a href="#sobre-nari" data-i18n="nav_nari" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
-      <span class="soon"><span data-i18n="nav_comunidad" data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></span>
-      <span class="soon"><span data-i18n="nav_recursos" data-es="Recursos" data-en="Resources">Recursos</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></span>
+      <a href="/" class="active" data-i18n="nav_inicio" data-es="Inicio" data-en="Home">Inicio</a>
+      <a href="/apoyo/" data-i18n="nav_protocolos" data-es="Protocolos" data-en="Protocols">Protocolos</a>
+      <a href="/metodo/" data-i18n="nav_metodo" data-es="El Método" data-en="The Method">El Método</a>
+      <a href="/#sobre-nari" data-i18n="nav_nari" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
+      <a href="#" class="dim" data-i18n="nav_aprende" data-es="Aprende (Pronto)" data-en="Learn (Soon)">Aprende (Pronto)</a>
+      <a href="#" class="dim" data-i18n="nav_comunidad" data-es="Comunidad (Pronto)" data-en="Community (Soon)">Comunidad (Pronto)</a>
     </div>
     <div class="nav-right">
       <div class="lang-pill" role="group" aria-label="Idioma">
@@ -315,11 +318,12 @@
   </nav>
 
   <div class="mobile-nav" id="mobileNav" role="dialog" aria-label="Menú" aria-modal="true">
-    <a href="#top" data-i18n="nav_inicio_m" data-es="Inicio" data-en="Home">Inicio</a>
-    <a href="#protocolos" data-i18n="nav_protocolos_m" data-es="Protocolos" data-en="Protocols">Protocolos</a>
-    <a href="#sobre-nari" data-i18n="nav_nari_m" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
-    <span class="soon"><span data-i18n="nav_comunidad_m" data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></span>
-    <span class="soon"><span data-i18n="nav_recursos_m" data-es="Recursos" data-en="Resources">Recursos</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></span>
+    <a href="/" class="active" data-i18n="nav_inicio_m" data-es="Inicio" data-en="Home">Inicio</a>
+    <a href="/apoyo/" data-i18n="nav_protocolos_m" data-es="Protocolos" data-en="Protocols">Protocolos</a>
+    <a href="/metodo/" data-i18n="nav_metodo_m" data-es="El Método" data-en="The Method">El Método</a>
+    <a href="/#sobre-nari" data-i18n="nav_nari_m" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
+    <a href="#" class="dim" data-i18n="nav_aprende_m" data-es="Aprende (Pronto)" data-en="Learn (Soon)">Aprende (Pronto)</a>
+    <a href="#" class="dim" data-i18n="nav_comunidad_m" data-es="Comunidad (Pronto)" data-en="Community (Soon)">Comunidad (Pronto)</a>
     <div class="lang-pill" role="group" aria-label="Idioma">
       <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
       <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>

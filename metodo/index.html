@@ -210,7 +210,8 @@
       font-family: var(--serif); font-size: 2rem; font-weight: 400;
       color: var(--text-dim); text-decoration: none; letter-spacing: .04em; transition: color .25s;
     }
-    .mobile-nav a:hover { color: var(--text); }
+    .mobile-nav a:hover, .mobile-nav a.active { color: var(--text); }
+    .mobile-nav a.dim { opacity: .45; pointer-events: none; }
 
     /* ══════════════════════════════════════════
        PAGE SHELL
@@ -737,7 +738,7 @@
     /* ══════════════════════════════════════════
        MOBILE
     ══════════════════════════════════════════ */
-    @media (max-width: 900px) {
+    @media (max-width: 1200px) {
       .nav { padding: max(16px, env(safe-area-inset-top)) 22px 14px; }
       .nav-center { display: none; }
       .ham { display: flex; }
@@ -786,9 +787,12 @@
       </a>
     </div>
     <div class="nav-center">
-      <a href="/apoyo/" data-i18n="nav_guias" data-es="Guías" data-en="Guides">Guías</a>
+      <a href="/" data-i18n="nav_inicio" data-es="Inicio" data-en="Home">Inicio</a>
+      <a href="/apoyo/" data-i18n="nav_protocolos" data-es="Protocolos" data-en="Protocols">Protocolos</a>
       <a href="/metodo/" class="active" data-i18n="nav_metodo" data-es="El Método" data-en="The Method">El Método</a>
+      <a href="/#sobre-nari" data-i18n="nav_nari" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
       <a href="#" class="dim" data-i18n="nav_aprende" data-es="Aprende (Pronto)" data-en="Learn (Soon)">Aprende (Pronto)</a>
+      <a href="#" class="dim" data-i18n="nav_comunidad" data-es="Comunidad (Pronto)" data-en="Community (Soon)">Comunidad (Pronto)</a>
     </div>
     <div class="nav-right">
       <div class="lang-pill" role="group" aria-label="Idioma">
@@ -807,8 +811,12 @@
   </nav>
 
   <div class="mobile-nav" id="mobileNav" role="dialog" aria-label="Menú" aria-modal="true">
-    <a href="/apoyo/" data-i18n="nav_guias_m" data-es="Guías" data-en="Guides">Guías</a>
-    <a href="/metodo/" data-i18n="nav_metodo_m" data-es="El Método" data-en="The Method">El Método</a>
+    <a href="/" data-i18n="nav_inicio_m" data-es="Inicio" data-en="Home">Inicio</a>
+    <a href="/apoyo/" data-i18n="nav_protocolos_m" data-es="Protocolos" data-en="Protocols">Protocolos</a>
+    <a href="/metodo/" class="active" data-i18n="nav_metodo_m" data-es="El Método" data-en="The Method">El Método</a>
+    <a href="/#sobre-nari" data-i18n="nav_nari_m" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
+    <a href="#" class="dim" data-i18n="nav_aprende_m" data-es="Aprende (Pronto)" data-en="Learn (Soon)">Aprende (Pronto)</a>
+    <a href="#" class="dim" data-i18n="nav_comunidad_m" data-es="Comunidad (Pronto)" data-en="Community (Soon)">Comunidad (Pronto)</a>
     <div class="lang-pill" style="margin-top:8px;">
       <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
       <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
@@ -1366,54 +1374,6 @@
             <h3 data-i18n="diff_c3_h" data-es="Reordenar la escena" data-en="Reorder the scene">Reordenar la escena</h3>
             <p data-i18n="diff_c3_p" data-es="Primero regula al adulto, luego abre al niño a la conexión y después instala un sistema que deja de premiar el caos." data-en="First regulates the adult, then opens the child to connection, then installs a system that stops rewarding chaos.">Primero regula al adulto, luego abre al niño a la conexión y después instala un sistema que deja de premiar el caos.</p>
           </div>
-        </div>
-      </section>
-
-      <!-- ── KEYNOTE ── -->
-      <section class="section keynote-section scroll-reveal">
-        <div class="eyebrow" data-i18n="key_eyebrow" data-es="Versión keynote" data-en="Keynote version">Versión keynote</div>
-        <h2 class="keynote-title" data-i18n="key_title"
-            data-es="Antes de corregir: las tres decisiones que transforman la crianza"
-            data-en="Before you correct: the three decisions that transform parenting">
-          Antes de corregir: las tres decisiones que transforman la crianza
-        </h2>
-        <p class="keynote-desc" data-i18n="key_desc"
-           data-es="En formato keynote, el Método Nari se convierte en un recorrido de tres decisiones que cualquier audiencia puede seguir sin perder profundidad. No simplifica el sistema: lo vuelve memorable, enseñable y accionable."
-           data-en="In keynote format, the Nari Method becomes a journey through three decisions that any audience can follow without losing depth. It doesn't simplify the system: it makes it memorable, teachable, and actionable.">
-          En formato keynote, el Método Nari se convierte en un recorrido de tres decisiones que cualquier audiencia puede seguir sin perder profundidad. No simplifica el sistema: lo vuelve memorable, enseñable y accionable.
-        </p>
-
-        <div class="acts">
-          <div class="act">
-            <span class="act-num">01</span>
-            <div>
-              <h3 data-i18n="act1_t" data-es="Estabilizar al adulto" data-en="Stabilize the adult">Estabilizar al adulto</h3>
-              <p data-i18n="act1_p" data-es="Cruzar la puerta de la aceptación, eliminar la culpa paralizante y entender la ecuación del dolor." data-en="Cross the door of acceptance, eliminate paralyzing guilt, and understand the pain equation.">Cruzar la puerta de la aceptación, eliminar la culpa paralizante y entender la ecuación del dolor.</p>
-            </div>
-          </div>
-          <div class="act">
-            <span class="act-num">02</span>
-            <div>
-              <h3 data-i18n="act2_t" data-es="Conectar con el niño" data-en="Connect with the child">Conectar con el niño</h3>
-              <p data-i18n="act2_p" data-es="Entrar al mundo del niño mediante Play OS, desactivando el sistema nervioso defensivo." data-en="Enter the child's world through Play OS, deactivating the defensive nervous system.">Entrar al mundo del niño mediante Play OS, desactivando el sistema nervioso defensivo.</p>
-            </div>
-          </div>
-          <div class="act">
-            <span class="act-num">03</span>
-            <div>
-              <h3 data-i18n="act3_t" data-es="Rediseñar la conducta" data-en="Redesign the behavior">Rediseñar la conducta</h3>
-              <p data-i18n="act3_p" data-es="Implementar la Crianza Neutral mediante módulos repetibles sin perder la calma." data-en="Implement Neutral Parenting through repeatable modules without losing calm.">Implementar la Crianza Neutral mediante módulos repetibles sin perder la calma.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="audiences">
-          <h4 data-i18n="aud_t" data-es="Audiencias ideales" data-en="Ideal audiences">Audiencias ideales</h4>
-          <p data-i18n="aud_p"
-             data-es="Funciona especialmente bien en <strong>colegios, comunidades de padres, foros de bienestar familiar, redes de apoyo en neurodiversidad y congresos de desarrollo infantil</strong>, porque ofrece una narrativa clara, una secuencia enseñable y un lenguaje que combina contención emocional con estructura práctica."
-             data-en="Works especially well in <strong>schools, parent communities, family wellness forums, neurodiversity support networks, and child development conferences</strong>, because it offers a clear narrative, a teachable sequence, and a language that combines emotional containment with practical structure.">
-            Funciona especialmente bien en <strong>colegios, comunidades de padres, foros de bienestar familiar, redes de apoyo en neurodiversidad y congresos de desarrollo infantil</strong>, porque ofrece una narrativa clara, una secuencia enseñable y un lenguaje que combina contención emocional con estructura práctica.
-          </p>
         </div>
       </section>
 
