@@ -133,15 +133,7 @@
     }
   </style>
 
-  <!-- VIP CURTAIN -->
   <meta name="robots" content="noindex, nofollow">
-  <script>
-    if (sessionStorage.getItem('csc_vip_access') !== 'granted') {
-      const pass = prompt('Área Privada. Ingrese la clave de acceso para ver la demo:');
-      if (pass === 'NARI2026') { sessionStorage.setItem('csc_vip_access', 'granted'); } 
-      else { document.documentElement.innerHTML = '<body style="background:#FAF6F2; color:#1F2E46; display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif;"><h2>Acceso Denegado</h2></body>'; throw new Error('Acceso denegado'); }
-    }
-  </script>
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
@@ -210,63 +202,58 @@
   </section>
   
   <section class="pricing reveal d3">
-    <h2 class="section-title">Elige tu modalidad</h2>
-    <div class="pricing-grid">
-      <div class="price-card">
-        <span class="tier-name">El Programa a tu ritmo</span>
-        <div class="price-amount">$149</div>
-        <p class="price-sub">Pago único. Acceso de por vida.</p>
-        <ul class="feature-list">
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <strong>100% Bilingüe:</strong> Audio, video y textos en Español e Inglés.
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Acceso inmediato a los 8 Módulos.
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Audios descargables para escuchar en movimiento.
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            8 Cuadernos de trabajo (PDF) para aplicación práctica.
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Actualizaciones futuras del contenido sin costo.
-          </li>
-        </ul>
-        <a href="#demo" class="btn btn-outline">Empezar ahora</a>
-      </div>
+    <h2 class="section-title">Modalidades de Aprendizaje</h2> 
+    <div class="pricing-grid"> 
+      <div class="price-card"> 
+        <span class="tier-name">El Programa a tu ritmo</span> 
+        <div class="price-amount" style="font-size: 2.4rem; margin-top: 10px;">Pase de Acceso</div> 
+        <p class="price-sub">Pago único. Acceso de por vida.</p> 
+        <ul class="feature-list"> 
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> <strong>100% Bilingüe:</strong> Audio, video y textos en Español e Inglés.</li> 
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Acceso inmediato a los 8 Módulos.</li> 
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Audios descargables para escuchar en movimiento.</li> 
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> 8 Cuadernos de trabajo interactivos (PDF).</li> 
+        </ul> 
+        <a href="#waitlist" class="btn btn-outline">Unirme a la lista de espera</a> 
+      </div> 
       
-      <div class="price-card featured">
-        <span class="tier-name">Acompañamiento Activo</span>
-        <div class="price-amount">$29<span style="font-size:1.2rem; opacity:0.7;">/mes</span></div>
-        <p class="price-sub">Cancela en cualquier momento.</p>
-        <ul class="feature-list">
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <strong>Todo el programa de 8 módulos.</strong>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Acceso a la Comunidad Privada de padres CSC.
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Sesión grupal en vivo de Q&A mensual con Nari.
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Biblioteca de recursos y escenarios resueltos.
-          </li>
-        </ul>
-        <a href="#demo" class="btn btn-solid">Unirme a la comunidad</a>
-      </div>
-    </div>
+      <div class="price-card featured"> 
+        <span class="tier-name">Acompañamiento Activo</span> 
+        <div class="price-amount" style="font-size: 2.4rem; margin-top: 10px;">Membresía CSC</div> 
+        <p class="price-sub">Cancela en cualquier momento.</p> 
+        <ul class="feature-list"> 
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> <strong>Todo el programa de 8 módulos.</strong></li> 
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Acceso a la Comunidad Privada de padres CSC.</li> 
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Sesión grupal en vivo de Q&A mensual con Nari.</li> 
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Biblioteca de recursos y escenarios resueltos.</li> 
+        </ul> 
+        <a href="#waitlist" class="btn btn-solid">Unirme a la lista de espera</a> 
+      </div> 
+    </div> 
   </section>
+  
+  <!-- WAITLIST CAPTURE --> 
+  <section id="waitlist" class="pricing reveal d3" style="padding-top: 0; margin-top: -40px;"> 
+    <div class="price-card" style="text-align: center; align-items: center; max-width: 640px; margin: 0 auto; padding: 48px 32px;"> 
+      <h3 style="font-family: var(--serif); font-size: 2.2rem; font-weight: 400; color: var(--navy); margin-bottom: 16px;">Las inscripciones abren pronto</h3> 
+      <p style="color: var(--text-dim); margin-bottom: 32px; font-size: 1rem; line-height: 1.6;">Estamos afinando los últimos detalles de la plataforma. Déjanos tu correo y te avisaremos 24 horas antes que a nadie, con un beneficio especial de lanzamiento.</p> 
+      
+      <form id="waitlist-form" style="display: flex; gap: 12px; width: 100%; max-width: 440px; margin: 0 auto; flex-wrap: wrap;"> 
+        <input type="email" placeholder="Tu correo electrónico" required style="flex: 1; min-width: 220px; padding: 16px 20px; border-radius: 12px; border: 1px solid rgba(31,46,70,.2); font-family: var(--sans); font-size: 0.95rem; outline: none; transition: border-color 0.3s;"> 
+        <button type="submit" class="btn btn-solid" style="width: auto; padding: 16px 32px; border-radius: 12px; box-shadow: 0 4px 16px rgba(244,168,138,.3);">Avísame</button> 
+      </form> 
+      <p id="waitlist-success" style="display: none; color: var(--coral-ink); font-family: var(--serif); font-size: 1.4rem; font-style: italic; margin-top: 16px;">¡Lista! Te avisaremos muy pronto. ♡</p> 
+    </div> 
+  </section> 
+
+  <script> 
+    document.getElementById('waitlist-form')?.addEventListener('submit', function(e) { 
+      e.preventDefault(); 
+      this.style.display = 'none'; 
+      document.getElementById('waitlist-success').style.display = 'block'; 
+      if (typeof window.plausible !== 'undefined') { window.plausible('waitlist_joined', {props: {location: 'inscripcion_sales'}}); } 
+    }); 
+  </script> 
   
   <footer class="secure-footer reveal d3">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right:6px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
