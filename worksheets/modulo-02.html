@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Modulo 02 - Cuaderno de Trabajo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --navy: #1F2E46; --coral: #F4A88A; --teal: #8599AD; --bg: #FAF6F2; }
+    body { font-family: 'DM Sans', sans-serif; background: #fff; color: var(--navy); margin: 0; display: flex; justify-content: center; }
+    .page { width: 210mm; min-height: 297mm; padding: 20mm; background: var(--bg); box-sizing: border-box; position: relative; }
+    .header { border-bottom: 2px solid var(--coral); padding-bottom: 15px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: flex-end; }
+    .logo { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; letter-spacing: 2px; }
+    .module-tag { font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--teal); letter-spacing: 2px; }
+    h1 { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 400; margin: 0 0 10px; line-height: 1.1; }
+    h1 em { color: var(--coral); font-style: italic; }
+    p.intro { font-size: 14px; line-height: 1.6; color: #4A5568; margin-bottom: 40px; max-width: 85%; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
+    .path-card { background: #fff; border: 1px solid rgba(31,46,70,0.1); border-radius: 12px; padding: 20px; }
+    .path-card.selected { border: 2px solid var(--navy); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .path-title { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
+    .path-desc { font-size: 13px; color: #666; line-height: 1.5; }
+    .checkbox { width: 20px; height: 20px; border: 2px solid var(--teal); border-radius: 4px; display: inline-block; float: right; }
+    .input-area { width: 100%; height: 120px; border: 1px dashed var(--teal); border-radius: 8px; background: rgba(255,255,255,0.5); margin-top: 15px; }
+    @media print { body { background: #fff; } .page { margin: 0; padding: 15mm; width: 100%; box-shadow: none; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="header">
+      <div class="logo">CRIAR SIN CULPAS</div>
+      <div class="module-tag">Modulo 02</div>
+    </div>
+    <h1>Los Cuatro <em>Caminos</em></h1>
+    <p class="intro">Bajo presion, todos tenemos un camino automatico. No puedes cambiar un patron que no puedes ver. Marca la casilla que mejor describa tu reaccion cuando estas desbordado.</p>
+    
+    <div class="grid">
+      <div class="path-card">
+        <div class="checkbox"></div>
+        <div class="path-title">1. La Lucha</div>
+        <div class="path-desc">Levantas la voz, exiges control, das ultimatums. "Te dije que lo hicieras AHORA!"</div>
+      </div>
+      <div class="path-card">
+        <div class="checkbox"></div>
+        <div class="path-title">2. La Huida</div>
+        <div class="path-desc">Te encierras en el bano, ignoras la situacion o te sumerges en el celular.</div>
+      </div>
+      <div class="path-card">
+        <div class="checkbox"></div>
+        <div class="path-title">3. El Congelamiento</div>
+        <div class="path-desc">Te paralizas. Quieres intervenir pero tu cerebro se queda en blanco por la sobrecarga.</div>
+      </div>
+      <div class="path-card">
+        <div class="checkbox"></div>
+        <div class="path-title">4. La Complacencia</div>
+        <div class="path-desc">Cedes el limite solo para que deje de llorar. "Esta bien, toma la tablet, pero ya no llores."</div>
+      </div>
+    </div>
+
+    <div class="path-card" style="grid-column: span 2;">
+      <div class="path-title">Mi Plan de Pausa</div>
+      <p style="font-size:13px; color:#666; margin:5px 0 0;">Una vez que identificas tu camino, cual sera tu accion de "Pausa" para interrumpir el ciclo la proxima vez?</p>
+      <div class="input-area"></div>
+    </div>
+  </div>
+</body>
+</html>
