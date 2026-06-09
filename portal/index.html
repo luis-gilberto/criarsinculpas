@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <title>Módulo 01: La Ecuación del Dolor · Portal Premium</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void:        #FAF6F2;
+      --void-mid:    #FCE7DD;
+      --void-lift:   #FFFFFF;
+      --text:        #1F2E46;
+      --text-dim:    rgba(31,46,70,.7);
+      --text-ghost:  rgba(31,46,70,.4);
+      --coral:       #F4A88A;
+      --coral-ink:   #D96B47;
+      --teal:        #8599AD;
+      --navy:        #1F2E46;
+      --serif:  'Cormorant Garamond', Georgia, serif;
+      --sans:   'DM Sans', system-ui, sans-serif;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--sans);
+      background: var(--void);
+      color: var(--text);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* --- SIDEBAR (Curriculum Navigation) --- */
+    .sidebar {
+      width: 320px;
+      background: var(--void-lift);
+      border-right: 1px solid rgba(31,46,70,.06);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      z-index: 10;
+    }
+
+    .brand-header {
+      padding: 24px 32px;
+      border-bottom: 1px solid rgba(31,46,70,.06);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-header img { height: 28px; filter: brightness(.65) saturate(1.4) hue-rotate(-5deg); }
+    .portal-tag {
+      font-size: 0.55rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--coral-ink);
+      padding: 4px 8px; border-radius: 4px; background: rgba(244,168,138,.15);
+    }
+
+    .module-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mod-group { margin-bottom: 16px; }
+    .mod-chapter {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-ghost);
+      padding: 0 16px; margin-bottom: 8px; display: block;
+    }
+
+    .mod-item {
+      display: flex; flex-direction: column;
+      padding: 12px 16px; border-radius: 12px;
+      text-decoration: none; color: var(--text-dim);
+      transition: all 0.2s var(--ease);
+      border: 1px solid transparent;
+    }
+    .mod-item:hover { background: rgba(31,46,70,.03); color: var(--text); }
+    
+    .mod-item.active {
+      background: var(--navy);
+      color: var(--void);
+      border-color: var(--navy);
+      box-shadow: 0 8px 24px rgba(31,46,70,.15);
+    }
+
+    .mod-num { font-family: var(--serif); font-size: 1.1rem; opacity: 0.6; line-height: 1; margin-bottom: 4px; }
+    .mod-title { font-size: 0.85rem; font-weight: 500; line-height: 1.3; }
+    
+    .mod-item.active .mod-num { color: var(--coral); opacity: 1; }
+
+    /* User Footer */
+    .user-footer {
+      padding: 20px 32px;
+      border-top: 1px solid rgba(31,46,70,.06);
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.8rem; font-weight: 500; color: var(--text-dim);
+    }
+    .user-footer a { color: var(--text-ghost); text-decoration: none; transition: color 0.2s; }
+    .user-footer a:hover { color: var(--coral-ink); }
+
+    /* --- MAIN CONTENT (Classroom) --- */
+    .classroom {
+      flex: 1;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      position: relative;
+    }
+
+    /* Ambient Glow inside classroom */
+    .classroom::before {
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 100%; height: 400px;
+      background: radial-gradient(ellipse at top, rgba(133,153,173,.08) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+
+    .lesson-container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 56px 40px 100px;
+      position: relative; z-index: 1;
+    }
+
+    .lesson-eyebrow {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 16px;
+    }
+    .lesson-title {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 4vw, 3.2rem);
+      font-weight: 400; line-height: 1.1;
+      color: var(--text); margin-bottom: 32px;
+    }
+    .lesson-title em { font-style: italic; color: var(--coral-ink); }
+
+    /* Video Player Shell */
+    .video-shell {
+      width: 100%; aspect-ratio: 16/9;
+      background: var(--navy);
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 24px 48px rgba(31,46,70,.15);
+      margin-bottom: 48px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .play-btn {
+      width: 64px; height: 64px; background: var(--coral); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: transform 0.2s var(--ease);
+      box-shadow: 0 8px 24px rgba(244,168,138,.3);
+    }
+    .play-btn:hover { transform: scale(1.05); }
+    .play-btn svg { width: 24px; height: 24px; fill: var(--navy); margin-left: 4px; }
+
+    /* Content Area */
+    .lesson-body {
+      font-size: 1.05rem; line-height: 1.7; color: var(--text-dim);
+      margin-bottom: 48px;
+    }
+    .lesson-body p { margin-bottom: 1.5em; }
+
+    /* Resources Section */
+    .resources-box {
+      background: var(--void-lift);
+      border: 1px solid rgba(31,46,70,.08);
+      border-radius: 16px;
+      padding: 32px;
+    }
+    .resources-title {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text); margin-bottom: 24px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .resource-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px; background: var(--void);
+      border: 1px solid rgba(31,46,70,.06); border-radius: 12px;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .resource-item:hover {
+      border-color: rgba(133,153,173,.4);
+      background: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(31,46,70,.04);
+    }
+    .res-info { display: flex; align-items: center; gap: 12px; }
+    .res-icon { color: var(--coral-ink); }
+    .res-name { font-weight: 500; font-size: 0.95rem; color: var(--text); }
+    .res-meta { font-size: 0.75rem; color: var(--text-ghost); }
+    .res-download {
+      font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.05em; color: var(--teal);
+    }
+
+    /* Next Lesson Bar */
+    .next-lesson {
+      margin-top: 56px; padding-top: 32px;
+      border-top: 1px solid rgba(31,46,70,.08);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .next-lbl { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-ghost); margin-bottom: 4px; display: block; }
+    .next-title { font-family: var(--serif); font-size: 1.4rem; color: var(--text); }
+    .btn-next {
+      padding: 14px 28px; background: var(--navy); color: #fff; text-decoration: none;
+      border-radius: var(--pill); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-next:hover { background: #2D3E5A; transform: translateY(-2px); }
+
+  </style>
+  <meta name="robots" content="noindex, nofollow">
+  <script>
+    if (sessionStorage.getItem('csc_vip_access') !== 'granted') {
+      const pass = prompt('Área Privada. Ingrese la clave de acceso para ver la demo:');
+      if (pass === 'NARI2026') {
+        sessionStorage.setItem('csc_vip_access', 'granted');
+      } else {
+        document.documentElement.innerHTML = '<body style="background:#FAF6F2; color:#1F2E46; display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif;"><h2>Acceso Denegado</h2></body>';
+        throw new Error('Acceso denegado');
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <!-- SIDEBAR (Navigation) -->
+  <aside class="sidebar">
+    <div class="brand-header">
+      <img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas">
+      <span class="portal-tag">Premium</span>
+    </div>
+    
+    <nav class="module-list">
+      <div class="mod-group">
+        <span class="mod-chapter">Capítulo 01: La Aceptación</span>
+        <a href="#" class="mod-item active">
+          <span class="mod-num">01</span>
+          <span class="mod-title">La Ecuación del Dolor</span>
+        </a>
+        <a href="#" class="mod-item">
+          <span class="mod-num">02</span>
+          <span class="mod-title">Los Cuatro Caminos</span>
+        </a>
+      </div>
+
+      <div class="mod-group">
+        <span class="mod-chapter">Capítulo 02: Play OS</span>
+        <a href="#" class="mod-item">
+          <span class="mod-num">03</span>
+          <span class="mod-title">El desajuste de idioma</span>
+        </a>
+        <a href="#" class="mod-item">
+          <span class="mod-num">04</span>
+          <span class="mod-title">Los 4 mecanismos del juego</span>
+        </a>
+      </div>
+
+      <div class="mod-group">
+        <span class="mod-chapter">Capítulo 03: Crianza Neutral</span>
+        <a href="#" class="mod-item">
+          <span class="mod-num">05</span>
+          <span class="mod-title">El ciclo de la reactividad</span>
+        </a>
+        <a href="#" class="mod-item">
+          <span class="mod-num">06</span>
+          <span class="mod-title">Diseñando el sistema</span>
+        </a>
+        <a href="#" class="mod-item">
+          <span class="mod-num">07</span>
+          <span class="mod-title">Reparación sin culpa</span>
+        </a>
+        <a href="#" class="mod-item">
+          <span class="mod-num">08</span>
+          <span class="mod-title">Consistencia a largo plazo</span>
+        </a>
+      </div>
+    </nav>
+
+    <div class="user-footer">
+      <span>Hola, Familia</span>
+      <a href="/">Cerrar sesión</a>
+    </div>
+  </aside>
+
+  <!-- MAIN CLASSROOM AREA -->
+  <main class="classroom">
+    <div class="lesson-container">
+      
+      <div class="lesson-eyebrow">
+        <span>Módulo 01</span>
+        <span>•</span>
+        <span>Capítulo 1</span>
+      </div>
+      
+      <h1 class="lesson-title">La Ecuación <em>del Dolor</em></h1>
+
+      <!-- Video Placeholder -->
+      <div class="video-shell">
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+
+      <!-- Lesson Body -->
+      <div class="lesson-body">
+        <p>No todo el dolor pesa igual. Hay un dolor que pertenece a la realidad, y otro que aparece cuando peleamos con ella. El mayor obstáculo para una crianza efectiva no es el comportamiento del niño, es el momento en que el adulto deja de ver la situación con claridad y empieza a pelear con ella por dentro.</p>
+        <p>En este primer módulo, aprenderemos a identificar el instante exacto en el que pasamos de lidiar con un problema real a sufrir por nuestras propias expectativas no cumplidas. Al soltar la resistencia, recuperamos la energía necesaria para guiar.</p>
+      </div>
+
+      <!-- Resources -->
+      <div class="resources-box">
+        <h3 class="resources-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+          Materiales del Módulo
+        </h3>
+        
+        <a href="#" class="resource-item">
+          <div class="res-info">
+            <svg class="res-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+            <div>
+              <div class="res-name">Cuaderno de Trabajo: Auditoría de Reactividad</div>
+              <div class="res-meta">PDF Editable · 1.2 MB</div>
+            </div>
+          </div>
+          <span class="res-download">Descargar ↓</span>
+        </a>
+      </div>
+
+      <!-- Next Lesson Navigation -->
+      <div class="next-lesson">
+        <div>
+          <span class="next-lbl">Siguiente Módulo</span>
+          <span class="next-title">Los Cuatro Caminos</span>
+        </div>
+        <a href="#" class="btn-next">Continuar →</a>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>
