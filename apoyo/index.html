@@ -127,6 +127,10 @@
       70%  { transform: scale(1);   box-shadow: 0 0 0 10px rgba(133,153,173,0); }
       100% { transform: scale(.95); box-shadow: 0 0 0 0 rgba(133,153,173,0); }
     }
+    @keyframes breathGlow {
+      0%, 100% { opacity: .45; transform: scale(1); }
+      50%       { opacity: .85; transform: scale(1.06); }
+    }
 
     .r1 { animation: fadeUp .9s var(--ease-silk) .05s both; }
     .r2 { animation: fadeUp .9s var(--ease-silk) .16s both; }
@@ -219,6 +223,9 @@
     .page-header {
       max-width: 1100px; margin: 0 auto; width: 100%;
       padding: 52px 56px 48px;
+      min-height: 45vh;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; text-align: center;
     }
 
     .eyebrow {
@@ -373,6 +380,13 @@
     }
 
     /* Description */
+    .card-snippet {
+      margin-bottom: 20px; padding: 12px 16px;
+      background: rgba(244, 168, 138, 0.1); border-radius: 12px;
+      font-family: var(--serif); font-style: italic; font-size: 1rem; color: var(--coral-ink);
+      line-height: 1.4; border-left: 2px solid var(--coral);
+    }
+
     .card-desc {
       font-size: .82rem; color: var(--text-dim);
       line-height: 1.65; flex: 1; margin-bottom: 24px;
@@ -469,6 +483,35 @@
     }
 
     /* ══════════════════════════════════════════
+       SANCTUARY HERO
+    ══════════════════════════════════════════ */
+    .sanctuary-hero {
+      min-height: 60vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      background: var(--void);
+      padding: 80px 24px 64px;
+      position: relative; z-index: 2;
+    }
+    .sanctuary-hero em {
+      font-style: italic; color: var(--coral-ink);
+    }
+
+    .section-inner {
+      max-width: 860px; margin: 0 auto; width: 100%;
+    }
+
+    .eyebrow-center {
+      display: flex; justify-content: center; align-items: center;
+      font-size: .6rem; font-weight: 700; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--text-ghost);
+      margin-bottom: 24px; opacity: .85;
+    }
+
+    .scroll-reveal.delay-1 { transition-delay: .12s; }
+    .scroll-reveal.delay-2 { transition-delay: .22s; }
+
+    /* ══════════════════════════════════════════
        SCROLL REVEALS
     ══════════════════════════════════════════ */
     .scroll-reveal {
@@ -480,6 +523,65 @@
     .scroll-reveal.d2 { transition-delay: .14s; }
     .scroll-reveal.d3 { transition-delay: .22s; }
     .scroll-reveal.d4 { transition-delay: .30s; }
+
+    /* ══════════════════════════════════════════
+       STRATEGY BRIDGE
+    ══════════════════════════════════════════ */
+    #puente-metodo {
+      background: var(--navy); color: var(--void);
+      padding: 100px 56px;
+      position: relative; overflow: hidden;
+    }
+    #puente-metodo::before {
+      content: '';
+      position: absolute; top: -40%; right: -10%;
+      width: 480px; height: 480px;
+      background: radial-gradient(circle, rgba(244,168,138,.12) 0%, transparent 68%);
+      pointer-events: none;
+    }
+    #puente-metodo .bridge-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    #puente-metodo .bridge-eyebrow {
+      font-size: .6rem; font-weight: 700; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--coral);
+      margin-bottom: 18px; display: block;
+    }
+    #puente-metodo h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.9rem, 3vw, 2.6rem);
+      font-weight: 300; line-height: 1.18;
+      color: var(--void); margin-bottom: 18px;
+    }
+    #puente-metodo h2 em {
+      font-style: italic; color: var(--coral); font-weight: 400;
+    }
+    #puente-metodo p {
+      font-size: 1rem; line-height: 1.7;
+      color: rgba(250,246,242,.75); margin-bottom: 36px; max-width: 46ch;
+    }
+    #puente-metodo .bridge-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: .7rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--void);
+      padding: 13px 28px; border-radius: var(--pill);
+      border: 1px solid rgba(250,246,242,.35);
+      transition: all .35s var(--ease-silk);
+    }
+    #puente-metodo .bridge-cta:hover {
+      background: rgba(250,246,242,.08);
+      border-color: rgba(250,246,242,.6); gap: 16px;
+    }
+    #puente-metodo .bridge-visual {
+      display: flex; justify-content: center; align-items: center;
+    }
+    @media (max-width: 1200px) {
+      #puente-metodo { padding: 72px 24px; }
+      #puente-metodo .bridge-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+      #puente-metodo p { max-width: none; }
+      #puente-metodo .bridge-visual { display: none; }
+    }
 
     /* ══════════════════════════════════════════
        FOOTER
@@ -594,25 +696,18 @@
   <!-- ─────── PAGE ─────── -->
   <main class="page">
 
-    <!-- Header -->
+    <!-- Validation Hero -->
     <header class="page-header">
-      <div class="eyebrow r1"
-           data-i18n="page_eyebrow"
-           data-es="Guías de Apoyo"
-           data-en="Support Protocols">Guías de Apoyo</div>
-
-      <h1 class="page-title r2"
-          data-i18n="page_title"
-          data-es="Para el momento en que ya <em>no puedes más.</em>"
-          data-en="For the moment when you <em>can't take any more.</em>">
-        Para el momento en que ya <em>no puedes más.</em>
+      <div class="eyebrow r1" data-i18n="apoyo_eyebrow" data-es="Te escuchamos" data-en="We hear you">Te escuchamos</div>
+      <h1 class="page-title r2" data-i18n="apoyo_h1"
+          data-es="Sabemos que ahora mismo <br>todo se siente <em>intenso.</em>"
+          data-en="We know that right now <br>everything feels <em>intense.</em>">
+        Sabemos que ahora mismo <br>todo se siente <em>intenso.</em>
       </h1>
-
-      <p class="page-sub r3"
-         data-i18n="page_sub"
-         data-es="Elige lo que está pasando ahora mismo. Sin leer mucho. Solo entra."
-         data-en="Choose what's happening right now. No reading required. Just enter.">
-        Elige lo que está pasando ahora mismo. Sin leer mucho. Solo entra.
+      <p class="page-sub r3" style="margin: 20px auto 0;" data-i18n="apoyo_sub"
+         data-es="Respira. Aquí están las palabras que necesitas para recuperar la calma y reconectar con lo que importa."
+         data-en="Breathe. Here are the words you need to regain calm and reconnect with what matters.">
+        Respira. Aquí están las palabras que necesitas para recuperar la calma y reconectar con lo que importa.
       </p>
     </header>
 
@@ -643,6 +738,7 @@
              data-i18n="g1_topic"
              data-es="Tiempo de Pantalla"
              data-en="Screen Time">Tiempo de Pantalla</p>
+          <p class="card-snippet" data-i18n="g1_snippet" data-es="Prueba decir: 'Te escucho, es difícil apagarla. Yo te ayudo'." data-en="Try saying: 'I hear you, it's hard to turn it off. I'll help you'.">Prueba decir: "Te escucho, es difícil apagarla. Yo te ayudo".</p>
           <p class="card-desc"
              data-i18n="g1_desc"
              data-es="Estrategias claras para manejar el tiempo digital sin guerras ni culpa. Frases concretas para usar ahora mismo."
@@ -676,6 +772,7 @@
              data-i18n="g2_topic"
              data-es="Escalada Emocional"
              data-en="Emotional Escalation">Escalada Emocional</p>
+          <p class="card-snippet" data-i18n="g2_snippet" data-es="Prueba decir: 'Aquí estoy. Estás a salvo. Vamos a respirar juntos'." data-en="Try saying: 'I'm here. You're safe. Let's breathe together'.">Prueba decir: "Aquí estoy. Estás a salvo. Vamos a respirar juntos".</p>
           <p class="card-desc"
              data-i18n="g2_desc"
              data-es="Cómo bajar la intensidad cuando todo se está desbordando, para ti y para ellos. Guías de contención paso a paso."
@@ -708,6 +805,7 @@
              data-i18n="g3_topic"
              data-es="Resistencia al Sueño"
              data-en="Bedtime Resistance">Resistencia al Sueño</p>
+          <p class="card-snippet" data-i18n="g3_snippet" data-es="Prueba decir: 'Tu cuerpo está listo para descansar. Yo me quedo cerca'." data-en="Try saying: 'Your body is ready to rest. I'll stay close'.">Prueba decir: "Tu cuerpo está listo para descansar. Yo me quedo cerca".</p>
           <p class="card-desc"
              data-i18n="g3_desc"
              data-es="Rituales y frases que transforman las noches difíciles en momentos de conexión. Sin batallar, sin amenazar."
@@ -740,6 +838,7 @@
              data-i18n="g4_topic"
              data-es="Conflicto entre Hermanos"
              data-en="Sibling Conflict">Conflicto entre Hermanos</p>
+          <p class="card-snippet" data-i18n="g4_snippet" data-es="Prueba decir: 'Veo que los dos están frustrados. No voy a dejar que se lastimen'." data-en="Try saying: 'I see you're both frustrated. I won't let you hurt each other'.">Prueba decir: "Veo que los dos están frustrados. No voy a dejar que se lastimen".</p>
           <p class="card-desc"
              data-i18n="g4_desc"
              data-es="De árbitro agotado a facilitador sereno. Herramientas para mediar con calma sin elegir bandos."
@@ -787,6 +886,42 @@
     </div>
 
   </main>
+
+  <!-- ─────── STRATEGY BRIDGE ─────── -->
+  <section id="puente-metodo" aria-labelledby="bridge-heading">
+    <div class="bridge-inner">
+      <div class="bridge-content scroll-reveal">
+        <span class="bridge-eyebrow" data-i18n="bridge_eyebrow_apoyo" data-es="El Método Nari" data-en="The Nari Method">El Método Nari</span>
+        <h2 id="bridge-heading">
+          <span data-i18n="bridge_title_apoyo"
+                data-es="Cuando pase la tormenta..."
+                data-en="When the storm passes...">Cuando pase la tormenta...</span>
+        </h2>
+        <p data-i18n="bridge_sub_apoyo"
+           data-es="Las guías calman el momento. El Método Nari transforma la raíz de estos desafíos para siempre."
+           data-en="The guides calm the moment. The Nari Method transforms the root of these challenges forever.">
+          Las guías calman el momento. El Método Nari transforma la raíz de estos desafíos para siempre.
+        </p>
+        <a href="/metodo/" class="bridge-cta js-telemetry"
+           data-event-name="portal_entered"
+           data-mode="contencion"
+           data-protocol="apoyo_hub_bridge"
+           data-i18n="bridge_cta_apoyo"
+           data-es="Conocer el método →"
+           data-en="Explore the method →">Conocer el método →</a>
+      </div>
+      <div class="bridge-visual scroll-reveal delay-2" aria-hidden="true">
+        <svg width="320" height="180" viewBox="0 0 320 180" style="overflow:visible;">
+          <path d="M16 164 C 80 20, 240 20, 304 164"
+                stroke="rgba(244,168,138,0.25)" stroke-width="2" fill="none" />
+          <circle cx="160" cy="46" r="7" fill="var(--coral)"
+                  style="animation: breathGlow 7s ease-in-out infinite;" />
+          <circle cx="160" cy="46" r="18" fill="none"
+                  stroke="rgba(244,168,138,0.15)" stroke-width="1" />
+        </svg>
+      </div>
+    </div>
+  </section>
 
   <!-- ─────── FOOTER ─────── -->
   <footer role="contentinfo">
@@ -882,6 +1017,33 @@
         if (typeof plausible !== 'undefined')
           plausible('card_opened', { props: { guide: card.getAttribute('data-id'), language: lang } });
       });
+    });
+
+    /* Plausible: Sanctuary Load — fires once on page enter */
+    if (typeof plausible !== 'undefined') plausible('Apoyo: Sanctuary Load', { props: { language: lang } });
+
+    /* Telemetry + page fade for .js-telemetry links */
+    document.addEventListener('click', (e) => {
+      const el = e.target.closest('.js-telemetry');
+      if (!el) return;
+      const eventName = el.getAttribute('data-event-name');
+      if (eventName && window.plausible) {
+        const props = { language: lang };
+        const mode = el.getAttribute('data-mode');
+        const protocol = el.getAttribute('data-protocol');
+        if (mode) props.mode = mode;
+        if (protocol) props.protocol = protocol;
+        window.plausible(eventName, { props });
+      }
+      if (el.tagName === 'A') {
+        const href = el.getAttribute('href');
+        if (href && href.charAt(0) !== '#') {
+          e.preventDefault();
+          document.body.style.transition = 'opacity .5s ease';
+          document.body.style.opacity = '0';
+          setTimeout(() => { window.location.href = href; }, 520);
+        }
+      }
     });
 
     const waitlistForm = document.getElementById('waitlist-form');
