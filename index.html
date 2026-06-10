@@ -9,13 +9,6 @@
   <meta property="og:url" content="https://criarsinculpas.com">
   <meta property="og:site_name" content="Criar Sin Culpas">
   <meta property="og:type" content="website">
-  <meta property="og:description" content="Un espacio de apoyo para bajar la intensidad, recuperar claridad y acompañar los momentos difíciles.">
-  <meta property="og:image" content="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1780818555/ChatGPT_Image_Jun_7_2026_12_48_33_AM_1_ytg3g4.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Criar Sin Culpas">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1780818555/ChatGPT_Image_Jun_7_2026_12_48_33_AM_1_ytg3g4.png">
   <link rel="canonical" href="https://criarsinculpas.com">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,9 +38,8 @@
       --coral:#F4A88A; --coral-dim:rgba(244,168,138,.20); --coral-ink:#D96B47;
       --teal:#8599AD; --teal-dim:rgba(133,153,173,.18);
       --gold:#1F2E46; --gold-dim:rgba(31,46,70,.12);
-      --serif:'Cormorant Garamond',Georgia,serif;
+      --serif:'Cormorant Garamond','Iowan Old Style',Georgia,serif;
       --sans:'DM Sans',system-ui,sans-serif;
-      --transition-soft:all .8s cubic-bezier(.22,1,.36,1);
       --ease-silk:cubic-bezier(.16,1,.3,1);
       --ease-cinema:cubic-bezier(.2,.8,.2,1);
       --pill:999px;
@@ -66,8 +58,6 @@
     /* ═══════════════ ANIMATIONS ═══════════════ */
     @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
     @keyframes pulse-ring{0%{transform:scale(.95);box-shadow:0 0 0 0 rgba(133,153,173,.4);}70%{transform:scale(1);box-shadow:0 0 0 12px rgba(133,153,173,0);}100%{transform:scale(.95);box-shadow:0 0 0 0 rgba(133,153,173,0);}}
-    @keyframes breath-light{0%{transform:scale(1);opacity:.4;}100%{transform:scale(1.15);opacity:.7;}}
-    @keyframes hero-reveal{to{opacity:1;transform:translateY(0);}}
     .r1{animation:fadeUp .9s var(--ease-silk) .05s both;} .r2{animation:fadeUp .9s var(--ease-silk) .18s both;}
     .r3{animation:fadeUp .9s var(--ease-silk) .32s both;} .r4{animation:fadeUp .9s var(--ease-silk) .46s both;}
     .r5{animation:fadeUp .9s var(--ease-silk) .60s both;}
@@ -104,20 +94,46 @@
     .ham.open .bars{display:none;} .ham.open .x{display:block;}
     .mobile-nav{display:none;position:fixed;inset:0;z-index:150;background:rgba(250,247,241,.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);flex-direction:column;align-items:center;justify-content:center;gap:36px;opacity:0;pointer-events:none;transition:opacity .4s var(--ease-cinema),transform .4s var(--ease-cinema);transform:translateY(-8px);}
     .mobile-nav.open{opacity:1;pointer-events:auto;transform:translateY(0);}
-    .nav-center a.dim{opacity:.5;pointer-events:none;}
     .mobile-nav a{font-family:var(--serif);font-size:1.9rem;font-weight:400;color:var(--text-dim);letter-spacing:.04em;transition:color .25s;}
-    .mobile-nav a:hover,.mobile-nav a.active{color:var(--text);}
-    .mobile-nav a.dim{opacity:.5;pointer-events:none;}
+    .mobile-nav a:hover{color:var(--text);}
 
     /* ═══════════════ HERO ═══════════════ */
-    .hero{position:relative;min-height:90vh;display:flex;align-items:center;padding:0 8%;overflow:hidden;background:var(--void);}
-    .hero-atmosphere{position:absolute;top:-20%;right:-10%;width:80%;height:140%;background:radial-gradient(circle at center,rgba(244,168,138,.15) 0%,rgba(250,246,242,0) 70%);filter:blur(80px);z-index:1;animation:breath-light 12s ease-in-out infinite alternate;pointer-events:none;}
-    .hero-content{position:relative;z-index:2;max-width:650px;opacity:0;transform:translateY(30px);animation:hero-reveal 1.2s var(--transition-soft) forwards;}
-    .hero-content h1{font-family:var(--serif);font-size:clamp(2.5rem,5vw,4rem);font-weight:400;line-height:1.1;margin-bottom:1.5rem;color:var(--text);}
-    .hero .subhead{font-size:clamp(1.1rem,2vw,1.35rem);line-height:1.6;color:var(--teal);margin-bottom:2.5rem;}
-    .hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
-    .hero .cta-main{display:inline-block;padding:1rem 2.5rem;background-color:var(--text);color:var(--void);text-decoration:none;font-family:var(--sans);font-weight:500;border-radius:2px;transition:var(--transition-soft);}
-    .hero .cta-main:hover{background-color:var(--coral-ink);transform:translateY(-2px);}
+    .hero{position:relative;height:100vh;min-height:600px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;}
+    .hero-photo{position:absolute;inset:0;z-index:0;background-image:url('https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1780818555/ChatGPT_Image_Jun_7_2026_12_48_33_AM_1_ytg3g4.png');background-size:cover;background-position:75% center;filter:brightness(.97) saturate(1.18) contrast(1.07) sepia(.04);transform:scale(1.04);transition:transform 16s var(--ease-cinema),filter 1.2s ease;}
+    .hero-photo.loaded{transform:scale(1);filter:brightness(.97) saturate(1.18) contrast(1.07) sepia(.04);}
+    .hero-overlay-dir{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to right,rgba(250,247,241,.9) 0%,rgba(250,247,241,.82) 20%,rgba(250,247,241,.18) 50%,transparent 90%);}
+    .hero-overlay-vert{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(to top,var(--void) 0%,rgba(250,247,241,.75) 28%,rgba(250,247,241,.12) 58%,rgba(250,247,241,0) 80%);}
+    .hero-overlay-blush{position:absolute;inset:0;z-index:3;pointer-events:none;background:radial-gradient(ellipse 55% 42% at 0% 102%,rgba(244,168,138,.1) 0%,transparent 62%);}
+    .hero-bar-top{position:absolute;top:0;left:0;right:0;z-index:4;height:clamp(56px,8vh,100px);pointer-events:none;background:linear-gradient(to bottom,rgba(250,247,241,.55) 0%,transparent 100%);}
+    .hero-body{position:relative;z-index:10;max-width:1300px;width:100%;margin:0 auto;padding:0 56px 64px;}
+    .status-badge{display:inline-flex;align-items:center;gap:9px;padding:6px 18px;border-radius:var(--pill);border:1px solid rgba(133,153,173,.3);background:rgba(133,153,173,.06);margin-bottom:26px;}
+    .status-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse-ring 2.4s cubic-bezier(.455,.03,.515,.955) infinite;flex-shrink:0;}
+    .status-badge span{font-size:.62rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);}
+    .hero-headline{font-family:var(--serif);font-size:clamp(3rem,5.5vw,5.8rem);font-weight:300;line-height:1.04;letter-spacing:-.01em;color:var(--text);max-width:15ch;text-shadow:none;}
+    .hero-headline em{font-style:italic;font-weight:400;color:var(--coral-ink);text-shadow:none;}
+    .squiggle{display:block;margin:22px 0;opacity:.5;}
+    .hero-sub{font-size:clamp(.92rem,1.2vw,1.05rem);font-weight:400;color:rgba(31,46,70,.74);line-height:1.74;max-width:46ch;letter-spacing:.01em;}
+
+    /* ═══════════════ DIVERGENCE ═══════════════ */
+    .divergence{position:relative;z-index:10;margin-top:40px;display:flex;gap:16px;flex-wrap:wrap;align-items:stretch;}
+    .entry{display:flex;flex-direction:column;padding:24px 28px;border-radius:18px;cursor:pointer;position:relative;overflow:hidden;transition:all .4s var(--ease-silk);min-width:220px;flex:1 1 280px;max-width:360px;}
+    .entry-emergencia{border:1px solid rgba(244,168,138,.32);background:rgba(244,168,138,.085);}
+    .entry-emergencia:hover{border-color:rgba(244,168,138,.6);background:rgba(244,168,138,.13);transform:translateY(-2px);box-shadow:0 20px 44px rgba(244,168,138,.18);}
+    .entry-contencion{border:1px solid rgba(133,153,173,.22);background:rgba(31,46,70,.018);}
+    .entry-contencion:hover{border-color:rgba(133,153,173,.4);background:rgba(133,153,173,.06);transform:translateY(-2px);box-shadow:0 20px 44px rgba(133,153,173,.12);}
+    .entry-label{font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px;}
+    .entry-emergencia .entry-label{color:var(--coral-ink);} .entry-contencion .entry-label{color:var(--teal);}
+    .entry-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;}
+    .entry-title{font-family:var(--serif);font-size:1.55rem;line-height:1.12;color:var(--text);}
+    .entry-emergencia .entry-title{font-weight:600;} .entry-contencion .entry-title{font-weight:400;font-style:italic;}
+    .entry-arrowbtn{flex-shrink:0;width:38px;height:38px;border-radius:50%;border:1px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all .3s var(--ease-silk);}
+    .entry-emergencia .entry-arrowbtn{color:var(--coral);} .entry-contencion .entry-arrowbtn{color:var(--teal);}
+    .entry:hover .entry-arrowbtn{transform:translateX(3px);}
+    .entry-rule{height:1px;background:rgba(31,46,70,.08);margin:16px 0;}
+    .entry-foot{display:flex;align-items:center;gap:12px;}
+    .entry-ico{flex-shrink:0;width:34px;height:34px;border-radius:50%;border:1px solid rgba(31,46,70,.1);display:flex;align-items:center;justify-content:center;}
+    .entry-emergencia .entry-ico svg{color:var(--coral);} .entry-contencion .entry-ico svg{color:var(--teal);}
+    .entry-desc{font-size:.78rem;color:var(--text-dim);line-height:1.55;}
 
     /* ═══════════════ AFFIRMATION ROW ═══════════════ */
     .affirm{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:14px 8px;padding:42px 56px;border-top:1px solid rgba(250,246,242,.08);border-bottom:1px solid rgba(250,246,242,.08);background:#1F2E46;}
@@ -235,7 +251,6 @@
     .scroll-reveal.delay-3{transition-delay:.32s;} .scroll-reveal.delay-4{transition-delay:.44s;}
 
     /* ═══════════════ MOBILE ═══════════════ */
-    /* Tablet and down: collapse the nav to the hamburger drawer */
     @media(max-width:1200px){
       .nav{padding:max(18px,env(safe-area-inset-top)) 32px 16px;}
       .nav-center{display:none;}
@@ -244,12 +259,10 @@
     }
     @media(max-width:980px){
       .nav{padding:max(16px,env(safe-area-inset-top)) 22px 14px;}
-      .hero{min-height:100svh;padding:max(120px,16vh) 24px 64px;}
-      .hero-content{max-width:100%;}
-      .hero-content h1{font-size:clamp(2.7rem,11vw,3.8rem);}
-      .hero .subhead{font-size:1.05rem;}
-      .hero-actions{width:100%;}
-      .hero .cta-main{width:100%;text-align:center;padding:1rem 1.6rem;}
+      .hero{height:auto;min-height:100svh;} .hero-body{padding:max(104px,15vh) 24px 44px;}
+      .hero-overlay-dir{background:linear-gradient(to bottom,rgba(250,247,241,.95) 0%,rgba(250,247,241,.88) 42%,rgba(250,247,241,.15) 75%,transparent 100%);}
+      .hero-photo{background-position:72% center;} .hero-headline{font-size:clamp(2.7rem,11vw,3.8rem);max-width:100%;}
+      .divergence{flex-direction:column;gap:12px;} .entry{max-width:100%;}
       .affirm{flex-direction:column;gap:16px;padding:26px 24px;} .affirm-sep{display:none;}
       .section{padding:64px 24px;} .section-inner{padding:0 24px;} .section-full{padding:64px 0;}
       .pillars-grid{grid-template-columns:1fr;gap:40px;}
@@ -275,12 +288,12 @@
   <nav class="nav" id="mainNav" role="navigation" aria-label="Navegación principal">
     <a href="/" class="nav-logo" aria-label="Criar Sin Culpas"><img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas"></a>
     <div class="nav-center">
-      <a href="/" class="active" data-i18n="nav_inicio" data-es="Inicio" data-en="Home">Inicio</a>
-      <a href="/apoyo/" data-i18n="nav_protocolos" data-es="Guías" data-en="Protocols">Guías</a>
+      <a href="#top" class="active" data-i18n="nav_inicio" data-es="Inicio" data-en="Home">Inicio</a>
+      <a href="#protocolos" data-i18n="nav_guias" data-es="Guías" data-en="Guides">Guías</a>
       <a href="/metodo/" data-i18n="nav_metodo" data-es="El Método" data-en="The Method">El Método</a>
-      <a href="/#sobre-nari" data-i18n="nav_nari" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
-      <a href="#" class="dim" data-i18n="nav_aprende" data-es="Aprende (Pronto)" data-en="Learn (Soon)">Aprende (Pronto)</a>
-      <a href="#" class="dim" data-i18n="nav_comunidad" data-es="Comunidad (Pronto)" data-en="Community (Soon)">Comunidad (Pronto)</a>
+      <a href="#sobre-nari" data-i18n="nav_nari" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
+      <span class="soon"><span data-i18n="nav_aprende" data-es="Aprende" data-en="Learn">Aprende</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></span>
+      <span class="soon"><span data-i18n="nav_comunidad" data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></span>
     </div>
     <div class="nav-right">
       <div class="lang-pill" role="group" aria-label="Idioma">
@@ -295,12 +308,12 @@
   </nav>
 
   <div class="mobile-nav" id="mobileNav" role="dialog" aria-label="Menú" aria-modal="true">
-    <a href="/" class="active" data-i18n="nav_inicio_m" data-es="Inicio" data-en="Home">Inicio</a>
-    <a href="/apoyo/" data-i18n="nav_protocolos_m" data-es="Guías" data-en="Protocols">Guías</a>
+    <a href="#top" data-i18n="nav_inicio_m" data-es="Inicio" data-en="Home">Inicio</a>
+    <a href="#protocolos" data-i18n="nav_guias_m" data-es="Guías" data-en="Guides">Guías</a>
     <a href="/metodo/" data-i18n="nav_metodo_m" data-es="El Método" data-en="The Method">El Método</a>
-    <a href="/#sobre-nari" data-i18n="nav_nari_m" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
-    <a href="#" class="dim" data-i18n="nav_aprende_m" data-es="Aprende (Pronto)" data-en="Learn (Soon)">Aprende (Pronto)</a>
-    <a href="#" class="dim" data-i18n="nav_comunidad_m" data-es="Comunidad (Pronto)" data-en="Community (Soon)">Comunidad (Pronto)</a>
+    <a href="#sobre-nari" data-i18n="nav_nari_m" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
+    <span class="soon"><span data-i18n="nav_aprende_m" data-es="Aprende" data-en="Learn">Aprende</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></span>
+    <span class="soon"><span data-i18n="nav_comunidad_m" data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></span>
     <div class="lang-pill" role="group" aria-label="Idioma">
       <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
       <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
@@ -309,22 +322,59 @@
 
   <!-- ─────── HERO ─────── -->
   <section class="hero" id="top" aria-label="Inicio">
-    <div class="hero-atmosphere" aria-hidden="true"></div>
-    <div class="hero-content">
-      <h1 data-i18n="hero-title"
-          data-es="Mereces un hogar que se sienta en calma, no en caos."
-          data-en="You deserve a home that feels calm, not chaotic.">
-        Mereces un hogar que se sienta en calma, no en caos.
+    <div class="hero-photo" id="heroPhoto" aria-hidden="true"></div>
+    <div class="hero-overlay-dir" aria-hidden="true"></div>
+    <div class="hero-overlay-vert" aria-hidden="true"></div>
+    <div class="hero-overlay-blush" aria-hidden="true"></div>
+    <div class="hero-bar-top" aria-hidden="true"></div>
+
+    <div class="hero-body">
+      <div class="status-badge r1" aria-hidden="true">
+        <span class="status-dot"></span>
+        <span data-i18n="status" data-es="Espacio de Apoyo · Activo" data-en="Support Space · Active">Espacio de Apoyo · Activo</span>
+      </div>
+
+      <h1 class="hero-headline r2" data-i18n="hero_h1"
+          data-es="Porque criar no debería sentirse <em>imposible.</em>"
+          data-en="Because parenting shouldn't feel <em>impossible.</em>">
+        Porque criar no debería sentirse <em>imposible.</em>
       </h1>
-      <p class="subhead" data-i18n="hero-subhead"
-         data-es="A veces, el corazón que más necesita calma es el nuestro.<br>Y tener un espacio para respirar cambia todo."
-         data-en="Sometimes the heart that most needs calm is our own.<br>And having a space to breathe changes everything.">
-        A veces, el corazón que más necesita calma es el nuestro.
-        <br>Y tener un espacio para respirar cambia todo.
+
+      <svg class="squiggle r3" width="80" height="14" viewBox="0 0 80 14" fill="none" aria-hidden="true">
+        <path d="M2 7 C9 2, 16 12, 23 7 C30 2, 37 12, 44 7 C51 2, 58 12, 65 7 C71 2, 77 12, 78 7" stroke="#1F2E46" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      </svg>
+
+      <p class="hero-sub r3" data-i18n="hero_sub"
+         data-es="Un espacio de apoyo para bajar la intensidad, recuperar claridad y acompañar los momentos difíciles · sin culpa ni perfeccionismo."
+         data-en="A support space to lower the intensity, recover clarity, and accompany the hard moments · without guilt or perfectionism.">
+        Un espacio de apoyo para bajar la intensidad, recuperar claridad y acompañar los momentos difíciles · sin culpa ni perfeccionismo.
       </p>
-      <div class="hero-actions">
-        <a href="#apoyo" class="cta-main js-telemetry" id="cta-calma" data-telemetry-id="hero-cta-calma">
-          Quiero sentirme mejor &rarr;
+
+      <div class="divergence r5" role="navigation" aria-label="Punto de entrada">
+        <a href="/apoyo/index.html#emergencia" class="entry entry-emergencia js-telemetry" id="cta-emergencia" data-event-name="portal_entered" data-mode="emergencia" data-protocol="home_hero">
+          <span class="entry-label" data-i18n="ent1_label" data-es="En medio del caos" data-en="In the middle of the chaos">En medio del caos</span>
+          <div class="entry-top">
+            <span class="entry-title" data-i18n="ent1_title" data-es="Necesito ayuda ahora" data-en="I need help now">Necesito ayuda ahora</span>
+            <span class="entry-arrowbtn" aria-hidden="true">→</span>
+          </div>
+          <div class="entry-rule"></div>
+          <div class="entry-foot">
+            <span class="entry-ico" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+            <span class="entry-desc" data-i18n="ent1_desc" data-es="Guías breves para pantallas, desbordes, sueño y conflictos entre hermanos." data-en="Short guides for screens, meltdowns, sleep, and sibling conflict.">Guías breves para pantallas, desbordes, sueño y conflictos entre hermanos.</span>
+          </div>
+        </a>
+
+        <a href="/metodo/" class="entry entry-contencion js-telemetry" id="cta-contencion" data-event-name="portal_entered" data-mode="contencion" data-protocol="home_hero">
+          <span class="entry-label" data-i18n="ent2_label" data-es="Después del momento difícil" data-en="After the hard moment">Después del momento difícil</span>
+          <div class="entry-top">
+            <span class="entry-title" data-i18n="ent2_title" data-es="Necesito recuperarme" data-en="I need to recover">Necesito recuperarme</span>
+            <span class="entry-arrowbtn" aria-hidden="true">→</span>
+          </div>
+          <div class="entry-rule"></div>
+          <div class="entry-foot">
+            <span class="entry-ico" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 1 8.3C18.4 15 15.1 20 11 20z"/><path d="M11 20c2.4-3.4 3.5-7.1 2.2-11.4"/></svg></span>
+            <span class="entry-desc" data-i18n="ent2_desc" data-es="Un camino más lento para entender lo que pasó y volver a tu centro." data-en="A slower path to understand what happened and return to your center.">Un camino más lento para entender lo que pasó y volver a tu centro.</span>
+          </div>
         </a>
       </div>
     </div>
@@ -373,9 +423,10 @@
   </section>
 
   <!-- ─────── PROTOCOLS ─────── -->
+  <div id="protocolos" aria-hidden="true"></div>
   <section class="section guides-section js-protocol-section" id="apoyo" aria-labelledby="guides-heading">
     <div class="guides-head scroll-reveal">
-      <div class="eyebrow-center" data-i18n="guides_eyebrow" data-es="Guías de Apoyo" data-en="Support Protocols">Guías de Apoyo</div>
+      <div class="eyebrow-center" data-i18n="guides_eyebrow" data-es="Guías de Apoyo" data-en="Support Guides">Guías de Apoyo</div>
       <h2 class="guides-title" id="guides-heading" data-i18n="guides_h2"
           data-es="Herramientas para los momentos que <em>sí pasan.</em>"
           data-en="Tools for the moments that <em>actually happen.</em>">Herramientas para los momentos que <em>sí pasan.</em></h2>
@@ -428,7 +479,7 @@
     </div>
 
     <div class="guides-foot scroll-reveal">
-      <a href="/apoyo/index.html" class="link-pill" data-i18n="guides_all" data-es="Ver todos los guías →" data-en="View all protocols →">Ver todos los guías →</a>
+      <a href="/apoyo/index.html" class="link-pill" data-i18n="guides_all" data-es="Ver todas las guías →" data-en="View all guides →">Ver todas las guías →</a>
     </div>
   </section>
 
@@ -494,10 +545,11 @@
       <div class="footer-col">
         <h4 data-i18n="foot_nav" data-es="Navegación" data-en="Navigation">Navegación</h4>
         <a href="#top" data-i18n="nav_inicio_f" data-es="Inicio" data-en="Home">Inicio</a>
-        <a href="#protocolos" data-i18n="nav_protocolos_f" data-es="Guías" data-en="Protocols">Guías</a>
+        <a href="#protocolos" data-i18n="nav_guias_f" data-es="Guías" data-en="Guides">Guías</a>
+        <a href="/metodo/" data-i18n="nav_metodo_f" data-es="El Método" data-en="The Method">El Método</a>
         <a href="#sobre-nari" data-i18n="nav_nari_f" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
+        <span class="soon"><span data-i18n="nav_aprende_f" data-es="Aprende" data-en="Learn">Aprende</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></span>
         <span class="soon"><span data-i18n="nav_comunidad_f" data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></span>
-        <span class="soon"><span data-i18n="nav_recursos_f" data-es="Recursos" data-en="Resources">Recursos</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></span>
       </div>
       <div class="footer-col">
         <h4 data-i18n="foot_legal" data-es="Legal" data-en="Legal">Legal</h4>
@@ -557,6 +609,14 @@
       mobileNav.classList.remove('open'); ham.classList.remove('open');
       ham.setAttribute('aria-expanded', 'false'); document.body.style.overflow = '';
     }));
+
+    /* ── Hero ken burns ── */
+    const heroPhoto = document.getElementById('heroPhoto');
+    if (heroPhoto) {
+      const img = new Image();
+      img.onload = () => heroPhoto.classList.add('loaded');
+      img.src = 'https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1780818555/ChatGPT_Image_Jun_7_2026_12_48_33_AM_1_ytg3g4.png';
+    }
 
     /* ── Scroll reveals ── */
     const reveals = document.querySelectorAll('.scroll-reveal');
