@@ -42,6 +42,7 @@
       --sans:'DM Sans',system-ui,sans-serif;
       --ease-silk:cubic-bezier(.16,1,.3,1);
       --ease-cinema:cubic-bezier(.2,.8,.2,1);
+      --breath: 7s;
       --pill:999px;
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
@@ -58,11 +59,14 @@
     /* ═══════════════ ANIMATIONS ═══════════════ */
     @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
     @keyframes pulse-ring{0%{transform:scale(.95);box-shadow:0 0 0 0 rgba(133,153,173,.4);}70%{transform:scale(1);box-shadow:0 0 0 12px rgba(133,153,173,0);}100%{transform:scale(.95);box-shadow:0 0 0 0 rgba(133,153,173,0);}}
+    @keyframes drawIn { to { stroke-dashoffset: 0; } }
+    @keyframes breathGlow { 0%, 100% { opacity: 0.45; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.04); } }
+    @keyframes hero-fade { from { opacity: 0; } to { opacity: 1; } }
     .r1{animation:fadeUp .9s var(--ease-silk) .05s both;} .r2{animation:fadeUp .9s var(--ease-silk) .18s both;}
     .r3{animation:fadeUp .9s var(--ease-silk) .32s both;} .r4{animation:fadeUp .9s var(--ease-silk) .46s both;}
     .r5{animation:fadeUp .9s var(--ease-silk) .60s both;}
 
-    /* ═══════════════ NAV ═══════════════ */
+    /* ═══════════════ NAV (unchanged) ═══════════════ */
     .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:max(20px,env(safe-area-inset-top)) 56px 18px;display:flex;align-items:center;justify-content:space-between;gap:16px;transition:background .4s,backdrop-filter .4s;}
     .nav.scrolled{background:rgba(250,247,241,.78);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(31,46,70,.04);}
     .wordmark{display:flex;flex-direction:column;line-height:1;flex-shrink:0;}
@@ -99,6 +103,10 @@
 
     /* ═══════════════ HERO ═══════════════ */
     .hero{position:relative;height:100vh;min-height:600px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;}
+    .hero-video {
+      position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; opacity:0; transition: opacity 1.6s ease;
+      pointer-events: none;
+    }
     .hero-photo{position:absolute;inset:0;z-index:0;background-image:url('https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1780818555/ChatGPT_Image_Jun_7_2026_12_48_33_AM_1_ytg3g4.png');background-size:cover;background-position:75% center;filter:brightness(.97) saturate(1.18) contrast(1.07) sepia(.04);transform:scale(1.04);transition:transform 16s var(--ease-cinema),filter 1.2s ease;}
     .hero-photo.loaded{transform:scale(1);filter:brightness(.97) saturate(1.18) contrast(1.07) sepia(.04);}
     .hero-overlay-dir{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to right,rgba(250,247,241,.9) 0%,rgba(250,247,241,.82) 20%,rgba(250,247,241,.18) 50%,transparent 90%);}
@@ -137,7 +145,8 @@
 
     /* ═══════════════ AFFIRMATION ROW ═══════════════ */
     .affirm{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:14px 8px;padding:42px 56px;border-top:1px solid rgba(250,246,242,.08);border-bottom:1px solid rgba(250,246,242,.08);background:#1F2E46;}
-    .affirm-item{display:inline-flex;align-items:center;gap:11px;}
+    .affirm-item{display:inline-flex;align-items:center;gap:11px; opacity:0; transform:translateY(18px);transition:opacity .9s var(--ease-cinema),transform .9s var(--ease-cinema);}
+    .affirm-item.visible{opacity:1; transform:translateY(0);}
     .affirm-item svg{color:var(--coral);width:16px;height:16px;flex-shrink:0;opacity:.9;}
     .affirm-item span{font-family:var(--serif);font-size:1.12rem;font-style:italic;font-weight:300;color:rgba(250,246,242,.92);letter-spacing:.02em;}
     .affirm-sep{width:4px;height:4px;border-radius:50%;background:var(--coral);opacity:.55;margin:0 18px;}
@@ -250,6 +259,10 @@
     .scroll-reveal.delay-1{transition-delay:.1s;} .scroll-reveal.delay-2{transition-delay:.2s;}
     .scroll-reveal.delay-3{transition-delay:.32s;} .scroll-reveal.delay-4{transition-delay:.44s;}
 
+    /* ═══════════════ MICROINTERACTIONS ═══════════════ */
+    .link-pill { transition:all .3s var(--ease-silk),gap .18s var(--ease-silk); }
+    .link-pill:hover { color:var(--gold);border-color:var(--gold);gap:14px; }
+
     /* ═══════════════ MOBILE ═══════════════ */
     @media(max-width:1200px){
       .nav{padding:max(18px,env(safe-area-inset-top)) 32px 16px;}
@@ -322,6 +335,7 @@
 
   <!-- ─────── HERO ─────── -->
   <section class="hero" id="top" aria-label="Inicio">
+    <video id="heroFilm" autoplay muted loop playsinline class="hero-video"></video>
     <div class="hero-photo" id="heroPhoto" aria-hidden="true"></div>
     <div class="hero-overlay-dir" aria-hidden="true"></div>
     <div class="hero-overlay-vert" aria-hidden="true"></div>
@@ -397,6 +411,20 @@
       <span data-i18n="aff3" data-es="El vínculo también se repara." data-en="The bond can be repaired too.">El vínculo también se repara.</span>
     </span>
   </div>
+
+  <!-- ─────── TE VEMOS ─────── -->
+  <section id="te-vemos" class="section" style="background: var(--void); text-align: center; padding: 120px 24px;">
+    <div class="section-inner">
+      <div class="eyebrow-center scroll-reveal" data-i18n="recog_eyebrow" data-es="Te Vemos" data-en="We See You">Te Vemos</div>
+      <div class="recog-lines" style="margin-top: 40px;">
+        <p class="scroll-reveal delay-1" style="font-family: var(--serif); font-size: 1.6rem; color: var(--text-dim); margin-bottom: 12px;" data-i18n="recog_l1" data-es="El grito que no querías dar." data-en="The yell you didn't mean to let out.">El grito que no querías dar.</p>
+        <p class="scroll-reveal delay-2" style="font-family: var(--serif); font-size: 1.6rem; color: var(--text-dim); margin-bottom: 12px;" data-i18n="recog_l2" data-es="La culpa que llega justo después." data-en="The guilt that arrives right after.">La culpa que llega justo después.</p>
+        <p class="scroll-reveal delay-3" style="font-family: var(--serif); font-size: 1.6rem; color: var(--text-dim); margin-bottom: 40px;" data-i18n="recog_l3" data-es="El cansancio que nadie más ve." data-en="The tiredness no one else sees.">El cansancio que nadie más ve.</p>
+        <h2 class="scroll-reveal delay-4" style="font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-style: italic; color: var(--coral-ink);" data-i18n="recog_close" data-es="No estás fallando. Estás criando." data-en="You are not failing. You are parenting.">No estás fallando. Estás criando.</h2>
+        <p class="scroll-reveal delay-5" style="margin-top: 24px; color: var(--teal); font-size: 1.1rem;" data-i18n="recog_sub" data-es="Y criar, algunos días, pesa. Por eso existe este espacio." data-en="And some days, parenting is heavy. That is why this space exists.">Y criar, algunos días, pesa. Por eso existe este espacio.</p>
+      </div>
+    </div>
+  </section>
 
   <!-- ─────── PILLARS ─────── -->
   <section class="section-full pillars-section">
@@ -483,6 +511,25 @@
     </div>
   </section>
 
+  <!-- ─────── PUENTE AL MÉTODO ─────── -->
+  <section id="puente-metodo" class="section-full" style="background: var(--text); color: var(--void); padding: 140px 0; overflow: hidden;">
+    <div class="section-inner" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+      <div class="bridge-content scroll-reveal">
+        <div class="eyebrow" style="color: var(--coral); margin-bottom: 20px;" data-i18n="bridge_eyebrow" data-es="El Método Nari" data-en="The Nari Method">El Método Nari</div>
+        <h2 style="font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.2; margin-bottom: 24px;" data-i18n="bridge_h" data-es="Las guías resuelven el momento. <br><em style='color:var(--coral); font-style:italic;'>El método transforma la casa.</em>" data-en="The guides solve the moment. <br><em style='color:var(--coral); font-style:italic;'>The method transforms the home.</em>">Las guías resuelven el momento. <br><em style="color:var(--coral); font-style:italic;">El método transforma la casa.</em></h2>
+        <p style="font-size: 1.1rem; line-height: 1.6; color: rgba(250,246,242,0.8); margin-bottom: 40px; max-width: 500px;" data-i18n="bridge_p" data-es="Un camino completo, paso a paso, para entender qué hay detrás de cada desborde y criar desde la conexión, no desde el miedo." data-en="A complete path, step by step, to understand what lies behind each meltdown and parent from connection, not from fear.">Un camino completo, paso a paso, para entender qué hay detrás de cada desborde y criar desde la conexión, no desde el miedo.</p>
+        <a href="/metodo/" class="link-pill js-telemetry" style="color: var(--void); border-color: rgba(250,246,242,0.4);" data-event-name="portal_entered" data-mode="contencion" data-protocol="home_method_bridge" data-i18n="bridge_cta" data-es="Conocer el método →" data-en="Explore the method →">Conocer el método →</a>
+      </div>
+      <div class="bridge-visual scroll-reveal delay-2" style="position: relative; display: flex; justify-content: center;">
+        <!-- The Method Arc (SVG Draw) -->
+        <svg width="400" height="200" viewBox="0 0 400 200" style="overflow: visible;">
+          <path d="M20 180 C 100 20, 300 20, 380 180" stroke="rgba(244,168,138,0.3)" stroke-width="2" fill="none" />
+          <circle cx="200" cy="55" r="8" fill="var(--coral)" style="animation: breathGlow var(--breath) infinite;" />
+        </svg>
+      </div>
+    </div>
+  </section>
+
   <!-- ─────── NARI BAND ─────── -->
   <section class="section nari-section" id="sobre-nari" aria-labelledby="nari-heading">
     <div class="nari-grid">
@@ -518,7 +565,6 @@
       </div>
     </div>
   </section>
-
 
   <!-- ─────── CLOSING CTA ─────── -->
   <div class="cta-band">
@@ -610,6 +656,15 @@
       ham.setAttribute('aria-expanded', 'false'); document.body.style.overflow = '';
     }));
 
+    /* ── Hero Motion: Fade in video when loaded ── */
+    const heroFilm = document.getElementById('heroFilm');
+    if (heroFilm) {
+      heroFilm.src = "https://res.cloudinary.com/dogtoagya/video/upload/v1780828002/csc-hero-film-opt.mp4";
+      heroFilm.addEventListener('canplay', function () {
+        heroFilm.style.opacity = "1";
+      });
+    }
+
     /* ── Hero ken burns ── */
     const heroPhoto = document.getElementById('heroPhoto');
     if (heroPhoto) {
@@ -619,13 +674,44 @@
     }
 
     /* ── Scroll reveals ── */
-    const reveals = document.querySelectorAll('.scroll-reveal');
-    if ('IntersectionObserver' in window) {
+    function scrollRevealAll(elements, baseDelay, incr) {
+      if (!elements.length) return;
+      if (!('IntersectionObserver' in window)) {
+        elements.forEach(el => el.classList.add('visible'));
+        return;
+      }
       const io = new IntersectionObserver((entries) => {
-        entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); } });
+        entries.forEach(en => {
+          if (en.isIntersecting) {
+            const els = Array.from(elements);
+            els.forEach((el, idx) => {
+              setTimeout(() => {
+                el.classList.add('visible');
+              }, baseDelay + idx * incr);
+            });
+            io.disconnect();
+          }
+        });
       }, { threshold: 0.12 });
-      reveals.forEach(el => io.observe(el));
-    } else { reveals.forEach(el => el.classList.add('visible')); }
+      io.observe(elements[0]);
+    }
+
+    // Animated .affirm-item with staggered scroll reveal (200ms increments)
+    (function() {
+      const affirmItems = document.querySelectorAll('.affirm-item');
+      scrollRevealAll(affirmItems, 100, 200);
+    })();
+
+    // Normal scroll-reveal logic for .scroll-reveal (non-affirm)
+    (function() {
+      const reveals = document.querySelectorAll('.scroll-reveal');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); } });
+        }, { threshold: 0.12 });
+        reveals.forEach(el => io.observe(el));
+      } else { reveals.forEach(el => el.classList.add('visible')); }
+    })();
 
     /* ── Telemetry + page fade on entry links ── */
     function fadeNav(href, evt) {
