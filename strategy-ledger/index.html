@@ -4,672 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>Ledger v2.0 · Progreso e Inteligencia · Criar Sin Culpas</title>
-  <link rel="icon" href="data:,">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-</head>
-<body>
-
-<style>
-  :root {
-    --void:      #FAF6F2;
-    --lift:      #FFFFFF;
-    --text:      #1F2E46;
-    --dim:       rgba(31,46,70,.60);
-    --ghost:     rgba(31,46,70,.35);
-    --rule:      rgba(31,46,70,.08);
-    --coral:     #F4A88A;
-    --coral-ink: #D96B47;
-    --teal:      #8599AD;
-    --navy:      #1F2E46;
-    --serif:     'Cormorant Garamond', Georgia, serif;
-    --mono:      'JetBrains Mono', 'Courier New', monospace;
-    --sans:      'DM Sans', system-ui, sans-serif;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: var(--sans);
-    background: var(--void);
-    color: var(--text);
-    -webkit-font-smoothing: antialiased;
-    min-height: 100vh;
-  }
-
-  /* ───────── LOCK ───────── */
-  #lock {
-    display: none; position: fixed; inset: 0; z-index: 999;
-    background: var(--void);
-    flex-direction: column; align-items: center; justify-content: center; gap: 18px;
-  }
-  #lock.on { display: flex; }
-  #lock h1 {
-    font-family: var(--serif); font-size: 1.9rem; font-weight: 600;
-    color: var(--text); letter-spacing: .01em;
-  }
-  #lock label {
-    font-family: var(--mono); font-size: 11px;
-    letter-spacing: .16em; text-transform: uppercase; color: var(--ghost);
-  }
-  #lock input {
-    font-family: var(--mono); font-size: .95rem; letter-spacing: .14em;
-    padding: 10px 22px; border-radius: 8px; text-align: center;
-    border: 1.5px solid var(--rule); background: var(--lift);
-    color: var(--text); outline: none; width: 200px;
-    transition: border-color .2s;
-  }
-  #lock input:focus { border-color: var(--teal); }
-  #lock button {
-    font-family: var(--mono); font-size: 11px;
-    font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
-    padding: 10px 32px; border-radius: 999px;
-    background: var(--navy); color: var(--void);
-    border: none; cursor: pointer; transition: opacity .2s;
-  }
-  #lock button:hover { opacity: .78; }
-  #lock-err {
-    font-family: var(--mono); font-size: 11px;
-    color: var(--coral-ink); letter-spacing: .08em; min-height: 1em;
-  }
-
-  /* ───────── LEDGER ───────── */
-  #ledger { display: none; }
-  #ledger.on { display: block; }
-
-  .wrap {
-    max-width: 800px; margin: 0 auto; padding: 0 32px;
-  }
-
-  /* ── COVER ── */
-  .cover {
-    padding: 72px 0 56px;
-    border-bottom: 1px solid var(--rule);
-  }
-  .cover-eyebrow {
-    font-family: var(--mono); font-size: 11px;
-    font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
-    color: var(--teal); margin-bottom: 24px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .cover-eyebrow::before {
-    content: ''; width: 24px; height: 1px; background: var(--teal);
-  }
-  .cover-title {
-    font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.2rem);
-    font-weight: 600; line-height: 1.08; letter-spacing: -.01em;
-    color: var(--text); margin-bottom: 10px;
-  }
-  .cover-title em { font-style: italic; color: var(--coral-ink); font-weight: 300; }
-  .cover-deck {
-    font-family: var(--serif); font-size: 1.2rem; font-weight: 300;
-    font-style: italic; color: var(--dim); margin-bottom: 28px;
-  }
-  .cover-narrative {
-    font-size: .92rem; line-height: 1.82; color: var(--dim);
-    max-width: 58ch; border-left: 2px solid var(--coral-ink);
-    padding-left: 18px;
-  }
-  .cover-stamps {
-    display: flex; gap: 40px; margin-top: 36px; flex-wrap: wrap;
-  }
-  .stamp { display: flex; flex-direction: column; gap: 3px; }
-  .stamp-key {
-    font-family: var(--mono); font-size: 10px;
-    letter-spacing: .16em; text-transform: uppercase; color: var(--ghost);
-  }
-  .stamp-val {
-    font-family: var(--mono); font-size: .78rem;
-    font-weight: 600; color: var(--text);
-  }
-  .stamp-val.green { color: var(--teal); }
-  .stamp-val.red   { color: var(--coral-ink); }
-
-  /* ── EVOLUTION LEGEND ── */
-  .evo-legend {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-    padding: 48px 0 40px;
-    border-bottom: 1px solid var(--rule);
-  }
-  .evo-box {
-    padding: 24px 26px; border-radius: 12px;
-    background: var(--lift);
-    border: 1px solid var(--rule);
-    box-shadow: 0 2px 10px rgba(31,46,70,.05);
-    position: relative; overflow: hidden;
-  }
-  .evo-box::before {
-    content: ''; position: absolute;
-    left: 0; top: 0; bottom: 0; width: 3px;
-  }
-  .evo-box.diag::before { background: var(--coral-ink); }
-  .evo-box.sanc::before { background: var(--teal); }
-  .evo-fase {
-    font-family: var(--mono); font-size: 10px;
-    font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-  .evo-box.diag .evo-fase { color: var(--coral-ink); }
-  .evo-box.sanc .evo-fase { color: var(--teal); }
-  .evo-title {
-    font-family: var(--serif); font-size: 1.15rem;
-    font-weight: 600; color: var(--text);
-    margin-bottom: 10px; line-height: 1.2;
-  }
-  .evo-body {
-    font-size: .82rem; color: var(--dim); line-height: 1.7;
-  }
-
-  /* ── SECTIONS ── */
-  .section {
-    padding: 52px 0;
-    border-bottom: 1px solid var(--rule);
-  }
-  .section-num {
-    font-family: var(--mono); font-size: 10px;
-    font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
-    color: var(--ghost); margin-bottom: 8px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .section-num::after {
-    content: ''; flex: 1; height: 1px; background: var(--rule);
-  }
-  .section-title {
-    font-family: var(--serif);
-    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
-    font-weight: 600; line-height: 1.1; color: var(--text);
-    margin-bottom: 8px;
-  }
-  .section-title em { font-style: italic; color: var(--coral-ink); }
-  .section-lead {
-    font-size: .9rem; line-height: 1.8; color: var(--dim);
-    max-width: 58ch; margin-bottom: 32px;
-  }
-
-  /* ── INTEL CARDS ── */
-  .card {
-    background: var(--lift); border-radius: 12px;
-    border: 1px solid var(--rule);
-    padding: 22px 26px; margin-bottom: 14px;
-    box-shadow: 0 2px 8px rgba(31,46,70,.04);
-    position: relative; overflow: hidden;
-  }
-  .card::before {
-    content: ''; position: absolute;
-    left: 0; top: 0; bottom: 0; width: 2px;
-  }
-  .card.friction::before  { background: var(--coral-ink); }
-  .card.solution::before  { background: var(--teal); }
-  .card.insight::before   { background: #B08D57; }
-
-  .card-tag {
-    font-family: var(--mono); font-size: 10px;
-    font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-  .card.friction .card-tag  { color: var(--coral-ink); }
-  .card.solution .card-tag  { color: var(--teal); }
-  .card.insight .card-tag   { color: #B08D57; }
-
-  .card-h {
-    font-family: var(--serif); font-size: 1.25rem;
-    font-weight: 600; color: var(--text); margin-bottom: 8px;
-    line-height: 1.2;
-  }
-  .card-p {
-    font-size: .87rem; color: var(--dim); line-height: 1.75;
-  }
-  .card-p strong { color: var(--text); font-weight: 600; }
-  .card-p em { font-style: italic; color: var(--coral-ink); }
-
-  /* ── ASCII DATA BAR ── */
-  .data-viz {
-    background: var(--navy); border-radius: 12px;
-    padding: 28px 30px; margin: 24px 0;
-    font-family: var(--mono);
-  }
-  .dv-head {
-    font-size: 10px; font-weight: 600;
-    letter-spacing: .18em; text-transform: uppercase;
-    color: rgba(250,246,242,.4); margin-bottom: 22px;
-  }
-  .dv-row { margin-bottom: 18px; }
-  .dv-label {
-    font-size: 11px; color: rgba(250,246,242,.6);
-    letter-spacing: .08em; margin-bottom: 6px;
-  }
-  .dv-bar-line {
-    font-size: 13px; font-weight: 600;
-    letter-spacing: .04em; line-height: 1;
-  }
-  .dv-bar-line .filled { color: var(--coral-ink); }
-  .dv-bar-line .empty  { color: rgba(250,246,242,.2); }
-  .dv-bar-line .pct    { color: rgba(250,246,242,.9); margin-left: 8px; font-size: 11px; }
-  .dv-bar-line.teal-bar .filled { color: var(--teal); }
-  .dv-footnote {
-    margin-top: 18px; padding-top: 16px;
-    border-top: 1px solid rgba(250,246,242,.08);
-    font-size: 10px; color: rgba(250,246,242,.35);
-    letter-spacing: .06em;
-  }
-
-  /* ── READING FRAME ── */
-  .reading-frame {
-    border: 1px solid var(--rule); border-radius: 14px;
-    padding: 30px 32px; margin-top: 24px;
-    background: var(--lift); position: relative;
-  }
-  .rf-tag {
-    position: absolute; top: -11px; left: 24px;
-    font-family: var(--mono); font-size: 10px;
-    font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
-    background: var(--lift); padding: 0 10px; color: var(--teal);
-    border: 1px solid rgba(133,153,173,.3); border-radius: 999px;
-  }
-  .rf-metric {
-    font-family: var(--serif); font-size: 1.9rem;
-    font-weight: 600; color: var(--text); margin-bottom: 4px;
-  }
-  .rf-mono {
-    font-family: var(--mono); font-size: 11px;
-    color: var(--coral-ink); letter-spacing: .06em; margin-bottom: 18px;
-    line-height: 1.5;
-  }
-  .rf-body {
-    font-size: .88rem; color: var(--dim); line-height: 1.8;
-    border-top: 1px solid var(--rule); padding-top: 16px;
-  }
-  .rf-body strong { color: var(--text); }
-
-  /* ── INLINE CODE ── */
-  .tag {
-    display: inline-flex; align-items: center;
-    font-family: var(--mono); font-size: 10px; font-weight: 600;
-    letter-spacing: .06em; background: rgba(31,46,70,.06);
-    border: 1px solid rgba(31,46,70,.1); border-radius: 5px;
-    padding: 2px 8px; color: var(--text);
-  }
-  .tag.c { background: rgba(244,168,138,.1); border-color: rgba(217,107,71,.22); color: var(--coral-ink); }
-  .tag.t { background: rgba(133,153,173,.1); border-color: rgba(133,153,173,.28); color: var(--teal); }
-
-  /* ── PRIORITIES ── */
-  .pri-list { margin-top: 8px; }
-  .pri {
-    display: flex; gap: 20px; align-items: flex-start;
-    background: var(--lift); border: 1px solid var(--rule);
-    border-radius: 12px; padding: 20px 24px; margin-bottom: 12px;
-    box-shadow: 0 2px 6px rgba(31,46,70,.04);
-  }
-  .pri-n {
-    font-family: var(--mono); font-size: 1.5rem; font-weight: 600;
-    color: rgba(31,46,70,.1); flex-shrink: 0; line-height: 1; min-width: 28px;
-  }
-  .pri-sig {
-    font-family: var(--mono); font-size: 10px;
-    color: var(--teal); letter-spacing: .12em;
-    text-transform: uppercase; margin-bottom: 5px;
-  }
-  .pri-title {
-    font-family: var(--serif); font-size: 1.1rem;
-    font-weight: 600; color: var(--text); margin-bottom: 5px;
-  }
-  .pri-body {
-    font-size: .84rem; color: var(--dim); line-height: 1.72;
-  }
-
-  /* ── FOOTER ── */
-  .foot {
-    padding: 28px 0 56px;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 10px;
-  }
-  .foot span {
-    font-family: var(--mono); font-size: 10px;
-    letter-spacing: .1em; color: var(--ghost); text-transform: uppercase;
-  }
-
-  @media (max-width: 600px) {
-    .wrap { padding: 0 18px; }
-    .evo-legend { grid-template-columns: 1fr; }
-    .cover-title { font-size: 2rem; }
-  }
-</style>
-
-<script>
-(function() {
-  function reveal() {
-    document.getElementById('lock').classList.remove('on');
-    document.getElementById('ledger').classList.add('on');
-    sessionStorage.setItem('sl_pass', '1');
-  }
-  function wrong() {
-    document.getElementById('lock-err').textContent = 'Código incorrecto. Intenta de nuevo.';
-    document.getElementById('lp').value = '';
-    document.getElementById('lp').focus();
-  }
-  window.addEventListener('DOMContentLoaded', function() {
-    if (sessionStorage.getItem('sl_pass') === '1') { reveal(); return; }
-    document.getElementById('lock').classList.add('on');
-    document.getElementById('lp').focus();
-    document.getElementById('lf').addEventListener('submit', function(e) {
-      e.preventDefault();
-      document.getElementById('lp').value.trim() === 'NARI2026' ? reveal() : wrong();
-    });
-  });
-})();
-</script>
-
-<!-- LOCK -->
-<div id="lock">
-  <h1>Acceso Estratégico</h1>
-  <label for="lp">Ingrese el código de acceso</label>
-  <form id="lf" style="display:flex;flex-direction:column;align-items:center;gap:14px;">
-    <input id="lp" type="password" autocomplete="off" placeholder="••••••••">
-    <button type="submit">Entrar</button>
-    <span id="lock-err" style="font-family:var(--mono);font-size:11px;color:var(--coral-ink);letter-spacing:.08em;min-height:1em;"></span>
-  </form>
-</div>
-
-<!-- LEDGER -->
-<div id="ledger">
-<div class="wrap">
-
-  <!-- COVER -->
-  <div class="cover">
-    <div class="cover-eyebrow">Observatorio de Señales · v2.0 · Semana 2 → 3</div>
-    <h1 class="cover-title">Del Diagnóstico<br>al <em>Santuario.</em></h1>
-    <div class="cover-deck">Cómo convertir un análisis de fugas en un rediseño de experiencia emocional.</div>
-    <p class="cover-narrative">
-      La Semana 2 fue el quirófano. Detectamos las fugas, nombramos los puntos de fricción,
-      y entendimos por qué el 64% de los padres se iban sin recibir ayuda.
-      La Semana 3 es el santuario. La misma arquitectura, re-diseñada desde la emoción hacia afuera.
-      Este informe documenta la transición: qué se rompió, qué se construyó, y cómo lo mediremos.
-    </p>
-    <div class="cover-stamps">
-      <div class="stamp">
-        <span class="stamp-key">Ciclo</span>
-        <span class="stamp-val">Semana 3 — Jun 2026</span>
-      </div>
-      <div class="stamp">
-        <span class="stamp-key">Fase anterior</span>
-        <span class="stamp-val red">Diagnóstico ✓</span>
-      </div>
-      <div class="stamp">
-        <span class="stamp-key">Fase actual</span>
-        <span class="stamp-val green">Santuario · Desplegado ✓</span>
-      </div>
-      <div class="stamp">
-        <span class="stamp-key">Clasificación</span>
-        <span class="stamp-val">Interno · Confidencial</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- EVOLUTION LEGEND -->
-  <div class="evo-legend">
-    <div class="evo-box diag">
-      <div class="evo-fase">Fase 1 · Diagnóstico</div>
-      <div class="evo-title">El Rayo X</div>
-      <div class="evo-body">
-        Enfocado en detectar fallas estructurales y fugas de tráfico.
-        Identificamos el 64% de rebote en el primer punto de contacto del Hub de Apoyo,
-        y la ausencia de validación emocional como causa raíz.
-        Estética de laboratorio: blancos puros, estructura fría, métricas directas.
-        El sitio diagnosticaba. No contenía.
-      </div>
-    </div>
-    <div class="evo-box sanc">
-      <div class="evo-fase">Fase 2 · Santuario</div>
-      <div class="evo-title">El Respiro</div>
-      <div class="evo-body">
-        Enfocado en la solución emocional. Implementación de la nueva paleta Cream,
-        el bloque <em style="font-family:var(--serif)">'Te Vemos'</em> como espina de retención en el Home,
-        y los <em style="font-family:var(--serif)">'Snippets'</em> de ayuda rápida en cada tarjeta de /apoyo.
-        El sitio ahora valida antes de instruir. Contiene antes de proponer.
-        Decisión estratégica de Nari: bajar la guardia cognitiva del padre en crisis.
-      </div>
-    </div>
-  </div>
-
-  <!-- S01: FRICTION -->
-  <div class="section">
-    <div class="section-num">Sección 01</div>
-    <h2 class="section-title">Informe de <em>Fugas</em></h2>
-    <p class="section-lead">
-      El diagnóstico de la Semana 2 identificó una pérdida crítica de atención en el primer
-      punto de contacto del Hub de Apoyo. Padres llegando en frío, sin contexto emocional previo,
-      y rebotando antes de leer una sola guía.
-    </p>
-
-    <div class="card friction">
-      <div class="card-tag">Señal Crítica · Protocolo Step-In · /apoyo</div>
-      <div class="card-h">64% de rebote sin interacción detectado</div>
-      <div class="card-p">
-        Padres que llegaban directamente a <strong>/apoyo/index.html</strong> — sin haber pasado por el
-        flujo emocional del Home — encontraban un grid de guías sin contexto previo.
-        Sin validación, la mente en crisis percibe el grid como una <em>tarea más</em>, no como un refugio.
-        Resultado: salida antes del primer scroll.
-      </div>
-    </div>
-
-    <div class="data-viz">
-      <div class="dv-head">// Friction Report · Protocolo Step-In · Semana 2</div>
-
-      <div class="dv-row">
-        <div class="dv-label">FUGA — Bounce sin interacción</div>
-        <div class="dv-bar-line">
-          [<span class="filled">████████████████████████████</span><span class="empty">████████████</span>]
-          <span class="pct">64% FUGA DETECTADA</span>
-        </div>
-      </div>
-
-      <div class="dv-row">
-        <div class="dv-label">RETENCIÓN — Al menos 1 guía vista</div>
-        <div class="dv-bar-line teal-bar">
-          [<span class="filled">████████████████</span><span class="empty">████████████████████████</span>]
-          <span class="pct">36% RETENIDOS</span>
-        </div>
-      </div>
-
-      <div class="dv-row">
-        <div class="dv-label">CONVERSIÓN — Click a Método (del 36%)</div>
-        <div class="dv-bar-line">
-          [<span class="filled" style="color:rgba(250,246,242,.3)">████</span><span class="empty">████████████████████████████████████</span>]
-          <span class="pct">&lt;8% CONVERSIÓN</span>
-        </div>
-      </div>
-
-      <div class="dv-footnote">fuente: análisis diagnóstico semana 2 · protocolo de llegada en frío · /apoyo/index.html#step-in</div>
-    </div>
-
-    <div class="card friction">
-      <div class="card-tag">Causa Raíz Identificada</div>
-      <div class="card-h">La apertura no conectaba con el padre que "llega en frío"</div>
-      <div class="card-p">
-        El Hub presentaba herramientas sin contexto emocional. La estructura decía "elige tu problema"
-        antes de decir "entendemos que estás agotado." Para un padre en estado de activación cortisol,
-        ese orden de operaciones produce rechazo, no entrada.
-        <strong>La solución no era rediseñar las guías. Era añadir una capa de validación antes de ellas.</strong>
-      </div>
-    </div>
-  </div>
-
-  <!-- S02: SURGERY -->
-  <div class="section">
-    <div class="section-num">Sección 02</div>
-    <h2 class="section-title">La Cirugía <em>Estructural</em></h2>
-    <p class="section-lead">
-      Dos intervenciones de diseño, desplegadas en el mismo ciclo, para atacar el problema
-      desde sus dos vectores: la llegada al Home y la llegada directa al Hub.
-    </p>
-
-    <div class="card solution">
-      <div class="card-tag">Intervención 01 · Home · #te-vemos</div>
-      <div class="card-h">"Te Vemos" — La Capa de Retención</div>
-      <div class="card-p">
-        Posicionada inmediatamente después del bloque de afirmaciones (.affirm), esta sección
-        no ofrece herramientas. Ofrece reconocimiento. Tres líneas nombran la experiencia exacta
-        del padre que llega:<br><br>
-        <em>"El grito que no querías dar. / La culpa que llega justo después. / El cansancio que nadie más ve."</em><br><br>
-        Seguidas del remate: <strong>"No estás fallando. Estás criando."</strong><br><br>
-        El mecanismo es deliberado: detener el scroll antes de proponer cualquier solución.
-        Activar el sistema de apego antes del sistema de tarea. Un padre que se sintió visto
-        permanece. Un padre que no se sintió visto, rebota.
-      </div>
-    </div>
-
-    <div class="card solution">
-      <div class="card-tag">Intervención 02 · /apoyo · .card-snippet</div>
-      <div class="card-h">Instant Snippets — Primeros Auxilios Inmediatos</div>
-      <div class="card-p">
-        En cada tarjeta del Hub de Apoyo, inmediatamente antes del párrafo de descripción,
-        se insertó una frase de primeros auxilios verbales en cursiva y fondo coral suave:
-        <em>"Prueba decir: 'Aquí estoy. Estás a salvo. Vamos a respirar juntos'."</em><br><br>
-        El efecto es reducir la fricción de activación a cero. El padre en crisis recibe
-        una herramienta concreta <strong>antes de decidir hacer clic</strong>.
-        No necesita comprometerse con leer una guía entera. Tiene la frase ahora.
-        La guía pasa de ser un requisito a ser una profundización opcional.
-      </div>
-    </div>
-
-    <div class="card insight">
-      <div class="card-tag">Insight Estratégico · Decisión de Nari</div>
-      <div class="card-h">La paleta Cream como vector de descompresión cognitiva</div>
-      <div class="card-p">
-        La transición del blanco puro al crema cálido (#FAF6F2) no fue estética.
-        Fue una decisión de arquitectura emocional. Los fondos blancos puros activan
-        modos de lectura de alta atención (documentos, formularios, interfaces médicas).
-        Los fondos crema-arena remiten a contextos de bajo estrés (libros, cartas, cocinas).
-        <strong>Nari eligió señalar con el color que esto no es una tarea. Es un refugio.</strong>
-      </div>
-    </div>
-  </div>
-
-  <!-- S03: METRICS -->
-  <div class="section">
-    <div class="section-num">Sección 03</div>
-    <h2 class="section-title">Métricas del <em>Alma</em></h2>
-    <p class="section-lead">
-      La analítica tradicional mide comportamiento. Esta nueva capa mide estado emocional.
-      No "qué hizo el padre" sino "en qué punto el diseño lo contuvo."
-    </p>
-
-    <div class="reading-frame">
-      <span class="rf-tag">NUEVA MÉTRICA · v2.0</span>
-      <div class="rf-metric">Absolution Read</div>
-      <div class="rf-mono">
-        SENSOR: IntersectionObserver(threshold=0.8) · #te-vemos<br>
-        PAUSA MÍNIMA: setTimeout(2000ms) · se cancela si el usuario scrollea antes<br>
-        EVENTO PLAUSIBLE: 'Home: Absolution Read' · props → { language }
-      </div>
-      <div class="rf-body">
-        Se activa cuando el 80% de la sección <span class="tag">#te-vemos</span> es visible
-        en pantalla <strong>y el padre permanece en esa posición por al menos 2 segundos completos.</strong>
-        Si el usuario desplaza la página antes de que transcurran los 2 segundos, el timer se cancela
-        y el evento no se registra. Solo cuenta la pausa real.<br><br>
-        Esta pausa de 2 segundos es el umbral empírico del <strong>"Sigh of Relief"</strong>:
-        el suspiro de alivio que ocurre cuando una mente en estado de alerta procesa
-        que alguien la reconoció. No es métricamente observable directamente,
-        pero su correlato conductual — el pause — sí lo es.<br><br>
-        <span class="tag t">Pregunta que responde →</span>&nbsp;
-        <span style="font-family:var(--mono);font-size:11px;color:var(--dim);">
-          ¿Cuántos padres recibieron el mensaje de absolución de Nari?
-        </span>
-      </div>
-    </div>
-
-    <div class="card insight" style="margin-top:16px;">
-      <div class="card-tag">El Cambio de Pregunta</div>
-      <div class="card-h">De "¿Qué hicieron?" a "¿Cómo se sintieron?"</div>
-      <div class="card-p">
-        Un sitio con alto <em>Absolution Read</em> y bajo click-through sigue siendo estratégicamente exitoso:
-        el padre se fue sintiéndose comprendido, y eso construye la confianza que lo traerá de regreso.
-        <strong>Un sitio con alto click-through y cero Absolution Read tiene un problema de alma, no de UX.</strong>
-      </div>
-    </div>
-  </div>
-
-  <!-- S04: PRIORITIES -->
-  <div class="section">
-    <div class="section-num">Prioridades · Semana 3</div>
-    <h2 class="section-title">Ejecución y <em>Monitoreo</em></h2>
-    <p class="section-lead">
-      Tres señales a monitorear en las próximas 2–4 semanas para confirmar
-      que la cirugía estructural está cerrando las fugas detectadas.
-    </p>
-
-    <div class="pri-list">
-      <div class="pri">
-        <div class="pri-n">01</div>
-        <div>
-          <div class="pri-sig">Monitor · Fuga · #te-vemos → /apoyo</div>
-          <div class="pri-title">¿Está bajando el 64%?</div>
-          <div class="pri-body">
-            Monitorear la tasa de retención en /apoyo después del despliegue del Te Vemos spine.
-            Si el Absolution Read Rate supera el 20% de visitantes únicos, la espina está activando
-            el efecto de contención. Si el bounce en /apoyo baja por debajo del 50%, la hipótesis se confirma.
-            <br><br>
-            <span class="tag t">KPI → Bounce /apoyo &lt; 50%</span>&nbsp;
-            <span class="tag t">Absolution Read Rate &gt; 20%</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="pri">
-        <div class="pri-n">02</div>
-        <div>
-          <div class="pri-sig">Track · Dwell · #te-vemos</div>
-          <div class="pri-title">¿Cuánta gente se detiene en "Te Vemos"?</div>
-          <div class="pri-body">
-            El evento 'Home: Absolution Read' en Plausible es el sensor directo.
-            Un volumen creciente semana sobre semana confirma que el copy está resonando.
-            Un volumen estancado indica que el posicionamiento en la página necesita ajuste
-            (¿demasiado abajo del fold? ¿compitiendo con el hero video?).
-            <br><br>
-            <span class="tag t">EVENTO → 'Home: Absolution Read'</span>&nbsp;
-            <span class="tag">META SEMANA 3 → &gt;25% de sesiones únicas</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="pri">
-        <div class="pri-n">03</div>
-        <div>
-          <div class="pri-sig">Insight Máximo · Confianza · .card-snippet</div>
-          <div class="pri-title">Tracking de "Phrase Copying"</div>
-          <div class="pri-body">
-            La prueba de máxima confianza: un padre que copia una frase del Snippet para usarla con su hijo
-            en este momento. Actualmente no tenemos sensor directo para esto.
-            La señal indirecta es tiempo en página &gt;90 segundos en /apoyo combinado con
-            cero clicks (el padre leyó, usó la frase, y salió sin necesitar más).
-            Explorar implementación de un micro-evento "Copiar frase" en versión futura.
-            <br><br>
-            <span class="tag c">SEÑAL INDIRECTA → Dwell &gt;90s + 0 clicks en /apoyo</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <div class="foot">
-    <span>Observatorio de Señales v2.0 · Criar Sin Culpas · Interno</span>
-    <span>Confidencial · NARI2026</span>
-  </div>
-
-</div><!-- /wrap -->
-</div><!-- /ledger -->
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow">
   <title>Ledger v2.2 · Del Diagnóstico al Santuario · Criar Sin Culpas</title>
   <link rel="icon" href="data:,">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -708,6 +42,7 @@
   }
   ::selection { background: rgba(244,168,138,.3); }
 
+  /* ───────── PROGRESS + LANG ───────── */
   #progress {
     position: fixed; top: 0; left: 0; height: 2.5px; width: 0; z-index: 60;
     background: linear-gradient(90deg, var(--coral-ink), var(--teal));
@@ -733,6 +68,7 @@
   }
   #lang.en .pill { transform: translateX(100%); }
 
+  /* ───────── LOCK ───────── */
   #lock {
     display: none; position: fixed; inset: 0; z-index: 999;
     background: var(--void);
@@ -759,6 +95,7 @@
   #lock button[type="submit"]:hover { opacity: .82; transform: translateY(-1px); }
   #lock-err { font-family: var(--mono); font-size: 11px; color: var(--coral-ink); letter-spacing: .08em; min-height: 1em; }
 
+  /* ───────── LEDGER ───────── */
   #ledger { display: none; }
   #ledger.on { display: block; animation: fadein .6s ease; }
   @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
@@ -767,6 +104,7 @@
   .rise { opacity: 0; transform: translateY(22px); transition: opacity .8s ease, transform .8s ease; }
   .rise.in { opacity: 1; transform: none; }
 
+  /* ── COVER ── */
   .cover { padding: 76px 0 52px; }
   .cover-eyebrow {
     font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
@@ -805,6 +143,7 @@
   .stamp-val.green { color: var(--teal-ink); }
   .stamp-val.red   { color: var(--coral-ink); }
 
+  /* ── PLAIN BAND ── */
   .plain {
     margin: 8px 0 44px; padding: 28px 30px;
     background: linear-gradient(180deg, #FFFFFF, #FFFCF9);
@@ -817,6 +156,7 @@
   .plain p + p { margin-top: 14px; }
   .plain strong { font-weight: 500; color: var(--text); }
 
+  /* ── EVOLUTION ── */
   .evo-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; padding: 8px 0; }
   .evo-box {
     padding: 28px; border-radius: 16px; background: var(--lift); border: 1px solid var(--rule);
@@ -836,6 +176,7 @@
   .evo-body { font-size: .85rem; color: var(--dim); line-height: 1.72; }
   .evo-body em { font-style: italic; font-family: var(--serif); color: var(--coral-ink); }
 
+  /* ── SECTIONS ── */
   .section { padding: 60px 0; border-top: 1px solid var(--rule); }
   .section-head { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 8px; }
   .section-ico { width: 30px; height: 30px; flex-shrink: 0; margin-top: 6px; }
@@ -845,6 +186,7 @@
   .section-title em { font-style: italic; color: var(--coral-ink); }
   .section-lead { font-size: .94rem; line-height: 1.8; color: var(--dim); max-width: 60ch; margin-bottom: 32px; }
 
+  /* ── WAFFLE ── */
   .leak { background: var(--navy); border-radius: 20px; padding: 38px 36px; margin: 8px 0 22px; color: var(--void); }
   .leak-head { font-family: var(--mono); font-size: 10px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: rgba(250,246,242,.45); margin-bottom: 6px; }
   .leak-q { font-family: var(--serif); font-size: 1.5rem; font-weight: 500; color: var(--void); margin-bottom: 26px; line-height: 1.25; }
@@ -873,6 +215,7 @@
   .ll-txt strong { color: var(--void); font-weight: 500; }
   .leak-foot { margin-top: 26px; padding-top: 16px; border-top: 1px solid rgba(250,246,242,.1); font-family: var(--mono); font-size: 10px; color: rgba(250,246,242,.4); letter-spacing: .05em; }
 
+  /* ── CARDS ── */
   .card {
     background: var(--lift); border-radius: 16px; border: 1px solid var(--rule);
     padding: 26px 28px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(31,46,70,.04);
@@ -894,6 +237,7 @@
   .card-gloss { margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--rule); font-size: .85rem; line-height: 1.7; color: var(--text); font-weight: 300; }
   .card-gloss b { font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-ink); display: block; margin-bottom: 5px; }
 
+  /* ── TE VEMOS ── */
   .tevemos { margin: 22px 0; padding: 52px 40px; border-radius: 20px;
     background: linear-gradient(160deg, #FFF6F0, #FAF6F2 70%); border: 1px solid rgba(244,168,138,.3); text-align: center; }
   .tv-eyebrow { font-family: var(--mono); font-size: 10px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--coral-ink); margin-bottom: 26px; }
@@ -907,6 +251,7 @@
     margin-top: 30px; line-height: 1.2; opacity: 0; transform: translateY(10px); transition: opacity .8s ease 1.4s, transform .8s ease 1.4s; }
   .tevemos.in .tv-remate { opacity: 1; transform: none; }
 
+  /* ── BREATH ── */
   .breath-block { display: grid; grid-template-columns: 200px 1fr; gap: 34px; align-items: center; background: var(--navy); border-radius: 20px; padding: 36px; color: var(--void); }
   .breath { position: relative; width: 180px; height: 180px; margin: 0 auto; }
   .breath-ring { position: absolute; inset: 0; border-radius: 50%; border: 1.5px solid rgba(133,153,173,.45); animation: breathe 6s ease-in-out infinite; }
@@ -921,6 +266,7 @@
   .breath-txt p strong { color: var(--void); font-weight: 500; }
   .breath-spec { margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(250,246,242,.12); font-family: var(--mono); font-size: 10.5px; line-height: 1.7; color: rgba(244,168,138,.85); letter-spacing: .02em; }
 
+  /* ── QUESTION SHIFT ── */
   .shift { display: grid; grid-template-columns: 1fr auto 1fr; gap: 22px; align-items: center; margin: 4px 0 8px; }
   .shift-q { padding: 26px 24px; border-radius: 16px; border: 1px solid var(--rule); text-align: center; background: var(--lift); transition: transform .3s ease; }
   .shift-q.new:hover { transform: translateY(-3px); }
@@ -932,6 +278,7 @@
   .shift-q.new .txt { color: var(--teal-ink); }
   .shift-arrow { font-family: var(--mono); color: var(--coral-ink); font-size: 1.2rem; }
 
+  /* ── PRIORITIES ── */
   .pri { display: flex; gap: 22px; align-items: flex-start; background: var(--lift); border: 1px solid var(--rule); border-radius: 16px;
     padding: 24px 26px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(31,46,70,.04); transition: transform .3s ease, box-shadow .3s ease; }
   .pri:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(31,46,70,.08); }
@@ -947,6 +294,7 @@
   .tag.c { background: rgba(244,168,138,.12); border-color: rgba(217,107,71,.22); color: var(--coral-ink); }
   .tag.t { background: rgba(133,153,173,.12); border-color: rgba(133,153,173,.28); color: var(--teal-ink); }
 
+  /* ── FOOTER ── */
   .foot { padding: 32px 0 60px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; border-top: 1px solid var(--rule); }
   .foot span { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--ghost); text-transform: uppercase; }
 
@@ -1075,7 +423,6 @@
       document.getElementById('lp').value.trim() === 'NARI2026' ? reveal() : wrong();
     });
   });
-
 })();
 </script>
 
