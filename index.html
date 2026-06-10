@@ -732,6 +732,77 @@
       } else { reveals.forEach(el => el.classList.add('visible')); }
     })();
 
+    /* ── Plausible Goals: Evolved Home UI ── */
+    if ('IntersectionObserver' in window) {
+
+      /* 1. #te-vemos — Absolution Read (must stay visible for 2s) */
+      (function() {
+        const el = document.getElementById('te-vemos');
+        if (!el) return;
+        let fired = false;
+        let timer = null;
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(en => {
+            if (en.isIntersecting && !fired) {
+              timer = setTimeout(() => {
+                if (fired) return;
+                fired = true;
+                window.plausible && window.plausible('Home: Absolution Read', { props: { language: document.documentElement.lang } });
+                io.disconnect();
+              }, 2000);
+            } else {
+              clearTimeout(timer);
+            }
+          });
+        }, { threshold: 0.8 });
+        io.observe(el);
+      })();
+
+      /* 2. #puente-metodo — Bridge View */
+      (function() {
+        const el = document.getElementById('puente-metodo');
+        if (!el) return;
+        let fired = false;
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(en => {
+            if (en.isIntersecting && !fired) {
+              fired = true;
+              window.plausible && window.plausible('Home: Bridge View', { props: { language: document.documentElement.lang } });
+              io.disconnect();
+            }
+          });
+        }, { threshold: 0.5 });
+        io.observe(el);
+      })();
+
+    }
+
+    /* 3. #puente-metodo CTA click — Method Bridge Click */
+    (function() {
+      const bridge = document.getElementById('puente-metodo');
+      if (!bridge) return;
+      const cta = bridge.querySelector('a');
+      if (!cta) return;
+      let fired = false;
+      cta.addEventListener('click', () => {
+        if (fired) return;
+        fired = true;
+        window.plausible && window.plausible('Home: Method Bridge Click', { props: { language: document.documentElement.lang } });
+      });
+    })();
+
+    /* 4. .affirm-item hover — Affirmation Hover (once per session) */
+    (function() {
+      let fired = false;
+      document.querySelectorAll('.affirm-item').forEach(item => {
+        item.addEventListener('mouseenter', () => {
+          if (fired) return;
+          fired = true;
+          window.plausible && window.plausible('Home: Affirmation Hover', { props: { language: document.documentElement.lang } });
+        });
+      });
+    })();
+
     /* ── Telemetry + page fade on entry links ── */
     function fadeNav(href, evt) {
       if (!href || href.charAt(0) === '#') return; /* let in-page anchors scroll normally */
