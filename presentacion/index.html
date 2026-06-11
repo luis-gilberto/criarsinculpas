@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Del Diagnóstico al Santuario · LG Studio</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --obsidian:   #0E0C0A;
+      --obsidian-2: #161310;
+      --obsidian-3: #1E1A15;
+      --gold:       #C9A368;
+      --gold-dim:   rgba(201,163,104,.18);
+      --gold-line:  rgba(201,163,104,.35);
+      --coral:      #F96F6E;
+      --coral-dim:  rgba(249,111,110,.15);
+      --cream:      #FAF6F2;
+      --cream-dim:  rgba(250,246,242,.7);
+      --cream-ghost:rgba(250,246,242,.38);
+      --cream-rule: rgba(250,246,242,.08);
+      --serif:  'Cormorant Garamond', Georgia, serif;
+      --mono:   'JetBrains Mono', ui-monospace, monospace;
+      --sans:   'DM Sans', system-ui, sans-serif;
+      --ease:   cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; }
+    body { font-family: var(--sans); background: var(--obsidian); color: var(--cream); -webkit-font-smoothing: antialiased; }
+    ::selection { background: rgba(201,163,104,.3); }
+
+    /* ── BACKGROUND GLOW ── */
+    #bg {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background: radial-gradient(ellipse at 50% 0%, rgba(201,163,104,.07) 0%, transparent 65%),
+                  radial-gradient(ellipse at 80% 80%, rgba(249,111,110,.05) 0%, transparent 50%);
+      animation: breathGlow 10s ease-in-out infinite;
+    }
+    @keyframes breathGlow {
+      0%,100% { opacity: .7; transform: scale(1); }
+      50%     { opacity: 1;  transform: scale(1.06); }
+    }
+
+    /* ── TOP BAR ── */
+    #topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      height: 52px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 28px;
+      background: rgba(14,12,10,.82);
+      backdrop-filter: blur(16px) saturate(160%);
+      border-bottom: 1px solid var(--cream-rule);
+    }
+    .tb-brand { font-family: var(--mono); font-size: .62rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+    .tb-center { display: flex; align-items: center; gap: 18px; }
+    .slide-counter { font-family: var(--mono); font-size: .64rem; color: var(--cream-ghost); letter-spacing: .1em; }
+    #progress-line { position: fixed; top: 52px; left: 0; height: 2px; background: linear-gradient(90deg, var(--gold), var(--coral)); transition: width .5s var(--ease); z-index: 51; }
+
+    /* lang toggle */
+    .lang-toggle { display: inline-flex; background: rgba(250,246,242,.06); border: 1px solid var(--cream-rule); border-radius: 999px; padding: 3px; }
+    .lang-toggle button { font-family: var(--mono); font-size: .6rem; font-weight: 600; letter-spacing: .1em; border: none; background: transparent; color: var(--cream-ghost); padding: 4px 12px; border-radius: 999px; cursor: pointer; transition: all .25s; }
+    .lang-toggle button.active { background: var(--gold); color: var(--obsidian); }
+
+    /* notes toggle */
+    .notes-btn { font-family: var(--mono); font-size: .6rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; border: 1px solid var(--cream-rule); background: transparent; color: var(--cream-ghost); padding: 5px 14px; border-radius: 999px; cursor: pointer; transition: all .25s; }
+    .notes-btn.on { border-color: var(--gold-line); color: var(--gold); }
+
+    /* ── DECK WRAPPER ── */
+    #deck {
+      position: fixed; inset: 52px 0 0 0; z-index: 10;
+      display: flex; overflow: hidden;
+      transition: right .4s var(--ease);
+    }
+    #deck.notes-open { right: 380px; }
+
+    /* ── SLIDES ── */
+    .slide {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 60px 80px;
+      opacity: 0; pointer-events: none;
+      transform: translateY(22px);
+      transition: opacity .55s var(--ease), transform .55s var(--ease);
+    }
+    .slide.active { opacity: 1; pointer-events: auto; transform: none; }
+    .slide.exit { opacity: 0; transform: translateY(-22px); }
+
+    /* ── NAV ── */
+    #nav {
+      position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+      z-index: 50; display: flex; align-items: center; gap: 14px;
+    }
+    .nav-btn {
+      width: 46px; height: 46px; border-radius: 50%;
+      border: 1px solid var(--cream-rule); background: rgba(250,246,242,.04);
+      color: var(--cream-dim); font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all .25s var(--ease);
+    }
+    .nav-btn:hover { border-color: var(--gold-line); color: var(--gold); background: var(--gold-dim); }
+    .nav-btn:disabled { opacity: .25; pointer-events: none; }
+
+    /* ── SPEAKER NOTES PANEL ── */
+    #notes-panel {
+      position: fixed; top: 52px; right: -380px; bottom: 0; width: 380px; z-index: 40;
+      background: var(--obsidian-2);
+      border-left: 1px solid var(--cream-rule);
+      display: flex; flex-direction: column;
+      transition: right .4s var(--ease);
+      overflow: hidden;
+    }
+    #notes-panel.open { right: 0; }
+    .np-head { padding: 20px 24px 16px; border-bottom: 1px solid var(--cream-rule); flex-shrink: 0; }
+    .np-label { font-family: var(--mono); font-size: .6rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
+    .np-slide-ref { font-family: var(--serif); font-size: .95rem; color: var(--cream-dim); margin-top: 4px; }
+    .np-body { flex: 1; overflow-y: auto; padding: 22px 24px 32px; }
+    .np-body::-webkit-scrollbar { width: 4px; }
+    .np-body::-webkit-scrollbar-thumb { background: rgba(250,246,242,.1); border-radius: 4px; }
+    .note-text { font-family: var(--serif); font-size: 1.05rem; line-height: 1.85; color: var(--cream-dim); font-weight: 300; }
+    .note-text p + p { margin-top: 14px; }
+    .note-text strong { color: var(--gold); font-weight: 500; }
+
+    /* ── SLIDE COMPONENTS ── */
+    .eyebrow { font-family: var(--mono); font-size: .62rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; display: flex; align-items: center; gap: 12px; }
+    .eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold-line); }
+
+    .slide-title { font-family: var(--serif); font-weight: 300; line-height: 1.05; letter-spacing: -.01em; }
+    .slide-title em { font-style: italic; color: var(--coral); }
+    .slide-title .gold { color: var(--gold); }
+
+    .slide-sub { font-family: var(--mono); font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--cream-ghost); margin-top: 16px; }
+    .rule { width: 60px; height: 1px; background: var(--gold-line); margin: 28px 0; }
+    .lead { font-size: 1.15rem; line-height: 1.8; color: var(--cream-dim); font-weight: 300; max-width: 68ch; }
+    .lead strong { color: var(--cream); font-weight: 500; }
+
+    /* data stat */
+    .stat-block { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .stat-n { font-family: var(--serif); font-size: clamp(4rem, 9vw, 7rem); font-weight: 300; color: var(--coral); line-height: 1; }
+    .stat-label { font-family: var(--mono); font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--cream-ghost); }
+
+    /* two-col */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; width: 100%; max-width: 960px; }
+    .col-card { background: var(--obsidian-3); border: 1px solid var(--cream-rule); border-radius: 20px; padding: 36px 32px; position: relative; overflow: hidden; }
+    .col-card.gold-accent { border-top: 3px solid var(--gold); }
+    .col-card.coral-accent { border-top: 3px solid var(--coral); }
+    .col-card-tag { font-family: var(--mono); font-size: .6rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 14px; }
+    .col-card.gold-accent .col-card-tag { color: var(--gold); }
+    .col-card.coral-accent .col-card-tag { color: var(--coral); }
+    .col-card-title { font-family: var(--serif); font-size: 1.7rem; font-weight: 300; line-height: 1.2; color: var(--cream); margin-bottom: 14px; }
+    .col-card-body { font-size: .95rem; line-height: 1.75; color: var(--cream-ghost); }
+
+    /* ascii bar */
+    .ascii-bar { font-family: var(--mono); font-size: .82rem; letter-spacing: .04em; display: flex; flex-direction: column; gap: 10px; }
+    .ab-row { display: flex; align-items: center; gap: 12px; }
+    .ab-label { width: 110px; text-align: right; color: var(--cream-ghost); font-size: .68rem; flex-shrink: 0; }
+    .ab-track { flex: 1; }
+    .ab-fill { height: 8px; border-radius: 4px; transition: width 1s var(--ease); }
+    .ab-val { width: 44px; color: var(--cream-dim); font-size: .72rem; }
+
+    /* pull quote */
+    .pull-quote { font-family: var(--serif); font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 300; font-style: italic; line-height: 1.35; color: var(--cream); border-left: 3px solid var(--gold); padding: 8px 0 8px 28px; max-width: 64ch; }
+    .pull-quote em { color: var(--gold); font-style: normal; }
+
+    /* feature list */
+    .feat-list { list-style: none; display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 680px; }
+    .feat-list li { display: flex; align-items: flex-start; gap: 16px; font-size: 1.05rem; line-height: 1.6; color: var(--cream-dim); }
+    .feat-num { font-family: var(--mono); font-size: .72rem; font-weight: 600; color: var(--gold); width: 28px; flex-shrink: 0; padding-top: 3px; }
+    .feat-list strong { color: var(--cream); font-weight: 500; }
+
+    /* metric card */
+    .metric-card { background: var(--obsidian-3); border: 1px solid var(--cream-rule); border-radius: 20px; padding: 40px 44px; max-width: 680px; width: 100%; position: relative; }
+    .metric-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(180deg, var(--gold), var(--coral)); border-radius: 20px 0 0 20px; }
+    .metric-eyebrow { font-family: var(--mono); font-size: .6rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .metric-title { font-family: var(--serif); font-size: 2.2rem; font-weight: 300; color: var(--cream); margin-bottom: 16px; line-height: 1.1; }
+    .metric-body { font-size: 1rem; line-height: 1.75; color: var(--cream-ghost); }
+    .metric-body strong { color: var(--cream-dim); font-weight: 500; }
+    .metric-spec { margin-top: 20px; display: flex; gap: 24px; flex-wrap: wrap; }
+    .spec-item { display: flex; flex-direction: column; gap: 3px; }
+    .spec-k { font-family: var(--mono); font-size: .58rem; letter-spacing: .14em; text-transform: uppercase; color: var(--cream-ghost); }
+    .spec-v { font-family: var(--mono); font-size: .82rem; font-weight: 600; color: var(--gold); }
+
+    /* closing card */
+    .close-card { background: linear-gradient(135deg, var(--obsidian-3), rgba(201,163,104,.06)); border: 1px solid var(--gold-line); border-radius: 24px; padding: 52px 56px; max-width: 700px; text-align: center; }
+    .close-date { font-family: var(--mono); font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--coral); margin-bottom: 20px; }
+    .close-cta { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 300; color: var(--cream); line-height: 1.15; margin-bottom: 24px; }
+    .close-cta em { font-style: italic; color: var(--gold); }
+    .close-body { font-size: .95rem; line-height: 1.75; color: var(--cream-ghost); }
+
+    /* act badge */
+    .act-badge { font-family: var(--mono); font-size: .58rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; border: 1px solid; display: inline-block; margin-bottom: 18px; }
+    .act-badge.gold  { color: var(--gold);  border-color: var(--gold-line);  background: var(--gold-dim); }
+    .act-badge.coral { color: var(--coral); border-color: rgba(249,111,110,.35); background: var(--coral-dim); }
+
+    /* ── SLIDE 1 specific ── */
+    #s1 { text-align: center; }
+    #s1 .slide-title { font-size: clamp(3.2rem, 7vw, 6.5rem); }
+    .title-divider { width: 1px; height: 60px; background: linear-gradient(180deg, transparent, var(--gold-line), transparent); margin: 28px auto; }
+
+    /* ── SLIDE 2 specific ── */
+    #s2 { align-items: flex-start; padding-top: 80px; }
+    #s2 .inner { width: 100%; max-width: 1000px; }
+
+    /* ── SLIDE 3 specific ── */
+    #s3 { align-items: flex-start; }
+    #s3 .inner { width: 100%; max-width: 900px; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .slide { padding: 40px 28px; }
+      .two-col { grid-template-columns: 1fr; }
+      #deck.notes-open { right: 0; }
+      #notes-panel { width: 100%; top: auto; height: 45vh; right: 0 !important; bottom: -45vh; border-left: none; border-top: 1px solid var(--cream-rule); }
+      #notes-panel.open { bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="bg"></div>
+<div id="progress-line"></div>
+
+<!-- TOP BAR -->
+<div id="topbar">
+  <span class="tb-brand">CSC · LG Studio</span>
+  <div class="tb-center">
+    <span class="slide-counter"><span id="curNum">1</span> / <span id="totNum">7</span></span>
+    <div class="lang-toggle" id="langToggle">
+      <button data-l="es" class="active">ES</button>
+      <button data-l="en">EN</button>
+    </div>
+    <button class="notes-btn" id="notesBtn">Notas ✦</button>
+  </div>
+</div>
+
+<!-- DECK -->
+<div id="deck">
+
+  <!-- ── SLIDE 1: PORTADA ── -->
+  <div class="slide active" id="s1"
+       data-title-es="Portada" data-title-en="Cover">
+    <span class="eyebrow" data-es="Estrategia Semanal · LG Studio" data-en="Weekly Strategy · LG Studio">Estrategia Semanal · LG Studio</span>
+    <h1 class="slide-title" data-es='Del Diagnóstico<br>al <em>Santuario</em>' data-en='From Diagnosis<br>to the <em>Sanctuary</em>'>Del Diagnóstico<br>al <em>Santuario</em></h1>
+    <div class="title-divider"></div>
+    <p class="slide-sub" data-es="Criar Sin Culpas · Semanas 1–3 · 2026" data-en="Criar Sin Culpas · Weeks 1–3 · 2026">Criar Sin Culpas · Semanas 1–3 · 2026</p>
+  </div>
+
+  <!-- ── SLIDE 2: EL CASO CLÍNICO ── -->
+  <div class="slide" id="s2"
+       data-title-es="El Caso Clínico" data-title-en="The Clinical Case">
+    <div class="inner">
+      <span class="eyebrow" data-es="Contexto · El arco completo" data-en="Context · The full arc">Contexto · El arco completo</span>
+      <h2 class="slide-title" style="font-size:clamp(2.4rem,4.5vw,3.6rem); margin-bottom:32px;"
+          data-es='El <em>Caso Clínico</em>' data-en='The <em>Clinical Case</em>'>El <em>Caso Clínico</em></h2>
+      <div class="two-col">
+        <div class="col-card coral-accent">
+          <div class="col-card-tag" data-es="Fase 1 · El Rayo X" data-en="Phase 1 · The X-Ray">Fase 1 · El Rayo X</div>
+          <div class="col-card-title" data-es="Diagnóstico" data-en="Diagnosis">Diagnóstico</div>
+          <div class="col-card-body" data-es="Detectamos la fuga estructural: <strong>64% de rebote</strong> en el primer contacto del Hub de Apoyo. El sitio diagnosticaba, pero no contenía. Le pedía al usuario elegir antes de sentirse comprendido." data-en="We detected the structural leak: <strong>64% bounce rate</strong> on the first contact of the Support Hub. The site diagnosed, but did not contain. It asked the user to choose before feeling understood.">Detectamos la fuga estructural: <strong>64% de rebote</strong> en el primer contacto del Hub de Apoyo. El sitio diagnosticaba, pero no contenía. Le pedía al usuario elegir antes de sentirse comprendido.</div>
+        </div>
+        <div class="col-card gold-accent">
+          <div class="col-card-tag" data-es="Fase 2 · La Rehabilitación" data-en="Phase 2 · The Rehabilitation">Fase 2 · La Rehabilitación</div>
+          <div class="col-card-title" data-es="Santuario" data-en="Sanctuary">Santuario</div>
+          <div class="col-card-body" data-es="Paleta crema, espina <em>'Te Vemos'</em>, Snippets de primeros auxilios. El sitio ahora <strong>valida antes de instruir</strong>. Cada decisión de diseño está ordenada desde la emoción hacia afuera." data-en="Cream palette, <em>'Te Vemos'</em> spine, first-aid Snippets. The site now <strong>validates before it instructs</strong>. Every design decision is ordered from emotion outward.">Paleta crema, espina <em>'Te Vemos'</em>, Snippets de primeros auxilios. El sitio ahora <strong>valida antes de instruir</strong>. Cada decisión de diseño está ordenada desde la emoción hacia afuera.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 3: ACTO I – TU ESENCIA ES EL COLOR ── -->
+  <div class="slide" id="s3"
+       data-title-es="Acto I · Tu Esencia es el Color" data-title-en="Act I · Your Essence is the Color">
+    <div class="inner">
+      <span class="act-badge gold" data-es="Acto I · Marca Visual" data-en="Act I · Visual Brand">Acto I · Marca Visual</span>
+      <h2 class="slide-title" style="font-size:clamp(2.4rem,4.5vw,3.6rem); margin-bottom:24px;"
+          data-es='Shot List <em>v2.0</em>' data-en='Shot List <em>v2.0</em>'>Shot List <em>v2.0</em></h2>
+      <div class="pull-quote" data-es='Tú eres el <em>color</em>.<br>El sitio es el lienzo.' data-en='You are the <em>color</em>.<br>The site is the canvas.'>Tú eres el <em>color</em>.<br>El sitio es el lienzo.</div>
+      <div class="rule"></div>
+      <ul class="feat-list">
+        <li><span class="feat-num">01</span><span data-es="<strong>Retrato editorial</strong> — La foto de cabecera que ancla la credibilidad emocional del sitio." data-en="<strong>Editorial portrait</strong> — The header photo that anchors the site's emotional credibility."><strong>Retrato editorial</strong> — La foto de cabecera que ancla la credibilidad emocional del sitio.</span></li>
+        <li><span class="feat-num">02</span><span data-es="<strong>En movimiento</strong> — Nari en contexto real: frente a su hijo, en la naturaleza, en el estudio." data-en="<strong>In motion</strong> — Nari in real context: with her child, in nature, in the studio."><strong>En movimiento</strong> — Nari en contexto real: frente a su hijo, en la naturaleza, en el estudio.</span></li>
+        <li><span class="feat-num">03</span><span data-es="<strong>Detalle y símbolo</strong> — Manos, libros, el cuaderno de trabajo. Objetos que hablan antes que las palabras." data-en="<strong>Detail and symbol</strong> — Hands, books, the workbook. Objects that speak before the words do."><strong>Detalle y símbolo</strong> — Manos, libros, el cuaderno de trabajo. Objetos que hablan antes que las palabras.</span></li>
+        <li><span class="feat-num">04</span><span data-es="<strong>Paleta Santuario</strong> — Tonos crema, coral y navy. Cada toma refuerza el nuevo color system del sitio." data-en="<strong>Sanctuary palette</strong> — Cream, coral and navy tones. Every shot reinforces the site's new color system."><strong>Paleta Santuario</strong> — Tonos crema, coral y navy. Cada toma refuerza el nuevo color system del sitio.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 4: ACTO II – CIRUGÍA ESTRUCTURAL ── -->
+  <div class="slide" id="s4"
+       data-title-es="Acto II · Cirugía Estructural" data-title-en="Act II · Structural Surgery">
+    <div class="inner" style="max-width:920px;width:100%;">
+      <span class="act-badge coral" data-es="Acto II · Retención" data-en="Act II · Retention">Acto II · Retención</span>
+      <h2 class="slide-title" style="font-size:clamp(2.2rem,4vw,3.2rem); margin-bottom:30px;"
+          data-es='Cirugía <em>Estructural</em>' data-en='Structural <em>Surgery</em>'>Cirugía <em>Estructural</em></h2>
+      <div style="display:flex; gap:40px; align-items:flex-start; flex-wrap:wrap;">
+        <div style="flex:1; min-width:280px;">
+          <p class="lead" style="margin-bottom:24px;" data-es="La fuga del <strong>64%</strong> se cierra con dos intervenciones quirúrgicas precisas:" data-en="The <strong>64%</strong> leak is closed with two precise surgical interventions:">La fuga del <strong>64%</strong> se cierra con dos intervenciones quirúrgicas precisas:</p>
+          <div class="two-col" style="grid-template-columns:1fr 1fr; gap:16px;">
+            <div class="col-card coral-accent" style="padding:24px 20px;">
+              <div class="col-card-tag" data-es="Espina de Retención" data-en="Retention Spine">Espina de Retención</div>
+              <div class="col-card-title" style="font-size:1.3rem;" data-es='"Te Vemos"' data-en='"We See You"'>"Te Vemos"</div>
+              <div class="col-card-body" style="font-size:.88rem;" data-es="Un bloque de validación emocional insertado antes de cualquier guía o instrucción." data-en="An emotional validation block inserted before any guide or instruction.">Un bloque de validación emocional insertado antes de cualquier guía o instrucción.</div>
+            </div>
+            <div class="col-card gold-accent" style="padding:24px 20px;">
+              <div class="col-card-tag" data-es="Primeros Auxilios" data-en="First Aid">Primeros Auxilios</div>
+              <div class="col-card-title" style="font-size:1.3rem;" data-es="Snippets" data-en="Snippets">Snippets</div>
+              <div class="col-card-body" style="font-size:.88rem;" data-es="Frases exactas para usar ahora mismo, visibles antes de hacer clic en la guía completa." data-en="Exact phrases to use right now, visible before clicking into the full guide.">Frases exactas para usar ahora mismo, visibles antes de hacer clic en la guía completa.</div>
+            </div>
+          </div>
+        </div>
+        <div style="flex:0 0 260px;">
+          <p style="font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-ghost);margin-bottom:16px;" data-es="Flujo de tráfico · /apoyo" data-en="Traffic flow · /apoyo">Flujo de tráfico · /apoyo</p>
+          <div class="ascii-bar">
+            <div class="ab-row">
+              <span class="ab-label" data-es="Fuga" data-en="Leak">Fuga</span>
+              <div class="ab-track"><div class="ab-fill" style="width:64%;background:var(--coral);"></div></div>
+              <span class="ab-val" style="color:var(--coral);">64%</span>
+            </div>
+            <div class="ab-row">
+              <span class="ab-label" data-es="Retención" data-en="Retention">Retención</span>
+              <div class="ab-track"><div class="ab-fill" style="width:36%;background:var(--gold);"></div></div>
+              <span class="ab-val" style="color:var(--gold);">36%</span>
+            </div>
+            <div class="ab-row">
+              <span class="ab-label" data-es="Conversión" data-en="Conversion">Conversión</span>
+              <div class="ab-track"><div class="ab-fill" style="width:8%;background:rgba(250,246,242,.4);"></div></div>
+              <span class="ab-val" style="color:var(--cream-ghost);">&lt;8%</span>
+            </div>
+          </div>
+          <p style="font-family:var(--mono);font-size:.6rem;color:var(--cream-ghost);margin-top:16px;line-height:1.6;" data-es="Objetivo S3: reducir fuga a &lt;45%" data-en="S3 target: reduce leak to &lt;45%">Objetivo S3: reducir fuga a &lt;45%</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 5: ACTO II – MÉTRICAS DEL ALMA ── -->
+  <div class="slide" id="s5"
+       data-title-es="Acto II · Métricas del Alma" data-title-en="Act II · Metrics of the Soul">
+    <div style="width:100%;max-width:760px;">
+      <span class="act-badge coral" data-es="Acto II · Medición" data-en="Act II · Measurement">Acto II · Medición</span>
+      <h2 class="slide-title" style="font-size:clamp(2.2rem,4vw,3.2rem); margin-bottom:30px;"
+          data-es='Métricas del <em>Alma</em>' data-en='Metrics of the <em>Soul</em>'>Métricas del <em>Alma</em></h2>
+      <div class="metric-card">
+        <div class="metric-eyebrow" data-es="Nuevo sensor de impacto emocional" data-en="New emotional impact sensor">Nuevo sensor de impacto emocional</div>
+        <div class="metric-title" data-es='"Absolution Read"' data-en='"Absolution Read"'>"Absolution Read"</div>
+        <div class="metric-body" data-es='Un padre que llega en crisis, lee el bloque <strong>"Te Vemos"</strong> durante al menos <strong>2 segundos continuos</strong> y no abandona la página. Esa pausa es la señal de que algo cambió en su estado emocional. No estamos midiendo clics. Estamos midiendo <strong>el momento en que el padre respira</strong>.' data-en='A parent who arrives in crisis, reads the <strong>"Te Vemos"</strong> block for at least <strong>2 continuous seconds</strong> and does not leave the page. That pause is the signal that something shifted in their emotional state. We are not measuring clicks. We are measuring <strong>the moment the parent breathes</strong>.'>Un padre que llega en crisis, lee el bloque <strong>"Te Vemos"</strong> durante al menos <strong>2 segundos continuos</strong> y no abandona la página. Esa pausa es la señal de que algo cambió en su estado emocional. No estamos midiendo clics. Estamos midiendo <strong>el momento en que el padre respira</strong>.</div>
+        <div class="metric-spec">
+          <div class="spec-item">
+            <span class="spec-k" data-es="Sensor" data-en="Sensor">Sensor</span>
+            <span class="spec-v">IntersectionObserver</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-k" data-es="Umbral" data-en="Threshold">Umbral</span>
+            <span class="spec-v">threshold: 0.8</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-k" data-es="Tiempo de permanencia" data-en="Dwell time">Dwell</span>
+            <span class="spec-v">≥ 2s</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-k" data-es="Herramienta" data-en="Tool">Tool</span>
+            <span class="spec-v">Plausible Analytics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 6: ACTO III – MOTOR DE GRADUACIÓN ── -->
+  <div class="slide" id="s6"
+       data-title-es="Acto III · El Motor de Graduación" data-title-en="Act III · The Graduation Engine">
+    <div class="inner" style="max-width:920px;width:100%;">
+      <span class="act-badge gold" data-es="Acto III · Monetización" data-en="Act III · Monetization">Acto III · Monetización</span>
+      <h2 class="slide-title" style="font-size:clamp(2.2rem,4vw,3.2rem); margin-bottom:28px;"
+          data-es='Portal Premium <em>v2.0</em>' data-en='Premium Portal <em>v2.0</em>'>Portal Premium <em>v2.0</em></h2>
+      <div class="two-col">
+        <div>
+          <p class="lead" style="font-size:1rem; margin-bottom:20px;" data-es="El Portal convierte la confianza construida en el Home en <strong>impacto sostenible</strong>. Es el motor que gradúa al usuario de los Primeros Auxilios a la Rehabilitación profunda." data-en="The Portal converts the trust built on the Home into <strong>sustainable impact</strong>. It is the engine that graduates the user from First Aid to deep Rehabilitation.">El Portal convierte la confianza construida en el Home en <strong>impacto sostenible</strong>. Es el motor que gradúa al usuario de los Primeros Auxilios a la Rehabilitación profunda.</p>
+          <ul class="feat-list" style="gap:10px;">
+            <li><span class="feat-num">01</span><span data-es="<strong>Motor bilingüe</strong> — Objeto LESSONS con ES/EN nativo. Toggle en tiempo real sin recarga." data-en="<strong>Bilingual engine</strong> — LESSONS object with native ES/EN. Real-time toggle without reload."><strong>Motor bilingüe</strong> — Objeto LESSONS con ES/EN nativo. Toggle en tiempo real sin recarga.</span></li>
+            <li><span class="feat-num">02</span><span data-es="<strong>Lock Obsidian</strong> — Acceso protegido con sesión, sin prompt(). Listo para Firebase Auth." data-en="<strong>Obsidian Lock</strong> — Session-protected access, no prompt(). Ready for Firebase Auth."><strong>Lock Obsidian</strong> — Acceso protegido con sesión, sin prompt(). Listo para Firebase Auth.</span></li>
+            <li><span class="feat-num">03</span><span data-es="<strong>Progress Ring</strong> — Barra de progreso personalizada. Persiste en localStorage." data-en="<strong>Progress Ring</strong> — Custom progress bar. Persists in localStorage."><strong>Progress Ring</strong> — Barra de progreso personalizada. Persiste en localStorage.</span></li>
+            <li><span class="feat-num">04</span><span data-es="<strong>Perfil de miembro</strong> — Avatar, badge de membresía, fecha de inicio." data-en="<strong>Member profile</strong> — Avatar, membership badge, start date."><strong>Perfil de miembro</strong> — Avatar, badge de membresía, fecha de inicio.</span></li>
+          </ul>
+        </div>
+        <div class="col-card gold-accent" style="padding:28px 26px;">
+          <div class="col-card-tag" data-es="Ruta de Monetización" data-en="Monetization Path">Ruta de Monetización</div>
+          <div class="col-card-title" style="font-size:1.35rem; margin-bottom:16px;" data-es="Memberstack → Stripe" data-en="Memberstack → Stripe">Memberstack → Stripe</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="font-family:var(--mono);font-size:.7rem;color:var(--cream-ghost);padding:10px 14px;background:rgba(250,246,242,.04);border-radius:10px;border:1px solid var(--cream-rule);">
+              <span style="color:var(--gold);">01</span> &nbsp;Auth real con Memberstack
+            </div>
+            <div style="font-family:var(--mono);font-size:.7rem;color:var(--cream-ghost);padding:10px 14px;background:rgba(250,246,242,.04);border-radius:10px;border:1px solid var(--cream-rule);">
+              <span style="color:var(--gold);">02</span> &nbsp;Tiers: Free / Premium / VIP
+            </div>
+            <div style="font-family:var(--mono);font-size:.7rem;color:var(--cream-ghost);padding:10px 14px;background:rgba(250,246,242,.04);border-radius:10px;border:1px solid var(--cream-rule);">
+              <span style="color:var(--gold);">03</span> &nbsp;Stripe para pagos recurrentes
+            </div>
+            <div style="font-family:var(--mono);font-size:.7rem;color:var(--cream-ghost);padding:10px 14px;background:rgba(250,246,242,.04);border-radius:10px;border:1px solid var(--cream-rule);">
+              <span style="color:var(--coral);">TODO</span> &nbsp;Firebase Auth (ya en código)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 7: CIERRE Y FECHAS ── -->
+  <div class="slide" id="s7"
+       data-title-es="Cierre y Fechas" data-title-en="Closing & Dates"
+       style="text-align:center;">
+    <div class="close-card">
+      <div class="close-date" data-es="⚡ Próxima acción urgente" data-en="⚡ Next urgent action">⚡ Próxima acción urgente</div>
+      <div class="close-cta" data-es='Hay que definir la fecha<br>del <em>Shoot Fotográfico</em>.' data-en='We need to lock in the date<br>of the <em>Photo Shoot</em>.'>Hay que definir la fecha<br>del <em>Shoot Fotográfico</em>.</div>
+      <div class="close-body" data-es="Todo el sistema —el Home, el Hub, el Portal— está listo para recibir las imágenes reales de Nari. El color scheme del Santuario fue diseñado específicamente para enmarcar su presencia. Sin las fotos, el lienzo está en blanco. <strong>Tú eres el color.</strong>" data-en="The entire system —Home, Hub, Portal— is ready to receive Nari's real images. The Sanctuary color scheme was designed specifically to frame her presence. Without the photos, the canvas is blank. <strong>You are the color.</strong>">Todo el sistema —el Home, el Hub, el Portal— está listo para recibir las imágenes reales de Nari. El color scheme del Santuario fue diseñado específicamente para enmarcar su presencia. Sin las fotos, el lienzo está en blanco. <strong>Tú eres el color.</strong></div>
+      <div style="margin-top:32px;padding-top:24px;border-top:1px solid rgba(201,163,104,.2);">
+        <p style="font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);" data-es="Fecha del Shoot: ____________________" data-en="Shoot Date: ____________________">Fecha del Shoot: ____________________</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /deck -->
+
+<!-- SPEAKER NOTES PANEL -->
+<div id="notes-panel">
+  <div class="np-head">
+    <div class="np-label">✦ Notas del Orador</div>
+    <div class="np-slide-ref" id="npSlideRef">Slide 1 — Portada</div>
+  </div>
+  <div class="np-body">
+    <div class="note-text" id="npText"></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div id="nav">
+  <button class="nav-btn" id="prevBtn" disabled>←</button>
+  <button class="nav-btn" id="nextBtn">→</button>
+</div>
+
+<script>
+  /* ── DATA ── */
+  var TOTAL = 7;
+
+  var NOTES = [
+    /* 1 */ '<p>Esta presentación marca el final de las primeras tres semanas de trabajo estratégico sobre el canal web de <strong>CriarSinCulpas.com</strong>. No es un reporte de avance ordinario: es la historia completa de cómo transformamos un sitio que <em>diagnosticaba</em> a uno que <em>acompaña</em>.</p><p>El título "Del Diagnóstico al Santuario" es deliberado. La Semana 1 fue el momento del escáner clínico: miramos los números sin piedad. La Semana 2 fue el quirófano: localizamos el punto exacto del fallo técnico y lo cerramos de inmediato. La Semana 3 es la que estamos presentando hoy: es la fase de rehabilitación emocional, donde el sitio deja de ser una herramienta y se convierte en un espacio.</p><p>Lo que verás en los próximos slides es el mapa completo de decisiones: qué construimos, por qué lo construimos así, y cómo vamos a saber si funcionó.</p>',
+    /* 2 */ '<p>El arco completo del proyecto se puede resumir en una sola frase: <strong>encontramos la herida y la cerramos con emoción, no solo con técnica</strong>.</p><p>En la primera fase, el diagnóstico reveló que el 64% de los padres que llegaban directamente al Hub de Apoyo abandonaban antes de leer una sola guía. Eso no es un problema de contenido —el contenido es excelente— sino un problema de arquitectura emocional. El sitio presentaba herramientas antes de presentar comprensión.</p><p>La metáfora clínica es precisa: un médico que pide al paciente elegir el procedimiento quirúrgico antes de hacerle sentir que ha sido escuchado, produce resistencia, no confianza. Eso mismo estaba haciendo el sitio. La Fase 2 de Santuario revierte ese orden de operaciones: primero el abrazo, luego la instrucción.</p>',
+    /* 3 */ '<p>Este slide habla de algo que va más allá del diseño web: habla de la <strong>identidad visual de Nari como el activo más poderoso del negocio</strong>.</p><p>Hemos construido un sistema de color —crema, coral, navy— que tiene la capacidad de enmarcar la presencia física de Nari de una manera que ninguna otra paleta podría hacer. El color Santuario no fue elegido por estética: fue elegido porque vibra en la misma frecuencia emocional que la propuesta de valor de Criar Sin Culpas.</p><p>El Shot List v2.0 es el puente entre el mundo digital que hemos construido y la presencia física de Nari. Sin las fotos reales, el lienzo está brillantemente preparado pero vacío. Cada categoría de toma —el retrato editorial, las tomas en movimiento, los detalles simbólicos— fue diseñada para generar los activos exactos que el sistema necesita: la imagen hero del Home, las fotos de las guías, el avatar del Portal.</p><p><strong>El negocio más poderoso de Nari es Nari misma.</strong> La cámara es la inversión más estratégica del trimestre.</p>',
+    /* 4 */ '<p>La cirugía estructural de la Semana 3 tuvo dos instrumentos principales. El primero es el bloque <strong>"Te Vemos"</strong>: un módulo de validación emocional insertado en el Home, diseñado para capturar al 64% que estaba abandonando. La hipótesis es simple: si un padre en crisis ve, antes de cualquier guía o instrucción, que <em>alguien lo ve y lo entiende</em>, la probabilidad de que continue leyendo aumenta dramáticamente.</p><p>El segundo instrumento son los <strong>Snippets de Primeros Auxilios</strong>: frases concretas —"Prueba decir: 'Aquí estoy. Estás a salvo. Vamos a respirar juntos'"— que aparecen visibles en cada tarjeta del Hub antes de que el padre decida hacer clic. El efecto es reducir la fricción de activación a cero. El padre obtiene valor inmediato sin comprometerse con el contenido largo.</p><p>La barra de datos que ves aquí representa el estado actual: 64% de fuga, 36% de retención, menos del 8% de conversión. El objetivo de la Semana 3 es mover la aguja de la fuga por debajo del 45%. No lo sabremos de inmediato, pero el sensor de "Absolution Read" que instalamos nos dará la señal.</p>',
+    /* 5 */ '<p>Esta es quizás la parte más sofisticada de todo el trabajo de la Semana 3: la creación de un nuevo tipo de métrica que llamo <strong>Métricas del Alma</strong>.</p><p>Las métricas tradicionales de analítica web miden comportamiento: clics, tiempo en página, rebote. Son útiles, pero ciegos a lo que nos importa realmente: ¿el sitio cambió algo en el estado emocional del padre? ¿El padre que llegó en crisis salió un poco más tranquilo?</p><p>El "Absolution Read" es nuestra primera aproximación a medir eso. Utilizamos un IntersectionObserver con un umbral del 80% de visibilidad y un tiempo de permanencia mínimo de 2 segundos en el bloque "Te Vemos". Cuando eso ocurre, enviamos un evento personalizado a Plausible Analytics. Ese evento no mide un clic. Mide <strong>una pausa</strong>. Y en el contexto de un padre en activación cortisol alto, una pausa de 2 segundos sobre un texto que dice "sabemos que estás exhausto" es una señal poderosa.</p><p>En el futuro, esto puede convertirse en un índice de impacto emocional que va más allá de cualquier plataforma de analítica convencional.</p>',
+    /* 6 */ '<p>El Portal Premium v2.0 es el final del arco. Todo el sistema —el Home que valida, el Hub que contiene, las guías que instruyen— existe para llevar al padre a este punto: el momento en que decide invertir en un cambio profundo y sostenido.</p><p>La decisión técnica más importante del Portal es el motor bilingüe. No es una traducción automática: es un objeto de datos estructurado donde cada lección existe en dos versiones completamente paralelas, con su propio título, cuerpo, reflexión y recursos. El toggle de idioma re-renderiza el contenido en tiempo real sin recargar la página, y persiste en localStorage vinculado a la variable lg_parent_lang —la misma variable que controla el idioma en todo el ecosistema del sitio.</p><p>La ruta de monetización está diseñada para ser activada sin reconstruir nada. La arquitectura del lock screen ya está lista para recibir Firebase Auth o Memberstack. Los tiers de contenido (Free, Premium, VIP) se controlan con un cambio de una variable en el objeto LESSONS. Y Stripe se conecta directamente a Memberstack como capa de pagos.</p><p>Esto no es un prototipo. Es un sistema productivo esperando la capa de autenticación real.</p>',
+    /* 7 */ '<p>Llegamos al momento más urgente de la presentación: <strong>la fecha del shoot fotográfico</strong>.</p><p>Todo lo que hemos construido en estas tres semanas —la paleta Santuario, el layout del Home, la arquitectura del Portal, el sistema bilingüe— está calibrado para recibir las imágenes reales de Nari. Sin esas imágenes, el sistema está completo pero incompleto. Es como tener un teatro perfectamente construido, con las luces encendidas y el público sentado, pero sin el actor principal en el escenario.</p><p>La inversión en fotografía no es un gasto de marketing: es el cierre de un sistema de conversión. Cada foto bien tomada —con la paleta correcta, en el contexto correcto, con la luz del Santuario— se convierte en un activo que trabaja 24/7 en el sitio, el Portal y todas las comunicaciones futuras.</p><p>Mi recomendación es definir esta fecha antes de que termine la semana. El sistema está listo. Nari está lista. Lo único que falta es la sesión.</p>'
+  ];
+
+  var SLIDE_REFS_ES = [
+    'Slide 1 — Portada',
+    'Slide 2 — El Caso Clínico',
+    'Slide 3 — Acto I · Shot List v2.0',
+    'Slide 4 — Acto II · Cirugía Estructural',
+    'Slide 5 — Acto II · Métricas del Alma',
+    'Slide 6 — Acto III · El Portal Premium',
+    'Slide 7 — Cierre y Fechas'
+  ];
+
+  /* ── STATE ── */
+  var current = 1;
+  var lang = 'es';
+  try { lang = localStorage.getItem('lg_parent_lang') || 'es'; } catch(e){}
+  if (lang !== 'en') lang = 'es';
+  var notesOpen = false;
+
+  /* ── BILINGUAL ENGINE ── */
+  function applyLang() {
+    document.querySelectorAll('[data-es][data-en]').forEach(function(el) {
+      var txt = el.getAttribute('data-' + lang);
+      if (txt !== null) el.innerHTML = txt;
+    });
+    // Update lang toggle buttons
+    document.querySelectorAll('#langToggle button').forEach(function(b) {
+      b.classList.toggle('active', b.getAttribute('data-l') === lang);
+    });
+    try { localStorage.setItem('lg_parent_lang', lang); } catch(e){}
+  }
+
+  function setLang(l) {
+    if (l === lang) return;
+    lang = l;
+    applyLang();
+  }
+
+  /* ── SLIDE ENGINE ── */
+  function goTo(n) {
+    if (n < 1 || n > TOTAL) return;
+    var prev = document.getElementById('s' + current);
+    var next = document.getElementById('s' + n);
+    if (prev) { prev.classList.remove('active'); prev.classList.add('exit'); setTimeout(function(){ prev.classList.remove('exit'); }, 600); }
+    if (next) { next.classList.add('active'); }
+    current = n;
+    document.getElementById('curNum').textContent = current;
+    document.getElementById('prevBtn').disabled = current === 1;
+    document.getElementById('nextBtn').disabled = current === TOTAL;
+    document.getElementById('progress-line').style.width = ((current / TOTAL) * 100) + '%';
+    updateNotes();
+  }
+
+  function updateNotes() {
+    document.getElementById('npSlideRef').textContent = SLIDE_REFS_ES[current - 1];
+    document.getElementById('npText').innerHTML = NOTES[current - 1];
+  }
+
+  /* ── NOTES PANEL ── */
+  function toggleNotes() {
+    notesOpen = !notesOpen;
+    document.getElementById('notes-panel').classList.toggle('open', notesOpen);
+    document.getElementById('deck').classList.toggle('notes-open', notesOpen);
+    document.getElementById('notesBtn').classList.toggle('on', notesOpen);
+  }
+
+  /* ── EVENT WIRING ── */
+  document.getElementById('prevBtn').addEventListener('click', function(){ goTo(current - 1); });
+  document.getElementById('nextBtn').addEventListener('click', function(){ goTo(current + 1); });
+  document.getElementById('notesBtn').addEventListener('click', toggleNotes);
+
+  document.getElementById('langToggle').addEventListener('click', function(e) {
+    var b = e.target.closest('[data-l]');
+    if (b) setLang(b.getAttribute('data-l'));
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goTo(current + 1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goTo(current - 1);
+    if (e.key === 'n' || e.key === 'N') toggleNotes();
+  });
+
+  /* ── INIT ── */
+  document.getElementById('totNum').textContent = TOTAL;
+  document.getElementById('prevBtn').disabled = true;
+  document.getElementById('progress-line').style.width = ((1 / TOTAL) * 100) + '%';
+  applyLang();
+  updateNotes();
+</script>
+</body>
+</html>
