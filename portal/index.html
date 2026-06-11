@@ -10,252 +10,231 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --void:        #FAF6F2;
-      --void-mid:    #FCE7DD;
-      --void-lift:   #FFFFFF;
-      --text:        #1F2E46;
-      --text-dim:    rgba(31,46,70,.7);
-      --text-ghost:  rgba(31,46,70,.4);
-      --coral:       #F4A88A;
-      --coral-ink:   #D96B47;
-      --teal:        #8599AD;
-      --teal-ink:    #5E7488;
-      --navy:        #1F2E46;
-      --gold:        #B08D57;
-      --gold-soft:   rgba(176,141,87,.12);
-      --line:        rgba(31,46,70,.08);
-      --serif:  'Cormorant Garamond', Georgia, serif;
-      --sans:   'DM Sans', system-ui, sans-serif;
-      --mono:   'JetBrains Mono', ui-monospace, monospace;
-      --ease:   cubic-bezier(0.16, 1, 0.3, 1);
+      --void:#FAF6F2; --void-mid:#FCE7DD; --void-lift:#FFFFFF;
+      --text:#1F2E46; --text-dim:rgba(31,46,70,.7); --text-ghost:rgba(31,46,70,.4);
+      --coral:#F4A88A; --coral-ink:#D96B47; --teal:#8599AD; --teal-ink:#5E7488;
+      --navy:#1F2E46; --gold:#B08D57; --gold-soft:rgba(176,141,87,.12); --line:rgba(31,46,70,.08);
+      --serif:'Cormorant Garamond',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+      --ease:cubic-bezier(0.16,1,0.3,1);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { -webkit-text-size-adjust: 100%; }
-    body { font-family: var(--sans); background: var(--void); color: var(--text); display: flex; height: 100vh; overflow: hidden; -webkit-font-smoothing: antialiased; }
-    ::selection { background: rgba(244,168,138,.3); }
-    a { color: inherit; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html { -webkit-text-size-adjust:100%; }
+    body { font-family:var(--sans); background:var(--void); color:var(--text); display:flex; height:100vh; overflow:hidden; -webkit-font-smoothing:antialiased; }
+    ::selection { background:rgba(244,168,138,.3); }
+    a { color:inherit; }
 
-    /* ───────────── SIDEBAR / COURSE RAIL ───────────── */
-    .sidebar { width: 360px; background: var(--void-lift); border-right: 1px solid var(--line); display: flex; flex-direction: column; flex-shrink: 0; z-index: 40; box-shadow: 4px 0 30px rgba(31,46,70,.03); }
-    .brand-header { padding: 26px 28px 22px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 12px; }
-    .brand-header img { height: 24px; filter: brightness(.62) saturate(1.4) hue-rotate(-5deg); }
-    .portal-tag { font-family: var(--mono); font-size: .56rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); padding: 4px 9px; border-radius: 5px; background: var(--gold-soft); border: 1px solid rgba(176,141,87,.22); margin-left: auto; }
+    /* SIDEBAR */
+    .sidebar { width:360px; background:var(--void-lift); border-right:1px solid var(--line); display:flex; flex-direction:column; flex-shrink:0; z-index:40; box-shadow:4px 0 30px rgba(31,46,70,.03); }
+    .brand-header { padding:26px 28px 22px; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:12px; }
+    .brand-header img { height:24px; filter:brightness(.62) saturate(1.4) hue-rotate(-5deg); }
+    .portal-tag { font-family:var(--mono); font-size:.56rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); padding:4px 9px; border-radius:5px; background:var(--gold-soft); border:1px solid rgba(176,141,87,.22); margin-left:auto; }
 
-    /* course progress card */
-    .course-card { margin: 22px 20px 6px; padding: 20px; border-radius: 16px; background: linear-gradient(160deg, #FFFFFF, #FFFBF8); border: 1px solid var(--line); box-shadow: 0 4px 18px rgba(31,46,70,.04); display: flex; gap: 16px; align-items: center; }
-    .ring-wrap { position: relative; width: 58px; height: 58px; flex-shrink: 0; }
-    .ring-wrap svg { transform: rotate(-90deg); width: 58px; height: 58px; }
-    .ring-bg { fill: none; stroke: rgba(31,46,70,.08); stroke-width: 5; }
-    .ring-fg { fill: none; stroke: var(--coral-ink); stroke-width: 5; stroke-linecap: round; transition: stroke-dashoffset 1s var(--ease); }
-    .ring-pct { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: .72rem; font-weight: 600; color: var(--navy); }
-    .course-meta { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
-    .course-name { font-family: var(--serif); font-size: 1.18rem; font-weight: 600; color: var(--navy); line-height: 1.1; }
-    .course-sub { font-size: .72rem; color: var(--text-ghost); }
-    .course-sub b { color: var(--coral-ink); font-weight: 600; }
+    .course-card { margin:22px 20px 6px; padding:20px; border-radius:16px; background:linear-gradient(160deg,#FFFFFF,#FFFBF8); border:1px solid var(--line); box-shadow:0 4px 18px rgba(31,46,70,.04); display:flex; gap:16px; align-items:center; }
+    .ring-wrap { position:relative; width:58px; height:58px; flex-shrink:0; }
+    .ring-wrap svg { transform:rotate(-90deg); width:58px; height:58px; }
+    .ring-bg { fill:none; stroke:rgba(31,46,70,.08); stroke-width:5; }
+    .ring-fg { fill:none; stroke:var(--coral-ink); stroke-width:5; stroke-linecap:round; transition:stroke-dashoffset 1s var(--ease); }
+    .ring-pct { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:.72rem; font-weight:600; color:var(--navy); }
+    .course-meta { display:flex; flex-direction:column; gap:3px; min-width:0; }
+    .course-name { font-family:var(--serif); font-size:1.18rem; font-weight:600; color:var(--navy); line-height:1.1; }
+    .course-sub { font-size:.72rem; color:var(--text-ghost); }
+    .course-sub b { color:var(--coral-ink); font-weight:600; }
 
-    .module-list { flex: 1; overflow-y: auto; padding: 18px 14px 14px; display: flex; flex-direction: column; gap: 4px; }
-    .module-list::-webkit-scrollbar { width: 4px; }
-    .module-list::-webkit-scrollbar-thumb { background: rgba(31,46,70,.12); border-radius: 4px; }
-    .mod-group { margin-bottom: 14px; }
-    .mod-chapter { display: flex; align-items: center; gap: 9px; padding: 0 14px; margin-bottom: 10px; }
-    .mod-chapter .ch-n { font-family: var(--mono); font-size: .62rem; font-weight: 600; color: var(--teal-ink); }
-    .mod-chapter .ch-name { font-size: .66rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal-ink); }
-    .mod-chapter .ch-lock { margin-left: auto; color: var(--text-ghost); display: flex; }
+    .module-list { flex:1; overflow-y:auto; padding:18px 14px 14px; display:flex; flex-direction:column; gap:4px; }
+    .module-list::-webkit-scrollbar { width:4px; }
+    .module-list::-webkit-scrollbar-thumb { background:rgba(31,46,70,.12); border-radius:4px; }
+    .mod-group { margin-bottom:14px; }
+    .mod-chapter { display:flex; align-items:center; gap:9px; padding:0 14px; margin-bottom:10px; }
+    .mod-chapter .ch-n { font-family:var(--mono); font-size:.62rem; font-weight:600; color:var(--teal-ink); }
+    .mod-chapter .ch-name { font-size:.66rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--teal-ink); }
+    .mod-chapter .ch-lock { margin-left:auto; color:var(--text-ghost); display:flex; }
 
-    .mod-item { display: flex; align-items: center; gap: 13px; padding: 12px 14px; border-radius: 12px; text-decoration: none; color: var(--text-dim); transition: background .25s var(--ease), color .25s, transform .25s var(--ease); border: 1px solid transparent; cursor: pointer; position: relative; }
-    .mod-item:hover:not(.locked) { background: rgba(31,46,70,.025); color: var(--navy); }
-    .mod-item.active { background: var(--navy); color: var(--void); border-color: var(--navy); box-shadow: 0 14px 34px rgba(31,46,70,.16); transform: translateX(3px); }
-    .mod-item.locked { opacity: .55; cursor: not-allowed; }
-    .mod-status { width: 26px; height: 26px; flex-shrink: 0; border-radius: 50%; border: 1.5px solid rgba(31,46,70,.18); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: .66rem; font-weight: 600; color: var(--text-ghost); transition: all .3s var(--ease); }
-    .mod-item.active .mod-status { border-color: rgba(250,246,242,.4); color: var(--coral); }
-    .mod-status.done { background: var(--coral-ink); border-color: var(--coral-ink); color: #fff; }
-    .mod-item.active .mod-status.done { background: var(--coral); border-color: var(--coral); color: var(--navy); }
-    .mod-status svg { width: 13px; height: 13px; }
-    .mod-status .check { animation: pop .4s var(--ease); }
-    @keyframes pop { 0% { transform: scale(0); } 60% { transform: scale(1.25); } 100% { transform: scale(1); } }
-    .mod-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
-    .mod-title { font-size: .87rem; font-weight: 500; line-height: 1.25; }
-    .mod-dur { font-family: var(--mono); font-size: .6rem; letter-spacing: .04em; color: var(--text-ghost); }
-    .mod-item.active .mod-dur { color: rgba(250,246,242,.5); }
+    .mod-item { display:flex; align-items:center; gap:13px; padding:12px 14px; border-radius:12px; text-decoration:none; color:var(--text-dim); transition:background .25s var(--ease),color .25s,transform .25s var(--ease); border:1px solid transparent; cursor:pointer; position:relative; }
+    .mod-item:hover:not(.locked) { background:rgba(31,46,70,.025); color:var(--navy); }
+    .mod-item.active { background:var(--navy); color:var(--void); border-color:var(--navy); box-shadow:0 14px 34px rgba(31,46,70,.16); transform:translateX(3px); }
+    .mod-item.locked { opacity:.55; cursor:not-allowed; }
+    .mod-status { width:26px; height:26px; flex-shrink:0; border-radius:50%; border:1.5px solid rgba(31,46,70,.18); display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:.66rem; font-weight:600; color:var(--text-ghost); transition:all .3s var(--ease); }
+    .mod-item.active .mod-status { border-color:rgba(250,246,242,.4); color:var(--coral); }
+    .mod-status.done { background:var(--coral-ink); border-color:var(--coral-ink); color:#fff; }
+    .mod-item.active .mod-status.done { background:var(--coral); border-color:var(--coral); color:var(--navy); }
+    .mod-status svg { width:13px; height:13px; }
+    .mod-status .check { animation:pop .4s var(--ease); }
+    @keyframes pop { 0%{transform:scale(0);} 60%{transform:scale(1.25);} 100%{transform:scale(1);} }
+    .mod-body { display:flex; flex-direction:column; gap:2px; min-width:0; flex:1; }
+    .mod-title { font-size:.87rem; font-weight:500; line-height:1.25; }
+    .mod-dur { font-family:var(--mono); font-size:.6rem; letter-spacing:.04em; color:var(--text-ghost); }
+    .mod-item.active .mod-dur { color:rgba(250,246,242,.5); }
 
-    .chapter-soon { margin: 2px 14px 0; padding: 12px 14px; border-radius: 12px; background: var(--void); border: 1px dashed var(--line); font-size: .72rem; color: var(--text-ghost); line-height: 1.5; }
-    .chapter-soon b { color: var(--gold); font-weight: 600; }
+    .chapter-soon { margin:2px 14px 0; padding:12px 14px; border-radius:12px; background:var(--void); border:1px dashed var(--line); font-size:.72rem; color:var(--text-ghost); line-height:1.5; }
+    .chapter-soon b { color:var(--gold); font-weight:600; }
 
-    /* user profile */
-    .user-profile { padding: 16px 20px 18px; border-top: 1px solid var(--line); background: rgba(244,168,138,.04); display: flex; flex-direction: column; gap: 12px; }
-    .user-profile-row { display: flex; align-items: center; gap: 13px; }
-    .user-avatar { width: 42px; height: 42px; border-radius: 50%; overflow: hidden; flex-shrink: 0; box-shadow: 0 4px 12px rgba(244,168,138,.25); background: linear-gradient(135deg, var(--coral), var(--teal)); }
-    .user-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .user-meta { display: flex; flex-direction: column; gap: 1px; flex: 1; min-width: 0; }
-    .user-name { font-size: .9rem; font-weight: 600; color: var(--navy); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .user-since { font-family: var(--serif); font-size: .74rem; font-style: italic; color: var(--text-ghost); }
-    .user-foot { display: flex; align-items: center; justify-content: space-between; }
-    .user-badge { display: inline-flex; align-items: center; gap: 7px; padding: 5px 11px; background: var(--gold-soft); border-radius: 7px; border: 1px solid rgba(176,141,87,.22); }
-    .user-badge svg { width: 11px; height: 11px; color: var(--gold); }
-    .user-badge-label { font-family: var(--mono); font-size: .58rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
-    .user-logout { font-size: .72rem; color: var(--text-ghost); text-decoration: none; transition: color .2s; }
-    .user-logout:hover { color: var(--coral-ink); }
+    .user-profile { padding:16px 20px 18px; border-top:1px solid var(--line); background:rgba(244,168,138,.04); display:flex; flex-direction:column; gap:12px; }
+    .user-profile-row { display:flex; align-items:center; gap:13px; }
+    .user-avatar { width:42px; height:42px; border-radius:50%; overflow:hidden; flex-shrink:0; box-shadow:0 4px 12px rgba(244,168,138,.25); background:linear-gradient(135deg,var(--coral),var(--teal)); }
+    .user-avatar img { width:100%; height:100%; object-fit:cover; display:block; }
+    .user-meta { display:flex; flex-direction:column; gap:1px; flex:1; min-width:0; }
+    .user-name { font-size:.9rem; font-weight:600; color:var(--navy); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .user-since { font-family:var(--serif); font-size:.74rem; font-style:italic; color:var(--text-ghost); }
+    .user-foot { display:flex; align-items:center; justify-content:space-between; }
+    .user-badge { display:inline-flex; align-items:center; gap:7px; padding:5px 11px; background:var(--gold-soft); border-radius:7px; border:1px solid rgba(176,141,87,.22); }
+    .user-badge svg { width:11px; height:11px; color:var(--gold); }
+    .user-badge-label { font-family:var(--mono); font-size:.58rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); }
+    .user-logout { font-size:.72rem; color:var(--text-ghost); text-decoration:none; transition:color .2s; }
+    .user-logout:hover { color:var(--coral-ink); }
 
-    /* ───────────── CLASSROOM ───────────── */
-    .classroom { flex: 1; display: flex; flex-direction: column; position: relative; min-width: 0; }
+    /* CLASSROOM */
+    .classroom { flex:1; display:flex; flex-direction:column; position:relative; min-width:0; }
+    .lesson-topbar { position:relative; z-index:30; flex-shrink:0; background:rgba(250,246,242,.82); backdrop-filter:saturate(180%) blur(14px); -webkit-backdrop-filter:saturate(180%) blur(14px); border-bottom:1px solid var(--line); padding:14px 40px; display:flex; align-items:center; gap:16px; }
+    .tb-crumb { display:flex; flex-direction:column; gap:2px; min-width:0; flex:1; }
+    .tb-chapter { font-family:var(--mono); font-size:.6rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--teal-ink); }
+    .tb-title { font-family:var(--serif); font-size:1.05rem; font-weight:600; color:var(--navy); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .tb-count { font-family:var(--mono); font-size:.64rem; color:var(--text-ghost); white-space:nowrap; }
+    .tb-read { position:absolute; left:0; bottom:-1px; height:2px; width:0; background:linear-gradient(90deg,var(--coral-ink),var(--teal)); transition:width .1s linear; }
+    .menu-btn { display:none; }
 
-    .lesson-topbar { position: relative; z-index: 30; flex-shrink: 0; background: rgba(250,246,242,.82); backdrop-filter: saturate(180%) blur(14px); -webkit-backdrop-filter: saturate(180%) blur(14px); border-bottom: 1px solid var(--line); padding: 14px 40px; display: flex; align-items: center; gap: 18px; }
-    .tb-crumb { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
-    .tb-chapter { font-family: var(--mono); font-size: .6rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-ink); }
-    .tb-title { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; color: var(--navy); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .tb-count { font-family: var(--mono); font-size: .64rem; color: var(--text-ghost); white-space: nowrap; }
-    .tb-read { position: absolute; left: 0; bottom: -1px; height: 2px; width: 0; background: linear-gradient(90deg, var(--coral-ink), var(--teal)); transition: width .1s linear; }
-    .menu-btn { display: none; }
+    .lang-toggle { display:inline-flex; position:relative; background:var(--void); border:1px solid var(--line); border-radius:999px; padding:3px; flex-shrink:0; }
+    .lang-toggle button { font-family:var(--mono); font-size:.62rem; font-weight:600; letter-spacing:.1em; border:none; background:transparent; color:var(--text-ghost); padding:5px 12px; border-radius:999px; cursor:pointer; position:relative; z-index:2; transition:color .25s; }
+    .lang-toggle button.active { color:var(--void); }
+    .lang-toggle .pill { position:absolute; top:3px; left:3px; bottom:3px; width:calc(50% - 3px); background:var(--navy); border-radius:999px; z-index:1; transition:transform .3s var(--ease); }
+    .lang-toggle.en .pill { transform:translateX(100%); }
 
-    .scroll-area { flex: 1; overflow-y: auto; scroll-behavior: smooth; position: relative; }
-    .scroll-area::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100%; height: 560px; background: radial-gradient(ellipse at top, rgba(244,168,138,.13) 0%, transparent 70%); pointer-events: none; z-index: 0; animation: breathGlow 9s ease-in-out infinite; }
-    @keyframes breathGlow { 0%,100% { opacity: .55; transform: translateX(-50%) scale(1); } 50% { opacity: 1; transform: translateX(-50%) scale(1.1); } }
+    .scroll-area { flex:1; overflow-y:auto; scroll-behavior:smooth; position:relative; }
+    .scroll-area::before { content:''; position:absolute; top:0; left:50%; transform:translateX(-50%); width:100%; height:560px; background:radial-gradient(ellipse at top,rgba(244,168,138,.13) 0%,transparent 70%); pointer-events:none; z-index:0; animation:breathGlow 9s ease-in-out infinite; }
+    @keyframes breathGlow { 0%,100%{opacity:.55;transform:translateX(-50%) scale(1);} 50%{opacity:1;transform:translateX(-50%) scale(1.1);} }
 
-    .lesson-container { max-width: 880px; margin: 0 auto; padding: 56px 48px 100px; position: relative; z-index: 1; display: none; }
-    .lesson-container.active { display: block; }
-    .lesson-container.active > * { animation: rise .65s var(--ease) backwards; }
-    .lesson-container.active > *:nth-child(1) { animation-delay: .02s; }
-    .lesson-container.active > *:nth-child(2) { animation-delay: .08s; }
-    .lesson-container.active > *:nth-child(3) { animation-delay: .14s; }
-    .lesson-container.active > *:nth-child(4) { animation-delay: .20s; }
-    .lesson-container.active > *:nth-child(5) { animation-delay: .26s; }
-    .lesson-container.active > *:nth-child(6) { animation-delay: .32s; }
-    .lesson-container.active > *:nth-child(n+7) { animation-delay: .38s; }
-    @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+    .lesson-container { max-width:880px; margin:0 auto; padding:56px 48px 100px; position:relative; z-index:1; }
+    .lesson-container > * { animation:rise .65s var(--ease) backwards; }
+    .lesson-container > *:nth-child(1){animation-delay:.02s;} .lesson-container > *:nth-child(2){animation-delay:.08s;}
+    .lesson-container > *:nth-child(3){animation-delay:.14s;} .lesson-container > *:nth-child(4){animation-delay:.20s;}
+    .lesson-container > *:nth-child(5){animation-delay:.26s;} .lesson-container > *:nth-child(6){animation-delay:.32s;}
+    .lesson-container > *:nth-child(n+7){animation-delay:.38s;}
+    @keyframes rise { from{opacity:0;transform:translateY(18px);} to{opacity:1;transform:none;} }
 
-    .lesson-eyebrow { display: flex; align-items: center; gap: 9px; font-family: var(--mono); font-size: .62rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-ink); margin-bottom: 18px; }
-    .lesson-eyebrow .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text-ghost); }
-    .lesson-title { font-family: var(--serif); font-size: clamp(2.6rem, 4.5vw, 3.8rem); font-weight: 300; line-height: 1.05; color: var(--navy); margin-bottom: 30px; letter-spacing: -.01em; }
-    .lesson-title em { font-style: italic; color: var(--coral-ink); font-weight: 400; }
+    .lesson-eyebrow { display:flex; align-items:center; gap:9px; font-family:var(--mono); font-size:.62rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--teal-ink); margin-bottom:18px; }
+    .lesson-eyebrow .dot { width:3px; height:3px; border-radius:50%; background:var(--text-ghost); }
+    .lesson-title { font-family:var(--serif); font-size:clamp(2.6rem,4.5vw,3.8rem); font-weight:300; line-height:1.05; color:var(--navy); margin-bottom:30px; letter-spacing:-.01em; }
+    .lesson-title em { font-style:italic; color:var(--coral-ink); font-weight:400; }
 
-    /* video */
-    .video-shell { width: 100%; aspect-ratio: 16/9; background: var(--navy); border-radius: 22px; overflow: hidden; position: relative; box-shadow: 0 34px 70px rgba(31,46,70,.14); margin-bottom: 36px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--line); background-size: cover; background-position: center; cursor: pointer; }
-    .video-shell::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(31,46,70,.25), rgba(31,46,70,.55)); transition: background .4s; }
-    .video-shell:hover::before { background: linear-gradient(180deg, rgba(31,46,70,.2), rgba(31,46,70,.45)); }
-    .play-video-btn { width: 76px; height: 76px; background: var(--coral); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform .3s var(--ease); box-shadow: 0 14px 36px rgba(244,168,138,.4); position: relative; z-index: 1; }
-    .video-shell:hover .play-video-btn { transform: scale(1.08); }
-    .play-video-btn svg { width: 26px; height: 26px; fill: var(--navy); margin-left: 4px; }
-    .video-label { position: absolute; bottom: 22px; left: 24px; z-index: 1; color: var(--void); }
-    .video-label .vl-k { font-family: var(--mono); font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(250,246,242,.7); }
-    .video-label .vl-t { font-family: var(--serif); font-size: 1.2rem; font-weight: 500; }
+    .video-shell { width:100%; aspect-ratio:16/9; background:var(--navy); border-radius:22px; overflow:hidden; position:relative; box-shadow:0 34px 70px rgba(31,46,70,.14); margin-bottom:36px; display:flex; align-items:center; justify-content:center; border:1px solid var(--line); background-size:cover; background-position:center; cursor:pointer; }
+    .video-shell::before { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(31,46,70,.25),rgba(31,46,70,.55)); transition:background .4s; }
+    .video-shell:hover::before { background:linear-gradient(180deg,rgba(31,46,70,.2),rgba(31,46,70,.45)); }
+    .play-video-btn { width:76px; height:76px; background:var(--coral); border-radius:50%; display:flex; align-items:center; justify-content:center; transition:transform .3s var(--ease); box-shadow:0 14px 36px rgba(244,168,138,.4); position:relative; z-index:1; }
+    .video-shell:hover .play-video-btn { transform:scale(1.08); }
+    .play-video-btn svg { width:26px; height:26px; fill:var(--navy); margin-left:4px; }
+    .video-label { position:absolute; bottom:22px; left:24px; z-index:1; color:var(--void); }
+    .video-label .vl-k { font-family:var(--mono); font-size:.6rem; letter-spacing:.14em; text-transform:uppercase; color:rgba(250,246,242,.7); }
+    .video-label .vl-t { font-family:var(--serif); font-size:1.2rem; font-weight:500; }
 
-    /* audio */
-    .audio-player { display: flex; align-items: center; gap: 18px; background: var(--void-lift); padding: 14px 22px; border-radius: 18px; box-shadow: 0 6px 22px rgba(31,46,70,.05); border: 1px solid var(--line); margin-bottom: 44px; }
-    .audio-btn { width: 46px; height: 46px; background: var(--navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform .2s, background .2s; flex-shrink: 0; }
-    .audio-btn:hover { transform: scale(1.05); background: var(--coral-ink); }
-    .audio-btn svg { fill: var(--void); width: 16px; height: 16px; }
-    .audio-info { flex: 1; display: flex; flex-direction: column; gap: 7px; min-width: 0; }
-    .audio-meta { display: flex; justify-content: space-between; align-items: center; font-size: .72rem; font-weight: 600; color: var(--navy); }
-    .audio-meta .a-k { display: flex; align-items: center; gap: 7px; letter-spacing: .02em; }
-    .audio-time { font-family: var(--mono); font-size: .68rem; color: var(--text-ghost); }
-    .audio-track { width: 100%; height: 4px; background: rgba(31,46,70,.08); border-radius: 3px; position: relative; cursor: pointer; }
-    .audio-progress { position: absolute; left: 0; top: 0; height: 100%; width: 0%; background: var(--coral-ink); border-radius: 3px; }
+    .audio-player { display:flex; align-items:center; gap:18px; background:var(--void-lift); padding:14px 22px; border-radius:18px; box-shadow:0 6px 22px rgba(31,46,70,.05); border:1px solid var(--line); margin-bottom:44px; }
+    .audio-btn { width:46px; height:46px; background:var(--navy); border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:transform .2s,background .2s; flex-shrink:0; }
+    .audio-btn:hover { transform:scale(1.05); background:var(--coral-ink); }
+    .audio-btn svg { fill:var(--void); width:16px; height:16px; }
+    .audio-info { flex:1; display:flex; flex-direction:column; gap:7px; min-width:0; }
+    .audio-meta { display:flex; justify-content:space-between; align-items:center; font-size:.72rem; font-weight:600; color:var(--navy); }
+    .audio-meta .a-k { display:flex; align-items:center; gap:7px; letter-spacing:.02em; }
+    .audio-time { font-family:var(--mono); font-size:.68rem; color:var(--text-ghost); }
+    .audio-track { width:100%; height:4px; background:rgba(31,46,70,.08); border-radius:3px; position:relative; cursor:pointer; }
+    .audio-progress { position:absolute; left:0; top:0; height:100%; width:0%; background:var(--coral-ink); border-radius:3px; }
 
-    /* body copy */
-    .lesson-body { font-size: 1.12rem; line-height: 1.85; color: var(--text-dim); margin-bottom: 48px; max-width: 66ch; }
-    .lesson-body p { margin-bottom: 1.5em; }
-    .lesson-body strong { color: var(--navy); font-weight: 600; }
-    .lesson-body blockquote { font-family: var(--serif); font-size: 1.55rem; font-weight: 500; font-style: italic; line-height: 1.4; color: var(--coral-ink); border-left: 3px solid var(--coral); padding: 4px 0 4px 26px; margin: 36px 0; }
+    .lesson-body { font-size:1.12rem; line-height:1.85; color:var(--text-dim); margin-bottom:48px; max-width:66ch; }
+    .lesson-body p { margin-bottom:1.5em; }
+    .lesson-body strong { color:var(--navy); font-weight:600; }
+    .lesson-body blockquote { font-family:var(--serif); font-size:1.55rem; font-weight:500; font-style:italic; line-height:1.4; color:var(--coral-ink); border-left:3px solid var(--coral); padding:4px 0 4px 26px; margin:36px 0; }
 
-    /* numbered teaching list */
-    .teach-list { list-style: none; counter-reset: t; display: flex; flex-direction: column; gap: 12px; margin: 6px 0 4px; }
-    .teach-list li { counter-increment: t; position: relative; padding: 16px 20px 16px 58px; background: var(--void-lift); border: 1px solid var(--line); border-radius: 14px; font-size: 1rem; line-height: 1.55; color: var(--text-dim); transition: transform .3s var(--ease), box-shadow .3s; }
-    .teach-list li:hover { transform: translateX(4px); box-shadow: 0 10px 26px rgba(31,46,70,.06); }
-    .teach-list li::before { content: counter(t,decimal-leading-zero); position: absolute; left: 18px; top: 16px; font-family: var(--serif); font-size: 1.25rem; font-weight: 600; color: var(--coral-ink); }
-    .teach-list li strong { color: var(--navy); font-weight: 600; }
+    .teach-list { list-style:none; counter-reset:t; display:flex; flex-direction:column; gap:12px; margin:6px 0 4px; }
+    .teach-list li { counter-increment:t; position:relative; padding:16px 20px 16px 58px; background:var(--void-lift); border:1px solid var(--line); border-radius:14px; font-size:1rem; line-height:1.55; color:var(--text-dim); transition:transform .3s var(--ease),box-shadow .3s; }
+    .teach-list li:hover { transform:translateX(4px); box-shadow:0 10px 26px rgba(31,46,70,.06); }
+    .teach-list li::before { content:counter(t,decimal-leading-zero); position:absolute; left:18px; top:16px; font-family:var(--serif); font-size:1.25rem; font-weight:600; color:var(--coral-ink); }
+    .teach-list li strong { color:var(--navy); font-weight:600; }
 
-    /* infographic */
-    .infographic { width: 100%; background: var(--void-lift); border: 1px solid var(--line); border-radius: 22px; padding: 44px; margin: 4px 0 48px; display: flex; flex-direction: column; align-items: center; gap: 18px; box-shadow: 0 12px 34px rgba(31,46,70,.04); }
-    .infographic svg { max-width: 100%; height: auto; }
-    .info-cap { font-family: var(--mono); font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; color: var(--text-ghost); }
+    .infographic { width:100%; background:var(--void-lift); border:1px solid var(--line); border-radius:22px; padding:44px; margin:4px 0 48px; display:flex; flex-direction:column; align-items:center; gap:18px; box-shadow:0 12px 34px rgba(31,46,70,.04); }
+    .infographic svg { max-width:100%; height:auto; }
+    .info-cap { font-family:var(--mono); font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:var(--text-ghost); }
 
-    /* reflection card */
-    .reflect { background: var(--navy); border-radius: 22px; padding: 36px 40px; margin-bottom: 48px; position: relative; overflow: hidden; }
-    .reflect::after { content: '"'; position: absolute; right: 18px; top: -28px; font-family: var(--serif); font-size: 9rem; color: rgba(244,168,138,.12); line-height: 1; }
-    .reflect-k { font-family: var(--mono); font-size: .62rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--coral); margin-bottom: 14px; display: flex; align-items: center; gap: 9px; }
-    .reflect-q { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; font-style: italic; line-height: 1.45; color: var(--void); max-width: 54ch; position: relative; z-index: 1; }
+    .reflect { background:var(--navy); border-radius:22px; padding:36px 40px; margin-bottom:48px; position:relative; overflow:hidden; }
+    .reflect::after { content:'\201C'; position:absolute; right:18px; top:-28px; font-family:var(--serif); font-size:9rem; color:rgba(244,168,138,.12); line-height:1; }
+    .reflect-k { font-family:var(--mono); font-size:.62rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--coral); margin-bottom:14px; display:flex; align-items:center; gap:9px; }
+    .reflect-q { font-family:var(--serif); font-size:1.5rem; font-weight:400; font-style:italic; line-height:1.45; color:var(--void); max-width:54ch; position:relative; z-index:1; }
 
-    /* resources */
-    .resources-box { background: var(--void-lift); border: 1px solid var(--line); border-radius: 22px; padding: 34px 36px; box-shadow: 0 8px 30px rgba(31,46,70,.03); }
-    .resources-title { font-family: var(--mono); font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--navy); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-    .resource-item { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 22px; background: var(--void); border: 1px solid var(--line); border-radius: 14px; text-decoration: none; transition: all .3s var(--ease); }
-    .resource-item:hover { border-color: rgba(133,153,173,.35); background: #fff; box-shadow: 0 10px 28px rgba(31,46,70,.07); transform: translateY(-2px); }
-    .res-info { display: flex; align-items: center; gap: 16px; min-width: 0; }
-    .res-icon { width: 42px; height: 42px; border-radius: 11px; background: var(--gold-soft); display: flex; align-items: center; justify-content: center; color: var(--gold); flex-shrink: 0; }
-    .res-name { font-weight: 600; font-size: .98rem; color: var(--navy); margin-bottom: 3px; }
-    .res-meta { font-family: var(--mono); font-size: .66rem; color: var(--text-ghost); }
-    .res-download { font-family: var(--mono); font-size: .64rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--teal-ink); white-space: nowrap; transition: color .2s; }
-    .resource-item:hover .res-download { color: var(--coral-ink); }
-    .res-empty { padding: 22px; text-align: center; font-size: .9rem; color: var(--text-ghost); font-style: italic; font-family: var(--serif); border: 1px dashed var(--line); border-radius: 14px; }
+    .resources-box { background:var(--void-lift); border:1px solid var(--line); border-radius:22px; padding:34px 36px; box-shadow:0 8px 30px rgba(31,46,70,.03); }
+    .resources-title { font-family:var(--mono); font-size:.68rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--navy); margin-bottom:20px; display:flex; align-items:center; gap:10px; }
+    .resource-item { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 22px; background:var(--void); border:1px solid var(--line); border-radius:14px; text-decoration:none; transition:all .3s var(--ease); margin-bottom:10px; }
+    .resource-item:last-child { margin-bottom:0; }
+    .resource-item:hover { border-color:rgba(133,153,173,.35); background:#fff; box-shadow:0 10px 28px rgba(31,46,70,.07); transform:translateY(-2px); }
+    .res-info { display:flex; align-items:center; gap:16px; min-width:0; }
+    .res-icon { width:42px; height:42px; border-radius:11px; background:var(--gold-soft); display:flex; align-items:center; justify-content:center; color:var(--gold); flex-shrink:0; }
+    .res-name { font-weight:600; font-size:.98rem; color:var(--navy); margin-bottom:3px; }
+    .res-meta { font-family:var(--mono); font-size:.66rem; color:var(--text-ghost); }
+    .res-download { font-family:var(--mono); font-size:.64rem; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--teal-ink); white-space:nowrap; transition:color .2s; }
+    .resource-item:hover .res-download { color:var(--coral-ink); }
+    .res-empty { padding:22px; text-align:center; font-size:.9rem; color:var(--text-ghost); font-style:italic; font-family:var(--serif); border:1px dashed var(--line); border-radius:14px; }
 
-    /* lesson nav */
-    .lesson-nav { display: flex; align-items: stretch; gap: 14px; margin-top: 52px; }
-    .nav-btn { flex: 1; display: flex; align-items: center; gap: 12px; padding: 18px 22px; background: var(--void-lift); border: 1px solid var(--line); border-radius: 16px; text-decoration: none; transition: all .3s var(--ease); cursor: pointer; }
-    .nav-btn:hover:not(.disabled) { border-color: rgba(133,153,173,.35); box-shadow: 0 10px 26px rgba(31,46,70,.06); transform: translateY(-2px); }
-    .nav-btn.disabled { opacity: .4; pointer-events: none; }
-    .nav-btn.next { justify-content: flex-end; text-align: right; }
-    .nav-btn .nb-k { font-family: var(--mono); font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; color: var(--text-ghost); }
-    .nav-btn .nb-t { font-family: var(--serif); font-size: 1.05rem; font-weight: 500; color: var(--navy); }
-    .nav-btn .nb-arrow { font-size: 1.3rem; color: var(--coral-ink); flex-shrink: 0; }
+    .lesson-nav { display:flex; align-items:stretch; gap:14px; margin-top:52px; }
+    .nav-btn { flex:1; display:flex; align-items:center; gap:12px; padding:18px 22px; background:var(--void-lift); border:1px solid var(--line); border-radius:16px; text-decoration:none; transition:all .3s var(--ease); cursor:pointer; }
+    .nav-btn:hover:not(.disabled) { border-color:rgba(133,153,173,.35); box-shadow:0 10px 26px rgba(31,46,70,.06); transform:translateY(-2px); }
+    .nav-btn.disabled { opacity:.4; pointer-events:none; }
+    .nav-btn.next { justify-content:flex-end; text-align:right; }
+    .nav-btn .nb-k { font-family:var(--mono); font-size:.58rem; letter-spacing:.12em; text-transform:uppercase; color:var(--text-ghost); }
+    .nav-btn .nb-t { font-family:var(--serif); font-size:1.05rem; font-weight:500; color:var(--navy); }
+    .nav-btn .nb-arrow { font-size:1.3rem; color:var(--coral-ink); flex-shrink:0; }
 
-    .complete-btn { width: 100%; margin-top: 14px; padding: 17px; border: none; border-radius: 16px; background: var(--navy); color: var(--void); font-family: var(--sans); font-size: .82rem; font-weight: 600; letter-spacing: .04em; cursor: pointer; transition: all .3s var(--ease); display: flex; align-items: center; justify-content: center; gap: 10px; }
-    .complete-btn:hover { background: var(--coral-ink); transform: translateY(-2px); box-shadow: 0 14px 32px rgba(217,107,71,.25); }
-    .complete-btn.done { background: var(--gold-soft); color: var(--gold); border: 1px solid rgba(176,141,87,.3); cursor: default; transform: none; box-shadow: none; }
-    .complete-btn svg { width: 16px; height: 16px; }
+    .complete-btn { width:100%; margin-top:14px; padding:17px; border:none; border-radius:16px; background:var(--navy); color:var(--void); font-family:var(--sans); font-size:.82rem; font-weight:600; letter-spacing:.04em; cursor:pointer; transition:all .3s var(--ease); display:flex; align-items:center; justify-content:center; gap:10px; }
+    .complete-btn:hover { background:var(--coral-ink); transform:translateY(-2px); box-shadow:0 14px 32px rgba(217,107,71,.25); }
+    .complete-btn.done { background:var(--gold-soft); color:var(--gold); border:1px solid rgba(176,141,87,.3); cursor:default; transform:none; box-shadow:none; }
+    .complete-btn svg { width:16px; height:16px; }
 
-    /* ───────────── LOCK ───────────── */
-    #lock { position: fixed; inset: 0; z-index: 9999; background: var(--navy); display: flex; align-items: center; justify-content: center; transition: opacity .6s ease; }
-    #lock .box { text-align: center; max-width: 420px; padding: 48px 32px; width: 90%; }
-    #lock .seal { width: 46px; height: 46px; margin: 0 auto 22px; }
-    #lock .seal svg { width: 100%; height: 100%; animation: sealin 1s var(--ease); }
-    @keyframes sealin { from { opacity: 0; transform: scale(.7) rotate(-20deg); } to { opacity: 1; transform: none; } }
-    #lock h1 { font-family: var(--serif); font-size: clamp(2rem, 5vw, 2.9rem); font-weight: 300; color: var(--void); line-height: 1.1; margin-bottom: 8px; }
-    #lock h1 em { font-style: italic; color: var(--gold); }
-    #lock .sub { font-size: .82rem; color: rgba(250,246,242,.45); margin-bottom: 38px; letter-spacing: .04em; }
-    #lock form { display: flex; flex-direction: column; gap: 12px; }
-    #lock input { width: 100%; padding: 15px 20px; background: rgba(250,246,242,.06); border: 1px solid rgba(250,246,242,.14); border-radius: 12px; color: var(--void); font-family: var(--mono); font-size: 1rem; text-align: center; letter-spacing: .22em; outline: none; transition: border-color .2s; }
-    #lock input:focus { border-color: var(--coral); }
-    #lock button { width: 100%; padding: 15px 20px; background: var(--coral-ink); color: #fff; border: none; border-radius: 12px; font-family: var(--sans); font-size: .82rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; transition: opacity .2s, transform .2s; }
-    #lock button:hover { opacity: .9; transform: translateY(-1px); }
-    #le { margin-top: 14px; font-size: .8rem; color: var(--coral); opacity: 0; transition: opacity .3s; min-height: 1em; }
+    /* LOCK */
+    #lock { position:fixed; inset:0; z-index:9999; background:var(--navy); display:flex; align-items:center; justify-content:center; transition:opacity .6s ease; }
+    #lock .box { text-align:center; max-width:420px; padding:48px 32px; width:90%; }
+    #lock .seal { width:46px; height:46px; margin:0 auto 22px; }
+    #lock .seal svg { width:100%; height:100%; animation:sealin 1s var(--ease); }
+    @keyframes sealin { from{opacity:0;transform:scale(.7) rotate(-20deg);} to{opacity:1;transform:none;} }
+    #lock h1 { font-family:var(--serif); font-size:clamp(2rem,5vw,2.9rem); font-weight:300; color:var(--void); line-height:1.1; margin-bottom:8px; }
+    #lock h1 em { font-style:italic; color:var(--gold); }
+    #lock .sub { font-size:.82rem; color:rgba(250,246,242,.45); margin-bottom:38px; letter-spacing:.04em; }
+    #lock form { display:flex; flex-direction:column; gap:12px; }
+    #lock input { width:100%; padding:15px 20px; background:rgba(250,246,242,.06); border:1px solid rgba(250,246,242,.14); border-radius:12px; color:var(--void); font-family:var(--mono); font-size:1rem; text-align:center; letter-spacing:.22em; outline:none; transition:border-color .2s; }
+    #lock input:focus { border-color:var(--coral); }
+    #lock button { width:100%; padding:15px 20px; background:var(--coral-ink); color:#fff; border:none; border-radius:12px; font-family:var(--sans); font-size:.82rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; transition:opacity .2s,transform .2s; }
+    #lock button:hover { opacity:.9; transform:translateY(-1px); }
+    #le { margin-top:14px; font-size:.8rem; color:var(--coral); opacity:0; transition:opacity .3s; min-height:1em; }
+    #lockLangs { margin-top:30px; display:flex; gap:8px; justify-content:center; }
+    #lockLangs button { width:auto; padding:6px 14px; background:transparent; border:1px solid rgba(250,246,242,.16); color:rgba(250,246,242,.55); font-family:var(--mono); font-size:.6rem; letter-spacing:.1em; border-radius:999px; text-transform:none; }
+    #lockLangs button.active { background:rgba(250,246,242,.1); color:var(--void); border-color:rgba(250,246,242,.3); }
 
-    /* video modal */
-    #vmodal { position: fixed; inset: 0; z-index: 8000; background: rgba(31,46,70,.78); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; padding: 24px; }
-    #vmodal.on { display: flex; animation: fadein .3s ease; }
-    @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
-    .vmodal-inner { width: 100%; max-width: 960px; aspect-ratio: 16/9; background: #000; border-radius: 18px; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; box-shadow: 0 40px 90px rgba(0,0,0,.5); }
-    .vmodal-inner .placeholder { text-align: center; color: rgba(250,246,242,.7); padding: 24px; }
-    .vmodal-inner .placeholder .pk { font-family: var(--mono); font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; color: var(--coral); margin-bottom: 10px; }
-    .vmodal-inner .placeholder .pt { font-family: var(--serif); font-size: 1.5rem; font-style: italic; }
-    .vmodal-close { position: absolute; top: -44px; right: 0; color: var(--void); font-family: var(--mono); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; background: none; border: none; }
+    #vmodal { position:fixed; inset:0; z-index:8000; background:rgba(31,46,70,.78); backdrop-filter:blur(8px); display:none; align-items:center; justify-content:center; padding:24px; }
+    #vmodal.on { display:flex; animation:fadein .3s ease; }
+    @keyframes fadein { from{opacity:0;} to{opacity:1;} }
+    .vmodal-inner { width:100%; max-width:960px; aspect-ratio:16/9; background:#000; border-radius:18px; overflow:hidden; position:relative; display:flex; align-items:center; justify-content:center; box-shadow:0 40px 90px rgba(0,0,0,.5); }
+    .vmodal-inner .placeholder { text-align:center; color:rgba(250,246,242,.7); padding:24px; }
+    .vmodal-inner .placeholder .pk { font-family:var(--mono); font-size:.62rem; letter-spacing:.16em; text-transform:uppercase; color:var(--coral); margin-bottom:10px; }
+    .vmodal-inner .placeholder .pt { font-family:var(--serif); font-size:1.5rem; font-style:italic; }
+    .vmodal-close { position:absolute; top:-44px; right:0; color:var(--void); font-family:var(--mono); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; background:none; border:none; }
 
-    /* toast */
-    #toast { position: fixed; bottom: 26px; left: 50%; transform: translateX(-50%) translateY(120%); z-index: 7000; background: var(--navy); color: var(--void); padding: 14px 22px; border-radius: 999px; font-size: .82rem; font-weight: 500; box-shadow: 0 18px 44px rgba(31,46,70,.3); display: flex; align-items: center; gap: 10px; transition: transform .45s var(--ease); }
-    #toast.on { transform: translateX(-50%) translateY(0); }
-    #toast svg { width: 16px; height: 16px; color: var(--coral); }
+    #toast { position:fixed; bottom:26px; left:50%; transform:translateX(-50%) translateY(120%); z-index:7000; background:var(--navy); color:var(--void); padding:14px 22px; border-radius:999px; font-size:.82rem; font-weight:500; box-shadow:0 18px 44px rgba(31,46,70,.3); display:flex; align-items:center; gap:10px; transition:transform .45s var(--ease); }
+    #toast.on { transform:translateX(-50%) translateY(0); }
+    #toast svg { width:16px; height:16px; color:var(--coral); }
 
-    .scrim { display: none; position: fixed; inset: 0; background: rgba(31,46,70,.4); z-index: 35; }
-    .scrim.on { display: block; }
+    .scrim { display:none; position:fixed; inset:0; background:rgba(31,46,70,.4); z-index:35; }
+    .scrim.on { display:block; }
 
-    /* ───────────── RESPONSIVE ───────────── */
-    @media (max-width: 900px) {
-      body { overflow: hidden; }
-      .menu-btn { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 11px; border: 1px solid var(--line); background: var(--void-lift); cursor: pointer; flex-shrink: 0; }
-      .menu-btn svg { width: 20px; height: 20px; color: var(--navy); }
-      .sidebar { position: fixed; top: 0; left: 0; bottom: 0; transform: translateX(-100%); transition: transform .4s var(--ease); width: 320px; max-width: 86vw; }
-      .sidebar.open { transform: none; box-shadow: 18px 0 60px rgba(31,46,70,.25); }
-      .lesson-topbar { padding: 12px 18px; }
-      .tb-title { font-size: .95rem; }
-      .lesson-container { padding: 36px 22px 90px; }
-      .reflect, .resources-box, .infographic { padding: 26px 22px; }
-      .lesson-nav { flex-direction: column; }
-      .video-shell { border-radius: 16px; }
+    @media (max-width:900px) {
+      .menu-btn { display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:11px; border:1px solid var(--line); background:var(--void-lift); cursor:pointer; flex-shrink:0; }
+      .menu-btn svg { width:20px; height:20px; color:var(--navy); }
+      .sidebar { position:fixed; top:0; left:0; bottom:0; transform:translateX(-100%); transition:transform .4s var(--ease); width:320px; max-width:86vw; }
+      .sidebar.open { transform:none; box-shadow:18px 0 60px rgba(31,46,70,.25); }
+      .lesson-topbar { padding:12px 16px; }
+      .tb-title { font-size:.95rem; }
+      .lesson-container { padding:36px 22px 90px; }
+      .reflect,.resources-box,.infographic { padding:26px 22px; }
+      .lesson-nav { flex-direction:column; }
+      .video-shell { border-radius:16px; }
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      .lesson-container.active > *, #lock .seal svg, .mod-status .check { animation: none !important; }
-      .scroll-area::before { animation: none; }
-      * { scroll-behavior: auto !important; }
+    @media (max-width:600px) { .tb-count { display:none; } }
+    @media (prefers-reduced-motion:reduce) {
+      .lesson-container > *, #lock .seal svg, .mod-status .check { animation:none !important; }
+      .scroll-area::before { animation:none; }
+      * { scroll-behavior:auto !important; }
     }
   </style>
 </head>
@@ -271,13 +250,17 @@
           <circle cx="23" cy="18" r="2.4" fill="#F4A88A"/>
         </svg>
       </div>
-      <h1>Portal <em>Premium</em></h1>
-      <div class="sub">El Método Nari · Acceso de Alumnos</div>
+      <h1 id="lockTitle">Portal <em>Premium</em></h1>
+      <div class="sub" id="lockSub">El Método Nari · Acceso de Alumnos</div>
       <form id="lf" onsubmit="checkPass(event)">
-        <input id="lp" type="password" placeholder="Clave de acceso" autocomplete="off">
-        <button type="submit">Entrar →</button>
+        <input id="lp" type="password" autocomplete="off">
+        <button type="submit" id="lockBtn">Entrar →</button>
       </form>
-      <div id="le">Clave incorrecta. Inténtalo de nuevo.</div>
+      <div id="le"></div>
+      <div id="lockLangs">
+        <button data-l="es">Español</button>
+        <button data-l="en">English</button>
+      </div>
     </div>
   </div>
 
@@ -287,39 +270,31 @@
       <img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas">
       <span class="portal-tag">Premium</span>
     </div>
-
     <div class="course-card">
       <div class="ring-wrap">
-        <svg viewBox="0 0 58 58">
-          <circle class="ring-bg" cx="29" cy="29" r="25"/>
-          <circle class="ring-fg" id="ring" cx="29" cy="29" r="25" stroke-dasharray="157" stroke-dashoffset="157"/>
-        </svg>
+        <svg viewBox="0 0 58 58"><circle class="ring-bg" cx="29" cy="29" r="25"/><circle class="ring-fg" id="ring" cx="29" cy="29" r="25" stroke-dasharray="157" stroke-dashoffset="157"/></svg>
         <div class="ring-pct" id="ringPct">0%</div>
       </div>
       <div class="course-meta">
         <span class="course-name">El Método Nari</span>
-        <span class="course-sub"><b id="cDone">0</b> de <span id="cTotal">4</span> módulos · <span id="cTime">1 h 9 min</span></span>
+        <span class="course-sub" id="courseSub"></span>
       </div>
     </div>
-
     <nav class="module-list" id="rail"></nav>
-
     <div class="user-profile">
       <div class="user-profile-row">
-        <div class="user-avatar">
-          <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1781175104/MariaGarcia_portrait_m6qw27.png" alt="María García">
-        </div>
+        <div class="user-avatar"><img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1781175104/MariaGarcia_portrait_m6qw27.png" alt="María García"></div>
         <div class="user-meta">
           <span class="user-name">María García</span>
-          <span class="user-since">Desde Junio 2026</span>
+          <span class="user-since" id="userSince">Desde Junio 2026</span>
         </div>
       </div>
       <div class="user-foot">
         <div class="user-badge">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.5 1.6 6.7L12 17.3 5.8 20.6l1.6-6.7L2.2 8.9l6.9-.6z"/></svg>
-          <span class="user-badge-label">Membresía Premium</span>
+          <span class="user-badge-label" id="badgeLabel">Membresía Premium</span>
         </div>
-        <a href="#" class="user-logout" onclick="return false;">Cerrar sesión</a>
+        <a href="#" class="user-logout" id="logout" onclick="return false;">Cerrar sesión</a>
       </div>
     </div>
   </aside>
@@ -327,473 +302,427 @@
   <!-- CLASSROOM -->
   <main class="classroom">
     <div class="lesson-topbar">
-      <button class="menu-btn" onclick="toggleDrawer()" aria-label="Menú">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-      </button>
+      <button class="menu-btn" onclick="toggleDrawer()" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
       <div class="tb-crumb">
-        <span class="tb-chapter" id="tbChapter">Capítulo 01 · La Aceptación</span>
-        <span class="tb-title" id="tbTitle">La Ecuación del Dolor</span>
+        <span class="tb-chapter" id="tbChapter"></span>
+        <span class="tb-title" id="tbTitle"></span>
       </div>
-      <span class="tb-count" id="tbCount">Módulo 1 de 4</span>
+      <div class="lang-toggle" id="lang"><span class="pill"></span><button data-l="es">ES</button><button data-l="en">EN</button></div>
+      <span class="tb-count" id="tbCount"></span>
       <div class="tb-read" id="tbRead"></div>
     </div>
-
     <div class="scroll-area" id="scroll">
-
-      <!-- LESSON 1 -->
-      <div id="lesson-1" class="lesson-container active">
-        <div class="lesson-eyebrow"><span>Módulo 01</span><span class="dot"></span><span>Capítulo 1</span><span class="dot"></span><span>12:45</span></div>
-        <h1 class="lesson-title">La Ecuación <em>del Dolor</em></h1>
-
-        <div class="video-shell" onclick="openVideo()" style="background-image:url('https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1780787605/ChatGPT_Image_Jun_6_2026_04_09_01_PM_8_nna7do.png');">
-          <div class="play-video-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-          <div class="video-label"><div class="vl-k">Clase en video</div><div class="vl-t">La Ecuación del Dolor</div></div>
-        </div>
-
-        <div class="audio-player">
-          <div class="audio-btn" onclick="toggleAudio(this,1)"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-          <div class="audio-info">
-            <div class="audio-meta"><span class="a-k">🎧 Escuchar en movimiento</span><span class="audio-time">12:45</span></div>
-            <div class="audio-track"><div class="audio-progress" id="prog-1"></div></div>
-          </div>
-        </div>
-
-        <div class="lesson-body">
-          <p>No todo el dolor pesa igual. Hay un dolor que pertenece a la realidad, y otro que aparece cuando peleamos con ella. El mayor obstáculo para una crianza efectiva no es el comportamiento del niño, es el momento en que el adulto deja de ver la situación con claridad y empieza a pelear con ella por dentro.</p>
-          <blockquote>El sufrimiento no viene de la crisis de tu hijo, viene de tu expectativa de que no debería estar ocurriendo.</blockquote>
-          <p>En este primer módulo, aprenderemos a identificar el instante exacto en el que pasamos de lidiar con un problema real a sufrir por nuestras propias expectativas no cumplidas. Al soltar la resistencia, recuperamos la energía necesaria para guiar.</p>
-        </div>
-
-        <div class="infographic">
-          <svg width="460" height="150" viewBox="0 0 460 150" role="img" aria-label="Realidad más Negación es igual a Sufrimiento">
-            <g font-family="DM Sans, sans-serif">
-              <rect x="6" y="35" width="118" height="80" rx="14" fill="rgba(31,46,70,.04)" stroke="#1F2E46" stroke-width="1.5"/>
-              <circle cx="65" cy="66" r="11" fill="none" stroke="#1F2E46" stroke-width="1.5"/><circle cx="65" cy="66" r="3" fill="#1F2E46"/>
-              <text x="65" y="100" text-anchor="middle" font-weight="700" font-size="12" fill="#1F2E46" letter-spacing="1">REALIDAD</text>
-              <text x="150" y="82" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="34" fill="#8599AD">+</text>
-              <rect x="176" y="35" width="118" height="80" rx="14" fill="rgba(217,107,71,.05)" stroke="#D96B47" stroke-width="1.5"/>
-              <path d="M223 58l18 18M241 58l-18 18" stroke="#D96B47" stroke-width="2" stroke-linecap="round"/>
-              <text x="235" y="100" text-anchor="middle" font-weight="700" font-size="12" fill="#D96B47" letter-spacing="1">NEGACIÓN</text>
-              <text x="320" y="82" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="34" fill="#8599AD">=</text>
-              <rect x="346" y="35" width="118" height="80" rx="14" fill="rgba(244,168,138,.18)" stroke="#F4A88A" stroke-width="1.5"/>
-              <path d="M405 56c-7 5-7 14 0 20 7-6 7-15 0-20z" fill="none" stroke="#D96B47" stroke-width="1.5"/>
-              <text x="405" y="100" text-anchor="middle" font-weight="700" font-size="11" fill="#1F2E46" letter-spacing="1">SUFRIMIENTO</text>
-            </g>
-          </svg>
-          <span class="info-cap">La ecuación del sufrimiento evitable</span>
-        </div>
-
-        <div class="reflect">
-          <div class="reflect-k"><span>✦</span> Para reflexionar esta semana</div>
-          <div class="reflect-q">¿En qué momento exacto dejas de ver la situación tal como es, y empiezas a pelear con ella por dentro?</div>
-        </div>
-
-        <div class="resources-box">
-          <h3 class="resources-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Materiales del módulo</h3>
-          <a href="/worksheets/modulo-01.pdf" target="_blank" download="CSC_Modulo_01.pdf" class="resource-item">
-            <div class="res-info">
-              <span class="res-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
-              <div><div class="res-name">Cuaderno de Trabajo: Auditoría de Reactividad</div><div class="res-meta">PDF Editable · 1.2 MB</div></div>
-            </div>
-            <span class="res-download">Descargar ↓</span>
-          </a>
-        </div>
-
-        <div class="lesson-nav" id="nav-1"></div>
-        <button class="complete-btn" id="cb-1" onclick="markComplete(1)"></button>
-      </div>
-
-      <!-- LESSON 2 -->
-      <div id="lesson-2" class="lesson-container">
-        <div class="lesson-eyebrow"><span>Módulo 02</span><span class="dot"></span><span>Capítulo 1</span><span class="dot"></span><span>18:22</span></div>
-        <h1 class="lesson-title">Los Cuatro <em>Caminos</em></h1>
-
-        <div class="audio-player">
-          <div class="audio-btn" onclick="toggleAudio(this,2)"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-          <div class="audio-info">
-            <div class="audio-meta"><span class="a-k">🎧 Escuchar en movimiento</span><span class="audio-time">18:22</span></div>
-            <div class="audio-track"><div class="audio-progress" id="prog-2"></div></div>
-          </div>
-        </div>
-
-        <div class="lesson-body">
-          <p>Bajo presión extrema, el cerebro adulto recurre a uno de cuatro caminos automáticos de supervivencia. En la crianza, estos caminos se manifiestan como patrones de reactividad que escalan la crisis en lugar de contenerla.</p>
-          <ul class="teach-list">
-            <li><strong>Lucha.</strong> Gritar, exigir control.</li>
-            <li><strong>Huida.</strong> Ignorar, alejarse físicamente.</li>
-            <li><strong>Congelamiento.</strong> Ceder, parálisis por análisis.</li>
-            <li><strong>Complacencia.</strong> Negociar sin límites para evitar el conflicto.</li>
-          </ul>
-          <p>No puedes cambiar un patrón que no puedes ver. Este módulo trata de ponerle nombre a tu camino automático.</p>
-        </div>
-
-        <div class="infographic">
-          <svg width="300" height="300" viewBox="0 0 300 300" role="img" aria-label="Mapa de los cuatro caminos automáticos con tú al centro">
-            <g font-family="DM Sans, sans-serif">
-              <line x1="150" y1="20" x2="150" y2="280" stroke="rgba(31,46,70,.1)" stroke-width="1.5"/>
-              <line x1="20" y1="150" x2="280" y2="150" stroke="rgba(31,46,70,.1)" stroke-width="1.5"/>
-              <rect x="34" y="34" width="98" height="98" rx="14" fill="rgba(217,107,71,.08)" stroke="#D96B47" stroke-width="1.3"/>
-              <text x="83" y="78" text-anchor="middle" font-weight="700" font-size="12" fill="#D96B47" letter-spacing="1">LUCHA</text>
-              <text x="83" y="100" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="15" fill="#1F2E46">Gritar · Control</text>
-              <rect x="168" y="34" width="98" height="98" rx="14" fill="rgba(133,153,173,.1)" stroke="#8599AD" stroke-width="1.3"/>
-              <text x="217" y="78" text-anchor="middle" font-weight="700" font-size="12" fill="#5E7488" letter-spacing="1">HUIDA</text>
-              <text x="217" y="100" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="15" fill="#1F2E46">Ignorar</text>
-              <rect x="34" y="168" width="98" height="98" rx="14" fill="rgba(31,46,70,.05)" stroke="#1F2E46" stroke-width="1.3"/>
-              <text x="83" y="208" text-anchor="middle" font-weight="700" font-size="10.5" fill="#1F2E46" letter-spacing=".5">CONGELAMIENTO</text>
-              <text x="83" y="230" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="15" fill="#1F2E46">Ceder</text>
-              <rect x="168" y="168" width="98" height="98" rx="14" fill="rgba(244,168,138,.18)" stroke="#F4A88A" stroke-width="1.3"/>
-              <text x="217" y="208" text-anchor="middle" font-weight="700" font-size="10.5" fill="#D96B47" letter-spacing=".5">COMPLACENCIA</text>
-              <text x="217" y="230" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="15" fill="#1F2E46">Negociar</text>
-              <circle cx="150" cy="150" r="26" fill="#1F2E46"/>
-              <text x="150" y="155" text-anchor="middle" font-weight="700" font-size="11" fill="#FAF6F2" letter-spacing="1">TÚ</text>
-            </g>
-          </svg>
-          <span class="info-cap">Tu reflejo bajo presión</span>
-        </div>
-
-        <div class="reflect">
-          <div class="reflect-k"><span>✦</span> Para reflexionar esta semana</div>
-          <div class="reflect-q">Antes de reaccionar, nómbralo: ¿cuál de los cuatro caminos es tu reflejo automático cuando la presión sube?</div>
-        </div>
-
-        <div class="resources-box">
-          <h3 class="resources-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Materiales del módulo</h3>
-          <a href="/worksheets/modulo-02.pdf" target="_blank" download="CSC_Modulo_02.pdf" class="resource-item">
-            <div class="res-info">
-              <span class="res-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
-              <div><div class="res-name">Mapa de Gatillos Automáticos</div><div class="res-meta">PDF Editable · 800 KB</div></div>
-            </div>
-            <span class="res-download">Descargar ↓</span>
-          </a>
-        </div>
-
-        <div class="lesson-nav" id="nav-2"></div>
-        <button class="complete-btn" id="cb-2" onclick="markComplete(2)"></button>
-      </div>
-
-      <!-- LESSON 3 -->
-      <div id="lesson-3" class="lesson-container">
-        <div class="lesson-eyebrow"><span>Módulo 03</span><span class="dot"></span><span>Capítulo 2</span><span class="dot"></span><span>15:10</span></div>
-        <h1 class="lesson-title">El Desajuste de <em>Idioma</em></h1>
-
-        <div class="audio-player">
-          <div class="audio-btn" onclick="toggleAudio(this,3)"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-          <div class="audio-info">
-            <div class="audio-meta"><span class="a-k">🎧 Escuchar en movimiento</span><span class="audio-time">15:10</span></div>
-            <div class="audio-track"><div class="audio-progress" id="prog-3"></div></div>
-          </div>
-        </div>
-
-        <div class="lesson-body">
-          <p>El error más grande que cometemos los padres no es poner límites. El error es intentar que el niño reciba el límite en un canal que su sistema nervioso todavía no puede abrir.</p>
-          <blockquote>Estás tratando de enviar un archivo PDF pesado a una computadora que solo lee señales de humo.</blockquote>
-          <p>Intentamos usar la corteza prefrontal (la lógica, el tiempo, el razonamiento adulto) cuando ellos están operando enteramente desde la amígdala (la emoción, la supervivencia, el instinto). Este módulo te enseña a hablar el idioma correcto antes de dar la instrucción.</p>
-        </div>
-
-        <div class="infographic">
-          <svg width="440" height="170" viewBox="0 0 440 170" role="img" aria-label="La lógica del adulto se desconecta de la emoción del niño">
-            <g font-family="DM Sans, sans-serif">
-              <circle cx="70" cy="80" r="42" fill="none" stroke="#1F2E46" stroke-width="1.5" stroke-dasharray="9 6"/>
-              <text x="70" y="85" text-anchor="middle" font-weight="700" font-size="12" fill="#1F2E46" letter-spacing="1">LÓGICA</text>
-              <text x="70" y="150" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="17" fill="#1F2E46">Adulto</text>
-              <line x1="124" y1="80" x2="316" y2="80" stroke="#D96B47" stroke-width="2" stroke-dasharray="7 7"/>
-              <path d="M210 66l20 28M230 66l-20 28" stroke="#D96B47" stroke-width="2.4" stroke-linecap="round"/>
-              <text x="220" y="44" text-anchor="middle" font-weight="700" font-size="10.5" fill="#D96B47" letter-spacing="1">DESCONEXIÓN</text>
-              <circle cx="370" cy="80" r="42" fill="rgba(244,168,138,.18)" stroke="#F4A88A" stroke-width="1.5"/>
-              <text x="370" y="85" text-anchor="middle" font-weight="700" font-size="12" fill="#D96B47" letter-spacing="1">EMOCIÓN</text>
-              <text x="370" y="150" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="17" fill="#1F2E46">Niño</text>
-            </g>
-          </svg>
-          <span class="info-cap">Dos canales que no se encuentran</span>
-        </div>
-
-        <div class="reflect">
-          <div class="reflect-k"><span>✦</span> Para reflexionar esta semana</div>
-          <div class="reflect-q">La próxima vez que pongas un límite, pregúntate primero: ¿mi hijo está en la lógica o en la emoción? ¿Estoy hablando su idioma?</div>
-        </div>
-
-        <div class="resources-box">
-          <h3 class="resources-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Materiales del módulo</h3>
-          <div class="res-empty">Los materiales descargables de este módulo llegan pronto.</div>
-        </div>
-
-        <div class="lesson-nav" id="nav-3"></div>
-        <button class="complete-btn" id="cb-3" onclick="markComplete(3)"></button>
-      </div>
-
-      <!-- LESSON 4 -->
-      <div id="lesson-4" class="lesson-container">
-        <div class="lesson-eyebrow"><span>Módulo 04</span><span class="dot"></span><span>Capítulo 2</span><span class="dot"></span><span>22:40</span></div>
-        <h1 class="lesson-title">Los 4 Mecanismos del <em>Juego</em></h1>
-
-        <div class="audio-player">
-          <div class="audio-btn" onclick="toggleAudio(this,4)"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-          <div class="audio-info">
-            <div class="audio-meta"><span class="a-k">🎧 Escuchar en movimiento</span><span class="audio-time">22:40</span></div>
-            <div class="audio-track"><div class="audio-progress" id="prog-4"></div></div>
-          </div>
-        </div>
-
-        <div class="lesson-body">
-          <p>El juego no es entretenimiento. Es el Sistema Operativo (Play OS) del niño. Cuando hay resistencia, el juego es la llave que abre la puerta para que tu instrucción pueda entrar.</p>
-          <p>Existen 4 mecanismos para activar el Play OS cuando hay resistencia:</p>
-          <ul class="teach-list">
-            <li><strong>Sorpresa / Humor.</strong> Rompe la tensión instantáneamente.</li>
-            <li><strong>Roles invertidos.</strong> Tú eres el torpe, ellos los expertos.</li>
-            <li><strong>Contacto físico / Fuerza.</strong> Abrazos de oso o empujones seguros descargan la adrenalina.</li>
-            <li><strong>Fantasía.</strong> Convertir la transición en una misión.</li>
-          </ul>
-        </div>
-
-        <div class="infographic">
-          <svg width="340" height="170" viewBox="0 0 340 170" role="img" aria-label="Los cuatro mecanismos activan el Play OS del niño">
-            <g font-family="DM Sans, sans-serif">
-              <line x1="60" y1="42" x2="150" y2="80" stroke="#8599AD" stroke-width="1.3"/>
-              <line x1="60" y1="128" x2="150" y2="90" stroke="#8599AD" stroke-width="1.3"/>
-              <line x1="40" y1="85" x2="128" y2="85" stroke="#8599AD" stroke-width="1.3"/>
-              <circle cx="40" cy="42" r="6" fill="#D96B47"/><circle cx="30" cy="85" r="6" fill="#F4A88A"/><circle cx="40" cy="128" r="6" fill="#8599AD"/>
-              <circle cx="170" cy="85" r="46" fill="#1F2E46"/>
-              <path d="M152 84c4 6 32 6 36 0" fill="none" stroke="#F4A88A" stroke-width="3.5" stroke-linecap="round"/>
-              <circle cx="156" cy="74" r="3.5" fill="#F4A88A"/><circle cx="184" cy="74" r="3.5" fill="#F4A88A"/>
-              <text x="170" y="156" text-anchor="middle" font-weight="700" font-size="11" fill="#1F2E46" letter-spacing="1">PLAY OS ACTIVADO</text>
-            </g>
-          </svg>
-          <span class="info-cap">La llave que abre la puerta</span>
-        </div>
-
-        <div class="reflect">
-          <div class="reflect-k"><span>✦</span> Para reflexionar esta semana</div>
-          <div class="reflect-q">Elige un mecanismo (sorpresa, roles invertidos, contacto físico o fantasía) y pruébalo en la próxima transición difícil del día.</div>
-        </div>
-
-        <div class="resources-box">
-          <h3 class="resources-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Materiales del módulo</h3>
-          <a href="#" class="resource-item">
-            <div class="res-info">
-              <span class="res-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
-              <div><div class="res-name">Guía de 20 Juegos de Transición Rápida</div><div class="res-meta">PDF · 2.1 MB</div></div>
-            </div>
-            <span class="res-download">Descargar ↓</span>
-          </a>
-        </div>
-
-        <div class="lesson-nav" id="nav-4"></div>
-        <button class="complete-btn" id="cb-4" onclick="markComplete(4)"></button>
-      </div>
-
+      <div id="lessonHost" class="lesson-container"></div>
     </div>
   </main>
 
   <div class="scrim" id="scrim" onclick="toggleDrawer()"></div>
 
-  <!-- VIDEO MODAL -->
   <div id="vmodal" onclick="if(event.target===this)closeVideo()">
     <div class="vmodal-inner">
-      <button class="vmodal-close" onclick="closeVideo()">Cerrar ✕</button>
-      <!-- TODO: reemplazar este bloque con el embed real (Mux / Vimeo / Cloudflare Stream) -->
-      <div class="placeholder">
-        <div class="pk">Clase en video</div>
-        <div class="pt">El reproductor de la clase se integra aquí.</div>
-      </div>
+      <button class="vmodal-close" id="vClose" onclick="closeVideo()">Cerrar ✕</button>
+      <!-- TODO: reemplazar con el embed real (Mux / Vimeo / Cloudflare Stream), elegido por idioma -->
+      <div class="placeholder"><div class="pk" id="vpK">Clase en video</div><div class="pt" id="vpT">El reproductor de la clase se integra aquí.</div></div>
     </div>
   </div>
 
-  <!-- TOAST -->
-  <div id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span id="toastMsg">Módulo completado</span></div>
+  <div id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span id="toastMsg"></span></div>
 
   <script>
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    /* ── Course model ── */
-    var COURSE = [
-      { n:'01', name:'La Aceptación', lessons:[
-        { id:1, n:'01', title:'La Ecuación del Dolor', dur:'12:45' },
-        { id:2, n:'02', title:'Los Cuatro Caminos', dur:'18:22' } ] },
-      { n:'02', name:'Play OS', lessons:[
-        { id:3, n:'03', title:'El Desajuste de Idioma', dur:'15:10' },
-        { id:4, n:'04', title:'Los 4 Mecanismos del Juego', dur:'22:40' } ] },
-      { n:'03', name:'Crianza Neutral', locked:true, lessons:[
-        { id:5, n:'05', title:'El ciclo de la reactividad', locked:true },
-        { id:6, n:'06', title:'Diseñando el sistema', locked:true } ] }
+    /* ════════ UI STRINGS ════════ */
+    var UI = {
+      es: {
+        lockTitle:'Portal <em>Premium</em>', lockSub:'El Método Nari · Acceso de Alumnos',
+        placeholder:'Clave de acceso', enter:'Entrar →', wrong:'Clave incorrecta. Inténtalo de nuevo.',
+        of:'de', modules:'módulos', courseTime:'1 h 9 min', soon:'Próximamente',
+        chapterSoon:'El <b>Capítulo 03</b> se desbloquea pronto para alumnas Premium.',
+        userSince:'Desde Junio 2026', badge:'Membresía Premium', logout:'Cerrar sesión',
+        chapter:'Capítulo', module:'Módulo', moduleCount:'Módulo {a} de {b}',
+        listen:'🎧 Escuchar en movimiento', videoClass:'Clase en video',
+        materials:'Materiales del módulo', download:'Descargar ↓', resEmpty:'Los materiales descargables de este módulo llegan pronto.',
+        reflect:'Para reflexionar esta semana',
+        prev:'Anterior', next:'Siguiente', courseStart:'Inicio del curso', courseEnd:'Fin del contenido disponible',
+        markComplete:'Marcar módulo como completado', completed:'Módulo completado',
+        allDone:'Has completado todo el contenido disponible ✦',
+        close:'Cerrar ✕', vK:'Clase en video', vT:'El reproductor de la clase se integra aquí.'
+      },
+      en: {
+        lockTitle:'Premium <em>Portal</em>', lockSub:'El Método Nari · Student Access',
+        placeholder:'Access code', enter:'Enter →', wrong:'Wrong code. Try again.',
+        of:'of', modules:'modules', courseTime:'1 hr 9 min', soon:'Coming soon',
+        chapterSoon:'<b>Chapter 03</b> unlocks soon for Premium students.',
+        userSince:'Since June 2026', badge:'Premium Membership', logout:'Log out',
+        chapter:'Chapter', module:'Module', moduleCount:'Module {a} of {b}',
+        listen:'🎧 Listen on the go', videoClass:'Video class',
+        materials:'Module materials', download:'Download ↓', resEmpty:'The downloadable materials for this module are coming soon.',
+        reflect:'To reflect on this week',
+        prev:'Previous', next:'Next', courseStart:'Start of course', courseEnd:'End of available content',
+        markComplete:'Mark module as complete', completed:'Module completed',
+        allDone:'You have completed all available content ✦',
+        close:'Close ✕', vK:'Video class', vT:'The class player will be embedded here.'
+      }
+    };
+
+    /* ════════ COURSE STRUCTURE ════════ */
+    var CHAPTERS = [
+      { n:'01', name:{es:'La Aceptación', en:'Acceptance'}, lessons:[1,2] },
+      { n:'02', name:{es:'Play OS', en:'Play OS'}, lessons:[3,4] },
+      { n:'03', name:{es:'Crianza Neutral', en:'Neutral Parenting'}, locked:true, lessons:[5,6] }
     ];
     var AVAILABLE = [1,2,3,4];
-    var META = {};
-    COURSE.forEach(function(ch){ ch.lessons.forEach(function(l){ META[l.id] = { ch:ch, lesson:l }; }); });
 
-    var progress = { completed: [], last: 1 };
-    try { var s = localStorage.getItem('csc_metodo_progress'); if (s) progress = JSON.parse(s); } catch(e){}
-    function save(){ try { localStorage.setItem('csc_metodo_progress', JSON.stringify(progress)); } catch(e){} }
-    function isDone(id){ return progress.completed.indexOf(id) !== -1; }
+    /* ════════ LESSON CONTENT (ES = source · EN = first-pass, Nari to refine) ════════ */
+    var LESSONS = {
+      1: {
+        num:'01', chapterNum:'1', dur:'12:45', hasVideo:true,
+        poster:'https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1780787605/ChatGPT_Image_Jun_6_2026_04_09_01_PM_8_nna7do.png',
+        videoUrl:{ es:'', en:'' },
+        es:{
+          title:'La Ecuación del Dolor', h1:'La Ecuación <em>del Dolor</em>', videoLabel:'La Ecuación del Dolor',
+          body:[
+            {p:'No todo el dolor pesa igual. Hay un dolor que pertenece a la realidad, y otro que aparece cuando peleamos con ella. El mayor obstáculo para una crianza efectiva no es el comportamiento del niño, es el momento en que el adulto deja de ver la situación con claridad y empieza a pelear con ella por dentro.'},
+            {quote:'El sufrimiento no viene de la crisis de tu hijo, viene de tu expectativa de que no debería estar ocurriendo.'},
+            {p:'En este primer módulo, aprenderemos a identificar el instante exacto en el que pasamos de lidiar con un problema real a sufrir por nuestras propias expectativas no cumplidas. Al soltar la resistencia, recuperamos la energía necesaria para guiar.'}
+          ],
+          info:{ caption:'La ecuación del sufrimiento evitable', labels:{a:'REALIDAD', b:'NEGACIÓN', c:'SUFRIMIENTO'} },
+          reflect:'¿En qué momento exacto dejas de ver la situación tal como es, y empiezas a pelear con ella por dentro?',
+          resources:[ {name:'Cuaderno de Trabajo: Auditoría de Reactividad', meta:'PDF Editable · 1.2 MB', href:'/worksheets/modulo-01.pdf', download:'CSC_Modulo_01.pdf'} ]
+        },
+        en:{
+          title:'The Equation of Pain', h1:'The Equation of <em>Pain</em>', videoLabel:'The Equation of Pain',
+          body:[
+            {p:'Not all pain weighs the same. There is a pain that belongs to reality, and another that appears when we fight against it. The greatest obstacle to effective parenting is not the child\u2019s behavior, it is the moment the adult stops seeing the situation clearly and starts fighting it on the inside.'},
+            {quote:'Suffering does not come from your child\u2019s crisis, it comes from your expectation that it should not be happening.'},
+            {p:'In this first module, we will learn to identify the exact instant when we move from dealing with a real problem to suffering over our own unmet expectations. By releasing the resistance, we recover the energy we need to guide.'}
+          ],
+          info:{ caption:'The equation of avoidable suffering', labels:{a:'REALITY', b:'DENIAL', c:'SUFFERING'} },
+          reflect:'At what exact moment do you stop seeing the situation as it is, and start fighting it on the inside?',
+          resources:[ {name:'Workbook: Reactivity Audit', meta:'Editable PDF · 1.2 MB', href:'/worksheets/module-01.pdf', download:'CSC_Module_01.pdf'} ]
+        }
+      },
+      2: {
+        num:'02', chapterNum:'1', dur:'18:22',
+        es:{
+          title:'Los Cuatro Caminos', h1:'Los Cuatro <em>Caminos</em>',
+          body:[
+            {p:'Bajo presión extrema, el cerebro adulto recurre a uno de cuatro caminos automáticos de supervivencia. En la crianza, estos caminos se manifiestan como patrones de reactividad que escalan la crisis en lugar de contenerla.'},
+            {list:['<strong>Lucha.</strong> Gritar, exigir control.','<strong>Huida.</strong> Ignorar, alejarse físicamente.','<strong>Congelamiento.</strong> Ceder, parálisis por análisis.','<strong>Complacencia.</strong> Negociar sin límites para evitar el conflicto.']},
+            {p:'No puedes cambiar un patrón que no puedes ver. Este módulo trata de ponerle nombre a tu camino automático.'}
+          ],
+          info:{ caption:'Tu reflejo bajo presión', labels:{f1:'LUCHA', f1s:'Gritar · Control', f2:'HUIDA', f2s:'Ignorar', f3:'CONGELAMIENTO', f3s:'Ceder', f4:'COMPLACENCIA', f4s:'Negociar', you:'TÚ'} },
+          reflect:'Antes de reaccionar, nómbralo: ¿cuál de los cuatro caminos es tu reflejo automático cuando la presión sube?',
+          resources:[ {name:'Mapa de Gatillos Automáticos', meta:'PDF Editable · 800 KB', href:'/worksheets/modulo-02.pdf', download:'CSC_Modulo_02.pdf'} ]
+        },
+        en:{
+          title:'The Four Paths', h1:'The Four <em>Paths</em>',
+          body:[
+            {p:'Under extreme pressure, the adult brain falls back on one of four automatic survival paths. In parenting, these paths show up as patterns of reactivity that escalate the crisis instead of containing it.'},
+            {list:['<strong>Fight.</strong> Yelling, demanding control.','<strong>Flight.</strong> Ignoring, physically walking away.','<strong>Freeze.</strong> Giving in, paralysis by analysis.','<strong>Appease.</strong> Negotiating without limits to avoid the conflict.']},
+            {p:'You cannot change a pattern you cannot see. This module is about putting a name to your automatic path.'}
+          ],
+          info:{ caption:'Your reflex under pressure', labels:{f1:'FIGHT', f1s:'Yell · Control', f2:'FLIGHT', f2s:'Ignore', f3:'FREEZE', f3s:'Give in', f4:'APPEASE', f4s:'Negotiate', you:'YOU'} },
+          reflect:'Before you react, name it: which of the four paths is your automatic reflex when the pressure rises?',
+          resources:[ {name:'Map of Automatic Triggers', meta:'Editable PDF · 800 KB', href:'/worksheets/module-02.pdf', download:'CSC_Module_02.pdf'} ]
+        }
+      },
+      3: {
+        num:'03', chapterNum:'2', dur:'15:10',
+        es:{
+          title:'El Desajuste de Idioma', h1:'El Desajuste de <em>Idioma</em>',
+          body:[
+            {p:'El error más grande que cometemos los padres no es poner límites. El error es intentar que el niño reciba el límite en un canal que su sistema nervioso todavía no puede abrir.'},
+            {quote:'Estás tratando de enviar un archivo PDF pesado a una computadora que solo lee señales de humo.'},
+            {p:'Intentamos usar la corteza prefrontal (la lógica, el tiempo, el razonamiento adulto) cuando ellos están operando enteramente desde la amígdala (la emoción, la supervivencia, el instinto). Este módulo te enseña a hablar el idioma correcto antes de dar la instrucción.'}
+          ],
+          info:{ caption:'Dos canales que no se encuentran', labels:{a:'LÓGICA', as:'Adulto', mid:'DESCONEXIÓN', b:'EMOCIÓN', bs:'Niño'} },
+          reflect:'La próxima vez que pongas un límite, pregúntate primero: ¿mi hijo está en la lógica o en la emoción? ¿Estoy hablando su idioma?',
+          resources:[]
+        },
+        en:{
+          title:'The Language Mismatch', h1:'The Language <em>Mismatch</em>',
+          body:[
+            {p:'The biggest mistake we parents make is not setting limits. The mistake is trying to get the child to receive the limit on a channel their nervous system cannot open yet.'},
+            {quote:'You are trying to send a heavy PDF file to a computer that only reads smoke signals.'},
+            {p:'We try to use the prefrontal cortex (logic, time, adult reasoning) when they are operating entirely from the amygdala (emotion, survival, instinct). This module teaches you to speak the right language before you give the instruction.'}
+          ],
+          info:{ caption:'Two channels that never meet', labels:{a:'LOGIC', as:'Adult', mid:'DISCONNECT', b:'EMOTION', bs:'Child'} },
+          reflect:'Next time you set a limit, ask first: is my child in logic or in emotion? Am I speaking their language?',
+          resources:[]
+        }
+      },
+      4: {
+        num:'04', chapterNum:'2', dur:'22:40',
+        es:{
+          title:'Los 4 Mecanismos del Juego', h1:'Los 4 Mecanismos del <em>Juego</em>',
+          body:[
+            {p:'El juego no es entretenimiento. Es el Sistema Operativo (Play OS) del niño. Cuando hay resistencia, el juego es la llave que abre la puerta para que tu instrucción pueda entrar.'},
+            {p:'Existen 4 mecanismos para activar el Play OS cuando hay resistencia:'},
+            {list:['<strong>Sorpresa / Humor.</strong> Rompe la tensión instantáneamente.','<strong>Roles invertidos.</strong> Tú eres el torpe, ellos los expertos.','<strong>Contacto físico / Fuerza.</strong> Abrazos de oso o empujones seguros descargan la adrenalina.','<strong>Fantasía.</strong> Convertir la transición en una misión.']}
+          ],
+          info:{ caption:'La llave que abre la puerta', labels:{core:'PLAY OS ACTIVADO'} },
+          reflect:'Elige un mecanismo (sorpresa, roles invertidos, contacto físico o fantasía) y pruébalo en la próxima transición difícil del día.',
+          resources:[ {name:'Guía de 20 Juegos de Transición Rápida', meta:'PDF · 2.1 MB', href:'#'} ]
+        },
+        en:{
+          title:'The 4 Mechanisms of Play', h1:'The 4 Mechanisms of <em>Play</em>',
+          body:[
+            {p:'Play is not entertainment. It is the child\u2019s Operating System (Play OS). When there is resistance, play is the key that opens the door so your instruction can get in.'},
+            {p:'There are 4 mechanisms to activate the Play OS when there is resistance:'},
+            {list:['<strong>Surprise / Humor.</strong> Breaks the tension instantly.','<strong>Reversed roles.</strong> You are the clumsy one, they are the experts.','<strong>Physical contact / Force.</strong> Bear hugs or safe roughhousing discharge the adrenaline.','<strong>Fantasy.</strong> Turning the transition into a mission.']}
+          ],
+          info:{ caption:'The key that opens the door', labels:{core:'PLAY OS ACTIVATED'} },
+          reflect:'Pick one mechanism (surprise, reversed roles, physical contact, or fantasy) and try it on the next hard transition of the day.',
+          resources:[ {name:'Guide: 20 Quick Transition Games', meta:'PDF · 2.1 MB', href:'#'} ]
+        }
+      },
+      5: { locked:true, num:'05', chapterNum:'3', es:{title:'El ciclo de la reactividad'}, en:{title:'The Cycle of Reactivity'} },
+      6: { locked:true, num:'06', chapterNum:'3', es:{title:'Diseñando el sistema'}, en:{title:'Designing the System'} }
+    };
 
+    /* ════════ ICONS ════════ */
+    var PLAY='<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+    var PAUSE='<svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>';
+    var CHECK='<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    var LOCKICO='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
+    var FILEHEAD='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>';
+    var FILEICO='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>';
+
+    /* ════════ STATE ════════ */
+    var lang = 'es';
+    try { lang = localStorage.getItem('lg_parent_lang') || 'es'; } catch(e){}
+    if (lang !== 'en') lang = 'es';
     var current = 1;
+    var progress = { completed:[], last:1 };
+    try { var s = localStorage.getItem('csc_metodo_progress'); if (s) progress = JSON.parse(s); } catch(e){}
+    function saveProgress(){ try { localStorage.setItem('csc_metodo_progress', JSON.stringify(progress)); } catch(e){} }
+    function isDone(id){ return progress.completed.indexOf(id) !== -1; }
+    function tt(k){ return UI[lang][k]; }
 
-    /* ── Render sidebar rail ── */
+    /* ════════ INFOGRAPHIC BUILDERS (geometry fixed · labels translated) ════════ */
+    function infoSVG(id, lb){
+      if (id===1) return '<svg width="460" height="150" viewBox="0 0 460 150" role="img"><g font-family="DM Sans, sans-serif">'+
+        '<rect x="6" y="35" width="118" height="80" rx="14" fill="rgba(31,46,70,.04)" stroke="#1F2E46" stroke-width="1.5"/><circle cx="65" cy="66" r="11" fill="none" stroke="#1F2E46" stroke-width="1.5"/><circle cx="65" cy="66" r="3" fill="#1F2E46"/><text x="65" y="100" text-anchor="middle" font-weight="700" font-size="12" fill="#1F2E46" letter-spacing="1">'+lb.a+'</text>'+
+        '<text x="150" y="82" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="34" fill="#8599AD">+</text>'+
+        '<rect x="176" y="35" width="118" height="80" rx="14" fill="rgba(217,107,71,.05)" stroke="#D96B47" stroke-width="1.5"/><path d="M223 58l18 18M241 58l-18 18" stroke="#D96B47" stroke-width="2" stroke-linecap="round"/><text x="235" y="100" text-anchor="middle" font-weight="700" font-size="12" fill="#D96B47" letter-spacing="1">'+lb.b+'</text>'+
+        '<text x="320" y="82" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="34" fill="#8599AD">=</text>'+
+        '<rect x="346" y="35" width="118" height="80" rx="14" fill="rgba(244,168,138,.18)" stroke="#F4A88A" stroke-width="1.5"/><path d="M405 56c-7 5-7 14 0 20 7-6 7-15 0-20z" fill="none" stroke="#D96B47" stroke-width="1.5"/><text x="405" y="100" text-anchor="middle" font-weight="700" font-size="11" fill="#1F2E46" letter-spacing="1">'+lb.c+'</text>'+
+        '</g></svg>';
+      if (id===2) return '<svg width="300" height="300" viewBox="0 0 300 300" role="img"><g font-family="DM Sans, sans-serif">'+
+        '<line x1="150" y1="20" x2="150" y2="280" stroke="rgba(31,46,70,.1)" stroke-width="1.5"/><line x1="20" y1="150" x2="280" y2="150" stroke="rgba(31,46,70,.1)" stroke-width="1.5"/>'+
+        '<rect x="34" y="34" width="98" height="98" rx="14" fill="rgba(217,107,71,.08)" stroke="#D96B47" stroke-width="1.3"/><text x="83" y="78" text-anchor="middle" font-weight="700" font-size="12" fill="#D96B47" letter-spacing="1">'+lb.f1+'</text><text x="83" y="100" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="15" fill="#1F2E46">'+lb.f1s+'</text>'+
+        '<rect x="168" y="34" width="98" height="98" rx="14" fill="rgba(133,153,173,.1)" stroke="#8599AD" stroke-width="1.3"/><text x="217" y="78" text-anchor="middle" font-weight="700" font-size="12" fill="#5E7488" letter-spacing="1">'+lb.f2+'</text><text x="217" y="100" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="15" fill="#1F2E46">'+lb.f2s+'</text>'+
+        '<rect x="34" y="168" width="98" height="98" rx="14" fill="rgba(31,46,70,.05)" stroke="#1F2E46" stroke-width="1.3"/><text x="83" y="208" text-anchor="middle" font-weight="700" font-size="10.5" fill="#1F2E46" letter-spacing=".5">'+lb.f3+'</text><text x="83" y="230" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="15" fill="#1F2E46">'+lb.f3s+'</text>'+
+        '<rect x="168" y="168" width="98" height="98" rx="14" fill="rgba(244,168,138,.18)" stroke="#F4A88A" stroke-width="1.3"/><text x="217" y="208" text-anchor="middle" font-weight="700" font-size="10.5" fill="#D96B47" letter-spacing=".5">'+lb.f4+'</text><text x="217" y="230" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="15" fill="#1F2E46">'+lb.f4s+'</text>'+
+        '<circle cx="150" cy="150" r="26" fill="#1F2E46"/><text x="150" y="155" text-anchor="middle" font-weight="700" font-size="11" fill="#FAF6F2" letter-spacing="1">'+lb.you+'</text>'+
+        '</g></svg>';
+      if (id===3) return '<svg width="440" height="170" viewBox="0 0 440 170" role="img"><g font-family="DM Sans, sans-serif">'+
+        '<circle cx="70" cy="80" r="42" fill="none" stroke="#1F2E46" stroke-width="1.5" stroke-dasharray="9 6"/><text x="70" y="85" text-anchor="middle" font-weight="700" font-size="12" fill="#1F2E46" letter-spacing="1">'+lb.a+'</text><text x="70" y="150" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="17" fill="#1F2E46">'+lb.as+'</text>'+
+        '<line x1="124" y1="80" x2="316" y2="80" stroke="#D96B47" stroke-width="2" stroke-dasharray="7 7"/><path d="M210 66l20 28M230 66l-20 28" stroke="#D96B47" stroke-width="2.4" stroke-linecap="round"/><text x="220" y="44" text-anchor="middle" font-weight="700" font-size="10.5" fill="#D96B47" letter-spacing="1">'+lb.mid+'</text>'+
+        '<circle cx="370" cy="80" r="42" fill="rgba(244,168,138,.18)" stroke="#F4A88A" stroke-width="1.5"/><text x="370" y="85" text-anchor="middle" font-weight="700" font-size="12" fill="#D96B47" letter-spacing="1">'+lb.b+'</text><text x="370" y="150" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="17" fill="#1F2E46">'+lb.bs+'</text>'+
+        '</g></svg>';
+      if (id===4) return '<svg width="340" height="170" viewBox="0 0 340 170" role="img"><g font-family="DM Sans, sans-serif">'+
+        '<line x1="60" y1="42" x2="150" y2="80" stroke="#8599AD" stroke-width="1.3"/><line x1="60" y1="128" x2="150" y2="90" stroke="#8599AD" stroke-width="1.3"/><line x1="40" y1="85" x2="128" y2="85" stroke="#8599AD" stroke-width="1.3"/>'+
+        '<circle cx="40" cy="42" r="6" fill="#D96B47"/><circle cx="30" cy="85" r="6" fill="#F4A88A"/><circle cx="40" cy="128" r="6" fill="#8599AD"/>'+
+        '<circle cx="170" cy="85" r="46" fill="#1F2E46"/><path d="M152 84c4 6 32 6 36 0" fill="none" stroke="#F4A88A" stroke-width="3.5" stroke-linecap="round"/><circle cx="156" cy="74" r="3.5" fill="#F4A88A"/><circle cx="184" cy="74" r="3.5" fill="#F4A88A"/>'+
+        '<text x="170" y="156" text-anchor="middle" font-weight="700" font-size="11" fill="#1F2E46" letter-spacing="1">'+lb.core+'</text>'+
+        '</g></svg>';
+      return '';
+    }
+
+    /* ════════ RENDER: chrome ════════ */
+    function renderChrome(){
+      document.documentElement.lang = lang;
+      document.getElementById('lockTitle').innerHTML = tt('lockTitle');
+      document.getElementById('lockSub').textContent = tt('lockSub');
+      document.getElementById('lp').setAttribute('placeholder', tt('placeholder'));
+      document.getElementById('lockBtn').textContent = tt('enter');
+      document.getElementById('userSince').textContent = tt('userSince');
+      document.getElementById('badgeLabel').textContent = tt('badge');
+      document.getElementById('logout').textContent = tt('logout');
+      document.getElementById('vClose').textContent = tt('close');
+      document.getElementById('vpK').textContent = tt('vK');
+      document.getElementById('vpT').textContent = tt('vT');
+      // language toggles
+      var lt = document.getElementById('lang');
+      lt.classList.toggle('en', lang==='en');
+      lt.querySelector('[data-l="es"]').classList.toggle('active', lang==='es');
+      lt.querySelector('[data-l="en"]').classList.toggle('active', lang==='en');
+      document.querySelectorAll('#lockLangs button').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-l')===lang); });
+    }
+
+    /* ════════ RENDER: rail ════════ */
     function renderRail(){
-      var rail = document.getElementById('rail');
-      rail.innerHTML = '';
-      COURSE.forEach(function(ch){
+      var rail = document.getElementById('rail'); rail.innerHTML = '';
+      CHAPTERS.forEach(function(ch){
         var g = document.createElement('div'); g.className = 'mod-group';
-        var head = '<div class="mod-chapter"><span class="ch-n">Cap. '+ch.n+'</span><span class="ch-name">'+ch.name+'</span>'+
-          (ch.locked ? '<span class="ch-lock"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>' : '')+'</div>';
-        g.innerHTML = head;
-        ch.lessons.forEach(function(l){
+        g.innerHTML = '<div class="mod-chapter"><span class="ch-n">'+(lang==='es'?'Cap.':'Ch.')+' '+ch.n+'</span><span class="ch-name">'+ch.name[lang]+'</span>'+(ch.locked?'<span class="ch-lock">'+LOCKICO+'</span>':'')+'</div>';
+        ch.lessons.forEach(function(lid){
+          var L = LESSONS[lid]; var locked = !!L.locked;
           var item = document.createElement('div');
-          var locked = !!l.locked;
-          item.className = 'mod-item' + (locked ? ' locked' : '') + (l.id===current && !locked ? ' active' : '');
-          item.id = 'rail-' + l.id;
-          if (!locked) item.onclick = function(){ switchLesson(l.id); };
-          var status = locked
-            ? '<span class="mod-status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>'
-            : '<span class="mod-status'+(isDone(l.id)?' done':'')+'">'+(isDone(l.id)
-                ? '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
-                : l.n)+'</span>';
-          item.innerHTML = status +
-            '<span class="mod-body"><span class="mod-title">'+l.title+'</span>'+
-            (locked ? '<span class="mod-dur">Próximamente</span>' : '<span class="mod-dur">'+l.dur+'</span>')+'</span>';
+          item.className = 'mod-item'+(locked?' locked':'')+(lid===current&&!locked?' active':'');
+          item.id = 'rail-'+lid;
+          if (!locked) item.onclick = (function(x){ return function(){ switchLesson(x); }; })(lid);
+          var status = locked ? '<span class="mod-status">'+LOCKICO+'</span>'
+            : '<span class="mod-status'+(isDone(lid)?' done':'')+'">'+(isDone(lid)?CHECK:L.num)+'</span>';
+          item.innerHTML = status+'<span class="mod-body"><span class="mod-title">'+L[lang].title+'</span>'+
+            (locked?'<span class="mod-dur">'+tt('soon')+'</span>':'<span class="mod-dur">'+L.dur+'</span>')+'</span>';
           g.appendChild(item);
         });
         rail.appendChild(g);
       });
-      var soon = document.createElement('div');
-      soon.className = 'chapter-soon';
-      soon.innerHTML = 'El <b>Capítulo 03</b> se desbloquea pronto para alumnos Premium.';
+      var soon = document.createElement('div'); soon.className='chapter-soon'; soon.innerHTML = tt('chapterSoon');
       rail.appendChild(soon);
     }
 
-    /* ── Progress ring + counts ── */
+    /* ════════ RENDER: progress ════════ */
     function renderProgress(){
       var done = progress.completed.filter(function(id){ return AVAILABLE.indexOf(id)!==-1; }).length;
-      var total = AVAILABLE.length;
-      var pct = Math.round(done/total*100);
-      var circ = 2*Math.PI*25;
+      var total = AVAILABLE.length, circ = 2*Math.PI*25;
       var ring = document.getElementById('ring');
       ring.setAttribute('stroke-dasharray', circ.toFixed(1));
       ring.setAttribute('stroke-dashoffset', (circ*(1-done/total)).toFixed(1));
-      document.getElementById('ringPct').textContent = pct + '%';
-      document.getElementById('cDone').textContent = done;
-      document.getElementById('cTotal').textContent = total;
+      document.getElementById('ringPct').textContent = Math.round(done/total*100)+'%';
+      document.getElementById('courseSub').innerHTML = '<b>'+done+'</b> '+tt('of')+' '+total+' '+tt('modules')+' · '+tt('courseTime');
     }
 
-    /* ── Lesson nav + complete button ── */
-    function renderLessonChrome(id){
-      var idx = AVAILABLE.indexOf(id);
-      var prev = AVAILABLE[idx-1], next = AVAILABLE[idx+1];
-      var nav = document.getElementById('nav-' + id);
-      var html = '';
-      if (prev) { var p = META[prev].lesson; html += '<a class="nav-btn prev" onclick="switchLesson('+prev+')"><span class="nb-arrow">←</span><span><span class="nb-k">Anterior</span><br><span class="nb-t">'+p.title+'</span></span></a>'; }
-      else { html += '<span class="nav-btn prev disabled"><span class="nb-arrow">←</span><span><span class="nb-k">Inicio del curso</span></span></span>'; }
-      if (next) { var nx = META[next].lesson; html += '<a class="nav-btn next" onclick="switchLesson('+next+')"><span><span class="nb-k">Siguiente</span><br><span class="nb-t">'+nx.title+'</span></span><span class="nb-arrow">→</span></a>'; }
-      else { html += '<span class="nav-btn next disabled"><span><span class="nb-k">Fin del contenido disponible</span></span><span class="nb-arrow">✦</span></span>'; }
-      nav.innerHTML = html;
+    /* ════════ RENDER: lesson ════════ */
+    function renderLesson(id, keepScroll){
+      var L = LESSONS[id], c = L[lang];
+      var scroll = document.getElementById('scroll');
+      var st = keepScroll ? scroll.scrollTop : 0;
+      var h = '';
+      h += '<div class="lesson-eyebrow"><span>'+tt('module')+' '+L.num+'</span><span class="dot"></span><span>'+tt('chapter')+' '+L.chapterNum+'</span><span class="dot"></span><span>'+L.dur+'</span></div>';
+      h += '<h1 class="lesson-title">'+c.h1+'</h1>';
+      if (L.hasVideo) h += '<div class="video-shell" onclick="openVideo()" style="background-image:url(\''+L.poster+'\');"><div class="play-video-btn">'+PLAY+'</div><div class="video-label"><div class="vl-k">'+tt('videoClass')+'</div><div class="vl-t">'+c.videoLabel+'</div></div></div>';
+      h += '<div class="audio-player"><div class="audio-btn" onclick="toggleAudio(this)">'+PLAY+'</div><div class="audio-info"><div class="audio-meta"><span class="a-k">'+tt('listen')+'</span><span class="audio-time">'+L.dur+'</span></div><div class="audio-track"><div class="audio-progress" id="prog"></div></div></div></div>';
+      h += '<div class="lesson-body">';
+      c.body.forEach(function(b){
+        if (b.p) h += '<p>'+b.p+'</p>';
+        else if (b.quote) h += '<blockquote>'+b.quote+'</blockquote>';
+        else if (b.list){ h += '<ul class="teach-list">'; b.list.forEach(function(li){ h += '<li>'+li+'</li>'; }); h += '</ul>'; }
+      });
+      h += '</div>';
+      h += '<div class="infographic">'+infoSVG(id, c.info.labels)+'<span class="info-cap">'+c.info.caption+'</span></div>';
+      h += '<div class="reflect"><div class="reflect-k"><span>\u2726</span> '+tt('reflect')+'</div><div class="reflect-q">'+c.reflect+'</div></div>';
+      h += '<div class="resources-box"><h3 class="resources-title">'+FILEHEAD+' '+tt('materials')+'</h3>';
+      if (c.resources && c.resources.length){
+        c.resources.forEach(function(r){
+          var attrs = r.download ? (' target="_blank" download="'+r.download+'"') : '';
+          h += '<a href="'+r.href+'"'+attrs+' class="resource-item"><div class="res-info"><span class="res-icon">'+FILEICO+'</span><div><div class="res-name">'+r.name+'</div><div class="res-meta">'+r.meta+'</div></div></div><span class="res-download">'+tt('download')+'</span></a>';
+        });
+      } else { h += '<div class="res-empty">'+tt('resEmpty')+'</div>'; }
+      h += '</div>';
+      h += '<div class="lesson-nav" id="lessonNav"></div>';
+      h += '<button class="complete-btn" id="completeBtn"></button>';
 
-      var cb = document.getElementById('cb-' + id);
-      if (isDone(id)) { cb.className = 'complete-btn done'; cb.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Módulo completado'; }
-      else { cb.className = 'complete-btn'; cb.innerHTML = 'Marcar módulo como completado'; }
+      var host = document.getElementById('lessonHost');
+      host.innerHTML = h;
+
+      // topbar
+      var chName = CHAPTERS[ Number(L.chapterNum)-1 ].name[lang];
+      document.getElementById('tbChapter').textContent = tt('chapter')+' '+(Number(L.chapterNum)<10?'0':'')+L.chapterNum+' · '+chName;
+      document.getElementById('tbTitle').textContent = c.title;
+      document.getElementById('tbCount').textContent = tt('moduleCount').replace('{a}', AVAILABLE.indexOf(id)+1).replace('{b}', AVAILABLE.length);
+
+      renderNav(id);
+      renderComplete(id);
+      scroll.scrollTop = st;
+      document.getElementById('tbRead').style.width = (function(){ var hh=scroll.scrollHeight-scroll.clientHeight; return (hh>0?(st/hh)*100:0)+'%'; })();
     }
 
-    /* ── Switch lesson ── */
+    function renderNav(id){
+      var idx = AVAILABLE.indexOf(id), prev = AVAILABLE[idx-1], next = AVAILABLE[idx+1], html='';
+      if (prev) html += '<a class="nav-btn prev" onclick="switchLesson('+prev+')"><span class="nb-arrow">←</span><span><span class="nb-k">'+tt('prev')+'</span><br><span class="nb-t">'+LESSONS[prev][lang].title+'</span></span></a>';
+      else html += '<span class="nav-btn prev disabled"><span class="nb-arrow">←</span><span><span class="nb-k">'+tt('courseStart')+'</span></span></span>';
+      if (next) html += '<a class="nav-btn next" onclick="switchLesson('+next+')"><span><span class="nb-k">'+tt('next')+'</span><br><span class="nb-t">'+LESSONS[next][lang].title+'</span></span><span class="nb-arrow">→</span></a>';
+      else html += '<span class="nav-btn next disabled"><span><span class="nb-k">'+tt('courseEnd')+'</span></span><span class="nb-arrow">\u2726</span></span>';
+      document.getElementById('lessonNav').innerHTML = html;
+    }
+
+    function renderComplete(id){
+      var cb = document.getElementById('completeBtn');
+      if (isDone(id)){ cb.className='complete-btn done'; cb.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> '+tt('completed'); cb.onclick=null; }
+      else { cb.className='complete-btn'; cb.textContent=tt('markComplete'); cb.onclick=function(){ markComplete(id); }; }
+    }
+
+    /* ════════ ACTIONS ════════ */
     function switchLesson(id){
-      if (META[id] && META[id].lesson.locked) return;
-      current = id;
-      document.querySelectorAll('.lesson-container').forEach(function(el){ el.classList.remove('active'); });
-      var c = document.getElementById('lesson-' + id);
-      c.classList.add('active');
+      if (LESSONS[id] && LESSONS[id].locked) return;
+      current = id; progress.last = id; saveProgress();
       document.querySelectorAll('.mod-item').forEach(function(el){ el.classList.remove('active'); });
-      var ri = document.getElementById('rail-' + id); if (ri) ri.classList.add('active');
-
-      var m = META[id];
-      document.getElementById('tbChapter').textContent = 'Capítulo ' + m.ch.n + ' · ' + m.ch.name;
-      document.getElementById('tbTitle').textContent = m.lesson.title;
-      document.getElementById('tbCount').textContent = 'Módulo ' + (AVAILABLE.indexOf(id)+1) + ' de ' + AVAILABLE.length;
-
-      renderLessonChrome(id);
-      document.getElementById('scroll').scrollTo(0, 0);
-      document.getElementById('tbRead').style.width = '0%';
-      progress.last = id; save();
+      var ri = document.getElementById('rail-'+id); if (ri) ri.classList.add('active');
+      renderLesson(id, false);
       if (window.innerWidth <= 900) closeDrawer();
     }
 
-    /* ── Mark complete ── */
     function markComplete(id){
       if (isDone(id)) return;
-      progress.completed.push(id); save();
-      var rs = document.querySelector('#rail-' + id + ' .mod-status');
-      if (rs) { rs.classList.add('done'); rs.innerHTML = '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'; }
-      renderProgress();
-      renderLessonChrome(id);
+      progress.completed.push(id); saveProgress();
+      var rs = document.querySelector('#rail-'+id+' .mod-status'); if (rs){ rs.classList.add('done'); rs.innerHTML = CHECK; }
+      renderProgress(); renderComplete(id);
       var done = progress.completed.filter(function(x){ return AVAILABLE.indexOf(x)!==-1; }).length;
-      showToast(done === AVAILABLE.length ? 'Has completado todo el contenido disponible ✦' : 'Módulo completado');
-      var idx = AVAILABLE.indexOf(id), next = AVAILABLE[idx+1];
+      showToast(done===AVAILABLE.length ? tt('allDone') : tt('completed'));
+      var next = AVAILABLE[AVAILABLE.indexOf(id)+1];
       if (next) setTimeout(function(){ switchLesson(next); }, 900);
     }
 
-    /* ── Toast ── */
-    var toastT;
-    function showToast(msg){
-      var t = document.getElementById('toast');
-      document.getElementById('toastMsg').textContent = msg;
-      t.classList.add('on');
-      clearTimeout(toastT);
-      toastT = setTimeout(function(){ t.classList.remove('on'); }, 2800);
+    function setLang(l){
+      l = (l==='en') ? 'en' : 'es';
+      if (l === lang) return;
+      lang = l;
+      try { localStorage.setItem('lg_parent_lang', lang); } catch(e){}
+      renderChrome(); renderRail(); renderProgress(); renderLesson(current, true);
+      if (document.getElementById('le').style.opacity === '1') document.getElementById('le').textContent = tt('wrong');
     }
 
-    /* ── Reading progress ── */
-    document.getElementById('scroll').addEventListener('scroll', function(){
-      var el = this;
-      var h = el.scrollHeight - el.clientHeight;
-      document.getElementById('tbRead').style.width = (h>0 ? (el.scrollTop/h)*100 : 0) + '%';
-    }, { passive:true });
+    var toastT;
+    function showToast(msg){ var t=document.getElementById('toast'); document.getElementById('toastMsg').textContent=msg; t.classList.add('on'); clearTimeout(toastT); toastT=setTimeout(function(){ t.classList.remove('on'); }, 2800); }
 
-    /* ── Drawer (mobile) ── */
+    document.getElementById('scroll').addEventListener('scroll', function(){ var hh=this.scrollHeight-this.clientHeight; document.getElementById('tbRead').style.width=(hh>0?(this.scrollTop/hh)*100:0)+'%'; }, {passive:true});
+
     function toggleDrawer(){ document.getElementById('sidebar').classList.toggle('open'); document.getElementById('scrim').classList.toggle('on'); }
     function closeDrawer(){ document.getElementById('sidebar').classList.remove('open'); document.getElementById('scrim').classList.remove('on'); }
 
-    /* ── Video modal ── */
     function openVideo(){ document.getElementById('vmodal').classList.add('on'); }
     function closeVideo(){ document.getElementById('vmodal').classList.remove('on'); }
     document.addEventListener('keydown', function(e){ if (e.key==='Escape') closeVideo(); });
 
-    /* ── Audio demo ── */
-    var activeAudio = null;
-    function toggleAudio(btn, id){
-      var playing = btn.innerHTML.indexOf('rect') !== -1;
-      if (activeAudio && activeAudio !== id){
-        var pa = document.getElementById('prog-' + activeAudio); if (pa){ pa.style.transition='none'; pa.style.width='0%'; }
-        document.querySelectorAll('.audio-btn').forEach(function(b){ b.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>'; });
-      }
-      var prog = document.getElementById('prog-' + id);
-      if (playing){
-        btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
-        prog.style.transition='none'; prog.style.width='0%'; activeAudio = null;
-      } else {
-        btn.innerHTML = '<svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>';
-        prog.style.transition = reduce ? 'none' : 'width 30s linear';
-        requestAnimationFrame(function(){ prog.style.width = reduce ? '40%' : '100%'; });
-        activeAudio = id;
-      }
+    function toggleAudio(btn){
+      var prog = document.getElementById('prog');
+      if (btn.innerHTML.indexOf('rect') !== -1){ btn.innerHTML=PLAY; prog.style.transition='none'; prog.style.width='0%'; }
+      else { btn.innerHTML=PAUSE; prog.style.transition = reduce?'none':'width 30s linear'; requestAnimationFrame(function(){ prog.style.width = reduce?'40%':'100%'; }); }
     }
 
-    /* ── Lock ── */
-    (function(){ if (sessionStorage.getItem('csc_portal_access') === 'granted') document.getElementById('lock').style.display = 'none'; })();
+    /* ════════ LOCK ════════ */
+    (function(){ if (sessionStorage.getItem('csc_portal_access')==='granted') document.getElementById('lock').style.display='none'; })();
     function checkPass(e){
       e.preventDefault();
       if (document.getElementById('lp').value === 'NARI2026'){
-        sessionStorage.setItem('csc_portal_access', 'granted');
-        var lock = document.getElementById('lock'); lock.style.opacity = '0';
-        setTimeout(function(){ lock.style.display = 'none'; }, 600);
+        sessionStorage.setItem('csc_portal_access','granted');
+        var lock=document.getElementById('lock'); lock.style.opacity='0';
+        setTimeout(function(){ lock.style.display='none'; }, 600);
       } else {
-        var err = document.getElementById('le'); err.style.opacity = '1';
-        document.getElementById('lp').value = '';
-        setTimeout(function(){ err.style.opacity = '0'; }, 3000);
+        var err=document.getElementById('le'); err.textContent=tt('wrong'); err.style.opacity='1';
+        document.getElementById('lp').value='';
+        setTimeout(function(){ err.style.opacity='0'; }, 3000);
       }
     }
-    // TODO: Integrar con Firebase Auth o Memberstack para acceso por niveles (tier-based).
+    // TODO: Integrar con Firebase Auth o Memberstack (acceso por niveles) y leer el idioma del perfil del miembro.
 
-    /* ── Init ── */
+    /* ════════ WIRE TOGGLES ════════ */
+    document.getElementById('lang').addEventListener('click', function(e){ var b=e.target.closest('[data-l]'); if (b) setLang(b.getAttribute('data-l')); });
+    document.getElementById('lockLangs').addEventListener('click', function(e){ var b=e.target.closest('[data-l]'); if (b) setLang(b.getAttribute('data-l')); });
+
+    /* ════════ INIT ════════ */
+    renderChrome();
     renderRail();
     renderProgress();
-    var startId = (progress.last && META[progress.last] && !META[progress.last].lesson.locked) ? progress.last : 1;
-    switchLesson(startId);
+    var startId = (progress.last && LESSONS[progress.last] && !LESSONS[progress.last].locked) ? progress.last : 1;
+    current = startId;
+    var ri0 = document.getElementById('rail-'+startId); if (ri0) ri0.classList.add('active');
+    renderLesson(startId, false);
   </script>
 </body>
 </html>
