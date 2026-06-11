@@ -62,6 +62,35 @@
     @keyframes pulse-ring{0%{transform:scale(.95);box-shadow:0 0 0 0 rgba(133,153,173,.4);}70%{transform:scale(1);box-shadow:0 0 0 12px rgba(133,153,173,0);}100%{transform:scale(.95);box-shadow:0 0 0 0 rgba(133,153,173,0);}}
     @keyframes drawIn { to { stroke-dashoffset: 0; } }
     @keyframes breathGlow { 0%, 100% { opacity: 0.45; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.04); } }
+    @keyframes drawDoor {
+      0%   { stroke-dashoffset: 320; opacity: 0; }
+      4%   { opacity: 1; }
+      26%  { stroke-dashoffset: 0; opacity: 1; }
+      31%  { stroke-dashoffset: 0; opacity: 0; }
+      32%  { stroke-dashoffset: 320; }
+      100% { stroke-dashoffset: 320; opacity: 0; }
+    }
+    @keyframes drawAirplane {
+      0%   { stroke-dashoffset: 260; opacity: 0; }
+      33%  { stroke-dashoffset: 260; opacity: 0; }
+      37%  { opacity: 1; }
+      59%  { stroke-dashoffset: 0; opacity: 1; }
+      64%  { stroke-dashoffset: 0; opacity: 0; }
+      65%  { stroke-dashoffset: 260; }
+      100% { stroke-dashoffset: 260; opacity: 0; }
+    }
+    @keyframes drawHeart {
+      0%   { stroke-dashoffset: 300; opacity: 0; }
+      66%  { stroke-dashoffset: 300; opacity: 0; }
+      70%  { opacity: 1; }
+      92%  { stroke-dashoffset: 0; opacity: 1; }
+      97%  { stroke-dashoffset: 0; opacity: 0; }
+      98%  { stroke-dashoffset: 300; }
+      100% { stroke-dashoffset: 300; opacity: 0; }
+    }
+    @keyframes labelFade1 { 0%,3%{opacity:0;} 8%{opacity:1;} 28%{opacity:1;} 33%{opacity:0;} 100%{opacity:0;} }
+    @keyframes labelFade2 { 0%,36%{opacity:0;} 41%{opacity:1;} 61%{opacity:1;} 66%{opacity:0;} 100%{opacity:0;} }
+    @keyframes labelFade3 { 0%,69%{opacity:0;} 74%{opacity:1;} 94%{opacity:1;} 99%{opacity:0;} 100%{opacity:0;} }
     @keyframes hero-fade { from { opacity: 0; } to { opacity: 1; } }
     @keyframes hero-breath { 0% { transform: scale(1.0); } 100% { transform: scale(1.05); } }
     @keyframes blush-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
@@ -529,10 +558,49 @@
         <a href="/metodo/" class="link-pill js-telemetry" style="color: var(--void); border-color: rgba(250,246,242,0.4);" data-event-name="portal_entered" data-mode="contencion" data-protocol="home_method_bridge" data-i18n="bridge_cta" data-es="Conocer el método →" data-en="Explore the method →">Conocer el método →</a>
       </div>
       <div class="bridge-visual scroll-reveal delay-2" style="position: relative; display: flex; justify-content: center;">
-        <!-- The Method Arc (SVG Draw) -->
-        <svg width="400" height="200" viewBox="0 0 400 200" style="overflow: visible;">
-          <path d="M20 180 C 100 20, 300 20, 380 180" stroke="rgba(244,168,138,0.3)" stroke-width="2" fill="none" />
-          <circle cx="200" cy="55" r="8" fill="var(--coral)" style="animation: breathGlow var(--breath) infinite;" />
+        <svg width="380" height="230" viewBox="0 0 380 230" style="overflow: visible;" aria-hidden="true">
+
+          <!-- ① DOOR — Aceptación (visible 0–33% of 12s) -->
+          <path d="M 35 200 L 35 90 A 30 30 0 0 1 95 90 L 95 200"
+                stroke="var(--coral)" stroke-width="1.5" fill="none"
+                stroke-linecap="round" stroke-linejoin="round"
+                stroke-dasharray="320"
+                style="animation: drawDoor 12s ease-in-out infinite;"/>
+          <path d="M 80 138 Q 77 146 83 146"
+                stroke="var(--coral)" stroke-width="1.5" fill="none"
+                stroke-linecap="round" stroke-dasharray="20"
+                style="animation: drawDoor 12s ease-in-out infinite 0.4s;"/>
+          <text x="65" y="222" text-anchor="middle"
+                font-family="'JetBrains Mono',monospace" font-size="7.5"
+                letter-spacing="0.12em" fill="rgba(244,168,138,0.55)"
+                style="animation: labelFade1 12s ease-in-out infinite; opacity:0;">ACEPTACIÓN</text>
+
+          <!-- ② PAPER AIRPLANE — Play OS (visible 33–66% of 12s) -->
+          <path d="M 155 178 L 235 128 L 200 182 Z"
+                stroke="var(--coral)" stroke-width="1.5" fill="none"
+                stroke-linecap="round" stroke-linejoin="round"
+                stroke-dasharray="240"
+                style="animation: drawAirplane 12s ease-in-out infinite;"/>
+          <path d="M 200 182 L 183 153"
+                stroke="var(--coral)" stroke-width="1.5" fill="none"
+                stroke-linecap="round" stroke-dasharray="35"
+                style="animation: drawAirplane 12s ease-in-out infinite 0.4s;"/>
+          <text x="190" y="222" text-anchor="middle"
+                font-family="'JetBrains Mono',monospace" font-size="7.5"
+                letter-spacing="0.12em" fill="rgba(244,168,138,0.55)"
+                style="animation: labelFade2 12s ease-in-out infinite; opacity:0;">PLAY OS</text>
+
+          <!-- ③ HEART — Conexión (visible 66–100% of 12s) -->
+          <path d="M 315 175 C 297 163 274 150 274 132 C 274 116 284 108 296 108 C 305 108 311 113 315 121 C 319 113 325 108 334 108 C 346 108 356 116 356 132 C 356 150 333 163 315 175 Z"
+                stroke="var(--coral)" stroke-width="1.5" fill="none"
+                stroke-linecap="round" stroke-linejoin="round"
+                stroke-dasharray="300"
+                style="animation: drawHeart 12s ease-in-out infinite;"/>
+          <text x="315" y="222" text-anchor="middle"
+                font-family="'JetBrains Mono',monospace" font-size="7.5"
+                letter-spacing="0.12em" fill="rgba(244,168,138,0.55)"
+                style="animation: labelFade3 12s ease-in-out infinite; opacity:0;">CONEXIÓN</text>
+
         </svg>
       </div>
     </div>
