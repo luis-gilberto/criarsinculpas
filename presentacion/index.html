@@ -82,14 +82,15 @@
     /* ── SLIDES ── */
     .slide {
       position: absolute; inset: 0;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      display: none;
+      flex-direction: column; align-items: center; justify-content: center;
       padding: 60px 80px;
-      opacity: 0; pointer-events: none;
-      transform: translateY(22px);
-      transition: opacity .55s var(--ease), transform .55s var(--ease);
     }
-    .slide.active { opacity: 1; pointer-events: auto; transform: none; }
-    .slide.exit { opacity: 0; transform: translateY(-22px); }
+    .slide.active {
+      display: flex;
+      animation: riseIn .5s var(--ease) forwards;
+    }
+    @keyframes riseIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
 
     /* ── NAV ── */
     #nav {
@@ -496,10 +497,9 @@
   /* ── SLIDE ENGINE ── */
   function goTo(n) {
     if (n < 1 || n > TOTAL) return;
-    var prev = document.getElementById('s' + current);
+    document.querySelectorAll('.slide').forEach(function(s){ s.classList.remove('active'); });
     var next = document.getElementById('s' + n);
-    if (prev) { prev.classList.remove('active'); prev.classList.add('exit'); setTimeout(function(){ prev.classList.remove('exit'); }, 600); }
-    if (next) { next.classList.add('active'); }
+    if (next) next.classList.add('active');
     current = n;
     document.getElementById('curNum').textContent = current;
     document.getElementById('prevBtn').disabled = current === 1;
