@@ -1,6 +1,4 @@
-### 1. `apoyo/emotional-escalation.html`
-```html
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
@@ -42,6 +40,8 @@
       --coral:    #F4A88A;
       --teal:     #8599AD;
       --obsidian: #1F2E46;
+      --navy: #1F2E46;
+      --cream: #FAF6F2;
       --cloud:    #FAF6F2;
 
       --bg-1: #FAF6F2;
@@ -135,17 +135,76 @@
     .toast.show { opacity: 1; visibility: visible; transform: translate(-50%, 0) scale(1); }
     .toast-icon { color: var(--success); flex-shrink: 0; }
 
+    .outcome-prompt {
+      position: fixed; bottom: 24px; left: 50%;
+      transform: translate(-50%, 24px);
+      opacity: 0; visibility: hidden; pointer-events: none;
+      width: min(calc(100% - 32px), 420px);
+      padding: 18px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--accent-border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      z-index: 1001;
+      transition: opacity .4s var(--ease-out), transform .4s var(--ease-out), visibility .4s;
+    }
+    .outcome-prompt.show {
+      opacity: 1; visibility: visible; pointer-events: auto;
+      transform: translate(-50%, 0);
+    }
+    .outcome-prompt-q {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.15rem; font-weight: 600; line-height: 1.35;
+      color: var(--text); margin-bottom: 14px;
+    }
+    .outcome-prompt-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .outcome-btn {
+      flex: 1; min-width: 120px;
+      padding: 11px 16px; border-radius: var(--radius-sm);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: .82rem; font-weight: 600;
+      transition: transform .15s var(--ease-out), background .2s, border-color .2s;
+    }
+    .outcome-btn:active { transform: scale(0.98); }
+    .outcome-btn-yes {
+      color: var(--obsidian); background: rgba(53,208,110,.14);
+      border: 1px solid rgba(53,208,110,.3);
+    }
+    .outcome-btn-yes:hover { background: rgba(53,208,110,.22); }
+    .outcome-btn-no {
+      color: var(--muted); background: rgba(31,46,70,.05);
+      border: 1px solid var(--border);
+    }
+    .outcome-btn-no:hover { background: rgba(31,46,70,.08); }
+    .outcome-dismiss {
+      position: absolute; top: 10px; right: 12px;
+      width: 28px; height: 28px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--subtle); font-size: 1.1rem; line-height: 1;
+      transition: color .2s, background .2s;
+    }
+    .outcome-dismiss:hover { color: var(--text); background: rgba(31,46,70,.06); }
+
     .page-shell { position: relative; z-index: 2; min-height: 100vh; padding-bottom: 56px; }
 
     .p-nav {
       display: flex; justify-content: space-between; align-items: center;
-      background: rgba(31,46,70,.55);
-      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      background: #1F2E46;
       padding: max(20px, env(safe-area-inset-top)) var(--gutter-mobile) 18px;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(250,246,242,.08);
       border-bottom-left-radius: var(--radius-lg);
       border-bottom-right-radius: var(--radius-lg);
       position: sticky; top: 0; z-index: 100;
+    }
+    .p-nav .nav-logo img { filter: brightness(1.05) saturate(1.25); }
+    .p-nav .lang-sw {
+      border: 1px solid rgba(250,246,242,.14);
+      background: rgba(250,246,242,.06);
+    }
+    .p-nav .lang-btn { color: rgba(250,246,242,.5); }
+    .p-nav .lang-btn[aria-pressed='true'] {
+      color: #1F2E46; background: #FAF6F2;
+      box-shadow: 0 2px 8px rgba(0,0,0,.12);
     }
     .nav-left { display: flex; align-items: center; gap: 14px; }
     .nav-back {
@@ -391,8 +450,8 @@
     .orient-actions { display: flex; flex-wrap: wrap; gap: 12px; }
     .orient-btn { display: inline-flex; align-items: center; justify-content: center; padding: 13px 22px; border-radius: var(--radius-pill); font-family: 'DM Sans', system-ui, sans-serif; font-size: .88rem; font-weight: 500; transition: transform .2s var(--ease-out), background .2s, border-color .2s; }
     .orient-btn:active { transform: scale(0.98); }
-    .orient-btn-primary { color: var(--obsidian); background: var(--ok); border: 1px solid rgba(133,153,173,.5); }
-    .orient-btn-primary:hover { filter: brightness(1.06); }
+    .orient-btn-primary { color: #FAF6F2; background: #1F2E46; border: 1px solid rgba(250,246,242,.12); }
+    .orient-btn-primary:hover { background: #2a3f5f; border-color: rgba(244,168,138,.35); box-shadow: 0 6px 20px rgba(244,168,138,.15); }
     .orient-btn-ghost { color: var(--text-body); background: transparent; border: 1px solid rgba(31,46,70,.14); }
     .orient-btn-ghost:hover { border-color: rgba(133,153,173,.4); color: #1F2E46; }
 
@@ -425,6 +484,15 @@
     <span id="toast-msg">¡Copiado! Úsalo ahora.</span>
   </div>
 
+  <div id="outcome-prompt" class="outcome-prompt" role="dialog" aria-live="polite" aria-label="Feedback de frase">
+    <button type="button" class="outcome-dismiss" id="outcome-dismiss" aria-label="Cerrar">×</button>
+    <p class="outcome-prompt-q" id="outcome-q" data-es="¿Te ayudó esta frase?" data-en="Did this phrase help?">¿Te ayudó esta frase?</p>
+    <div class="outcome-prompt-actions">
+      <button type="button" class="outcome-btn outcome-btn-yes" id="outcome-yes" data-es="Sí, funcionó" data-en="Yes, it worked">Sí, funcionó</button>
+      <button type="button" class="outcome-btn outcome-btn-no" id="outcome-no" data-es="No tanto" data-en="Not really">No tanto</button>
+    </div>
+  </div>
+
   <div class="page-shell">
     <nav class="p-nav">
       <div class="nav-left">
@@ -432,7 +500,7 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         </a>
         <a href="/" class="nav-logo" aria-label="Criar Sin Culpas - Inicio">
-          <img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas" style="filter:brightness(.65) saturate(1.4) hue-rotate(-5deg)">
+          <img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas" >
         </a>
       </div>
       <div class="lang-sw">
@@ -602,6 +670,7 @@
     const cards = [
       {
         mode: 'contener',
+        slug: 'contener',
         title:  { es: 'Contener', en: 'Contain' },
         intensity: { level: 1, label: { es: 'Empieza', en: 'Starting' } },
         when:   { es: '<strong>Cuándo:</strong> Empieza la intensidad. Tu hijo aún te escucha.',
@@ -613,6 +682,7 @@
       },
       {
         mode: 'regular',
+        slug: 'regular_juntos',
         title:  { es: 'Regular juntos', en: 'Regulate together' },
         intensity: { level: 2, label: { es: 'Sube', en: 'Rising' } },
         when:   { es: '<strong>Cuándo:</strong> La emoción está subiendo. Necesita tu ritmo.',
@@ -624,6 +694,7 @@
       },
       {
         mode: 'proteger',
+        slug: 'sostener_proteger',
         title:  { es: 'Sostener + proteger', en: 'Hold + protect' },
         intensity: { level: 3, label: { es: 'Pico', en: 'Peak' } },
         when:   { es: '<strong>Cuándo:</strong> Hay llanto fuerte. Ahora mismo solo necesita que no escalemos más.',
@@ -637,6 +708,9 @@
 
     const PROTOCOL_NAME = 'emotional_escalation';
     const LAYOUT_VERSION = 'arc_v2';
+    const OUTCOME_SESSION_KEY = 'esc_phrase_outcome_done';
+    const OUTCOME_DELAY_MS = 20000;
+
     function trackSignal(eventName, properties) {
       const props = Object.assign({ layout_version: LAYOUT_VERSION }, properties || {});
       if (typeof plausible !== 'undefined') plausible(eventName, { props: props });
@@ -645,12 +719,55 @@
 
     let lang = localStorage.getItem('lg_parent_lang') || 'es';
     let isDesktop = false;
+    let lastCardSlug = null;
+    let outcomeTimer = null;
 
     window.addEventListener('pageshow', (e) => { if (e.persisted) document.body.style.opacity = '1'; });
 
-    const toast    = document.getElementById('toast');
-    const toastMsg = document.getElementById('toast-msg');
+    const toast         = document.getElementById('toast');
+    const toastMsg      = document.getElementById('toast-msg');
+    const outcomePrompt = document.getElementById('outcome-prompt');
+    const outcomeQ      = document.getElementById('outcome-q');
+    const outcomeYes    = document.getElementById('outcome-yes');
+    const outcomeNo     = document.getElementById('outcome-no');
+    const outcomeDismiss = document.getElementById('outcome-dismiss');
     let toastTimer;
+
+    function outcomePromptDone() {
+      sessionStorage.setItem(OUTCOME_SESSION_KEY, '1');
+      if (outcomeTimer) { clearTimeout(outcomeTimer); outcomeTimer = null; }
+      outcomePrompt.classList.remove('show');
+    }
+
+    function scheduleOutcomePrompt(cardSlug) {
+      if (sessionStorage.getItem(OUTCOME_SESSION_KEY)) return;
+      if (cardSlug) lastCardSlug = cardSlug;
+      if (outcomeTimer) return;
+      outcomeTimer = setTimeout(() => {
+        outcomeTimer = null;
+        if (sessionStorage.getItem(OUTCOME_SESSION_KEY)) return;
+        if (!lastCardSlug) return;
+        outcomeQ.textContent = outcomeQ.getAttribute('data-' + lang) || outcomeQ.getAttribute('data-es');
+        outcomeYes.textContent = outcomeYes.getAttribute('data-' + lang) || outcomeYes.getAttribute('data-es');
+        outcomeNo.textContent = outcomeNo.getAttribute('data-' + lang) || outcomeNo.getAttribute('data-es');
+        outcomePrompt.classList.add('show');
+      }, OUTCOME_DELAY_MS);
+    }
+
+    function hideOutcomePrompt() {
+      outcomePromptDone();
+    }
+
+    function submitOutcome(outcome) {
+      if (lastCardSlug) {
+        trackSignal('Phrase outcome', { card: lastCardSlug, outcome, protocol: PROTOCOL_NAME, language: lang });
+      }
+      outcomePromptDone();
+    }
+
+    outcomeYes.addEventListener('click', () => submitOutcome('worked'));
+    outcomeNo.addEventListener('click', () => submitOutcome('not_really'));
+    outcomeDismiss.addEventListener('click', hideOutcomePrompt);
 
     function showToast(msg) {
       clearTimeout(toastTimer);
@@ -674,6 +791,7 @@
       btn.type = 'button';
       btn.className = 'phrase-card';
       btn.setAttribute('data-mode', card.mode);
+      btn.setAttribute('data-card', card.slug);
       btn.setAttribute('data-intensity', String(card.intensity.level));
       btn.setAttribute('aria-pressed', 'false');
       btn.innerHTML = `
@@ -723,6 +841,7 @@
       card.addEventListener('click', () => {
         const phrase = card.querySelector('.pc-phrase').textContent.trim();
         const mode   = card.getAttribute('data-mode');
+        const cardSlug = card.getAttribute('data-card');
         const level  = Number(card.getAttribute('data-intensity'));
 
         navigator.clipboard.writeText(phrase).then(() => {
@@ -733,7 +852,8 @@
           card.setAttribute('aria-pressed', 'true');
           card.querySelector('.pc-copy').textContent = lang === 'es' ? '¡Copiado!' : 'Copied!';
           showToast(lang === 'es' ? '¡Copiado! Úsalo ahora.' : 'Copied! Use it now.');
-          trackSignal('phrase_copied', { mode, level, language: lang, protocol: PROTOCOL_NAME });
+          trackSignal('Phrase copied', { card: cardSlug, mode, level, language: lang, protocol: PROTOCOL_NAME });
+          scheduleOutcomePrompt(cardSlug);
 
           setTimeout(() => {
             card.setAttribute('aria-pressed', 'false');
@@ -814,6 +934,7 @@
       btnWa.addEventListener('click', () => {
         const d = getShareData();
         trackSignal('share_whatsapp', { protocol: PROTOCOL_NAME, context: 'caregiver_alignment' });
+        scheduleOutcomePrompt();
         window.open('https://wa.me/?text=' + encodeURIComponent(d.text + d.url), '_blank');
       });
     }
@@ -824,6 +945,7 @@
         const d = getShareData();
         navigator.clipboard.writeText(d.url);
         trackSignal('share_copy_link', { protocol: PROTOCOL_NAME });
+        scheduleOutcomePrompt();
         showToast(lang === 'es' ? '¡Enlace copiado!' : 'Link copied!');
       });
     }
@@ -833,4 +955,3 @@
   </script>
 </body>
 </html>
-```

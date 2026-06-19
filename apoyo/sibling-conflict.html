@@ -1,4 +1,4 @@
-### 3. `apoyo/sibling-conflict.html`
+﻿### 3. `apoyo/sibling-conflict.html`
 *(Matches the CONTENCIÓN Slate styling, with the 04 Hermanos SVG and custom `#FCE7DD` tint background)*
 ```html
 <!DOCTYPE html>
@@ -43,6 +43,8 @@
       --coral:    #F4A88A;
       --teal:     #8599AD;
       --obsidian: #1F2E46;
+      --navy: #1F2E46;
+      --cream: #FAF6F2;
       --cloud:    #FAF6F2;
 
       --bg-1: #FAF6F2;
@@ -140,13 +142,22 @@
 
     .p-nav {
       display: flex; justify-content: space-between; align-items: center;
-      background: rgba(31,46,70,.55);
-      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      background: #1F2E46;
       padding: max(20px, env(safe-area-inset-top)) var(--gutter-mobile) 18px;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(250,246,242,.08);
       border-bottom-left-radius: var(--radius-lg);
       border-bottom-right-radius: var(--radius-lg);
       position: sticky; top: 0; z-index: 100;
+    }
+    .p-nav .nav-logo img { filter: brightness(1.05) saturate(1.25); }
+    .p-nav .lang-sw {
+      border: 1px solid rgba(250,246,242,.14);
+      background: rgba(250,246,242,.06);
+    }
+    .p-nav .lang-btn { color: rgba(250,246,242,.5); }
+    .p-nav .lang-btn[aria-pressed='true'] {
+      color: #1F2E46; background: #FAF6F2;
+      box-shadow: 0 2px 8px rgba(0,0,0,.12);
     }
     .nav-left { display: flex; align-items: center; gap: 14px; }
     .nav-back {
@@ -391,8 +402,8 @@
     .orient-actions { display: flex; flex-wrap: wrap; gap: 12px; }
     .orient-btn { display: inline-flex; align-items: center; justify-content: center; padding: 13px 22px; border-radius: var(--radius-pill); font-family: 'DM Sans', system-ui, sans-serif; font-size: .88rem; font-weight: 500; transition: transform .2s var(--ease-out), background .2s, border-color .2s; }
     .orient-btn:active { transform: scale(0.98); }
-    .orient-btn-primary { color: var(--obsidian); background: var(--ok); border: 1px solid rgba(133,153,173,.5); }
-    .orient-btn-primary:hover { filter: brightness(1.06); }
+    .orient-btn-primary { color: #FAF6F2; background: #1F2E46; border: 1px solid rgba(250,246,242,.12); }
+    .orient-btn-primary:hover { background: #2a3f5f; border-color: rgba(244,168,138,.35); box-shadow: 0 6px 20px rgba(244,168,138,.15); }
     .orient-btn-ghost { color: var(--text-body); background: transparent; border: 1px solid rgba(31,46,70,.14); }
     .orient-btn-ghost:hover { border-color: rgba(133,153,173,.4); color: #1F2E46; }
 
@@ -433,7 +444,7 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         </a>
         <a href="/" class="nav-logo" aria-label="Criar Sin Culpas - Inicio">
-          <img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas" style="filter:brightness(.65) saturate(1.4) hue-rotate(-5deg)">
+          <img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas" >
         </a>
       </div>
       <div class="lang-sw">

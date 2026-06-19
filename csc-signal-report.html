@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Del Diagnóstico al Santuario · Signal Report · CriarSinCulpas.com</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="color-scheme" content="light only">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:      #1F2E46;
+  --navy-soft: rgba(31,46,70,.08);
+  --slate:     #8599AD;
+  --slate-lt:  #A7B6C6;
+  --peach:     #F4A88A;
+  --peach-dim: rgba(244,168,138,.15);
+  --peach-line:rgba(244,168,138,.35);
+  --blush:     #FCE7DD;
+  --cream:     #FAF6F2;
+  --cream-2:   #F5EFE8;
+  --navy-rule: rgba(31,46,70,.1);
+  --navy-rule2:rgba(31,46,70,.06);
+  --text:      #1F2E46;
+  --text-soft: rgba(31,46,70,.55);
+  --text-xsoft:rgba(31,46,70,.38);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans:  'Inter', system-ui, sans-serif;
+  --ease:  cubic-bezier(0.16, 1, 0.3, 1);
+  --r:     12px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; color-scheme: light only; }
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+::selection { background: var(--peach-dim); }
+
+/* ── TOPBAR ── */
+#topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,246,242,.94);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--navy-rule);
+  padding: 0 40px; height: 52px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.tb-brand {
+  font-family: var(--serif); font-size: 1rem; font-weight: 600;
+  color: var(--navy); letter-spacing: .01em;
+}
+.tb-period {
+  font-family: var(--sans); font-size: .7rem; font-weight: 400;
+  color: var(--text-soft); letter-spacing: .04em;
+}
+.tb-badge {
+  font-family: var(--sans); font-size: .65rem; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 999px;
+  background: var(--peach-dim); color: var(--peach);
+  border: 1px solid var(--peach-line);
+}
+
+/* ── PROGRESS ── */
+#progress-line {
+  position: sticky; top: 52px; left: 0; height: 2px; z-index: 99;
+  background: linear-gradient(90deg, var(--peach), var(--slate-lt));
+  transform-origin: left; transition: transform .1s linear;
+}
+
+/* ── PAGE ── */
+.page { max-width: 960px; margin: 0 auto; padding: 0 40px 100px; }
+
+/* ── COVER ── */
+.cover {
+  padding: 80px 0 64px;
+  border-bottom: 1px solid var(--navy-rule);
+  margin-bottom: 72px;
+}
+.cover-eyebrow {
+  font-family: var(--sans); font-size: .68rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--peach); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.cover-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--peach); }
+.cover-title {
+  font-family: var(--serif); font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 300; line-height: 1.05; color: var(--navy);
+  letter-spacing: -.01em; margin-bottom: 8px;
+}
+.cover-title em { font-style: italic; color: var(--peach); }
+.cover-subtitle {
+  font-family: var(--serif); font-size: 1.2rem; font-weight: 300;
+  font-style: italic; color: var(--text-soft); margin-bottom: 40px;
+}
+.cover-narrative {
+  font-family: var(--sans); font-size: 1rem; line-height: 1.8;
+  color: var(--text-soft); font-weight: 300;
+  max-width: 640px; border-left: 3px solid var(--peach);
+  padding-left: 24px; margin-bottom: 40px;
+}
+.cover-narrative p + p { margin-top: 1em; }
+.cover-narrative strong { color: var(--navy); font-weight: 500; }
+
+/* KPI ROW */
+.kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--navy-rule); border: 1px solid var(--navy-rule); border-radius: var(--r); overflow: hidden; }
+.kpi {
+  background: var(--cream); padding: 24px 20px;
+  display: flex; flex-direction: column; gap: 6px;
+  transition: background .2s;
+}
+.kpi:hover { background: var(--blush); }
+.kpi-label { font-family: var(--sans); font-size: .62rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-xsoft); }
+.kpi-n { font-family: var(--serif); font-size: 2.4rem; font-weight: 300; line-height: 1; color: var(--navy); }
+.kpi-n.peach { color: var(--peach); }
+.kpi-n.slate { color: var(--slate); }
+.kpi-sub { font-family: var(--sans); font-size: .68rem; color: var(--text-xsoft); }
+.kpi-delta {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-family: var(--sans); font-size: .62rem; font-weight: 500;
+  margin-top: 4px; padding: 2px 8px; border-radius: 4px;
+}
+.kpi-delta.good { background: rgba(167,182,198,.15); color: var(--slate); }
+.kpi-delta.warn { background: var(--peach-dim); color: var(--peach); }
+
+/* ── SECTION ── */
+.section { margin-bottom: 72px; }
+.section-head {
+  display: flex; align-items: baseline; gap: 14px;
+  margin-bottom: 32px; padding-bottom: 16px;
+  border-bottom: 1px solid var(--navy-rule);
+}
+.section-act {
+  font-family: var(--sans); font-size: .62rem; font-weight: 600;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--peach); flex-shrink: 0;
+}
+.section-title {
+  font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 300; color: var(--navy); line-height: 1.1;
+}
+.section-title em { font-style: italic; color: var(--peach); }
+
+/* ── NARRATIVE BLOCK ── */
+.narrative {
+  font-family: var(--sans); font-size: .95rem; line-height: 1.85;
+  color: var(--text-soft); font-weight: 300;
+  max-width: 680px; margin-bottom: 28px;
+}
+.narrative strong { color: var(--navy); font-weight: 500; }
+.narrative em { color: var(--peach); font-style: italic; }
+
+/* ── INSIGHT BOX ── */
+.insight {
+  background: var(--blush); border-left: 3px solid var(--peach);
+  border-radius: 0 var(--r) var(--r) 0;
+  padding: 20px 24px; margin-bottom: 24px;
+}
+.insight.slate-accent { background: rgba(167,182,198,.1); border-left-color: var(--slate); }
+.insight.navy-accent  { background: var(--navy-soft); border-left-color: var(--navy); }
+.insight-label {
+  font-family: var(--sans); font-size: .6rem; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: var(--peach); margin-bottom: 8px;
+}
+.insight.slate-accent .insight-label { color: var(--slate); }
+.insight.navy-accent  .insight-label { color: var(--navy); }
+.insight-text {
+  font-family: var(--sans); font-size: .9rem; line-height: 1.8;
+  color: var(--navy); font-weight: 300;
+}
+.insight-text strong { font-weight: 600; }
+
+/* ── CHART CONTAINER ── */
+.chart-wrap {
+  background: white; border: 1px solid var(--navy-rule);
+  border-radius: var(--r); padding: 28px 24px 20px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+.chart-label {
+  font-family: var(--sans); font-size: .62rem; font-weight: 500;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--text-xsoft); margin-bottom: 20px;
+}
+
+/* ── WEEK CARDS ── */
+.week-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+.week-card {
+  background: white; border: 1px solid var(--navy-rule);
+  border-radius: var(--r); padding: 20px 18px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.week-card:hover { border-color: var(--peach-line); box-shadow: 0 4px 16px rgba(31,46,70,.06); }
+.week-card.peak { border-color: var(--peach-line); background: var(--blush); }
+.week-label { font-family: var(--sans); font-size: .6rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--text-xsoft); margin-bottom: 10px; }
+.week-n { font-family: var(--serif); font-size: 2.6rem; font-weight: 300; color: var(--navy); line-height: 1; }
+.week-n.dim { color: var(--slate-lt); }
+.week-bar { height: 3px; background: var(--navy-rule2); border-radius: 2px; margin-top: 14px; overflow: hidden; }
+.week-fill { height: 100%; border-radius: 2px; transition: width 1.2s var(--ease); }
+.week-pvs { font-family: var(--sans); font-size: .62rem; color: var(--text-xsoft); margin-top: 8px; }
+.peak-badge { display: inline-block; margin-bottom: 8px; font-family: var(--sans); font-size: .55rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; background: var(--peach-dim); color: var(--peach); border: 1px solid var(--peach-line); }
+
+/* ── PAGE TABLE ── */
+.page-table { width: 100%; border-collapse: collapse; font-family: var(--sans); min-width: 720px; }
+.page-table th {
+  font-size: .6rem; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--text-xsoft);
+  padding: 8px 14px; text-align: left; border-bottom: 1px solid var(--navy-rule);
+}
+.page-table th.r { text-align: right; }
+.page-table td { padding: 14px 14px; border-bottom: 1px solid var(--navy-rule2); vertical-align: middle; }
+.page-table tr:last-child td { border-bottom: none; }
+.page-table tr:hover td { background: rgba(252,231,221,.3); }
+.page-slug { font-family: var(--sans); font-size: .78rem; color: var(--text-soft); }
+.page-slug .hl { color: var(--navy); font-weight: 500; }
+.pn { font-family: var(--sans); font-size: .78rem; text-align: right; font-weight: 500; }
+.pn.navy  { color: var(--navy); }
+.pn.peach { color: var(--peach); }
+.pn.slate { color: var(--slate); }
+.pn.soft  { color: var(--text-xsoft); }
+
+/* scroll bars */
+.sbar-wrap { display: flex; align-items: center; gap: 8px; }
+.sbar { flex: 1; height: 5px; background: var(--navy-rule2); border-radius: 3px; overflow: hidden; min-width: 50px; }
+.sbar-fill { height: 100%; border-radius: 3px; }
+
+/* ── CONVERSION CARDS ── */
+.conv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.conv-card {
+  background: white; border: 1px solid var(--navy-rule);
+  border-radius: var(--r); padding: 18px 20px;
+  display: flex; align-items: center; gap: 16px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.conv-card:hover { border-color: var(--peach-line); box-shadow: 0 4px 12px rgba(31,46,70,.06); }
+.conv-card.featured { border-color: var(--peach-line); background: var(--blush); }
+.conv-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--peach-dim); display: flex; align-items: center; justify-content: center; font-size: .95rem; flex-shrink: 0; }
+.conv-icon.slate-bg { background: rgba(167,182,198,.15); }
+.conv-icon.navy-bg  { background: var(--navy-soft); }
+.conv-body { flex: 1; min-width: 0; }
+.conv-name { font-family: var(--sans); font-size: .72rem; font-weight: 500; color: var(--text-soft); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.conv-n { font-family: var(--serif); font-size: 1.8rem; font-weight: 300; color: var(--navy); line-height: 1; }
+.conv-total { font-family: var(--sans); font-size: .62rem; color: var(--text-xsoft); }
+.conv-pct { font-family: var(--sans); font-size: .7rem; font-weight: 600; color: var(--peach); margin-left: auto; flex-shrink: 0; }
+
+/* ── BAR ROWS ── */
+.bar-list { display: flex; flex-direction: column; gap: 12px; }
+.bar-row { display: flex; align-items: center; gap: 12px; }
+.bar-lbl { font-family: var(--sans); font-size: .7rem; color: var(--text-soft); text-align: right; flex-shrink: 0; width: 180px; }
+.bar-track { flex: 1; height: 6px; background: var(--navy-rule2); border-radius: 3px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 3px; transition: width 1.2s var(--ease); }
+.bar-val { font-family: var(--sans); font-size: .7rem; font-weight: 600; flex-shrink: 0; min-width: 48px; }
+
+/* ── TWO-COL ── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+/* ── SIGNAL CARD ── */
+.signal-card {
+  background: white; border: 1px solid var(--navy-rule);
+  border-radius: var(--r); padding: 24px 22px;
+  border-top: 3px solid var(--navy-rule);
+  transition: box-shadow .2s, border-color .2s;
+}
+.signal-card:hover { box-shadow: 0 6px 20px rgba(31,46,70,.08); }
+.signal-card.peach-top { border-top-color: var(--peach); }
+.signal-card.slate-top { border-top-color: var(--slate); }
+.signal-card.navy-top  { border-top-color: var(--navy); }
+.signal-act { font-family: var(--sans); font-size: .58rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--peach); margin-bottom: 10px; }
+.signal-card.slate-top .signal-act { color: var(--slate); }
+.signal-card.navy-top  .signal-act { color: var(--navy); }
+.signal-title { font-family: var(--serif); font-size: 1.35rem; font-weight: 400; color: var(--navy); line-height: 1.25; margin-bottom: 10px; }
+.signal-body { font-family: var(--sans); font-size: .82rem; line-height: 1.75; color: var(--text-soft); font-weight: 300; }
+.signal-body strong { color: var(--navy); font-weight: 500; }
+
+/* ── DEVICE DONUT ── */
+.device-row { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+.donut-wrap { position: relative; width: 140px; height: 140px; flex-shrink: 0; }
+.donut-wrap canvas { position: absolute; inset: 0; }
+.donut-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.donut-n { font-family: var(--serif); font-size: 1.8rem; font-weight: 300; color: var(--navy); line-height: 1; }
+.donut-lbl { font-family: var(--sans); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-xsoft); margin-top: 2px; }
+.legend-list { display: flex; flex-direction: column; gap: 12px; }
+.legend-item { display: flex; align-items: center; gap: 10px; }
+.legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.legend-name { font-family: var(--sans); font-size: .72rem; color: var(--text-soft); }
+.legend-pct { font-family: var(--sans); font-size: .72rem; font-weight: 600; color: var(--navy); margin-left: auto; padding-left: 16px; }
+
+/* ── GEO PILLS ── */
+.geo-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+.geo-pill {
+  display: flex; align-items: center; gap: 7px;
+  background: white; border: 1px solid var(--navy-rule);
+  border-radius: 999px; padding: 5px 14px;
+  font-family: var(--sans); font-size: .68rem; color: var(--text-soft);
+  transition: border-color .2s;
+}
+.geo-pill:hover { border-color: var(--peach-line); }
+.geo-pill.featured { border-color: var(--peach-line); background: var(--blush); }
+.geo-n { color: var(--navy); font-weight: 600; }
+
+/* ── PULL QUOTE ── */
+.pull-quote {
+  font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 300; font-style: italic; line-height: 1.4;
+  color: var(--navy); padding: 32px 0 32px 28px;
+  border-left: 3px solid var(--peach);
+  margin: 32px 0;
+}
+.pull-quote em { color: var(--peach); font-style: normal; }
+
+/* ── TOOLTIP ── */
+.tooltip {
+  position: fixed; pointer-events: none; z-index: 999;
+  background: var(--navy); border-radius: 8px; padding: 10px 14px;
+  font-family: var(--sans); font-size: .68rem; color: rgba(250,246,242,.9);
+  opacity: 0; transition: opacity .15s; min-width: 130px;
+  box-shadow: 0 8px 24px rgba(31,46,70,.2);
+}
+.tooltip.vis { opacity: 1; }
+.tt-date { color: var(--peach); font-weight: 600; margin-bottom: 5px; font-size: .65rem; }
+.tt-row { display: flex; justify-content: space-between; gap: 16px; margin-top: 2px; }
+.tt-val { font-weight: 600; color: white; }
+
+/* ── FOOTER ── */
+/* ── CONFIDENCE LABELS ── */
+.conf-label {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--sans); font-size: .58rem; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 999px;
+  margin-bottom: 10px;
+}
+.conf-label.strong { background: rgba(167,182,198,.18); color: var(--navy); }
+.conf-label.strong::before { content: '●'; color: var(--slate); font-size: .55rem; }
+.conf-label.directional { background: var(--peach-dim); color: #B5764F; }
+.conf-label.directional::before { content: '◐'; color: var(--peach); font-size: .55rem; }
+.conf-label.early { background: rgba(31,46,70,.05); color: var(--text-xsoft); border: 1px dashed var(--navy-rule); }
+.conf-label.early::before { content: '○'; font-size: .55rem; }
+
+/* ── DATA CONFIDENCE NOTE ── */
+.data-note {
+  background: var(--cream-2); border: 1px dashed var(--navy-rule);
+  border-radius: var(--r); padding: 20px 24px; margin-bottom: 28px;
+}
+.data-note-label {
+  font-family: var(--sans); font-size: .6rem; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--text-xsoft); margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.data-note-text {
+  font-family: var(--sans); font-size: .82rem; line-height: 1.75;
+  color: var(--text-soft); font-weight: 300;
+}
+.data-note-text strong { color: var(--navy); font-weight: 500; }
+.data-note-text ul { margin: 10px 0 0 18px; }
+.data-note-text li { margin-bottom: 6px; }
+
+/* ── ROLE CARD (page role pairing) ── */
+.role-card {
+  background: white; border: 1px solid var(--navy-rule); border-radius: var(--r);
+  padding: 20px 22px; display: flex; gap: 16px; align-items: flex-start;
+}
+.role-tag {
+  font-family: var(--sans); font-size: .58rem; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 6px; flex-shrink: 0;
+  white-space: nowrap; margin-top: 2px;
+}
+.role-tag.acquisition { background: var(--peach-dim); color: #B5764F; }
+.role-tag.trust { background: rgba(167,182,198,.18); color: var(--navy); }
+.role-tag.leak { background: rgba(244,168,138,.25); color: #A85D38; }
+.role-tag.watch { background: rgba(31,46,70,.06); color: var(--text-soft); }
+.role-body { flex: 1; }
+.role-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; color: var(--navy); margin-bottom: 4px; }
+.role-desc { font-family: var(--sans); font-size: .8rem; line-height: 1.65; color: var(--text-soft); font-weight: 300; }
+.role-desc strong { color: var(--navy); font-weight: 500; }
+
+.report-footer {
+  padding-top: 40px; border-top: 1px solid var(--navy-rule);
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+}
+.footer-brand { font-family: var(--serif); font-size: 1rem; font-weight: 300; color: var(--navy); }
+.footer-note { font-family: var(--sans); font-size: .62rem; color: var(--text-xsoft); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 760px) {
+  .page { padding: 0 20px 80px; }
+  #topbar { padding: 0 20px; }
+  .kpi-row { grid-template-columns: 1fr 1fr; }
+  .week-grid { grid-template-columns: 1fr 1fr; }
+  .two-col, .three-col { grid-template-columns: 1fr; }
+  .conv-grid { grid-template-columns: 1fr; }
+  .bar-lbl { width: 110px; font-size: .62rem; }
+  .chart-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .page-table {
+    min-width: 720px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <span class="tb-brand">Criar Sin Culpas</span>
+  <span class="tb-period">Signal Report · May 21 – Jun 17, 2026</span>
+  <span class="tb-badge">Plausible Analytics</span>
+</div>
+<div id="progress-line" style="width:0; transform:scaleX(0);"></div>
+
+<div class="tooltip" id="tooltip">
+  <div class="tt-date" id="tt-date"></div>
+  <div class="tt-row"><span>Visitantes</span><span class="tt-val" id="tt-vis"></span></div>
+  <div class="tt-row"><span>Pageviews</span><span class="tt-val" id="tt-pv"></span></div>
+  <div class="tt-row"><span>Rebote</span><span class="tt-val" id="tt-br"></span></div>
+</div>
+
+<div class="page">
+
+  <!-- ── COVER ── -->
+  <div class="cover">
+    <div class="cover-eyebrow">Informe de Señal · LG Studio × CriarSinCulpas.com</div>
+    <h1 class="cover-title">Del Diagnóstico<br>al <em>Santuario</em></h1>
+    <p class="cover-subtitle">El primer mes no probó escala. Probó que cuando llega alguien cálido, entiende el santuario y lo usa.</p>
+    <div class="cover-narrative">
+      <p>Nari, antes de ver los números: esto es un <strong>informe de señal temprana</strong>, no un estudio de mercado. La muestra es pequeña y la audiencia todavía es casi toda gente que ya te conoce: <strong>95% llegó directo</strong>, sin buscar, sin que Google los trajera. Así que no vamos a decir "los padres nos están encontrando". Vamos a decir algo más preciso: <strong>la gente que mandamos a propósito está respondiendo bien.</strong></p>
+      <p>Esa distinción importa. Por eso cada hallazgo abajo trae una etiqueta: <em>señal fuerte</em>, <em>señal direccional</em> o <em>muy pronto para afirmar</em>. Así sabes exactamente cuánto peso ponerle a cada uno.</p>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="kpi-label">Visitantes únicos</div>
+        <div class="kpi-n">114</div>
+        <div class="kpi-sub">28 días · 153 visitas</div>
+        <span class="kpi-delta good">4.07 visitantes/día</span>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Tasa de rebote</div>
+        <div class="kpi-n peach">30.4%</div>
+        <div class="kpi-sub">promedio del período</div>
+        <span class="kpi-delta good">↓ era 64% antes</span>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Pageviews</div>
+        <div class="kpi-n slate">292</div>
+        <div class="kpi-sub">2.56 páginas/visita</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Duración media</div>
+        <div class="kpi-n">3m 21s</div>
+        <div class="kpi-sub">por sesión activa</div>
+        <span class="kpi-delta good">↑ alta intención</span>
+      </div>
+    </div>
+
+    <div class="insight" style="border-left-color:var(--navy); background:var(--navy-soft); margin-top:8px;">
+      <div class="insight-label" style="color:var(--navy);">🔑 La lente para leer este informe</div>
+      <p class="insight-text">Hay dos preguntas distintas aquí y no queremos mezclarlas. Una es <strong>"¿el sitio funciona como espacio de confianza?"</strong>; ahí la respuesta, con los datos que tenemos, es sí. La otra es <strong>"¿el sitio ya está probado como motor de crecimiento?"</strong>; ahí todavía no, porque casi nadie ha llegado por un canal que podamos repetir a propósito. Este informe trata de no responder la segunda pregunta con datos que solo responden la primera.</p>
+    </div>
+
+    <div class="data-note">
+      <div class="data-note-label">⚠ Nota de confianza en los datos</div>
+      <div class="data-note-text">
+        Antes de leer las secciones siguientes, vale la pena saber qué tan limpios están los datos detrás de cada número:
+        <ul>
+          <li><strong>protocol = (none)</strong> aparece en 98 visitantes y 480 eventos. La mayoría de los eventos del sitio todavía no se están atando a un protocolo específico, así que no podemos afirmar con certeza qué protocolo causó qué acción.</li>
+          <li><strong>/metodo vs /metodo/</strong> muestran números inconsistentes entre sí (una versión con 0 pageviews, la otra con 100% de rebote), probablemente un problema de tracking, no del contenido real de esa página.</li>
+          <li>Algunos días muestran <strong>menos pageviews que visitas</strong>, lo cual no debería pasar; es una señal de que el export todavía tiene ruido.</li>
+        </ul>
+        Vamos a limpiar esto antes del próximo corte. Mientras tanto, tratamos cualquier conclusión sobre /metodo como "muy pronto para afirmar".
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ACT I: DIAGNÓSTICO ── -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-act">Acto I · Diagnóstico</span>
+      <h2 class="section-title">El pulso <em>semana a semana</em></h2>
+    </div>
+
+    <p class="narrative">Cuatro semanas de tráfico real. El período no es uniforme: hay picos, valles y una caída al final que nos dice algo concreto sobre el estado del sistema ahora mismo.</p>
+
+    <div class="insight">
+      <span class="conf-label early">○ Anecdótico, no patrón</span>
+      <div class="insight-label">✦ Señal del Diagnóstico</div>
+      <p class="insight-text">El <strong>21 de mayo</strong> fue el día de mayor actividad: 10 visitantes, 95 pageviews y solo 10% de rebote. Probablemente una sesión de revisión con Luis trabajando en el sitio, no un día de tráfico orgánico. <strong>5 veces más actividad</strong> que cualquier otro día, pero un solo día no es una tendencia.</p>
+    </div>
+
+    <div class="chart-wrap">
+      <div class="chart-label">Visitantes únicos por día · May 21 – Jun 17, 2026</div>
+      <canvas id="dailyChart" style="width:100%; height:160px;"></canvas>
+    </div>
+
+    <div class="week-grid">
+      <div class="week-card peak">
+        <div class="peak-badge">Semana pico</div>
+        <div class="week-label">May 21–27</div>
+        <div class="week-n">52</div>
+        <div class="week-bar"><div class="week-fill" style="width:100%; background:var(--peach);"></div></div>
+        <div class="week-pvs">204 pageviews</div>
+      </div>
+      <div class="week-card">
+        <div class="week-label">May 28–Jun 3</div>
+        <div class="week-n dim">20</div>
+        <div class="week-bar"><div class="week-fill" style="width:38%; background:var(--slate-lt);"></div></div>
+        <div class="week-pvs">42 pageviews</div>
+      </div>
+      <div class="week-card">
+        <div class="week-label">Jun 4–10</div>
+        <div class="week-n dim">33</div>
+        <div class="week-bar"><div class="week-fill" style="width:63%; background:var(--slate);"></div></div>
+        <div class="week-pvs">36 pageviews</div>
+      </div>
+      <div class="week-card">
+        <div class="week-label">Jun 11–17</div>
+        <div class="week-n dim" style="color:var(--slate-lt);">9</div>
+        <div class="week-bar"><div class="week-fill" style="width:17%; background:var(--slate-lt); opacity:.5;"></div></div>
+        <div class="week-pvs">10 pageviews</div>
+      </div>
+    </div>
+
+    <div class="insight" style="border-left-color:var(--slate); background:rgba(167,182,198,.1);">
+      <span class="conf-label strong">● Caída real, confirmada</span>
+      <div class="insight-label" style="color:var(--slate);">⚠ El patrón que hay que leer</div>
+      <p class="insight-text">La semana Jun 11–17 registra solo <strong>9 visitantes</strong>: una caída del 73% respecto a la semana anterior, con tres días en cero. Eso es un hecho del dato. La explicación de <em>por qué</em> (que el sistema está esperando tus fotos) es nuestra lectura más probable, no algo que el tráfico nos confirme directamente.</p>
+    </div>
+  </div>
+
+  <!-- ── ACT II: CIRUGÍA ── -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-act">Acto II · Cirugía</span>
+      <h2 class="section-title">Dónde <em>se detuvo la hemorragia</em></h2>
+    </div>
+
+    <p class="narrative">Los números de comportamiento muestran qué páginas retienen y cuáles sueltan. Aquí está la foto completa.</p>
+
+    <div class="pull-quote">
+      "El rebote promedio del período es <em>30.4%</em>. La mitad de lo que era antes."
+    </div>
+
+    <div class="chart-wrap">
+      <div class="chart-label">Páginas · Comportamiento detallado</div>
+      <table class="page-table">
+        <thead>
+          <tr>
+            <th>Página</th>
+            <th class="r">Visitantes</th>
+            <th class="r">Pageviews</th>
+            <th class="r">Rebote</th>
+            <th class="r">T. en página</th>
+            <th>Scroll</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:rgba(252,231,221,.25);">
+            <td><span class="page-slug">/apoyo/<span class="hl">emotional-escalation</span></span></td>
+            <td><span class="pn slate">23</span></td>
+            <td><span class="pn slate">72</span></td>
+            <td><span class="pn" style="color:var(--slate);">30%</span></td>
+            <td><span class="pn peach">4m 12s ★</span></td>
+            <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:83%;background:var(--peach);"></div></div><span class="pn peach">83%</span></div></td>
+          </tr>
+          <tr>
+            <td><span class="page-slug">/apoyo/<span class="hl">screen-time</span></span></td>
+            <td><span class="pn navy">42</span></td>
+            <td><span class="pn navy">63</span></td>
+            <td><span class="pn" style="color:var(--slate);">26%</span></td>
+            <td><span class="pn soft">50s</span></td>
+            <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:79%;background:var(--navy);"></div></div><span class="pn navy">79%</span></div></td>
+          </tr>
+          <tr>
+            <td><span class="page-slug">/ <span class="hl">(Home)</span></span></td>
+            <td><span class="pn navy">63</span></td>
+            <td><span class="pn soft">43</span></td>
+            <td><span class="pn peach">41%</span></td>
+            <td><span class="pn soft">2m 3s</span></td>
+            <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:97%;background:var(--slate-lt);"></div></div><span class="pn soft">97%</span></div></td>
+          </tr>
+          <tr>
+            <td><span class="page-slug">/apoyo/<span class="hl">bedtime-resistance</span></span></td>
+            <td><span class="pn soft">20</span></td>
+            <td><span class="pn soft">33</span></td>
+            <td><span class="pn peach">47%</span></td>
+            <td><span class="pn soft">1m 50s</span></td>
+            <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:70%;background:var(--slate-lt);opacity:.6;"></div></div><span class="pn soft">70%</span></div></td>
+          </tr>
+          <tr>
+            <td><span class="page-slug">/apoyo/ <span class="hl">(Hub)</span></span></td>
+            <td><span class="pn soft">55</span></td>
+            <td><span class="pn soft">56</span></td>
+            <td><span class="pn peach">46%</span></td>
+            <td><span class="pn soft">1m 12s</span></td>
+            <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:59%;background:var(--slate-lt);opacity:.5;"></div></div><span class="pn soft">59%</span></div></td>
+          </tr>
+          <tr>
+            <td><span class="page-slug">/apoyo/<span class="hl">sibling-conflict</span></span></td>
+            <td><span class="pn soft">13</span></td>
+            <td><span class="pn soft">18</span></td>
+            <td><span class="pn" style="color:var(--slate);">29%</span></td>
+            <td><span class="pn soft">21s</span></td>
+            <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:67%;background:var(--slate-lt);opacity:.4;"></div></div><span class="pn soft">67%</span></div></td>
+          </tr>
+          <tr>
+            <td><span class="page-slug">/<span class="hl">metodo</span></span></td>
+            <td><span class="pn peach">6</span></td>
+            <td><span class="pn soft">7</span></td>
+            <td><span class="pn peach">100%</span></td>
+            <td><span class="pn soft">43s</span></td>
+            <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:70%;background:var(--peach);opacity:.5;"></div></div><span class="pn soft">70%</span></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight navy-accent">
+      <span class="conf-label strong">● Señal fuerte</span>
+      <div class="insight-label">★ La joya que los datos revelan</div>
+      <p class="insight-text"><strong>/apoyo/emotional-escalation</strong> es la página más profunda del sitio: 4 minutos 12 segundos de lectura media, 83% de scroll y el exit rate más bajo de todo el ecosistema (29.2%). Casi 3 de cada 4 padres que llegan aquí <strong>siguen navegando</strong>. No es tráfico, es profundidad de relación. Esta página sostiene el argumento del "santuario" mejor que cualquier métrica del Home.</p>
+    </div>
+
+    <div class="role-card" style="margin-top:16px;">
+      <span class="role-tag trust">Motor de confianza</span>
+      <div class="role-body">
+        <div class="role-title">Desbordes gana la relación</div>
+        <div class="role-desc">Combinado con la próxima sección, el patrón que emerge es: <strong>Pantallas es la puerta de entrada, Desbordes es donde se construye confianza.</strong> Vale la pena tratar este emparejamiento como un principio de operación, no solo una observación de este corte.</div>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-top:20px;">
+      <div class="chart-wrap" style="margin-bottom:0;">
+        <div class="chart-label">Principales entradas</div>
+        <div class="bar-list">
+          <div class="bar-row"><span class="bar-lbl">/apoyo/screen-time</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--peach);"></div></div><span class="bar-val" style="color:var(--peach);">35</span></div>
+          <div class="bar-row"><span class="bar-lbl">/ (Home)</span><div class="bar-track"><div class="bar-fill" style="width:66%;background:var(--navy);"></div></div><span class="bar-val" style="color:var(--navy);">23</span></div>
+          <div class="bar-row"><span class="bar-lbl">/apoyo/emotional-esc.</span><div class="bar-track"><div class="bar-fill" style="width:43%;background:var(--slate);"></div></div><span class="bar-val" style="color:var(--slate);">15</span></div>
+          <div class="bar-row"><span class="bar-lbl">/apoyo/bedtime</span><div class="bar-track"><div class="bar-fill" style="width:29%;background:var(--slate-lt);"></div></div><span class="bar-val" style="color:var(--slate-lt);">10</span></div>
+          <div class="bar-row"><span class="bar-lbl">/apoyo/ (Hub)</span><div class="bar-track"><div class="bar-fill" style="width:29%;background:var(--slate-lt);opacity:.6;"></div></div><span class="bar-val" style="color:var(--slate-lt);">10</span></div>
+        </div>
+      </div>
+      <div class="chart-wrap" style="margin-bottom:0;">
+        <div class="chart-label">Exit rate por página</div>
+        <div class="bar-list">
+          <div class="bar-row"><span class="bar-lbl">/apoyo/bedtime</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--peach);"></div></div><span class="bar-val" style="color:var(--peach);">63.6%</span></div>
+          <div class="bar-row"><span class="bar-lbl">/apoyo/screen-time</span><div class="bar-track"><div class="bar-fill" style="width:90%;background:var(--peach);opacity:.7;"></div></div><span class="bar-val" style="color:var(--peach);">57.1%</span></div>
+          <div class="bar-row"><span class="bar-lbl">/metodo</span><div class="bar-track"><div class="bar-fill" style="width:90%;background:var(--peach);opacity:.6;"></div></div><span class="bar-val" style="color:var(--peach);">57.1%</span></div>
+          <div class="bar-row"><span class="bar-lbl">/ (Home)</span><div class="bar-track"><div class="bar-fill" style="width:59%;background:var(--slate);opacity:.7;"></div></div><span class="bar-val" style="color:var(--slate);">37.2%</span></div>
+          <div class="bar-row"><span class="bar-lbl">/apoyo/emotional-esc.</span><div class="bar-track"><div class="bar-fill" style="width:46%;background:var(--navy);"></div></div><span class="bar-val" style="color:var(--navy);">29.2% ★</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-wrap" style="margin-top:20px;">
+      <div class="chart-label">El rol de cada página, no solo sus números</div>
+      <div style="display:flex; flex-direction:column; gap:12px; margin-top:4px;">
+        <div class="role-card">
+          <span class="role-tag acquisition">Gancho de entrada</span>
+          <div class="role-body">
+            <div class="role-title">Pantallas</div>
+            <div class="role-desc">35 entradas únicas, 26% de rebote: el dolor más reconocible, la puerta que la gente toca primero. <strong>Es probablemente el mejor hook de adquisición del sitio.</strong></div>
+          </div>
+        </div>
+        <div class="role-card">
+          <span class="role-tag trust">Motor de confianza</span>
+          <div class="role-body">
+            <div class="role-title">Desbordes (emotional-escalation)</div>
+            <div class="role-desc">4m 12s, 83% scroll, 29.2% exit. Aquí es donde la marca se vuelve emocionalmente necesaria, no solo útil.</div>
+          </div>
+        </div>
+        <div class="role-card">
+          <span class="role-tag leak">Buen interés, mala salida</span>
+          <div class="role-body">
+            <div class="role-title">Hora de dormir</div>
+            <div class="role-desc">Llega con intención real, pero 63.6% de exit rate, la salida más alta del sitio. El estado de necesidad es correcto; falta un "siguiente paso" más fuerte después de leer.</div>
+          </div>
+        </div>
+        <div class="role-card">
+          <span class="role-tag watch">Necesita más filo</span>
+          <div class="role-body">
+            <div class="role-title">Hermanos</div>
+            <div class="role-desc">Solo 21 segundos de tiempo en página, sospechosamente bajo. Puede ser demasiado ligero o no suficientemente específico todavía. No alcanza para diagnosticar con este corte de datos.</div>
+          </div>
+        </div>
+        <div class="role-card">
+          <span class="role-tag watch">Sub-rendimiento como triage</span>
+          <div class="role-body">
+            <div class="role-title">Hub de Apoyo</div>
+            <div class="role-desc">Útil como punto de paso, pero no está ordenando bien a los padres. Podría beneficiarse de lenguaje de triage más directo: "¿Qué está pasando ahora?" / "¿Qué necesitas recuperar después?"</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ACT III: SANTUARIO / CONVERSIONES ── -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-act">Acto III · Santuario</span>
+      <h2 class="section-title">Lo que los padres <em>hicieron</em></h2>
+    </div>
+
+    <p class="narrative">Más allá del tráfico, estos son los momentos en que los padres tomaron una acción: entrar al portal, cambiar de idioma, copiar una frase. Cada uno cuenta.</p>
+
+    <div class="insight">
+      <span class="conf-label directional">◐ Señal direccional</span>
+      <div class="insight-label">✦ El número que más importa (con una pregunta pendiente)</div>
+      <p class="insight-text"><strong>45 de cada 100 visitantes únicos dispararon el evento portal_entered</strong>. Es prometedor, pero necesitamos definir mejor qué significa exactamente ese evento: ¿abrir el área de apoyo? ¿hacer clic en un protocolo? ¿entrar a un workspace? Si la definición es muy amplia, podríamos estar sobreestimando la conversión real. Aun con esa duda, la dirección es buena: <strong>la gente se está moviendo hacia adentro.</strong></p>
+    </div>
+
+    <div class="conv-grid" style="margin-top:20px; margin-bottom:20px;">
+      <div class="conv-card featured">
+        <div class="conv-icon">🚪</div>
+        <div class="conv-body">
+          <div class="conv-name">Portal entries</div>
+          <div class="conv-n">45</div>
+          <div class="conv-total">66 eventos totales</div>
+        </div>
+        <span class="conv-pct">45%</span>
+      </div>
+      <div class="conv-card">
+        <div class="conv-icon slate-bg">🌐</div>
+        <div class="conv-body">
+          <div class="conv-name">Cambio de idioma</div>
+          <div class="conv-n" style="color:var(--slate);">29</div>
+          <div class="conv-total">48 eventos totales</div>
+        </div>
+        <span class="conv-pct" style="color:var(--slate);">29%</span>
+      </div>
+      <div class="conv-card">
+        <div class="conv-icon navy-bg">📋</div>
+        <div class="conv-body">
+          <div class="conv-name">Método CTA clickado</div>
+          <div class="conv-n" style="color:var(--navy);">10</div>
+          <div class="conv-total">12 eventos totales</div>
+        </div>
+        <span class="conv-pct" style="color:var(--navy);">10%</span>
+      </div>
+      <div class="conv-card">
+        <div class="conv-icon">📋</div>
+        <div class="conv-body">
+          <div class="conv-name">Frase copiada</div>
+          <div class="conv-n">5</div>
+          <div class="conv-total">6 eventos totales</div>
+        </div>
+        <span class="conv-pct">5%</span>
+      </div>
+      <div class="conv-card">
+        <div class="conv-icon slate-bg">💬</div>
+        <div class="conv-body">
+          <div class="conv-name">Home · "No estás fallando"</div>
+          <div class="conv-n" style="color:var(--slate);">4</div>
+          <div class="conv-total">5 eventos totales</div>
+        </div>
+        <span class="conv-pct" style="color:var(--slate);">4%</span>
+      </div>
+      <div class="conv-card">
+        <div class="conv-icon navy-bg">🔗</div>
+        <div class="conv-body">
+          <div class="conv-name">Guía completa solicitada</div>
+          <div class="conv-n" style="color:var(--navy);">4</div>
+          <div class="conv-total">4 eventos totales</div>
+        </div>
+        <span class="conv-pct" style="color:var(--navy);">4%</span>
+      </div>
+      <div class="conv-card">
+        <div class="conv-icon">👁</div>
+        <div class="conv-body">
+          <div class="conv-name">Vio el Puente al Método</div>
+          <div class="conv-n">3</div>
+          <div class="conv-total">6 eventos totales</div>
+        </div>
+        <span class="conv-pct">3%</span>
+      </div>
+      <div class="conv-card">
+        <div class="conv-icon slate-bg">🔔</div>
+        <div class="conv-body">
+          <div class="conv-name">Trust modal abierto</div>
+          <div class="conv-n" style="color:var(--slate);">3</div>
+          <div class="conv-total">3 eventos totales</div>
+        </div>
+        <span class="conv-pct" style="color:var(--slate);">3%</span>
+      </div>
+    </div>
+
+    <div class="insight" style="border-left-color:var(--slate); background:rgba(167,182,198,.1);">
+      <span class="conf-label directional">◐ Señal direccional, no conclusión</span>
+      <div class="insight-label" style="color:var(--slate);">El cambio de idioma: alto interés, causa todavía abierta</div>
+      <p class="insight-text"><strong>29% de visitantes cambiaron de idioma</strong>, uno de los comportamientos de mayor intención en todo el sitio. Pero "cambiar idioma" puede significar tres cosas distintas: preferencia real, curiosidad, o fricción (llegaron al idioma equivocado y se corrigieron). Con los datos actuales no podemos distinguir cuál. Lo que sí podemos decir: <strong>vale la pena investigarlo</strong>, no asumir que ya está resuelto.</p>
+    </div>
+
+    <!-- Protocolos -->
+    <div class="chart-wrap" style="margin-top:24px; margin-bottom:8px;">
+      <div class="chart-label">Protocolos más visitados (custom props)</div>
+      <div class="bar-list" style="margin-top:8px;">
+        <div class="bar-row"><span class="bar-lbl" style="width:200px;">home_hero</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--peach);"></div></div><span class="bar-val" style="color:var(--peach);">28 vis · 28%</span></div>
+        <div class="bar-row"><span class="bar-lbl" style="width:200px;">screen_time</span><div class="bar-track"><div class="bar-fill" style="width:43%;background:var(--slate);"></div></div><span class="bar-val" style="color:var(--slate);">12 vis · 12%</span></div>
+        <div class="bar-row"><span class="bar-lbl" style="width:200px;">emotional_escalation</span><div class="bar-track"><div class="bar-fill" style="width:21%;background:var(--navy);"></div></div><span class="bar-val" style="color:var(--navy);">6 vis · 6%</span></div>
+        <div class="bar-row"><span class="bar-lbl" style="width:200px;">home_closing</span><div class="bar-track"><div class="bar-fill" style="width:18%;background:var(--slate-lt);"></div></div><span class="bar-val" style="color:var(--slate-lt);">5 vis · 5%</span></div>
+        <div class="bar-row"><span class="bar-lbl" style="width:200px;">bedtime_resistance</span><div class="bar-track"><div class="bar-fill" style="width:7%;background:var(--slate-lt);opacity:.5;"></div></div><span class="bar-val" style="color:var(--slate-lt);">2 vis · 2%</span></div>
+      </div>
+    </div>
+
+    <div class="data-note" style="margin-bottom:24px;">
+      <div class="data-note-label">⚠ Lo que este gráfico no muestra</div>
+      <div class="data-note-text"><strong>protocol = (none)</strong> representa 98 visitantes y 480 eventos, más que cualquier protocolo nombrado arriba. La mayoría de los eventos del sitio todavía no se están etiquetando con un protocolo, así que esta lista es real pero incompleta. La vamos a limpiar antes del próximo informe.</div>
+    </div>
+  </div>
+
+  <!-- ── AUDIENCIA ── -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-act">Contexto · Audiencia</span>
+      <h2 class="section-title">Quién <em>está llegando</em></h2>
+    </div>
+
+    <div class="two-col">
+      <div class="chart-wrap" style="margin-bottom:0;">
+        <div class="chart-label">Dispositivos</div>
+        <div class="device-row">
+          <div class="donut-wrap">
+            <canvas id="donutChart" width="140" height="140"></canvas>
+            <div class="donut-center">
+              <div class="donut-n">100</div>
+              <div class="donut-lbl">visitantes</div>
+            </div>
+          </div>
+          <div class="legend-list">
+            <div class="legend-item">
+              <div class="legend-dot" style="background:var(--peach);"></div>
+              <span class="legend-name">Mobile</span>
+              <span class="legend-pct">53%</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:var(--navy);"></div>
+              <span class="legend-name">Desktop</span>
+              <span class="legend-pct">46%</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:var(--slate-lt);"></div>
+              <span class="legend-name">Tablet</span>
+              <span class="legend-pct">1%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chart-wrap" style="margin-bottom:0;">
+        <div class="chart-label">Canal de adquisición</div>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px;">
+          <div class="bar-row"><span class="bar-lbl" style="width:130px;">Directo</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--navy);"></div></div><span class="bar-val" style="color:var(--navy);">95% · 272s</span></div>
+          <div class="bar-row"><span class="bar-lbl" style="width:130px;">Instagram</span><div class="bar-track"><div class="bar-fill" style="width:5%;background:var(--peach);"></div></div><span class="bar-val" style="color:var(--peach);">5% · 175s</span></div>
+        </div>
+        <div class="chart-label" style="margin-top:16px;margin-bottom:10px;">Navegadores</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div class="bar-row"><span class="bar-lbl" style="width:130px;">Safari</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--peach);"></div></div><span class="bar-val" style="color:var(--peach);">46</span></div>
+          <div class="bar-row"><span class="bar-lbl" style="width:130px;">Edge</span><div class="bar-track"><div class="bar-fill" style="width:52%;background:var(--navy);"></div></div><span class="bar-val" style="color:var(--navy);">24</span></div>
+          <div class="bar-row"><span class="bar-lbl" style="width:130px;">Chrome</span><div class="bar-track"><div class="bar-fill" style="width:37%;background:var(--slate);"></div></div><span class="bar-val" style="color:var(--slate);">17</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;">
+      <div class="chart-label" style="margin-bottom:12px;">Geografía · Ciudades</div>
+      <div class="geo-wrap">
+        <div class="geo-pill featured">Seattle <span class="geo-n">60</span></div>
+        <div class="geo-pill">Portland <span class="geo-n">5</span></div>
+        <div class="geo-pill">Federal Way <span class="geo-n">2</span></div>
+        <div class="geo-pill">North Brunswick <span class="geo-n">2</span></div>
+        <div class="geo-pill">Tacoma <span class="geo-n">1</span></div>
+        <div class="geo-pill">Renton <span class="geo-n">1</span></div>
+        <div class="geo-pill">Puyallup <span class="geo-n">1</span></div>
+        <div class="geo-pill">Kent <span class="geo-n">1</span></div>
+        <div class="geo-pill">Moses Lake <span class="geo-n">1</span></div>
+        <div class="geo-pill">Chicago <span class="geo-n">1</span></div>
+        <div class="geo-pill" style="opacity:.5;">Bengaluru <span class="geo-n">1</span></div>
+      </div>
+    </div>
+
+    <div class="insight" style="margin-top:20px;border-left-color:var(--navy); background:var(--navy-soft);">
+      <span class="conf-label strong">● Señal fuerte</span>
+      <div class="insight-label" style="color:var(--navy);">📍 Lo que la geografía confirma</div>
+      <p class="insight-text">Seattle representa el <strong>78% de todos los visitantes geolocalizados</strong>, y el 95% del tráfico total es directo. Esto no es todavía una prueba de mercado, es la confirmación de que <strong>la gente que enviaste a propósito está respondiendo bien.</strong> El motor de confianza está dando señales sólidas en audiencia cálida. La pregunta de si funciona igual de bien con desconocidos sigue abierta hasta que probemos un canal de adquisición real.</p>
+    </div>
+  </div>
+
+  <!-- ── SEÑALES ESTRATÉGICAS ── -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-act">El resumen</span>
+      <h2 class="section-title">Lo que sabemos, <em>y lo que todavía no</em></h2>
+    </div>
+
+    <p class="narrative">Separamos esto en dos preguntas distintas a propósito. El sitio ya demostró algo. Todavía no demostró otra cosa. Confundir las dos sería el error más fácil de cometer con este informe.</p>
+
+    <div class="role-card" style="margin-bottom:24px; border-color:var(--peach-line); background:var(--blush);">
+      <span class="role-tag trust">Validado en audiencia cálida</span>
+      <div class="role-body">
+        <div class="role-title">El sitio funciona como espacio de confianza para audiencia cálida</div>
+        <div class="role-desc">Cuando alguien llega con contexto previo, entiende el santuario, se queda y se mueve hacia adentro. Eso lo vemos con suficiente consistencia para confiar en la dirección, sin confundirlo todavía con una prueba de mercado.</div>
+      </div>
+    </div>
+    <div class="role-card" style="margin-bottom:28px; border-color:var(--navy-rule);">
+      <span class="role-tag watch">Todavía no probado</span>
+      <div class="role-body">
+        <div class="role-title">El sitio como motor de crecimiento</div>
+        <div class="role-desc">No tenemos todavía un canal de adquisición controlado y repetible. La siguiente fase debería probar exactamente eso, no asumirlo.</div>
+      </div>
+    </div>
+
+    <div class="three-col">
+      <div class="signal-card peach-top">
+        <span class="conf-label strong">● Fuerte</span>
+        <div class="signal-act">Señal 01 · Retención</div>
+        <div class="signal-title">El rebote cayó del 64% al 30%</div>
+        <p class="signal-body">El bloque "Te Vemos" y los snippets probablemente están contribuyendo a una experiencia que retiene mejor. <strong>Reducción del 53% en abandono.</strong></p>
+      </div>
+      <div class="signal-card navy-top">
+        <span class="conf-label strong">● Fuerte</span>
+        <div class="signal-act">Señal 02 · Profundidad</div>
+        <div class="signal-title">Desbordes: 4m 12s, 29.2% exit</div>
+        <p class="signal-body">La señal de engagement más sólida del sitio. <strong>Esto sostiene el argumento del santuario mejor que cualquier otra métrica.</strong></p>
+      </div>
+      <div class="signal-card peach-top">
+        <span class="conf-label strong">● Fuerte</span>
+        <div class="signal-act">Señal 03 · Entrada</div>
+        <div class="signal-title">Pantallas: 35 entradas, 26% rebote</div>
+        <p class="signal-body">El gancho de adquisición más reconocible del sitio. <strong>Pantallas abre la puerta; Desbordes construye la confianza.</strong></p>
+      </div>
+      <div class="signal-card slate-top">
+        <span class="conf-label directional">◐ Direccional</span>
+        <div class="signal-act">Señal 04 · Portal</div>
+        <div class="signal-title">45% disparan portal_entered</div>
+        <p class="signal-body">Prometedor, pero necesitamos definir mejor qué cuenta como "entrada al portal" antes de tratarlo como una tasa de conversión dura.</p>
+      </div>
+      <div class="signal-card slate-top">
+        <span class="conf-label directional">◐ Direccional</span>
+        <div class="signal-act">Señal 05 · Idioma</div>
+        <div class="signal-title">29% cambian de idioma</div>
+        <p class="signal-body">Alta intención, causa todavía sin confirmar: ¿preferencia, curiosidad o fricción? <strong>Vale la pena investigar antes de construir sobre ello.</strong></p>
+      </div>
+      <div class="signal-card" style="border-top-color: var(--navy-rule);">
+        <span class="conf-label early">○ Muy pronto</span>
+        <div class="signal-act">Señal 06 · Mercado</div>
+        <div class="signal-title">Demanda real, apetito de producto pago</div>
+        <p class="signal-body">No hay suficiente tráfico no-orgánico todavía para hablar de esto con confianza. <strong>Lo sabremos después de la prueba de adquisición controlada.</strong></p>
+      </div>
+    </div>
+
+    <div class="insight" style="margin-top:24px; border-left-color:var(--slate); background:rgba(167,182,198,.1);">
+      <div class="insight-label" style="color:var(--slate);">Sobre la caída de junio</div>
+      <p class="insight-text">La caída del 73% en la última semana (Jun 11–17) es un hecho confirmado del dato. Nuestra lectura más probable es que el sitio está esperando contenido nuevo (tus fotos) para volver a tener motivo de visita. Eso es una hipótesis razonable, no una certeza medida directamente.</p>
+    </div>
+  </div>
+
+  <!-- ── LO QUE SIGUE ── -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-act">Mirando adelante</span>
+      <h2 class="section-title">Lo que <em>sigue</em></h2>
+    </div>
+
+    <p class="narrative">Cuatro cosas en marcha para el próximo informe. Nada de esto está terminado todavía, son los hilos que estamos jalando ahora mismo.</p>
+
+    <div class="three-col">
+      <div class="signal-card navy-top">
+        <div class="signal-act">Paso 1 · Limpieza</div>
+        <div class="signal-title">Tracking por frase</div>
+        <p class="signal-body">Primero ordenamos la instrumentación: cada una de las tres frases de <em>emotional-escalation</em> por separado, más una pregunta corta de "¿te ayudó?" después de copiarlas. Así sabremos, con datos limpios, cuál frase funciona mejor (no por intuición).</p>
+      </div>
+      <div class="signal-card slate-top">
+        <div class="signal-act">Paso 2 · Contenido</div>
+        <div class="signal-title">Fecha del shoot</div>
+        <p class="signal-body">El sistema sigue esperando tus fotos reales. Es la pieza que más impacto va a tener en el próximo informe: el lienzo está listo, solo falta el color.</p>
+      </div>
+      <div class="signal-card navy-top">
+        <div class="signal-act">Paso 3 · Prueba controlada</div>
+        <div class="signal-title">Test de adquisición de 7 días</div>
+        <p class="signal-body">Con tracking limpio y fotos reales en el sitio, corremos una prueba corta desde tu Instagram con links UTM separados (uno a Pantallas, uno a Desbordes, uno al Hub). Comparamos tráfico, profundidad, clics de CTA, frases copiadas y entradas al portal por cada uno. <strong>Esto nos dirá si el sitio ya funciona como motor de crecimiento, no solo como espacio de confianza.</strong></p>
+      </div>
+      <div class="signal-card peach-top">
+        <div class="signal-act">Paso 4 · Descubrimiento</div>
+        <div class="signal-title">Plan de SEO</div>
+        <p class="signal-body">Con los pasos anteriores resueltos, construimos una estrategia de SEO para que el sitio empiece a aparecer en búsquedas reales, no solo en tráfico directo. Es nuevo para ambos: lo construimos paso a paso, con datos guiando cada decisión.</p>
+      </div>
+    </div>
+
+    <div class="insight" style="margin-top:24px;">
+      <div class="insight-label">💡 Una nota sobre monetización</div>
+      <p class="insight-text">Vale la pena decir esto ahora, antes de que lo asumamos: <strong>el momento de pánico no es el momento de vender.</strong> El apoyo en crisis debe seguir siendo generoso y gratuito. El camino pago probablemente empieza después del alivio, cuando el padre piensa "ok, necesito un sistema para esto", no en medio del desborde. Lo vamos a diseñar con esa lógica.</p>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <div class="report-footer">
+    <span class="footer-brand">Criar Sin Culpas · Signal Report 2026</span>
+    <span class="footer-note">Fuente: Plausible Analytics · May 21 – Jun 17, 2026 · Producido por LG Studio</span>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+var DAILY = [
+  {d:"May 21",vis:10,pv:95,br:10},{d:"May 22",vis:11,pv:29,br:50},
+  {d:"May 23",vis:7, pv:15,br:62},{d:"May 24",vis:3, pv:7, br:50},
+  {d:"May 25",vis:7, pv:15,br:50},{d:"May 26",vis:6, pv:31,br:20},
+  {d:"May 27",vis:8, pv:12,br:44},{d:"May 28",vis:3, pv:8, br:20},
+  {d:"May 29",vis:5, pv:10,br:38},{d:"May 30",vis:2, pv:2, br:50},
+  {d:"May 31",vis:1, pv:1, br:100},{d:"Jun 1", vis:0, pv:0, br:0},
+  {d:"Jun 2", vis:2, pv:6, br:50},{d:"Jun 3", vis:7, pv:15,br:18},
+  {d:"Jun 4", vis:3, pv:7, br:33},{d:"Jun 5", vis:3, pv:9, br:0},
+  {d:"Jun 6", vis:4, pv:5, br:29},{d:"Jun 7", vis:11,pv:9, br:36},
+  {d:"Jun 8", vis:4, pv:3, br:50},{d:"Jun 9", vis:4, pv:1, br:17},
+  {d:"Jun 10",vis:4, pv:2, br:0}, {d:"Jun 11",vis:2, pv:3, br:0},
+  {d:"Jun 12",vis:3, pv:3, br:33},{d:"Jun 13",vis:0, pv:0, br:0},
+  {d:"Jun 14",vis:0, pv:0, br:0}, {d:"Jun 15",vis:1, pv:1, br:0},
+  {d:"Jun 16",vis:2, pv:2, br:0}, {d:"Jun 17",vis:1, pv:1, br:0},
+];
+
+/* ── DAILY BAR CHART ── */
+(function(){
+  var canvas = document.getElementById('dailyChart');
+  var ctx = canvas.getContext('2d');
+  var dpr = window.devicePixelRatio || 1;
+  var W = canvas.parentElement.clientWidth - 48;
+  var H = 160;
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  canvas.style.width = W+'px'; canvas.style.height = H+'px';
+  ctx.scale(dpr, dpr);
+
+  var max = 11;
+  var pad = {t:12, b:28, l:8, r:8};
+  var gW = W - pad.l - pad.r;
+  var gH = H - pad.t - pad.b;
+  var n = DAILY.length;
+  var bW = gW / n;
+
+  // week separators
+  ctx.strokeStyle = 'rgba(31,46,70,.06)'; ctx.lineWidth = 1;
+  [7,14,21].forEach(function(i){
+    var x = pad.l + i*bW;
+    ctx.beginPath(); ctx.moveTo(x, pad.t); ctx.lineTo(x, pad.t+gH); ctx.stroke();
+  });
+
+  // week labels
+  ctx.fillStyle = 'rgba(31,46,70,.3)';
+  ctx.font = '500 9px Inter, system-ui, sans-serif';
+  ctx.textAlign = 'center';
+  [0,7,14,21].forEach(function(i){
+    var x = pad.l + i*bW + bW*3.5;
+    ctx.fillText(DAILY[i].d, x, H-4);
+  });
+
+  // bars
+  var weekColors = ['#F4A88A','#A7B6C6','#8599AD','rgba(167,182,198,.35)'];
+  DAILY.forEach(function(row, i){
+    if(!row.vis) return;
+    var week = Math.floor(i/7);
+    var bH = (row.vis/max)*gH;
+    var x = pad.l + i*bW + bW*0.18;
+    var w = bW*0.64;
+    var y = pad.t + gH - bH;
+    var r = Math.min(3, w/2);
+    ctx.fillStyle = weekColors[week];
+    ctx.beginPath();
+    ctx.moveTo(x+r, y);
+    ctx.lineTo(x+w-r, y);
+    ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+    ctx.lineTo(x+w, y+bH);
+    ctx.lineTo(x, y+bH);
+    ctx.lineTo(x, y+r);
+    ctx.quadraticCurveTo(x, y, x+r, y);
+    ctx.closePath();
+    ctx.fill();
+    // highlight day 0
+    if(i===0){
+      ctx.strokeStyle='rgba(244,168,138,.8)'; ctx.lineWidth=1;
+      ctx.stroke();
+    }
+  });
+
+  // tooltip
+  var tt = document.getElementById('tooltip');
+  canvas.style.cursor = 'crosshair';
+  canvas.addEventListener('mousemove', function(e){
+    var rect = canvas.getBoundingClientRect();
+    var mx = e.clientX - rect.left;
+    var idx = Math.floor((mx - pad.l)/bW);
+    if(idx<0||idx>=n){ tt.classList.remove('vis'); return; }
+    var row = DAILY[idx];
+    document.getElementById('tt-date').textContent = row.d;
+    document.getElementById('tt-vis').textContent  = row.vis;
+    document.getElementById('tt-pv').textContent   = row.pv;
+    document.getElementById('tt-br').textContent   = row.br+'%';
+    tt.style.left = (e.clientX+14)+'px';
+    tt.style.top  = (e.clientY-20)+'px';
+    tt.classList.add('vis');
+  });
+  canvas.addEventListener('mouseleave', function(){ tt.classList.remove('vis'); });
+})();
+
+/* ── DONUT ── */
+(function(){
+  var c = document.getElementById('donutChart');
+  var ctx = c.getContext('2d');
+  var dpr = window.devicePixelRatio||1;
+  c.width = 140*dpr; c.height = 140*dpr; ctx.scale(dpr,dpr);
+  var cx=70,cy=70,r=58,ri=40;
+  var segs=[{v:53,col:'#F4A88A'},{v:46,col:'#1F2E46'},{v:1,col:'#A7B6C6'}];
+  var start=-Math.PI/2;
+  segs.forEach(function(s){
+    var a=(s.v/100)*Math.PI*2;
+    ctx.beginPath(); ctx.moveTo(cx,cy); ctx.arc(cx,cy,r,start,start+a); ctx.closePath();
+    ctx.fillStyle=s.col; ctx.fill(); start+=a;
+  });
+  ctx.beginPath(); ctx.arc(cx,cy,ri,0,Math.PI*2);
+  ctx.fillStyle='#fff'; ctx.fill();
+})();
+
+/* ── SCROLL PROGRESS ── */
+window.addEventListener('scroll', function(){
+  var el = document.getElementById('progress-line');
+  var h = document.documentElement.scrollHeight - window.innerHeight;
+  var pct = h > 0 ? window.scrollY/h : 0;
+  el.style.width = (pct*100)+'%';
+});
+
+/* ── ANIMATE BARS ON SCROLL ── */
+var animated = false;
+var io = new IntersectionObserver(function(entries){
+  if(!animated && entries[0].isIntersecting){
+    animated = true;
+    document.querySelectorAll('.week-fill,.bar-fill,.sbar-fill').forEach(function(el){
+      var w = el.style.width;
+      el.style.width='0';
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){ el.style.width=w; });
+      });
+    });
+  }
+},{threshold:0.1});
+var wg = document.querySelector('.week-grid');
+if(wg) io.observe(wg);
+</script>
+</body>
+</html>
