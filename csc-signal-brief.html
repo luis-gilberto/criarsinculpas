@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Del Diagnóstico al Santuario · Resumen · CriarSinCulpas.com</title>
+<title>Resumen del primer mes · CriarSinCulpas.com</title>
 <link rel="icon" href="data:,">
 <meta name="color-scheme" content="light only">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -95,7 +95,7 @@ body {
 .s-headline .big-line em { font-style: normal; color: var(--peach); }
 .s-headline .caveat {
   font-family: var(--sans); font-size: .85rem; font-weight: 400;
-  color: rgba(250,246,242,.45); max-width: 38ch; margin-top: 36px; line-height: 1.7;
+  color: rgba(250,246,242,.45); max-width: 42ch; margin-top: 36px; line-height: 1.7;
 }
 
 /* ── 3. THE NUMBER ── */
@@ -162,7 +162,7 @@ body {
 }
 .page-stat { display: flex; flex-direction: column; align-items: center; }
 .page-stat .n { font-family: var(--serif); font-size: 2.4rem; font-weight: 300; color: var(--peach); line-height: 1; }
-.page-stat .l { font-family: var(--sans); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; color: rgba(250,246,242,.45); margin-top: 8px; }
+.page-stat .l { font-family: var(--sans); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; color: rgba(250,246,242,.45); margin-top: 8px; max-width: 12ch; }
 
 /* ── 5. WHAT'S NEXT ── */
 .s-next { background: var(--blush); }
@@ -230,42 +230,77 @@ body {
 .dot.on-light { background: rgba(31,46,70,.18); }
 .dot.on-light.active { background: var(--peach); }
 
+/* ── LANGUAGE TOGGLE ── */
+#lang-toggle {
+  position: fixed; top: 22px; right: 22px; z-index: 60;
+  display: flex; gap: 2px;
+  background: rgba(250,246,242,.08);
+  border: 1px solid rgba(250,246,242,.18);
+  border-radius: 999px; padding: 3px;
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: background .3s, border-color .3s;
+}
+#lang-toggle button {
+  font-family: var(--sans); font-size: .62rem; font-weight: 600;
+  letter-spacing: .08em;
+  color: rgba(250,246,242,.5);
+  background: none; border: none; cursor: pointer;
+  padding: 5px 11px; border-radius: 999px; line-height: 1;
+  transition: color .25s, background .25s;
+}
+#lang-toggle button:focus-visible { outline: 2px solid var(--peach); outline-offset: 2px; }
+#lang-toggle button.active { color: var(--navy); background: var(--peach); }
+#lang-toggle.on-light { background: rgba(31,46,70,.05); border-color: rgba(31,46,70,.14); }
+#lang-toggle.on-light button { color: rgba(31,46,70,.42); }
+#lang-toggle.on-light button.active { color: var(--navy); background: var(--peach); }
+
 @media (max-width: 600px) {
   #dots { right: 14px; }
+  #lang-toggle { top: 16px; right: 14px; }
   .page-stats { gap: 28px; }
   .screen { padding: 48px 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .scroll-cue::after { animation: none; }
 }
 </style>
 </head>
 <body>
 
+<div id="lang-toggle" role="group" aria-label="Language / Idioma">
+  <button type="button" data-lang="es" class="active" aria-label="Español">ES</button>
+  <button type="button" data-lang="en" aria-label="English">EN</button>
+</div>
+
 <div id="dots"></div>
 
-<!-- 1 — COVER -->
+<!-- 1 · COVER -->
 <section class="screen s-cover" id="sc-1">
-  <div class="eyebrow">Resumen de Señal · LG Studio</div>
-  <h1>Del Diagnóstico<br>al <em>Santuario</em></h1>
-  <p class="sub">Lo esencial de las últimas 4 semanas, en una lectura corta.</p>
-  <div class="scroll-cue">Desliza</div>
+  <div class="eyebrow" data-i18n="cover.eyebrow">El primer mes · Criar Sin Culpas</div>
+  <h1 data-i18n-html="cover.h1">De una idea<br>a un espacio que la gente <em>sí usa</em></h1>
+  <p class="sub" data-i18n-html="cover.sub">Las primeras cuatro semanas<br>(versión corta)</p>
+  <div class="scroll-cue" data-i18n="cover.cue">Desliza</div>
 </section>
 
-<!-- 2 — HEADLINE FINDING -->
+<!-- 2 · HEADLINE FINDING -->
 <section class="screen s-headline" id="sc-2">
-  <div class="eyebrow">Lo que encontramos</div>
-  <p class="big-line">El primer mes no probó escala.<br>Probó que cuando llega alguien <em>cálido</em>, entiende el santuario y lo usa.</p>
-  <p class="caveat">Es una muestra pequeña, casi toda gente que ya te conoce. Pero la calidad de cómo respondieron es una señal real.</p>
+  <div class="eyebrow" data-i18n="headline.eyebrow">Lo que mostró</div>
+  <p class="big-line" data-i18n-html="headline.bigline">El primer mes no midió alcance.<br>Mostró que la gente que llegó, entendió el sitio, y sí lo <em>usó</em>.</p>
+  <p class="caveat" data-i18n="headline.caveat">Fue una muestra pequeña, y casi toda la gente ya estaba al tanto de ti... es decir, venían de un lugar donde tu presencia es ya reconocida... y el hecho de que hayan venido al sitio ya califica como una señal contundente.</p>
 </section>
 
-<!-- 3 — THE NUMBER -->
+<!-- 3 · THE NUMBER -->
 <section class="screen s-number" id="sc-3">
   <div class="stat-ring"></div>
-  <div class="eyebrow">El número que más importa</div>
+  <div class="eyebrow" data-i18n="number.eyebrow">El número que más importa</div>
   <div class="huge-stat" style="margin-top:18px;">30<span class="unit">%</span></div>
-  <div class="stat-label">Tasa de rebote</div>
-  <div class="stat-context">Era 64% antes de esta fase. Más de la mitad de los padres que antes se iban, ahora se quedan.</div>
+  <div class="stat-label" data-i18n="number.label">Se van de inmediato</div>
+  <div class="stat-context" data-i18n="number.context">Antes era 64%. Ahora más de la mitad de los que se iban, se quedan.</div>
 </section>
 
-<!-- 4 — THE PAGE THAT WORKS -->
+<!-- 4 · THE PAGE THAT WORKS -->
 <section class="screen s-page" id="sc-4">
   <div class="page-inner">
     <svg class="page-ghost-illustration" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
@@ -274,68 +309,156 @@ body {
       <circle cx="160" cy="150" r="6" fill="#F4A88A"/>
       <circle cx="240" cy="150" r="6" fill="#F4A88A"/>
     </svg>
-    <div class="eyebrow">La página que más profundo llega</div>
-    <h2>"Desbordes" no es tráfico.<br>Es <em>relación</em>.</h2>
+    <div class="eyebrow" data-i18n="page.eyebrow">La página donde la gente se queda</div>
+    <h2 data-i18n-html="page.h2">"Desbordes" no es tráfico.<br>Es donde la gente <em>conecta</em>.</h2>
     <div class="page-stats">
-      <div class="page-stat"><div class="n">4m 12s</div><div class="l">tiempo en página</div></div>
-      <div class="page-stat"><div class="n">83%</div><div class="l">scroll completo</div></div>
-      <div class="page-stat"><div class="n">29%</div><div class="l">se van (el más bajo)</div></div>
+      <div class="page-stat"><div class="n">4m 12s</div><div class="l" data-i18n="page.stat1">tiempo en la página</div></div>
+      <div class="page-stat"><div class="n">83%</div><div class="l" data-i18n="page.stat2">la leen hasta el final</div></div>
+      <div class="page-stat"><div class="n">29%</div><div class="l" data-i18n="page.stat3">se van (lo más bajo)</div></div>
     </div>
   </div>
 </section>
 
-<!-- 5 — WHAT'S NEXT -->
+<!-- 5 · WHAT'S NEXT -->
 <section class="screen s-next" id="sc-5">
-  <div class="eyebrow">Lo que sigue</div>
+  <div class="eyebrow" data-i18n="next.eyebrow">Lo que sigue</div>
   <div class="next-steps">
     <div class="next-step">
       <span class="num">1</span>
       <div>
-        <div class="label">Limpiar el tracking</div>
-        <div class="desc">Para medir cada frase de "Desbordes" por separado y saber cuál ayuda más.</div>
+        <div class="label" data-i18n="next.1label">Arreglar el tracking</div>
+        <div class="desc" data-i18n="next.1desc">Para ver qué parte de "Desbordes" ayuda más.</div>
       </div>
     </div>
     <div class="next-step">
       <span class="num">2</span>
       <div>
-        <div class="label">Tus fotos</div>
-        <div class="desc">El sistema está listo. Solo falta el shoot para que cobre vida del todo.</div>
+        <div class="label" data-i18n="next.2label">Tus fotos</div>
+        <div class="desc" data-i18n="next.2desc">Todo está listo. Solo falta el shoot para que cobre vida.</div>
       </div>
     </div>
     <div class="next-step">
       <span class="num">3</span>
       <div>
-        <div class="label">Prueba de 7 días</div>
-        <div class="desc">Una campaña corta y controlada desde tu Instagram, para ver si el sitio también funciona con gente nueva.</div>
+        <div class="label" data-i18n="next.3label">Una prueba corta (7 días)</div>
+        <div class="desc" data-i18n="next.3desc">Un empujón pequeño y controlado desde tu Instagram, para ver si también funciona con gente nueva.</div>
       </div>
     </div>
     <div class="next-step">
       <span class="num">4</span>
       <div>
-        <div class="label">Plan de SEO</div>
-        <div class="desc">Lo construimos juntos, paso a paso. Es nuevo para los dos.</div>
+        <div class="label" data-i18n="next.4label">Un plan de SEO</div>
+        <div class="desc" data-i18n="next.4desc">Lo armamos juntos, paso a paso.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 6 — CLOSE -->
+<!-- 6 · CLOSE -->
 <section class="screen s-close" id="sc-6">
-  <p class="mark">El santuario ya funciona.<br>Ahora hay que <em>contarle al mundo</em> que existe.</p>
+  <p class="mark" data-i18n-html="close.mark">El sitio funciona.<br>Ahora la gente que lo necesita tiene que <em>saber que existe</em>.</p>
   <div class="sig">Criar Sin Culpas · LG Studio · Jun 2026</div>
-  <a class="full-link" href="csc-signal-report.html">Ver el informe completo →</a>
+  <a class="full-link" href="csc-signal-report.html" data-i18n="close.link">Ver el informe completo →</a>
 </section>
 
 <script>
+/* ── i18n dictionary ── */
+var I18N = {
+  es: {
+    'cover.eyebrow':   `El primer mes · Criar Sin Culpas`,
+    'cover.h1':        `De una idea<br>a un espacio que la gente <em>sí usa</em>`,
+    'cover.sub':       `Las primeras cuatro semanas<br>(versión corta)`,
+    'cover.cue':       `Desliza`,
+    'headline.eyebrow':`Lo que mostró`,
+    'headline.bigline':`El primer mes no midió alcance.<br>Mostró que la gente que llegó, entendió el sitio, y sí lo <em>usó</em>.`,
+    'headline.caveat': `Fue una muestra pequeña, y casi toda la gente ya estaba al tanto de ti... es decir, venían de un lugar donde tu presencia es ya reconocida... y el hecho de que hayan venido al sitio ya califica como una señal contundente.`,
+    'number.eyebrow':  `El número que más importa`,
+    'number.label':    `Se van de inmediato`,
+    'number.context':  `Antes era 64%. Ahora más de la mitad de los que se iban, se quedan.`,
+    'page.eyebrow':    `La página donde la gente se queda`,
+    'page.h2':         `"Desbordes" no es tráfico.<br>Es donde la gente <em>conecta</em>.`,
+    'page.stat1':      `tiempo en la página`,
+    'page.stat2':      `la leen hasta el final`,
+    'page.stat3':      `se van (lo más bajo)`,
+    'next.eyebrow':    `Lo que sigue`,
+    'next.1label':     `Arreglar el tracking`,
+    'next.1desc':      `Para ver qué parte de "Desbordes" ayuda más.`,
+    'next.2label':     `Tus fotos`,
+    'next.2desc':      `Todo está listo. Solo falta el shoot para que cobre vida.`,
+    'next.3label':     `Una prueba corta (7 días)`,
+    'next.3desc':      `Un empujón pequeño y controlado desde tu Instagram, para ver si también funciona con gente nueva.`,
+    'next.4label':     `Un plan de SEO`,
+    'next.4desc':      `Lo armamos juntos, paso a paso.`,
+    'close.mark':      `El sitio funciona.<br>Ahora la gente que lo necesita tiene que <em>saber que existe</em>.`,
+    'close.link':      `Ver el informe completo →`
+  },
+  en: {
+    'cover.eyebrow':   `The first month · Criar Sin Culpas`,
+    'cover.h1':        `From an idea<br>to a space people <em>actually use</em>`,
+    'cover.sub':       `The first four weeks<br>(the short version)`,
+    'cover.cue':       `Scroll`,
+    'headline.eyebrow':`What it showed`,
+    'headline.bigline':`The first month didn't measure reach.<br>It showed that the people who came understood the site, and did <em>use</em> it.`,
+    'headline.caveat': `It was a small sample, and almost everyone already knew of you... that is, they came from a place where your presence is already recognized... and the fact that they came to the site at all already counts as a strong signal.`,
+    'number.eyebrow':  `The number that matters most`,
+    'number.label':    `Leave right away`,
+    'number.context':  `It was 64% before. Now more than half of the people who used to leave, stay.`,
+    'page.eyebrow':    `The page where people stay`,
+    'page.h2':         `"Desbordes" isn't traffic.<br>It's where people <em>connect</em>.`,
+    'page.stat1':      `time on the page`,
+    'page.stat2':      `read to the end`,
+    'page.stat3':      `leave (the lowest)`,
+    'next.eyebrow':    `What comes next`,
+    'next.1label':     `Fix the tracking`,
+    'next.1desc':      `To see which part of "Desbordes" helps most.`,
+    'next.2label':     `Your photos`,
+    'next.2desc':      `Everything's ready. It just needs the shoot to come alive.`,
+    'next.3label':     `A short test (7 days)`,
+    'next.3desc':      `A small, controlled push from your Instagram, to see if it works with new people too.`,
+    'next.4label':     `An SEO plan`,
+    'next.4desc':      `We build it together, step by step.`,
+    'close.mark':      `The site works.<br>Now the people who need it have to <em>know it's there</em>.`,
+    'close.link':      `See the full report →`
+  }
+};
+
+/* ── apply / persist language ── */
+function applyLang(lang) {
+  if (!I18N[lang]) lang = 'es';
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var k = el.getAttribute('data-i18n');
+    if (I18N[lang][k] != null) el.textContent = I18N[lang][k];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+    var k = el.getAttribute('data-i18n-html');
+    if (I18N[lang][k] != null) el.innerHTML = I18N[lang][k];
+  });
+  document.querySelectorAll('#lang-toggle button').forEach(function(b) {
+    b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+  });
+  try { localStorage.setItem('csc_lang', lang); } catch (e) {}
+}
+
+var savedLang = 'es';
+try { savedLang = localStorage.getItem('csc_lang') || 'es'; } catch (e) {}
+applyLang(savedLang);
+
+document.querySelectorAll('#lang-toggle button').forEach(function(b) {
+  b.addEventListener('click', function() { applyLang(b.getAttribute('data-lang')); });
+});
+
+/* ── progress dots + light-screen adaptation ── */
 var screens = document.querySelectorAll('.screen');
 var dotsEl = document.getElementById('dots');
+var langToggle = document.getElementById('lang-toggle');
 var lightScreens = ['sc-5']; // screens with a light (blush/cream) background
 
 screens.forEach(function(s, i) {
   var d = document.createElement('div');
   var isLight = lightScreens.indexOf(s.id) !== -1;
   d.className = 'dot' + (isLight ? ' on-light' : '') + (i === 0 ? ' active' : '');
-  d.addEventListener('click', function() { s.scrollIntoView({behavior:'smooth'}); });
+  d.addEventListener('click', function() { s.scrollIntoView({ behavior: 'smooth' }); });
   dotsEl.appendChild(d);
 });
 var dots = document.querySelectorAll('.dot');
@@ -345,6 +468,7 @@ var io = new IntersectionObserver(function(entries) {
     if (e.isIntersecting) {
       var idx = Array.from(screens).indexOf(e.target);
       dots.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
+      langToggle.classList.toggle('on-light', lightScreens.indexOf(e.target.id) !== -1);
     }
   });
 }, { threshold: 0.5 });

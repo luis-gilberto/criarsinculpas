@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Del Diagnóstico al Santuario · Signal Report · CriarSinCulpas.com</title>
+<title>Reporte del primer mes · CriarSinCulpas.com</title>
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -409,160 +409,169 @@ body {
     min-width: 720px;
   }
 }
+
+/* ── LANGUAGE TOGGLE ── */
+#lang-toggle { display:flex; gap:2px; background:rgba(31,46,70,.05); border:1px solid var(--navy-rule); border-radius:999px; padding:3px; }
+#lang-toggle button { font-family:var(--sans); font-size:.6rem; font-weight:600; letter-spacing:.08em; color:rgba(31,46,70,.5); background:none; border:none; cursor:pointer; padding:4px 10px; border-radius:999px; line-height:1; transition:color .2s, background .2s; }
+#lang-toggle button:focus-visible { outline:2px solid var(--peach); outline-offset:2px; }
+#lang-toggle button.active { color:var(--navy); background:var(--peach); }
 </style>
 </head>
 <body>
 
 <div id="topbar">
   <span class="tb-brand">Criar Sin Culpas</span>
-  <span class="tb-period">Signal Report · May 21 – Jun 17, 2026</span>
-  <span class="tb-badge">Plausible Analytics</span>
+  <span class="tb-period" data-i18n="tb.period">Reporte del primer mes · May 21 – Jun 17, 2026</span>
+  <div id="lang-toggle" role="group" aria-label="Language / Idioma">
+    <button type="button" data-lang="es" class="active" aria-label="Español">ES</button>
+    <button type="button" data-lang="en" aria-label="English">EN</button>
+  </div>
 </div>
 <div id="progress-line" style="width:0; transform:scaleX(0);"></div>
 
 <div class="tooltip" id="tooltip">
   <div class="tt-date" id="tt-date"></div>
-  <div class="tt-row"><span>Visitantes</span><span class="tt-val" id="tt-vis"></span></div>
-  <div class="tt-row"><span>Pageviews</span><span class="tt-val" id="tt-pv"></span></div>
-  <div class="tt-row"><span>Rebote</span><span class="tt-val" id="tt-br"></span></div>
+  <div class="tt-row"><span data-i18n="tt.vis">Visitantes</span><span class="tt-val" id="tt-vis"></span></div>
+  <div class="tt-row"><span data-i18n="tt.pv">Pageviews</span><span class="tt-val" id="tt-pv"></span></div>
+  <div class="tt-row"><span data-i18n="tt.br">Rebote</span><span class="tt-val" id="tt-br"></span></div>
 </div>
 
 <div class="page">
 
   <!-- ── COVER ── -->
   <div class="cover">
-    <div class="cover-eyebrow">Informe de Señal · LG Studio × CriarSinCulpas.com</div>
-    <h1 class="cover-title">Del Diagnóstico<br>al <em>Santuario</em></h1>
-    <p class="cover-subtitle">El primer mes no probó escala. Probó que cuando llega alguien cálido, entiende el santuario y lo usa.</p>
+    <div class="cover-eyebrow" data-i18n="cv.eyebrow">Reporte del primer mes · LG Studio × CriarSinCulpas.com</div>
+    <h1 class="cover-title" data-i18n="cv.title">El primer mes,<br>en <em>detalle</em></h1>
+    <p class="cover-subtitle" data-i18n="cv.sub">No midió alcance. Mostró que la gente que llegó entendió el sitio, y sí lo usó.</p>
     <div class="cover-narrative">
-      <p>Nari, antes de ver los números: esto es un <strong>informe de señal temprana</strong>, no un estudio de mercado. La muestra es pequeña y la audiencia todavía es casi toda gente que ya te conoce: <strong>95% llegó directo</strong>, sin buscar, sin que Google los trajera. Así que no vamos a decir "los padres nos están encontrando". Vamos a decir algo más preciso: <strong>la gente que mandamos a propósito está respondiendo bien.</strong></p>
-      <p>Esa distinción importa. Por eso cada hallazgo abajo trae una etiqueta: <em>señal fuerte</em>, <em>señal direccional</em> o <em>muy pronto para afirmar</em>. Así sabes exactamente cuánto peso ponerle a cada uno.</p>
+      <p data-i18n="cv.narr1">Nari, antes de los números: esto es un <strong>reporte de señal temprana</strong>, no un estudio de mercado. La muestra es pequeña y casi toda la gente que llegó ya te conocía: <strong>el 95% entró directo</strong>, sin buscarte, sin que Google los trajera. Así que no vamos a decir "los padres nos están encontrando". Vamos a decir algo más exacto: <strong>la gente que mandamos a propósito está respondiendo bien.</strong></p>
+      <p data-i18n="cv.narr2">Esa diferencia importa. Por eso cada hallazgo lleva una etiqueta: <em>señal fuerte</em>, <em>señal direccional</em>, o <em>muy pronto para saberlo</em>. Así sabes cuánto peso darle a cada uno.</p>
     </div>
 
     <div class="kpi-row">
       <div class="kpi">
-        <div class="kpi-label">Visitantes únicos</div>
+        <div class="kpi-label" data-i18n="cv.k1l">Visitantes</div>
         <div class="kpi-n">114</div>
-        <div class="kpi-sub">28 días · 153 visitas</div>
-        <span class="kpi-delta good">4.07 visitantes/día</span>
+        <div class="kpi-sub" data-i18n="cv.k1s">28 días · 153 visitas</div>
+        <span class="kpi-delta good" data-i18n="cv.k1d">4.07 visitantes/día</span>
       </div>
       <div class="kpi">
-        <div class="kpi-label">Tasa de rebote</div>
+        <div class="kpi-label" data-i18n="cv.k2l">Se van enseguida</div>
         <div class="kpi-n peach">30.4%</div>
-        <div class="kpi-sub">promedio del período</div>
-        <span class="kpi-delta good">↓ era 64% antes</span>
+        <div class="kpi-sub" data-i18n="cv.k2s">promedio del período</div>
+        <span class="kpi-delta good" data-i18n="cv.k2d">↓ era 64% antes</span>
       </div>
       <div class="kpi">
-        <div class="kpi-label">Pageviews</div>
+        <div class="kpi-label" data-i18n="cv.k3l">Páginas vistas</div>
         <div class="kpi-n slate">292</div>
-        <div class="kpi-sub">2.56 páginas/visita</div>
+        <div class="kpi-sub" data-i18n="cv.k3s">2.56 páginas/visita</div>
       </div>
       <div class="kpi">
-        <div class="kpi-label">Duración media</div>
+        <div class="kpi-label" data-i18n="cv.k4l">Tiempo por visita</div>
         <div class="kpi-n">3m 21s</div>
-        <div class="kpi-sub">por sesión activa</div>
-        <span class="kpi-delta good">↑ alta intención</span>
+        <div class="kpi-sub" data-i18n="cv.k4s">por sesión activa</div>
+        <span class="kpi-delta good" data-i18n="cv.k4d">↑ alta intención</span>
       </div>
     </div>
 
     <div class="insight" style="border-left-color:var(--navy); background:var(--navy-soft); margin-top:8px;">
-      <div class="insight-label" style="color:var(--navy);">🔑 La lente para leer este informe</div>
-      <p class="insight-text">Hay dos preguntas distintas aquí y no queremos mezclarlas. Una es <strong>"¿el sitio funciona como espacio de confianza?"</strong>; ahí la respuesta, con los datos que tenemos, es sí. La otra es <strong>"¿el sitio ya está probado como motor de crecimiento?"</strong>; ahí todavía no, porque casi nadie ha llegado por un canal que podamos repetir a propósito. Este informe trata de no responder la segunda pregunta con datos que solo responden la primera.</p>
+      <div class="insight-label" style="color:var(--navy);" data-i18n="cv.lensL">🔑 Cómo leer este reporte</div>
+      <p class="insight-text" data-i18n="cv.lensT">Hay dos preguntas distintas aquí y no conviene mezclarlas. Una: <strong>"¿el sitio funciona como un lugar de confianza?"</strong> Con los datos que hay, la respuesta es sí. La otra: <strong>"¿el sitio ya está probado para hacer crecer la audiencia?"</strong> Ahí todavía no, porque casi nadie llegó por un canal que podamos repetir a propósito. Este reporte trata de no responder la segunda pregunta con datos que solo responden la primera.</p>
     </div>
 
     <div class="data-note">
-      <div class="data-note-label">⚠ Nota de confianza en los datos</div>
+      <div class="data-note-label" data-i18n="cv.dnL">⚠ Qué tan limpios están los datos</div>
       <div class="data-note-text">
-        Antes de leer las secciones siguientes, vale la pena saber qué tan limpios están los datos detrás de cada número:
+        <span data-i18n-html="cv.dnT">Antes de las secciones siguientes, conviene saber qué tan limpios están los datos detrás de cada número:
         <ul>
-          <li><strong>protocol = (none)</strong> aparece en 98 visitantes y 480 eventos. La mayoría de los eventos del sitio todavía no se están atando a un protocolo específico, así que no podemos afirmar con certeza qué protocolo causó qué acción.</li>
-          <li><strong>/metodo vs /metodo/</strong> muestran números inconsistentes entre sí (una versión con 0 pageviews, la otra con 100% de rebote), probablemente un problema de tracking, no del contenido real de esa página.</li>
-          <li>Algunos días muestran <strong>menos pageviews que visitas</strong>, lo cual no debería pasar; es una señal de que el export todavía tiene ruido.</li>
+          <li><strong>protocol = (none)</strong> aparece en 98 visitantes y 480 eventos. La mayoría de los eventos todavía no se están atando a un protocolo, así que no podemos afirmar con certeza qué protocolo causó qué acción.</li>
+          <li><strong>/metodo vs /metodo/</strong> muestran números que no cuadran entre sí (una versión con 0 páginas vistas, la otra con 100% de rebote): casi seguro es un problema de tracking, no del contenido de esa página.</li>
+          <li>Algunos días muestran <strong>menos páginas vistas que visitas</strong>, lo cual no debería pasar; señal de que el export todavía trae ruido.</li>
         </ul>
-        Vamos a limpiar esto antes del próximo corte. Mientras tanto, tratamos cualquier conclusión sobre /metodo como "muy pronto para afirmar".
+        Vamos a limpiar esto antes del próximo corte. Mientras tanto, tratamos cualquier conclusión sobre /metodo como "muy pronto para saberlo".</span>
       </div>
     </div>
   </div>
 
-  <!-- ── ACT I: DIAGNÓSTICO ── -->
+  <!-- ── SECTION I: TRAFFIC ── -->
   <div class="section">
     <div class="section-head">
-      <span class="section-act">Acto I · Diagnóstico</span>
-      <h2 class="section-title">El pulso <em>semana a semana</em></h2>
+      <span class="section-act" data-i18n="d1.act">El tráfico</span>
+      <h2 class="section-title" data-i18n-html="d1.title">Semana a <em>semana</em></h2>
     </div>
 
-    <p class="narrative">Cuatro semanas de tráfico real. El período no es uniforme: hay picos, valles y una caída al final que nos dice algo concreto sobre el estado del sistema ahora mismo.</p>
+    <p class="narrative" data-i18n="d1.narr">Cuatro semanas de tráfico real. El período no es parejo: hay picos, valles y una caída al final que dice algo concreto sobre cómo está el sistema ahora mismo.</p>
 
     <div class="insight">
-      <span class="conf-label early">○ Anecdótico, no patrón</span>
-      <div class="insight-label">✦ Señal del Diagnóstico</div>
-      <p class="insight-text">El <strong>21 de mayo</strong> fue el día de mayor actividad: 10 visitantes, 95 pageviews y solo 10% de rebote. Probablemente una sesión de revisión con Luis trabajando en el sitio, no un día de tráfico orgánico. <strong>5 veces más actividad</strong> que cualquier otro día, pero un solo día no es una tendencia.</p>
+      <span class="conf-label early" data-i18n="d1.cl">○ Anecdótico, no patrón</span>
+      <div class="insight-label" data-i18n="d1.iL">✦ Una señal, con asterisco</div>
+      <p class="insight-text" data-i18n-html="d1.iT">El <strong>21 de mayo</strong> fue el día de más actividad: 10 visitantes, 95 páginas vistas y solo 10% de rebote. Casi seguro fue una sesión de trabajo con Luis en el sitio, no tráfico orgánico. <strong>5 veces más actividad</strong> que cualquier otro día, pero un solo día no es una tendencia.</p>
     </div>
 
     <div class="chart-wrap">
-      <div class="chart-label">Visitantes únicos por día · May 21 – Jun 17, 2026</div>
+      <div class="chart-label" data-i18n="d1.chart">Visitantes únicos por día · May 21 – Jun 17, 2026</div>
       <canvas id="dailyChart" style="width:100%; height:160px;"></canvas>
     </div>
 
     <div class="week-grid">
       <div class="week-card peak">
-        <div class="peak-badge">Semana pico</div>
+        <div class="peak-badge" data-i18n="d1.peak">Semana pico</div>
         <div class="week-label">May 21–27</div>
         <div class="week-n">52</div>
         <div class="week-bar"><div class="week-fill" style="width:100%; background:var(--peach);"></div></div>
-        <div class="week-pvs">204 pageviews</div>
+        <div class="week-pvs" data-i18n="d1.pv1">204 páginas vistas</div>
       </div>
       <div class="week-card">
         <div class="week-label">May 28–Jun 3</div>
         <div class="week-n dim">20</div>
         <div class="week-bar"><div class="week-fill" style="width:38%; background:var(--slate-lt);"></div></div>
-        <div class="week-pvs">42 pageviews</div>
+        <div class="week-pvs" data-i18n="d1.pv2">42 páginas vistas</div>
       </div>
       <div class="week-card">
         <div class="week-label">Jun 4–10</div>
         <div class="week-n dim">33</div>
         <div class="week-bar"><div class="week-fill" style="width:63%; background:var(--slate);"></div></div>
-        <div class="week-pvs">36 pageviews</div>
+        <div class="week-pvs" data-i18n="d1.pv3">36 páginas vistas</div>
       </div>
       <div class="week-card">
         <div class="week-label">Jun 11–17</div>
         <div class="week-n dim" style="color:var(--slate-lt);">9</div>
         <div class="week-bar"><div class="week-fill" style="width:17%; background:var(--slate-lt); opacity:.5;"></div></div>
-        <div class="week-pvs">10 pageviews</div>
+        <div class="week-pvs" data-i18n="d1.pv4">10 páginas vistas</div>
       </div>
     </div>
 
     <div class="insight" style="border-left-color:var(--slate); background:rgba(167,182,198,.1);">
-      <span class="conf-label strong">● Caída real, confirmada</span>
-      <div class="insight-label" style="color:var(--slate);">⚠ El patrón que hay que leer</div>
-      <p class="insight-text">La semana Jun 11–17 registra solo <strong>9 visitantes</strong>: una caída del 73% respecto a la semana anterior, con tres días en cero. Eso es un hecho del dato. La explicación de <em>por qué</em> (que el sistema está esperando tus fotos) es nuestra lectura más probable, no algo que el tráfico nos confirme directamente.</p>
+      <span class="conf-label strong" data-i18n="d1.cl2">● Caída real, confirmada</span>
+      <div class="insight-label" style="color:var(--slate);" data-i18n="d1.iL2">⚠ El patrón a leer</div>
+      <p class="insight-text" data-i18n-html="d1.iT2">La semana Jun 11–17 registra solo <strong>9 visitantes</strong>: una caída del 73% respecto a la semana anterior, con tres días en cero. Eso es un hecho del dato. El <em>porqué</em> (que el sitio está esperando tus fotos) es nuestra lectura más probable, no algo que el tráfico confirme directamente.</p>
     </div>
   </div>
 
-  <!-- ── ACT II: CIRUGÍA ── -->
+  <!-- ── SECTION II: RETENTION ── -->
   <div class="section">
     <div class="section-head">
-      <span class="section-act">Acto II · Cirugía</span>
-      <h2 class="section-title">Dónde <em>se detuvo la hemorragia</em></h2>
+      <span class="section-act" data-i18n="d2.act">Retención</span>
+      <h2 class="section-title" data-i18n-html="d2.title">Qué <em>retiene</em> y qué no</h2>
     </div>
 
-    <p class="narrative">Los números de comportamiento muestran qué páginas retienen y cuáles sueltan. Aquí está la foto completa.</p>
+    <p class="narrative" data-i18n="d2.narr">Estos números muestran qué páginas retienen a la gente y cuáles la dejan ir. Aquí está la foto completa.</p>
 
     <div class="pull-quote">
-      "El rebote promedio del período es <em>30.4%</em>. La mitad de lo que era antes."
+      <span data-i18n-html="d2.pull">"El rebote del período es <em>30.4%</em>. La mitad de lo que era antes."</span>
     </div>
 
     <div class="chart-wrap">
-      <div class="chart-label">Páginas · Comportamiento detallado</div>
+      <div class="chart-label" data-i18n="d2.tblL">Páginas · Comportamiento</div>
       <table class="page-table">
         <thead>
           <tr>
-            <th>Página</th>
-            <th class="r">Visitantes</th>
-            <th class="r">Pageviews</th>
-            <th class="r">Rebote</th>
-            <th class="r">T. en página</th>
-            <th>Scroll</th>
+            <th data-i18n="d2.h1">Página</th>
+            <th class="r" data-i18n="d2.h2">Visitantes</th>
+            <th class="r" data-i18n="d2.h3">Páginas</th>
+            <th class="r" data-i18n="d2.h4">Rebote</th>
+            <th class="r" data-i18n="d2.h5">Tiempo</th>
+            <th data-i18n="d2.h6">Scroll</th>
           </tr>
         </thead>
         <tbody>
@@ -628,21 +637,21 @@ body {
 
     <div class="insight navy-accent">
       <span class="conf-label strong">● Señal fuerte</span>
-      <div class="insight-label">★ La joya que los datos revelan</div>
-      <p class="insight-text"><strong>/apoyo/emotional-escalation</strong> es la página más profunda del sitio: 4 minutos 12 segundos de lectura media, 83% de scroll y el exit rate más bajo de todo el ecosistema (29.2%). Casi 3 de cada 4 padres que llegan aquí <strong>siguen navegando</strong>. No es tráfico, es profundidad de relación. Esta página sostiene el argumento del "santuario" mejor que cualquier métrica del Home.</p>
+      <div class="insight-label" data-i18n="d2.iL">★ El mejor hallazgo</div>
+      <p class="insight-text" data-i18n-html="d2.iT"><strong>/apoyo/emotional-escalation</strong> es la página más profunda del sitio: 4 minutos 12 segundos de lectura media, 83% de scroll y el exit rate más bajo de todo el sitio (29.2%). Casi 3 de cada 4 padres que llegan aquí <strong>siguen navegando</strong>. No es tráfico, es profundidad de relación. Es la mejor prueba de que el sitio se vuelve un lugar de confianza, mejor que cualquier número del Home.</p>
     </div>
 
     <div class="role-card" style="margin-top:16px;">
-      <span class="role-tag trust">Motor de confianza</span>
+      <span class="role-tag trust" data-i18n="rt.trust">Motor de confianza</span>
       <div class="role-body">
-        <div class="role-title">Desbordes gana la relación</div>
-        <div class="role-desc">Combinado con la próxima sección, el patrón que emerge es: <strong>Pantallas es la puerta de entrada, Desbordes es donde se construye confianza.</strong> Vale la pena tratar este emparejamiento como un principio de operación, no solo una observación de este corte.</div>
+        <div class="role-title" data-i18n="d2.rc1t">Desbordes gana la relación</div>
+        <div class="role-desc" data-i18n-html="d2.rc1d">Junto con la próxima sección, el patrón que aparece es: <strong>Pantallas es la puerta de entrada, Desbordes es donde se construye la confianza.</strong> Vale la pena tratar ese par como un principio de operación, no solo una observación de este corte.</div>
       </div>
     </div>
 
     <div class="two-col" style="margin-top:20px;">
       <div class="chart-wrap" style="margin-bottom:0;">
-        <div class="chart-label">Principales entradas</div>
+        <div class="chart-label" data-i18n="d2.cl1">Principales entradas</div>
         <div class="bar-list">
           <div class="bar-row"><span class="bar-lbl">/apoyo/screen-time</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--peach);"></div></div><span class="bar-val" style="color:var(--peach);">35</span></div>
           <div class="bar-row"><span class="bar-lbl">/ (Home)</span><div class="bar-track"><div class="bar-fill" style="width:66%;background:var(--navy);"></div></div><span class="bar-val" style="color:var(--navy);">23</span></div>
@@ -652,7 +661,7 @@ body {
         </div>
       </div>
       <div class="chart-wrap" style="margin-bottom:0;">
-        <div class="chart-label">Exit rate por página</div>
+        <div class="chart-label" data-i18n="d2.cl2">Salidas por página</div>
         <div class="bar-list">
           <div class="bar-row"><span class="bar-lbl">/apoyo/bedtime</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--peach);"></div></div><span class="bar-val" style="color:var(--peach);">63.6%</span></div>
           <div class="bar-row"><span class="bar-lbl">/apoyo/screen-time</span><div class="bar-track"><div class="bar-fill" style="width:90%;background:var(--peach);opacity:.7;"></div></div><span class="bar-val" style="color:var(--peach);">57.1%</span></div>
@@ -664,146 +673,146 @@ body {
     </div>
 
     <div class="chart-wrap" style="margin-top:20px;">
-      <div class="chart-label">El rol de cada página, no solo sus números</div>
+      <div class="chart-label" data-i18n="d2.cl3">El rol de cada página, no solo sus números</div>
       <div style="display:flex; flex-direction:column; gap:12px; margin-top:4px;">
         <div class="role-card">
-          <span class="role-tag acquisition">Gancho de entrada</span>
+          <span class="role-tag acquisition" data-i18n="d2.rtA">Gancho de entrada</span>
           <div class="role-body">
-            <div class="role-title">Pantallas</div>
-            <div class="role-desc">35 entradas únicas, 26% de rebote: el dolor más reconocible, la puerta que la gente toca primero. <strong>Es probablemente el mejor hook de adquisición del sitio.</strong></div>
+            <div class="role-title" data-i18n="d2.rcAt">Pantallas</div>
+            <div class="role-desc" data-i18n-html="d2.rcAd">35 entradas únicas, 26% de rebote: el dolor más reconocible, la puerta que la gente toca primero. <strong>Es probablemente el mejor gancho de entrada del sitio.</strong></div>
           </div>
         </div>
         <div class="role-card">
-          <span class="role-tag trust">Motor de confianza</span>
+          <span class="role-tag trust" data-i18n="rt.trust">Motor de confianza</span>
           <div class="role-body">
-            <div class="role-title">Desbordes (emotional-escalation)</div>
-            <div class="role-desc">4m 12s, 83% scroll, 29.2% exit. Aquí es donde la marca se vuelve emocionalmente necesaria, no solo útil.</div>
+            <div class="role-title" data-i18n="d2.rcBt">Desbordes (emotional-escalation)</div>
+            <div class="role-desc" data-i18n="d2.rcBd">4m 12s, 83% scroll, 29.2% de salida. Aquí es donde la marca se vuelve emocionalmente necesaria, no solo útil.</div>
           </div>
         </div>
         <div class="role-card">
-          <span class="role-tag leak">Buen interés, mala salida</span>
+          <span class="role-tag leak" data-i18n="d2.rtC">Buen interés, mala salida</span>
           <div class="role-body">
-            <div class="role-title">Hora de dormir</div>
-            <div class="role-desc">Llega con intención real, pero 63.6% de exit rate, la salida más alta del sitio. El estado de necesidad es correcto; falta un "siguiente paso" más fuerte después de leer.</div>
+            <div class="role-title" data-i18n="d2.rcCt">Hora de dormir</div>
+            <div class="role-desc" data-i18n="d2.rcCd">Llega con intención real, pero 63.6% de salida, la más alta del sitio. La necesidad es la correcta; falta un "siguiente paso" más claro después de leer.</div>
           </div>
         </div>
         <div class="role-card">
-          <span class="role-tag watch">Necesita más filo</span>
+          <span class="role-tag watch" data-i18n="d2.rtD">Falta claridad</span>
           <div class="role-body">
-            <div class="role-title">Hermanos</div>
-            <div class="role-desc">Solo 21 segundos de tiempo en página, sospechosamente bajo. Puede ser demasiado ligero o no suficientemente específico todavía. No alcanza para diagnosticar con este corte de datos.</div>
+            <div class="role-title" data-i18n="d2.rcDt">Hermanos</div>
+            <div class="role-desc" data-i18n="d2.rcDd">Solo 21 segundos en página, sospechosamente bajo. Puede ser demasiado liviano o todavía poco específico. No alcanza para concluir con este corte de datos.</div>
           </div>
         </div>
         <div class="role-card">
-          <span class="role-tag watch">Sub-rendimiento como triage</span>
+          <span class="role-tag watch" data-i18n="d2.rtE">No ordena bien</span>
           <div class="role-body">
-            <div class="role-title">Hub de Apoyo</div>
-            <div class="role-desc">Útil como punto de paso, pero no está ordenando bien a los padres. Podría beneficiarse de lenguaje de triage más directo: "¿Qué está pasando ahora?" / "¿Qué necesitas recuperar después?"</div>
+            <div class="role-title" data-i18n="d2.rcEt">Hub de Apoyo</div>
+            <div class="role-desc" data-i18n="d2.rcEd">Sirve como punto de paso, pero no está ordenando bien a los padres. Le ayudaría un lenguaje más directo: "¿Qué está pasando ahora?" / "¿Qué necesitas recuperar después?"</div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ── ACT III: SANTUARIO / CONVERSIONES ── -->
+  <!-- ── SECTION III: WHAT THEY DID ── -->
   <div class="section">
     <div class="section-head">
-      <span class="section-act">Acto III · Santuario</span>
-      <h2 class="section-title">Lo que los padres <em>hicieron</em></h2>
+      <span class="section-act" data-i18n="d3.act">Lo que hicieron</span>
+      <h2 class="section-title" data-i18n-html="d3.title">Lo que los padres <em>hicieron</em></h2>
     </div>
 
-    <p class="narrative">Más allá del tráfico, estos son los momentos en que los padres tomaron una acción: entrar al portal, cambiar de idioma, copiar una frase. Cada uno cuenta.</p>
+    <p class="narrative" data-i18n="d3.narr">Más allá del tráfico, estos son los momentos en que los padres hicieron algo: entrar al portal, cambiar de idioma, copiar una frase. Cada uno cuenta.</p>
 
     <div class="insight">
-      <span class="conf-label directional">◐ Señal direccional</span>
-      <div class="insight-label">✦ El número que más importa (con una pregunta pendiente)</div>
-      <p class="insight-text"><strong>45 de cada 100 visitantes únicos dispararon el evento portal_entered</strong>. Es prometedor, pero necesitamos definir mejor qué significa exactamente ese evento: ¿abrir el área de apoyo? ¿hacer clic en un protocolo? ¿entrar a un workspace? Si la definición es muy amplia, podríamos estar sobreestimando la conversión real. Aun con esa duda, la dirección es buena: <strong>la gente se está moviendo hacia adentro.</strong></p>
+      <span class="conf-label directional" data-i18n="d3.cl">◐ Señal direccional</span>
+      <div class="insight-label" data-i18n="d3.iL">✦ El número que más importa (con una pregunta pendiente)</div>
+      <p class="insight-text" data-i18n-html="d3.iT"><strong>45 de cada 100 visitantes dispararon el evento portal_entered</strong>. Es prometedor, pero hay que definir mejor qué significa ese evento: ¿abrir el área de apoyo? ¿hacer clic en un protocolo? ¿entrar a un workspace? Si la definición es muy amplia, podríamos estar sobreestimando la conversión real. Aun con la duda, la dirección es buena: <strong>la gente se está moviendo hacia adentro.</strong></p>
     </div>
 
     <div class="conv-grid" style="margin-top:20px; margin-bottom:20px;">
       <div class="conv-card featured">
         <div class="conv-icon">🚪</div>
         <div class="conv-body">
-          <div class="conv-name">Portal entries</div>
+          <div class="conv-name" data-i18n="d3.c1">Entradas al portal</div>
           <div class="conv-n">45</div>
-          <div class="conv-total">66 eventos totales</div>
+          <div class="conv-total" data-i18n="d3.t1">66 eventos totales</div>
         </div>
         <span class="conv-pct">45%</span>
       </div>
       <div class="conv-card">
         <div class="conv-icon slate-bg">🌐</div>
         <div class="conv-body">
-          <div class="conv-name">Cambio de idioma</div>
+          <div class="conv-name" data-i18n="d3.c2">Cambio de idioma</div>
           <div class="conv-n" style="color:var(--slate);">29</div>
-          <div class="conv-total">48 eventos totales</div>
+          <div class="conv-total" data-i18n="d3.t2">48 eventos totales</div>
         </div>
         <span class="conv-pct" style="color:var(--slate);">29%</span>
       </div>
       <div class="conv-card">
         <div class="conv-icon navy-bg">📋</div>
         <div class="conv-body">
-          <div class="conv-name">Método CTA clickado</div>
+          <div class="conv-name" data-i18n="d3.c3">Clic en CTA del Método</div>
           <div class="conv-n" style="color:var(--navy);">10</div>
-          <div class="conv-total">12 eventos totales</div>
+          <div class="conv-total" data-i18n="d3.t3">12 eventos totales</div>
         </div>
         <span class="conv-pct" style="color:var(--navy);">10%</span>
       </div>
       <div class="conv-card">
         <div class="conv-icon">📋</div>
         <div class="conv-body">
-          <div class="conv-name">Frase copiada</div>
+          <div class="conv-name" data-i18n="d3.c4">Frase copiada</div>
           <div class="conv-n">5</div>
-          <div class="conv-total">6 eventos totales</div>
+          <div class="conv-total" data-i18n="d3.t4">6 eventos totales</div>
         </div>
         <span class="conv-pct">5%</span>
       </div>
       <div class="conv-card">
         <div class="conv-icon slate-bg">💬</div>
         <div class="conv-body">
-          <div class="conv-name">Home · "No estás fallando"</div>
+          <div class="conv-name" data-i18n="d3.c5">Home · "No estás fallando"</div>
           <div class="conv-n" style="color:var(--slate);">4</div>
-          <div class="conv-total">5 eventos totales</div>
+          <div class="conv-total" data-i18n="d3.t5">5 eventos totales</div>
         </div>
         <span class="conv-pct" style="color:var(--slate);">4%</span>
       </div>
       <div class="conv-card">
         <div class="conv-icon navy-bg">🔗</div>
         <div class="conv-body">
-          <div class="conv-name">Guía completa solicitada</div>
+          <div class="conv-name" data-i18n="d3.c6">Guía completa solicitada</div>
           <div class="conv-n" style="color:var(--navy);">4</div>
-          <div class="conv-total">4 eventos totales</div>
+          <div class="conv-total" data-i18n="d3.t6">4 eventos totales</div>
         </div>
         <span class="conv-pct" style="color:var(--navy);">4%</span>
       </div>
       <div class="conv-card">
         <div class="conv-icon">👁</div>
         <div class="conv-body">
-          <div class="conv-name">Vio el Puente al Método</div>
+          <div class="conv-name" data-i18n="d3.c7">Vio el puente al Método</div>
           <div class="conv-n">3</div>
-          <div class="conv-total">6 eventos totales</div>
+          <div class="conv-total" data-i18n="d3.t7">6 eventos totales</div>
         </div>
         <span class="conv-pct">3%</span>
       </div>
       <div class="conv-card">
         <div class="conv-icon slate-bg">🔔</div>
         <div class="conv-body">
-          <div class="conv-name">Trust modal abierto</div>
+          <div class="conv-name" data-i18n="d3.c8">Abrió el modal de confianza</div>
           <div class="conv-n" style="color:var(--slate);">3</div>
-          <div class="conv-total">3 eventos totales</div>
+          <div class="conv-total" data-i18n="d3.t8">3 eventos totales</div>
         </div>
         <span class="conv-pct" style="color:var(--slate);">3%</span>
       </div>
     </div>
 
     <div class="insight" style="border-left-color:var(--slate); background:rgba(167,182,198,.1);">
-      <span class="conf-label directional">◐ Señal direccional, no conclusión</span>
-      <div class="insight-label" style="color:var(--slate);">El cambio de idioma: alto interés, causa todavía abierta</div>
-      <p class="insight-text"><strong>29% de visitantes cambiaron de idioma</strong>, uno de los comportamientos de mayor intención en todo el sitio. Pero "cambiar idioma" puede significar tres cosas distintas: preferencia real, curiosidad, o fricción (llegaron al idioma equivocado y se corrigieron). Con los datos actuales no podemos distinguir cuál. Lo que sí podemos decir: <strong>vale la pena investigarlo</strong>, no asumir que ya está resuelto.</p>
+      <span class="conf-label directional" data-i18n="d3.cl2">◐ Señal direccional, no conclusión</span>
+      <div class="insight-label" style="color:var(--slate);" data-i18n="d3.iL2">El cambio de idioma: mucho interés, causa todavía abierta</div>
+      <p class="insight-text" data-i18n-html="d3.iT2"><strong>29% de los visitantes cambiaron de idioma</strong>, uno de los gestos de mayor intención del sitio. Pero "cambiar idioma" puede significar tres cosas: preferencia real, curiosidad, o fricción (llegaron al idioma equivocado y se corrigieron). Con los datos de ahora no podemos distinguir cuál. Lo que sí podemos decir: <strong>vale la pena investigarlo</strong>, no darlo por resuelto.</p>
     </div>
 
     <!-- Protocolos -->
     <div class="chart-wrap" style="margin-top:24px; margin-bottom:8px;">
-      <div class="chart-label">Protocolos más visitados (custom props)</div>
+      <div class="chart-label" data-i18n="d3.protoL">Protocolos más visitados</div>
       <div class="bar-list" style="margin-top:8px;">
         <div class="bar-row"><span class="bar-lbl" style="width:200px;">home_hero</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--peach);"></div></div><span class="bar-val" style="color:var(--peach);">28 vis · 28%</span></div>
         <div class="bar-row"><span class="bar-lbl" style="width:200px;">screen_time</span><div class="bar-track"><div class="bar-fill" style="width:43%;background:var(--slate);"></div></div><span class="bar-val" style="color:var(--slate);">12 vis · 12%</span></div>
@@ -814,27 +823,27 @@ body {
     </div>
 
     <div class="data-note" style="margin-bottom:24px;">
-      <div class="data-note-label">⚠ Lo que este gráfico no muestra</div>
-      <div class="data-note-text"><strong>protocol = (none)</strong> representa 98 visitantes y 480 eventos, más que cualquier protocolo nombrado arriba. La mayoría de los eventos del sitio todavía no se están etiquetando con un protocolo, así que esta lista es real pero incompleta. La vamos a limpiar antes del próximo informe.</div>
+      <div class="data-note-label" data-i18n="d3.dnL">⚠ Lo que este gráfico no muestra</div>
+      <div class="data-note-text" data-i18n-html="d3.dnT"><strong>protocol = (none)</strong> son 98 visitantes y 480 eventos, más que cualquier protocolo de arriba. La mayoría de los eventos todavía no se etiquetan con un protocolo, así que esta lista es real pero incompleta. La vamos a limpiar antes del próximo reporte.</div>
     </div>
   </div>
 
   <!-- ── AUDIENCIA ── -->
   <div class="section">
     <div class="section-head">
-      <span class="section-act">Contexto · Audiencia</span>
-      <h2 class="section-title">Quién <em>está llegando</em></h2>
+      <span class="section-act" data-i18n="au.act">Audiencia</span>
+      <h2 class="section-title" data-i18n-html="au.title">Quién <em>está llegando</em></h2>
     </div>
 
     <div class="two-col">
       <div class="chart-wrap" style="margin-bottom:0;">
-        <div class="chart-label">Dispositivos</div>
+        <div class="chart-label" data-i18n="au.cl1">Dispositivos</div>
         <div class="device-row">
           <div class="donut-wrap">
             <canvas id="donutChart" width="140" height="140"></canvas>
             <div class="donut-center">
               <div class="donut-n">100</div>
-              <div class="donut-lbl">visitantes</div>
+              <div class="donut-lbl" data-i18n="au.donut">visitantes</div>
             </div>
           </div>
           <div class="legend-list">
@@ -857,12 +866,12 @@ body {
         </div>
       </div>
       <div class="chart-wrap" style="margin-bottom:0;">
-        <div class="chart-label">Canal de adquisición</div>
+        <div class="chart-label" data-i18n="au.cl2">Cómo llegan</div>
         <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px;">
-          <div class="bar-row"><span class="bar-lbl" style="width:130px;">Directo</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--navy);"></div></div><span class="bar-val" style="color:var(--navy);">95% · 272s</span></div>
+          <div class="bar-row"><span class="bar-lbl" style="width:130px;" data-i18n="au.direct">Directo</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--navy);"></div></div><span class="bar-val" style="color:var(--navy);">95% · 272s</span></div>
           <div class="bar-row"><span class="bar-lbl" style="width:130px;">Instagram</span><div class="bar-track"><div class="bar-fill" style="width:5%;background:var(--peach);"></div></div><span class="bar-val" style="color:var(--peach);">5% · 175s</span></div>
         </div>
-        <div class="chart-label" style="margin-top:16px;margin-bottom:10px;">Navegadores</div>
+        <div class="chart-label" style="margin-top:16px;margin-bottom:10px;" data-i18n="au.cl3">Navegadores</div>
         <div style="display:flex;flex-direction:column;gap:10px;">
           <div class="bar-row"><span class="bar-lbl" style="width:130px;">Safari</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--peach);"></div></div><span class="bar-val" style="color:var(--peach);">46</span></div>
           <div class="bar-row"><span class="bar-lbl" style="width:130px;">Edge</span><div class="bar-track"><div class="bar-fill" style="width:52%;background:var(--navy);"></div></div><span class="bar-val" style="color:var(--navy);">24</span></div>
@@ -872,7 +881,7 @@ body {
     </div>
 
     <div style="margin-top:20px;">
-      <div class="chart-label" style="margin-bottom:12px;">Geografía · Ciudades</div>
+      <div class="chart-label" style="margin-bottom:12px;" data-i18n="au.cl4">Geografía · Ciudades</div>
       <div class="geo-wrap">
         <div class="geo-pill featured">Seattle <span class="geo-n">60</span></div>
         <div class="geo-pill">Portland <span class="geo-n">5</span></div>
@@ -889,128 +898,150 @@ body {
     </div>
 
     <div class="insight" style="margin-top:20px;border-left-color:var(--navy); background:var(--navy-soft);">
-      <span class="conf-label strong">● Señal fuerte</span>
-      <div class="insight-label" style="color:var(--navy);">📍 Lo que la geografía confirma</div>
-      <p class="insight-text">Seattle representa el <strong>78% de todos los visitantes geolocalizados</strong>, y el 95% del tráfico total es directo. Esto no es todavía una prueba de mercado, es la confirmación de que <strong>la gente que enviaste a propósito está respondiendo bien.</strong> El motor de confianza está dando señales sólidas en audiencia cálida. La pregunta de si funciona igual de bien con desconocidos sigue abierta hasta que probemos un canal de adquisición real.</p>
+      <span class="conf-label strong" data-i18n="au.cl">● Señal fuerte</span>
+      <div class="insight-label" style="color:var(--navy);" data-i18n="au.iL">📍 Lo que la geografía confirma</div>
+      <p class="insight-text" data-i18n-html="au.iT">Seattle es el <strong>78% de todos los visitantes geolocalizados</strong>, y el 95% del tráfico total es directo. Esto todavía no es una prueba de mercado; es la confirmación de que <strong>la gente que enviaste a propósito está respondiendo bien.</strong> El sitio da señales sólidas con audiencia que ya te conoce. Si funciona igual con desconocidos sigue siendo pregunta abierta hasta que probemos un canal de adquisición real.</p>
     </div>
   </div>
 
   <!-- ── SEÑALES ESTRATÉGICAS ── -->
   <div class="section">
     <div class="section-head">
-      <span class="section-act">El resumen</span>
-      <h2 class="section-title">Lo que sabemos, <em>y lo que todavía no</em></h2>
+      <span class="section-act" data-i18n="sm.act">El resumen</span>
+      <h2 class="section-title" data-i18n-html="sm.title">Lo que sabemos, <em>y lo que todavía no</em></h2>
     </div>
 
-    <p class="narrative">Separamos esto en dos preguntas distintas a propósito. El sitio ya demostró algo. Todavía no demostró otra cosa. Confundir las dos sería el error más fácil de cometer con este informe.</p>
+    <p class="narrative" data-i18n="sm.narr">Separamos esto en dos preguntas distintas a propósito. El sitio ya demostró algo. Todavía no demostró otra cosa. Confundir las dos sería el error más fácil de cometer con este reporte.</p>
 
     <div class="role-card" style="margin-bottom:24px; border-color:var(--peach-line); background:var(--blush);">
-      <span class="role-tag trust">Validado en audiencia cálida</span>
+      <span class="role-tag trust" data-i18n="sm.rt1">Validado con audiencia que ya te conoce</span>
       <div class="role-body">
-        <div class="role-title">El sitio funciona como espacio de confianza para audiencia cálida</div>
-        <div class="role-desc">Cuando alguien llega con contexto previo, entiende el santuario, se queda y se mueve hacia adentro. Eso lo vemos con suficiente consistencia para confiar en la dirección, sin confundirlo todavía con una prueba de mercado.</div>
+        <div class="role-title" data-i18n="sm.rc1t">El sitio funciona como un lugar de confianza para gente que ya te conoce</div>
+        <div class="role-desc" data-i18n="sm.rc1d">Cuando alguien llega con contexto previo, entiende el sitio, se queda y se mueve hacia adentro. Lo vemos con suficiente consistencia para confiar en la dirección, sin confundirlo todavía con una prueba de mercado.</div>
       </div>
     </div>
     <div class="role-card" style="margin-bottom:28px; border-color:var(--navy-rule);">
-      <span class="role-tag watch">Todavía no probado</span>
+      <span class="role-tag watch" data-i18n="sm.rt2">Todavía no probado</span>
       <div class="role-body">
-        <div class="role-title">El sitio como motor de crecimiento</div>
-        <div class="role-desc">No tenemos todavía un canal de adquisición controlado y repetible. La siguiente fase debería probar exactamente eso, no asumirlo.</div>
+        <div class="role-title" data-i18n="sm.rc2t">El sitio para hacer crecer la audiencia</div>
+        <div class="role-desc" data-i18n="sm.rc2d">Todavía no tenemos un canal de adquisición controlado y repetible. La siguiente fase debería probar exactamente eso, no asumirlo.</div>
       </div>
     </div>
 
     <div class="three-col">
       <div class="signal-card peach-top">
-        <span class="conf-label strong">● Fuerte</span>
-        <div class="signal-act">Señal 01 · Retención</div>
-        <div class="signal-title">El rebote cayó del 64% al 30%</div>
-        <p class="signal-body">El bloque "Te Vemos" y los snippets probablemente están contribuyendo a una experiencia que retiene mejor. <strong>Reducción del 53% en abandono.</strong></p>
+        <span class="conf-label strong" data-i18n="sm.clS">● Fuerte</span>
+        <div class="signal-act" data-i18n="sm.s1a">Señal 01 · Retención</div>
+        <div class="signal-title" data-i18n="sm.s1t">El rebote cayó del 64% al 30%</div>
+        <p class="signal-body" data-i18n-html="sm.s1b">El bloque "Te Vemos" y los snippets probablemente ayudan a que la gente se quede. <strong>Una caída del 53% en abandono.</strong></p>
       </div>
       <div class="signal-card navy-top">
-        <span class="conf-label strong">● Fuerte</span>
-        <div class="signal-act">Señal 02 · Profundidad</div>
-        <div class="signal-title">Desbordes: 4m 12s, 29.2% exit</div>
-        <p class="signal-body">La señal de engagement más sólida del sitio. <strong>Esto sostiene el argumento del santuario mejor que cualquier otra métrica.</strong></p>
+        <span class="conf-label strong" data-i18n="sm.clS">● Fuerte</span>
+        <div class="signal-act" data-i18n="sm.s2a">Señal 02 · Profundidad</div>
+        <div class="signal-title" data-i18n="sm.s2t">Desbordes: 4m 12s, 29.2% de salida</div>
+        <p class="signal-body" data-i18n-html="sm.s2b">La señal de engagement más sólida del sitio. <strong>Es la mejor prueba de que el sitio se vuelve un lugar de confianza.</strong></p>
       </div>
       <div class="signal-card peach-top">
-        <span class="conf-label strong">● Fuerte</span>
-        <div class="signal-act">Señal 03 · Entrada</div>
-        <div class="signal-title">Pantallas: 35 entradas, 26% rebote</div>
-        <p class="signal-body">El gancho de adquisición más reconocible del sitio. <strong>Pantallas abre la puerta; Desbordes construye la confianza.</strong></p>
+        <span class="conf-label strong" data-i18n="sm.clS">● Fuerte</span>
+        <div class="signal-act" data-i18n="sm.s3a">Señal 03 · Entrada</div>
+        <div class="signal-title" data-i18n="sm.s3t">Pantallas: 35 entradas, 26% rebote</div>
+        <p class="signal-body" data-i18n-html="sm.s3b">El gancho de entrada más reconocible del sitio. <strong>Pantallas abre la puerta; Desbordes construye la confianza.</strong></p>
       </div>
       <div class="signal-card slate-top">
-        <span class="conf-label directional">◐ Direccional</span>
-        <div class="signal-act">Señal 04 · Portal</div>
-        <div class="signal-title">45% disparan portal_entered</div>
-        <p class="signal-body">Prometedor, pero necesitamos definir mejor qué cuenta como "entrada al portal" antes de tratarlo como una tasa de conversión dura.</p>
+        <span class="conf-label directional" data-i18n="sm.clD">◐ Direccional</span>
+        <div class="signal-act" data-i18n="sm.s4a">Señal 04 · Portal</div>
+        <div class="signal-title" data-i18n="sm.s4t">45% disparan portal_entered</div>
+        <p class="signal-body" data-i18n="sm.s4b">Prometedor, pero hay que definir mejor qué cuenta como "entrada al portal" antes de tratarlo como una tasa de conversión dura.</p>
       </div>
       <div class="signal-card slate-top">
-        <span class="conf-label directional">◐ Direccional</span>
-        <div class="signal-act">Señal 05 · Idioma</div>
-        <div class="signal-title">29% cambian de idioma</div>
-        <p class="signal-body">Alta intención, causa todavía sin confirmar: ¿preferencia, curiosidad o fricción? <strong>Vale la pena investigar antes de construir sobre ello.</strong></p>
+        <span class="conf-label directional" data-i18n="sm.clD">◐ Direccional</span>
+        <div class="signal-act" data-i18n="sm.s5a">Señal 05 · Idioma</div>
+        <div class="signal-title" data-i18n="sm.s5t">29% cambian de idioma</div>
+        <p class="signal-body" data-i18n-html="sm.s5b">Mucha intención, causa sin confirmar: ¿preferencia, curiosidad o fricción? <strong>Vale la pena investigar antes de construir sobre esto.</strong></p>
       </div>
       <div class="signal-card" style="border-top-color: var(--navy-rule);">
-        <span class="conf-label early">○ Muy pronto</span>
-        <div class="signal-act">Señal 06 · Mercado</div>
-        <div class="signal-title">Demanda real, apetito de producto pago</div>
-        <p class="signal-body">No hay suficiente tráfico no-orgánico todavía para hablar de esto con confianza. <strong>Lo sabremos después de la prueba de adquisición controlada.</strong></p>
+        <span class="conf-label early" data-i18n="sm.clE">○ Muy pronto</span>
+        <div class="signal-act" data-i18n="sm.s6a">Señal 06 · Mercado</div>
+        <div class="signal-title" data-i18n="sm.s6t">Demanda real, apetito por un producto pago</div>
+        <p class="signal-body" data-i18n-html="sm.s6b">Todavía no hay suficiente tráfico no-orgánico para hablar de esto con confianza. <strong>Lo sabremos después de la prueba de adquisición controlada.</strong></p>
       </div>
     </div>
 
     <div class="insight" style="margin-top:24px; border-left-color:var(--slate); background:rgba(167,182,198,.1);">
-      <div class="insight-label" style="color:var(--slate);">Sobre la caída de junio</div>
-      <p class="insight-text">La caída del 73% en la última semana (Jun 11–17) es un hecho confirmado del dato. Nuestra lectura más probable es que el sitio está esperando contenido nuevo (tus fotos) para volver a tener motivo de visita. Eso es una hipótesis razonable, no una certeza medida directamente.</p>
+      <div class="insight-label" style="color:var(--slate);" data-i18n="sm.junL">Sobre la caída de junio</div>
+      <p class="insight-text" data-i18n="sm.junT">La caída del 73% en la última semana (Jun 11–17) es un hecho confirmado del dato. Nuestra lectura más probable es que el sitio está esperando contenido nuevo (tus fotos) para volver a dar motivo de visita. Es una hipótesis razonable, no una certeza medida directamente.</p>
     </div>
   </div>
 
   <!-- ── LO QUE SIGUE ── -->
   <div class="section">
     <div class="section-head">
-      <span class="section-act">Mirando adelante</span>
-      <h2 class="section-title">Lo que <em>sigue</em></h2>
+      <span class="section-act" data-i18n="nx.act">Lo que sigue</span>
+      <h2 class="section-title" data-i18n-html="nx.title">Lo que <em>sigue</em></h2>
     </div>
 
-    <p class="narrative">Cuatro cosas en marcha para el próximo informe. Nada de esto está terminado todavía, son los hilos que estamos jalando ahora mismo.</p>
+    <p class="narrative" data-i18n="nx.narr">Cuatro cosas en marcha para el próximo reporte. Nada de esto está terminado todavía; son los hilos que estamos jalando ahora mismo.</p>
 
     <div class="three-col">
       <div class="signal-card navy-top">
-        <div class="signal-act">Paso 1 · Limpieza</div>
-        <div class="signal-title">Tracking por frase</div>
-        <p class="signal-body">Primero ordenamos la instrumentación: cada una de las tres frases de <em>emotional-escalation</em> por separado, más una pregunta corta de "¿te ayudó?" después de copiarlas. Así sabremos, con datos limpios, cuál frase funciona mejor (no por intuición).</p>
+        <div class="signal-act" data-i18n="nx.s1a">Paso 1 · Limpieza</div>
+        <div class="signal-title" data-i18n="nx.s1t">Tracking por frase</div>
+        <p class="signal-body" data-i18n-html="nx.s1b">Primero ordenamos la instrumentación: cada una de las tres frases de <em>emotional-escalation</em> por separado, más una pregunta corta de "¿te ayudó?" después de copiarlas. Así sabremos, con datos limpios, cuál frase funciona mejor (no por intuición).</p>
       </div>
       <div class="signal-card slate-top">
-        <div class="signal-act">Paso 2 · Contenido</div>
-        <div class="signal-title">Fecha del shoot</div>
-        <p class="signal-body">El sistema sigue esperando tus fotos reales. Es la pieza que más impacto va a tener en el próximo informe: el lienzo está listo, solo falta el color.</p>
+        <div class="signal-act" data-i18n="nx.s2a">Paso 2 · Contenido</div>
+        <div class="signal-title" data-i18n="nx.s2t">Fecha del shoot</div>
+        <p class="signal-body" data-i18n="nx.s2b">El sistema sigue esperando tus fotos reales. Es lo que más va a mover el próximo reporte: todo está listo, solo faltan las fotos.</p>
       </div>
       <div class="signal-card navy-top">
-        <div class="signal-act">Paso 3 · Prueba controlada</div>
-        <div class="signal-title">Test de adquisición de 7 días</div>
-        <p class="signal-body">Con tracking limpio y fotos reales en el sitio, corremos una prueba corta desde tu Instagram con links UTM separados (uno a Pantallas, uno a Desbordes, uno al Hub). Comparamos tráfico, profundidad, clics de CTA, frases copiadas y entradas al portal por cada uno. <strong>Esto nos dirá si el sitio ya funciona como motor de crecimiento, no solo como espacio de confianza.</strong></p>
+        <div class="signal-act" data-i18n="nx.s3a">Paso 3 · Prueba controlada</div>
+        <div class="signal-title" data-i18n="nx.s3t">Prueba de adquisición de 7 días</div>
+        <p class="signal-body" data-i18n-html="nx.s3b">Con tracking limpio y fotos reales en el sitio, corremos una prueba corta desde tu Instagram con links UTM separados (uno a Pantallas, uno a Desbordes, uno al Hub). Comparamos tráfico, profundidad, clics de CTA, frases copiadas y entradas al portal por cada uno. <strong>Esto nos dirá si el sitio ya sirve para hacer crecer la audiencia, no solo como lugar de confianza.</strong></p>
       </div>
       <div class="signal-card peach-top">
-        <div class="signal-act">Paso 4 · Descubrimiento</div>
-        <div class="signal-title">Plan de SEO</div>
-        <p class="signal-body">Con los pasos anteriores resueltos, construimos una estrategia de SEO para que el sitio empiece a aparecer en búsquedas reales, no solo en tráfico directo. Es nuevo para ambos: lo construimos paso a paso, con datos guiando cada decisión.</p>
+        <div class="signal-act" data-i18n="nx.s4a">Paso 4 · Descubrimiento</div>
+        <div class="signal-title" data-i18n="nx.s4t">Plan de SEO</div>
+        <p class="signal-body" data-i18n="nx.s4b">Con lo anterior resuelto, armamos una estrategia de SEO para que el sitio empiece a aparecer en búsquedas reales, no solo en tráfico directo. Lo construimos paso a paso, con datos guiando cada decisión.</p>
       </div>
     </div>
 
     <div class="insight" style="margin-top:24px;">
-      <div class="insight-label">💡 Una nota sobre monetización</div>
-      <p class="insight-text">Vale la pena decir esto ahora, antes de que lo asumamos: <strong>el momento de pánico no es el momento de vender.</strong> El apoyo en crisis debe seguir siendo generoso y gratuito. El camino pago probablemente empieza después del alivio, cuando el padre piensa "ok, necesito un sistema para esto", no en medio del desborde. Lo vamos a diseñar con esa lógica.</p>
+      <div class="insight-label" data-i18n="nx.monL">💡 Una nota sobre el dinero</div>
+      <p class="insight-text" data-i18n-html="nx.monT">Vale la pena decirlo ahora, antes de darlo por hecho: <strong>el momento de pánico no es el momento de vender.</strong> El apoyo en crisis debe seguir siendo generoso y gratis. El camino pago probablemente empieza después del alivio, cuando el padre piensa "ok, necesito un sistema para esto", no en medio del desborde. Lo vamos a diseñar con esa lógica.</p>
     </div>
   </div>
 
   <!-- ── FOOTER ── -->
   <div class="report-footer">
-    <span class="footer-brand">Criar Sin Culpas · Signal Report 2026</span>
-    <span class="footer-note">Fuente: Plausible Analytics · May 21 – Jun 17, 2026 · Producido por LG Studio</span>
+    <span class="footer-brand" data-i18n="ft.brand">Criar Sin Culpas · Reporte 2026</span>
+    <span class="footer-note" data-i18n="ft.note">Fuente: Plausible Analytics · May 21 – Jun 17, 2026 · Producido por LG Studio</span>
   </div>
 
 </div><!-- /page -->
 
 <script>
+var EN = {"tb.period": "First-month report · May 21 – Jun 17, 2026", "tt.vis": "Visitors", "tt.pv": "Pageviews", "tt.br": "Bounce", "cv.eyebrow": "First-month report · LG Studio × CriarSinCulpas.com", "cv.title": "The first month,<br>in <em>detail</em>", "cv.sub": "It didn't measure reach. It showed that the people who came understood the site, and did use it.", "cv.narr1": "Nari, before the numbers: this is an <strong>early-signal report</strong>, not a market study. The sample is small, and almost everyone who came already knew you: <strong>95% arrived directly</strong>, without searching, without Google bringing them. So we won't say \"parents are finding us.\" We'll say something more exact: <strong>the people we sent on purpose are responding well.</strong>", "cv.narr2": "That difference matters. So each finding carries a label: <em>strong signal</em>, <em>early sign</em>, or <em>too soon to tell</em>. That way you know how much weight to give each one.", "cv.k1l": "Visitors", "cv.k1s": "28 days · 153 visits", "cv.k1d": "4.07 visitors/day", "cv.k2l": "Leave right away", "cv.k2s": "period average", "cv.k2d": "↓ was 64% before", "cv.k3l": "Pageviews", "cv.k3s": "2.56 pages/visit", "cv.k4l": "Time per visit", "cv.k4s": "per active session", "cv.k4d": "↑ high intent", "cv.lensL": "🔑 How to read this report", "cv.lensT": "There are two different questions here, and it's best not to mix them. One: <strong>\"does the site work as a place of trust?\"</strong> With the data we have, the answer is yes. The other: <strong>\"is the site already proven to grow the audience?\"</strong> Not yet, because almost no one arrived through a channel we can repeat on purpose. This report tries not to answer the second question with data that only answers the first.", "cv.dnL": "⚠ How clean the data is", "cv.dnT": "Before the sections below, it helps to know how clean the data behind each number is:\n        <ul>\n          <li><strong>protocol = (none)</strong> shows up on 98 visitors and 480 events. Most events aren't tied to a protocol yet, so we can't say for sure which protocol caused which action.</li>\n          <li><strong>/metodo vs /metodo/</strong> show numbers that don't match each other (one version with 0 pageviews, the other with 100% bounce): almost certainly a tracking issue, not the real content of that page.</li>\n          <li>Some days show <strong>fewer pageviews than visits</strong>, which shouldn't happen; a sign the export still has noise.</li>\n        </ul>\n        We'll clean this up before the next cut. Meanwhile, we treat any conclusion about /metodo as \"too soon to tell.\"", "d1.act": "Traffic", "d1.title": "Week by <em>week</em>", "d1.narr": "Four weeks of real traffic. The period isn't even: there are peaks, valleys, and a drop at the end that says something concrete about where the system stands right now.", "d1.cl": "○ Anecdotal, not a pattern", "d1.iL": "✦ A signal, with an asterisk", "d1.iT": "<strong>May 21</strong> was the busiest day: 10 visitors, 95 pageviews, and only 10% bounce. Almost certainly a work session with Luis on the site, not organic traffic. <strong>5x more activity</strong> than any other day, but one day isn't a trend.", "d1.chart": "Unique visitors per day · May 21 – Jun 17, 2026", "d1.peak": "Peak week", "d1.pv1": "204 pageviews", "d1.pv2": "42 pageviews", "d1.pv3": "36 pageviews", "d1.pv4": "10 pageviews", "d1.cl2": "● Real drop, confirmed", "d1.iL2": "⚠ The pattern to read", "d1.iT2": "The week of Jun 11–17 logs only <strong>9 visitors</strong>: a 73% drop from the week before, with three days at zero. That's a fact in the data. The <em>why</em> (that the site is waiting on your photos) is our most likely read, not something the traffic confirms directly.", "d2.act": "Retention", "d2.title": "What <em>holds</em>, what doesn't", "d2.narr": "These numbers show which pages hold people and which let them go. Here's the full picture.", "d2.pull": "\"The period's bounce rate is <em>30.4%</em>. Half of what it was before.\"", "d2.tblL": "Pages · Behavior", "d2.h1": "Page", "d2.h2": "Visitors", "d2.h3": "Pageviews", "d2.h4": "Bounce", "d2.h5": "Time", "d2.h6": "Scroll", "d2.iL": "★ The best finding", "d2.iT": "<strong>/apoyo/emotional-escalation</strong> is the deepest page on the site: 4 minutes 12 seconds of average reading, 83% scroll, and the lowest exit rate on the whole site (29.2%). Almost 3 in 4 parents who land here <strong>keep going</strong>. It isn't traffic, it's depth of relationship. It's the best proof that the site becomes a place of trust, better than any number on the Home page.", "rt.trust": "Trust engine", "d2.rc1t": "Desbordes wins the relationship", "d2.rc1d": "Together with the next section, the pattern that emerges is: <strong>Pantallas is the front door, Desbordes is where trust gets built.</strong> Worth treating that pairing as an operating principle, not just an observation from this cut.", "d2.cl1": "Top entry pages", "d2.cl2": "Exit rate by page", "d2.cl3": "What each page does, not just its numbers", "d2.rtA": "Entry hook", "d2.rcAt": "Pantallas (screen-time)", "d2.rcAd": "35 unique entries, 26% bounce: the most recognizable pain, the door people knock on first. <strong>Probably the site's best entry hook.</strong>", "d2.rcBt": "Desbordes (emotional-escalation)", "d2.rcBd": "4m 12s, 83% scroll, 29.2% exit. This is where the brand becomes emotionally necessary, not just useful.", "d2.rtC": "Good interest, bad exit", "d2.rcCt": "Bedtime", "d2.rcCd": "It arrives with real intent, but a 63.6% exit rate, the highest on the site. The need is right; what's missing is a clearer \"next step\" after reading.", "d2.rtD": "Needs sharpening", "d2.rcDt": "Siblings", "d2.rcDd": "Only 21 seconds on the page, suspiciously low. It may be too light or not specific enough yet. Not enough to conclude from this cut of data.", "d2.rtE": "Weak as triage", "d2.rcEt": "Support Hub", "d2.rcEd": "Useful as a stopover, but it isn't sorting parents well. It would benefit from more direct language: \"What's happening right now?\" / \"What do you need to recover afterward?\"", "d3.act": "What they did", "d3.title": "What parents <em>did</em>", "d3.narr": "Beyond traffic, these are the moments when parents did something: entered the portal, switched language, copied a phrase. Each one counts.", "d3.cl": "◐ Directional signal", "d3.iL": "✦ The number that matters most (with one open question)", "d3.iT": "<strong>45 of every 100 visitors fired the portal_entered event</strong>. It's promising, but we need to define that event better: open the support area? click a protocol? enter a workspace? If the definition is too broad, we may be overstating real conversion. Even with that doubt, the direction is good: <strong>people are moving inward.</strong>", "d3.c1": "Portal entries", "d3.c2": "Language switch", "d3.c3": "Método CTA clicked", "d3.c4": "Phrase copied", "d3.c5": "Home · \"You're not failing\"", "d3.c6": "Full guide requested", "d3.c7": "Saw the bridge to Método", "d3.c8": "Trust modal opened", "d3.t1": "66 total events", "d3.t2": "48 total events", "d3.t3": "12 total events", "d3.t4": "6 total events", "d3.t5": "5 total events", "d3.t6": "4 total events", "d3.t7": "6 total events", "d3.t8": "3 total events", "d3.cl2": "◐ Directional, not a conclusion", "d3.iL2": "Language switching: high interest, cause still open", "d3.iT2": "<strong>29% of visitors switched language</strong>, one of the highest-intent actions on the site. But \"switching language\" can mean three things: real preference, curiosity, or friction (they landed in the wrong language and fixed it). With the current data we can't tell which. What we can say: <strong>it's worth investigating</strong>, not assuming it's already solved.", "d3.protoL": "Most-visited protocols", "d3.dnL": "⚠ What this chart doesn't show", "d3.dnT": "<strong>protocol = (none)</strong> is 98 visitors and 480 events, more than any protocol named above. Most events still aren't tagged with a protocol, so this list is real but incomplete. We'll clean it up before the next report.", "au.act": "Audience", "au.title": "Who's <em>showing up</em>", "au.cl1": "Devices", "au.donut": "visitors", "au.cl2": "How they arrive", "au.direct": "Direct", "au.cl3": "Browsers", "au.cl4": "Geography · Cities", "au.cl": "● Strong signal", "au.iL": "📍 What the geography confirms", "au.iT": "Seattle is <strong>78% of all geolocated visitors</strong>, and 95% of total traffic is direct. This still isn't a market test; it's confirmation that <strong>the people you sent on purpose are responding well.</strong> The site is giving solid signals with an audience that already knows you. Whether it works the same with strangers stays an open question until we test a real acquisition channel.", "sm.act": "The summary", "sm.title": "What we know, <em>and what we don't yet</em>", "sm.narr": "We split this into two different questions on purpose. The site has already proven one thing. It hasn't yet proven another. Confusing the two would be the easiest mistake to make with this report.", "sm.rt1": "Validated with a warm audience", "sm.rc1t": "The site works as a place of trust for people who already know you", "sm.rc1d": "When someone arrives with prior context, they understand the site, stay, and move inward. We see it consistently enough to trust the direction, without mistaking it yet for a market test.", "sm.rt2": "Not proven yet", "sm.rc2t": "The site as a way to grow the audience", "sm.rc2d": "We don't yet have a controlled, repeatable acquisition channel. The next phase should test exactly that, not assume it.", "sm.clS": "● Strong", "sm.clD": "◐ Directional", "sm.clE": "○ Too soon", "sm.s1a": "Signal 01 · Retention", "sm.s1t": "Bounce dropped from 64% to 30%", "sm.s1b": "The \"Te Vemos\" block and the phrase snippets are probably helping people stay. <strong>A 53% drop in people leaving.</strong>", "sm.s2a": "Signal 02 · Depth", "sm.s2t": "Desbordes: 4m 12s, 29.2% exit", "sm.s2b": "The strongest engagement signal on the site. <strong>It's the best proof that the site becomes a place of trust.</strong>", "sm.s3a": "Signal 03 · Entry", "sm.s3t": "Pantallas: 35 entries, 26% bounce", "sm.s3b": "The site's most recognizable entry hook. <strong>Pantallas opens the door; Desbordes builds the trust.</strong>", "sm.s4a": "Signal 04 · Portal", "sm.s4t": "45% fire portal_entered", "sm.s4b": "Promising, but we need to define what counts as \"portal entry\" before treating it as a hard conversion rate.", "sm.s5a": "Signal 05 · Language", "sm.s5t": "29% switch language", "sm.s5b": "High intent, cause unconfirmed: preference, curiosity, or friction? <strong>Worth investigating before building on it.</strong>", "sm.s6a": "Signal 06 · Market", "sm.s6t": "Real demand, appetite for a paid product", "sm.s6b": "There isn't enough non-organic traffic yet to speak about this with confidence. <strong>We'll know after the controlled acquisition test.</strong>", "sm.junL": "About the June drop", "sm.junT": "The 73% drop in the last week (Jun 11–17) is a confirmed fact in the data. Our most likely read is that the site is waiting on new content (your photos) to give people a reason to come back. That's a reasonable hypothesis, not something measured directly.", "nx.act": "What's next", "nx.title": "What comes <em>next</em>", "nx.narr": "Four things in motion for the next report. None of this is finished yet; these are the threads we're pulling right now.", "nx.s1a": "Step 1 · Cleanup", "nx.s1t": "Per-phrase tracking", "nx.s1b": "First we tidy the instrumentation: each of the three <em>emotional-escalation</em> phrases tracked separately, plus a short \"did it help?\" question after copying. That way we'll know, with clean data, which phrase works best (not by intuition).", "nx.s2a": "Step 2 · Content", "nx.s2t": "Shoot date", "nx.s2b": "The system is still waiting on your real photos. It's the thing that will move the next report most: everything's ready, only the photos are missing.", "nx.s3a": "Step 3 · Controlled test", "nx.s3t": "7-day acquisition test", "nx.s3b": "With clean tracking and real photos on the site, we run a short test from your Instagram with separate UTM links (one to Pantallas, one to Desbordes, one to the Hub). We compare traffic, depth, CTA clicks, phrases copied, and portal entries for each. <strong>This will tell us whether the site already works to grow the audience, not just as a place of trust.</strong>", "nx.s4a": "Step 4 · Discovery", "nx.s4t": "SEO plan", "nx.s4b": "With the earlier steps resolved, we build an SEO strategy so the site starts showing up in real searches, not just direct traffic. We build it step by step, with data guiding each decision.", "nx.monL": "💡 A note about money", "nx.monT": "Worth saying now, before we assume otherwise: <strong>the moment of panic is not the moment to sell.</strong> Crisis support should stay generous and free. The paid path probably starts after relief, when the parent thinks \"ok, I need a system for this,\" not in the middle of the meltdown. We'll design it with that logic.", "ft.brand": "Criar Sin Culpas · Signal Report 2026", "ft.note": "Source: Plausible Analytics · May 21 – Jun 17, 2026 · Produced by LG Studio"};
+
+(function(){
+  function nodes(){ return document.querySelectorAll('[data-i18n],[data-i18n-html]'); }
+  function keyOf(el){ return el.getAttribute('data-i18n') || el.getAttribute('data-i18n-html'); }
+  var ES = {};
+  nodes().forEach(function(el){ ES[keyOf(el)] = el.innerHTML; });
+  function applyLang(l){
+    var dict = (l === 'en') ? EN : ES;
+    nodes().forEach(function(el){ var k = keyOf(el); if (dict[k] != null) el.innerHTML = dict[k]; });
+    document.documentElement.lang = l;
+    document.querySelectorAll('#lang-toggle button').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-lang') === l); });
+    try { localStorage.setItem('csc_lang', l); } catch(e){}
+  }
+  var sl = 'es';
+  try { sl = localStorage.getItem('csc_lang') || 'es'; } catch(e){}
+  applyLang(sl);
+  document.querySelectorAll('#lang-toggle button').forEach(function(b){
+    b.addEventListener('click', function(){ applyLang(b.getAttribute('data-lang')); });
+  });
+})();
+
 var DAILY = [
   {d:"May 21",vis:10,pv:95,br:10},{d:"May 22",vis:11,pv:29,br:50},
   {d:"May 23",vis:7, pv:15,br:62},{d:"May 24",vis:3, pv:7, br:50},
