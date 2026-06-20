@@ -36,6 +36,7 @@
     }
     window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) };
   </script>
+  <script defer src="/js/track.js"></script>
 
   <style>
     /* ─────────────────────────────────────────
@@ -753,7 +754,7 @@
     }
   </style>
 </head>
-<body>
+<body data-protocol="screen-time">
 
   <!-- Ambient -->
   <div class="orbs"></div>
@@ -1026,9 +1027,7 @@
     const LAYOUT_VERSION = 'arc_v2';
     function trackSignal(eventName, properties) {
       const props = Object.assign({ layout_version: LAYOUT_VERSION }, properties || {});
-      if (typeof plausible !== 'undefined') {
-        plausible(eventName, { props: props });
-      }
+      if (typeof window.track === 'function') window.track(eventName, props);
       console.log('[SnglIQ Captured]:', eventName, props);
     }
 
@@ -1138,7 +1137,7 @@
           card.querySelector('.pc-copy').textContent = lang === 'es' ? '¡Copiado!' : 'Copied!';
           showToast(lang === 'es' ? '¡Copiado! Úsalo ahora.' : 'Copied! Use it now.');
           // The card a parent copies = the resistance level they came looking for.
-          trackSignal('phrase_copied', { mode, level, language: lang, protocol: PROTOCOL_NAME });
+          trackSignal('phrase_copied', { mode, level, language: lang });
 
           setTimeout(() => {
             card.setAttribute('aria-pressed', 'false');
@@ -1170,7 +1169,7 @@
     }
 
     document.querySelector('.js-full-guide')?.addEventListener('click', () => {
-      trackSignal('full_guide_requested', { protocol: PROTOCOL_NAME });
+      trackSignal('full_guide_requested', {});
     });
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -1205,7 +1204,7 @@
         if (!isOpen) {
           acc.setAttribute('open', '');
           body.classList.add('is-open');
-          trackSignal('card_opened', { topic, protocol: PROTOCOL_NAME });
+          trackSignal('card_opened', { topic });
         }
       });
     });
@@ -1236,7 +1235,7 @@
     if (btnWa) {
       btnWa.addEventListener('click', () => {
         const d = getShareData();
-        trackSignal('share_whatsapp', { protocol: PROTOCOL_NAME, context: 'caregiver_alignment' });
+        trackSignal('share_whatsapp', { context: 'caregiver_alignment' });
         window.open('https://wa.me/?text=' + encodeURIComponent(d.text + d.url), '_blank');
       });
     }
@@ -1246,7 +1245,7 @@
       btnCopy.addEventListener('click', () => {
         const d = getShareData();
         navigator.clipboard.writeText(d.url);
-        trackSignal('share_copy_link', { protocol: PROTOCOL_NAME });
+        trackSignal('share_copy_link', {});
         showToast(lang === 'es' ? 'Link copiado' : 'Link copied');
       });
     }

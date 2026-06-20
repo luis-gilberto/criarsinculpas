@@ -41,6 +41,7 @@
       }
     };
   </script>
+  <script defer src="/js/track.js"></script>
 
   <style>
     /* ═══════════════════════════════════════════
@@ -644,7 +645,7 @@
     }
   </style>
 </head>
-<body>
+<body data-protocol="general">
 
   <div class="grain" aria-hidden="true"></div>
 
@@ -983,8 +984,8 @@
       const btn = e.target.closest('.lang-btn');
       if (btn) {
         applyLang(btn.getAttribute('data-lang'));
-        if (typeof plausible !== 'undefined')
-          plausible('language_changed', { props: { to_lang: lang, location: 'apoyo' } });
+        if (typeof window.track === 'function')
+          window.track('language_changed', { to_lang: lang, location: 'apoyo' });
       }
     });
 
@@ -1017,26 +1018,26 @@
     /* Plausible: track guide card clicks */
     document.querySelectorAll('.track-guide').forEach(card => {
       card.addEventListener('click', () => {
-        if (typeof plausible !== 'undefined')
-          plausible('card_opened', { props: { guide: card.getAttribute('data-id'), language: lang } });
+        if (typeof window.track === 'function')
+          window.track('card_opened', { guide: card.getAttribute('data-id'), language: lang });
       });
     });
 
     /* Plausible: Sanctuary Load — fires once on page enter */
-    if (typeof plausible !== 'undefined') plausible('Apoyo: Sanctuary Load', { props: { language: lang } });
+    if (typeof window.track === 'function') window.track('Apoyo: Sanctuary Load', { language: lang });
 
     /* Telemetry + page fade for .js-telemetry links */
     document.addEventListener('click', (e) => {
       const el = e.target.closest('.js-telemetry');
       if (!el) return;
       const eventName = el.getAttribute('data-event-name');
-      if (eventName && window.plausible) {
+      if (eventName && window.track) {
         const props = { language: lang };
         const mode = el.getAttribute('data-mode');
         const protocol = el.getAttribute('data-protocol');
         if (mode) props.mode = mode;
         if (protocol) props.protocol = protocol;
-        window.plausible(eventName, { props });
+        window.track(eventName, props);
       }
       if (el.tagName === 'A') {
         const href = el.getAttribute('href');
@@ -1073,7 +1074,7 @@
           });
         }, 420);
 
-        if (window.plausible) window.plausible('waitlist_joined', { props: { location: 'apoyo_footer', language: lang } });
+        if (window.track) window.track('waitlist_joined', { location: 'apoyo_footer', language: lang });
       });
     }
 

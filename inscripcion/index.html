@@ -7,6 +7,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>
+    if (window.location.hostname === 'criarsinculpas.com') {
+      const script = document.createElement('script');
+      script.defer = true;
+      script.setAttribute('data-domain', 'criarsinculpas.com');
+      script.src = 'https://plausible.io/js/script.manual.js';
+      document.head.appendChild(script);
+    }
+    window.plausible = window.plausible || function () {
+      (window.plausible.q = window.plausible.q || []).push(arguments);
+    };
+  </script>
+  <script defer src="/js/track.js"></script>
   <style>
     :root {
       --void:        #FAF6F2;
@@ -135,7 +148,7 @@
 
   <meta name="robots" content="noindex, nofollow">
 </head>
-<body>
+<body data-protocol="general">
   <div class="grain" aria-hidden="true"></div>
   <nav class="checkout-nav reveal">
     <a href="/metodo"><img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas"></a>
@@ -271,9 +284,9 @@
       const planElegido = document.getElementById('hidden-plan').value; 
       
       // Plausible Telemetry: Send the chosen plan to your analytics dashboard 
-      if (typeof window.plausible !== 'undefined') { 
-        window.plausible('waitlist_joined', {props: {location: 'inscripcion_sales', plan: planElegido}}); 
-      } 
+      if (typeof window.track === 'function') {
+        window.track('waitlist_joined', { location: 'inscripcion_sales', plan: planElegido });
+      }
 
       // If an action URL is set, send the data in the background 
       const actionUrl = form.getAttribute('action'); 

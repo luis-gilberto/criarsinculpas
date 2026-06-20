@@ -26,6 +26,7 @@
       }
     };
   </script>
+  <script defer src="/js/track.js"></script>
 
   <style>
     :root {
@@ -218,7 +219,7 @@
     }
   </style>
 </head>
-<body>
+<body data-protocol="general">
   <div class="grain" aria-hidden="true"></div>
 
   <main>
@@ -294,7 +295,7 @@
         });
       }, 420);
 
-      if (window.plausible) window.plausible('waitlist_joined', { props: { location: 'aprende_hero', language: lang } });
+      if (window.track) window.track('waitlist_joined', { location: 'aprende_hero', language: lang });
     });
   })();
   </script>

@@ -25,6 +25,7 @@
       }
     };
   </script>
+  <script defer src="/js/track.js"></script>
 
   <style>
     :root {
@@ -356,7 +357,7 @@
     }
   </style>
 </head>
-<body>
+<body data-protocol="general">
 
   <div class="grain" aria-hidden="true"></div>
 
@@ -624,7 +625,7 @@
       const btn = e.target.closest('.lang-btn');
       if (btn) {
         applyLang(btn.getAttribute('data-lang'));
-        plausible && plausible('language_changed', { props: { to_lang: lang, location: 'privacy' } });
+        window.track && window.track('language_changed', { to_lang: lang, location: 'privacy' });
       }
     });
 

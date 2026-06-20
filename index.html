@@ -30,6 +30,7 @@
       }
     };
   </script>
+  <script defer src="/js/track.js"></script>
 
   <style>
     /* ═══════════════ DESIGN TOKENS ═══════════════ */
@@ -340,7 +341,7 @@
     @media(max-width:560px){ .guides-grid{grid-template-columns:1fr;} .footer-grid{grid-template-columns:1fr;} .footer-bottom{flex-direction:column;gap:8px;} }
   </style>
 </head>
-<body>
+<body data-protocol="general">
 
   <div class="grain" aria-hidden="true"></div>
 
@@ -719,7 +720,7 @@
     }
     document.addEventListener('click', e => {
       const btn = e.target.closest('.lang-btn');
-      if (btn) { applyLang(btn.getAttribute('data-lang')); window.plausible && window.plausible('language_changed', { props: { to_lang: lang } }); }
+      if (btn) { applyLang(btn.getAttribute('data-lang')); window.track && window.track('language_changed', { to_lang: lang }); }
     });
     applyLang(lang);
 
@@ -824,7 +825,7 @@
               timer = setTimeout(() => {
                 if (fired) return;
                 fired = true;
-                window.plausible && window.plausible('Home: Absolution Read', { props: { language: document.documentElement.lang } });
+                window.track && window.track('Home: Absolution Read', { language: document.documentElement.lang });
                 io.disconnect();
               }, 2000);
             } else {
@@ -844,7 +845,7 @@
           entries.forEach(en => {
             if (en.isIntersecting && !fired) {
               fired = true;
-              window.plausible && window.plausible('Home: Bridge View', { props: { language: document.documentElement.lang } });
+              window.track && window.track('Home: Bridge View', { language: document.documentElement.lang });
               io.disconnect();
             }
           });
@@ -864,7 +865,7 @@
       cta.addEventListener('click', () => {
         if (fired) return;
         fired = true;
-        window.plausible && window.plausible('Home: Method Bridge Click', { props: { language: document.documentElement.lang } });
+        window.track && window.track('Home: Method Bridge Click', { language: document.documentElement.lang });
       });
     })();
 
@@ -875,7 +876,7 @@
         item.addEventListener('mouseenter', () => {
           if (fired) return;
           fired = true;
-          window.plausible && window.plausible('Home: Affirmation Hover', { props: { language: document.documentElement.lang } });
+          window.track && window.track('Home: Affirmation Hover', { language: document.documentElement.lang });
         });
       });
     })();
@@ -908,14 +909,14 @@
       const el = e.target.closest('.js-telemetry');
       if (!el) return;
       const eventName = el.getAttribute('data-event-name');
-      if (eventName && window.plausible) {
+      if (eventName && window.track) {
         const props = { language: lang };
         const mode = el.getAttribute('data-mode');
         const protocol = el.getAttribute('data-protocol');
         if (mode) props.mode = mode;
         if (protocol) props.protocol = protocol;
         if (el.id) props.entry = el.id;
-        window.plausible(eventName, { props });
+        window.track(eventName, props);
       }
       if (el.tagName === 'A') fadeNav(el.getAttribute('href'), e);
     });
