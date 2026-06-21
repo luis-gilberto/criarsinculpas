@@ -422,7 +422,7 @@
       border: 1px solid rgba(244, 168, 138, 0.22);
       color: var(--accent-ink);
     }
-    .checkin-icon-emoji { font-size: 1.25rem; line-height: 1; }
+    .checkin-icon-emoji svg { display: block; width: 32px; height: 32px; }
     .checkin-heading {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: clamp(1.25rem, 3.2vw, 1.5rem);
@@ -503,6 +503,16 @@
       box-shadow: 0 0 0 3px rgba(244, 168, 138, 0.12);
     }
     .checkin-email-input::placeholder { color: rgba(31, 46, 70, 0.35); }
+    .checkin-form { display: flex; flex-direction: column; gap: 12px; }
+    .checkin-form-success {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 15px;
+      color: var(--obsidian);
+      line-height: 1.65;
+      margin: 0;
+      text-align: center;
+    }
+    .checkin-form-success[hidden] { display: none; }
     .checkin-farewell { max-width: 42ch; font-size: 15px; line-height: 1.7; }
     .checkin-farewell-links {
       display: flex;
@@ -790,7 +800,7 @@
       <div class="checkin-card">
         <div class="checkin-card-inner">
       <div class="checkin-step is-active" id="checkinStep1">
-        <div class="checkin-icon checkin-icon-emoji" aria-hidden="true">🌱</div>
+        <div class="checkin-icon checkin-icon-emoji" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><defs><style>@keyframes grow{0%{opacity:.8;transform:scaleY(.95)}50%{opacity:1;transform:scaleY(1.02)}100%{opacity:.8;transform:scaleY(.95)}}.plant-stem{stroke:#1F2E46;animation:grow 3s ease-in-out infinite}.plant-leaf{stroke:#4CAF50;animation:grow 3s ease-in-out infinite}.plant-soil{stroke:#8B6F47;animation:grow 3s ease-in-out infinite}</style></defs><path d="M 12 20 Q 12 15 12 10" class="plant-stem"/><path d="M 12 14 Q 8 12.5 5 13.5" class="plant-leaf"/><path d="M 5 13.5 Q 6 14 7 13.8" class="plant-leaf" stroke-width="0.8"/><path d="M 12 12 Q 16 10.5 19 11.5" class="plant-leaf"/><path d="M 19 11.5 Q 18 12.2 17 12" class="plant-leaf" stroke-width="0.8"/><path d="M 12 10 Q 11 6 12 3" class="plant-leaf"/><path d="M 12 3 Q 12.5 5 12.2 7" class="plant-leaf" stroke-width="0.8"/><ellipse cx="12" cy="21" rx="3" ry="1.5" class="plant-soil" opacity="0.4"/></svg></div>
         <h2 class="checkin-heading" data-i18n="ci_h1" data-es="¿Cómo te sientes ahora?" data-en="How are you feeling right now?">¿Cómo te sientes ahora?</h2>
         <p class="checkin-subtext" data-i18n="ci_sub" data-es="Si llegaste hasta aquí, espero que haya habido aunque sea un pequeño momento para respirar." data-en="If you made it this far, I hope there was at least a small moment to breathe.">Si llegaste hasta aquí, espero que haya habido aunque sea un pequeño momento para respirar.</p>
         <p class="checkin-question" data-i18n="ci_q1" data-es="¿Este protocolo te ayudó hoy?" data-en="Did this protocol help you today?">¿Este protocolo te ayudó hoy?</p>
@@ -800,7 +810,7 @@
         </div>
       </div>
       <div class="checkin-step" id="checkinStep2a" hidden>
-        <div class="checkin-icon checkin-icon-emoji" aria-hidden="true">🌱</div>
+        <div class="checkin-icon checkin-icon-emoji" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><defs><style>@keyframes grow{0%{opacity:.8;transform:scaleY(.95)}50%{opacity:1;transform:scaleY(1.02)}100%{opacity:.8;transform:scaleY(.95)}}.plant-stem{stroke:#1F2E46;animation:grow 3s ease-in-out infinite}.plant-leaf{stroke:#4CAF50;animation:grow 3s ease-in-out infinite}.plant-soil{stroke:#8B6F47;animation:grow 3s ease-in-out infinite}</style></defs><path d="M 12 20 Q 12 15 12 10" class="plant-stem"/><path d="M 12 14 Q 8 12.5 5 13.5" class="plant-leaf"/><path d="M 5 13.5 Q 6 14 7 13.8" class="plant-leaf" stroke-width="0.8"/><path d="M 12 12 Q 16 10.5 19 11.5" class="plant-leaf"/><path d="M 19 11.5 Q 18 12.2 17 12" class="plant-leaf" stroke-width="0.8"/><path d="M 12 10 Q 11 6 12 3" class="plant-leaf"/><path d="M 12 3 Q 12.5 5 12.2 7" class="plant-leaf" stroke-width="0.8"/><ellipse cx="12" cy="21" rx="3" ry="1.5" class="plant-soil" opacity="0.4"/></svg></div>
         <p class="checkin-message" data-i18n="ci_2a_msg" data-es="Me alegra acompañarte. Guarda esta guía para volver cuando la necesites." data-en="I'm glad to walk with you. Save this guide to return when you need it.">Me alegra acompañarte. Guarda esta guía para volver cuando la necesites.</p>
         <p class="checkin-question" data-i18n="ci_2a_q" data-es="¿Quieres recibir más recursos como este?" data-en="Would you like to receive more resources like this?">¿Quieres recibir más recursos como este?</p>
         <div class="checkin-actions">
@@ -808,11 +818,17 @@
           <button type="button" class="checkin-btn checkin-btn-secondary" data-step2="no" data-i18n="ci_2a_no" data-es="No por ahora" data-en="Not right now">No por ahora</button>
         </div>
         <div class="checkin-email-wrap" id="checkinEmailWrap" hidden>
-          <input type="email" class="checkin-email-input" id="checkinEmail" name="email" autocomplete="email" placeholder="tu@correo.com" aria-label="Correo electrónico">
+          <form class="checkin-form" id="checkinForm" action="https://formspree.io/f/xaqgwzqp" method="POST">
+            <input type="hidden" name="protocol" value="sibling-conflict">
+            <input type="hidden" name="initial_response" id="checkinInitialResponse" value="">
+            <input type="email" class="checkin-email-input" name="email" required placeholder="tu@correo.com" aria-label="Correo electrónico" autocomplete="email">
+            <button type="submit" class="checkin-btn" data-i18n="ci_2a_recursos" data-es="Recibir recursos" data-en="Receive resources">Recibir recursos</button>
+          </form>
+          <p class="checkin-form-success" id="checkinFormSuccess" hidden data-i18n="ci_2a_success" data-es="Gracias. Recibirás un correo pronto." data-en="Thank you. You'll receive an email soon.">Gracias. Recibirás un correo pronto.</p>
         </div>
       </div>
       <div class="checkin-step" id="checkinStep2b" hidden>
-        <div class="checkin-icon checkin-icon-emoji" aria-hidden="true">🌱</div>
+        <div class="checkin-icon checkin-icon-emoji" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><defs><style>@keyframes grow{0%{opacity:.8;transform:scaleY(.95)}50%{opacity:1;transform:scaleY(1.02)}100%{opacity:.8;transform:scaleY(.95)}}.plant-stem{stroke:#1F2E46;animation:grow 3s ease-in-out infinite}.plant-leaf{stroke:#4CAF50;animation:grow 3s ease-in-out infinite}.plant-soil{stroke:#8B6F47;animation:grow 3s ease-in-out infinite}</style></defs><path d="M 12 20 Q 12 15 12 10" class="plant-stem"/><path d="M 12 14 Q 8 12.5 5 13.5" class="plant-leaf"/><path d="M 5 13.5 Q 6 14 7 13.8" class="plant-leaf" stroke-width="0.8"/><path d="M 12 12 Q 16 10.5 19 11.5" class="plant-leaf"/><path d="M 19 11.5 Q 18 12.2 17 12" class="plant-leaf" stroke-width="0.8"/><path d="M 12 10 Q 11 6 12 3" class="plant-leaf"/><path d="M 12 3 Q 12.5 5 12.2 7" class="plant-leaf" stroke-width="0.8"/><ellipse cx="12" cy="21" rx="3" ry="1.5" class="plant-soil" opacity="0.4"/></svg></div>
         <p class="checkin-message" data-i18n="ci_2b_msg" data-es="A veces una sola lectura no basta. Puedes volver a la guía o explorar recursos más profundos." data-en="Sometimes one reading isn't enough. You can return to the guide or explore deeper resources.">A veces una sola lectura no basta. Puedes volver a la guía o explorar recursos más profundos.</p>
         <p class="checkin-question" data-i18n="ci_2b_q" data-es="¿Quieres saber sobre recursos relacionados?" data-en="Would you like to know about related resources?">¿Quieres saber sobre recursos relacionados?</p>
         <div class="checkin-actions">
@@ -821,7 +837,7 @@
         </div>
       </div>
       <div class="checkin-step" id="checkinStep3" hidden>
-        <div class="checkin-icon checkin-icon-emoji" aria-hidden="true">🌱</div>
+        <div class="checkin-icon checkin-icon-emoji" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><defs><style>@keyframes grow{0%{opacity:.8;transform:scaleY(.95)}50%{opacity:1;transform:scaleY(1.02)}100%{opacity:.8;transform:scaleY(.95)}}.plant-stem{stroke:#1F2E46;animation:grow 3s ease-in-out infinite}.plant-leaf{stroke:#4CAF50;animation:grow 3s ease-in-out infinite}.plant-soil{stroke:#8B6F47;animation:grow 3s ease-in-out infinite}</style></defs><path d="M 12 20 Q 12 15 12 10" class="plant-stem"/><path d="M 12 14 Q 8 12.5 5 13.5" class="plant-leaf"/><path d="M 5 13.5 Q 6 14 7 13.8" class="plant-leaf" stroke-width="0.8"/><path d="M 12 12 Q 16 10.5 19 11.5" class="plant-leaf"/><path d="M 19 11.5 Q 18 12.2 17 12" class="plant-leaf" stroke-width="0.8"/><path d="M 12 10 Q 11 6 12 3" class="plant-leaf"/><path d="M 12 3 Q 12.5 5 12.2 7" class="plant-leaf" stroke-width="0.8"/><ellipse cx="12" cy="21" rx="3" ry="1.5" class="plant-soil" opacity="0.4"/></svg></div>
         <p class="checkin-message checkin-farewell" data-i18n="ci_3_msg" data-es="Gracias por estar aquí. No tienes que decidir nada hoy. Esta guía seguirá aquí cuando la necesites." data-en="Thank you for being here. You don't have to decide anything today. This guide will still be here when you need it.">Gracias por estar aquí. No tienes que decidir nada hoy. Esta guía seguirá aquí cuando la necesites.</p>
         <nav class="checkin-farewell-links" aria-label="Enlaces de cierre">
           <a href="/" data-i18n="ci_3_inicio" data-es="Volver al inicio" data-en="Back to home">Volver al inicio</a>
@@ -1073,10 +1089,16 @@
       const step2b = document.getElementById('checkinStep2b');
       const step3 = document.getElementById('checkinStep3');
       const emailWrap = document.getElementById('checkinEmailWrap');
-      const emailInput = document.getElementById('checkinEmail');
+      const checkinForm = document.getElementById('checkinForm');
+      const initialResponseInput = document.getElementById('checkinInitialResponse');
+      const formSuccess = document.getElementById('checkinFormSuccess');
       if (!step1) return;
 
       let step1Response = null;
+
+      function syncInitialResponse() {
+        if (initialResponseInput && step1Response) initialResponseInput.value = step1Response;
+      }
 
       function goToStep(fromEl, toEl) {
         if (fromEl) {
@@ -1094,6 +1116,7 @@
           const response = btn.dataset.step1;
           if (step1Response) return;
           step1Response = response;
+          syncInitialResponse();
           trackSignal('checkin_initial_response', { value: response, step1_response: response });
           step1.querySelectorAll('[data-step1]').forEach(b => { b.disabled = true; });
           goToStep(step1, response === 'mejor' ? step2a : step2b);
@@ -1106,8 +1129,9 @@
         trackSignal('checkin_secondary_choice', props);
         actionsEl?.querySelectorAll('button').forEach(b => { b.disabled = true; });
         if (choice === 'recursos') {
+          syncInitialResponse();
           emailWrap.hidden = false;
-          emailInput?.focus();
+          checkinForm?.querySelector('input[name="email"]')?.focus();
         } else if (choice === 'ver') {
           window.location.href = '/apoyo/';
         } else if (choice === 'no') {
@@ -1127,18 +1151,28 @@
         });
       });
 
-      function captureEmail() {
-        const email = emailInput?.value.trim();
-        if (!email || !emailInput.checkValidity()) return;
-        trackSignal('checkin_email_captured', { checkin_email_captured: true });
-        emailInput.disabled = true;
-        showToast(lang === 'es' ? '¡Gracias!' : 'Thank you!');
-      }
-
-      emailInput?.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          captureEmail();
+      checkinForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        syncInitialResponse();
+        const submitBtn = checkinForm.querySelector('button[type="submit"]');
+        if (submitBtn) submitBtn.disabled = true;
+        try {
+          const res = await fetch(checkinForm.action, {
+            method: 'POST',
+            body: new FormData(checkinForm),
+            headers: { Accept: 'application/json' }
+          });
+          if (res.ok) {
+            trackSignal('checkin_email_captured', { checkin_email_captured: true });
+            checkinForm.hidden = true;
+            if (formSuccess) formSuccess.hidden = false;
+          } else if (submitBtn) {
+            submitBtn.disabled = false;
+            showToast(lang === 'es' ? 'No se pudo enviar. Intenta de nuevo.' : 'Could not send. Please try again.');
+          }
+        } catch {
+          if (submitBtn) submitBtn.disabled = false;
+          showToast(lang === 'es' ? 'No se pudo enviar. Intenta de nuevo.' : 'Could not send. Please try again.');
         }
       });
     })();
