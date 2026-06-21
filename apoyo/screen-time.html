@@ -596,9 +596,183 @@
     .sc-btn.wa:hover { background: rgba(53,208,110,.18); }
 
     /* ─────────────────────────────────────────
+       EL CHECK-IN AMABLE
+    ───────────────────────────────────────── */
+    .checkin-amable {
+      max-width: var(--content-max);
+      margin: 0 auto;
+      padding: 88px var(--gutter-mobile) 72px;
+      position: relative;
+    }
+    .checkin-amable::before {
+      content: '';
+      display: block;
+      max-width: 680px;
+      margin: 0 auto;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(31, 46, 70, 0.1) 15%, rgba(31, 46, 70, 0.1) 85%, transparent);
+      position: absolute;
+      top: 40px;
+      left: var(--gutter-mobile);
+      right: var(--gutter-mobile);
+    }
+    .checkin-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .checkin-card {
+      background: #FBF7F3;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: var(--shadow-card);
+      padding: 32px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .checkin-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, rgba(244, 168, 138, 0.07), transparent 58%);
+      pointer-events: none;
+    }
+    .checkin-card-inner {
+      position: relative;
+      z-index: 1;
+    }
+    .checkin-step {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity .4s var(--ease-out), transform .4s var(--ease-out);
+      text-align: center;
+    }
+    .checkin-step.is-active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .checkin-step[hidden] { display: none; }
+    .checkin-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      margin: 0 auto 1.35rem;
+      border-radius: 50%;
+      background: rgba(244, 168, 138, 0.12);
+      border: 1px solid rgba(244, 168, 138, 0.22);
+      color: var(--accent-ink);
+    }
+    .checkin-icon-emoji { font-size: 1.25rem; line-height: 1; }
+    .checkin-heading {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.25rem, 3.2vw, 1.5rem);
+      font-weight: 700;
+      color: var(--obsidian);
+      margin: 0 auto 1rem;
+      max-width: 22ch;
+      line-height: 1.25;
+    }
+    .checkin-subtext,
+    .checkin-message {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px;
+      color: rgba(31, 46, 70, 0.62);
+      line-height: 1.65;
+      margin: 0 auto;
+      max-width: 38ch;
+    }
+    .checkin-question {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--obsidian);
+      margin: 2rem auto 1.25rem;
+      padding-top: 1.75rem;
+      max-width: 34ch;
+      border-top: 1px solid rgba(31, 46, 70, 0.06);
+    }
+    .checkin-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 340px;
+      margin: 0 auto;
+    }
+    .checkin-btn {
+      width: 100%;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 15px 22px;
+      border: none;
+      border-radius: var(--radius-md);
+      background: var(--obsidian);
+      color: #FBF7F3;
+      cursor: pointer;
+      transition: opacity .2s, transform .15s var(--ease-out), box-shadow .2s;
+      box-shadow: var(--shadow-btn);
+    }
+    .checkin-btn:hover { opacity: .9; }
+    .checkin-btn:active { transform: scale(0.98); }
+    .checkin-btn:disabled { opacity: .45; cursor: default; box-shadow: none; }
+    .checkin-btn-secondary {
+      background: rgba(255, 255, 255, 0.45);
+      color: var(--obsidian);
+      border: 1px solid rgba(31, 46, 70, 0.12);
+      box-shadow: none;
+    }
+    .checkin-btn-secondary:hover { background: rgba(255, 255, 255, 0.75); opacity: 1; }
+    .checkin-email-wrap { margin-top: 1.5rem; max-width: 340px; margin-left: auto; margin-right: auto; }
+    .checkin-email-wrap[hidden] { display: none; }
+    .checkin-email-input {
+      display: block;
+      width: 100%;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px;
+      color: var(--obsidian);
+      padding: 13px 16px;
+      border: 1px solid rgba(31, 46, 70, 0.1);
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.65);
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+      text-align: center;
+    }
+    .checkin-email-input:focus {
+      border-color: rgba(244, 168, 138, 0.45);
+      box-shadow: 0 0 0 3px rgba(244, 168, 138, 0.12);
+    }
+    .checkin-email-input::placeholder { color: rgba(31, 46, 70, 0.35); }
+    .checkin-farewell { max-width: 42ch; font-size: 15px; line-height: 1.7; }
+    .checkin-farewell-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem 0.75rem;
+      margin-top: 2rem;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 13px;
+    }
+    .checkin-farewell-links a {
+      color: rgba(31, 46, 70, 0.52);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color .2s, border-color .2s;
+    }
+    .checkin-farewell-links a:hover {
+      color: var(--obsidian);
+      border-bottom-color: rgba(31, 46, 70, 0.18);
+    }
+    .checkin-farewell-sep { color: rgba(31, 46, 70, 0.28); user-select: none; }
+
+    /* ─────────────────────────────────────────
        TABLET (640px+)
     ───────────────────────────────────────── */
     @media (min-width: 640px) {
+      .checkin-amable { padding: 96px 32px 80px; }
+      .checkin-card { padding: 48px; }
       body { font-size: 16px; }
       .content-wrapper { padding: 0 32px; }
       .p-nav { padding-left: 32px; padding-right: 32px; }
@@ -973,6 +1147,55 @@
     </main>
   </div><!-- /page-shell -->
 
+  <section class="checkin-amable" aria-label="El Check-In Amable">
+    <div class="checkin-wrap">
+      <div class="checkin-card">
+        <div class="checkin-card-inner">
+      <div class="checkin-step is-active" id="checkinStep1">
+        <div class="checkin-icon checkin-icon-emoji" aria-hidden="true">🌱</div>
+        <h2 class="checkin-heading" data-i18n="ci_h1" data-es="¿Cómo te sientes ahora?" data-en="How are you feeling right now?">¿Cómo te sientes ahora?</h2>
+        <p class="checkin-subtext" data-i18n="ci_sub" data-es="Si llegaste hasta aquí, espero que haya habido aunque sea un pequeño momento para respirar." data-en="If you made it this far, I hope there was at least a small moment to breathe.">Si llegaste hasta aquí, espero que haya habido aunque sea un pequeño momento para respirar.</p>
+        <p class="checkin-question" data-i18n="ci_q1" data-es="¿Este protocolo te ayudó hoy?" data-en="Did this protocol help you today?">¿Este protocolo te ayudó hoy?</p>
+        <div class="checkin-actions">
+          <button type="button" class="checkin-btn" data-step1="mejor" data-i18n="ci_s1_mejor" data-es="Sí, un poco mejor" data-en="Yes, a little better">Sí, un poco mejor</button>
+          <button type="button" class="checkin-btn checkin-btn-secondary" data-step1="apoyo" data-i18n="ci_s1_apoyo" data-es="Todavía necesito apoyo" data-en="I still need support">Todavía necesito apoyo</button>
+        </div>
+      </div>
+      <div class="checkin-step" id="checkinStep2a" hidden>
+        <div class="checkin-icon checkin-icon-emoji" aria-hidden="true">🌱</div>
+        <p class="checkin-message" data-i18n="ci_2a_msg" data-es="Me alegra acompañarte. Guarda esta guía para volver cuando la necesites." data-en="I'm glad to walk with you. Save this guide to return when you need it.">Me alegra acompañarte. Guarda esta guía para volver cuando la necesites.</p>
+        <p class="checkin-question" data-i18n="ci_2a_q" data-es="¿Quieres recibir más recursos como este?" data-en="Would you like to receive more resources like this?">¿Quieres recibir más recursos como este?</p>
+        <div class="checkin-actions">
+          <button type="button" class="checkin-btn" data-step2="recursos" data-i18n="ci_2a_recursos" data-es="Recibir recursos" data-en="Receive resources">Recibir recursos</button>
+          <button type="button" class="checkin-btn checkin-btn-secondary" data-step2="no" data-i18n="ci_2a_no" data-es="No por ahora" data-en="Not right now">No por ahora</button>
+        </div>
+        <div class="checkin-email-wrap" id="checkinEmailWrap" hidden>
+          <input type="email" class="checkin-email-input" id="checkinEmail" name="email" autocomplete="email" placeholder="tu@correo.com" aria-label="Correo electrónico">
+        </div>
+      </div>
+      <div class="checkin-step" id="checkinStep2b" hidden>
+        <div class="checkin-icon checkin-icon-emoji" aria-hidden="true">🌱</div>
+        <p class="checkin-message" data-i18n="ci_2b_msg" data-es="A veces una sola lectura no basta. Puedes volver a la guía o explorar recursos más profundos." data-en="Sometimes one reading isn't enough. You can return to the guide or explore deeper resources.">A veces una sola lectura no basta. Puedes volver a la guía o explorar recursos más profundos.</p>
+        <p class="checkin-question" data-i18n="ci_2b_q" data-es="¿Quieres saber sobre recursos relacionados?" data-en="Would you like to know about related resources?">¿Quieres saber sobre recursos relacionados?</p>
+        <div class="checkin-actions">
+          <button type="button" class="checkin-btn" data-step2="ver" data-i18n="ci_2b_ver" data-es="Ver recursos relacionados" data-en="See related resources">Ver recursos relacionados</button>
+          <button type="button" class="checkin-btn checkin-btn-secondary" data-step2="no" data-i18n="ci_2b_no" data-es="No por ahora" data-en="Not right now">No por ahora</button>
+        </div>
+      </div>
+      <div class="checkin-step" id="checkinStep3" hidden>
+        <div class="checkin-icon checkin-icon-emoji" aria-hidden="true">🌱</div>
+        <p class="checkin-message checkin-farewell" data-i18n="ci_3_msg" data-es="Gracias por estar aquí. No tienes que decidir nada hoy. Esta guía seguirá aquí cuando la necesites." data-en="Thank you for being here. You don't have to decide anything today. This guide will still be here when you need it.">Gracias por estar aquí. No tienes que decidir nada hoy. Esta guía seguirá aquí cuando la necesites.</p>
+        <nav class="checkin-farewell-links" aria-label="Enlaces de cierre">
+          <a href="/" data-i18n="ci_3_inicio" data-es="Volver al inicio" data-en="Back to home">Volver al inicio</a>
+          <span class="checkin-farewell-sep" aria-hidden="true">·</span>
+          <a href="/apoyo/" data-i18n="ci_3_explorar" data-es="Explorar otros temas" data-en="Explore other topics">Explorar otros temas</a>
+        </nav>
+      </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <script>
   (function () {
     'use strict';
@@ -1249,6 +1472,82 @@
         showToast(lang === 'es' ? 'Link copiado' : 'Link copied');
       });
     }
+
+    (function initCheckinAmable() {
+      const step1 = document.getElementById('checkinStep1');
+      const step2a = document.getElementById('checkinStep2a');
+      const step2b = document.getElementById('checkinStep2b');
+      const step3 = document.getElementById('checkinStep3');
+      const emailWrap = document.getElementById('checkinEmailWrap');
+      const emailInput = document.getElementById('checkinEmail');
+      if (!step1) return;
+
+      let step1Response = null;
+
+      function goToStep(fromEl, toEl) {
+        if (fromEl) {
+          fromEl.classList.remove('is-active');
+          setTimeout(() => { fromEl.hidden = true; }, 320);
+        }
+        if (toEl) {
+          toEl.hidden = false;
+          requestAnimationFrame(() => toEl.classList.add('is-active'));
+        }
+      }
+
+      step1.querySelectorAll('[data-step1]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const response = btn.dataset.step1;
+          if (step1Response) return;
+          step1Response = response;
+          trackSignal('checkin_initial_response', { value: response, step1_response: response });
+          step1.querySelectorAll('[data-step1]').forEach(b => { b.disabled = true; });
+          goToStep(step1, response === 'mejor' ? step2a : step2b);
+        });
+      });
+
+      function handleStep2(choice, actionsEl, fromStep) {
+        const props = { value: choice, step2_choice: choice };
+        if (choice === 'no') props.journey_complete = true;
+        trackSignal('checkin_secondary_choice', props);
+        actionsEl?.querySelectorAll('button').forEach(b => { b.disabled = true; });
+        if (choice === 'recursos') {
+          emailWrap.hidden = false;
+          emailInput?.focus();
+        } else if (choice === 'ver') {
+          window.location.href = '/apoyo/';
+        } else if (choice === 'no') {
+          goToStep(fromStep, step3);
+        }
+      }
+
+      step2a?.querySelectorAll('[data-step2]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          handleStep2(btn.dataset.step2, btn.closest('.checkin-actions'), step2a);
+        });
+      });
+
+      step2b?.querySelectorAll('[data-step2]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          handleStep2(btn.dataset.step2, btn.closest('.checkin-actions'), step2b);
+        });
+      });
+
+      function captureEmail() {
+        const email = emailInput?.value.trim();
+        if (!email || !emailInput.checkValidity()) return;
+        trackSignal('checkin_email_captured', { checkin_email_captured: true });
+        emailInput.disabled = true;
+        showToast(lang === 'es' ? '¡Gracias!' : 'Thank you!');
+      }
+
+      emailInput?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          captureEmail();
+        }
+      });
+    })();
 
     // ─────────────────────────────────────────
     // INIT

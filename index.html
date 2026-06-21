@@ -149,13 +149,13 @@
     /* ═══════════════ HERO ═══════════════ */
     .hero{position:relative;height:100vh;min-height:600px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;}
     .hero-video {
-      position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1; opacity:0;
+      position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:68% 42%; z-index:1; opacity:0;
       transition: opacity 2s var(--ease-cinema);
       transform: scale(1.18); transform-origin: center center;
       filter: saturate(1.1) contrast(1.05);
       pointer-events: none;
     }
-    .hero-photo{position:absolute;inset:0;z-index:0;background-image:url('https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1780818555/ChatGPT_Image_Jun_7_2026_12_48_33_AM_1_ytg3g4.png');background-size:cover;background-position:75% center;filter:brightness(.97) saturate(1.18) contrast(1.07) sepia(.04);transform:scale(1.04);transition:transform 16s var(--ease-cinema),filter 1.2s ease;animation:hero-breath 20s ease-in-out infinite alternate;}
+    .hero-photo{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:68% 42%;filter:brightness(.97) saturate(1.18) contrast(1.07) sepia(.04);transform:scale(1.04);transition:transform 16s var(--ease-cinema),filter 1.2s ease;animation:hero-breath 20s ease-in-out infinite alternate;}
     .hero-photo.loaded{transform:scale(1);filter:brightness(.97) saturate(1.18) contrast(1.07) sepia(.04);animation:hero-breath 20s ease-in-out infinite alternate;}
     .hero-overlay-dir{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to right,rgba(250,247,241,.9) 0%,rgba(250,247,241,.82) 20%,rgba(250,247,241,.18) 50%,transparent 90%);}
     .hero-overlay-vert{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(to top,var(--void) 0%,rgba(250,247,241,.75) 28%,rgba(250,247,241,.12) 58%,rgba(250,247,241,0) 80%);}
@@ -322,7 +322,9 @@
       .nav{padding:max(16px,env(safe-area-inset-top)) 22px 14px;}
       .hero{height:auto;min-height:100svh;} .hero-body{padding:max(104px,15vh) 24px 44px;}
       .hero-overlay-dir{background:linear-gradient(to bottom,rgba(250,247,241,.95) 0%,rgba(250,247,241,.88) 42%,rgba(250,247,241,.15) 75%,transparent 100%);}
-      .hero-photo{background-position:72% center;} .hero-headline{font-size:clamp(2.7rem,11vw,3.8rem);max-width:100%;}
+      .hero-video{display:none;}
+      .hero-photo{object-position:center center;}
+      .hero-headline{font-size:clamp(2.7rem,11vw,3.8rem);max-width:100%;}
       .divergence{flex-direction:column;gap:12px;} .entry{max-width:100%;}
       .affirm{flex-direction:column;gap:16px;padding:26px 24px;} .affirm-sep{display:none;}
       .section{padding:64px 24px;} .section-inner{padding:0 24px;} .section-full{padding:64px 0;}
@@ -337,6 +339,9 @@
       .cta-text{text-align:center;} .cta-btn{margin:0 auto;}
       .cta-photo{max-width:280px;aspect-ratio:5/4;margin:0 auto;order:-1;}
       footer{padding:48px 24px 24px;} .footer-grid{grid-template-columns:1fr 1fr;gap:32px;} .footer-brand{grid-column:1/-1;}
+    }
+    @media(max-width:640px){
+      .hero-photo{object-position:center center;}
     }
     @media(max-width:560px){ .guides-grid{grid-template-columns:1fr;} .footer-grid{grid-template-columns:1fr;} .footer-bottom{flex-direction:column;gap:8px;} }
   </style>
@@ -383,7 +388,7 @@
 
   <!-- ─────── HERO ─────── -->
   <section class="hero" id="top" aria-label="Inicio">
-    <div class="hero-photo" id="heroPhoto" aria-hidden="true"></div>
+    <img class="hero-photo" id="heroPhoto" alt="" aria-hidden="true" decoding="async">
     <video id="heroFilm" autoplay muted loop playsinline preload="auto" class="hero-video">
       <source src="assets/motion/hero-llegada.mp4" type="video/mp4">
     </video>
@@ -744,15 +749,51 @@
 
     /* ── Hero Film ── */
     const heroFilm = document.getElementById('heroFilm');
+    const heroPhoto = document.getElementById('heroPhoto');
+    const heroAsset = 'v1780818555/ChatGPT_Image_Jun_7_2026_12_48_33_AM_1_ytg3g4.png';
+    const heroCloud = 'https://res.cloudinary.com/dogtoagya/image/upload';
+
+    function heroPhotoSrc() {
+      const w = window.innerWidth;
+      if (w <= 640) return `${heroCloud}/c_fill,w_900,h_1400,g_xy_center,x_1250,y_340/q_auto/f_auto/${heroAsset}`;
+      if (w <= 980) return `${heroCloud}/c_fill,w_1400,h_1000,g_xy_center,x_1250,y_340/q_auto/f_auto/${heroAsset}`;
+      return `${heroCloud}/q_auto/f_auto/${heroAsset}`;
+    }
+
+    function applyHeroArtDirection() {
+      const useVideo = window.innerWidth > 980;
+      if (heroPhoto) {
+        const nextSrc = heroPhotoSrc();
+        if (heroPhoto.getAttribute('src') !== nextSrc) heroPhoto.src = nextSrc;
+      }
+      if (heroFilm) {
+        heroFilm.style.display = useVideo ? '' : 'none';
+        if (!useVideo) {
+          heroFilm.style.opacity = '0';
+          try { heroFilm.pause(); } catch (e) {}
+        }
+      }
+    }
+
+    if (heroPhoto) {
+      heroPhoto.addEventListener('load', () => heroPhoto.classList.add('loaded'), { passive: true });
+      applyHeroArtDirection();
+      if (heroPhoto.complete) heroPhoto.classList.add('loaded');
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(applyHeroArtDirection, 150);
+      }, { passive: true });
+    }
+
     if (heroFilm) {
       let revealed = false;
       const revealFilm = () => {
-        if (revealed) return;
+        if (revealed || window.innerWidth <= 980) return;
         revealed = true;
         try { heroFilm.playbackRate = 0.75; } catch(e) {}
         heroFilm.play().catch(() => {});
         heroFilm.style.opacity = '1';
-        console.log('Hero Film Revealed — readyState:', heroFilm.readyState);
       };
 
       heroFilm.addEventListener('canplay',      revealFilm, { once: true });
@@ -760,14 +801,6 @@
       heroFilm.addEventListener('loadeddata',   revealFilm, { once: true });
       if (heroFilm.readyState >= 2) revealFilm();
       setTimeout(revealFilm, 2000);
-    }
-
-    /* ── Hero ken burns ── */
-    const heroPhoto = document.getElementById('heroPhoto');
-    if (heroPhoto) {
-      const img = new Image();
-      img.onload = () => heroPhoto.classList.add('loaded');
-      img.src = 'https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1780818555/ChatGPT_Image_Jun_7_2026_12_48_33_AM_1_ytg3g4.png';
     }
 
     /* ── Scroll reveals ── */
