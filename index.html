@@ -246,31 +246,80 @@
     .link-pill:hover{color:var(--gold);border-color:var(--gold);gap:14px;}
 
     /* ═══════════════ NARI BAND ═══════════════ */
-    .nari-section{background:#A7B6C6;border-top:1px solid rgba(31,46,70,.07);border-bottom:1px solid rgba(31,46,70,.07);position:relative;overflow:hidden;padding-top:120px;padding-bottom:120px;}
-    .nari-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:720px;height:360px;background:radial-gradient(ellipse at center,rgba(250,246,242,.45) 0%,transparent 70%);pointer-events:none;}
-    .nari-grid{position:relative;display:grid;grid-template-columns:0.85fr 1fr;gap:72px;align-items:center;}
-    .nari-media{position:relative;max-width:400px;}
-    .nari-photo{width:100%;border-radius:22px;overflow:hidden;aspect-ratio:4/5;position:relative;box-shadow:0 30px 70px rgba(31,46,70,.22);}
-    .nari-photo::before{content:'';position:absolute;inset:12px;border:1px solid rgba(250,246,242,.55);border-radius:13px;z-index:2;pointer-events:none;}
-    .nari-photo img{width:100%;height:100%;object-fit:cover;object-position:center;}
-    .nari-quote{position:relative;margin-bottom:28px;}
-    .nari-quote .qmark{font-family:var(--serif);font-style:italic;font-size:3.4rem;line-height:.4;color:var(--coral-ink);opacity:.6;display:block;margin-bottom:14px;}
-    .nari-quote blockquote{font-family:var(--serif);font-size:clamp(1.55rem,2.3vw,2rem);font-weight:300;font-style:italic;line-height:1.3;color:var(--text);max-width:26ch;}
-    .nari-quote cite{display:block;margin-top:16px;font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--gold);}
+    .nari-section{
+      position:relative;overflow:hidden;background:var(--void);
+      padding:120px 56px;
+      border-top:1px solid rgba(31,46,70,.06);
+      border-bottom:1px solid rgba(31,46,70,.06);
+    }
+    .nari-section::before{
+      content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+      background:
+        radial-gradient(ellipse 50% 46% at 18% 30%, rgba(244,168,138,.07) 0%, transparent 60%),
+        radial-gradient(ellipse 46% 44% at 92% 78%, rgba(133,153,173,.08) 0%, transparent 62%);
+    }
+    .nari-arcs{position:absolute;right:-40px;bottom:-40px;z-index:0;pointer-events:none;opacity:.5;}
+    .nari-arcs path{fill:none;stroke:var(--coral);stroke-width:1.4;}
+    .nari-grid{
+      position:relative;z-index:2;max-width:1240px;margin:0 auto;
+      display:grid;grid-template-columns:1.02fr 1fr;gap:72px;align-items:center;
+    }
+    .nari-cluster{position:relative;width:100%;max-width:560px;}
+    .nari-offset{
+      position:absolute;z-index:0;
+      left:16%;top:14%;width:92%;height:92%;
+      background:var(--void-mid);border-radius:10px;
+    }
+    .nari-frame-lg{
+      position:relative;z-index:2;
+      aspect-ratio:4/5;width:100%;border-radius:24px;overflow:hidden;
+      box-shadow:0 36px 80px rgba(31,46,70,.20);
+    }
+    .nari-frame-lg img{
+      display:block;width:100%;height:100%;object-fit:cover;
+      object-position:50% 22%;
+      filter:saturate(1.07) contrast(1.025) brightness(1.005);
+    }
     .nari-content{position:relative;}
-    .nari-content h3{font-family:var(--serif);font-size:1.95rem;font-weight:400;color:var(--text);margin-bottom:14px;}
-    .nari-content p{font-size:.9rem;color:rgba(31,46,70,.84);line-height:1.78;margin-bottom:24px;max-width:46ch;}
-    .nari-tags{display:flex;flex-wrap:wrap;gap:8px;}
-    .nari-tag{display:inline-flex;align-items:center;gap:7px;padding:7px 15px;border-radius:var(--pill);border:1px solid rgba(31,46,70,.14);background:rgba(250,246,242,.42);font-size:.7rem;color:var(--text-dim);letter-spacing:.02em;}
-    .nari-tag svg{width:13px;height:13px;}
-    .nari-tag.t1 svg{color:var(--gold);} .nari-tag.t2 svg{color:var(--teal);}
-    .nari-tag.t3 svg{color:var(--coral-ink);} .nari-tag.t4 svg{color:var(--gold);}
-    .nari-seal{position:absolute;right:-16px;bottom:26px;width:122px;height:122px;border-radius:50%;background:var(--void);border:1px solid rgba(31,46,70,.22);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:3px;z-index:3;box-shadow:0 16px 36px rgba(31,46,70,.2);}
-    .nari-seal::before{content:'';position:absolute;inset:7px;border:1px solid rgba(31,46,70,.18);border-radius:50%;}
-    .seal-pre{font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);}
-    .seal-num{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--gold);line-height:1;}
-    .seal-post{font-size:.46rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);line-height:1.5;}
-    .seal-heart{color:var(--coral-ink);font-size:.7rem;margin-top:2px;}
+    .nari-eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:26px;}
+    .nari-eyebrow .lbl{font-size:.68rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--coral-ink);white-space:nowrap;}
+    .nari-eyebrow .line{flex:1;height:1px;background:linear-gradient(to right,rgba(217,107,71,.45),rgba(217,107,71,.12));}
+    .nari-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--coral-ink);flex-shrink:0;}
+    .nari-title{
+      font-family:var(--serif);font-weight:500;
+      font-size:clamp(3.4rem,7vw,6.4rem);
+      line-height:.9;letter-spacing:-.012em;color:var(--text);
+      margin-bottom:30px;
+    }
+    .nari-title .l2{display:block;font-weight:600;}
+    .nari-rule{display:block;width:62px;height:2px;background:var(--coral-ink);margin:0 0 28px;border-radius:2px;}
+    .nari-bio{
+      font-size:1.06rem;line-height:1.7;color:rgba(31,46,70,.82);
+      max-width:44ch;margin-bottom:38px;
+    }
+    .nari-cta{
+      display:inline-flex;align-items:center;gap:16px;
+      padding:17px 38px;border-radius:var(--pill);
+      background:var(--coral);color:var(--navy);
+      font-size:.82rem;font-weight:600;letter-spacing:.06em;
+      text-decoration:none;cursor:pointer;
+      box-shadow:0 10px 30px rgba(244,168,138,.32);
+      transition:transform .45s var(--ease-silk),box-shadow .45s var(--ease-silk),filter .3s;
+    }
+    .nari-cta .arrow{transition:transform .4s var(--ease-silk);}
+    .nari-cta:hover{transform:translateY(-3px);box-shadow:0 18px 46px rgba(244,168,138,.42);filter:brightness(1.04);}
+    .nari-cta:hover .arrow{transform:translateX(6px);}
+    @media(max-width:980px){
+      .nari-section{padding:72px 24px;}
+      .nari-grid{grid-template-columns:1fr;gap:56px;}
+      .nari-cluster{max-width:440px;margin:0 auto;}
+      .nari-offset{left:12%;top:12%;}
+      .nari-title{font-size:clamp(3rem,14vw,4.6rem);}
+      .nari-bio{max-width:none;}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .nari-cta,.nari-cta .arrow{transition:none;}
+    }
 
     /* ═══════════════ CLOSING CTA ═══════════════ */
     .cta-band{position:relative;overflow:hidden;padding:80px 56px;background:var(--void);}
@@ -331,9 +380,6 @@
       .pillars-grid{grid-template-columns:1fr;gap:40px;}
       .pillar{padding:0 24px;} .pillar:not(:last-child)::after{display:none;}
       .guides-grid{grid-template-columns:1fr 1fr;gap:12px;}
-      .nari-grid{grid-template-columns:1fr;gap:40px;justify-items:center;text-align:center;}
-      .nari-photo{margin:0 auto;} .nari-quote .qmark{margin:0 auto 8px;} .nari-quote blockquote{max-width:none;} .nari-content p{max-width:none;} .nari-seal{position:relative;right:auto;bottom:auto;margin:-50px auto 0;}
-      .nari-tags{justify-content:center;}
       .cta-band{padding:56px 18px;}
       .cta-inner{grid-template-columns:1fr;gap:30px;padding:40px 28px;}
       .cta-text{text-align:center;} .cta-btn{margin:0 auto;}
@@ -622,37 +668,40 @@
   </section>
 
   <!-- ─────── NARI BAND ─────── -->
-  <section class="section nari-section" id="sobre-nari" aria-labelledby="nari-heading">
+  <section class="nari-section" id="sobre-nari" aria-labelledby="nari-heading">
+    <span class="nari-arcs" aria-hidden="true">
+      <svg width="320" height="320" viewBox="0 0 320 320">
+        <path d="M320 200 A120 120 0 0 0 200 320"/>
+        <path d="M320 150 A170 170 0 0 0 150 320"/>
+        <path d="M320 100 A220 220 0 0 0 100 320"/>
+      </svg>
+    </span>
     <div class="nari-grid">
-      <div class="nari-media scroll-reveal">
-        <div class="nari-photo">
-          <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1780821934/ChatGPT_Image_Jun_7_2026_01_43_13_AM_jc6u1e.png" alt="Nari Fateha, educadora y creadora de Criar Sin Culpas" loading="lazy">
-        </div>
-        <div class="nari-seal" aria-label="Más de 10 años acompañando familias">
-          <span class="seal-pre" data-i18n="seal_pre" data-es="Más de" data-en="More than">Más de</span>
-          <span class="seal-num">10</span>
-          <span class="seal-post" data-i18n="seal_post" data-es="Años acompañando familias" data-en="Years guiding families">Años acompañando familias</span>
-          <span class="seal-heart" aria-hidden="true">&#9829;</span>
-        </div>
+      <div class="nari-cluster">
+        <span class="nari-offset" aria-hidden="true"></span>
+        <figure class="nari-frame nari-frame-lg">
+          <img
+            src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto,f_auto/v1782259463/Nari_hero_conocela_towypb.png"
+            alt="Nari, suéter azul" loading="lazy" decoding="async">
+        </figure>
       </div>
-      <div class="nari-content scroll-reveal delay-1">
-        <div class="nari-quote">
-          <span class="qmark" aria-hidden="true">"</span>
-          <blockquote data-i18n="nari_quote"
-            data-es="Criar no es un examen. Es un proceso. Y no tienes que hacerlo sola."
-            data-en="Parenting is not a test. It's a process. And you don't have to do it alone.">Criar no es un examen. Es un proceso. Y no tienes que hacerlo sola.</blockquote>
-          <cite data-i18n="nari_cite" data-es="— Nari" data-en="— Nari">— Nari</cite>
+      <div class="nari-content">
+        <div class="nari-eyebrow">
+          <span class="lbl" data-i18n="nari_eyebrow" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</span>
+          <span class="line" aria-hidden="true"></span>
+          <span class="dot" aria-hidden="true"></span>
         </div>
-        <h3 id="nari-heading" data-i18n="nari_h" data-es="Conoce a Nari" data-en="Meet Nari">Conoce a Nari</h3>
-        <p data-i18n="nari_bio"
-           data-es="Educadora, madre y fundadora de Criar Sin Culpas. Combina formación, experiencia y vida real para acompañar a familias latinas en los momentos más intensos de la crianza."
-           data-en="Educator, mother, and founder of Criar Sin Culpas. She blends training, experience, and real life to accompany Latino families through the most intense moments of parenting.">Educadora, madre y fundadora de Criar Sin Culpas. Combina formación, experiencia y vida real para acompañar a familias latinas en los momentos más intensos de la crianza.</p>
-        <div class="nari-tags">
-          <span class="nari-tag t1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg><span data-i18n="cred1" data-es="Crianza consciente" data-en="Conscious parenting">Crianza consciente</span></span>
-          <span class="nari-tag t2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span data-i18n="cred2" data-es="Regulación emocional" data-en="Emotional regulation">Regulación emocional</span></span>
-          <span class="nari-tag t3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span data-i18n="cred3" data-es="Cultura latina" data-en="Latino culture">Cultura latina</span></span>
-          <span class="nari-tag t4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg><span data-i18n="cred4" data-es="Herramientas prácticas" data-en="Practical tools">Herramientas prácticas</span></span>
-        </div>
+        <h2 class="nari-title" id="nari-heading" data-i18n="nari_title"
+            data-es="Conoce<span class='l2'>a Nari</span>"
+            data-en="Meet<span class='l2'>Nari</span>">Conoce<span class="l2">a Nari</span></h2>
+        <span class="nari-rule" aria-hidden="true"></span>
+        <p class="nari-bio" data-i18n="nari_bio"
+           data-es="Madre, guía y creadora de Criar Sin Culpas. Nari acompaña a familias desde un lugar de presencia, calma y conexión, combinando experiencia real con una forma de enseñar que se siente humana, práctica y profundamente cercana."
+           data-en="Mother, guide, and creator of Criar Sin Culpas. Nari supports families from a place of presence, calm, and connection, blending real experience with a way of teaching that feels human, practical, and deeply close.">Madre, guía y creadora de Criar Sin Culpas. Nari acompaña a familias desde un lugar de presencia, calma y conexión, combinando experiencia real con una forma de enseñar que se siente humana, práctica y profundamente cercana.</p>
+        <a class="nari-cta" href="/sobre-nari/">
+          <span data-i18n="nari_cta" data-es="Conoce su historia" data-en="Read her story">Conoce su historia</span>
+          <span class="arrow" aria-hidden="true">&#8594;</span>
+        </a>
       </div>
     </div>
   </section>

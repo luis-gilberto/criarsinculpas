@@ -44,7 +44,7 @@
     body { font-family: var(--serif); font-weight: 300; letter-spacing: 0.01em; background: var(--void); color: var(--text); overflow-x: hidden; line-height: 1.65; }
     a { text-decoration: none; color: inherit; }
 
-    /* functional UI stays sans — everything editorial is serif */
+    /* functional UI stays sans - everything editorial is serif */
     .eyebrow, label, .tag, button, .btn, .back-link, .lang-toggle, .lang-btn,
     .form-input, .form-select, .form-textarea, .checkout-nav,
       .nari-kicker, .path-name, .ch-name, .ch-best,
@@ -143,6 +143,10 @@
     .sf-status { display: inline-flex; align-items: center; gap: 8px; font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.04em; color: rgba(251,247,243,.62); background: rgba(255,255,255,.06); border: 1px solid rgba(251,247,243,.12); padding: 9px 16px; border-radius: var(--pill); margin-bottom: 24px; }
     .sf-status svg { stroke: rgba(251,247,243,.62); }
     .sf-copy { font-family: var(--sans); font-size: 0.74rem; color: rgba(251,247,243,.45); }
+    .sf-credit { font-family: var(--sans); font-size: 0.74rem; color: rgba(251,247,243,.55); margin-top: 10px; }
+    .sf-credit a { color: rgba(251,247,243,.72); border-bottom: 1px solid rgba(244,168,138,.4); transition: color 0.2s; }
+    .sf-credit a:hover { color: var(--coral); }
+    .visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
     /* ---------- hero ---------- */
     .hero { padding: 72px 24px 112px; text-align: center; position: relative; z-index: 10; background: var(--void); }
@@ -413,11 +417,28 @@
       .module-grid { grid-template-columns: 1fr; }
       .form-row2 { grid-template-columns: 1fr; }
       .compare-row { grid-template-columns: 1fr; }
-      .compare-row > div { border-bottom: 1px solid var(--line); }
+      .compare-row:not(.compare-head) {
+        border-bottom: 2px solid rgba(31,46,70,.08);
+      }
+      .compare-row:not(.compare-head):last-child {
+        border-bottom: none;
+      }
+      .compare-row > div { border-bottom: 1px solid var(--line); padding: 16px 24px; }
+      .compare-row > .col-label {
+        font-family: var(--serif);
+        font-weight: 500;
+        font-size: 1.2rem;
+        line-height: 1.35;
+        color: var(--navy);
+        background: rgba(250,247,241,.65);
+        border-bottom: 1px solid rgba(31,46,70,.1);
+        padding: 20px 24px 14px;
+        align-items: flex-start;
+      }
       .compare-head { display: none; }
       .compare-row > div::before { content: attr(data-col); font-weight: 700; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-ghost); margin-right: auto; }
       .compare-row > div { justify-content: space-between; }
-      .col-label::before { content: none !important; }
+      .compare-row > .col-label::before { content: none !important; }
     }
     @media (prefers-reduced-motion: reduce) {
       .reveal, .reveal.in { animation: none !important; opacity: 1 !important; }
@@ -449,7 +470,7 @@
         <a href="/metodo/" data-en="Method">Método</a>
         <a href="/apoyo/" data-en="Guides">Guías</a>
         <a href="#fundador" class="active" data-en="Early Access">Inscripciones</a>
-        <a href="/#sobre-nari" data-en="About Nari">Sobre Nari</a>
+        <a href="/sobre-nari/" data-en="About Nari">Sobre Nari</a>
       </nav>
       <div class="sh-right">
         <a href="#fundador" class="sh-cta" data-track-cta="header_early_access" data-cta-location="site_header" data-en="Early access">Inscripción anticipada</a>
@@ -467,7 +488,7 @@
       <a href="/metodo/" data-en="Method">Método</a>
       <a href="/apoyo/" data-en="Guides">Guías</a>
       <a href="#fundador" class="active" data-en="Early Access">Inscripciones</a>
-      <a href="/#sobre-nari" data-en="About Nari">Sobre Nari</a>
+      <a href="/sobre-nari/" data-en="About Nari">Sobre Nari</a>
       <a href="#fundador" class="sh-cta-m" data-track-cta="header_early_access" data-cta-location="site_header" data-en="Early access">Inscripción anticipada</a>
     </nav>
   </header>
@@ -484,7 +505,7 @@
       <span class="eyebrow reveal d1" data-en="Early Access">Inscripción Anticipada</span>
       <h1 class="reveal d2" data-en="Learn to parent with more calm, &lt;em&gt;clarity&lt;/em&gt;, and confidence.">Aprende a criar con más calma, <em>claridad</em> y confianza.</h1>
       <p class="hero-thesis reveal d2" data-en="Nari's work, organized into clear, practical routes for the real moments of parenting.">El trabajo de Nari, organizado en rutas claras y prácticas para los momentos reales de la crianza.</p>
-      <p class="hero-sub reveal d3" data-en="A new learning layer for parents and caregivers who want to go deeper: workshops, guides, and resources, step by step.">Una nueva capa de aprendizaje para quienes cuidan y quieren ir más a fondo: talleres, guías y recursos, paso a paso.</p>
+      <p class="hero-sub reveal d3" data-en="A new learning layer for parents and caregivers who want to go deeper: workshops, guides, and resources, step by step.">Una nueva capa de aprendizaje. Para quienes cuidan y quieren ir más a fondo: talleres, guías y recursos, paso a paso.</p>
       <div class="reveal d3">
         <div class="status-line"><span class="status-dot"></span> <span data-en="Under construction from more than 50 original workshops by Nari.">En construcción a partir de más de 50 talleres originales de Nari.</span></div>
       </div>
@@ -492,22 +513,30 @@
         <a href="#fundador" class="btn btn-solid" data-track-cta="fundador" data-en="I want early access">Quiero inscripción anticipada</a>
         <a href="#como-funciona" class="btn btn-outline" data-en="See how it works">Ver cómo funciona</a>
       </div>
-      <img
-        class="hero-photo reveal d3"
-        src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1780899562/02_At-the-Desk_egdgws.png"
-        alt="Nari escribiendo en su cuaderno de trabajo"
-        width="560" height="420" loading="eager" decoding="async">
+      <figure style="display: contents;" itemscope itemtype="https://schema.org/ImageObject">
+        <img
+          class="hero-photo reveal d3"
+          src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1780899562/02_At-the-Desk_egdgws.png"
+          alt="Nari escribiendo en su cuaderno de trabajo"
+          title="Fotografía por Erika Sharnay · Sharnay Photography"
+          itemprop="contentUrl"
+          width="560" height="420" loading="eager" decoding="async">
+        <figcaption class="visually-hidden" itemprop="creator" itemscope itemtype="https://schema.org/Person">
+          <span data-en="Photography by">Fotografía por</span>
+          <a itemprop="url" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer author"><span itemprop="name">Erika Sharnay · Sharnay Photography</span></a>
+        </figcaption>
+      </figure>
     </div>
   </header>
 
   <!-- ============ WHAT THIS IS ============ -->
   <section class="block tight" id="como-funciona">
     <div class="wrap">
-      <h2 class="section-title reveal" data-en="Not just a course. Not just a membership.">No es solo un curso. No es solo una membresía.</h2>
-      <p class="section-lede reveal" data-en="It's the learning layer of Criar Sin Culpas.">Es la capa de aprendizaje de Criar Sin Culpas.</p>
+      <h2 class="section-title reveal" data-en="Not a course. Not a membership.">No es un curso. No es una membresía.</h2>
+      <p class="section-lede reveal" data-en="It's the learning layer of Criar Sin Culpas:">Es la capa de aprendizaje de Criar Sin Culpas:</p>
       <div class="what-card reveal">
-        <p class="lead" data-en="It's where Nari's knowledge becomes a clear learning experience.">Es donde el conocimiento de Nari se convierte en una experiencia de aprendizaje clara.</p>
-        <p data-en="Workshops, guides, and practical resources for parents and caregivers. The material already exists; now we're shaping it into routes that are easy to follow in the moments that truly matter.">Talleres, guías y recursos prácticos para quienes cuidan. El material ya existe; ahora le damos forma en rutas fáciles de seguir para los momentos que de verdad importan.</p>
+        <p class="lead" data-en="Where Nari's knowledge becomes a clear, applicable experience.">donde el conocimiento de Nari se convierte en una experiencia clara y aplicable.</p>
+        <p data-en="Workshops, guides, and practical resources for parents and caregivers. The material already exists; now we're organizing it into routes that are easy to follow in the moments that truly matter.">Talleres, guías y recursos prácticos para quienes cuidan. El material ya existe; ahora lo estamos organizando en rutas fáciles de seguir para los momentos que de verdad importan.</p>
       </div>
     </div>
   </section>
@@ -517,7 +546,7 @@
     <div class="wrap">
       <div class="trust-card reveal">
         <p class="trust-lead" data-en="The free guides remain free.">Las guías gratuitas siguen siendo gratuitas.</p>
-        <p data-en="This library is for families who want to go deeper with more structure, workshops, and resources. It does not replace immediate support; it complements it when a family is ready to learn with more calm.">Esta biblioteca es para quienes quieren profundizar con más estructura, talleres y recursos. No reemplaza el apoyo inmediato; lo complementa cuando una familia está lista para aprender con más calma.</p>
+        <p data-en="This learning space is for those who want to go deeper with more structure. It does not replace immediate support; it complements it when a family is ready to learn with more calm.">Este espacio de aprendizaje es para quienes quieren profundizar con más estructura. No reemplaza el apoyo inmediato; lo complementa cuando una familia está lista para aprender con más calma.</p>
       </div>
     </div>
   </section>
@@ -527,17 +556,25 @@
     <div class="wrap">
       <div class="nari reveal">
         <!-- TODO LUIS: reemplazar placeholder con foto final de Nari -->
-        <img
-          class="nari-photo"
-          src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1780899562/06_negativespace_c4mjgn.png"
-          alt="Retrato de Nari, creadora de Criar Sin Culpas"
-          loading="lazy" decoding="async">
+        <figure style="display: contents;" itemscope itemtype="https://schema.org/ImageObject">
+          <img
+            class="nari-photo"
+            src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1780899562/06_negativespace_c4mjgn.png"
+            alt="Retrato de Nari, creadora de Criar Sin Culpas"
+            title="Fotografía por Erika Sharnay · Sharnay Photography"
+            itemprop="contentUrl"
+            loading="lazy" decoding="async">
+          <figcaption class="visually-hidden" itemprop="creator" itemscope itemtype="https://schema.org/Person">
+            <span data-en="Photography by">Fotografía por</span>
+            <a itemprop="url" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer author"><span itemprop="name">Erika Sharnay · Sharnay Photography</span></a>
+          </figcaption>
+        </figure>
         <div class="nari-body">
           <div class="nari-kicker" data-en="Who's behind the method">Quién está detrás del método</div>
           <h2>Nari</h2>
-          <p data-en="Nari is the creator of the Criar Sin Culpas method: an approach made to support you in real moments, not only when everything is calm.">Nari es la creadora del método Criar Sin Culpas: un enfoque pensado para acompañarte en los momentos reales, no solo cuando todo está en calma.</p>
-          <p data-en="It comes from years of working with real families under tension, now gathered into more than 50 original workshops and materials.">Nace de años acompañando a familias reales bajo tensión, hoy reunido en más de 50 talleres y materiales originales.</p>
-          <p data-en="That's the library we're now organizing and preparing inside the platform.">Esa es la biblioteca que ahora estamos organizando y preparando dentro de la plataforma.</p>
+          <p data-en="Nari is the creator of the Criar Sin Culpas method: an approach born from supporting real families in moments of tension, not from theory.">Nari es la creadora del método Criar Sin Culpas: un enfoque nacido de acompañar a familias reales en momentos de tensión, no de teoría.</p>
+          <p data-en="Her work brings together more than 50 original workshops and materials.">Su trabajo reúne más de 50 talleres y materiales originales.</p>
+          <p data-en="That is the body of materials we are now organizing inside the platform.">Ese es el conjunto de materiales que ahora estamos organizando dentro de la plataforma.</p>
           <!-- TODO LUIS: insertar credenciales/bio específica verificada cuando la tengas -->
         </div>
       </div>
@@ -557,7 +594,7 @@
         <div class="module-card reveal"><span class="mod-num">05</span><h3 class="mod-title" data-en="The Reactivity Cycle">El Ciclo de la Reactividad</h3><p class="mod-desc" data-en="How you and your child set each other off, and how to break the cycle.">Cómo tú y tu hijo se detonan mutuamente, y cómo romper el ciclo.</p></div>
         <div class="module-card reveal"><span class="mod-num">06</span><h3 class="mod-title" data-en="Designing the System">Diseñando el Sistema</h3><p class="mod-desc" data-en="Set limits with calm, without unloading your frustration.">Pon límites con calma, sin descargar tu frustración.</p></div>
         <div class="module-card reveal"><span class="mod-num">07</span><h3 class="mod-title" data-en="Repair Without Guilt">Reparación sin Culpa</h3><p class="mod-desc" data-en="What to do after you lose your calm, and how to reconnect.">Qué hacer después de perder la calma, y cómo reconectar.</p></div>
-        <div class="module-card reveal"><span class="mod-num">08</span><h3 class="mod-title" data-en="Long-Term Consistency">Consistencia a Largo Plazo</h3><p class="mod-desc" data-en="Keep the system alive when exhaustion returns.">Sostén el sistema cuando vuelve el cansancio.</p></div>
+        <div class="module-card reveal"><span class="mod-num">08</span><h3 class="mod-title" data-en="Long-Term Consistency">Consistencia a Largo Plazo</h3><p class="mod-desc" data-en="How to sustain the system when exhaustion returns.">Cómo sostener el sistema cuando vuelve el cansancio.</p></div>
       </div>
     </div>
   </section>
@@ -593,9 +630,9 @@
           <span class="path-flag" data-en="Full path">Ruta completa</span>
           <div class="path-name" data-en="CSC Membership">Membresía CSC</div>
           <div class="path-title" data-en="For continuous growth">Para crecer de forma continua</div>
-          <div class="path-for" data-en="A membership in design, for ongoing access to the library, workshops, and new resources.">Una membresía en diseño, para acceso continuo a la biblioteca, talleres y recursos nuevos.</div>
+          <div class="path-for" data-en="A membership in design, for ongoing access to workshops and new resources.">Una membresía en diseño, para acceso continuo a talleres y recursos nuevos.</div>
           <ul class="path-list">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span data-en="Access to the growing learning library.">Acceso a la biblioteca de aprendizaje en crecimiento.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span data-en="Access to the growing learning space.">Acceso al espacio de aprendizaje en crecimiento.</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span data-en="Workshops and live sessions as they open.">Talleres y sesiones en vivo a medida que se abren.</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span data-en="Ongoing resources, guides, and tools.">Recursos, guías y herramientas continuas.</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span data-en="Community and support (coming soon).">Comunidad y acompañamiento (próximamente).</span></li>
@@ -655,8 +692,8 @@
   <!-- ============ CATALOG PREVIEW ============ -->
   <section class="block">
     <div class="wrap">
-      <h2 class="section-title reveal" data-en="A library born from more than 50 original workshops">Una biblioteca nacida de más de 50 talleres originales</h2>
-      <p class="section-lede reveal" data-en="The material exists. We're shaping it into clear, easy-to-use routes.">El material existe. Lo estamos ordenando en rutas claras y fáciles de usar.</p>
+      <h2 class="section-title reveal" data-en="A space born from more than 50 original workshops">Un espacio nacido de más de 50 talleres originales</h2>
+      <p class="section-lede reveal" data-en="The material exists. We're organizing it into clear, easy-to-use routes.">El material existe. Lo estamos ordenando en rutas claras y fáciles de usar.</p>
       <div class="cat-grid">
         <div class="cat-chip reveal"><span class="dot"></span><span data-en="Digital parenting and screens">Crianza digital y pantallas</span></div>
         <div class="cat-chip reveal"><span class="dot"></span><span data-en="Emotional regulation">Regulación emocional</span></div>
@@ -669,7 +706,7 @@
         <div class="cat-chip reveal"><span class="dot"></span><span data-en="Conscious discipline">Disciplina consciente</span></div>
         <div class="cat-chip reveal"><span class="dot"></span><span data-en="Tools for exhausted parents">Herramientas para padres agotados</span></div>
       </div>
-      <p class="cat-note reveal" data-en="A growing library, built from Nari's own original material. We don't promise all 50 on day one: we promise to organize them well.">Una biblioteca que crece a partir del material original de Nari. No prometemos las 50 el primer día: prometemos organizarlas bien.</p>
+      <p class="cat-note reveal" data-en="A space that grows from Nari's original work. We don't promise all 50 pieces on day one: we promise to organize them well.">Es un espacio que crece a partir del trabajo original de Nari. No prometemos las 50 piezas el primer día: prometemos organizarlas bien.</p>
     </div>
   </section>
 
@@ -690,7 +727,7 @@
           <div class="yes col-feat" data-col="Membresía"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         </div>
         <div class="compare-row">
-          <div class="col-label" data-col="" data-en="Growing learning library">Biblioteca de aprendizaje en crecimiento</div>
+          <div class="col-label" data-col="" data-en="Growing learning space">Espacio de aprendizaje en crecimiento</div>
           <div class="dash" data-col="Pase"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="6" y1="12" x2="18" y2="12"/></svg></div>
           <div class="yes col-feat" data-col="Membresía"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         </div>
@@ -724,7 +761,7 @@
       <div class="capture-card reveal">
         <span class="eyebrow" style="margin-bottom:18px;" data-en="Early Access">Inscripción Anticipada</span>
         <h2 data-en="Be among the first to enter">Forma parte de quienes entran primero</h2>
-        <p class="cap-lede" data-en="Sign up to be among the first. You'll get priority access and early word the moment the first resources open.">Inscríbete para estar entre quienes se inscriben primero. Tendrás prioridad de acceso y aviso anticipado en cuanto abramos los primeros recursos.</p>
+        <p class="cap-lede" data-en="Sign up to be among the first. You'll get priority access and early word the moment the first resources open.">Inscríbete para estar entre quienes entran primero. Tendrás prioridad de acceso y aviso anticipado en cuanto abramos los primeros recursos.</p>
         <p class="soft-note form-note" data-en="No purchase commitment. You decide whether to move forward when the time comes.">Sin compromiso de compra. Tú decides si quieres avanzar cuando llegue el momento.</p>
 
         <form id="fundador-form" action="https://formspree.io/f/mykapzqj" method="POST">
@@ -796,6 +833,7 @@
         <a href="mailto:hello@criarsinculpas.com" data-en="Contact">Contacto</a>
       </nav>
       <p class="sf-copy">© 2026 Criar Sin Culpas · <span data-en="All rights reserved.">Todos los derechos reservados.</span></p>
+      <p class="sf-credit"><span data-en="Photography by">Fotografía por</span> <a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">Erika Sharnay · Sharnay Photography</a></p>
     </div>
   </footer>
 

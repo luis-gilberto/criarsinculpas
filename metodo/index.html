@@ -41,6 +41,7 @@
       }
     };
   </script>
+  <script defer src="/js/track.js"></script>
 
   <style>
     /* ═══════════════════════════════════════════
@@ -347,6 +348,202 @@
       font-size: .68rem; font-weight: 500;
       letter-spacing: .12em; text-transform: uppercase;
       color: var(--text-ghost); font-style: normal;
+    }
+
+    /* ══════════════════════════════════════════
+       METHOD PHOTO · HUMAN PROOF POINT
+    ══════════════════════════════════════════ */
+    .method-photo-section {
+      padding: 24px 56px 88px;
+      border-bottom: 1px solid rgba(31,46,70,.04);
+    }
+
+    .method-photo-card {
+      display: grid;
+      grid-template-columns: minmax(0, .92fr) minmax(0, 1fr);
+      gap: 42px;
+      align-items: center;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .method-photo-image-wrap {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      background: var(--void-mid);
+      box-shadow:
+        0 24px 70px rgba(31,46,70,.10),
+        0 1px 0 rgba(255,255,255,.7) inset;
+    }
+
+    .method-photo-image-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(244,168,138,.12), transparent 42%),
+        linear-gradient(180deg, rgba(250,246,242,0), rgba(250,246,242,.08));
+      mix-blend-mode: soft-light;
+    }
+
+    .method-photo-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 2 / 3;
+      object-fit: cover;
+    }
+
+    .method-photo-caption {
+      max-width: 46ch;
+    }
+
+    .method-photo-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--coral-ink);
+      margin-bottom: 16px;
+    }
+
+    .method-photo-kicker::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    .method-photo-title {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -.01em;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+
+    .method-photo-copy {
+      font-size: .92rem;
+      line-height: 1.8;
+      color: var(--text-dim);
+      max-width: 54ch;
+    }
+
+    @media (max-width: 900px) {
+      .method-photo-section {
+        padding: 18px 24px 64px;
+      }
+
+      .method-photo-card {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .method-photo-caption {
+        max-width: none;
+      }
+
+      .method-photo-image-wrap {
+        border-radius: 22px;
+        max-width: 520px;
+        margin: 0 auto;
+      }
+    }
+
+    /* ── PHOTO CREDIT / EDITORIAL ATTRIBUTION ── */
+    .photo-credit-wrap {
+      isolation: isolate;
+    }
+
+    .photo-credit-overlay {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      max-width: calc(100% - 36px);
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(250,246,242,.72);
+      color: rgba(31,46,70,.68);
+      text-decoration: none;
+      font-size: .58rem;
+      font-weight: 500;
+      letter-spacing: .035em;
+      line-height: 1;
+      opacity: 0;
+      transform: translateY(5px);
+      pointer-events: none;
+      backdrop-filter: blur(14px) saturate(120%);
+      -webkit-backdrop-filter: blur(14px) saturate(120%);
+      border: 1px solid rgba(31,46,70,.08);
+      box-shadow: 0 8px 24px rgba(31,46,70,.08);
+      transition:
+        opacity .35s var(--ease-silk),
+        transform .35s var(--ease-silk),
+        background .25s ease,
+        color .25s ease;
+    }
+
+    .photo-credit-overlay strong {
+      font-weight: 600;
+      color: rgba(31,46,70,.82);
+    }
+
+    .photo-credit-overlay:hover {
+      background: rgba(250,246,242,.88);
+      color: var(--text);
+    }
+
+    .photo-credit-wrap:hover .photo-credit-overlay,
+    .photo-credit-wrap:focus-within .photo-credit-overlay {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .photo-credit-line {
+      margin-top: 18px;
+      font-size: .62rem;
+      line-height: 1.7;
+      color: rgba(31,46,70,.34);
+      letter-spacing: .035em;
+    }
+
+    .photo-credit-line a {
+      color: rgba(217,107,71,.62);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(217,107,71,.22);
+      transition: color .25s, border-color .25s;
+    }
+
+    .photo-credit-line a:hover {
+      color: var(--coral-ink);
+      border-color: rgba(217,107,71,.42);
+    }
+
+    /* On touch devices, keep the image clean. Credit remains below in .photo-credit-line. */
+    @media (hover: none) {
+      .photo-credit-overlay {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .photo-credit-line {
+        margin-top: 14px;
+        font-size: .6rem;
+      }
     }
 
     /* ══════════════════════════════════════════
@@ -772,7 +969,7 @@
     }
   </style>
 </head>
-<body>
+<body data-protocol="metodo">
 
   <div class="grain" aria-hidden="true"></div>
   <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
@@ -793,7 +990,7 @@
       <a href="/" data-i18n="nav_inicio" data-es="Inicio" data-en="Home">Inicio</a>
       <a href="/apoyo/" data-i18n="nav_protocolos" data-es="Guías" data-en="Protocols">Guías</a>
       <a href="/metodo/" class="active" data-i18n="nav_metodo" data-es="El Método" data-en="The Method">El Método</a>
-      <a href="/#sobre-nari" data-i18n="nav_nari" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
+      <a href="/sobre-nari/" data-i18n="nav_nari" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
       <a href="#" class="dim" data-i18n="nav_aprende" data-es="Aprende (Pronto)" data-en="Learn (Soon)">Aprende (Pronto)</a>
       <a href="#" class="dim" data-i18n="nav_comunidad" data-es="Comunidad (Pronto)" data-en="Community (Soon)">Comunidad (Pronto)</a>
     </div>
@@ -817,7 +1014,7 @@
     <a href="/" data-i18n="nav_inicio_m" data-es="Inicio" data-en="Home">Inicio</a>
     <a href="/apoyo/" data-i18n="nav_protocolos_m" data-es="Guías" data-en="Protocols">Guías</a>
     <a href="/metodo/" class="active" data-i18n="nav_metodo_m" data-es="El Método" data-en="The Method">El Método</a>
-    <a href="/#sobre-nari" data-i18n="nav_nari_m" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
+    <a href="/sobre-nari/" data-i18n="nav_nari_m" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
     <a href="#" class="dim" data-i18n="nav_aprende_m" data-es="Aprende (Pronto)" data-en="Learn (Soon)">Aprende (Pronto)</a>
     <a href="#" class="dim" data-i18n="nav_comunidad_m" data-es="Comunidad (Pronto)" data-en="Community (Soon)">Comunidad (Pronto)</a>
     <div class="lang-pill" style="margin-top:8px;">
@@ -871,6 +1068,103 @@
           </p>
           <cite data-i18n="hero_cite" data-es="Nari Fateha · Criar Sin Culpas" data-en="Nari Fateha · Criar Sin Culpas">Nari Fateha · Criar Sin Culpas</cite>
         </div>
+      </section>
+
+      <!-- ── METHOD IN PRACTICE PHOTO ── -->
+      <section class="section method-photo-section scroll-reveal" aria-labelledby="method-photo-title">
+        <figure class="method-photo-card">
+          <div
+            class="method-photo-image-wrap photo-credit-wrap"
+            itemscope
+            itemtype="https://schema.org/ImageObject"
+          >
+            <meta itemprop="contentUrl" content="https://res.cloudinary.com/dogtoagya/image/upload/v1782249951/Nari_writing_the_method_emjhcz.png">
+            <meta itemprop="name" content="Nari writing the Criar Sin Culpas method">
+            <meta itemprop="description" content="Nari escribiendo en un cuaderno mientras desarrolla el método Criar Sin Culpas.">
+            <meta itemprop="creditText" content="Photography by Erika Sharnay · Sharnay Photography">
+            <meta itemprop="copyrightNotice" content="Photography by Erika Sharnay · Sharnay Photography">
+            <meta itemprop="acquireLicensePage" content="https://www.instagram.com/sharnay_photography/">
+
+            <span
+              itemprop="creator"
+              itemscope
+              itemtype="https://schema.org/Person"
+            >
+              <meta itemprop="name" content="Erika Sharnay">
+              <meta itemprop="url" content="https://www.instagram.com/sharnay_photography/">
+              <span
+                itemprop="worksFor"
+                itemscope
+                itemtype="https://schema.org/Organization"
+              >
+                <meta itemprop="name" content="Sharnay Photography">
+                <meta itemprop="url" content="https://www.instagram.com/sharnay_photography/">
+              </span>
+            </span>
+
+            <img
+              src="https://res.cloudinary.com/dogtoagya/image/upload/v1782249951/Nari_writing_the_method_emjhcz.png"
+              alt="Nari escribiendo en un cuaderno mientras desarrolla el método Criar Sin Culpas."
+              loading="lazy"
+              decoding="async"
+              class="method-photo-image"
+              itemprop="contentUrl"
+            >
+
+            <a
+              class="photo-credit-overlay"
+              href="https://www.instagram.com/sharnay_photography/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Fotografía por Erika Sharnay, Sharnay Photography. Abrir Instagram."
+            >
+              <span
+                data-i18n="photo_credit_label_method"
+                data-es="Fotografía por"
+                data-en="Photography by"
+              >Fotografía por</span>
+              <strong>Erika Sharnay</strong>
+              <span>· Sharnay Photography</span>
+            </a>
+          </div>
+
+          <figcaption class="method-photo-caption">
+            <span
+              class="method-photo-kicker"
+              data-i18n="method_photo_kicker"
+              data-es="El método en práctica"
+              data-en="The method in practice"
+            >El método en práctica</span>
+
+            <h2
+              id="method-photo-title"
+              class="method-photo-title"
+              data-i18n="method_photo_title"
+              data-es="Antes de convertirse en guía, el método pasa por papel, pausa y observación."
+              data-en="Before it becomes guidance, the method moves through paper, pause, and observation."
+            >Antes de convertirse en guía, el método pasa por papel, pausa y observación.</h2>
+
+            <p
+              class="method-photo-copy"
+              data-i18n="method_photo_copy"
+              data-es="Esta no es una teoría flotando en el aire. Es un sistema construido desde la experiencia, la escucha y el trabajo real con familias que necesitan calma antes que más ruido."
+              data-en="This is not a theory floating in the air. It is a system built from experience, listening, and real work with families who need calm before more noise."
+            >Esta no es una teoría flotando en el aire. Es un sistema construido desde la experiencia, la escucha y el trabajo real con familias que necesitan calma antes que más ruido.</p>
+
+            <p class="photo-credit-line">
+              <span
+                data-i18n="photo_credit_line_method"
+                data-es="Fotografía:"
+                data-en="Photography:"
+              >Fotografía:</span>
+              <a
+                href="https://www.instagram.com/sharnay_photography/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >Erika Sharnay · Sharnay Photography</a>
+            </p>
+          </figcaption>
+        </figure>
       </section>
 
       <!-- ── ARCHITECTURE MAP ── -->
@@ -1462,7 +1756,7 @@
       const btn = e.target.closest('.lang-btn');
       if (btn) {
         applyLang(btn.getAttribute('data-lang'));
-        window.plausible && window.plausible('language_changed', { props: { to_lang: lang, location: 'metodo' } });
+        window.track && window.track('language_changed', { to_lang: lang, location: 'metodo' });
       }
     });
 
@@ -1504,7 +1798,7 @@
     if (cta) {
       cta.addEventListener('click', e => {
         e.preventDefault();
-        window.plausible && window.plausible('method_cta_clicked', { props: { language: lang } });
+        window.track && window.track('method_cta_clicked', { language: lang });
         document.body.style.opacity = '0';
         document.body.style.transition = 'opacity .55s ease';
         setTimeout(() => { window.location.href = cta.getAttribute('href'); }, 560);
@@ -1526,6 +1820,29 @@
       document.querySelectorAll('.scroll-reveal').forEach(el => el.classList.add('visible'));
     }
   }());
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ImageObject",
+    "contentUrl": "https://res.cloudinary.com/dogtoagya/image/upload/v1782249951/Nari_writing_the_method_emjhcz.png",
+    "name": "Nari writing the Criar Sin Culpas method",
+    "description": "Nari escribiendo en un cuaderno mientras desarrolla el método Criar Sin Culpas.",
+    "creator": {
+      "@type": "Person",
+      "name": "Erika Sharnay",
+      "url": "https://www.instagram.com/sharnay_photography/",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Sharnay Photography",
+        "url": "https://www.instagram.com/sharnay_photography/"
+      }
+    },
+    "creditText": "Photography by Erika Sharnay · Sharnay Photography",
+    "copyrightNotice": "Photography by Erika Sharnay · Sharnay Photography",
+    "acquireLicensePage": "https://www.instagram.com/sharnay_photography/"
+  }
   </script>
 
 </body>
