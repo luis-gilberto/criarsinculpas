@@ -27,6 +27,7 @@
     };
   </script>
   <script defer src="/js/track.js"></script>
+  <link rel="stylesheet" href="/css/site-footer.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -46,6 +47,7 @@
       --maxw:80rem;
       --gutter:clamp(1.5rem,6vw,5rem);
       --ig:https://www.instagram.com/sharnay_photography/;
+      --ease-silk:cubic-bezier(.16,1,.3,1);
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     body{background:var(--background);color:var(--foreground);font-family:var(--sans);font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
@@ -95,10 +97,11 @@
     .hero-photo{position:absolute;top:0;right:0;bottom:0;width:50%;z-index:2;overflow:hidden;}
     .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 38%;}
     .hero-photo::before{content:'';position:absolute;left:0;top:0;bottom:0;width:48px;z-index:1;pointer-events:none;background:linear-gradient(to right,oklch(0.22 0.04 260 / .07),transparent);}
-    .hero-credit{position:absolute;right:1rem;bottom:1rem;z-index:3;display:inline-flex;align-items:center;gap:.5rem;padding:.5rem .85rem;border-radius:999px;background:oklch(0.22 0.04 260 / .58);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:oklch(0.97 0.015 75 / .95);opacity:0;transform:translateY(6px);transition:opacity .35s var(--e,ease),transform .35s ease;}
-    .hero-credit svg{width:12px;height:12px;opacity:.9;}
-    .hero-photo:hover .hero-credit,.hero-photo:focus-within .hero-credit{opacity:1;transform:none;}
-    @media(hover:none){ .hero-credit{opacity:.92;transform:none;} }
+    .hero-credit{position:absolute;right:clamp(.85rem,2vw,1.25rem);bottom:clamp(.85rem,2vw,1.25rem);z-index:3;display:inline-flex;align-items:center;gap:.45rem;margin:0;padding:.38rem .65rem .38rem .55rem;border-radius:.35rem;background:oklch(0.22 0.04 260 / .34);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-family:var(--sans);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:oklch(0.97 0.015 75 / .95);opacity:0;pointer-events:none;transition:opacity .5s var(--ease-silk),background .35s var(--ease-silk);}
+    .hero-credit svg{width:11px;height:11px;opacity:.9;flex-shrink:0;}
+    .hero-credit a{color:inherit;text-decoration:none;border-bottom:none;}
+    .hero-photo:hover .hero-credit,.hero-photo:focus-within .hero-credit{opacity:.68;pointer-events:auto;}
+    .hero-credit:hover{background:oklch(0.22 0.04 260 / .48);opacity:.82;}
 
     .hero-type{position:absolute;inset:0;z-index:1;}
     .hero-type .eyebrow{position:absolute;top:clamp(2rem,8vh,5rem);left:var(--gutter);}
@@ -121,6 +124,12 @@
       .hero-headline .l1{margin-left:0;font-size:clamp(2rem,9vw,3.4rem);}
       .hero-headline .l2{margin-left:0;font-size:clamp(3.6rem,22vw,6.5rem);}
       .hero-foot{position:relative;left:auto;bottom:auto;padding:1.25rem var(--gutter) 0;max-width:none;}
+      .hero-photo{display:flex;flex-direction:column;align-items:stretch;}
+      .hero-credit{position:static;order:2;align-self:flex-end;margin:.5rem var(--gutter) 0;padding:0;opacity:1;pointer-events:auto;background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;border-radius:0;font-size:.72rem;font-weight:400;letter-spacing:0;text-transform:none;color:var(--muted-foreground);transition:none;}
+      .hero-credit svg{display:none;}
+      .hero-credit a{color:var(--muted-foreground);border-bottom:1px solid oklch(0.74 0.13 38 / .35);transition:color .25s,border-color .25s;}
+      .hero-credit a:hover{color:var(--accent);border-color:oklch(0.74 0.13 38 / .55);}
+      .hero-credit:hover{background:transparent;opacity:1;}
     }
 
     .sec{padding:clamp(4rem,9vw,7rem) 0;}
@@ -137,18 +146,30 @@
     .dropcap{float:left;margin-right:.5rem;font-family:var(--serif);font-size:3rem;line-height:1;color:var(--accent);}
     @media(min-width:768px){ .intro-cols{grid-template-columns:repeat(3,1fr);margin-top:4rem;} }
 
-    /* ── elevated picture frame ── */
+    /* ── elevated picture frame + photo credits ── */
+    @keyframes photo-jiggle{
+      0%,100%{transform:translate3d(0,0,0) rotate(0)}
+      18%{transform:translate3d(-2px,-1px,0) rotate(-.45deg)}
+      36%{transform:translate3d(2px,-1px,0) rotate(.4deg)}
+      54%{transform:translate3d(-1.5px,1px,0) rotate(-.28deg)}
+      78%{transform:translate3d(1px,0,0) rotate(.18deg)}
+    }
+    .credit-plate{position:absolute;z-index:0;right:1.4rem;bottom:.1rem;display:inline-flex;align-items:center;gap:.5rem;padding:.55rem .9rem .55rem .8rem;border-radius:0 0 .85rem .85rem;background:oklch(0.22 0.04 260 / .95);color:#fff;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;white-space:nowrap;box-shadow:0 18px 30px -18px oklch(0.22 0.04 260 / .65);transform:translateY(-100%);opacity:0;pointer-events:none;transition:transform .55s var(--ease-silk),opacity .35s var(--ease-silk),background .25s,color .25s;}
+    .credit-plate svg{width:11px;height:11px;opacity:.95;}
+    .credit-plate .arrow{margin-left:.15rem;transition:transform .3s var(--ease-silk);}
+    .frame:hover .shot,.portrait:hover .ring{animation:photo-jiggle .65s var(--ease-silk);}
+    .frame:hover .credit-plate,.frame:focus-within .credit-plate,.portrait:hover .credit-plate,.portrait:focus-within .credit-plate{transform:translateY(72%);opacity:1;pointer-events:auto;}
+    .credit-plate:hover{background:var(--accent);color:var(--primary);}
+    .credit-plate:hover .arrow{transform:translateX(3px);}
     .frame{position:relative;}
     .frame .plate{position:absolute;z-index:0;border-radius:1.85rem;background:linear-gradient(142deg,oklch(0.84 0.066 26 / .55) 0%,oklch(0.93 0.03 48 / .16) 78%);}
     .frame.plate-br .plate{top:1.9rem;left:1.9rem;right:-1.9rem;bottom:-1.9rem;}
     .frame.plate-bl .plate{top:1.9rem;right:1.9rem;left:-1.9rem;bottom:-1.9rem;}
     .frame .dot{position:absolute;top:-.55rem;width:9px;height:9px;border-radius:50%;background:var(--accent);z-index:2;}
     .frame.plate-br .dot{left:.4rem;} .frame.plate-bl .dot{right:.4rem;}
-    .frame .shot{position:relative;z-index:1;border-radius:1.5rem;overflow:hidden;box-shadow:0 44px 90px -50px oklch(0.22 0.04 260 / .55),0 14px 34px -24px oklch(0.22 0.04 260 / .3);}
+    .frame .shot{position:relative;z-index:1;border-radius:1.5rem;overflow:hidden;box-shadow:0 44px 90px -50px oklch(0.22 0.04 260 / .55),0 14px 34px -24px oklch(0.22 0.04 260 / .3);transform:translateZ(0);will-change:transform;}
     .frame .shot img{width:100%;height:clamp(21rem,56vh,30rem);object-fit:cover;}
     .frame .shot::after{content:'';position:absolute;inset:auto 0 0 0;height:34%;pointer-events:none;background:linear-gradient(to top,oklch(0.22 0.04 260 / .32),transparent);}
-    .frame .cap{position:absolute;z-index:2;right:1rem;bottom:.85rem;font-size:.575rem;letter-spacing:.18em;text-transform:uppercase;color:oklch(0.97 0.015 75 / .92);transition:color .25s;}
-    .frame .cap:hover{color:#fff;}
 
     .split{display:grid;grid-template-columns:1fr;gap:3.25rem;align-items:center;}
     @media(max-width:1023px){ .frame.plate-br .plate{right:-1rem;} .frame.plate-bl .plate{left:-1rem;} }
@@ -204,11 +225,10 @@
     .voice-grid .vb .pq{font-family:var(--serif);font-size:1.125rem;font-style:italic;color:var(--accent);}
     .portrait{position:relative;width:clamp(152px,42vw,212px);margin-bottom:2rem;}
     .portrait::before{content:'';position:absolute;inset:0;border-radius:50%;z-index:0;background:linear-gradient(142deg,oklch(0.84 0.066 26 / .5),oklch(0.93 0.03 48 / .15));transform:translate(11px,13px);}
-    .portrait .ring{position:relative;z-index:1;display:block;border-radius:50%;overflow:hidden;border:3px solid var(--background);box-shadow:0 26px 54px -30px oklch(0.22 0.04 260 / .5);}
+    .portrait .ring{position:relative;z-index:1;display:block;border-radius:50%;overflow:hidden;border:3px solid var(--background);box-shadow:0 26px 54px -30px oklch(0.22 0.04 260 / .5);transform:translateZ(0);will-change:transform;}
     .portrait .ring img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;}
     .portrait .pdot{position:absolute;top:2px;right:9px;width:9px;height:9px;border-radius:50%;background:var(--accent);z-index:2;}
-    .portrait .pcap{display:block;margin-top:.9rem;font-size:.575rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-foreground);transition:color .25s;}
-    .portrait .pcap:hover{color:var(--accent);}
+    .portrait .credit-plate{right:.2rem;bottom:-.15rem;font-size:.5rem;letter-spacing:.16em;padding:.45rem .7rem .45rem .6rem;}
     @media(min-width:1024px){ .voice-grid{grid-template-columns:minmax(240px,18rem) 1fr;gap:4rem;align-items:start;} }
 
     .mani .head{text-align:center;}
@@ -236,26 +256,18 @@
     .btn-outline{border:1px solid oklch(0.97 0.015 75 / .25);color:oklch(0.97 0.015 75 / .9);}
     .btn-outline:hover{background:oklch(0.97 0.015 75 / .05);}
 
-    footer{border-top:1px solid oklch(0.88 0.018 70 / .7);}
-    .foot-grid{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:2.5rem;padding:4rem var(--gutter);}
-    .foot-brand .b1{font-family:var(--serif);font-size:1.5rem;color:var(--foreground);}
-    .foot-brand .b2{margin-top:-.25rem;font-family:var(--serif);font-size:.75rem;font-style:italic;letter-spacing:.1em;color:var(--accent);}
-    .foot-brand p{margin-top:1.25rem;font-size:.75rem;line-height:1.625;color:var(--muted-foreground);}
-    .foot-credit{margin-top:1rem;font-size:.66rem;letter-spacing:.06em;color:var(--muted-foreground);}
-    .foot-credit a{color:var(--muted-foreground);border-bottom:1px solid oklch(0.74 0.13 38 / .4);transition:color .25s;}
-    .foot-credit a:hover{color:var(--accent);}
-    .foot-col .h{font-size:.625rem;letter-spacing:.25em;text-transform:uppercase;color:oklch(0.22 0.04 260 / .8);}
-    .foot-col ul{margin-top:1rem;list-style:none;display:flex;flex-direction:column;gap:.5rem;font-size:.75rem;color:var(--muted-foreground);}
-    .foot-col ul li{display:flex;align-items:center;gap:.375rem;}
-    .foot-col ul a{color:var(--muted-foreground);transition:color .25s;}
-    .foot-col ul a:hover{color:var(--foreground);}
-    .foot-social{margin-top:1rem;display:flex;gap:.5rem;}
-    .foot-social a{width:2.25rem;height:2.25rem;display:grid;place-items:center;border-radius:999px;border:1px solid var(--border);font-size:.7rem;color:var(--muted-foreground);transition:all .25s;}
-    .foot-social a:hover{border-color:var(--accent);color:var(--accent);}
-    .foot-bottom{border-top:1px solid oklch(0.88 0.018 70 / .7);}
-    .foot-bottom-inner{max-width:var(--maxw);margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:.5rem;padding:1.5rem var(--gutter);font-size:.6875rem;color:var(--muted-foreground);text-align:center;}
-    .foot-brand{grid-column:1 / -1;}
-    @media(min-width:640px){ .foot-grid{grid-template-columns:1.5fr 1fr 1fr 1fr;} .foot-brand{grid-column:auto;} .foot-bottom-inner{flex-direction:row;text-align:left;} }
+    @media(max-width:640px){
+      .frame,.portrait{display:flex;flex-direction:column;align-items:flex-end;}
+      .frame .credit-plate,.portrait .credit-plate{display:none;}
+      .frame .credit-plate-mob,.portrait .credit-plate-mob{display:block;align-self:flex-end;margin:.5rem 0 0;text-align:right;font-family:var(--sans);font-size:.72rem;font-weight:400;letter-spacing:0;color:var(--muted-foreground);}
+      .frame .credit-plate-mob a,.portrait .credit-plate-mob a{color:var(--muted-foreground);border-bottom:1px solid oklch(0.74 0.13 38 / .35);transition:color .25s,border-color .25s;}
+      .frame .credit-plate-mob a:hover,.portrait .credit-plate-mob a:hover{color:var(--accent);border-color:oklch(0.74 0.13 38 / .55);}
+      .frame:hover .shot,.portrait:hover .ring{animation:none;}
+    }
+    .credit-plate-mob{display:none;}
+    @media(prefers-reduced-motion:reduce){
+      .frame:hover .shot,.portrait:hover .ring{animation:none!important;}
+    }
   </style>
 </head>
 <body data-protocol="general">
@@ -313,10 +325,10 @@
         <source media="(max-width:1100px)" srcset="https://res.cloudinary.com/dogtoagya/image/upload/c_fill,g_face,ar_3:2,q_auto:best,f_auto/v1782326399/nari-hero-bio_xhrtih.png">
         <img src="https://res.cloudinary.com/dogtoagya/image/upload/c_fill,g_face,ar_4:5,q_auto:best,f_auto/v1782326399/nari-hero-bio_xhrtih.png" alt="Nari escribiendo en su cuaderno con suéter azul" data-alt-es="Nari escribiendo en su cuaderno con suéter azul" data-alt-en="Nari writing in her notebook in a blue sweater" itemprop="contentUrl">
       </picture>
-      <a class="hero-credit" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía: Erika Sharnay, Sharnay Photography">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-        <span><span data-es="Fotografía" data-en="Photo">Fotografía</span> © Erika Sharnay</span>
-      </a>
+      <p class="hero-credit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        <span class="hero-credit-label"><span data-es="Fotografía por " data-en="Photography by ">Fotografía por </span><a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">Erika Sharnay</a></span>
+      </p>
     </div>
     <div class="hero-type">
       <span class="eyebrow" data-es="La historia" data-en="Her story">La historia</span>
@@ -359,8 +371,13 @@
         </span>
         <div class="shot">
           <img src="https://res.cloudinary.com/dogtoagya/image/upload/c_crop,g_north,h_0.85,q_auto,f_auto/v1782273563/ChatGPT_Image_Jun_23_2026_06_39_04_PM_1_lja5np.png" alt="Nari escribiendo" data-alt-es="Nari escribiendo" data-alt-en="Nari writing" itemprop="contentUrl">
-          <a class="cap" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer"><span data-es="Fotografía · Sharnay Photography" data-en="Photography · Sharnay Photography">Fotografía · Sharnay Photography</span></a>
         </div>
+        <a class="credit-plate" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía: SHARNAY PHOTOGRAPHY">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <span data-es="SHARNAY PHOTOGRAPHY" data-en="SHARNAY PHOTOGRAPHY">SHARNAY PHOTOGRAPHY</span>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <p class="credit-plate-mob"><span data-es="Fotografía por " data-en="Photography by ">Fotografía por </span><a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">Erika Sharnay</a></p>
       </figure>
       <div class="copy">
         <span class="eyebrow" data-es="Su enfoque" data-en="Her approach">Su enfoque</span>
@@ -411,8 +428,13 @@
         </span>
         <div class="shot">
           <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto,f_auto/v1782310664/Nari-louie-playing_pb9vkt.png" alt="Nari jugando con su hijo" data-alt-es="Nari jugando con su hijo" data-alt-en="Nari playing with her child" itemprop="contentUrl">
-          <a class="cap" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer"><span data-es="Fotografía · Sharnay Photography" data-en="Photography · Sharnay Photography">Fotografía · Sharnay Photography</span></a>
         </div>
+        <a class="credit-plate" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía: SHARNAY PHOTOGRAPHY">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <span data-es="SHARNAY PHOTOGRAPHY" data-en="SHARNAY PHOTOGRAPHY">SHARNAY PHOTOGRAPHY</span>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <p class="credit-plate-mob"><span data-es="Fotografía por " data-en="Photography by ">Fotografía por </span><a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">Erika Sharnay</a></p>
       </figure>
     </div>
   </section>
@@ -434,8 +456,13 @@
           </span>
           <div class="shot shot-studio">
             <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto:best,f_auto/v1782343072/ChatGPT_Image_Jun_24_2026_04_17_18_PM_r989al.png" alt="Nari grabando contenido educativo en el estudio con su teléfono y trípode" data-alt-es="Nari grabando contenido educativo en el estudio con su teléfono y trípode" data-alt-en="Nari recording educational content in the studio with her phone and tripod" itemprop="contentUrl">
-            <a class="cap" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer"><span data-es="Fotografía · Sharnay Photography" data-en="Photography · Sharnay Photography">Fotografía · Sharnay Photography</span></a>
           </div>
+          <a class="credit-plate" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía: SHARNAY PHOTOGRAPHY">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            <span data-es="SHARNAY PHOTOGRAPHY" data-en="SHARNAY PHOTOGRAPHY">SHARNAY PHOTOGRAPHY</span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <p class="credit-plate-mob"><span data-es="Fotografía por " data-en="Photography by ">Fotografía por </span><a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">Erika Sharnay</a></p>
         </figure>
         <div class="head">
           <span class="eyebrow" data-es="Más allá de la crianza" data-en="Beyond parenting">Más allá de la crianza</span>
@@ -468,7 +495,12 @@
             <meta itemprop="acquireLicensePage" content="https://www.instagram.com/sharnay_photography/">
             <span itemprop="creator" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Erika Sharnay"><meta itemprop="url" content="https://www.instagram.com/sharnay_photography/"><span itemprop="worksFor" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="Sharnay Photography"></span></span>
             <span class="ring"><img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto,f_auto/v1782333842/portrait_w8ii8s.jpg" alt="Retrato de Nari sonriendo" data-alt-es="Retrato de Nari sonriendo" data-alt-en="Portrait of Nari smiling" itemprop="contentUrl"></span>
-            <a class="pcap" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer"><span data-es="Fotografía · Sharnay Photography" data-en="Photography · Sharnay Photography">Fotografía · Sharnay Photography</span></a>
+            <a class="credit-plate" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía: SHARNAY PHOTOGRAPHY">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              <span data-es="SHARNAY PHOTOGRAPHY" data-en="SHARNAY PHOTOGRAPHY">SHARNAY PHOTOGRAPHY</span>
+              <span class="arrow" aria-hidden="true">↗</span>
+            </a>
+            <p class="credit-plate-mob"><span data-es="Fotografía por " data-en="Photography by ">Fotografía por </span><a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">Erika Sharnay</a></p>
           </figure>
           <span class="eyebrow" data-es="En sus palabras" data-en="In her words">En sus palabras</span>
           <h2 data-es="Hola,<br><em>soy Nari.</em>" data-en="Hi,<br><em>I'm Nari.</em>">Hola,<br><em>soy Nari.</em></h2>
@@ -524,45 +556,45 @@
   </section>
 
   <!-- FOOTER -->
-  <footer>
+  <footer class="site-footer" role="contentinfo">
     <div class="foot-grid">
       <div class="foot-brand">
-        <p class="b1">CRIAR</p>
-        <p class="b2">sin culpas</p>
-        <p data-es="Un espacio de apoyo emocional para padres que quieren criar con conexión, no con culpa." data-en="An emotional support space for parents who want to raise with connection, not guilt.">Un espacio de apoyo emocional para padres que quieren criar con conexión, no con culpa.</p>
-        <p class="foot-credit"><a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer"><span data-es="Fotografía" data-en="Photography">Fotografía</span> © Erika Sharnay · Sharnay Photography</a></p>
+        <div class="b1">CRIAR</div>
+        <div class="b2">sin culpas</div>
+        <p data-i18n="foot_tag" data-es="Un espacio de apoyo emocional para padres que quieren criar con conexión, no con culpa." data-en="An emotional support space for parents who want to raise with connection, not guilt.">Un espacio de apoyo emocional para padres que quieren criar con conexión, no con culpa.</p>
       </div>
       <div class="foot-col">
-        <p class="h" data-es="Navegación" data-en="Navigation">Navegación</p>
+        <div class="h" data-i18n="foot_nav" data-es="Navegación" data-en="Navigation">Navegación</div>
         <ul>
-          <li><a href="/" data-es="Inicio" data-en="Home">Inicio</a></li>
-          <li><a href="/apoyo/" data-es="Guías" data-en="Guides">Guías</a></li>
-          <li><a href="/metodo/" data-es="El Método" data-en="The Method">El Método</a></li>
-          <li><a href="/sobre-nari/" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a></li>
-          <li><span class="soon"><span data-es="Aprende" data-en="Learn">Aprende</span><span class="soon-tag" data-es="Pronto" data-en="Soon">Pronto</span></span></li>
-          <li><span class="soon"><span data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-es="Pronto" data-en="Soon">Pronto</span></span></li>
+          <li><a href="/" data-i18n="nav_inicio_f" data-es="Inicio" data-en="Home">Inicio</a></li>
+          <li><a href="/#protocolos" data-i18n="nav_guias_f" data-es="Guías" data-en="Guides">Guías</a></li>
+          <li><a href="/metodo/" data-i18n="nav_metodo_f" data-es="El Método" data-en="The Method">El Método</a></li>
+          <li><a href="/sobre-nari/" data-i18n="nav_nari_f" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a></li>
+          <li class="is-soon"><span class="foot-label" data-i18n="nav_aprende_f" data-es="Aprende" data-en="Learn">Aprende</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></li>
+          <li class="is-soon"><span class="foot-label" data-i18n="nav_comunidad_f" data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></li>
         </ul>
       </div>
       <div class="foot-col">
-        <p class="h" data-es="Legal" data-en="Legal">Legal</p>
+        <div class="h" data-i18n="foot_legal" data-es="Legal" data-en="Legal">Legal</div>
         <ul>
-          <li><a href="/terminos" data-es="Términos de Uso" data-en="Terms of Use">Términos de Uso</a></li>
-          <li><a href="/privacidad" data-es="Política de Privacidad" data-en="Privacy Policy">Política de Privacidad</a></li>
-          <li><a href="/descargo" data-es="Descargo de Responsabilidad" data-en="Disclaimer">Descargo de Responsabilidad</a></li>
+          <li><a href="/terminos" data-i18n="foot_terms" data-es="Términos de Uso" data-en="Terms of Use">Términos de Uso</a></li>
+          <li><a href="/privacidad" data-i18n="foot_priv" data-es="Política de Privacidad" data-en="Privacy Policy">Política de Privacidad</a></li>
+          <li><a href="/descargo" data-i18n="foot_disc" data-es="Descargo de Responsabilidad" data-en="Disclaimer">Descargo de Responsabilidad</a></li>
         </ul>
       </div>
-      <div class="foot-col">
-        <p class="h" data-es="Síguenos" data-en="Follow us">Síguenos</p>
+      <div class="foot-col foot-col-end">
+        <div class="h" data-i18n="foot_follow" data-es="Síguenos" data-en="Follow us">Síguenos</div>
         <div class="foot-social">
-          <a href="https://instagram.com/criarsinculpas" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
-          <a href="mailto:hello@criarsinculpas.com" aria-label="Email">&#9993;</a>
+          <a href="https://instagram.com/criarsinculpas" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="mailto:hola@criarsinculpas.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
         </div>
+        <p class="foot-credit"><span data-es="Fotografía" data-en="Photography">Fotografía</span> · <a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">SHARNAY PHOTOGRAPHY</a></p>
       </div>
     </div>
     <div class="foot-bottom">
       <div class="foot-bottom-inner">
-        <p data-es="© 2026 Criar Sin Culpas. Todos los derechos reservados." data-en="© 2026 Criar Sin Culpas. All rights reserved.">© 2026 Criar Sin Culpas. Todos los derechos reservados.</p>
-        <p style="font-style:italic;" data-es="Esto no reemplaza orientación médica o profesional." data-en="This does not replace medical or professional guidance.">Esto no reemplaza orientación médica o profesional.</p>
+        <span data-i18n="foot_copy" data-es="© 2026 Criar Sin Culpas. Todos los derechos reservados." data-en="© 2026 Criar Sin Culpas. All rights reserved.">© 2026 Criar Sin Culpas. Todos los derechos reservados.</span>
+        <span data-i18n="foot_med" data-es="Esto no reemplaza orientación médica o profesional." data-en="This does not replace medical or professional guidance.">Esto no reemplaza orientación médica o profesional.</span>
       </div>
     </div>
   </footer>

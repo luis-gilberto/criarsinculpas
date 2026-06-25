@@ -28,6 +28,7 @@
     window.plausible = window.plausible || function(){ if (window.location.hostname!=='criarsinculpas.com') console.log('Plausible [Local]:', arguments[0], arguments[1]); };
   </script>
   <script defer src="/js/track.js"></script>
+  <link rel="stylesheet" href="/css/site-footer.css">
 
   <style>
     /* ═══════════════ DESIGN TOKENS (unified with /sobre-nari/) ═══════════════ */
@@ -305,29 +306,6 @@
     .btn .arrow{transition:transform .3s var(--ease-silk);}
     .btn:hover .arrow{transform:translateX(3px);}
 
-    /* ═══════════════ FOOTER (sobre-nari pattern) ═══════════════ */
-    footer{border-top:1px solid oklch(0.88 0.018 70 / .7);background:var(--background);}
-    .foot-grid{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:2.5rem;padding:4rem var(--gutter);}
-    .foot-brand .b1{font-family:var(--serif);font-size:1.5rem;font-weight:500;letter-spacing:.18em;color:var(--foreground);}
-    .foot-brand .b2{margin-top:-.15rem;font-family:var(--serif);font-size:.85rem;font-style:italic;letter-spacing:.06em;color:var(--accent);}
-    .foot-brand p{margin-top:1.1rem;font-size:.78rem;line-height:1.7;color:var(--muted-foreground);max-width:30ch;}
-    .foot-credit{margin-top:1rem;font-size:.66rem;letter-spacing:.06em;color:var(--muted-foreground);}
-    .foot-credit a{color:var(--muted-foreground);border-bottom:1px solid oklch(0.74 0.13 38 / .4);transition:color .25s;}
-    .foot-credit a:hover{color:var(--accent);}
-    .foot-col .h{font-size:.625rem;letter-spacing:.25em;text-transform:uppercase;color:oklch(0.22 0.04 260 / .8);font-weight:600;}
-    .foot-col ul{margin-top:1rem;list-style:none;display:flex;flex-direction:column;gap:.55rem;font-size:.78rem;color:var(--muted-foreground);}
-    .foot-col ul li{display:flex;align-items:center;gap:.45rem;}
-    .foot-col ul a{transition:color .25s;}
-    .foot-col ul a:hover{color:var(--accent);}
-    .foot-social{margin-top:1rem;display:flex;gap:.5rem;}
-    .foot-social a{width:2.25rem;height:2.25rem;display:grid;place-items:center;border-radius:999px;border:1px solid var(--border);color:var(--muted-foreground);transition:all .25s;}
-    .foot-social a:hover{border-color:var(--accent);color:var(--accent);}
-    .foot-social svg{width:14px;height:14px;}
-    .foot-bottom{border-top:1px solid oklch(0.88 0.018 70 / .7);}
-    .foot-bottom-inner{max-width:var(--maxw);margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:.5rem;padding:1.5rem var(--gutter);font-size:.6875rem;color:var(--muted-foreground);text-align:center;}
-    .foot-brand{grid-column:1 / -1;}
-    @media(min-width:640px){ .foot-grid{grid-template-columns:1.5fr 1fr 1fr 1fr;} .foot-brand{grid-column:auto;} .foot-bottom-inner{flex-direction:row;text-align:left;} }
-
     /* ═══════════════ MICRO ═══════════════ */
     @keyframes pulse-ring{0%{transform:scale(.95);box-shadow:0 0 0 0 oklch(0.66 0.04 245 / .4);}70%{transform:scale(1);box-shadow:0 0 0 12px oklch(0.66 0.04 245 / 0);}100%{transform:scale(.95);box-shadow:0 0 0 0 oklch(0.66 0.04 245 / 0);}}
     @keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
@@ -457,10 +435,6 @@
       .cta-card p{ font-size:.92rem; }
       .cta-actions{ flex-direction:column; gap:.6rem; margin-top:1.75rem; }
       .cta-actions .btn{ width:100%; justify-content:center; padding:.8rem 1.1rem; font-size:.72rem; letter-spacing:.06em; }
-
-      /* footer — single column reads calmer than cramped 2-col */
-      .foot-grid{ grid-template-columns:1fr; gap:2rem; padding:3rem var(--gutter) 2.5rem; }
-      .foot-brand{ grid-column:auto; }
     }
 
     /* very-narrow phones (≤360px) */
@@ -814,23 +788,22 @@
   </div>
 
   <!-- ─────── FOOTER (sobre-nari pattern) ─────── -->
-  <footer role="contentinfo">
+  <footer class="site-footer" role="contentinfo">
     <div class="foot-grid">
       <div class="foot-brand">
         <div class="b1">CRIAR</div>
         <div class="b2">sin culpas</div>
         <p data-i18n="foot_tag" data-es="Un espacio de apoyo emocional para padres que quieren criar con conexión, no con culpa." data-en="An emotional support space for parents who want to raise with connection, not guilt.">Un espacio de apoyo emocional para padres que quieren criar con conexión, no con culpa.</p>
-        <p class="foot-credit"><span data-es="Fotografía" data-en="Photography">Fotografía</span> · <a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">SHARNAY PHOTOGRAPHY</a></p>
       </div>
       <div class="foot-col">
         <div class="h" data-i18n="foot_nav" data-es="Navegación" data-en="Navigation">Navegación</div>
         <ul>
-          <li><a href="#top" data-i18n="nav_inicio_f" data-es="Inicio" data-en="Home">Inicio</a></li>
-          <li><a href="#protocolos" data-i18n="nav_guias_f" data-es="Guías" data-en="Guides">Guías</a></li>
+          <li><a href="/" data-i18n="nav_inicio_f" data-es="Inicio" data-en="Home">Inicio</a></li>
+          <li><a href="/#protocolos" data-i18n="nav_guias_f" data-es="Guías" data-en="Guides">Guías</a></li>
           <li><a href="/metodo/" data-i18n="nav_metodo_f" data-es="El Método" data-en="The Method">El Método</a></li>
-          <li><a href="#sobre-nari" data-i18n="nav_nari_f" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a></li>
-          <li><span data-i18n="nav_aprende_f" data-es="Aprende" data-en="Learn">Aprende</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></li>
-          <li><span data-i18n="nav_comunidad_f" data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></li>
+          <li><a href="/sobre-nari/" data-i18n="nav_nari_f" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a></li>
+          <li class="is-soon"><span class="foot-label" data-i18n="nav_aprende_f" data-es="Aprende" data-en="Learn">Aprende</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></li>
+          <li class="is-soon"><span class="foot-label" data-i18n="nav_comunidad_f" data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></li>
         </ul>
       </div>
       <div class="foot-col">
@@ -841,12 +814,13 @@
           <li><a href="/descargo" data-i18n="foot_disc" data-es="Descargo de Responsabilidad" data-en="Disclaimer">Descargo de Responsabilidad</a></li>
         </ul>
       </div>
-      <div class="foot-col">
+      <div class="foot-col foot-col-end">
         <div class="h" data-i18n="foot_follow" data-es="Síguenos" data-en="Follow us">Síguenos</div>
         <div class="foot-social">
           <a href="https://instagram.com/criarsinculpas" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
           <a href="mailto:hola@criarsinculpas.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
         </div>
+        <p class="foot-credit"><span data-es="Fotografía" data-en="Photography">Fotografía</span> · <a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">SHARNAY PHOTOGRAPHY</a></p>
       </div>
     </div>
     <div class="foot-bottom">

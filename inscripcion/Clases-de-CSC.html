@@ -20,6 +20,7 @@
     };
   </script>
   <script defer src="/js/track.js"></script>
+  <link rel="stylesheet" href="/css/site-footer.css">
   <style>
     :root {
       --void:        #FAF6F2;
@@ -132,20 +133,6 @@
     .soft-note { max-width: 620px; margin: 36px auto 0; text-align: center; font-family: var(--sans); font-size: 0.9rem; line-height: 1.6; color: var(--text-dim); background: rgba(255,255,255,.6); border: 1px solid var(--line); border-radius: 16px; padding: 16px 26px; }
     .form-note { margin: 24px 0 4px; }
 
-    /* ---------- full CSC footer ---------- */
-    .site-footer { background: var(--navy); color: rgba(251,247,243,.75); padding: 64px 24px 48px; position: relative; z-index: 10; }
-    .sf-inner { max-width: 1040px; margin: 0 auto; text-align: center; }
-    .sf-logo img { height: 30px; filter: brightness(0) invert(1); opacity: .92; }
-    .sf-tagline { font-family: var(--serif); font-style: italic; font-size: 1.3rem; color: #FBF7F3; margin: 22px 0 28px; }
-    .sf-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 26px; margin-bottom: 26px; }
-    .sf-links a { font-family: var(--sans); font-size: 0.82rem; font-weight: 500; color: rgba(251,247,243,.72); transition: color 0.2s; }
-    .sf-links a:hover { color: var(--coral); }
-    .sf-status { display: inline-flex; align-items: center; gap: 8px; font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.04em; color: rgba(251,247,243,.62); background: rgba(255,255,255,.06); border: 1px solid rgba(251,247,243,.12); padding: 9px 16px; border-radius: var(--pill); margin-bottom: 24px; }
-    .sf-status svg { stroke: rgba(251,247,243,.62); }
-    .sf-copy { font-family: var(--sans); font-size: 0.74rem; color: rgba(251,247,243,.45); }
-    .sf-credit { font-family: var(--sans); font-size: 0.74rem; color: rgba(251,247,243,.55); margin-top: 10px; }
-    .sf-credit a { color: rgba(251,247,243,.72); border-bottom: 1px solid rgba(244,168,138,.4); transition: color 0.2s; }
-    .sf-credit a:hover { color: var(--coral); }
     .visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
     /* ---------- hero ---------- */
@@ -811,29 +798,46 @@
     </div>
   </section>
 
-  <!-- ============ FULL CSC FOOTER ============ -->
   <footer class="site-footer" role="contentinfo">
-    <div class="sf-inner">
-      <div class="sf-status">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        <span data-en="Early access · Platform in preparation · Criar Sin Culpas">Inscripción anticipada · Plataforma en preparación · Criar Sin Culpas</span>
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="b1">CRIAR</div>
+        <div class="b2">sin culpas</div>
+        <p data-i18n="foot_tag" data-es="Un espacio de apoyo emocional para padres que quieren criar con conexión, no con culpa." data-en="An emotional support space for parents who want to raise with connection, not guilt.">Un espacio de apoyo emocional para padres que quieren criar con conexión, no con culpa.</p>
       </div>
-      <div>
-        <a href="/" class="sf-logo" aria-label="Criar Sin Culpas">
-          <img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas">
-        </a>
+      <div class="foot-col">
+        <div class="h" data-i18n="foot_nav" data-es="Navegación" data-en="Navigation">Navegación</div>
+        <ul>
+          <li><a href="/" data-i18n="nav_inicio_f" data-es="Inicio" data-en="Home">Inicio</a></li>
+          <li><a href="/#protocolos" data-i18n="nav_guias_f" data-es="Guías" data-en="Guides">Guías</a></li>
+          <li><a href="/metodo/" data-i18n="nav_metodo_f" data-es="El Método" data-en="The Method">El Método</a></li>
+          <li><a href="/sobre-nari/" data-i18n="nav_nari_f" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a></li>
+          <li class="is-soon"><span class="foot-label" data-i18n="nav_aprende_f" data-es="Aprende" data-en="Learn">Aprende</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></li>
+          <li class="is-soon"><span class="foot-label" data-i18n="nav_comunidad_f" data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></li>
+        </ul>
       </div>
-      <p class="sf-tagline" data-en="Parenting with more calm, clarity, and confidence.">Crianza con más calma, claridad y confianza.</p>
-      <nav class="sf-links" aria-label="Pie de página">
-        <a href="/" data-en="Home">Inicio</a>
-        <a href="/metodo/" data-en="Method">Método</a>
-        <a href="/apoyo/" data-en="Guides">Guías</a>
-        <a href="#fundador" data-en="Early Access">Inscripciones</a>
-        <a href="/privacidad" data-en="Privacy">Privacidad</a>
-        <a href="mailto:hello@criarsinculpas.com" data-en="Contact">Contacto</a>
-      </nav>
-      <p class="sf-copy">© 2026 Criar Sin Culpas · <span data-en="All rights reserved.">Todos los derechos reservados.</span></p>
-      <p class="sf-credit"><span data-en="Photography by">Fotografía por</span> <a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">Erika Sharnay · Sharnay Photography</a></p>
+      <div class="foot-col">
+        <div class="h" data-i18n="foot_legal" data-es="Legal" data-en="Legal">Legal</div>
+        <ul>
+          <li><a href="/terminos" data-i18n="foot_terms" data-es="Términos de Uso" data-en="Terms of Use">Términos de Uso</a></li>
+          <li><a href="/privacidad" data-i18n="foot_priv" data-es="Política de Privacidad" data-en="Privacy Policy">Política de Privacidad</a></li>
+          <li><a href="/descargo" data-i18n="foot_disc" data-es="Descargo de Responsabilidad" data-en="Disclaimer">Descargo de Responsabilidad</a></li>
+        </ul>
+      </div>
+      <div class="foot-col foot-col-end">
+        <div class="h" data-i18n="foot_follow" data-es="Síguenos" data-en="Follow us">Síguenos</div>
+        <div class="foot-social">
+          <a href="https://instagram.com/criarsinculpas" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="mailto:hola@criarsinculpas.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
+        </div>
+        <p class="foot-credit"><span data-es="Fotografía" data-en="Photography">Fotografía</span> · <a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">SHARNAY PHOTOGRAPHY</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="foot-bottom-inner">
+        <span data-i18n="foot_copy" data-es="© 2026 Criar Sin Culpas. Todos los derechos reservados." data-en="© 2026 Criar Sin Culpas. All rights reserved.">© 2026 Criar Sin Culpas. Todos los derechos reservados.</span>
+        <span data-i18n="foot_med" data-es="Esto no reemplaza orientación médica o profesional." data-en="This does not replace medical or professional guidance.">Esto no reemplaza orientación médica o profesional.</span>
+      </div>
     </div>
   </footer>
 
