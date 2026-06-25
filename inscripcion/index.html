@@ -1,15 +1,22 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="light">
+<html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-  <title>Inscripción · El Método Nari</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inscripciones · Capa de Aprendizaje · Criar Sin Culpas</title>
+  <meta name="description" content="Inscripción anticipada a la capa de aprendizaje de Criar Sin Culpas. Talleres, guías y recursos de Nari, organizados en rutas claras para la crianza real.">
+  <link rel="canonical" href="https://criarsinculpas.com/inscripcion/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://criarsinculpas.com/inscripcion/">
+  <meta property="og:title" content="Inscripciones · Capa de Aprendizaje · Criar Sin Culpas">
+  <meta property="og:description" content="Aprende a criar con más calma, claridad y confianza. Inscripción anticipada sin compromiso de compra.">
+  <meta property="og:image" content="https://res.cloudinary.com/dogtoagya/image/upload/v1782414428/ChatGPT_Image_Jun_25_2026_10_15_53_AM_bhnhnd.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/dogtoagya/image/upload/v1782414428/ChatGPT_Image_Jun_25_2026_10_15_53_AM_bhnhnd.png">
+  <meta name="theme-color" content="#FAF6F2">
+
   <script>
     if (window.location.hostname === 'criarsinculpas.com') {
-      const script = document.createElement('script');
+      var script = document.createElement('script');
       script.defer = true;
       script.setAttribute('data-domain', 'criarsinculpas.com');
       script.src = 'https://plausible.io/js/script.manual.js';
@@ -20,299 +27,695 @@
     };
   </script>
   <script defer src="/js/track.js"></script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: 'oklch(0.985 0.008 75)',
+            foreground: 'oklch(0.22 0.04 260)',
+            primary: 'oklch(0.24 0.06 265)',
+            'primary-foreground': 'oklch(0.97 0.015 75)',
+            secondary: 'oklch(0.94 0.018 70)',
+            'muted-foreground': 'oklch(0.45 0.03 260)',
+            accent: 'oklch(0.74 0.13 38)',
+            'accent-foreground': 'oklch(0.99 0.005 75)',
+            border: 'oklch(0.88 0.018 70)',
+            teal: 'oklch(0.66 0.04 245)',
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['Inter', 'DM Sans', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site-footer.css">
+
   <style>
     :root {
-      --void:        #FAF6F2;
-      --void-mid:    #FCE7DD;
-      --void-lift:   #FFFFFF;
-      --text:        #1F2E46;
-      --text-dim:    rgba(31,46,70,.7);
-      --text-ghost:  rgba(31,46,70,.4);
-      --coral:       #F4A88A;
-      --coral-ink:   #D96B47;
-      --teal:        #8599AD;
-      --navy:        #1F2E46;
-      --serif:  'Cormorant Garamond', Georgia, serif;
-      --sans:   'DM Sans', system-ui, sans-serif;
-      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-silk: cubic-bezier(0.16, 1, 0.3, 1);
+      --navy: oklch(0.24 0.06 265);
+      --pill: 999px;
+      --line: oklch(0.22 0.04 260 / .08);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--sans); background: var(--void); color: var(--text); overflow-x: hidden; }
-    a { text-decoration: none; color: inherit; }
-    
+    html, body { font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    .font-serif { font-family: "Cormorant Garamond", ui-serif, Georgia, serif; }
+    section[id] { scroll-margin-top: 88px; }
+
     .grain {
-      position: fixed; inset: 0; z-index: 200; pointer-events: none; opacity: .035;
+      position: fixed; inset: 0; z-index: 200; pointer-events: none; opacity: .04;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
     }
-    
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    .reveal { animation: fadeUp 0.8s var(--ease) both; }
-    .d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.2s; } .d3 { animation-delay: 0.3s; }
-    
-    .checkout-nav { padding: 32px 56px; display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 10; }
-    .checkout-nav img { height: 32px; filter: brightness(.65) saturate(1.4) hue-rotate(-5deg); }
-    .back-link { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-ghost); transition: color 0.2s; }
-    .back-link:hover { color: var(--text); }
-    
-    .hero { 
-      padding: 64px 24px 100px; text-align: center; position: relative; z-index: 10;
-      background-image: url('https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1780787875/ChatGPT_Image_Jun_6_2026_04_11_26_PM_7_kwjtlh.png');
-      background-size: cover; background-position: center;
+
+    .site-header { position: sticky; top: 0; z-index: 100; background: var(--navy); color: #FBF7F3; }
+    .sh-inner { max-width: 1180px; margin: 0 auto; padding: 14px 32px; display: flex; align-items: center; gap: 22px; }
+    .sh-logo { display: inline-flex; align-items: center; }
+    .sh-logo img { height: 26px; filter: brightness(0) invert(1); opacity: .95; }
+    .sh-nav { display: flex; align-items: center; gap: 24px; }
+    .sh-nav a { font-family: 'DM Sans', system-ui, sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.02em; color: rgba(251,247,243,.78); transition: color 0.2s; text-decoration: none; }
+    .sh-nav a:hover { color: #fff; }
+    .sh-nav a.active { color: oklch(0.74 0.13 38); }
+    .sh-right { margin-left: auto; display: flex; align-items: center; gap: 14px; }
+    .sh-cta { font-family: 'DM Sans', system-ui, sans-serif; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--navy); background: oklch(0.74 0.13 38); padding: 10px 18px; border-radius: var(--pill); transition: background 0.25s var(--ease-silk), transform 0.25s var(--ease-silk); white-space: nowrap; text-decoration: none; }
+    .sh-cta:hover { background: #ECA083; transform: translateY(-1px); }
+    .lang-toggle { display: inline-flex; border: 1px solid rgba(251,247,243,.28); border-radius: var(--pill); overflow: hidden; background: rgba(255,255,255,.08); }
+    .lang-btn { font-family: 'DM Sans', system-ui, sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; padding: 7px 13px; background: transparent; color: rgba(251,247,243,.72); border: none; cursor: pointer; transition: background 0.25s var(--ease-silk), color 0.25s var(--ease-silk); }
+    .lang-btn.active { background: oklch(0.74 0.13 38); color: var(--navy); }
+    .lang-btn:not(.active):hover { color: #fff; }
+    .sh-ham { display: none; background: transparent; border: none; color: #FBF7F3; cursor: pointer; padding: 6px; align-items: center; }
+    .sh-mobile { display: none; }
+    @media (max-width: 880px) {
+      .sh-nav { display: none; }
+      .sh-cta { display: none; }
+      .sh-ham { display: inline-flex; }
+      .sh-inner { padding: 14px 22px; }
+      .sh-mobile { display: block; background: var(--navy); border-top: 1px solid rgba(251,247,243,.12); padding: 6px 22px 20px; }
+      .sh-mobile[hidden] { display: none; }
+      .sh-mobile a { display: block; padding: 13px 0; font-family: 'DM Sans', system-ui, sans-serif; font-size: 0.95rem; color: rgba(251,247,243,.85); border-bottom: 1px solid rgba(251,247,243,.08); text-decoration: none; }
+      .sh-mobile a.active { color: oklch(0.74 0.13 38); }
+      .sh-mobile .sh-cta-m { display: inline-block; margin-top: 16px; color: var(--navy); background: oklch(0.74 0.13 38); padding: 12px 22px; border-radius: var(--pill); font-weight: 700; text-transform: uppercase; font-size: 0.76rem; letter-spacing: 0.05em; border-bottom: none; }
     }
-    .hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(250,247,241,0.85) 0%, rgba(250,247,241,0.95) 60%, var(--void) 100%);
-      z-index: -1;
+
+    .page-band { background: #FBF7F3; border-bottom: 1px solid var(--line); text-align: center; padding: 16px 24px; position: relative; z-index: 10; }
+    .pb-kicker { font-family: 'DM Sans', system-ui, sans-serif; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #D96B47; }
+    .pb-sub { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 1.02rem; color: oklch(0.45 0.03 260); margin-top: 5px; }
+
+    @keyframes photo-jiggle {
+      0%,100%{transform:translate3d(0,0,0) rotate(0)}
+      18%{transform:translate3d(-2px,-1px,0) rotate(-.45deg)}
+      36%{transform:translate3d(2px,-1px,0) rotate(.4deg)}
+      54%{transform:translate3d(-1.5px,1px,0) rotate(-.28deg)}
+      78%{transform:translate3d(1px,0,0) rotate(.18deg)}
     }
-    
-    .hero-inner { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
-    
-    .eyebrow {
-      display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em;
-      text-transform: uppercase; color: var(--coral-ink); margin-bottom: 24px;
-      padding: 6px 16px; border: 1px solid rgba(217,107,71,.2); border-radius: 999px; background: rgba(250,247,241,.8);
-      box-shadow: 0 4px 12px rgba(217,107,71,.05);
+    @keyframes ping { 0% { box-shadow: 0 0 0 0 oklch(0.74 0.13 38 / .5); } 70% { box-shadow: 0 0 0 9px oklch(0.74 0.13 38 / 0); } 100% { box-shadow: 0 0 0 0 oklch(0.74 0.13 38 / 0); } }
+    .status-dot { animation: ping 2.2s var(--ease-silk) infinite; }
+
+    .frame { position: relative; }
+    .frame .plate { position: absolute; z-index: 0; border-radius: 1.85rem; background: linear-gradient(142deg, oklch(0.84 0.066 26 / .55) 0%, oklch(0.93 0.03 48 / .16) 78%); }
+    .frame.plate-br .plate { top: 1.25rem; left: 1.25rem; right: -1.25rem; bottom: -1.25rem; }
+    .frame.plate-bl .plate { top: 1.25rem; right: 1.25rem; left: -1.25rem; bottom: -1.25rem; }
+    .frame .dot { position: absolute; top: -.55rem; width: 9px; height: 9px; border-radius: 50%; background: oklch(0.74 0.13 38); z-index: 2; }
+    .frame.plate-br .dot { left: .4rem; }
+    .frame.plate-bl .dot { right: .4rem; }
+    .frame .shot { position: relative; z-index: 1; border-radius: 1.5rem; overflow: hidden; box-shadow: 0 44px 90px -50px oklch(0.22 0.04 260 / .55), 0 14px 34px -24px oklch(0.22 0.04 260 / .3); transform: translateZ(0); will-change: transform; }
+    .frame .shot img { display: block; width: 100%; object-fit: cover; }
+    .frame:hover .shot { animation: photo-jiggle .65s var(--ease-silk); }
+    .credit-plate { position: absolute; z-index: 3; right: 1.1rem; bottom: .1rem; display: inline-flex; align-items: center; gap: .5rem; padding: .55rem .9rem .55rem .8rem; border-radius: 0 0 .85rem .85rem; background: oklch(0.22 0.04 260 / .95); color: #fff; font-family: 'DM Sans', system-ui, sans-serif; font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; white-space: nowrap; box-shadow: 0 18px 30px -18px oklch(0.22 0.04 260 / .65); transform: translateY(-100%); opacity: 0; pointer-events: none; transition: transform .55s var(--ease-silk), opacity .35s var(--ease-silk), background .25s, color .25s; }
+    .credit-plate svg { width: 11px; height: 11px; opacity: .95; }
+    .credit-plate .arrow { margin-left: .15rem; transition: transform .3s var(--ease-silk); }
+    .frame:hover .credit-plate, .frame:focus-within .credit-plate { transform: translateY(72%); opacity: 1; pointer-events: auto; }
+    .credit-plate:hover { background: oklch(0.74 0.13 38); color: var(--navy); }
+    .credit-plate:hover .arrow { transform: translateX(3px); }
+    .credit-plate-mob { display: none; }
+    @media (max-width: 640px) {
+      .frame .credit-plate { display: none; }
+      .credit-plate-mob { display: block; margin-top: .65rem; text-align: right; font-family: 'DM Sans', system-ui, sans-serif; font-size: .72rem; color: oklch(0.45 0.03 260); }
+      .credit-plate-mob a { color: oklch(0.45 0.03 260); border-bottom: 1px solid oklch(0.74 0.13 38 / .35); text-decoration: none; }
+      .credit-plate-mob a:hover { color: oklch(0.74 0.13 38); }
+      .frame.plate-br .plate { right: -.65rem; }
+      .frame.plate-bl .plate { left: -.65rem; }
     }
-    .hero h1 { font-family: var(--serif); font-size: clamp(3rem, 6vw, 4.8rem); font-weight: 300; line-height: 1.05; color: var(--navy); margin-bottom: 24px; letter-spacing: -0.01em; }
-    .hero h1 em { font-style: italic; color: var(--teal); font-weight: 400; }
-    .hero p { font-size: 1.15rem; line-height: 1.6; color: var(--text-dim); max-width: 50ch; margin: 0 auto; }
-    
-    .curriculum { max-width: 1000px; margin: 0 auto; padding: 0 24px 100px; position: relative; z-index: 10; }
-    .section-title { text-align: center; font-family: var(--serif); font-size: 2.6rem; font-weight: 300; color: var(--navy); margin-bottom: 64px; }
-    
-    .module-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px; }
-    .module-card { 
-      background: var(--void-lift); border: 1px solid rgba(31,46,70,.06); 
-      border-radius: 20px; padding: 32px 40px; 
-      box-shadow: 0 12px 32px rgba(31,46,70,.03);
-      position: relative; overflow: hidden;
-      display: flex; flex-direction: column; justify-content: center;
-      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+    @media (prefers-reduced-motion: reduce) {
+      .frame:hover .shot { animation: none; }
+      .status-dot { animation: none; }
+      html { scroll-behavior: auto; }
     }
-    .module-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(31,46,70,.08); }
-    .mod-num { 
-      position: absolute; right: 24px; top: -10px;
-      font-family: var(--serif); font-size: 6rem; font-weight: 300; 
-      color: rgba(133,153,173,.06); line-height: 1; pointer-events: none;
-    }
-    .mod-title { font-family: var(--serif); font-size: 1.4rem; font-weight: 500; color: var(--navy); margin-bottom: 12px; position: relative; z-index: 1; }
-    .mod-desc { font-size: 0.9rem; color: var(--text-dim); line-height: 1.6; position: relative; z-index: 1; }
-    
-    .pricing { max-width: 960px; margin: 0 auto; padding: 40px 24px 120px; position: relative; z-index: 10; }
-    .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
-    
-    .price-card { 
-      background: var(--void-lift); border: 1px solid rgba(31,46,70,.08); 
-      border-radius: 24px; padding: 48px 40px; display: flex; flex-direction: column; 
-      box-shadow: 0 12px 40px rgba(31,46,70,.05); position: relative; overflow: hidden;
-    }
-    .price-card.featured { 
-      background: var(--navy); color: #fff; 
-      box-shadow: 0 32px 80px rgba(31,46,70,.25); border: none; 
-      padding: 56px 40px; /* Slightly taller to emphasize */
-    }
-    .price-card.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: var(--coral); }
-    
-    .tier-name { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 16px; }
-    .price-card.featured .tier-name { color: var(--coral); }
-    .price-card:not(.featured) .tier-name { color: var(--teal); }
-    
-    .price-amount { font-family: var(--serif); font-size: 4.2rem; font-weight: 300; line-height: 1; margin-bottom: 8px; letter-spacing: -0.02em; }
-    .price-sub { font-size: 0.9rem; color: var(--text-ghost); margin-bottom: 40px; font-style: italic; font-family: var(--serif); }
-    .price-card.featured .price-sub { color: rgba(250,247,241,.6); }
-    
-    .feature-list { list-style: none; margin-bottom: 48px; flex: 1; }
-    .feature-list li { font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px; display: flex; gap: 16px; align-items: flex-start; }
-    .feature-list li svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; }
-    
-    .btn { 
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px; 
-      width: 100%; padding: 18px; border-radius: var(--pill); font-size: 0.85rem; font-weight: 700; 
-      text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.4s var(--ease); cursor: pointer; 
-    }
-    .btn-outline { background: transparent; color: var(--navy); border: 1px solid rgba(31,46,70,.2); }
-    .btn-outline:hover { border-color: var(--navy); background: rgba(31,46,70,.03); transform: translateY(-2px); }
-    .btn-solid { background: var(--coral); color: var(--navy); border: none; box-shadow: 0 8px 24px rgba(244,168,138,.25); }
-    .btn-solid:hover { background: #ECA083; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(244,168,138,.4); }
-    
-    .secure-footer { text-align: center; padding: 40px 24px; border-top: 1px solid rgba(31,46,70,.06); font-size: 0.8rem; color: var(--text-ghost); }
-    
-    @media (max-width: 800px) { 
-      .checkout-nav { padding: 24px; } 
-      .pricing-grid { grid-template-columns: 1fr; }
-      .price-card.featured { padding: 48px 32px; }
-      .module-grid { grid-template-columns: 1fr; }
-    }
+
+    .tag { display: inline-flex; align-items: center; gap: 6px; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 11px; border-radius: var(--pill); white-space: nowrap; font-family: 'DM Sans', system-ui, sans-serif; }
+    .tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; }
+    .tag-launch { color: oklch(0.55 0.16 32); background: oklch(0.74 0.13 38 / .16); }
+    .tag-launch::before { background: oklch(0.74 0.13 38); }
+    .tag-prep { color: oklch(0.45 0.03 260); background: oklch(0.66 0.04 245 / .16); }
+    .tag-prep::before { background: oklch(0.66 0.04 245); }
+    .tag-soon { color: oklch(0.45 0.03 260); background: oklch(0.22 0.04 260 / .05); }
+    .tag-soon::before { background: oklch(0.45 0.03 260); }
   </style>
-
-  <meta name="robots" content="noindex, nofollow">
 </head>
-<body data-protocol="general">
-  <div class="grain" aria-hidden="true"></div>
-  <nav class="checkout-nav reveal">
-    <a href="/metodo"><img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas"></a>
-    <a href="/metodo" class="back-link">← Volver al Método</a>
+<body class="min-h-screen bg-background text-foreground" data-protocol="inscripciones" data-guide="learning_layer">
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="sh-inner">
+    <a href="/" class="sh-logo" aria-label="Criar Sin Culpas">
+      <img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas">
+    </a>
+    <nav class="sh-nav" aria-label="Navegación principal">
+      <a href="/" data-en="Home">Inicio</a>
+      <a href="/metodo/" data-en="Method">Método</a>
+      <a href="/apoyo/" data-en="Guides">Guías</a>
+      <a href="#fundador" class="active" data-en="Early Access">Inscripciones</a>
+      <a href="/sobre-nari/" data-en="About Nari">Sobre Nari</a>
+    </nav>
+    <div class="sh-right">
+      <a href="#fundador" class="sh-cta" data-track-cta="header_early_access" data-cta-location="site_header" data-en="Early access">Inscripción anticipada</a>
+      <div class="lang-toggle" role="group" aria-label="Idioma / Language">
+        <button type="button" class="lang-btn active" data-lang="es" aria-pressed="true">ES</button>
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button type="button" class="sh-ham" id="sh-ham" aria-label="Abrir menú" aria-expanded="false" aria-controls="sh-mobile">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav class="sh-mobile" id="sh-mobile" aria-label="Menú móvil" hidden>
+    <a href="/" data-en="Home">Inicio</a>
+    <a href="/metodo/" data-en="Method">Método</a>
+    <a href="/apoyo/" data-en="Guides">Guías</a>
+    <a href="#fundador" class="active" data-en="Early Access">Inscripciones</a>
+    <a href="/sobre-nari/" data-en="About Nari">Sobre Nari</a>
+    <a href="#fundador" class="sh-cta-m" data-track-cta="header_early_access" data-cta-location="site_header" data-en="Early access">Inscripción anticipada</a>
   </nav>
-  
-  <header class="hero">
-    <div class="hero-inner">
-      <span class="eyebrow reveal d1">Inscripción Abierta</span>
-      <h1 class="reveal d2">Crianza <em>Aplicada.</em></h1>
-      <p class="reveal d3" style="font-size: 1.4rem; font-family: var(--serif); font-style: italic; color: var(--coral-ink); margin-bottom: 16px;">
-        Menos teoría en tu cabeza, más herramientas en tus manos.
-      </p>
-      <p class="reveal d3">
-        La mayoría de los cursos te llenan de información que olvidas cuando tu hijo empieza a gritar. Por eso no creamos un curso tradicional; creamos un ecosistema. Los guías te salvan en la crisis, y el Método de 8 Módulos cambia el sistema desde la raíz.
-      </p>
-    </div>
-  </header>
-  
-  <section class="curriculum reveal d3">
-    <h2 class="section-title">El Programa de 8 Módulos</h2>
-    <div class="module-grid">
-      <div class="module-card">
-        <span class="mod-num">01</span>
-        <h3 class="mod-title">La Ecuación del Dolor</h3>
-        <p class="mod-desc">Identifica cuándo estás lidiando con la realidad y cuándo estás peleando contra tus expectativas.</p>
+</header>
+
+<div class="page-band">
+  <p class="pb-kicker" data-en="Early Access · Learning Layer">Inscripciones · Capa de Aprendizaje</p>
+  <p class="pb-sub" data-en="An invitation to go deeper, without pressure and without purchase commitment.">Una invitación a profundizar, sin prisa y sin compromiso de compra.</p>
+</div>
+
+<!-- HERO -->
+<section class="px-6 py-16 lg:py-24">
+  <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+    <div>
+      <span class="inline-block rounded-full border border-accent/30 bg-background px-5 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-accent" data-en="Early Access">Inscripción Anticipada</span>
+      <h1 class="mt-7 font-serif text-4xl font-light italic leading-tight text-foreground sm:text-5xl lg:text-[3.4rem]" data-en="Learn to parent with more calm, &lt;em&gt;clarity&lt;/em&gt;, and confidence.">Aprende a criar con más calma, <em class="not-italic text-teal">claridad</em> y confianza.</h1>
+      <p class="mt-6 font-serif text-xl italic text-accent sm:text-2xl" data-en="Nari's work, organized into clear, practical routes for the real moments of parenting.">El trabajo de Nari, organizado en rutas claras y prácticas para los momentos reales de la crianza.</p>
+      <p class="mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground" data-en="A new learning layer for parents and caregivers who want to go deeper: workshops, guides, and resources, step by step.">Una nueva capa de aprendizaje. Para quienes cuidan y quieren ir más a fondo: talleres, guías y recursos, paso a paso.</p>
+      <div class="mt-8 inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-2 text-xs text-muted-foreground">
+        <span class="status-dot inline-block h-2 w-2 rounded-full bg-accent"></span>
+        <span data-en="Under construction from more than 50 original workshops by Nari.">En construcción a partir de más de 50 talleres originales de Nari.</span>
       </div>
-      <div class="module-card">
-        <span class="mod-num">02</span>
-        <h3 class="mod-title">Los Cuatro Caminos</h3>
-        <p class="mod-desc">Audita tu reactividad y descubre cuál es tu patrón automático bajo presión.</p>
-      </div>
-      <div class="module-card">
-        <span class="mod-num">03</span>
-        <h3 class="mod-title">El Desajuste de Idioma</h3>
-        <p class="mod-desc">Por qué la lógica adulta no funciona en el cerebro infantil en desarrollo.</p>
-      </div>
-      <div class="module-card">
-        <span class="mod-num">04</span>
-        <h3 class="mod-title">Mecanismos del Juego</h3>
-        <p class="mod-desc">Cómo usar "Play OS" para abrir el canal de comunicación antes de corregir.</p>
-      </div>
-      <div class="module-card">
-        <span class="mod-num">05</span>
-        <h3 class="mod-title">El Ciclo de la Reactividad</h3>
-        <p class="mod-desc">Mapeando el caos: cómo tú y tu hijo se detonan mutuamente y cómo frenarlo.</p>
-      </div>
-      <div class="module-card">
-        <span class="mod-num">06</span>
-        <h3 class="mod-title">Diseñando el Sistema</h3>
-        <p class="mod-desc">Crianza neutral en práctica. Establecer límites sin descargar tu frustración.</p>
-      </div>
-      <div class="module-card">
-        <span class="mod-num">07</span>
-        <h3 class="mod-title">Reparación sin Culpa</h3>
-        <p class="mod-desc">Qué hacer exactamente después de que perdiste la calma. El arte de reconectar.</p>
-      </div>
-      <div class="module-card">
-        <span class="mod-num">08</span>
-        <h3 class="mod-title">Consistencia a Largo Plazo</h3>
-        <p class="mod-desc">Manteniendo el sistema vivo cuando el cansancio vuelve a aparecer.</p>
+      <div class="mt-10 flex flex-wrap items-center gap-3">
+        <a href="#fundador" class="rounded-full bg-accent px-7 py-3 text-sm font-medium text-accent-foreground shadow-lg shadow-accent/20 transition-transform hover:-translate-y-0.5" data-track-cta="fundador" data-cta-location="hero" data-en="I want early access">Quiero inscripción anticipada →</a>
+        <a href="#como-funciona" class="rounded-full border border-border px-7 py-3 text-sm font-medium text-foreground/80 transition-colors hover:bg-secondary/60" data-track-cta="como_funciona" data-cta-location="hero" data-en="See how it works">Ver cómo funciona</a>
       </div>
     </div>
-  </section>
-  
-  <section class="pricing reveal d3">
-    <h2 class="section-title">Modalidades de Aprendizaje</h2> 
-    <div class="pricing-grid"> 
-      <div class="price-card"> 
-        <span class="tier-name">El Programa a tu ritmo</span> 
-        <div class="price-amount" style="font-size: 2.4rem; margin-top: 10px;">Pase de Acceso</div> 
-        <p class="price-sub">Pago único. Acceso de por vida.</p> 
-        <ul class="feature-list"> 
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> <strong>100% Bilingüe:</strong> Audio, video y textos en Español e Inglés.</li> 
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Acceso inmediato a los 8 Módulos.</li> 
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Audios descargables para escuchar en movimiento.</li> 
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> 8 Cuadernos de trabajo interactivos (PDF).</li> 
-        </ul> 
-        <a href="#waitlist" class="btn btn-outline plan-select" data-plan="El Programa a tu ritmo (Pago Único)">Unirme a la lista de espera</a> 
-      </div> 
-      
-      <div class="price-card featured"> 
-        <span class="tier-name">Acompañamiento Activo</span> 
-        <div class="price-amount" style="font-size: 2.4rem; margin-top: 10px;">Membresía CSC</div> 
-        <p class="price-sub">Cancela en cualquier momento.</p> 
-        <ul class="feature-list"> 
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> <strong>Todo el programa de 8 módulos.</strong></li> 
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Acceso a la Comunidad Privada de padres CSC.</li> 
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Sesión grupal en vivo de Q&A mensual con Nari.</li> 
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Biblioteca de recursos y escenarios resueltos.</li> 
-        </ul> 
-        <a href="#waitlist" class="btn btn-solid plan-select" data-plan="Acompañamiento Activo (Suscripción)">Unirme a la lista de espera</a> 
-      </div> 
-    </div> 
-  </section>
-  
-  <!-- WAITLIST CAPTURE --> 
-  <section id="waitlist" class="pricing reveal d3" style="padding-top: 0; margin-top: -40px;"> 
-    <div class="price-card" style="text-align: center; align-items: center; max-width: 640px; margin: 0 auto; padding: 48px 32px;"> 
-      <h3 style="font-family: var(--serif); font-size: 2.2rem; font-weight: 400; color: var(--navy); margin-bottom: 16px;">Las inscripciones abren pronto</h3> 
-      <p style="color: var(--text-dim); margin-bottom: 32px; font-size: 1rem; line-height: 1.6;">Estamos afinando los últimos detalles de la plataforma. Déjanos tu correo y te avisaremos 24 horas antes que a nadie, con un beneficio especial de lanzamiento.</p> 
-      
-      <p id="plan-indicator" style="font-size: 0.85rem; font-weight: 600; color: var(--coral-ink); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; display: none;"> 
-        Modalidad elegida: <span id="plan-name" style="color: var(--navy);">Ninguna</span> 
-      </p> 
+    <figure class="frame plate-br w-full" itemscope itemtype="https://schema.org/ImageObject">
+      <span class="plate" aria-hidden="true"></span>
+      <span class="dot" aria-hidden="true"></span>
+      <div class="shot">
+        <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto,f_auto/v1782414428/ChatGPT_Image_Jun_25_2026_10_15_53_AM_bhnhnd.png" alt="Nari grabando un taller para Criar Sin Culpas" class="h-[34rem] sm:h-[40rem]" itemprop="contentUrl" loading="eager" decoding="async">
+      </div>
+      <a class="credit-plate" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía: SHARNAY PHOTOGRAPHY">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        <span data-es="SHARNAY PHOTOGRAPHY" data-en="SHARNAY PHOTOGRAPHY">SHARNAY PHOTOGRAPHY</span>
+        <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+      <p class="credit-plate-mob"><span data-es="Fotografía por " data-en="Photography by ">Fotografía por </span><a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">Erika Sharnay</a></p>
+    </figure>
+  </div>
+</section>
 
-      <!-- Note: Replace YOUR_ENDPOINT_URL with a Formspree or Web3Forms endpoint to receive emails --> 
-      <form id="waitlist-form" action="https://formspree.io/f/mykapzqj" method="POST" style="display: flex; gap: 12px; width: 100%; max-width: 440px; margin: 0 auto; flex-wrap: wrap;"> 
-        <input type="hidden" name="Modalidad_Elegida" id="hidden-plan" value="General (No especificó)"> 
-        <input type="email" name="Email" placeholder="Tu correo electrónico" required style="flex: 1; min-width: 220px; padding: 16px 20px; border-radius: 12px; border: 1px solid rgba(31,46,70,.2); font-family: var(--sans); font-size: 0.95rem; outline: none; transition: border-color 0.3s;"> 
-        <button type="submit" class="btn btn-solid" style="width: auto; padding: 16px 32px; border-radius: 12px; box-shadow: 0 4px 16px rgba(244,168,138,.3);">Avísame</button> 
-      </form> 
-      <p id="waitlist-success" style="display: none; color: var(--coral-ink); font-family: var(--serif); font-size: 1.4rem; font-style: italic; margin-top: 16px;">¡Lista! Te avisaremos muy pronto. ♡</p> 
-    </div> 
-  </section> 
+<!-- WHAT THIS IS -->
+<section id="como-funciona" class="border-t border-border/60 px-6 py-20" data-track-section="como_funciona">
+  <div class="mx-auto max-w-3xl text-center">
+    <h2 class="font-serif text-3xl font-light italic text-foreground sm:text-4xl" data-en="Not a course. Not a membership.">No es un curso. No es una membresía.</h2>
+    <p class="mt-5 font-serif text-lg text-muted-foreground" data-en="It's the learning layer of Criar Sin Culpas:">Es la capa de aprendizaje de Criar Sin Culpas:</p>
+    <div class="mt-10 rounded-3xl border border-border bg-background p-10 text-left shadow-sm sm:p-12">
+      <p class="font-serif text-2xl italic leading-snug text-foreground" data-en="Where Nari's knowledge becomes a clear, applicable experience.">donde el conocimiento de Nari se convierte en una experiencia clara y aplicable.</p>
+      <p class="mt-6 text-sm leading-relaxed text-muted-foreground" data-en="Workshops, guides, and practical resources for parents and caregivers. The material already exists; now we're organizing it into routes that are easy to follow in the moments that truly matter.">Talleres, guías y recursos prácticos para quienes cuidan. El material ya existe; ahora lo estamos organizando en rutas fáciles de seguir para los momentos que de verdad importan.</p>
+    </div>
+  </div>
+</section>
 
-  <script> 
-    // Handle Plan Selection 
-    document.querySelectorAll('.plan-select').forEach(btn => { 
-      btn.addEventListener('click', function(e) { 
-        const plan = this.getAttribute('data-plan'); 
-        document.getElementById('hidden-plan').value = plan; 
-        document.getElementById('plan-name').innerText = plan; 
-        document.getElementById('plan-indicator').style.display = 'block'; 
-      }); 
-    }); 
+<!-- TRUST -->
+<section class="px-6 py-16">
+  <div class="mx-auto max-w-2xl rounded-3xl border border-accent/25 bg-accent/5 p-10 text-center sm:p-12">
+    <p class="font-serif text-2xl italic text-accent" data-en="The free guides remain free.">Las guías gratuitas siguen siendo gratuitas.</p>
+    <p class="mt-5 text-sm leading-relaxed text-muted-foreground" data-en="This learning space is for those who want to go deeper with more structure. It does not replace immediate support; it complements it when a family is ready to learn with more calm.">Este espacio de aprendizaje es para quienes quieren profundizar con más estructura. No reemplaza el apoyo inmediato; lo complementa cuando una familia está lista para aprender con más calma.</p>
+  </div>
+</section>
 
-    // Handle Form Submission 
-    const form = document.getElementById('waitlist-form'); 
-    form.addEventListener('submit', async function(e) { 
-      e.preventDefault(); 
-      
-      const planElegido = document.getElementById('hidden-plan').value; 
-      
-      // Plausible Telemetry: Send the chosen plan to your analytics dashboard 
-      if (typeof window.track === 'function') {
-        window.track('waitlist_joined', { location: 'inscripcion_sales', plan: planElegido });
+<!-- NARI -->
+<section id="nari" class="border-t border-border/60 bg-secondary/30 px-6 py-20">
+  <div class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+    <figure class="frame plate-br w-full" itemscope itemtype="https://schema.org/ImageObject">
+      <span class="plate" aria-hidden="true"></span>
+      <span class="dot" aria-hidden="true"></span>
+      <div class="shot">
+        <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto,f_auto/v1782414429/ChatGPT_Image_Jun_25_2026_10_22_22_AM_k9tey7.png" alt="Nari trabajando en el método Criar Sin Culpas" class="h-[28rem]" itemprop="contentUrl" loading="lazy" decoding="async">
+      </div>
+      <a class="credit-plate" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía: SHARNAY PHOTOGRAPHY">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        <span data-es="SHARNAY PHOTOGRAPHY" data-en="SHARNAY PHOTOGRAPHY">SHARNAY PHOTOGRAPHY</span>
+        <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+      <p class="credit-plate-mob"><span data-es="Fotografía por " data-en="Photography by ">Fotografía por </span><a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">Erika Sharnay</a></p>
+    </figure>
+    <div>
+      <p class="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent" data-en="Who's behind the method">Quién está detrás del método</p>
+      <h2 class="mt-4 font-serif text-4xl font-light italic text-foreground">Nari</h2>
+      <p class="mt-6 text-sm leading-relaxed text-muted-foreground" data-en="Nari is the creator of the Criar Sin Culpas method: an approach born from supporting real families in moments of tension, not from theory.">Nari es la creadora del método Criar Sin Culpas: un enfoque nacido de acompañar a familias reales en momentos de tensión, no de teoría.</p>
+      <p class="mt-4 text-sm leading-relaxed text-muted-foreground" data-en="Her work brings together more than 50 original workshops and materials.">Su trabajo reúne más de 50 talleres y materiales originales.</p>
+      <p class="mt-4 text-sm leading-relaxed text-muted-foreground" data-en="That is the body of materials we are now organizing inside the platform.">Ese es el conjunto de materiales que ahora estamos organizando dentro de la plataforma.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section id="modulos" class="px-6 py-20 bg-secondary/20" data-track-section="modulos">
+  <div class="mx-auto max-w-7xl">
+    <div class="text-center">
+      <h2 class="font-serif text-3xl font-light italic text-foreground sm:text-4xl" data-en="An early view of the program">Vista inicial del programa</h2>
+      <p class="mx-auto mt-5 max-w-2xl font-serif text-lg text-muted-foreground" data-en="A first look at the method, step by step.">Una primera mirada al método, paso a paso.</p>
+    </div>
+    <div class="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+      <article class="relative overflow-hidden rounded-2xl border border-border bg-background p-8 shadow-sm"><span class="pointer-events-none absolute right-4 top-0 font-serif text-6xl font-extralight text-accent/15">01</span><h3 class="relative font-serif text-xl text-foreground" data-en="The Pain Equation">La Ecuación del Dolor</h3><p class="relative mt-3 text-sm leading-relaxed text-muted-foreground" data-en="Tell apart when you're facing reality and when you're fighting your expectations.">Distingue cuándo enfrentas la realidad y cuándo peleas con tus expectativas.</p></article>
+      <article class="relative overflow-hidden rounded-2xl border border-border bg-background p-8 shadow-sm"><span class="pointer-events-none absolute right-4 top-0 font-serif text-6xl font-extralight text-accent/15">02</span><h3 class="relative font-serif text-xl text-foreground" data-en="The Four Paths">Los Cuatro Caminos</h3><p class="relative mt-3 text-sm leading-relaxed text-muted-foreground" data-en="Recognize your automatic pattern when you're under pressure.">Reconoce tu patrón automático cuando estás bajo presión.</p></article>
+      <article class="relative overflow-hidden rounded-2xl border border-border bg-background p-8 shadow-sm"><span class="pointer-events-none absolute right-4 top-0 font-serif text-6xl font-extralight text-accent/15">03</span><h3 class="relative font-serif text-xl text-foreground" data-en="The Language Mismatch">El Desajuste de Idioma</h3><p class="relative mt-3 text-sm leading-relaxed text-muted-foreground" data-en="Why adult logic doesn't work on a developing child's brain.">Por qué la lógica adulta no funciona en un cerebro infantil en desarrollo.</p></article>
+      <article class="relative overflow-hidden rounded-2xl border border-border bg-background p-8 shadow-sm"><span class="pointer-events-none absolute right-4 top-0 font-serif text-6xl font-extralight text-accent/15">04</span><h3 class="relative font-serif text-xl text-foreground" data-en="Play Mechanics">Mecanismos del Juego</h3><p class="relative mt-3 text-sm leading-relaxed text-muted-foreground" data-en="Use play to open communication before correcting.">Usa el juego para abrir la comunicación antes de corregir.</p></article>
+      <article class="relative overflow-hidden rounded-2xl border border-border bg-background p-8 shadow-sm"><span class="pointer-events-none absolute right-4 top-0 font-serif text-6xl font-extralight text-accent/15">05</span><h3 class="relative font-serif text-xl text-foreground" data-en="The Reactivity Cycle">El Ciclo de la Reactividad</h3><p class="relative mt-3 text-sm leading-relaxed text-muted-foreground" data-en="How you and your child set each other off, and how to break the cycle.">Cómo tú y tu hijo se detonan mutuamente, y cómo romper el ciclo.</p></article>
+      <article class="relative overflow-hidden rounded-2xl border border-border bg-background p-8 shadow-sm"><span class="pointer-events-none absolute right-4 top-0 font-serif text-6xl font-extralight text-accent/15">06</span><h3 class="relative font-serif text-xl text-foreground" data-en="Designing the System">Diseñando el Sistema</h3><p class="relative mt-3 text-sm leading-relaxed text-muted-foreground" data-en="Set limits with calm, without unloading your frustration.">Pon límites con calma, sin descargar tu frustración.</p></article>
+      <article class="relative overflow-hidden rounded-2xl border border-border bg-background p-8 shadow-sm"><span class="pointer-events-none absolute right-4 top-0 font-serif text-6xl font-extralight text-accent/15">07</span><h3 class="relative font-serif text-xl text-foreground" data-en="Repair Without Guilt">Reparación sin Culpa</h3><p class="relative mt-3 text-sm leading-relaxed text-muted-foreground" data-en="What to do after you lose your calm, and how to reconnect.">Qué hacer después de perder la calma, y cómo reconectar.</p></article>
+      <article class="relative overflow-hidden rounded-2xl border border-border bg-background p-8 shadow-sm"><span class="pointer-events-none absolute right-4 top-0 font-serif text-6xl font-extralight text-accent/15">08</span><h3 class="relative font-serif text-xl text-foreground" data-en="Long-Term Consistency">Consistencia a Largo Plazo</h3><p class="relative mt-3 text-sm leading-relaxed text-muted-foreground" data-en="How to sustain the system when exhaustion returns.">Cómo sostener el sistema cuando vuelve el cansancio.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- WHY EARLY -->
+<section id="por-que-anticipada" class="border-t border-border/60 px-6 py-20">
+  <div class="mx-auto max-w-3xl text-center">
+    <h2 class="font-serif text-3xl font-light italic text-foreground sm:text-4xl" data-en="Why we're opening early">Por qué abrimos inscripciones antes del lanzamiento</h2>
+    <p class="mt-6 text-sm leading-relaxed text-muted-foreground" data-en="We're opening early access to build with clarity, not assumptions. Your answers help us prioritize the topics that need more depth first: screens, sleep, limits, emotional regulation, siblings, and other real parenting challenges.">Abrimos inscripción anticipada para construir con claridad, no con suposiciones. Tus respuestas nos ayudan a priorizar los temas que necesitan más profundidad: pantallas, sueño, límites, regulación emocional, hermanos y otros retos reales de la crianza.</p>
+    <p class="mx-auto mt-8 max-w-xl rounded-2xl border border-border bg-background/70 px-6 py-4 text-sm text-muted-foreground" data-en="Signing up does not commit you to buy. It only helps us notify you first and understand what you need.">Inscribirte no te compromete a comprar. Solo nos ayuda a avisarte primero y entender qué necesitas.</p>
+  </div>
+</section>
+
+<!-- TWO PATHS -->
+<section id="dos-caminos" class="bg-secondary/40 px-6 py-20" data-track-section="dos_caminos">
+  <div class="mx-auto max-w-5xl">
+    <div class="text-center">
+      <h2 class="font-serif text-3xl font-light italic text-foreground sm:text-4xl" data-en="Choose your path">Elige tu camino</h2>
+      <p class="mx-auto mt-5 max-w-2xl font-serif text-lg text-muted-foreground" data-en="Two ways in: solve something specific, or grow with continuous support.">Dos formas de entrar: resolver algo puntual o acompañarte de forma continua.</p>
+    </div>
+    <div class="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-2">
+      <article class="flex flex-col rounded-3xl border border-border bg-background p-10 shadow-sm">
+        <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-teal" data-en="Access Pass">Pase de Acceso</p>
+        <h3 class="mt-3 font-serif text-3xl italic text-foreground" data-en="For a specific challenge">Para un reto específico</h3>
+        <p class="mt-2 font-serif italic text-muted-foreground" data-en="Solve what's in front of you, today.">Resuelve lo que tienes enfrente, hoy.</p>
+        <ul class="mt-8 flex-1 space-y-4 text-sm text-muted-foreground">
+          <li class="flex gap-3"><span class="text-teal">✓</span><span data-en="Access to a specific workshop or resource.">Acceso a un taller o recurso específico.</span></li>
+          <li class="flex gap-3"><span class="text-teal">✓</span><span data-en="One-time payment, no recurring commitment.">Pago único, sin compromiso recurrente.</span></li>
+          <li class="flex gap-3"><span class="text-teal">✓</span><span data-en="Focused, practical, straight to the point.">Enfocado, práctico, directo al punto.</span></li>
+        </ul>
+        <a href="#fundador" class="path-select mt-10 inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-secondary/60" data-plan="Pase de Acceso (Pago único)" data-en="I want this option">Quiero esta opción</a>
+      </article>
+      <article class="relative flex flex-col rounded-3xl bg-primary p-10 text-primary-foreground shadow-xl">
+        <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-accent px-4 py-1 text-[10px] font-bold uppercase tracking-wider text-accent-foreground" data-en="Full path">Ruta completa</span>
+        <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-accent" data-en="CSC Membership">Membresía CSC</p>
+        <h3 class="mt-3 font-serif text-3xl italic" data-en="For continuous growth">Para crecer de forma continua</h3>
+        <p class="mt-2 font-serif italic opacity-85" data-en="A membership in design, for ongoing access to workshops and new resources.">Una membresía en diseño, para acceso continuo a talleres y recursos nuevos.</p>
+        <ul class="mt-8 flex-1 space-y-4 text-sm opacity-90">
+          <li class="flex gap-3"><span class="text-accent">✓</span><span data-en="Access to the growing learning space.">Acceso al espacio de aprendizaje en crecimiento.</span></li>
+          <li class="flex gap-3"><span class="text-accent">✓</span><span data-en="Workshops and live sessions as they open.">Talleres y sesiones en vivo a medida que se abren.</span></li>
+          <li class="flex gap-3"><span class="text-accent">✓</span><span data-en="Ongoing resources, guides, and tools.">Recursos, guías y herramientas continuas.</span></li>
+          <li class="flex gap-3"><span class="text-accent">✓</span><span data-en="Community and support (coming soon).">Comunidad y acompañamiento (próximamente).</span></li>
+        </ul>
+        <a href="#fundador" class="path-select mt-10 inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-foreground shadow-lg shadow-accent/20 transition-transform hover:-translate-y-0.5" data-plan="Membresía CSC (Acceso mensual)" data-en="I want this option">Quiero esta opción →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- LEARNING EXPERIENCE -->
+<section class="border-t border-border/60 px-6 py-20">
+  <div class="mx-auto max-w-7xl">
+    <div class="text-center">
+      <h2 class="font-serif text-3xl font-light italic text-foreground sm:text-4xl" data-en="What the learning feels like">Cómo se vive el aprendizaje</h2>
+      <p class="mx-auto mt-5 max-w-2xl font-serif text-lg text-muted-foreground" data-en="What we're building, with honesty about what comes first.">Lo que estamos construyendo, con honestidad sobre qué llega primero.</p>
+    </div>
+    <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <article class="rounded-2xl border border-border bg-background p-8 shadow-sm"><h3 class="font-serif text-xl text-foreground" data-en="On-demand videos">Videos a demanda</h3><p class="mt-3 text-sm text-muted-foreground" data-en="Learn at your own pace, when the day allows.">Aprende a tu ritmo, cuando el día te lo permita.</p><span class="tag tag-launch mt-5" data-en="Available at launch">Disponible en lanzamiento</span></article>
+      <article class="rounded-2xl border border-border bg-background p-8 shadow-sm"><h3 class="font-serif text-xl text-foreground" data-en="Live workshops with Nari">Talleres en vivo con Nari</h3><p class="mt-3 text-sm text-muted-foreground" data-en="Sessions to go deeper and answer questions in real time.">Sesiones para profundizar y resolver dudas en tiempo real.</p><span class="tag tag-prep mt-5" data-en="In preparation">En preparación</span></article>
+      <article class="rounded-2xl border border-border bg-background p-8 shadow-sm"><h3 class="font-serif text-xl text-foreground" data-en="Downloadable guides and resources">Guías y recursos descargables</h3><p class="mt-3 text-sm text-muted-foreground" data-en="Material you take with you and use off-screen.">Material que te llevas y usas fuera de la pantalla.</p><span class="tag tag-launch mt-5" data-en="Available at launch">Disponible en lanzamiento</span></article>
+      <article class="rounded-2xl border border-border bg-background p-8 shadow-sm"><h3 class="font-serif text-xl text-foreground" data-en="Practical phrases and scripts">Frases y scripts prácticos</h3><p class="mt-3 text-sm text-muted-foreground" data-en="What to say, word for word, in the moment of tension.">Qué decir, palabra por palabra, en el momento de tensión.</p><span class="tag tag-launch mt-5" data-en="Available at launch">Disponible en lanzamiento</span></article>
+      <article class="rounded-2xl border border-border bg-background p-8 shadow-sm"><h3 class="font-serif text-xl text-foreground" data-en="Guided learning paths">Rutas de aprendizaje guiadas</h3><p class="mt-3 text-sm text-muted-foreground" data-en="A clear order, so you don't get lost in so much material.">Un orden claro, para no perderte entre tanto material.</p><span class="tag tag-prep mt-5" data-en="In preparation">En preparación</span></article>
+      <article class="rounded-2xl border border-border bg-background p-8 shadow-sm"><h3 class="font-serif text-xl text-foreground" data-en="Community and support">Comunidad y acompañamiento</h3><p class="mt-3 text-sm text-muted-foreground" data-en="Not parenting alone. A space to hold yourself up with others.">No criar en soledad. Un espacio para sostenerte con otros.</p><span class="tag tag-soon mt-5" data-en="Coming soon">Próximamente</span></article>
+    </div>
+  </div>
+</section>
+
+<!-- CATALOG -->
+<section class="bg-secondary/30 px-6 py-20">
+  <div class="mx-auto max-w-6xl">
+    <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <figure class="frame plate-bl w-full order-2 lg:order-1" itemscope itemtype="https://schema.org/ImageObject">
+        <span class="plate" aria-hidden="true"></span>
+        <span class="dot" aria-hidden="true"></span>
+        <div class="shot">
+          <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto,f_auto/v1782414428/ChatGPT_Image_Jun_25_2026_10_52_47_AM_mesatt.png" alt="Madre e hijo armando un rompecabezas juntos" class="h-[28rem]" itemprop="contentUrl" loading="lazy" decoding="async">
+        </div>
+        <a class="credit-plate" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía: SHARNAY PHOTOGRAPHY">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <span data-es="SHARNAY PHOTOGRAPHY" data-en="SHARNAY PHOTOGRAPHY">SHARNAY PHOTOGRAPHY</span>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <p class="credit-plate-mob"><span data-es="Fotografía por " data-en="Photography by ">Fotografía por </span><a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">Erika Sharnay</a></p>
+      </figure>
+      <div class="order-1 lg:order-2">
+        <h2 class="font-serif text-3xl font-light italic text-foreground sm:text-4xl" data-en="A space born from more than 50 original workshops">Un espacio nacido de más de 50 talleres originales</h2>
+        <p class="mt-5 text-sm leading-relaxed text-muted-foreground" data-en="The material exists. We're organizing it into clear, easy-to-use routes.">El material existe. Lo estamos ordenando en rutas claras y fáciles de usar.</p>
+        <div class="mt-8 flex flex-wrap gap-2">
+          <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-en="Digital parenting and screens">Crianza digital y pantallas</span>
+          <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-en="Emotional regulation">Regulación emocional</span>
+          <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-en="Limits without guilt">Límites sin culpa</span>
+          <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-en="Family routines">Rutinas familiares</span>
+          <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-en="Sleep and bedtime">Sueño y hora de dormir</span>
+          <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-en="Sibling conflict">Conflictos entre hermanos</span>
+          <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-en="Communicating with teens">Comunicación con adolescentes</span>
+          <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-en="Repair and reconnection">Reparación y reconexión</span>
+          <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-en="Conscious discipline">Disciplina consciente</span>
+          <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-en="Tools for exhausted parents">Herramientas para padres agotados</span>
+        </div>
+        <p class="mt-8 font-serif text-lg italic text-muted-foreground" data-en="A space that grows from Nari's original work. We don't promise all 50 pieces on day one: we promise to organize them well.">Es un espacio que crece a partir del trabajo original de Nari. No prometemos las 50 piezas el primer día: prometemos organizarlas bien.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDING CAPTURE -->
+<section id="fundador" class="px-6 pb-32 pt-16" data-track-section="fundador">
+  <div class="mx-auto max-w-2xl rounded-3xl bg-primary px-8 py-14 text-primary-foreground sm:px-12 sm:py-16">
+    <div class="text-center">
+      <span class="inline-block rounded-full border border-primary-foreground/25 px-5 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-primary-foreground/70" data-en="Early Access">Inscripción Anticipada</span>
+      <h2 class="mt-6 font-serif text-3xl font-light italic sm:text-4xl" data-en="Be among the first to enter">Forma parte de quienes entran primero</h2>
+      <p class="mx-auto mt-5 max-w-lg text-sm leading-relaxed text-primary-foreground/75" data-en="Sign up to be among the first. You'll get priority access and early word the moment the first resources open.">Inscríbete para estar entre quienes entran primero. Tendrás prioridad de acceso y aviso anticipado en cuanto abramos los primeros recursos.</p>
+      <p class="mx-auto mt-6 max-w-md rounded-2xl border border-primary-foreground/15 bg-primary-foreground/5 px-5 py-3 text-xs text-primary-foreground/70" data-en="No purchase commitment. You decide whether to move forward when the time comes.">Sin compromiso de compra. Tú decides si quieres avanzar cuando llegue el momento.</p>
+    </div>
+
+    <form id="fundador-form" action="https://formspree.io/f/mykapzqj" method="POST" class="mt-14 space-y-6">
+      <input type="hidden" name="Pagina" value="Inscripción Anticipada · Capa de Aprendizaje">
+      <div>
+        <label for="f-nombre" class="text-[10px] font-bold uppercase tracking-wider text-primary-foreground/70" data-en="Name">Nombre</label>
+        <input class="mt-2 w-full rounded-xl border border-primary-foreground/20 bg-primary-foreground/5 px-4 py-3 text-sm text-primary-foreground placeholder:text-primary-foreground/40 focus:border-accent focus:outline-none" type="text" id="f-nombre" name="Nombre" placeholder="¿Cómo te llamas?" data-en-ph="What's your name?" required>
+      </div>
+      <div>
+        <label for="f-email" class="text-[10px] font-bold uppercase tracking-wider text-primary-foreground/70" data-en="Email">Correo electrónico</label>
+        <input class="mt-2 w-full rounded-xl border border-primary-foreground/20 bg-primary-foreground/5 px-4 py-3 text-sm text-primary-foreground placeholder:text-primary-foreground/40 focus:border-accent focus:outline-none" type="email" id="f-email" name="Email" placeholder="tu@correo.com" required>
+      </div>
+      <div>
+        <label for="f-interes" class="text-[10px] font-bold uppercase tracking-wider text-primary-foreground/70" data-en="What interests you?">¿Qué te interesa?</label>
+        <select id="f-interes" name="Interes" required class="mt-2 w-full rounded-xl border border-primary-foreground/20 bg-primary-foreground/5 px-4 py-3 text-sm text-primary-foreground focus:border-accent focus:outline-none">
+          <option value="" disabled selected data-en="Choose an option">Elige una opción</option>
+          <option value="Pase de Acceso (Pago único)" data-en="Access Pass · solve a specific challenge">Pase de Acceso · resolver un reto específico</option>
+          <option value="Membresía CSC (Acceso mensual)" data-en="CSC Membership · continuous support">Membresía CSC · acompañamiento continuo</option>
+          <option value="Todavía no lo tengo claro" data-en="I'm not sure yet">Todavía no lo tengo claro</option>
+        </select>
+      </div>
+      <div>
+        <label for="f-reto" class="text-[10px] font-bold uppercase tracking-wider text-primary-foreground/70" data-en="Your biggest parenting challenge right now">Tu mayor reto de crianza ahora mismo</label>
+        <textarea class="mt-2 min-h-[84px] w-full resize-y rounded-xl border border-primary-foreground/20 bg-primary-foreground/5 px-4 py-3 text-sm text-primary-foreground placeholder:text-primary-foreground/40 focus:border-accent focus:outline-none" id="f-reto" name="Desafio_Principal" placeholder="Cuéntanos en una o dos frases. Esto nos ayuda a preparar lo que de verdad necesitas." data-en-ph="Tell us in a sentence or two. This helps us prepare what you really need."></textarea>
+      </div>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div>
+          <label for="f-edad" class="text-[10px] font-bold uppercase tracking-wider text-primary-foreground/70"><span data-en="Your child's age">Edad de tu hijo/a</span> <span class="font-normal normal-case tracking-normal opacity-60" data-en="(optional)">(opcional)</span></label>
+          <input class="mt-2 w-full rounded-xl border border-primary-foreground/20 bg-primary-foreground/5 px-4 py-3 text-sm text-primary-foreground placeholder:text-primary-foreground/40 focus:border-accent focus:outline-none" type="text" id="f-edad" name="Edad_Hijo" placeholder="Ej: 4 años" data-en-ph="e.g., 4 years old">
+        </div>
+        <div>
+          <label for="f-tema" class="text-[10px] font-bold uppercase tracking-wider text-primary-foreground/70"><span data-en="Topic of interest">Tema de interés</span> <span class="font-normal normal-case tracking-normal opacity-60" data-en="(optional)">(opcional)</span></label>
+          <input class="mt-2 w-full rounded-xl border border-primary-foreground/20 bg-primary-foreground/5 px-4 py-3 text-sm text-primary-foreground placeholder:text-primary-foreground/40 focus:border-accent focus:outline-none" type="text" id="f-tema" name="Tema_Interes" placeholder="Ej: pantallas, sueño..." data-en-ph="e.g., screens, sleep...">
+        </div>
+      </div>
+      <button type="submit" class="inline-flex w-full items-center justify-center rounded-full bg-accent px-8 py-4 text-sm font-medium tracking-wide text-accent-foreground shadow-lg shadow-accent/20 transition-transform hover:-translate-y-0.5 disabled:opacity-60" data-track-cta="form_submit" data-cta-location="fundador_form" data-en="I want early access">Quiero inscripción anticipada</button>
+      <p id="capture-error" class="hidden text-center text-xs text-accent"></p>
+      <p class="text-center text-xs text-primary-foreground/50" data-en="No spam. We'll only write when there's something real to show you.">Sin spam. Te escribimos solo cuando haya algo real que mostrarte.</p>
+    </form>
+
+    <div id="capture-success" class="mt-14 hidden rounded-2xl border border-primary-foreground/15 bg-primary-foreground/5 p-12 text-center">
+      <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-accent/20 text-accent">✓</div>
+      <h3 class="font-serif text-2xl text-primary-foreground" data-en="Thank you.">Gracias.</h3>
+      <p class="mt-3 text-sm text-primary-foreground/75" data-en="We'll let you know when early access is ready. You're among the first.">Te avisaremos cuando la inscripción anticipada esté lista. Formas parte de quienes llegaron primero.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <div class="b1">CRIAR</div>
+      <div class="b2">sin culpas</div>
+      <p data-i18n="foot_tag" data-es="Un espacio de apoyo emocional para padres que quieren criar con conexión, no con culpa." data-en="An emotional support space for parents who want to raise with connection, not guilt.">Un espacio de apoyo emocional para padres que quieren criar con conexión, no con culpa.</p>
+    </div>
+    <div class="foot-col">
+      <div class="h" data-i18n="foot_nav" data-es="Navegación" data-en="Navigation">Navegación</div>
+      <ul>
+        <li><a href="/" data-i18n="nav_inicio_f" data-es="Inicio" data-en="Home">Inicio</a></li>
+        <li><a href="/#protocolos" data-i18n="nav_guias_f" data-es="Guías" data-en="Guides">Guías</a></li>
+        <li><a href="/metodo/" data-i18n="nav_metodo_f" data-es="El Método" data-en="The Method">El Método</a></li>
+        <li><a href="/sobre-nari/" data-i18n="nav_nari_f" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a></li>
+        <li><a href="/inscripcion/" data-i18n="nav_inscripcion_f" data-es="Inscripciones" data-en="Early Access">Inscripciones</a></li>
+        <li class="is-soon"><span class="foot-label" data-i18n="nav_aprende_f" data-es="Aprende" data-en="Learn">Aprende</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></li>
+        <li class="is-soon"><span class="foot-label" data-i18n="nav_comunidad_f" data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <div class="h" data-i18n="foot_legal" data-es="Legal" data-en="Legal">Legal</div>
+      <ul>
+        <li><a href="/privacidad" data-i18n="foot_priv" data-es="Política de Privacidad" data-en="Privacy Policy">Política de Privacidad</a></li>
+      </ul>
+    </div>
+    <div class="foot-col foot-col-end">
+      <div class="h" data-i18n="foot_follow" data-es="Síguenos" data-en="Follow us">Síguenos</div>
+      <div class="foot-social">
+        <a href="https://instagram.com/criarsinculpas" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="mailto:hola@criarsinculpas.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
+      </div>
+      <p class="foot-credit"><span data-es="Fotografía" data-en="Photography">Fotografía</span> · <a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">SHARNAY PHOTOGRAPHY</a></p>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="foot-bottom-inner">
+      <span data-i18n="foot_copy" data-es="© 2026 Criar Sin Culpas. Todos los derechos reservados." data-en="© 2026 Criar Sin Culpas. All rights reserved.">© 2026 Criar Sin Culpas. Todos los derechos reservados.</span>
+      <span data-i18n="foot_med" data-es="Esto no reemplaza orientación médica o profesional." data-en="This does not replace medical or professional guidance.">Esto no reemplaza orientación médica o profesional.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var PAGE = {
+    location: 'inscripcion',
+    page_type: 'learning_layer',
+    offer_stage: 'early_access'
+  };
+
+  function pageProps(extra) {
+    return Object.assign({
+      location: PAGE.location,
+      page_type: PAGE.page_type,
+      offer_stage: PAGE.offer_stage,
+      guide: (document.body && document.body.dataset.guide) || 'learning_layer',
+      language: document.documentElement.lang || 'es'
+    }, extra || {});
+  }
+
+  function track(name, props) {
+    if (typeof window.track === 'function') window.track(name, pageProps(props));
+  }
+
+  document.querySelectorAll('.path-select').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var plan = this.getAttribute('data-plan');
+      var sel = document.getElementById('f-interes');
+      if (sel && plan) {
+        for (var i = 0; i < sel.options.length; i++) {
+          if (sel.options[i].value === plan) { sel.selectedIndex = i; break; }
+        }
       }
+      track('founding_path_selected', {
+        plan: plan,
+        selected_path: plan,
+        path_source: this.closest('[data-track-section]')
+          ? this.closest('[data-track-section]').getAttribute('data-track-section')
+          : 'unknown'
+      });
+    });
+  });
 
-      // If an action URL is set, send the data in the background 
-      const actionUrl = form.getAttribute('action'); 
-      if (actionUrl && actionUrl !== 'YOUR_ENDPOINT_URL') { 
-        const formData = new FormData(form); 
-        try { 
-          await fetch(actionUrl, { 
-            method: 'POST', 
-            body: formData, 
-            headers: { 'Accept': 'application/json' } 
-          }); 
-        } catch (error) { 
-          console.error('Form submission failed', error); 
-        } 
-      } 
+  document.querySelectorAll('[data-track-cta]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      track('founding_cta_click', {
+        cta: this.getAttribute('data-track-cta'),
+        location_detail: this.getAttribute('data-cta-location') || PAGE.location
+      });
+    });
+  });
 
-      // Show Success State 
-      form.style.display = 'none'; 
-      document.getElementById('plan-indicator').style.display = 'none'; 
-      document.getElementById('waitlist-success').style.display = 'block'; 
-    }); 
-  </script> 
-  
-  <footer class="secure-footer reveal d3">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right:6px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-    Pago seguro y encriptado. 100% de garantía de devolución en 7 días.
-  </footer>
+  if ('IntersectionObserver' in window) {
+    var seenSections = {};
+    document.querySelectorAll('[data-track-section]').forEach(function (el) {
+      var key = el.getAttribute('data-track-section');
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting || seenSections[key]) return;
+          seenSections[key] = true;
+          track('founding_section_view', { section: key });
+          io.disconnect();
+        });
+      }, { threshold: 0.35 });
+      io.observe(el);
+    });
+  }
+
+  (function () {
+    var marks = [25, 50, 75, 100];
+    var fired = {};
+    function onScroll() {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (h <= 0) return;
+      var pct = Math.round((window.scrollY / h) * 100);
+      marks.forEach(function (m) {
+        if (pct >= m && !fired[m]) {
+          fired[m] = true;
+          track('founding_scroll_depth', { depth_pct: m });
+        }
+      });
+      if (Object.keys(fired).length === marks.length) {
+        window.removeEventListener('scroll', onScroll, { passive: true });
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+
+  (function () {
+    var KEY = 'csc_lang';
+    var TITLE = {
+      es: 'Inscripciones \u00b7 Capa de Aprendizaje \u00b7 Criar Sin Culpas',
+      en: 'Early Access \u00b7 Learning Layer \u00b7 Criar Sin Culpas'
+    };
+    function setLang(lang) {
+      if (lang !== 'en') lang = 'es';
+      document.querySelectorAll('[data-en]').forEach(function (el) {
+        if (el.getAttribute('data-es') === null) el.setAttribute('data-es', el.innerHTML);
+        el.innerHTML = (lang === 'en') ? el.getAttribute('data-en') : el.getAttribute('data-es');
+      });
+      document.querySelectorAll('[data-en-ph]').forEach(function (el) {
+        if (el.getAttribute('data-es-ph') === null) el.setAttribute('data-es-ph', el.getAttribute('placeholder') || '');
+        el.setAttribute('placeholder', (lang === 'en') ? el.getAttribute('data-en-ph') : el.getAttribute('data-es-ph'));
+      });
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var es = el.getAttribute('data-es');
+        var en = el.getAttribute('data-en');
+        if (es && en) el.textContent = (lang === 'en') ? en : es;
+      });
+      document.title = TITLE[lang];
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.lang-btn').forEach(function (b) {
+        var on = b.getAttribute('data-lang') === lang;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      try { localStorage.setItem(KEY, lang); } catch (e) {}
+    }
+    var saved = 'es';
+    try { saved = localStorage.getItem(KEY) || 'es'; } catch (e) {}
+    setLang(saved);
+    document.querySelectorAll('.lang-btn').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var lang = this.getAttribute('data-lang') === 'en' ? 'en' : 'es';
+        setLang(lang);
+        track('language_changed', { to_lang: lang, location: 'inscripcion' });
+      });
+    });
+  })();
+
+  (function () {
+    var ham = document.getElementById('sh-ham');
+    var menu = document.getElementById('sh-mobile');
+    if (!ham || !menu) return;
+    ham.addEventListener('click', function () {
+      var open = menu.hasAttribute('hidden');
+      if (open) { menu.removeAttribute('hidden'); } else { menu.setAttribute('hidden', ''); }
+      ham.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    menu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        menu.setAttribute('hidden', '');
+        ham.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+
+  var form = document.getElementById('fundador-form');
+  if (!form) return;
+
+  var errEl = document.getElementById('capture-error');
+  var okEl = document.getElementById('capture-success');
+  var submitBtn = form.querySelector('button[type=submit]');
+  var formStarted = false;
+
+  form.addEventListener('focusin', function () {
+    if (formStarted) return;
+    formStarted = true;
+    track('founding_form_started');
+  });
+
+  var interesEl = document.getElementById('f-interes');
+  if (interesEl) {
+    interesEl.addEventListener('change', function () {
+      track('founding_interest_selected', { interes: this.value || 'No especificó' });
+    });
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var interes = interesEl ? (interesEl.value || 'No especificó') : 'No especificó';
+    var prev = submitBtn.textContent;
+
+    errEl.classList.add('hidden');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando…';
+
+    var ok = false;
+    try {
+      var res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      });
+      ok = res.ok;
+    } catch (_) {
+      ok = false;
+    }
+
+    if (!ok) {
+      track('founding_waitlist_error', { interes: interes });
+      errEl.textContent = 'No pudimos enviar tu inscripción. Inténtalo de nuevo en unos minutos.';
+      errEl.classList.remove('hidden');
+      submitBtn.disabled = false;
+      submitBtn.textContent = prev;
+      return;
+    }
+
+    var desafio = form.querySelector('[name=Desafio_Principal]');
+    var edad = form.querySelector('[name=Edad_Hijo]');
+    var tema = form.querySelector('[name=Tema_Interes]');
+
+    track('founding_waitlist_joined', {
+      interes: interes,
+      has_challenge: !!(desafio && desafio.value.trim()),
+      has_child_age: !!(edad && edad.value.trim()),
+      has_topic: !!(tema && tema.value.trim())
+    });
+
+    form.classList.add('hidden');
+    okEl.classList.remove('hidden');
+    okEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+})();
+</script>
 </body>
 </html>
+
