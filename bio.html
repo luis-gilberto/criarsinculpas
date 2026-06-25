@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="title_tag" data-es="Sobre Nari · Criar Sin Culpas" data-en="About Nari · Criar Sin Culpas">Sobre Nari · Criar Sin Culpas</title>
+  <link rel="canonical" href="https://criarsinculpas.com/bio.html">
+  <script>
+    if (window.location.hostname === 'criarsinculpas.com') {
+      const script = document.createElement('script');
+      script.defer = true;
+      script.setAttribute('data-domain', 'criarsinculpas.com');
+      script.src = 'https://plausible.io/js/script.manual.js';
+      document.head.appendChild(script);
+    }
+    window.plausible = window.plausible || function() {
+      if (window.location.hostname !== 'criarsinculpas.com') {
+        console.log('Plausible [Local]:', arguments[0], arguments[1]);
+      }
+    };
+  </script>
+  <script defer src="/js/track.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="/assets/images/nari-hero-bluesweater.png" fetchpriority="high">
+  <style>
+    :root{
+      --void:#FAF6F2; --void-mid:#FCE7DD; --void-lift:#FFFFFF;
+      --text:#1F2E46; --text-dim:rgba(31,46,70,.82); --text-soft:rgba(31,46,70,.66); --text-ghost:rgba(31,46,70,.42);
+      --coral:#F4A88A; --coral-dim:rgba(244,168,138,.20); --coral-ink:#D96B47;
+      --teal:#8599AD; --navy:#1F2E46; --cream:#FAF6F2;
+      --gold:#1F2E46;
+      --serif:'Cormorant Garamond','Iowan Old Style',Georgia,serif;
+      --sans:'DM Sans',system-ui,sans-serif;
+      --ease-silk:cubic-bezier(.16,1,.3,1);
+      --ease-cinema:cubic-bezier(.2,.8,.2,1);
+      --pill:999px;
+      --gutter:clamp(24px,5vw,56px);
+      --maxw:1240px;
+      --split:50%;            /* photo width and the type/photo boundary */
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:var(--sans);background:var(--void);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden;position:relative;}
+    a{color:inherit;text-decoration:none;}
+    img{display:block;max-width:100%;}
+
+    .grain{position:fixed;inset:0;z-index:200;pointer-events:none;opacity:.028;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:192px;}
+
+    /* site nav */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:max(20px,env(safe-area-inset-top)) 56px 18px;display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--navy);border-bottom:1px solid rgba(250,246,242,.06);transition:border-color .4s,box-shadow .4s;}
+    .nav.scrolled{background:var(--navy);border-bottom:1px solid rgba(250,246,242,.1);box-shadow:0 8px 32px rgba(0,0,0,.12);}
+    .nav-logo{display:inline-flex;align-items:center;flex-shrink:0;}
+    .nav-logo img{height:clamp(26px,3.8vw,34px);width:auto;display:block;transition:opacity .3s;filter:brightness(1.05) saturate(1.25) hue-rotate(-5deg);}
+    .nav-logo:hover img{opacity:.88;}
+    .nav-center{display:flex;align-items:center;gap:34px;}
+    .nav-center a{color:rgba(250,246,242,.66);font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;transition:color .25s;position:relative;padding:4px 0;}
+    .nav-center a:hover{color:var(--cream);}
+    .nav-center a.active{color:var(--cream);}
+    .nav-center a.active::after{content:'';position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--coral);}
+    .soon{cursor:default;color:var(--text-ghost);}
+    .nav-center .soon{display:inline-flex;align-items:center;gap:8px;color:rgba(250,246,242,.35);cursor:not-allowed;font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:4px 0;}
+    .soon-tag{font-size:.5rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--coral);border:1px solid rgba(244,168,138,.45);border-radius:var(--pill);padding:2px 6px;opacity:.9;white-space:nowrap;}
+    .mobile-nav .soon{display:inline-flex;align-items:center;gap:12px;opacity:.5;font-family:var(--serif);font-size:1.9rem;letter-spacing:.04em;}
+    .mobile-nav .soon .soon-tag{font-family:var(--sans);}
+    .footer-col .soon{display:flex;align-items:center;gap:8px;opacity:.5;font-size:.8rem;margin-bottom:11px;}
+    .nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0;}
+    .lang-pill{display:inline-flex;padding:3px;gap:2px;border-radius:var(--pill);border:1px solid rgba(250,246,242,.14);background:rgba(250,246,242,.06);}
+    .lang-btn{min-width:36px;padding:5px 9px;border-radius:var(--pill);font-size:.64rem;font-weight:700;letter-spacing:.06em;color:rgba(250,246,242,.45);background:none;border:none;cursor:pointer;transition:all .25s;}
+    .lang-btn[aria-pressed="true"]{color:var(--navy);background:var(--cream);box-shadow:0 1px 6px rgba(0,0,0,.15);}
+    .ham{display:none;width:44px;height:44px;border-radius:50%;border:1px solid rgba(250,246,242,.14);background:rgba(250,246,242,.06);align-items:center;justify-content:center;cursor:pointer;position:relative;z-index:201;transition:all .3s;flex-shrink:0;}
+    .ham svg{color:var(--cream);} .ham .x{display:none;}
+    .ham.open .bars{display:none;} .ham.open .x{display:block;}
+    .mobile-nav{display:none;position:fixed;inset:0;z-index:150;background:rgba(250,247,241,.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);flex-direction:column;align-items:center;justify-content:center;gap:36px;opacity:0;pointer-events:none;transition:opacity .4s var(--ease-cinema),transform .4s var(--ease-cinema);transform:translateY(-8px);}
+    .mobile-nav.open{opacity:1;pointer-events:auto;transform:translateY(0);}
+    .mobile-nav a{font-family:var(--serif);font-size:1.9rem;font-weight:400;color:var(--text-dim);letter-spacing:.04em;transition:color .25s;}
+    .mobile-nav a:hover,.mobile-nav a.active{color:var(--text);}
+
+    /* site footer */
+    footer{background:var(--void);border-top:1px solid rgba(31,46,70,.05);padding:64px 56px 28px;position:relative;z-index:10;}
+    .footer-grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;}
+    .footer-brand .wordmark{display:flex;flex-direction:column;line-height:1;margin-bottom:16px;}
+    .footer-brand .wm-top{font-family:var(--serif);font-weight:600;font-size:1.45rem;letter-spacing:.22em;color:var(--gold);}
+    .footer-brand .wm-bot{font-family:var(--serif);font-style:italic;font-weight:400;font-size:.92rem;letter-spacing:.04em;color:var(--gold);opacity:.85;margin-top:2px;padding-left:.22em;}
+    .footer-brand p{font-size:.78rem;color:var(--text-ghost);line-height:1.7;max-width:30ch;}
+    .footer-col h4{font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);margin-bottom:18px;}
+    .footer-col a{display:block;font-size:.8rem;color:var(--text-ghost);margin-bottom:11px;transition:color .25s;}
+    .footer-col a:hover{color:var(--text-dim);}
+    .footer-social{display:flex;gap:12px;}
+    .footer-social a{width:38px;height:38px;border-radius:50%;border:1px solid rgba(31,46,70,.3);display:flex;align-items:center;justify-content:center;color:var(--gold);transition:all .3s;}
+    .footer-social a:hover{background:rgba(31,46,70,.1);border-color:var(--gold);}
+    .footer-social svg{width:16px;height:16px;}
+    .footer-bottom{max-width:1300px;margin:48px auto 0;padding-top:22px;border-top:1px solid rgba(31,46,70,.04);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+    .footer-bottom span{font-size:.66rem;color:var(--text-ghost);letter-spacing:.03em;}
+
+    @media(max-width:1200px){
+      .nav{padding:max(18px,env(safe-area-inset-top)) 32px 16px;}
+      .nav-center{display:none;}
+      .ham{display:flex;}
+      .mobile-nav{display:flex;}
+    }
+    @media(max-width:980px){
+      footer{padding:48px 24px 24px;}
+      .footer-grid{grid-template-columns:1fr 1fr;gap:32px;}
+      .footer-brand{grid-column:1/-1;}
+    }
+    @media(max-width:560px){
+      .footer-grid{grid-template-columns:1fr;}
+      .footer-bottom{flex-direction:column;gap:8px;}
+    }
+
+    /* type roles */
+    .eyebrow{font-family:var(--sans);font-size:.68rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--coral-ink);}
+    .display-l{font-family:var(--serif);font-weight:600;font-size:clamp(2.4rem,5vw,4.2rem);line-height:.96;letter-spacing:-.015em;color:var(--text);}
+    .thesis{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,4.6vw,3.6rem);line-height:1.08;letter-spacing:-.01em;color:var(--coral-ink);}
+    .lead{font-size:clamp(1.08rem,1.6vw,1.25rem);line-height:1.66;color:var(--text-dim);}
+    .body{font-size:1.02rem;line-height:1.74;color:var(--text-dim);}
+    .pullquote{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(1.7rem,3.1vw,2.7rem);line-height:1.26;letter-spacing:-.005em;color:var(--text);}
+    .meta{font-family:var(--sans);font-size:.72rem;font-weight:500;letter-spacing:.04em;color:var(--text-ghost);}
+
+    .wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter);}
+    .section{padding-block:clamp(64px,11vh,150px);}
+    .hr{max-width:var(--maxw);margin-inline:auto;height:1px;background:rgba(31,46,70,.08);}
+
+    /* ════════════ HERO: full bleed split ════════════ */
+    .hero{position:relative;width:100%;height:clamp(600px,92vh,900px);overflow:hidden;background:var(--void);}
+    .hero-photo{position:absolute;top:0;right:0;bottom:0;width:var(--split);z-index:2;}
+    .hero-photo img{
+      width:100%;height:100%;object-fit:cover;object-position:82% 22%;
+      filter:saturate(1.07) contrast(1.03) brightness(1.005);
+    }
+    .hero-photo::before{content:'';position:absolute;left:-44px;top:0;bottom:0;width:44px;z-index:1;pointer-events:none;background:linear-gradient(to right,transparent,rgba(31,46,70,.06));}
+
+    .hero-type{position:absolute;inset:0;z-index:1;}
+    .hero-type .eyebrow{position:absolute;top:clamp(88px,12vh,110px);left:var(--gutter);}
+    .hero-headline{position:absolute;top:50%;left:0;right:0;transform:translateY(-50%);}
+    .hero-headline .l1{
+      display:block;font-family:var(--serif);font-weight:500;
+      font-size:clamp(2.4rem,6vw,5.4rem);line-height:.92;color:var(--text);
+      margin-left:18%;                 /* reads fully in the cream field; raise toward 26% to tuck the tail behind the photo */
+    }
+    .hero-headline .l2{
+      display:block;font-family:var(--serif);font-weight:600;
+      font-size:clamp(5rem,18.5vw,15.5rem);line-height:.78;letter-spacing:-.03em;color:var(--coral-ink);
+      margin-left:18%;
+    }
+
+    .hero-foot{position:absolute;left:var(--gutter);bottom:clamp(28px,6vh,58px);max-width:32ch;z-index:1;}
+    .hero-foot .lead{color:var(--text-soft);}
+    .hero-social{display:inline-flex;align-items:center;gap:12px;margin-top:20px;color:var(--text-ghost);font-size:.66rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;transition:color .25s;}
+    .hero-social:hover{color:var(--coral-ink);}
+    .hero-social .line{width:40px;height:1px;background:rgba(31,46,70,.18);}
+
+    @media(max-width:860px){
+      .hero{height:auto;overflow:visible;}
+      .hero-photo{
+        position:relative;width:100%;
+        height:auto;
+        aspect-ratio:4/5;
+        max-height:clamp(460px,72vh,640px);
+      }
+      .hero-photo img{object-position:62% 26%;}
+      .hero-photo::before{display:none;}
+      .hero-type{position:relative;inset:auto;padding:30px var(--gutter) 6px;}
+      .hero-type .eyebrow{position:static;display:block;margin-bottom:18px;}
+      .hero-headline{position:static;transform:none;}
+      .hero-headline .l1{margin-left:0;font-size:clamp(2.2rem,9vw,3.4rem);}
+      .hero-headline .l2{margin-left:0;font-size:clamp(4rem,22vw,7rem);}
+      .hero-foot{position:relative;left:auto;bottom:auto;padding:20px var(--gutter) 0;max-width:none;}
+    }
+
+    @media(min-width:861px) and (max-width:1100px){
+      .hero-photo img{object-position:78% 20%;}
+    }
+
+    /* ════════════ rest of page ════════════ */
+    .band-peach{background:var(--void-mid);}
+    .thesis-band{padding-block:clamp(56px,9vh,110px);text-align:center;}
+    .thesis-band .thesis{max-width:none;margin:0 auto;font-size:clamp(2rem,4.8vw,3.8rem);}
+    .thesis-band .thesis em{font-style:italic;}
+
+    .intro-cols{columns:3;column-gap:clamp(28px,3.4vw,56px);max-width:1060px;margin:0 auto;}
+    .intro-cols .body{margin-bottom:1.1em;break-inside:avoid;}
+    .intro-cols p:first-child::first-letter{font-family:var(--serif);font-weight:600;font-size:3.4em;line-height:.72;float:left;margin:.06em .12em 0 0;color:var(--coral-ink);}
+    @media(max-width:980px){ .intro-cols{columns:2;} }
+    @media(max-width:620px){ .intro-cols{columns:1;} }
+
+    .sec-label{display:flex;align-items:center;gap:14px;margin-bottom:22px;font-family:var(--sans);font-size:.68rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--coral-ink);}
+    .sec-label .num{color:var(--text-ghost);font-weight:600;letter-spacing:.18em;}
+    .sec-label .rule{flex:0 0 40px;height:1px;background:rgba(217,107,71,.32);}
+
+    .h2-editorial{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,4.2vw,3.6rem);line-height:1.1;letter-spacing:-.01em;color:var(--text);margin-bottom:28px;}
+    .h2-editorial .coral{color:var(--coral-ink);font-weight:600;}
+
+    .story-block{display:grid;grid-template-columns:5fr 7fr;gap:clamp(32px,5vw,80px);align-items:center;}
+    .story-block.reverse{grid-template-columns:7fr 5fr;}
+    .story-block.reverse .story-media{order:2;}
+    .story-block.reverse .story-body{order:1;}
+    .story-media{position:relative;}
+    .photo-stack{position:relative;}
+
+    .photo-dim-plate{
+      position:absolute;z-index:0;left:-14px;bottom:-16px;right:10%;top:10%;
+      background:linear-gradient(145deg,rgba(235,198,188,.95) 0%,rgba(224,178,168,.88) 100%);
+      border-radius:22px;
+      box-shadow:0 18px 40px rgba(31,46,70,.08);
+    }
+
+    .photo-card{
+      position:relative;z-index:1;
+      border-radius:22px;overflow:hidden;
+      background:rgba(224,186,176,.92);
+      box-shadow:0 30px 70px rgba(31,46,70,.14);
+    }
+    .photo-card-image{overflow:hidden;background:var(--void);}
+    .photo-card-image.portrait{aspect-ratio:4/5;}
+    .photo-card-image.landscape{aspect-ratio:5/4;}
+    .photo-card-image img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.05) contrast(1.02);}
+    .photo-card-image.portrait img{object-position:50% 18%;}
+    .photo-card-image.strategy img{object-position:50% 6%;}
+    .photo-card-image.landscape img{object-position:50% 42%;}
+
+    .photo-card-credit{
+      display:block;padding:12px 16px 14px;
+      text-align:right;text-decoration:none;
+      font-family:var(--sans);font-size:.54rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+      color:rgba(31,46,70,.46);line-height:1;
+      transition:color .25s ease;
+    }
+    .photo-card-credit:hover{color:rgba(31,46,70,.72);}
+    .photo-card-credit .dot{margin:0 .42em;opacity:.55;font-weight:400;}
+    @media(max-width:860px){
+      .photo-card-credit{font-size:.5rem;letter-spacing:.16em;padding:10px 12px 12px;}
+      .photo-dim-plate{left:-10px;bottom:-12px;}
+    }
+    .story-body .body{max-width:48ch;margin-bottom:1.1em;}
+    .story-body .body:last-child{margin-bottom:0;}
+    @media(max-width:860px){
+      .story-block,.story-block.reverse{grid-template-columns:1fr;gap:44px;}
+      .story-block.reverse .story-media,.story-block.reverse .story-body{order:unset;}
+      .story-media{max-width:440px;}
+    }
+
+    .beyond-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);align-items:start;}
+    .beyond-grid .h2-editorial{margin-bottom:0;max-width:16ch;}
+    @media(max-width:860px){ .beyond-grid{grid-template-columns:1fr;gap:28px;} }
+
+    .quote-band{text-align:center;}
+    .quote-band .pullquote{max-width:26ch;margin:0 auto 22px;}
+    .quote-band cite{font-family:var(--sans);font-style:normal;font-size:.72rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--coral-ink);}
+
+    .cta-band{padding-block:clamp(40px,7vh,90px);}
+    .cta-inner{position:relative;overflow:hidden;background:var(--navy);border-radius:28px;padding:clamp(48px,7vw,80px) clamp(32px,5vw,56px);text-align:center;box-shadow:0 30px 80px rgba(31,46,70,.24);}
+    .cta-inner::before{content:'';position:absolute;top:-30%;right:-10%;width:380px;height:380px;background:radial-gradient(circle,rgba(244,168,138,.16) 0%,transparent 70%);pointer-events:none;}
+    .cta-mark{width:28px;height:28px;margin:0 auto 24px;border-radius:7px;background:var(--coral);}
+    .cta-inner .sec-label{justify-content:center;margin-bottom:18px;}
+    .cta-inner .sec-label .num,.cta-inner .sec-label{color:rgba(250,246,242,.55);}
+    .cta-inner .sec-label .rule{background:rgba(250,246,242,.2);}
+    .cta-inner h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.9rem,3.4vw,3rem);line-height:1.14;color:var(--cream);max-width:20ch;margin:0 auto 16px;}
+    .cta-sub{font-size:clamp(.98rem,1.4vw,1.08rem);line-height:1.68;color:rgba(250,246,242,.68);max-width:44ch;margin:0 auto 30px;}
+    .cta-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;}
+    .cta-btn{display:inline-flex;align-items:center;gap:12px;padding:16px 32px;border-radius:var(--pill);background:var(--coral);color:var(--navy);font-family:var(--sans);font-size:.8rem;font-weight:600;letter-spacing:.05em;text-decoration:none;box-shadow:0 10px 30px rgba(244,168,138,.3);transition:transform .45s var(--ease-silk),box-shadow .45s var(--ease-silk),filter .3s;}
+    .cta-btn .arrow{transition:transform .4s var(--ease-silk);}
+    .cta-btn:hover{transform:translateY(-3px);box-shadow:0 18px 46px rgba(244,168,138,.42);filter:brightness(1.04);}
+    .cta-btn:hover .arrow{transform:translateX(5px);}
+    .cta-btn-outline{display:inline-flex;align-items:center;gap:12px;padding:15px 32px;border-radius:var(--pill);border:1px solid rgba(250,246,242,.32);color:var(--cream);background:transparent;font-family:var(--sans);font-size:.8rem;font-weight:600;letter-spacing:.05em;transition:background .3s,border-color .3s,transform .45s var(--ease-silk);}
+    .cta-btn-outline:hover{background:rgba(250,246,242,.08);border-color:rgba(250,246,242,.5);transform:translateY(-2px);}
+  </style>
+</head>
+<body data-protocol="general">
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <nav class="nav" id="mainNav" role="navigation" aria-label="Navegación principal">
+    <a href="/" class="nav-logo" aria-label="Criar Sin Culpas"><img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas"></a>
+    <div class="nav-center">
+      <a href="/" data-i18n="nav_inicio" data-es="Inicio" data-en="Home">Inicio</a>
+      <a href="/apoyo/" data-i18n="nav_guias" data-es="Guías" data-en="Guides">Guías</a>
+      <a href="/metodo/" data-i18n="nav_metodo" data-es="El Método" data-en="The Method">El Método</a>
+      <a href="/bio.html" class="active" data-i18n="nav_nari" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
+      <span class="soon"><span data-i18n="nav_aprende" data-es="Aprende" data-en="Learn">Aprende</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></span>
+      <span class="soon"><span data-i18n="nav_comunidad" data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></span>
+    </div>
+    <div class="nav-right">
+      <div class="lang-pill" role="group" aria-label="Idioma">
+        <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
+        <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button class="ham" id="ham" aria-label="Abrir menú" aria-expanded="false">
+        <svg class="bars" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="8" x2="21" y2="8"/><line x1="3" y1="16" x2="21" y2="16"/></svg>
+        <svg class="x" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-nav" id="mobileNav" role="dialog" aria-label="Menú" aria-modal="true">
+    <a href="/" data-i18n="nav_inicio_m" data-es="Inicio" data-en="Home">Inicio</a>
+    <a href="/apoyo/" data-i18n="nav_guias_m" data-es="Guías" data-en="Guides">Guías</a>
+    <a href="/metodo/" data-i18n="nav_metodo_m" data-es="El Método" data-en="The Method">El Método</a>
+    <a href="/bio.html" class="active" data-i18n="nav_nari_m" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
+    <span class="soon"><span data-i18n="nav_aprende_m" data-es="Aprende" data-en="Learn">Aprende</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></span>
+    <span class="soon"><span data-i18n="nav_comunidad_m" data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></span>
+    <div class="lang-pill" role="group" aria-label="Idioma">
+      <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
+      <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+
+  <article>
+
+    <!-- 1 · HERO -->
+    <header class="hero">
+      <div class="hero-photo" itemscope itemtype="https://schema.org/ImageObject">
+        <meta itemprop="contentUrl" content="https://criarsinculpas.com/assets/images/nari-hero-bluesweater.png">
+        <meta itemprop="name" content="Nari writing in her notebook, blue sweater">
+        <meta itemprop="description" content="Nari escribiendo en su cuaderno con suéter azul, retrato editorial de la página Sobre Nari.">
+        <meta itemprop="creditText" content="Photography by Erika Sharnay · Sharnay Photography">
+        <meta itemprop="copyrightNotice" content="Photography by Erika Sharnay · Sharnay Photography">
+        <meta itemprop="acquireLicensePage" content="https://www.instagram.com/sharnay_photography/">
+        <span itemprop="creator" itemscope itemtype="https://schema.org/Person">
+          <meta itemprop="name" content="Erika Sharnay">
+          <meta itemprop="url" content="https://www.instagram.com/sharnay_photography/">
+          <span itemprop="worksFor" itemscope itemtype="https://schema.org/Organization">
+            <meta itemprop="name" content="Sharnay Photography">
+            <meta itemprop="url" content="https://www.instagram.com/sharnay_photography/">
+          </span>
+        </span>
+        <img
+          id="bioHeroPhoto"
+          src="/assets/images/nari-hero-bluesweater.png"
+          width="1086"
+          height="1448"
+          alt="Nari escribiendo en su cuaderno con suéter azul, retrato editorial."
+          data-alt-es="Nari escribiendo en su cuaderno con suéter azul, retrato editorial."
+          data-alt-en="Nari writing in her notebook in a blue sweater, editorial portrait."
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          itemprop="contentUrl">
+      </div>
+      <div class="hero-type">
+        <span class="eyebrow" data-es="La historia" data-en="Her story">La historia</span>
+        <h1 class="hero-headline">
+          <span class="l1" data-es="Conoce a" data-en="Meet">Conoce a</span>
+          <span class="l2" data-es="Nari" data-en="Nari">Nari</span>
+        </h1>
+        <div class="hero-foot">
+          <p class="lead" data-es="Madre, guía e intérprete. La persona detrás del método que acompaña a miles de familias." data-en="Mother, guide, and interpreter. The person behind the method that supports thousands of families.">Madre, guía e intérprete. La persona detrás del método que acompaña a miles de familias.</p>
+          <a class="hero-social" href="https://instagram.com/criarsinculpas" target="_blank" rel="noopener noreferrer">
+            <span data-es="Redes" data-en="Socials">Redes</span>
+            <span class="line" aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- 2 · THESIS -->
+    <section class="thesis-band wrap">
+      <p class="thesis" data-es="Las familias no necesitan más culpa. Necesitan <em>claridad.</em>" data-en="Families don't need more guilt. They need <em>clarity.</em>">Las familias no necesitan más culpa. Necesitan <em>claridad.</em></p>
+    </section>
+
+    <!-- 3 · INTRO -->
+    <section class="section wrap">
+      <div class="intro-cols">
+        <p class="body" data-es="Nari Fateha es madre, educadora de crianza, comunicadora bilingüe y fundadora de Criar Sin Culpas, una plataforma creada para acompañar a familias latinas que están criando niños neurodivergentes, emocionalmente intensos o de alta demanda." data-en="Nari Fateha is a mother, parenting educator, bilingual communicator, and founder of Criar Sin Culpas, a platform built for Latino families raising neurodivergent, emotionally intense, or high-demand children.">Nari Fateha es madre, educadora de crianza, comunicadora bilingüe y fundadora de Criar Sin Culpas, una plataforma creada para acompañar a familias latinas que están criando niños neurodivergentes, emocionalmente intensos o de alta demanda.</p>
+        <p class="body" data-es="Su trabajo nace de una convicción sencilla: las familias no necesitan más culpa. Necesitan claridad, lenguaje, herramientas y una forma de volver a conectar cuando el día se vuelve demasiado." data-en="Her work grows from a simple conviction: families don't need more guilt. They need clarity, language, tools, and a way back to connection when the day becomes too much.">Su trabajo nace de una convicción sencilla: las familias no necesitan más culpa. Necesitan claridad, lenguaje, herramientas y una forma de volver a conectar cuando el día se vuelve demasiado.</p>
+        <p class="body" data-es="Como madre de dos niños neurodivergentes, Nari no habla desde una teoría lejana. Habla desde la experiencia real de criar, equivocarse, aprender, reparar y volver a intentarlo. Esa vivencia se une a años de trabajo en comunicación, diseño visual, estrategia de comunidad y educación informada por trauma." data-en="As the mother of two neurodivergent children, Nari does not speak from distant theory. She speaks from the real experience of parenting, getting it wrong, learning, repairing, and trying again. That lived experience joins years of work in communication, visual design, community strategy, and trauma-informed education.">Como madre de dos niños neurodivergentes, Nari no habla desde una teoría lejana. Habla desde la experiencia real de criar, equivocarse, aprender, reparar y volver a intentarlo. Esa vivencia se une a años de trabajo en comunicación, diseño visual, estrategia de comunidad y educación informada por trauma.</p>
+      </div>
+    </section>
+
+    <!-- 4 · 01 UNA ESTRATEGIA -->
+    <section class="section band-peach">
+      <div class="wrap story-block">
+        <div class="story-media">
+          <div class="photo-stack">
+            <span class="photo-dim-plate" aria-hidden="true"></span>
+            <figure class="photo-card" itemscope itemtype="https://schema.org/ImageObject">
+              <meta itemprop="contentUrl" content="https://res.cloudinary.com/dogtoagya/image/upload/c_crop,g_north,h_0.85,q_auto,f_auto/v1782273563/ChatGPT_Image_Jun_23_2026_06_39_04_PM_1_lja5np.png">
+              <meta itemprop="name" content="Nari at her desk reviewing her notebook">
+              <meta itemprop="description" content="Nari en su escritorio pasando las páginas de un cuaderno, suéter vino.">
+              <meta itemprop="creditText" content="Photography by Erika Sharnay · Sharnay Photography">
+              <meta itemprop="copyrightNotice" content="Photography by Erika Sharnay · Sharnay Photography">
+              <meta itemprop="acquireLicensePage" content="https://www.instagram.com/sharnay_photography/">
+              <span itemprop="creator" itemscope itemtype="https://schema.org/Person">
+                <meta itemprop="name" content="Erika Sharnay">
+                <meta itemprop="url" content="https://www.instagram.com/sharnay_photography/">
+                <span itemprop="worksFor" itemscope itemtype="https://schema.org/Organization">
+                  <meta itemprop="name" content="Sharnay Photography">
+                  <meta itemprop="url" content="https://www.instagram.com/sharnay_photography/">
+                </span>
+              </span>
+              <div class="photo-card-image portrait strategy">
+                <img
+                  src="https://res.cloudinary.com/dogtoagya/image/upload/c_crop,g_north,h_0.85,q_auto,f_auto/v1782273563/ChatGPT_Image_Jun_23_2026_06_39_04_PM_1_lja5np.png"
+                  alt="Nari en su escritorio pasando las páginas de un cuaderno, suéter vino."
+                  data-alt-es="Nari en su escritorio pasando las páginas de un cuaderno, suéter vino."
+                  data-alt-en="Nari at her desk turning the pages of a notebook, burgundy sweater."
+                  loading="lazy"
+                  decoding="async"
+                  itemprop="contentUrl">
+              </div>
+              <a class="photo-card-credit" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía por Erika Sharnay, Sharnay Photography">
+                <span data-es="Fotografía" data-en="Photography">Fotografía</span><span class="dot" aria-hidden="true">•</span><span>Sharnay Photography</span>
+              </a>
+            </figure>
+          </div>
+        </div>
+        <div class="story-body">
+          <div class="sec-label">
+            <span class="num">01</span>
+            <span class="rule" aria-hidden="true"></span>
+            <span data-es="Una estrategia" data-en="A strategy">Una estrategia</span>
+          </div>
+          <h2 class="h2-editorial" data-es="Antes de convertirse en guía, el método pasa por <span class='coral'>papel, pausa y observación.</span>" data-en="Before it becomes guidance, the method passes through <span class='coral'>paper, pause, and observation.</span>">Antes de convertirse en guía, el método pasa por <span class="coral">papel, pausa y observación.</span></h2>
+          <p class="body" data-es="El trabajo de Nari se mueve entre tres mundos: la crianza consciente, la comunicación emocional y el diseño de herramientas prácticas para la vida cotidiana." data-en="Nari's work moves between three worlds: conscious parenting, emotional communication, and the design of practical tools for everyday life.">El trabajo de Nari se mueve entre tres mundos: la crianza consciente, la comunicación emocional y el diseño de herramientas prácticas para la vida cotidiana.</p>
+          <p class="body" data-es="A través de talleres, contenidos educativos, guías y recursos digitales, Nari ayuda a las familias a encontrar palabras para momentos difíciles, a reconocer patrones que se repiten y a construir respuestas más calmadas, más claras y más conectadas." data-en="Through workshops, educational content, guides, and digital resources, Nari helps families find words for difficult moments, recognize repeating patterns, and build calmer, clearer, more connected responses.">A través de talleres, contenidos educativos, guías y recursos digitales, Nari ayuda a las familias a encontrar palabras para momentos difíciles, a reconocer patrones que se repiten y a construir respuestas más calmadas, más claras y más conectadas.</p>
+          <p class="body" data-es="Su enfoque integra elementos de regulación emocional, disciplina positiva, terapia de interacción padre-hijo y cuidado informado por trauma, siempre traducido a un lenguaje accesible para familias reales." data-en="Her approach integrates elements of emotional regulation, positive discipline, parent-child interaction therapy, and trauma-informed care, always translated into accessible language for real families.">Su enfoque integra elementos de regulación emocional, disciplina positiva, terapia de interacción padre-hijo y cuidado informado por trauma, siempre traducido a un lenguaje accesible para familias reales.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 · 02 THE METHOD IN PRACTICE -->
+    <section class="section wrap">
+      <div class="story-block reverse">
+        <div class="story-media">
+          <div class="photo-stack">
+            <span class="photo-dim-plate" aria-hidden="true"></span>
+            <figure class="photo-card" itemscope itemtype="https://schema.org/ImageObject">
+              <meta itemprop="contentUrl" content="https://res.cloudinary.com/dogtoagya/image/upload/v1782310664/Nari-louie-playing_pb9vkt.png">
+              <meta itemprop="name" content="Nari and Louie assembling a puzzle">
+              <meta itemprop="description" content="Nari y Louie armando un rompecabezas juntos en el piso.">
+              <meta itemprop="creditText" content="Photography by Erika Sharnay · Sharnay Photography">
+              <meta itemprop="copyrightNotice" content="Photography by Erika Sharnay · Sharnay Photography">
+              <meta itemprop="acquireLicensePage" content="https://www.instagram.com/sharnay_photography/">
+              <span itemprop="creator" itemscope itemtype="https://schema.org/Person">
+                <meta itemprop="name" content="Erika Sharnay">
+                <meta itemprop="url" content="https://www.instagram.com/sharnay_photography/">
+                <span itemprop="worksFor" itemscope itemtype="https://schema.org/Organization">
+                  <meta itemprop="name" content="Sharnay Photography">
+                  <meta itemprop="url" content="https://www.instagram.com/sharnay_photography/">
+                </span>
+              </span>
+              <div class="photo-card-image landscape">
+                <img
+                  src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto,f_auto/v1782310664/Nari-louie-playing_pb9vkt.png"
+                  alt="Nari y Louie armando un rompecabezas juntos en el piso."
+                  data-alt-es="Nari y Louie armando un rompecabezas juntos en el piso."
+                  data-alt-en="Nari and Louie assembling a puzzle together on the floor."
+                  loading="lazy"
+                  decoding="async"
+                  itemprop="contentUrl">
+              </div>
+              <a class="photo-card-credit" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía por Erika Sharnay, Sharnay Photography">
+                <span data-es="Fotografía" data-en="Photography">Fotografía</span><span class="dot" aria-hidden="true">•</span><span>Sharnay Photography</span>
+              </a>
+            </figure>
+          </div>
+        </div>
+        <div class="story-body">
+          <div class="sec-label">
+            <span class="num">02</span>
+            <span class="rule" aria-hidden="true"></span>
+            <span data-es="El método en práctica" data-en="The method in practice">El método en práctica</span>
+          </div>
+          <h2 class="h2-editorial" data-es="Antes de enseñar, <span class='coral'>acompaña.</span>" data-en="Before teaching, <span class='coral'>she accompanies.</span>">Antes de enseñar, <span class="coral">acompaña.</span></h2>
+          <p class="body" data-es="Criar Sin Culpas no nació para vender una versión idealizada de la maternidad o la crianza. Nació para sostener los momentos que muchas familias viven en silencio: el agotamiento, la duda, la vergüenza, la comparación, la sensación de estar fallando." data-en="Criar Sin Culpas was not born to sell an idealized version of motherhood or parenting. It was born to hold the moments many families live in silence: exhaustion, doubt, shame, comparison, the feeling of failing.">Criar Sin Culpas no nació para vender una versión idealizada de la maternidad o la crianza. Nació para sostener los momentos que muchas familias viven en silencio: el agotamiento, la duda, la vergüenza, la comparación, la sensación de estar fallando.</p>
+          <p class="body" data-es="Nari cree que criar puede ser un acto revolucionario cuando dejamos de repetir respuestas heredadas y empezamos a construir una forma de acompañar que tenga más presencia, más respeto y más amor." data-en="Nari believes parenting can be a revolutionary act when we stop repeating inherited responses and start building a way of accompanying with more presence, respect, and love.">Nari cree que criar puede ser un acto revolucionario cuando dejamos de repetir respuestas heredadas y empezamos a construir una forma de acompañar que tenga más presencia, más respeto y más amor.</p>
+          <p class="body" data-es="Su trabajo no promete familias perfectas. Promete algo más honesto: una manera de volver al vínculo, incluso después del desborde." data-en="Her work does not promise perfect families. It promises something more honest: a way back to connection, even after the overflow.">Su trabajo no promete familias perfectas. Promete algo más honesto: una manera de volver al vínculo, incluso después del desborde.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 · 03 BEYOND PARENTING -->
+    <section class="section wrap">
+      <div class="wrap beyond-grid">
+        <div>
+          <div class="sec-label">
+            <span class="num">03</span>
+            <span class="rule" aria-hidden="true"></span>
+            <span data-es="Más allá de la crianza" data-en="Beyond parenting">Más allá de la crianza</span>
+          </div>
+          <h2 class="h2-editorial" data-es="Una mezcla de oficio, <span class='coral'>ternura y estructura.</span>" data-en="A blend of craft, <span class='coral'>tenderness, and structure.</span>">Una mezcla de oficio, <span class="coral">ternura y estructura.</span></h2>
+        </div>
+        <div>
+          <p class="body" data-es="Además de su trabajo como educadora, Nari tiene más de 20 años de experiencia en diseño gráfico, narrativa visual, estrategia de marketing, comunicación y desarrollo de comunidades." data-en="Beyond her work as an educator, Nari has more than 20 years of experience in graphic design, visual storytelling, marketing strategy, communication, and community development.">Además de su trabajo como educadora, Nari tiene más de 20 años de experiencia en diseño gráfico, narrativa visual, estrategia de marketing, comunicación y desarrollo de comunidades.</p>
+          <p class="body" data-es="Esa mezcla hace que Criar Sin Culpas no sea solo una cuenta de contenido. Es una plataforma educativa construida con intención: visualmente clara, emocionalmente cuidadosa y diseñada para transformar cómo las familias se comunican, se regulan y crecen juntas." data-en="That blend makes Criar Sin Culpas more than a content account. It is an educational platform built with intention: visually clear, emotionally careful, and designed to transform how families communicate, regulate, and grow together.">Esa mezcla hace que Criar Sin Culpas no sea solo una cuenta de contenido. Es una plataforma educativa construida con intención: visualmente clara, emocionalmente cuidadosa y diseñada para transformar cómo las familias se comunican, se regulan y crecen juntas.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 · QUOTE -->
+    <section class="section quote-band band-peach wrap">
+      <blockquote class="pullquote" data-es="Criar no es un examen. Es un proceso. Y nadie debería atravesarlo en soledad." data-en="Parenting is not a test. It is a process. And no one should go through it alone.">Criar no es un examen. Es un proceso. Y nadie debería atravesarlo en soledad.</blockquote>
+      <cite data-es="Nari" data-en="Nari">Nari</cite>
+    </section>
+
+    <!-- 8 · CTA -->
+    <section class="cta-band wrap">
+      <div class="cta-inner">
+        <span class="cta-mark" aria-hidden="true"></span>
+        <div class="sec-label">
+          <span class="num">04</span>
+          <span class="rule" aria-hidden="true"></span>
+          <span data-es="El método" data-en="The method">El método</span>
+        </div>
+        <h2 data-es="Ya conoces la historia. Ahora conoce el método." data-en="You know the story. Now meet the method.">Ya conoces la historia. Ahora conoce el método.</h2>
+        <p class="cta-sub" data-es="Si llegaste aquí buscando una forma más calmada de criar, no tienes que resolverlo todo hoy." data-en="If you came here looking for a calmer way to parent, you don't have to solve it all today.">Si llegaste aquí buscando una forma más calmada de criar, no tienes que resolverlo todo hoy.</p>
+        <div class="cta-actions">
+          <a class="cta-btn" href="/metodo/"><span data-es="Explora el método" data-en="Explore the method">Explora el método</span><span class="arrow" aria-hidden="true">&#8594;</span></a>
+          <a class="cta-btn-outline" href="/apoyo/"><span data-es="Explora las guías" data-en="Explore the guides">Explora las guías</span><span class="arrow" aria-hidden="true">&#8594;</span></a>
+        </div>
+      </div>
+    </section>
+
+  </article>
+
+  <footer role="contentinfo">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="wordmark"><span class="wm-top">CRIAR</span><span class="wm-bot">sin culpas</span></span>
+        <p data-i18n="foot_tag" data-es="Un espacio de apoyo emocional para padres que quieren criar con conexión, no con culpa." data-en="An emotional support space for parents who want to raise with connection, not guilt.">Un espacio de apoyo emocional para padres que quieren criar con conexión, no con culpa.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="foot_nav" data-es="Navegación" data-en="Navigation">Navegación</h4>
+        <a href="/" data-i18n="nav_inicio_f" data-es="Inicio" data-en="Home">Inicio</a>
+        <a href="/apoyo/" data-i18n="nav_guias_f" data-es="Guías" data-en="Guides">Guías</a>
+        <a href="/metodo/" data-i18n="nav_metodo_f" data-es="El Método" data-en="The Method">El Método</a>
+        <a href="/bio.html" data-i18n="nav_nari_f" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
+        <span class="soon"><span data-i18n="nav_aprende_f" data-es="Aprende" data-en="Learn">Aprende</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></span>
+        <span class="soon"><span data-i18n="nav_comunidad_f" data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></span>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="foot_legal" data-es="Legal" data-en="Legal">Legal</h4>
+        <a href="/terminos" data-i18n="foot_terms" data-es="Términos de Uso" data-en="Terms of Use">Términos de Uso</a>
+        <a href="/privacidad" data-i18n="foot_priv" data-es="Política de Privacidad" data-en="Privacy Policy">Política de Privacidad</a>
+        <a href="/descargo" data-i18n="foot_disc" data-es="Descargo de Responsabilidad" data-en="Disclaimer">Descargo de Responsabilidad</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="foot_follow" data-es="Síguenos" data-en="Follow us">Síguenos</h4>
+        <div class="footer-social">
+          <a href="https://instagram.com/criarsinculpas" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="mailto:hello@criarsinculpas.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="foot_copy" data-es="© 2026 Criar Sin Culpas. Todos los derechos reservados." data-en="© 2026 Criar Sin Culpas. All rights reserved.">© 2026 Criar Sin Culpas. Todos los derechos reservados.</span>
+      <span data-i18n="foot_med" data-es="Esto no reemplaza orientación médica o profesional." data-en="This does not replace medical or professional guidance.">Esto no reemplaza orientación médica o profesional.</span>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      var KEY = 'lg_parent_lang';
+      var lang = 'es';
+      try { lang = localStorage.getItem(KEY) || 'es'; } catch (e) {}
+      function apply(l){
+        lang = l;
+        try { localStorage.setItem(KEY, l); } catch (e) {}
+        document.documentElement.lang = l;
+        document.querySelectorAll('[data-i18n], [data-es]').forEach(function(el){
+          var v = el.getAttribute('data-' + l);
+          if (v !== null) el.innerHTML = v;
+        });
+        document.querySelectorAll('[data-alt-es]').forEach(function(el){
+          var alt = el.getAttribute('data-alt-' + l);
+          if (alt) el.setAttribute('alt', alt);
+        });
+        document.querySelectorAll('.lang-btn').forEach(function(b){
+          b.setAttribute('aria-pressed', b.getAttribute('data-lang') === l ? 'true' : 'false');
+        });
+      }
+      document.addEventListener('click', function(e){
+        var b = e.target.closest('.lang-btn');
+        if (b) {
+          apply(b.getAttribute('data-lang'));
+          window.track && window.track('language_changed', { to_lang: lang, location: 'bio' });
+        }
+      });
+      apply(lang);
+
+      var nav = document.getElementById('mainNav');
+      window.addEventListener('scroll', function(){
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+      }, { passive: true });
+
+      var ham = document.getElementById('ham');
+      var mobileNav = document.getElementById('mobileNav');
+      ham.addEventListener('click', function(){
+        var isOpen = mobileNav.classList.toggle('open');
+        ham.classList.toggle('open', isOpen);
+        ham.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+      mobileNav.querySelectorAll('a').forEach(function(link){
+        link.addEventListener('click', function(){
+          mobileNav.classList.remove('open');
+          ham.classList.remove('open');
+          ham.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
+      });
+
+    })();
+  </script>
+
+</body>
+</html>
