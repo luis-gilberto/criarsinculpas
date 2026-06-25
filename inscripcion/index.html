@@ -27,6 +27,7 @@
     };
   </script>
   <script defer src="/js/track.js"></script>
+  <script defer src="/js/site-nav.js"></script>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -58,6 +59,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/site-footer.css">
+  <link rel="stylesheet" href="/css/site-nav.css">
 
   <style>
     :root {
@@ -75,35 +77,6 @@
       position: fixed; inset: 0; z-index: 200; pointer-events: none; opacity: .04;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       mix-blend-mode: overlay;
-    }
-
-    .site-header { position: sticky; top: 0; z-index: 100; background: var(--navy); color: #FBF7F3; }
-    .sh-inner { max-width: 1180px; margin: 0 auto; padding: 14px 32px; display: flex; align-items: center; gap: 22px; }
-    .sh-logo { display: inline-flex; align-items: center; }
-    .sh-logo img { height: 26px; filter: brightness(0) invert(1); opacity: .95; }
-    .sh-nav { display: flex; align-items: center; gap: 24px; }
-    .sh-nav a { font-family: 'DM Sans', system-ui, sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.02em; color: rgba(251,247,243,.78); transition: color 0.2s; text-decoration: none; }
-    .sh-nav a:hover { color: #fff; }
-    .sh-nav a.active { color: oklch(0.74 0.13 38); }
-    .sh-right { margin-left: auto; display: flex; align-items: center; gap: 14px; }
-    .sh-cta { font-family: 'DM Sans', system-ui, sans-serif; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--navy); background: oklch(0.74 0.13 38); padding: 10px 18px; border-radius: var(--pill); transition: background 0.25s var(--ease-silk), transform 0.25s var(--ease-silk); white-space: nowrap; text-decoration: none; }
-    .sh-cta:hover { background: #ECA083; transform: translateY(-1px); }
-    .lang-toggle { display: inline-flex; border: 1px solid rgba(251,247,243,.28); border-radius: var(--pill); overflow: hidden; background: rgba(255,255,255,.08); }
-    .lang-btn { font-family: 'DM Sans', system-ui, sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; padding: 7px 13px; background: transparent; color: rgba(251,247,243,.72); border: none; cursor: pointer; transition: background 0.25s var(--ease-silk), color 0.25s var(--ease-silk); }
-    .lang-btn.active { background: oklch(0.74 0.13 38); color: var(--navy); }
-    .lang-btn:not(.active):hover { color: #fff; }
-    .sh-ham { display: none; background: transparent; border: none; color: #FBF7F3; cursor: pointer; padding: 6px; align-items: center; }
-    .sh-mobile { display: none; }
-    @media (max-width: 880px) {
-      .sh-nav { display: none; }
-      .sh-cta { display: none; }
-      .sh-ham { display: inline-flex; }
-      .sh-inner { padding: 14px 22px; }
-      .sh-mobile { display: block; background: var(--navy); border-top: 1px solid rgba(251,247,243,.12); padding: 6px 22px 20px; }
-      .sh-mobile[hidden] { display: none; }
-      .sh-mobile a { display: block; padding: 13px 0; font-family: 'DM Sans', system-ui, sans-serif; font-size: 0.95rem; color: rgba(251,247,243,.85); border-bottom: 1px solid rgba(251,247,243,.08); text-decoration: none; }
-      .sh-mobile a.active { color: oklch(0.74 0.13 38); }
-      .sh-mobile .sh-cta-m { display: inline-block; margin-top: 16px; color: var(--navy); background: oklch(0.74 0.13 38); padding: 12px 22px; border-radius: var(--pill); font-weight: 700; text-transform: uppercase; font-size: 0.76rem; letter-spacing: 0.05em; border-bottom: none; }
     }
 
     .page-band { background: #FBF7F3; border-bottom: 1px solid var(--line); text-align: center; padding: 16px 24px; position: relative; z-index: 10; }
@@ -129,16 +102,22 @@
     .frame.plate-bl .dot { right: .4rem; }
     .frame .shot { position: relative; z-index: 1; border-radius: 1.5rem; overflow: hidden; box-shadow: 0 44px 90px -50px oklch(0.22 0.04 260 / .55), 0 14px 34px -24px oklch(0.22 0.04 260 / .3); transform: translateZ(0); will-change: transform; }
     .frame .shot img { display: block; width: 100%; object-fit: cover; }
-    .frame:hover .shot { animation: photo-jiggle .65s var(--ease-silk); }
+    .frame:not(.hero-frame):hover .shot { animation: photo-jiggle .65s var(--ease-silk); }
     .credit-plate { position: absolute; z-index: 3; right: 1.1rem; bottom: .1rem; display: inline-flex; align-items: center; gap: .5rem; padding: .55rem .9rem .55rem .8rem; border-radius: 0 0 .85rem .85rem; background: oklch(0.22 0.04 260 / .95); color: #fff; font-family: 'DM Sans', system-ui, sans-serif; font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; white-space: nowrap; box-shadow: 0 18px 30px -18px oklch(0.22 0.04 260 / .65); transform: translateY(-100%); opacity: 0; pointer-events: none; transition: transform .55s var(--ease-silk), opacity .35s var(--ease-silk), background .25s, color .25s; }
     .credit-plate svg { width: 11px; height: 11px; opacity: .95; }
     .credit-plate .arrow { margin-left: .15rem; transition: transform .3s var(--ease-silk); }
-    .frame:hover .credit-plate, .frame:focus-within .credit-plate { transform: translateY(72%); opacity: 1; pointer-events: auto; }
+    .frame:not(.hero-frame):hover .credit-plate, .frame:not(.hero-frame):focus-within .credit-plate { transform: translateY(72%); opacity: 1; pointer-events: auto; }
     .credit-plate:hover { background: oklch(0.74 0.13 38); color: var(--navy); }
     .credit-plate:hover .arrow { transform: translateX(3px); }
+    /* Hero: no jiggle; credit slides flush below lower-right image edge */
+    .frame.hero-frame .shot { overflow: visible; }
+    .frame.hero-frame .shot img { border-radius: 1.5rem; }
+    .frame.hero-frame .credit-plate { right: 1.25rem; bottom: 0; }
+    .frame.hero-frame:hover .credit-plate, .frame.hero-frame:focus-within .credit-plate { transform: translateY(100%); opacity: 1; pointer-events: auto; }
     .credit-plate-mob { display: none; }
     @media (max-width: 640px) {
       .frame .credit-plate { display: none; }
+      .frame.hero-frame .shot { overflow: hidden; }
       .credit-plate-mob { display: block; margin-top: .65rem; text-align: right; font-family: 'DM Sans', system-ui, sans-serif; font-size: .72rem; color: oklch(0.45 0.03 260); }
       .credit-plate-mob a { color: oklch(0.45 0.03 260); border-bottom: 1px solid oklch(0.74 0.13 38 / .35); text-decoration: none; }
       .credit-plate-mob a:hover { color: oklch(0.74 0.13 38); }
@@ -146,7 +125,7 @@
       .frame.plate-bl .plate { left: -.65rem; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .frame:hover .shot { animation: none; }
+      .frame:not(.hero-frame):hover .shot { animation: none; }
       .status-dot { animation: none; }
       html { scroll-behavior: auto; }
     }
@@ -164,38 +143,44 @@
 <body class="min-h-screen bg-background text-foreground" data-protocol="inscripciones" data-guide="learning_layer">
 <div class="grain" aria-hidden="true"></div>
 
-<header class="site-header">
-  <div class="sh-inner">
-    <a href="/" class="sh-logo" aria-label="Criar Sin Culpas">
-      <img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas">
-    </a>
-    <nav class="sh-nav" aria-label="Navegación principal">
-      <a href="/" data-en="Home">Inicio</a>
-      <a href="/metodo/" data-en="Method">Método</a>
-      <a href="/apoyo/" data-en="Guides">Guías</a>
-      <a href="#fundador" class="active" data-en="Early Access">Inscripciones</a>
-      <a href="/sobre-nari/" data-en="About Nari">Sobre Nari</a>
-    </nav>
-    <div class="sh-right">
-      <a href="#fundador" class="sh-cta" data-track-cta="header_early_access" data-cta-location="site_header" data-en="Early access">Inscripción anticipada</a>
-      <div class="lang-toggle" role="group" aria-label="Idioma / Language">
-        <button type="button" class="lang-btn active" data-lang="es" aria-pressed="true">ES</button>
-        <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+<header class="nav">
+  <nav class="nav-inner" role="navigation" aria-label="Navegación principal">
+    <a href="/" class="nav-logo" aria-label="Criar Sin Culpas"><img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas"></a>
+    <ul class="nav-links">
+      <li><a href="/" data-es="Inicio" data-en="Home">Inicio</a></li>
+      <li><a href="/apoyo/" data-es="Guías" data-en="Guides">Guías</a></li>
+      <li><a href="/metodo/" data-es="El Método" data-en="The Method">El Método</a></li>
+      <li><a href="/inscripcion/" class="active" data-es="Inscripciones" data-en="Early Access">Inscripciones</a></li>
+      <li><a href="/sobre-nari/" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a></li>
+      <li><a href="#" aria-disabled="true"><span data-es="Aprende" data-en="Learn">Aprende</span><span class="soon-tag" data-es="Pronto" data-en="Soon">Pronto</span></a></li>
+      <li><a href="#" aria-disabled="true"><span data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-es="Pronto" data-en="Soon">Pronto</span></a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Idioma">
+        <button data-lang="es" aria-pressed="true">ES</button>
+        <button data-lang="en" aria-pressed="false">EN</button>
       </div>
-      <button type="button" class="sh-ham" id="sh-ham" aria-label="Abrir menú" aria-expanded="false" aria-controls="sh-mobile">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      <button class="ham" id="ham" aria-label="Menú" aria-expanded="false">
+        <svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="8" x2="21" y2="8"/><line x1="3" y1="16" x2="21" y2="16"/></svg>
+        <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
-  </div>
-  <nav class="sh-mobile" id="sh-mobile" aria-label="Menú móvil" hidden>
-    <a href="/" data-en="Home">Inicio</a>
-    <a href="/metodo/" data-en="Method">Método</a>
-    <a href="/apoyo/" data-en="Guides">Guías</a>
-    <a href="#fundador" class="active" data-en="Early Access">Inscripciones</a>
-    <a href="/sobre-nari/" data-en="About Nari">Sobre Nari</a>
-    <a href="#fundador" class="sh-cta-m" data-track-cta="header_early_access" data-cta-location="site_header" data-en="Early access">Inscripción anticipada</a>
   </nav>
 </header>
+
+<div class="mobile-nav" id="mobileNav" role="dialog" aria-modal="true" aria-label="Menú">
+  <a href="/" data-es="Inicio" data-en="Home">Inicio</a>
+  <a href="/apoyo/" data-es="Guías" data-en="Guides">Guías</a>
+  <a href="/metodo/" data-es="El Método" data-en="The Method">El Método</a>
+  <a href="/inscripcion/" class="active" data-es="Inscripciones" data-en="Early Access">Inscripciones</a>
+  <a href="/sobre-nari/" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
+  <a href="#" aria-disabled="true"><span data-es="Aprende" data-en="Learn">Aprende</span><span class="soon-tag" data-es="Pronto" data-en="Soon">Pronto</span></a>
+  <a href="#" aria-disabled="true"><span data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-es="Pronto" data-en="Soon">Pronto</span></a>
+  <div class="lang" role="group" aria-label="Idioma">
+    <button data-lang="es" aria-pressed="true">ES</button>
+    <button data-lang="en" aria-pressed="false">EN</button>
+  </div>
+</div>
 
 <div class="page-band">
   <p class="pb-kicker" data-en="Early Access · Learning Layer">Inscripciones · Capa de Aprendizaje</p>
@@ -219,17 +204,17 @@
         <a href="#como-funciona" class="rounded-full border border-border px-7 py-3 text-sm font-medium text-foreground/80 transition-colors hover:bg-secondary/60" data-track-cta="como_funciona" data-cta-location="hero" data-en="See how it works">Ver cómo funciona</a>
       </div>
     </div>
-    <figure class="frame plate-br w-full" itemscope itemtype="https://schema.org/ImageObject">
+    <figure class="frame plate-br hero-frame w-full" itemscope itemtype="https://schema.org/ImageObject">
       <span class="plate" aria-hidden="true"></span>
       <span class="dot" aria-hidden="true"></span>
       <div class="shot">
         <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto,f_auto/v1782424435/ChatGPT_Image_Jun_25_2026_02_53_12_PM_lbge65.png" alt="Nari en su escritorio, trabajando en su laptop" class="h-[34rem] sm:h-[40rem]" itemprop="contentUrl" loading="eager" decoding="async">
+        <a class="credit-plate" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía: SHARNAY PHOTOGRAPHY">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <span data-es="SHARNAY PHOTOGRAPHY" data-en="SHARNAY PHOTOGRAPHY">SHARNAY PHOTOGRAPHY</span>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </a>
       </div>
-      <a class="credit-plate" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía: SHARNAY PHOTOGRAPHY">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-        <span data-es="SHARNAY PHOTOGRAPHY" data-en="SHARNAY PHOTOGRAPHY">SHARNAY PHOTOGRAPHY</span>
-        <span class="arrow" aria-hidden="true">↗</span>
-      </a>
       <p class="credit-plate-mob"><span data-es="Fotografía por " data-en="Photography by ">Fotografía por </span><a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">Erika Sharnay</a></p>
     </figure>
   </div>
@@ -612,38 +597,19 @@
       });
       document.title = TITLE[lang];
       document.documentElement.lang = lang;
-      document.querySelectorAll('.lang-btn').forEach(function (b) {
-        var on = b.getAttribute('data-lang') === lang;
-        b.classList.toggle('active', on);
-        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      document.querySelectorAll('.lang button').forEach(function (b) {
+        b.setAttribute('aria-pressed', b.getAttribute('data-lang') === lang ? 'true' : 'false');
       });
       try { localStorage.setItem(KEY, lang); } catch (e) {}
     }
     var saved = 'es';
     try { saved = localStorage.getItem(KEY) || 'es'; } catch (e) {}
     setLang(saved);
-    document.querySelectorAll('.lang-btn').forEach(function (b) {
+    document.querySelectorAll('.lang button').forEach(function (b) {
       b.addEventListener('click', function () {
         var lang = this.getAttribute('data-lang') === 'en' ? 'en' : 'es';
         setLang(lang);
         track('language_changed', { to_lang: lang, location: 'inscripcion' });
-      });
-    });
-  })();
-
-  (function () {
-    var ham = document.getElementById('sh-ham');
-    var menu = document.getElementById('sh-mobile');
-    if (!ham || !menu) return;
-    ham.addEventListener('click', function () {
-      var open = menu.hasAttribute('hidden');
-      if (open) { menu.removeAttribute('hidden'); } else { menu.setAttribute('hidden', ''); }
-      ham.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    menu.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        menu.setAttribute('hidden', '');
-        ham.setAttribute('aria-expanded', 'false');
       });
     });
   })();

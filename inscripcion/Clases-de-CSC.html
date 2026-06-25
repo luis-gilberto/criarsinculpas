@@ -20,7 +20,9 @@
     };
   </script>
   <script defer src="/js/track.js"></script>
+  <script defer src="/js/site-nav.js"></script>
   <link rel="stylesheet" href="/css/site-footer.css">
+  <link rel="stylesheet" href="/css/site-nav.css">
   <style>
     :root {
       --void:        #FAF6F2;
@@ -96,25 +98,6 @@
     /* ---------- nav (legacy breadcrumb) ---------- */
     .back-link { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-ghost); transition: color 0.2s; }
     .back-link:hover { color: var(--text); }
-
-    /* ---------- official CSC site header ---------- */
-    .site-header { position: sticky; top: 0; z-index: 100; background: var(--navy); color: #FBF7F3; }
-    .sh-inner { max-width: 1180px; margin: 0 auto; padding: 14px 32px; display: flex; align-items: center; gap: 22px; }
-    .sh-logo { display: inline-flex; align-items: center; }
-    .sh-logo img { height: 26px; filter: brightness(0) invert(1); opacity: .95; }
-    .sh-nav { display: flex; align-items: center; gap: 24px; }
-    .sh-nav a { font-family: var(--sans); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.02em; color: rgba(251,247,243,.78); transition: color 0.2s; }
-    .sh-nav a:hover { color: #fff; }
-    .sh-nav a.active { color: var(--coral); }
-    .sh-right { margin-left: auto; display: flex; align-items: center; gap: 14px; }
-    .sh-cta { font-family: var(--sans); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--navy); background: var(--coral); padding: 10px 18px; border-radius: var(--pill); transition: background 0.25s var(--ease), transform 0.25s var(--ease); white-space: nowrap; }
-    .sh-cta:hover { background: #ECA083; transform: translateY(-1px); }
-    .site-header .lang-toggle { border-color: rgba(251,247,243,.28); background: rgba(255,255,255,.08); }
-    .site-header .lang-btn { color: rgba(251,247,243,.72); }
-    .site-header .lang-btn.active { background: var(--coral); color: var(--navy); }
-    .site-header .lang-btn:not(.active):hover { color: #fff; }
-    .sh-ham { display: none; background: transparent; border: none; color: #FBF7F3; cursor: pointer; padding: 6px; align-items: center; }
-    .sh-mobile { display: none; }
 
     /* ---------- contextual page band ---------- */
     .page-band { background: #FBF7F3; border-bottom: 1px solid var(--line); text-align: center; padding: 16px 24px; position: relative; z-index: 10; }
@@ -383,17 +366,6 @@
     /* ---------- footer ---------- */
     .secure-footer { text-align: center; padding: 40px 24px 56px; border-top: 1px solid var(--line); font-size: 0.8rem; color: var(--text-ghost); position: relative; z-index: 10; }
 
-    @media (max-width: 880px) {
-      .sh-nav { display: none; }
-      .sh-cta { display: none; }
-      .sh-ham { display: inline-flex; }
-      .sh-inner { padding: 14px 22px; }
-      .sh-mobile { display: block; background: var(--navy); border-top: 1px solid rgba(251,247,243,.12); padding: 6px 22px 20px; }
-      .sh-mobile[hidden] { display: none; }
-      .sh-mobile a { display: block; padding: 13px 0; font-family: var(--sans); font-size: 0.95rem; color: rgba(251,247,243,.85); border-bottom: 1px solid rgba(251,247,243,.08); }
-      .sh-mobile a.active { color: var(--coral); }
-      .sh-mobile .sh-cta-m { display: inline-block; margin-top: 16px; color: var(--navy); background: var(--coral); padding: 12px 22px; border-radius: var(--pill); font-weight: 700; text-transform: uppercase; font-size: 0.76rem; letter-spacing: 0.05em; border-bottom: none; }
-    }
     @media (max-width: 820px) {
       section.block { padding: 80px 0; }
       .hero-photo { max-width: 100%; margin-top: 36px; }
@@ -432,53 +404,50 @@
       .status-dot { animation: none; }
       html { scroll-behavior: auto; }
     }
-
-    /* ---------- language toggle ---------- */
-    .nav-right { display: flex; align-items: center; gap: 18px; }
-    .lang-toggle { display: inline-flex; border: 1px solid rgba(31,46,70,.18); border-radius: var(--pill); overflow: hidden; background: rgba(255,255,255,.5); }
-    .lang-btn { font-family: var(--sans); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; padding: 7px 13px; background: transparent; color: var(--text-ghost); border: none; cursor: pointer; transition: background 0.25s var(--ease), color 0.25s var(--ease); }
-    .lang-btn.active { background: var(--navy); color: var(--void); }
-    .lang-btn:not(.active):hover { color: var(--text); }
-    @media (max-width: 480px) { .nav-right { gap: 12px; } .back-link { font-size: 0.66rem; } }
   </style>
   <meta name="robots" content="noindex, nofollow">
 </head>
 <body data-protocol="inscripciones" data-guide="learning_layer">
   <div class="grain" aria-hidden="true"></div>
 
-  <!-- ============ OFFICIAL CSC HEADER ============ -->
-  <header class="site-header">
-    <div class="sh-inner">
-      <a href="/" class="sh-logo" aria-label="Criar Sin Culpas">
-        <img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas">
-      </a>
-      <nav class="sh-nav" aria-label="Navegación principal">
-        <a href="/" data-en="Home">Inicio</a>
-        <a href="/metodo/" data-en="Method">Método</a>
-        <a href="/apoyo/" data-en="Guides">Guías</a>
-        <a href="#fundador" class="active" data-en="Early Access">Inscripciones</a>
-        <a href="/sobre-nari/" data-en="About Nari">Sobre Nari</a>
-      </nav>
-      <div class="sh-right">
-        <a href="#fundador" class="sh-cta" data-track-cta="header_early_access" data-cta-location="site_header" data-en="Early access">Inscripción anticipada</a>
-        <div class="lang-toggle" role="group" aria-label="Idioma / Language">
-          <button type="button" class="lang-btn" data-lang="es">ES</button>
-          <button type="button" class="lang-btn" data-lang="en">EN</button>
+  <header class="nav">
+    <nav class="nav-inner" role="navigation" aria-label="Navegación principal">
+      <a href="/" class="nav-logo" aria-label="Criar Sin Culpas"><img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas"></a>
+      <ul class="nav-links">
+        <li><a href="/" data-es="Inicio" data-en="Home">Inicio</a></li>
+        <li><a href="/apoyo/" data-es="Guías" data-en="Guides">Guías</a></li>
+        <li><a href="/metodo/" data-es="El Método" data-en="The Method">El Método</a></li>
+        <li><a href="/inscripcion/" class="active" data-es="Inscripciones" data-en="Early Access">Inscripciones</a></li>
+        <li><a href="/sobre-nari/" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a></li>
+        <li><a href="#" aria-disabled="true"><span data-es="Aprende" data-en="Learn">Aprende</span><span class="soon-tag" data-es="Pronto" data-en="Soon">Pronto</span></a></li>
+        <li><a href="#" aria-disabled="true"><span data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-es="Pronto" data-en="Soon">Pronto</span></a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="lang" role="group" aria-label="Idioma">
+          <button data-lang="es" aria-pressed="true">ES</button>
+          <button data-lang="en" aria-pressed="false">EN</button>
         </div>
-        <button type="button" class="sh-ham" id="sh-ham" aria-label="Abrir menú" aria-expanded="false" aria-controls="sh-mobile">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+        <button class="ham" id="ham" aria-label="Menú" aria-expanded="false">
+          <svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="8" x2="21" y2="8"/><line x1="3" y1="16" x2="21" y2="16"/></svg>
+          <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
       </div>
-    </div>
-    <nav class="sh-mobile" id="sh-mobile" aria-label="Menú móvil" hidden>
-      <a href="/" data-en="Home">Inicio</a>
-      <a href="/metodo/" data-en="Method">Método</a>
-      <a href="/apoyo/" data-en="Guides">Guías</a>
-      <a href="#fundador" class="active" data-en="Early Access">Inscripciones</a>
-      <a href="/sobre-nari/" data-en="About Nari">Sobre Nari</a>
-      <a href="#fundador" class="sh-cta-m" data-track-cta="header_early_access" data-cta-location="site_header" data-en="Early access">Inscripción anticipada</a>
     </nav>
   </header>
+
+  <div class="mobile-nav" id="mobileNav" role="dialog" aria-modal="true" aria-label="Menú">
+    <a href="/" data-es="Inicio" data-en="Home">Inicio</a>
+    <a href="/apoyo/" data-es="Guías" data-en="Guides">Guías</a>
+    <a href="/metodo/" data-es="El Método" data-en="The Method">El Método</a>
+    <a href="/inscripcion/" class="active" data-es="Inscripciones" data-en="Early Access">Inscripciones</a>
+    <a href="/sobre-nari/" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
+    <a href="#" aria-disabled="true"><span data-es="Aprende" data-en="Learn">Aprende</span><span class="soon-tag" data-es="Pronto" data-en="Soon">Pronto</span></a>
+    <a href="#" aria-disabled="true"><span data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-es="Pronto" data-en="Soon">Pronto</span></a>
+    <div class="lang" role="group" aria-label="Idioma">
+      <button data-lang="es" aria-pressed="true">ES</button>
+      <button data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
 
   <!-- ============ CONTEXTUAL PAGE BAND ============ -->
   <div class="page-band">
@@ -887,24 +856,6 @@
       });
     });
 
-    // Mobile header menu toggle
-    (function () {
-      var ham = document.getElementById('sh-ham');
-      var menu = document.getElementById('sh-mobile');
-      if (!ham || !menu) return;
-      ham.addEventListener('click', function () {
-        var open = menu.hasAttribute('hidden');
-        if (open) { menu.removeAttribute('hidden'); } else { menu.setAttribute('hidden', ''); }
-        ham.setAttribute('aria-expanded', open ? 'true' : 'false');
-      });
-      menu.querySelectorAll('a').forEach(function (link) {
-        link.addEventListener('click', function () {
-          menu.setAttribute('hidden', '');
-          ham.setAttribute('aria-expanded', 'false');
-        });
-      });
-    })();
-
     // Form submit
     var form = document.getElementById('fundador-form');
     var errEl = document.getElementById('capture-error');
@@ -974,9 +925,8 @@
         });
         document.title = TITLE[lang];
         document.documentElement.lang = lang;
-        document.querySelectorAll('.lang-btn').forEach(function (b) {
+        document.querySelectorAll('.lang button').forEach(function (b) {
           var on = b.getAttribute('data-lang') === lang;
-          b.classList.toggle('active', on);
           b.setAttribute('aria-pressed', on ? 'true' : 'false');
         });
         try { localStorage.setItem(KEY, lang); } catch (e) {}
@@ -984,7 +934,7 @@
       var saved = 'es';
       try { saved = localStorage.getItem(KEY) || 'es'; } catch (e) {}
       setLang(saved);
-      document.querySelectorAll('.lang-btn').forEach(function (b) {
+      document.querySelectorAll('.lang button').forEach(function (b) {
         b.addEventListener('click', function () { setLang(this.getAttribute('data-lang')); });
       });
     })();

@@ -37,6 +37,8 @@
     window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) };
   </script>
   <script defer src="/js/track.js"></script>
+  <script defer src="/js/site-nav.js"></script>
+  <link rel="stylesheet" href="/css/site-nav.css">
 
   <style>
     /* ─────────────────────────────────────────
@@ -173,50 +175,6 @@
       position: relative; z-index: 2;
       min-height: 100vh;
       padding-bottom: 56px;
-    }
-
-    /* ─────────────────────────────────────────
-       NAV
-    ───────────────────────────────────────── */
-    .p-nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #1F2E46;
-      padding: max(20px, env(safe-area-inset-top)) var(--gutter-mobile) 18px;
-      border-bottom: 1px solid rgba(250,246,242,.08);
-      border-bottom-left-radius: var(--radius-lg);
-      border-bottom-right-radius: var(--radius-lg);
-      position: sticky; top: 0; z-index: 100;
-    }
-    .nav-left { display: flex; align-items: center; gap: 14px; }
-    .nav-back {
-      display: flex; align-items: center; justify-content: center;
-      width: 36px; height: 36px; border-radius: 50%;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      background: var(--bg-card);
-      transition: color .2s, background .2s, border-color .2s;
-    }
-    .nav-back:hover { color: var(--text); background: var(--bg-card-hover); border-color: rgba(31,46,70,.15); }
-    .nav-logo { display: flex; align-items: center; }
-    .nav-logo img { height: clamp(44px, 7vw, 58px); width: auto; display: block; filter: brightness(1.05) saturate(1.25); }
-    .lang-sw {
-      display: inline-flex; padding: 3px; gap: 2px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(250,246,242,.14);
-      background: rgba(250,246,242,.06);
-    }
-    .lang-btn {
-      min-width: 40px; padding: 5px 11px;
-      border-radius: var(--radius-pill);
-      color: rgba(250,246,242,.5); font-size: .72rem; font-weight: 700;
-      transition: all .24s;
-    }
-    .lang-btn[aria-pressed='true'] {
-      color: #1F2E46;
-      background: #FAF6F2;
-      box-shadow: 0 2px 8px rgba(0,0,0,.12);
     }
 
     /* ─────────────────────────────────────────
@@ -785,7 +743,6 @@
       .checkin-card { padding: 48px; }
       body { font-size: 16px; }
       .content-wrapper { padding: 0 32px; }
-      .p-nav { padding-left: 32px; padding-right: 32px; }
 
       .phrase-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -805,9 +762,6 @@
     ───────────────────────────────────────── */
     @media (min-width: 900px) {
       body { font-size: 17px; }
-
-      .p-nav { padding-left: 48px; padding-right: 48px; border-radius: 0; }
-      .nav-logo img { height: 60px; }
 
       .content-wrapper { padding: 0 48px; }
       .hero-section { padding-top: 56px; }
@@ -955,23 +909,46 @@
     <span id="toast-msg">¡Copiado! Úsalo ahora.</span>
   </div>
 
-  <div class="page-shell">
-
-    <!-- NAV -->
-    <nav class="p-nav">
-      <div class="nav-left">
-        <a href="/apoyo" class="nav-back" aria-label="Volver al Hub">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-        </a>
-        <a href="/" class="nav-logo" aria-label="Criar Sin Culpas - Inicio">
-          <img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas">
-        </a>
-      </div>
-      <div class="lang-sw">
-        <button type="button" class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
-        <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+  <header class="nav">
+    <nav class="nav-inner" role="navigation" aria-label="Navegación principal">
+      <a href="/" class="nav-logo" aria-label="Criar Sin Culpas"><img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas"></a>
+      <ul class="nav-links">
+        <li><a href="/" data-i18n="nav_inicio" data-es="Inicio" data-en="Home">Inicio</a></li>
+        <li><a href="/apoyo/" class="active" data-i18n="nav_guias" data-es="Guías" data-en="Guides">Guías</a></li>
+        <li><a href="/metodo/" data-i18n="nav_metodo" data-es="El Método" data-en="The Method">El Método</a></li>
+        <li><a href="/inscripcion/" data-i18n="nav_inscripcion" data-es="Inscripciones" data-en="Early Access">Inscripciones</a></li>
+        <li><a href="/sobre-nari/" data-i18n="nav_nari" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a></li>
+        <li><a href="#" aria-disabled="true"><span data-i18n="nav_aprende" data-es="Aprende" data-en="Learn">Aprende</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></a></li>
+        <li><a href="#" aria-disabled="true"><span data-i18n="nav_comunidad" data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="lang" role="group" aria-label="Idioma">
+          <button data-lang="es" aria-pressed="true">ES</button>
+          <button data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <button class="ham" id="ham" aria-label="Menú" aria-expanded="false">
+          <svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="8" x2="21" y2="8"/><line x1="3" y1="16" x2="21" y2="16"/></svg>
+          <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
       </div>
     </nav>
+  </header>
+
+  <div class="mobile-nav" id="mobileNav" role="dialog" aria-modal="true" aria-label="Menú">
+    <a href="/" data-i18n="nav_inicio_m" data-es="Inicio" data-en="Home">Inicio</a>
+    <a href="/apoyo/" class="active" data-i18n="nav_guias_m" data-es="Guías" data-en="Guides">Guías</a>
+    <a href="/metodo/" data-i18n="nav_metodo_m" data-es="El Método" data-en="The Method">El Método</a>
+    <a href="/inscripcion/" data-i18n="nav_inscripcion_m" data-es="Inscripciones" data-en="Early Access">Inscripciones</a>
+    <a href="/sobre-nari/" data-i18n="nav_nari_m" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
+    <a href="#" aria-disabled="true"><span data-i18n="nav_aprende_m" data-es="Aprende" data-en="Learn">Aprende</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></a>
+    <a href="#" aria-disabled="true"><span data-i18n="nav_comunidad_m" data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></a>
+    <div class="lang" role="group" aria-label="Idioma">
+      <button data-lang="es" aria-pressed="true">ES</button>
+      <button data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+
+  <div class="page-shell">
 
     <!-- STRATEGIC FLASHLIGHT -->
     <section class="orient-block" aria-label="Orientación rápida">
@@ -1400,7 +1377,7 @@
         const t = el.getAttribute('data-' + l);
         if (t !== null) el.innerHTML = t;
       });
-      document.querySelectorAll('.lang-btn').forEach(btn => {
+      document.querySelectorAll('.lang button').forEach(btn => {
         btn.setAttribute('aria-pressed', btn.dataset.lang === l ? 'true' : 'false');
       });
 
@@ -1411,7 +1388,7 @@
       trackSignal('full_guide_requested', {});
     });
 
-    document.querySelectorAll('.lang-btn').forEach(btn => {
+    document.querySelectorAll('.lang button').forEach(btn => {
       btn.addEventListener('click', () => applyLang(btn.dataset.lang));
     });
 

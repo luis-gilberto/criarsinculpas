@@ -42,7 +42,9 @@
     };
   </script>
   <script defer src="/js/track.js"></script>
+  <script defer src="/js/site-nav.js"></script>
   <link rel="stylesheet" href="/css/site-footer.css">
+  <link rel="stylesheet" href="/css/site-nav.css">
 
   <style>
     /* ═══════════════════════════════════════════
@@ -140,86 +142,13 @@
     .r3 { animation: fadeUp .9s var(--ease-silk) .28s both; }
     .r4 { animation: fadeUp .9s var(--ease-silk) .40s both; }
 
-    /* ── NAV ── */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: max(20px, env(safe-area-inset-top)) 56px 18px;
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
-      background: var(--navy);
-      border-bottom: 1px solid rgba(250,246,242,.06);
-      transition: border-color .4s, box-shadow .4s;
-    }
-    .nav.scrolled {
-      background: var(--navy);
-      border-bottom: 1px solid rgba(250,246,242,.1);
-      box-shadow: 0 8px 32px rgba(0,0,0,.12);
-    }
-    .nav-logo { display: flex; flex-shrink: 0; align-items: center; }
-    .nav-logo img { height: clamp(24px, 3.5vw, 32px); width: auto; display: block; transition: opacity .3s; filter: brightness(1.05) saturate(1.25) hue-rotate(-5deg); }
-    .nav-logo:hover img { opacity: .88; }
-    .nav-center { display: flex; align-items: center; gap: 36px; }
-    .nav-center a {
-      color: rgba(250,246,242,.66); text-decoration: none;
-      font-size: .72rem; font-weight: 500;
-      letter-spacing: .1em; text-transform: uppercase; transition: color .25s;
-    }
-    .nav-center a:hover { color: var(--cream); }
-    .nav-center a.active { color: var(--cream); }
-    .nav-center a.dim { opacity: .35; pointer-events: none; }
-    .nav-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
-
-    .lang-pill {
-      display: inline-flex; padding: 3px; gap: 2px;
-      border-radius: var(--pill);
-      border: 1px solid rgba(250,246,242,.14);
-      background: rgba(250,246,242,.06);
-    }
-    .lang-btn {
-      min-width: 38px; padding: 5px 10px; border-radius: var(--pill);
-      font-size: .65rem; font-weight: 700; letter-spacing: .06em;
-      color: rgba(250,246,242,.45); background: none; border: none;
-      cursor: pointer; transition: all .25s;
-    }
-    .lang-btn[aria-pressed="true"] {
-      color: var(--navy); background: var(--cream);
-      box-shadow: 0 1px 6px rgba(0,0,0,.15);
-    }
-
-    .ham {
-      display: none; width: 44px; height: 44px; border-radius: 50%;
-      border: 1px solid rgba(250,246,242,.14); background: rgba(250,246,242,.06);
-      align-items: center; justify-content: center;
-      cursor: pointer; z-index: 201; flex-shrink: 0; transition: all .3s;
-    }
-    .ham svg { color: var(--cream); }
-    .ham .x { display: none; }
-    .ham.open .bars { display: none; }
-    .ham.open .x { display: block; }
-
-    .mobile-nav {
-      display: none; position: fixed; inset: 0; z-index: 150;
-      background: rgba(250,247,241,.97);
-      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-      flex-direction: column; align-items: center; justify-content: center;
-      gap: 44px; opacity: 0; pointer-events: none;
-      transition: opacity .4s var(--ease-cinema), transform .4s var(--ease-cinema);
-      transform: translateY(-8px);
-    }
-    .mobile-nav.open { opacity: 1; pointer-events: auto; transform: translateY(0); }
-    .mobile-nav a {
-      font-family: var(--serif); font-size: 2rem; font-weight: 400;
-      color: var(--text-dim); text-decoration: none; letter-spacing: .04em; transition: color .25s;
-    }
-    .mobile-nav a:hover, .mobile-nav a.active { color: var(--text); }
-    .mobile-nav a.dim { opacity: .45; pointer-events: none; }
-
     /* ══════════════════════════════════════════
        PAGE SHELL
     ══════════════════════════════════════════ */
     .page {
       flex: 1; position: relative; z-index: 2;
       display: flex; flex-direction: column;
-      padding-top: max(88px, 11vh);
+      padding-top: clamp(2rem, 5vw, 3rem);
     }
 
     /* ══════════════════════════════════════════
@@ -592,11 +521,6 @@
        MOBILE
     ══════════════════════════════════════════ */
     @media (max-width: 1200px) {
-      .nav { padding: max(16px, env(safe-area-inset-top)) 22px 14px; }
-      .nav-center { display: none; }
-      .ham { display: flex; }
-      .mobile-nav { display: flex; }
-
       .page-header { padding: 40px 24px 32px; }
       .guides-wrap  { padding: 0 24px 48px; }
       .content-divider { padding: 0 24px; }
@@ -619,50 +543,42 @@
   <div class="grain" aria-hidden="true"></div>
 
   <!-- ─────── NAV ─────── -->
-  <nav class="nav" id="mainNav" role="navigation" aria-label="Navegación principal">
-    <a href="/" class="nav-logo" aria-label="Criar Sin Culpas">
-      <img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas">
-    </a>
-    <div class="nav-center">
-      <a href="/"
-         data-i18n="nav_inicio" data-es="Inicio" data-en="Home">Inicio</a>
-      <a href="/apoyo/" class="active"
-         data-i18n="nav_protocolos" data-es="Guías" data-en="Protocols">Guías</a>
-      <a href="/metodo/"
-         data-i18n="nav_metodo" data-es="El Método" data-en="The Method">El Método</a>
-      <a href="/sobre-nari/"
-         data-i18n="nav_nari" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
-      <a href="#" class="dim"
-         data-i18n="nav_aprende" data-es="Aprende (Pronto)" data-en="Learn (Soon)">Aprende (Pronto)</a>
-      <a href="#" class="dim"
-         data-i18n="nav_comunidad" data-es="Comunidad (Pronto)" data-en="Community (Soon)">Comunidad (Pronto)</a>
-    </div>
-    <div class="nav-right">
-      <div class="lang-pill" role="group" aria-label="Idioma">
-        <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
-        <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+  <header class="nav">
+    <nav class="nav-inner" role="navigation" aria-label="Navegación principal">
+      <a href="/" class="nav-logo" aria-label="Criar Sin Culpas"><img src="https://res.cloudinary.com/dogtoagya/image/upload/v1779932690/csc-logo_gbsmxq.svg" alt="Criar Sin Culpas"></a>
+      <ul class="nav-links">
+        <li><a href="/" data-i18n="nav_inicio" data-es="Inicio" data-en="Home">Inicio</a></li>
+        <li><a href="/apoyo/" class="active" data-i18n="nav_guias" data-es="Guías" data-en="Guides">Guías</a></li>
+        <li><a href="/metodo/" data-i18n="nav_metodo" data-es="El Método" data-en="The Method">El Método</a></li>
+        <li><a href="/inscripcion/" data-i18n="nav_inscripcion" data-es="Inscripciones" data-en="Early Access">Inscripciones</a></li>
+        <li><a href="/sobre-nari/" data-i18n="nav_nari" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a></li>
+        <li><a href="#" aria-disabled="true"><span data-i18n="nav_aprende" data-es="Aprende" data-en="Learn">Aprende</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></a></li>
+        <li><a href="#" aria-disabled="true"><span data-i18n="nav_comunidad" data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="lang" role="group" aria-label="Idioma">
+          <button data-lang="es" aria-pressed="true">ES</button>
+          <button data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <button class="ham" id="ham" aria-label="Menú" aria-expanded="false">
+          <svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="8" x2="21" y2="8"/><line x1="3" y1="16" x2="21" y2="16"/></svg>
+          <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
       </div>
-      <button class="ham" id="ham" aria-label="Abrir menú" aria-expanded="false">
-        <svg class="bars" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <line x1="3" y1="8" x2="21" y2="8"/><line x1="3" y1="16" x2="21" y2="16"/>
-        </svg>
-        <svg class="x" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
-      </button>
-    </div>
-  </nav>
+    </nav>
+  </header>
 
-  <div class="mobile-nav" id="mobileNav" role="dialog" aria-label="Menú" aria-modal="true">
+  <div class="mobile-nav" id="mobileNav" role="dialog" aria-modal="true" aria-label="Menú">
     <a href="/" data-i18n="nav_inicio_m" data-es="Inicio" data-en="Home">Inicio</a>
-    <a href="/apoyo/" class="active" data-i18n="nav_protocolos_m" data-es="Guías" data-en="Protocols">Guías</a>
+    <a href="/apoyo/" class="active" data-i18n="nav_guias_m" data-es="Guías" data-en="Guides">Guías</a>
     <a href="/metodo/" data-i18n="nav_metodo_m" data-es="El Método" data-en="The Method">El Método</a>
+    <a href="/inscripcion/" data-i18n="nav_inscripcion_m" data-es="Inscripciones" data-en="Early Access">Inscripciones</a>
     <a href="/sobre-nari/" data-i18n="nav_nari_m" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a>
-    <a href="#" class="dim" data-i18n="nav_aprende_m" data-es="Aprende (Pronto)" data-en="Learn (Soon)">Aprende (Pronto)</a>
-    <a href="#" class="dim" data-i18n="nav_comunidad_m" data-es="Comunidad (Pronto)" data-en="Community (Soon)">Comunidad (Pronto)</a>
-    <div class="lang-pill" style="margin-top:8px;">
-      <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
-      <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+    <a href="#" aria-disabled="true"><span data-i18n="nav_aprende_m" data-es="Aprende" data-en="Learn">Aprende</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></a>
+    <a href="#" aria-disabled="true"><span data-i18n="nav_comunidad_m" data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></a>
+    <div class="lang" role="group" aria-label="Idioma">
+      <button data-lang="es" aria-pressed="true">ES</button>
+      <button data-lang="en" aria-pressed="false">EN</button>
     </div>
   </div>
 
@@ -964,13 +880,13 @@
         };
         if (map[key]) el.placeholder = map[key][l];
       });
-      document.querySelectorAll('.lang-btn').forEach(btn => {
+      document.querySelectorAll('.lang button').forEach(btn => {
         btn.setAttribute('aria-pressed', btn.getAttribute('data-lang') === l ? 'true' : 'false');
       });
     }
 
     document.addEventListener('click', e => {
-      const btn = e.target.closest('.lang-btn');
+      const btn = e.target.closest('.lang button');
       if (btn) {
         applyLang(btn.getAttribute('data-lang'));
         if (typeof window.track === 'function')
@@ -979,30 +895,6 @@
     });
 
     applyLang(lang);
-
-    /* Nav scroll state */
-    const nav = document.getElementById('mainNav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 40);
-    }, { passive: true });
-
-    /* Mobile menu */
-    const ham = document.getElementById('ham');
-    const mobileNav = document.getElementById('mobileNav');
-    ham.addEventListener('click', () => {
-      const isOpen = mobileNav.classList.toggle('open');
-      ham.classList.toggle('open', isOpen);
-      ham.setAttribute('aria-expanded', isOpen);
-      document.body.style.overflow = isOpen ? 'hidden' : '';
-    });
-    mobileNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileNav.classList.remove('open');
-        ham.classList.remove('open');
-        ham.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      });
-    });
 
     /* Plausible: track guide card clicks */
     document.querySelectorAll('.track-guide').forEach(card => {
