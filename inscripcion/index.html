@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title data-es="Inscripciones · Capa de Aprendizaje · Criar Sin Culpas" data-en="Enrollment · Learning Layer · Criar Sin Culpas">Inscripciones · Capa de Aprendizaje · Criar Sin Culpas</title>
-  <meta name="description" id="meta-desc" data-es="Inscripción anticipada a la capa de aprendizaje de Criar Sin Culpas. Talleres, guías y recursos de Nari, organizados en rutas claras para la crianza real." data-en="Early access to the Criar Sin Culpas learning layer. Nari's workshops, guides, and resources, organized into clear routes for real parenting." content="Inscripción anticipada a la capa de aprendizaje de Criar Sin Culpas. Talleres, guías y recursos de Nari, organizados en rutas claras para la crianza real.">
+  <title data-es="Pre-inscripción · El Estudio de Criar Sin Culpas" data-en="Pre-enrollment · El Estudio de Criar Sin Culpas">Pre-inscripción · El Estudio de Criar Sin Culpas</title>
+  <meta name="description" id="meta-desc" data-es="Pre-inscríbete a El Estudio de Criar Sin Culpas: un espacio tranquilo y práctico para aprender a acompañar con más calma, claridad y confianza. Sin compromiso." data-en="Pre-enroll in El Estudio de Criar Sin Culpas: a calm, practical space to learn to show up with more calm, clarity, and confidence. No commitment." content="Pre-inscríbete a El Estudio de Criar Sin Culpas: un espacio tranquilo y práctico para aprender a acompañar con más calma, claridad y confianza. Sin compromiso.">
   <link rel="canonical" href="https://criarsinculpas.com/inscripcion/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://criarsinculpas.com/inscripcion/">
-  <meta property="og:title" content="Inscripciones · Capa de Aprendizaje · Criar Sin Culpas">
-  <meta property="og:description" content="Aprende a criar con más calma, claridad y confianza. Inscripción anticipada sin compromiso de compra.">
+  <meta property="og:title" content="Pre-inscripción a El Estudio de Criar Sin Culpas">
+  <meta property="og:description" content="Un espacio en construcción, creado con intención y sin prisa. Pre-inscríbete para entrar primero cuando abramos las puertas.">
   <meta property="og:image" content="https://res.cloudinary.com/dogtoagya/image/upload/q_auto,f_auto/v1782499698/Nari_inscripciones_hero_wybeam.png">
   <meta property="twitter:image" content="https://res.cloudinary.com/dogtoagya/image/upload/q_auto,f_auto/v1782499698/Nari_inscripciones_hero_wybeam.png">
   <meta name="theme-color" content="#FAF6F2">
@@ -150,6 +150,14 @@
     .tag-prep::before { background: oklch(0.66 0.04 245); }
     .tag-soon { color: oklch(0.45 0.03 260); background: oklch(0.22 0.04 260 / .05); }
     .tag-soon::before { background: oklch(0.45 0.03 260); }
+
+    /* Optimized layout helpers (match existing token system) */
+    .reframe-rule { width: 2.5rem; height: 1px; background: oklch(0.74 0.13 38 / .5); }
+    .stage-num { font-family: "Cormorant Garamond", serif; font-weight: 300; font-size: 3.4rem; line-height: 1; color: oklch(0.74 0.13 38 / .25); }
+    .duda-q { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 1.4rem; color: oklch(0.22 0.04 260); }
+    .outcome-strip { display: grid; grid-template-columns: 1fr; gap: 1px; background: oklch(0.88 0.018 70); border: 1px solid oklch(0.88 0.018 70); border-radius: 1.25rem; overflow: hidden; }
+    @media (min-width: 640px) { .outcome-strip { grid-template-columns: repeat(4, 1fr); } }
+    .outcome-cell { background: oklch(0.985 0.008 75); padding: 1.6rem 1.25rem; text-align: center; }
   </style>
 </head>
 <body class="min-h-screen bg-background text-foreground" data-protocol="inscripciones" data-guide="learning_layer">
@@ -158,26 +166,27 @@
 <div id="site-nav" data-active="inscripcion"></div>
 
 <div class="page-band">
-  <p class="pb-kicker" data-es="Inscripciones · Capa de Aprendizaje" data-en="Enrollment · Learning Layer">Inscripciones · Capa de Aprendizaje</p>
-  <p class="pb-sub" data-es="Una invitación a profundizar, sin prisa y sin compromiso de compra." data-en="An invitation to go deeper—without pressure and without any commitment to buy.">Una invitación a profundizar, sin prisa y sin compromiso de compra.</p>
+  <p class="pb-kicker" data-es="Pre-inscripción abierta · Sin compromiso · Acceso prioritario" data-en="Pre-enrollment open · No commitment · Priority access">Pre-inscripción abierta · Sin compromiso · Acceso prioritario</p>
+  <p class="pb-sub" data-es="Una invitación a profundizar, sin prisa y sin compromiso de compra." data-en="An invitation to go deeper, without pressure and without any commitment to buy.">Una invitación a profundizar, sin prisa y sin compromiso de compra.</p>
 </div>
 
 <!-- HERO -->
 <section class="px-6 py-16 lg:py-24">
   <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
     <div>
-      <span class="inline-block rounded-full border border-accent/30 bg-background px-5 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-accent" data-es="Inscripción Anticipada" data-en="Early Enrollment">Inscripción Anticipada</span>
-      <h1 class="mt-7 font-serif text-4xl font-light italic leading-tight text-foreground sm:text-5xl lg:text-[3.4rem]" data-es="Aprende a criar con más calma, &lt;em class=&quot;not-italic text-teal&quot;&gt;claridad&lt;/em&gt; y confianza." data-en="Learn to parent with more calm, &lt;em class=&quot;not-italic text-teal&quot;&gt;clarity&lt;/em&gt;, and confidence.">Aprende a criar con más calma, <em class="not-italic text-teal">claridad</em> y confianza.</h1>
+      <span class="inline-block rounded-full border border-accent/30 bg-background px-5 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-accent" data-es="Pre-inscripción a El Estudio" data-en="Pre-enrollment to El Estudio">Pre-inscripción a El Estudio</span>
+      <h1 class="mt-7 font-serif text-4xl font-light italic leading-tight text-foreground sm:text-5xl lg:text-[3.4rem]" data-es="Hay días en que criar se siente imposible. &lt;em class=&quot;not-italic text-teal&quot;&gt;Aquí aprendes&lt;/em&gt; a que no lo sea." data-en="Some days, parenting feels impossible. &lt;em class=&quot;not-italic text-teal&quot;&gt;Here you learn&lt;/em&gt; how it doesn't have to be.">Hay días en que criar se siente imposible. <em class="not-italic text-teal">Aquí aprendes</em> a que no lo sea.</h1>
       <p class="mt-6 font-serif text-xl italic text-accent sm:text-2xl" data-es="El trabajo de Nari, organizado en rutas claras y prácticas para los momentos reales de la crianza." data-en="Nari's work, organized into clear, practical paths for the real moments of parenting.">El trabajo de Nari, organizado en rutas claras y prácticas para los momentos reales de la crianza.</p>
-      <p class="mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground" data-es="Una nueva capa de aprendizaje. Para quienes cuidan y quieren ir más a fondo: talleres, guías y recursos, paso a paso." data-en="A new learning layer. For caregivers who want to go deeper: workshops, guides, and step-by-step resources.">Una nueva capa de aprendizaje. Para quienes cuidan y quieren ir más a fondo: talleres, guías y recursos, paso a paso.</p>
+      <p class="mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground" data-es="El Estudio: un nuevo espacio para quienes cuidan y quieren ir más a fondo, con talleres, guías y recursos, paso a paso." data-en="El Estudio: a new space for caregivers who want to go deeper, with workshops, guides, and step-by-step resources.">El Estudio: un nuevo espacio para quienes cuidan y quieren ir más a fondo, con talleres, guías y recursos, paso a paso.</p>
       <div class="mt-8 inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-2 text-xs text-muted-foreground">
         <span class="status-dot inline-block h-2 w-2 rounded-full bg-accent"></span>
         <span data-es="En construcción a partir de más de 50 talleres originales de Nari." data-en="Built from more than 50 of Nari's original workshops.">En construcción a partir de más de 50 talleres originales de Nari.</span>
       </div>
       <div class="mt-10 flex flex-wrap items-center gap-3">
-        <a href="#fundador" class="rounded-full bg-accent px-7 py-3 text-sm font-medium text-accent-foreground shadow-lg shadow-accent/20 transition-transform hover:-translate-y-0.5" data-track-cta="fundador" data-cta-location="hero" data-es="Quiero inscripción anticipada →" data-en="I want early enrollment →">Quiero inscripción anticipada →</a>
+        <a href="#fundador" class="rounded-full bg-accent px-7 py-3 text-sm font-medium text-accent-foreground shadow-lg shadow-accent/20 transition-transform hover:-translate-y-0.5" data-track-cta="fundador" data-cta-location="hero" data-es="Quiero pre-inscribirme →" data-en="I want to pre-enroll →">Quiero pre-inscribirme →</a>
         <a href="#como-funciona" class="rounded-full border border-border px-7 py-3 text-sm font-medium text-foreground/80 transition-colors hover:bg-secondary/60" data-track-cta="como_funciona" data-cta-location="hero" data-es="Ver cómo funciona" data-en="See how it works">Ver cómo funciona</a>
       </div>
+      <a href="#dos-caminos" class="mt-5 inline-flex items-center gap-1 text-xs font-medium text-muted-foreground underline-offset-4 transition-colors hover:text-accent hover:underline" data-track-cta="dos_caminos" data-cta-location="hero" data-es="o mira las dos formas de entrar →" data-en="or see the two ways to join →">o mira las dos formas de entrar →</a>
     </div>
     <figure class="frame plate-br hero-frame w-full" itemscope itemtype="https://schema.org/ImageObject">
       <meta itemprop="contentUrl" content="https://res.cloudinary.com/dogtoagya/image/upload/q_auto,f_auto/v1782499698/Nari_inscripciones_hero_wybeam.png">
@@ -198,23 +207,34 @@
   </div>
 </section>
 
-<!-- WHAT THIS IS -->
-<section id="como-funciona" class="border-t border-border/60 px-6 py-20" data-track-section="como_funciona">
-  <div class="mx-auto max-w-3xl text-center">
-    <h2 class="font-serif text-3xl font-light italic text-foreground sm:text-4xl" data-es="No es un curso. No es una membresía." data-en="It's not a course. It's not a membership.">No es un curso. No es una membresía.</h2>
-    <p class="mt-5 font-serif text-lg text-muted-foreground" data-es="Es la capa de aprendizaje de Criar Sin Culpas:" data-en="It's the learning layer of Criar Sin Culpas:">Es la capa de aprendizaje de Criar Sin Culpas:</p>
-    <div class="mt-10 rounded-3xl border border-border bg-background p-10 text-left shadow-sm sm:p-12">
-      <p class="font-serif text-2xl italic leading-snug text-foreground" data-es="donde el conocimiento de Nari se convierte en una experiencia clara y aplicable." data-en="where Nari's knowledge becomes a clear, practical experience.">donde el conocimiento de Nari se convierte en una experiencia clara y aplicable.</p>
-      <p class="mt-6 text-sm leading-relaxed text-muted-foreground" data-es="Talleres, guías y recursos prácticos para quienes cuidan. El material ya existe; ahora lo estamos organizando en rutas fáciles de seguir para los momentos que de verdad importan." data-en="Workshops, guides, and practical resources for caregivers. The material already exists; now we're organizing it into easy-to-follow paths for the moments that truly matter.">Talleres, guías y recursos prácticos para quienes cuidan. El material ya existe; ahora lo estamos organizando en rutas fáciles de seguir para los momentos que de verdad importan.</p>
-    </div>
+<!-- RECOGNITION (one beat) -->
+<section class="border-t border-border/60 px-6 py-16">
+  <div class="mx-auto max-w-xl text-center">
+    <p class="text-[10px] font-semibold uppercase tracking-[0.28em] text-accent" data-es="Te vemos" data-en="We see you">Te vemos</p>
+    <p class="mt-6 font-serif text-xl leading-relaxed text-foreground/90 sm:text-2xl" data-es="El grito que no querías dar.&lt;br&gt;La culpa que llega justo después.&lt;br&gt;El cansancio que nadie más ve." data-en="The shout you didn't want to let out.&lt;br&gt;The guilt that arrives right after.&lt;br&gt;The exhaustion no one else sees.">El grito que no querías dar.<br>La culpa que llega justo después.<br>El cansancio que nadie más ve.</p>
+    <p class="mt-7 font-serif text-lg italic text-accent sm:text-xl" data-es="No estás fallando. Estás criando en lo difícil, y eso también se aprende." data-en="You're not failing. You're parenting through the hard part, and that can be learned too.">No estás fallando. Estás criando en lo difícil, y eso también se aprende.</p>
   </div>
 </section>
 
-<!-- TRUST -->
-<section class="px-6 py-16">
-  <div class="mx-auto max-w-2xl rounded-3xl border border-accent/25 bg-accent/5 p-10 text-center sm:p-12">
-    <p class="font-serif text-2xl italic text-accent" data-es="Las guías gratuitas siguen siendo gratuitas." data-en="The free guides will remain free.">Las guías gratuitas siguen siendo gratuitas.</p>
-    <p class="mt-5 text-sm leading-relaxed text-muted-foreground" data-es="Este espacio de aprendizaje es para quienes quieren profundizar con más estructura. No reemplaza el apoyo inmediato; lo complementa cuando una familia está lista para aprender con más calma." data-en="This learning space is for those who want to go deeper with more structure. It doesn't replace immediate support; it complements it when a family is ready to learn with more calm.">Este espacio de aprendizaje es para quienes quieren profundizar con más estructura. No reemplaza el apoyo inmediato; lo complementa cuando una familia está lista para aprender con más calma.</p>
+<!-- WHAT THIS IS -->
+<section id="como-funciona" class="border-t border-border/60 px-6 py-20" data-track-section="como_funciona">
+  <div class="mx-auto max-w-3xl">
+    <h2 class="font-serif text-2xl font-light leading-snug text-foreground sm:text-3xl" data-es="¿Qué es &lt;em class=&quot;not-italic text-accent&quot;&gt;El Estudio&lt;/em&gt; de Criar Sin Culpas?" data-en="What is &lt;em class=&quot;not-italic text-accent&quot;&gt;El Estudio&lt;/em&gt; de Criar Sin Culpas?">¿Qué es <em class="not-italic text-accent">El Estudio</em> de Criar Sin Culpas?</h2>
+    <div class="mt-6 space-y-5 text-base leading-relaxed text-muted-foreground">
+      <p data-es="El Estudio de Criar Sin Culpas será el espacio donde el método toma una forma de enseñanza más práctica y cercana. Un lugar tranquilo, claro y honesto, creado para acompañarte mientras entiendes lo que pasa en tu casa… y dentro de ti." data-en="El Estudio de Criar Sin Culpas will be the space where the method takes on a more practical, closer form of teaching. A calm, clear, honest place, created to be with you as you understand what is happening in your home… and within you.">El Estudio de Criar Sin Culpas será el espacio donde el método toma una forma de enseñanza más práctica y cercana. Un lugar tranquilo, claro y honesto, creado para acompañarte mientras entiendes lo que pasa en tu casa… y dentro de ti.</p>
+      <p data-es="Aquí reunimos el trabajo de años: talleres, guías y recursos que ya existen, pero que ahora estamos organizando en rutas fáciles de seguir. No para que “hagas más”, sino para que puedas avanzar con más claridad y menos ruido." data-en="Here we gather years of work: workshops, guides, and resources that already exist, but that we are now organizing into easy-to-follow paths. Not so you “do more,” but so you can move forward with more clarity and less noise.">Aquí reunimos el trabajo de años: talleres, guías y recursos que ya existen, pero que ahora estamos organizando en rutas fáciles de seguir. No para que “hagas más”, sino para que puedas avanzar con más claridad y menos ruido.</p>
+      <p data-es="Por ahora, El Estudio está en construcción, porque quiero hacerlo con intención y sin prisa. Por eso abrimos esta fase de preinscripciones: para escuchar lo que necesitas y darte acceso a lo que ya está listo, sin prometer lo que aún estamos creando." data-en="For now, El Estudio is being built, because I want to make it with intention and without rushing. That is why we are opening this pre-enrollment phase: to listen to what you need and give you access to what is already ready, without promising what we are still creating.">Por ahora, El Estudio está en construcción, porque quiero hacerlo con intención y sin prisa. Por eso abrimos esta fase de preinscripciones: para escuchar lo que necesitas y darte acceso a lo que ya está listo, sin prometer lo que aún estamos creando.</p>
+    </div>
+    <div class="mt-8 rounded-3xl border border-border bg-background p-10 text-left shadow-sm sm:p-12">
+      <p class="font-serif text-2xl italic leading-snug text-foreground" data-es="No es un curso. No es una membresía. Es El Estudio de Criar Sin Culpas: donde el conocimiento de Nari se convierte en una experiencia clara y aplicable." data-en="It's not a course. It's not a membership. It's El Estudio de Criar Sin Culpas: where Nari's knowledge becomes a clear, practical experience.">No es un curso. No es una membresía. Es El Estudio de Criar Sin Culpas: donde el conocimiento de Nari se convierte en una experiencia clara y aplicable.</p>
+    </div>
+    <div class="mt-6 flex gap-4 rounded-2xl border border-accent/25 bg-accent/5 px-6 py-5">
+      <span class="mt-1 h-full w-px shrink-0 self-stretch bg-accent/40" aria-hidden="true"></span>
+      <div>
+        <p class="font-serif text-lg italic text-accent" data-es="Las guías gratuitas siguen siendo gratuitas." data-en="The free guides will remain free.">Las guías gratuitas siguen siendo gratuitas.</p>
+        <p class="mt-2 text-sm leading-relaxed text-muted-foreground" data-es="El Estudio es para quienes quieren profundizar con más estructura. No reemplaza el apoyo inmediato; lo complementa cuando una familia está lista para aprender con más calma." data-en="El Estudio is for those who want to go deeper with more structure. It doesn't replace immediate support; it complements it when a family is ready to learn with more calm.">El Estudio es para quienes quieren profundizar con más estructura. No reemplaza el apoyo inmediato; lo complementa cuando una familia está lista para aprender con más calma.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -222,6 +242,14 @@
 <section id="nari" class="border-t border-border/60 bg-secondary/30 px-6 py-20">
   <div class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
     <figure class="frame plate-br w-full" itemscope itemtype="https://schema.org/ImageObject">
+      <meta itemprop="contentUrl" content="https://res.cloudinary.com/dogtoagya/image/upload/q_auto,f_auto/v1782414429/ChatGPT_Image_Jun_25_2026_10_22_22_AM_k9tey7.png">
+      <meta itemprop="creditText" content="Photography by Erika Sharnay · Sharnay Photography">
+      <meta itemprop="copyrightNotice" content="© Erika Sharnay · Sharnay Photography. All rights reserved.">
+      <meta itemprop="acquireLicensePage" content="https://www.instagram.com/sharnay_photography/">
+      <span itemprop="creator" itemscope itemtype="https://schema.org/Person">
+        <meta itemprop="name" content="Erika Sharnay"><meta itemprop="url" content="https://www.instagram.com/sharnay_photography/">
+        <span itemprop="worksFor" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="Sharnay Photography"></span>
+      </span>
       <span class="plate" aria-hidden="true"></span>
       <span class="dot" aria-hidden="true"></span>
       <div class="shot">
@@ -237,39 +265,222 @@
     <div>
       <p class="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent" data-es="Quién está detrás del método" data-en="Who's behind the method">Quién está detrás del método</p>
       <h2 class="mt-4 font-serif text-4xl font-light italic text-foreground">Nari</h2>
-      <p class="mt-6 text-sm leading-relaxed text-muted-foreground" data-es="Nari es la creadora del método Criar Sin Culpas: un enfoque nacido de acompañar a familias reales en momentos de tensión, no de teoría." data-en="Nari is the creator of the Criar Sin Culpas method: an approach born from supporting real families in moments of tension—not from theory.">Nari es la creadora del método Criar Sin Culpas: un enfoque nacido de acompañar a familias reales en momentos de tensión, no de teoría.</p>
-      <p class="mt-4 text-sm leading-relaxed text-muted-foreground" data-es="Su trabajo reúne más de 50 talleres y materiales originales." data-en="Her work brings together more than 50 original workshops and materials.">Su trabajo reúne más de 50 talleres y materiales originales.</p>
-      <p class="mt-4 text-sm leading-relaxed text-muted-foreground" data-es="Ese es el conjunto de materiales que ahora estamos organizando dentro de la plataforma." data-en="That's the body of work we're now organizing inside the platform.">Ese es el conjunto de materiales que ahora estamos organizando dentro de la plataforma.</p>
+      <p class="mt-6 text-sm leading-relaxed text-muted-foreground" data-es="Nari es la creadora del método Criar Sin Culpas: un enfoque nacido de acompañar a familias reales en momentos de tensión, no de teoría." data-en="Nari is the creator of the Criar Sin Culpas method: an approach born from supporting real families in moments of tension, not from theory.">Nari es la creadora del método Criar Sin Culpas: un enfoque nacido de acompañar a familias reales en momentos de tensión, no de teoría.</p>
+      <p class="mt-4 text-sm leading-relaxed text-muted-foreground" data-es="Su trabajo reúne más de 50 talleres y materiales originales, ese es el conjunto que ahora estamos organizando dentro de El Estudio." data-en="Her work brings together more than 50 original workshops and materials, that's the body of work we're now organizing inside El Estudio.">Su trabajo reúne más de 50 talleres y materiales originales, ese es el conjunto que ahora estamos organizando dentro de El Estudio.</p>
     </div>
   </div>
 </section>
 
-<!-- MODULES -->
-<section id="modulos" class="px-6 py-20 bg-secondary/20" data-track-section="modulos">
-  <div class="mx-auto max-w-7xl">
+<!-- WHAT YOU GET (clustered) -->
+<section id="incluye" class="px-6 py-20" data-track-section="incluye">
+  <div class="mx-auto max-w-6xl">
     <div class="text-center">
-      <h2 class="font-serif text-3xl font-light italic text-foreground sm:text-4xl" data-es="Vista inicial del programa" data-en="Initial view of the program">Vista inicial del programa</h2>
-      <p class="mx-auto mt-5 max-w-2xl font-serif text-lg text-muted-foreground" data-es="Una primera mirada al método, paso a paso." data-en="A first look at the method, step by step.">Una primera mirada al método, paso a paso.</p>
+      <h2 class="font-serif text-3xl font-light italic text-foreground sm:text-4xl" data-es="Qué encuentras dentro" data-en="What you'll find inside">Qué encuentras dentro</h2>
+      <p class="mx-auto mt-5 max-w-2xl font-serif text-lg text-muted-foreground" data-es="Lo necesario para aprender, aplicar y sostener. Con honestidad sobre qué llega primero." data-en="What you need to learn, apply, and sustain. With honesty about what arrives first.">Lo necesario para aprender, aplicar y sostener. Con honestidad sobre qué llega primero.</p>
     </div>
-    <div class="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
-      <article class="relative overflow-hidden rounded-2xl border border-border bg-background p-8 shadow-sm"><span class="pointer-events-none absolute right-4 top-0 font-serif text-6xl font-extralight text-accent/15">01</span><h3 class="relative font-serif text-xl text-foreground" data-es="La Ecuación del Dolor" data-en="The Pain Equation">La Ecuación del Dolor</h3><p class="relative mt-3 text-sm leading-relaxed text-muted-foreground" data-es="Distingue cuándo enfrentas la realidad y cuándo peleas con tus expectativas." data-en="Learn to tell when you're facing reality and when you're fighting your expectations.">Distingue cuándo enfrentas la realidad y cuándo peleas con tus expectativas.</p></article>
-      <article class="relative overflow-hidden rounded-2xl border border-border bg-background p-8 shadow-sm"><span class="pointer-events-none absolute right-4 top-0 font-serif text-6xl font-extralight text-accent/15">02</span><h3 class="relative font-serif text-xl text-foreground" data-es="Los Cuatro Caminos" data-en="The Four Paths">Los Cuatro Caminos</h3><p class="relative mt-3 text-sm leading-relaxed text-muted-foreground" data-es="Reconoce tu patrón automático cuando estás bajo presión." data-en="Recognize your automatic pattern when you're under pressure.">Reconoce tu patrón automático cuando estás bajo presión.</p></article>
-      <article class="relative overflow-hidden rounded-2xl border border-border bg-background p-8 shadow-sm"><span class="pointer-events-none absolute right-4 top-0 font-serif text-6xl font-extralight text-accent/15">03</span><h3 class="relative font-serif text-xl text-foreground" data-es="El Desajuste de Idioma" data-en="The Language Mismatch">El Desajuste de Idioma</h3><p class="relative mt-3 text-sm leading-relaxed text-muted-foreground" data-es="Por qué la lógica adulta no funciona en un cerebro infantil en desarrollo." data-en="Why adult logic doesn't work in a developing child's brain.">Por qué la lógica adulta no funciona en un cerebro infantil en desarrollo.</p></article>
-      <article class="relative overflow-hidden rounded-2xl border border-border bg-background p-8 shadow-sm"><span class="pointer-events-none absolute right-4 top-0 font-serif text-6xl font-extralight text-accent/15">04</span><h3 class="relative font-serif text-xl text-foreground" data-es="Mecanismos del Juego" data-en="Play Mechanics">Mecanismos del Juego</h3><p class="relative mt-3 text-sm leading-relaxed text-muted-foreground" data-es="Usa el juego para abrir la comunicación antes de corregir." data-en="Use play to open communication before correcting.">Usa el juego para abrir la comunicación antes de corregir.</p></article>
-      <article class="relative overflow-hidden rounded-2xl border border-border bg-background p-8 shadow-sm"><span class="pointer-events-none absolute right-4 top-0 font-serif text-6xl font-extralight text-accent/15">05</span><h3 class="relative font-serif text-xl text-foreground" data-es="El Ciclo de la Reactividad" data-en="The Reactivity Cycle">El Ciclo de la Reactividad</h3><p class="relative mt-3 text-sm leading-relaxed text-muted-foreground" data-es="Cómo tú y tu hijo se detonan mutuamente, y cómo romper el ciclo." data-en="How you and your child trigger each other—and how to break the cycle.">Cómo tú y tu hijo se detonan mutuamente, y cómo romper el ciclo.</p></article>
-      <article class="relative overflow-hidden rounded-2xl border border-border bg-background p-8 shadow-sm"><span class="pointer-events-none absolute right-4 top-0 font-serif text-6xl font-extralight text-accent/15">06</span><h3 class="relative font-serif text-xl text-foreground" data-es="Diseñando el Sistema" data-en="Designing the System">Diseñando el Sistema</h3><p class="relative mt-3 text-sm leading-relaxed text-muted-foreground" data-es="Pon límites con calma, sin descargar tu frustración." data-en="Set limits calmly, without unloading your frustration.">Pon límites con calma, sin descargar tu frustración.</p></article>
-      <article class="relative overflow-hidden rounded-2xl border border-border bg-background p-8 shadow-sm"><span class="pointer-events-none absolute right-4 top-0 font-serif text-6xl font-extralight text-accent/15">07</span><h3 class="relative font-serif text-xl text-foreground" data-es="Reparación sin Culpa" data-en="Repair Without Guilt">Reparación sin Culpa</h3><p class="relative mt-3 text-sm leading-relaxed text-muted-foreground" data-es="Qué hacer después de perder la calma, y cómo reconectar." data-en="What to do after losing your calm, and how to reconnect.">Qué hacer después de perder la calma, y cómo reconectar.</p></article>
-      <article class="relative overflow-hidden rounded-2xl border border-border bg-background p-8 shadow-sm"><span class="pointer-events-none absolute right-4 top-0 font-serif text-6xl font-extralight text-accent/15">08</span><h3 class="relative font-serif text-xl text-foreground" data-es="Consistencia a Largo Plazo" data-en="Long-Term Consistency">Consistencia a Largo Plazo</h3><p class="relative mt-3 text-sm leading-relaxed text-muted-foreground" data-es="Cómo sostener el sistema cuando vuelve el cansancio." data-en="How to sustain the system when exhaustion returns.">Cómo sostener el sistema cuando vuelve el cansancio.</p></article>
+    <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <article class="flex flex-col rounded-2xl border border-border bg-background p-8 shadow-sm">
+        <h3 class="font-serif text-xl text-foreground" data-es="Aprende a tu ritmo" data-en="Learn at your pace">Aprende a tu ritmo</h3>
+        <p class="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground" data-es="Videos a demanda y rutas guiadas, con un orden claro para no perderte entre tanto material." data-en="On-demand videos and guided paths, with a clear order so you don't get lost in the material.">Videos a demanda y rutas guiadas, con un orden claro para no perderte entre tanto material.</p>
+        <span class="tag tag-launch mt-5 self-start" data-es="Primeros recursos en lanzamiento" data-en="First resources at launch">Primeros recursos en lanzamiento</span>
+      </article>
+      <article class="flex flex-col rounded-2xl border border-border bg-background p-8 shadow-sm">
+        <h3 class="font-serif text-xl text-foreground" data-es="Palabras para el momento" data-en="Words for the moment">Palabras para el momento</h3>
+        <p class="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground" data-es="Frases, scripts y guías descargables: qué decir, palabra por palabra, cuando llega la tensión." data-en="Phrases, scripts, and downloadable guides: what to say, word for word, when tension arrives.">Frases, scripts y guías descargables: qué decir, palabra por palabra, cuando llega la tensión.</p>
+        <span class="tag tag-launch mt-5 self-start" data-es="Disponible en lanzamiento" data-en="Available at launch">Disponible en lanzamiento</span>
+      </article>
+      <article class="flex flex-col rounded-2xl border border-border bg-background p-8 shadow-sm">
+        <h3 class="font-serif text-xl text-foreground" data-es="En vivo con Nari" data-en="Live with Nari">En vivo con Nari</h3>
+        <p class="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground" data-es="Talleres y sesiones para profundizar y resolver dudas en tiempo real." data-en="Workshops and sessions to go deeper and answer questions in real time.">Talleres y sesiones para profundizar y resolver dudas en tiempo real.</p>
+        <span class="tag tag-prep mt-5 self-start" data-es="En preparación" data-en="In preparation">En preparación</span>
+      </article>
+      <article class="flex flex-col rounded-2xl border border-border bg-background p-8 shadow-sm">
+        <h3 class="font-serif text-xl text-foreground" data-es="No criar en soledad" data-en="Don't parent alone">No criar en soledad</h3>
+        <p class="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground" data-es="Comunidad y acompañamiento, un espacio para sostenerte con otros que entienden." data-en="Community and support, a space to be held by others who understand.">Comunidad y acompañamiento, un espacio para sostenerte con otros que entienden.</p>
+        <span class="tag tag-soon mt-5 self-start" data-es="Próximamente" data-en="Coming soon">Próximamente</span>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- WHY EARLY -->
-<section id="por-que-anticipada" class="border-t border-border/60 px-6 py-20">
+<!-- THE METHOD, FOUR MOVEMENTS -->
+<section id="modulos" class="border-t border-border/60 bg-secondary/20 px-6 py-20" data-track-section="modulos">
+  <div class="mx-auto max-w-6xl">
+    <div class="text-center">
+      <h2 class="font-serif text-3xl font-light italic text-foreground sm:text-4xl" data-es="El método, en cuatro movimientos" data-en="The method, in four movements">El método, en cuatro movimientos</h2>
+      <p class="mx-auto mt-5 max-w-2xl font-serif text-lg text-muted-foreground" data-es="Una primera mirada a cómo se ordena el camino, de entender a sostener." data-en="A first look at how the path is ordered, from understanding to sustaining.">Una primera mirada a cómo se ordena el camino, de entender a sostener.</p>
+    </div>
+    <div class="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2">
+      <!-- Movement 01 -->
+      <article class="rounded-2xl border border-border bg-background p-8 shadow-sm">
+        <div class="flex items-baseline gap-4">
+          <span class="stage-num">01</span>
+          <h3 class="font-serif text-2xl italic text-foreground" data-es="Entender" data-en="Understand">Entender</h3>
+        </div>
+        <ul class="mt-5 space-y-4">
+          <li>
+            <p class="font-serif text-lg text-foreground" data-es="La Ecuación del Dolor" data-en="The Pain Equation">La Ecuación del Dolor</p>
+            <p class="mt-1 text-sm leading-relaxed text-muted-foreground" data-es="Distingue cuándo enfrentas la realidad y cuándo peleas con tus expectativas." data-en="Learn to tell when you're facing reality and when you're fighting your expectations.">Distingue cuándo enfrentas la realidad y cuándo peleas con tus expectativas.</p>
+          </li>
+          <li>
+            <p class="font-serif text-lg text-foreground" data-es="El Desajuste de Idioma" data-en="The Language Mismatch">El Desajuste de Idioma</p>
+            <p class="mt-1 text-sm leading-relaxed text-muted-foreground" data-es="Por qué la lógica adulta no funciona en un cerebro infantil en desarrollo." data-en="Why adult logic doesn't work in a developing child's brain.">Por qué la lógica adulta no funciona en un cerebro infantil en desarrollo.</p>
+          </li>
+        </ul>
+      </article>
+      <!-- Movement 02 -->
+      <article class="rounded-2xl border border-border bg-background p-8 shadow-sm">
+        <div class="flex items-baseline gap-4">
+          <span class="stage-num">02</span>
+          <h3 class="font-serif text-2xl italic text-foreground" data-es="Reconocer tu patrón" data-en="Recognize your pattern">Reconocer tu patrón</h3>
+        </div>
+        <ul class="mt-5 space-y-4">
+          <li>
+            <p class="font-serif text-lg text-foreground" data-es="Los Cuatro Caminos" data-en="The Four Paths">Los Cuatro Caminos</p>
+            <p class="mt-1 text-sm leading-relaxed text-muted-foreground" data-es="Reconoce tu patrón automático cuando estás bajo presión." data-en="Recognize your automatic pattern when you're under pressure.">Reconoce tu patrón automático cuando estás bajo presión.</p>
+          </li>
+          <li>
+            <p class="font-serif text-lg text-foreground" data-es="El Ciclo de la Reactividad" data-en="The Reactivity Cycle">El Ciclo de la Reactividad</p>
+            <p class="mt-1 text-sm leading-relaxed text-muted-foreground" data-es="Cómo tú y tu hijo se detonan mutuamente, y cómo romper el ciclo." data-en="How you and your child trigger each other, and how to break the cycle.">Cómo tú y tu hijo se detonan mutuamente, y cómo romper el ciclo.</p>
+          </li>
+        </ul>
+      </article>
+      <!-- Movement 03 -->
+      <article class="rounded-2xl border border-border bg-background p-8 shadow-sm">
+        <div class="flex items-baseline gap-4">
+          <span class="stage-num">03</span>
+          <h3 class="font-serif text-2xl italic text-foreground" data-es="Responder con calma" data-en="Respond with calm">Responder con calma</h3>
+        </div>
+        <ul class="mt-5 space-y-4">
+          <li>
+            <p class="font-serif text-lg text-foreground" data-es="Mecanismos del Juego" data-en="Play Mechanics">Mecanismos del Juego</p>
+            <p class="mt-1 text-sm leading-relaxed text-muted-foreground" data-es="Usa el juego para abrir la comunicación antes de corregir." data-en="Use play to open communication before correcting.">Usa el juego para abrir la comunicación antes de corregir.</p>
+          </li>
+          <li>
+            <p class="font-serif text-lg text-foreground" data-es="Diseñando el Sistema" data-en="Designing the System">Diseñando el Sistema</p>
+            <p class="mt-1 text-sm leading-relaxed text-muted-foreground" data-es="Pon límites con calma, sin descargar tu frustración." data-en="Set limits calmly, without unloading your frustration.">Pon límites con calma, sin descargar tu frustración.</p>
+          </li>
+        </ul>
+      </article>
+      <!-- Movement 04 -->
+      <article class="rounded-2xl border border-border bg-background p-8 shadow-sm">
+        <div class="flex items-baseline gap-4">
+          <span class="stage-num">04</span>
+          <h3 class="font-serif text-2xl italic text-foreground" data-es="Sostener y reparar" data-en="Sustain and repair">Sostener y reparar</h3>
+        </div>
+        <ul class="mt-5 space-y-4">
+          <li>
+            <p class="font-serif text-lg text-foreground" data-es="Reparación sin Culpa" data-en="Repair Without Guilt">Reparación sin Culpa</p>
+            <p class="mt-1 text-sm leading-relaxed text-muted-foreground" data-es="Qué hacer después de perder la calma, y cómo reconectar." data-en="What to do after losing your calm, and how to reconnect.">Qué hacer después de perder la calma, y cómo reconectar.</p>
+          </li>
+          <li>
+            <p class="font-serif text-lg text-foreground" data-es="Consistencia a Largo Plazo" data-en="Long-Term Consistency">Consistencia a Largo Plazo</p>
+            <p class="mt-1 text-sm leading-relaxed text-muted-foreground" data-es="Cómo sostener el sistema cuando vuelve el cansancio." data-en="How to sustain the system when exhaustion returns.">Cómo sostener el sistema cuando vuelve el cansancio.</p>
+          </li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- WHY IT MATTERS (philosophical reframe, repositioned as justification) -->
+<section id="por-que-importa" class="border-t border-border/60 bg-background px-6 py-20" data-track-section="por_que_importa">
   <div class="mx-auto max-w-3xl text-center">
-    <h2 class="font-serif text-3xl font-light italic text-foreground sm:text-4xl" data-es="Por qué abrimos inscripciones antes del lanzamiento" data-en="Why we're opening enrollment before launch">Por qué abrimos inscripciones antes del lanzamiento</h2>
-    <p class="mt-6 text-sm leading-relaxed text-muted-foreground" data-es="Abrimos inscripción anticipada para construir con claridad, no con suposiciones. Tus respuestas nos ayudan a priorizar los temas que necesitan más profundidad: pantallas, sueño, límites, regulación emocional, hermanos y otros retos reales de la crianza." data-en="We're opening early enrollment to build with clarity, not assumptions. Your responses help us prioritize the topics that need more depth: screens, sleep, limits, emotional regulation, siblings, and other real parenting challenges.">Abrimos inscripción anticipada para construir con claridad, no con suposiciones. Tus respuestas nos ayudan a priorizar los temas que necesitan más profundidad: pantallas, sueño, límites, regulación emocional, hermanos y otros retos reales de la crianza.</p>
-    <p class="mx-auto mt-8 max-w-xl rounded-2xl border border-border bg-background/70 px-6 py-4 text-sm text-muted-foreground" data-es="Inscribirte no te compromete a comprar. Solo nos ayuda a avisarte primero y entender qué necesitas." data-en="Signing up doesn't commit you to buying. It simply helps us notify you first and understand what you need.">Inscribirte no te compromete a comprar. Solo nos ayuda a avisarte primero y entender qué necesitas.</p>
+    <div class="mx-auto mb-7 reframe-rule"></div>
+    <p class="text-[10px] font-semibold uppercase tracking-[0.28em] text-accent" data-es="Un cambio de perspectiva" data-en="A shift in perspective">Un cambio de perspectiva</p>
+    <h2 class="mx-auto mt-6 max-w-2xl font-serif text-4xl font-light leading-[1.08] text-foreground sm:text-5xl" data-es="No es que se porte mal. Es que, en el momento de tensión, su cerebro y el tuyo &lt;em class=&quot;text-accent&quot;&gt;hablan idiomas distintos&lt;/em&gt;." data-en="It's not that they're misbehaving. In the heat of the moment, their brain and yours &lt;em class=&quot;text-accent&quot;&gt;speak different languages&lt;/em&gt;.">No es que se porte mal. Es que, en el momento de tensión, su cerebro y el tuyo <em class="text-accent">hablan idiomas distintos</em>.</h2>
+    <p class="mx-auto mt-8 max-w-md text-left text-base leading-relaxed text-muted-foreground" data-es="El método Criar Sin Culpas no te enseña a controlar a tu hijo. Te enseña a entender lo que pasa debajo de la conducta, para que puedas responder distinto: con más calma y menos culpa." data-en="The Criar Sin Culpas method doesn't teach you to control your child. It teaches you to understand what's happening beneath the behavior, so you can respond differently: with more calm and less guilt.">El método Criar Sin Culpas no te enseña a controlar a tu hijo. Te enseña a entender lo que pasa debajo de la conducta, para que puedas responder distinto: con más calma y menos culpa.</p>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR (new section, copy draft for Nari) -->
+<section id="para-quien" class="border-t border-border/60 bg-secondary/30 px-6 py-20" data-track-section="para_quien">
+  <div class="mx-auto max-w-3xl">
+    <div class="text-center">
+      <h2 class="font-serif text-3xl font-light italic text-foreground sm:text-4xl" data-es="¿Para quién es este espacio?" data-en="Who is this space for?">¿Para quién es este espacio?</h2>
+      <p class="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted-foreground" data-es="Para madres, padres y cuidadores que quieren acompañar distinto, sin perderse en el camino." data-en="For mothers, fathers, and caregivers who want to show up differently, without losing their way.">Para madres, padres y cuidadores que quieren acompañar distinto, sin perderse en el camino.</p>
+    </div>
+    <ul class="mx-auto mt-12 max-w-2xl space-y-4">
+      <li class="flex items-start gap-3"><span class="mt-px text-accent" aria-hidden="true">✓</span><span class="text-base leading-relaxed text-foreground/85" data-es="Entender qué pasa en el cerebro de su hijo en los momentos difíciles." data-en="Understand what's happening in their child's brain in the hard moments.">Entender qué pasa en el cerebro de su hijo en los momentos difíciles.</span></li>
+      <li class="flex items-start gap-3"><span class="mt-px text-accent" aria-hidden="true">✓</span><span class="text-base leading-relaxed text-foreground/85" data-es="Dejar de reaccionar desde el cansancio." data-en="Stop reacting from exhaustion.">Dejar de reaccionar desde el cansancio.</span></li>
+      <li class="flex items-start gap-3"><span class="mt-px text-accent" aria-hidden="true">✓</span><span class="text-base leading-relaxed text-foreground/85" data-es="Tener herramientas claras para los momentos de tensión." data-en="Have clear tools for the moments of tension.">Tener herramientas claras para los momentos de tensión.</span></li>
+      <li class="flex items-start gap-3"><span class="mt-px text-accent" aria-hidden="true">✓</span><span class="text-base leading-relaxed text-foreground/85" data-es="Sentirse más seguros en su forma de acompañar." data-en="Feel more confident in how they show up.">Sentirse más seguros en su forma de acompañar.</span></li>
+      <li class="flex items-start gap-3"><span class="mt-px text-accent" aria-hidden="true">✓</span><span class="text-base leading-relaxed text-foreground/85" data-es="Aprender sin prisa, sin culpa y sin ruido." data-en="Learn without rush, without guilt, and without noise.">Aprender sin prisa, sin culpa y sin ruido.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- HOW IT WORKS (early-access mechanics, honest: no cadence, no price) -->
+<section id="como-inscripcion" class="border-t border-border/60 bg-secondary/20 px-6 py-20" data-track-section="como_inscripcion">
+  <div class="mx-auto max-w-5xl">
+    <div class="text-center">
+      <h2 class="font-serif text-3xl font-light italic text-foreground sm:text-4xl" data-es="Cómo funciona la pre-inscripción" data-en="How pre-enrollment works">Cómo funciona la pre-inscripción</h2>
+    </div>
+    <ol class="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <li class="rounded-2xl border border-border bg-background p-8 shadow-sm">
+        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-accent/15 font-serif text-xl text-accent">1</span>
+        <p class="mt-5 font-medium text-foreground" data-es="Te pre-inscribes" data-en="You pre-enroll">Te pre-inscribes</p>
+        <p class="mt-2 text-sm leading-relaxed text-muted-foreground" data-es="Para estar entre las primeras personas en entrar cuando abramos las puertas." data-en="To be among the first people in when we open the doors.">Para estar entre las primeras personas en entrar cuando abramos las puertas.</p>
+      </li>
+      <li class="rounded-2xl border border-border bg-background p-8 shadow-sm">
+        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-accent/15 font-serif text-xl text-accent">2</span>
+        <p class="mt-5 font-medium text-foreground" data-es="Nos cuentas tu mayor reto" data-en="You tell us your biggest challenge">Nos cuentas tu mayor reto</p>
+        <p class="mt-2 text-sm leading-relaxed text-muted-foreground" data-es="Esto nos ayuda a priorizar qué rutas y recursos necesitan estar listos primero." data-en="This helps us prioritize which paths and resources need to be ready first.">Esto nos ayuda a priorizar qué rutas y recursos necesitan estar listos primero.</p>
+      </li>
+      <li class="rounded-2xl border border-border bg-background p-8 shadow-sm">
+        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-accent/15 font-serif text-xl text-accent">3</span>
+        <p class="mt-5 font-medium text-foreground" data-es="Te avisamos antes que a nadie" data-en="We tell you before anyone else">Te avisamos antes que a nadie</p>
+        <p class="mt-2 text-sm leading-relaxed text-muted-foreground" data-es="Cuando los primeros materiales estén disponibles, serás de las primeras personas en saberlo." data-en="When the first materials are available, you'll be among the first people to know.">Cuando los primeros materiales estén disponibles, serás de las primeras personas en saberlo.</p>
+      </li>
+      <li class="rounded-2xl border border-border bg-background p-8 shadow-sm">
+        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-accent/15 font-serif text-xl text-accent">4</span>
+        <p class="mt-5 font-medium text-foreground" data-es="Eliges tu camino cuando llegue el momento" data-en="You choose your path when the time comes">Eliges tu camino cuando llegue el momento</p>
+        <p class="mt-2 text-sm leading-relaxed text-muted-foreground" data-es="Sin compromiso. Tú decides si quieres avanzar con el Pase de Acceso o esperar a la Membresía CSC." data-en="No commitment. You decide whether to move forward with the Access Pass or wait for the CSC Membership.">Sin compromiso. Tú decides si quieres avanzar con el Pase de Acceso o esperar a la Membresía CSC.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- WHY EARLY + breadth -->
+<section id="por-que-anticipada" class="border-t border-border/60 px-6 py-20">
+  <div class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+    <figure class="frame plate-bl w-full order-2 lg:order-1" itemscope itemtype="https://schema.org/ImageObject">
+      <meta itemprop="contentUrl" content="https://res.cloudinary.com/dogtoagya/image/upload/q_auto,f_auto/v1782414428/ChatGPT_Image_Jun_25_2026_10_52_47_AM_mesatt.png">
+      <meta itemprop="creditText" content="Photography by Erika Sharnay · Sharnay Photography">
+      <meta itemprop="copyrightNotice" content="© Erika Sharnay · Sharnay Photography. All rights reserved.">
+      <meta itemprop="acquireLicensePage" content="https://www.instagram.com/sharnay_photography/">
+      <span itemprop="creator" itemscope itemtype="https://schema.org/Person">
+        <meta itemprop="name" content="Erika Sharnay"><meta itemprop="url" content="https://www.instagram.com/sharnay_photography/">
+        <span itemprop="worksFor" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="Sharnay Photography"></span>
+      </span>
+      <span class="plate" aria-hidden="true"></span>
+      <span class="dot" aria-hidden="true"></span>
+      <div class="shot">
+        <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto,f_auto/v1782414428/ChatGPT_Image_Jun_25_2026_10_52_47_AM_mesatt.png" alt="Madre e hijo armando un rompecabezas juntos" data-alt-es="Madre e hijo armando un rompecabezas juntos" data-alt-en="Mother and child assembling a puzzle together" class="h-[28rem]" itemprop="contentUrl" loading="lazy" decoding="async">
+      </div>
+      <a class="credit-plate" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía: SHARNAY PHOTOGRAPHY" data-aria-es="Fotografía: SHARNAY PHOTOGRAPHY" data-aria-en="Photography: SHARNAY PHOTOGRAPHY">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        <span data-es="SHARNAY PHOTOGRAPHY" data-en="SHARNAY PHOTOGRAPHY">SHARNAY PHOTOGRAPHY</span>
+        <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+      <p class="credit-plate-mob"><span data-es="Fotografía por " data-en="Photography by ">Fotografía por </span><a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">Erika Sharnay</a></p>
+    </figure>
+    <div class="order-1 lg:order-2">
+      <h2 class="font-serif text-3xl font-light italic text-foreground sm:text-4xl" data-es="Por qué abrimos la pre-inscripción antes del lanzamiento" data-en="Why we're opening pre-enrollment before launch">Por qué abrimos la pre-inscripción antes del lanzamiento</h2>
+      <p class="mt-6 text-sm leading-relaxed text-muted-foreground" data-es="Abrimos la pre-inscripción para construir con claridad, no con suposiciones. Tus respuestas nos ayudan a priorizar los temas que necesitan más profundidad." data-en="We're opening pre-enrollment to build with clarity, not assumptions. Your responses help us prioritize the topics that need more depth.">Abrimos la pre-inscripción para construir con claridad, no con suposiciones. Tus respuestas nos ayudan a priorizar los temas que necesitan más profundidad.</p>
+      <div class="mt-7 flex flex-wrap gap-2">
+        <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-es="Pantallas" data-en="Screens">Pantallas</span>
+        <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-es="Regulación emocional" data-en="Emotional regulation">Regulación emocional</span>
+        <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-es="Límites sin culpa" data-en="Limits without guilt">Límites sin culpa</span>
+        <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-es="Sueño y hora de dormir" data-en="Sleep and bedtime">Sueño y hora de dormir</span>
+        <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-es="Conflictos entre hermanos" data-en="Sibling conflict">Conflictos entre hermanos</span>
+        <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-es="Reparación y reconexión" data-en="Repair and reconnection">Reparación y reconexión</span>
+        <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-es="Comunicación con adolescentes" data-en="Communicating with teens">Comunicación con adolescentes</span>
+        <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-es="Herramientas para padres agotados" data-en="Tools for exhausted parents">Herramientas para padres agotados</span>
+      </div>
+      <p class="mt-7 rounded-2xl border border-border bg-background/70 px-6 py-4 text-sm text-muted-foreground" data-es="Inscribirte no te compromete a comprar. Solo nos ayuda a avisarte primero y entender qué necesitas." data-en="Signing up doesn't commit you to buying. It simply helps us notify you first and understand what you need.">Inscribirte no te compromete a comprar. Solo nos ayuda a avisarte primero y entender qué necesitas.</p>
+      <p class="mt-5 text-sm italic leading-relaxed text-muted-foreground" data-es="Todo lo que construyamos aquí vivirá dentro de El Estudio." data-en="Everything we build here will live inside El Estudio.">Todo lo que construyamos aquí vivirá dentro de El Estudio.</p>
+    </div>
   </div>
 </section>
 
@@ -278,7 +489,7 @@
   <div class="mx-auto max-w-5xl">
     <div class="text-center">
       <h2 class="font-serif text-3xl font-light italic text-foreground sm:text-4xl" data-es="Elige tu camino" data-en="Choose your path">Elige tu camino</h2>
-      <p class="mx-auto mt-5 max-w-2xl font-serif text-lg text-muted-foreground" data-es="Dos formas de entrar: resolver algo puntual o acompañarte de forma continua." data-en="Two ways to join: solve something specific or receive ongoing support.">Dos formas de entrar: resolver algo puntual o acompañarte de forma continua.</p>
+      <p class="mx-auto mt-5 max-w-2xl font-serif text-lg text-muted-foreground" data-es="Dos formas de entrar a El Estudio: resolver algo puntual o acompañarte de forma continua." data-en="Two ways to join El Estudio: solve something specific or receive ongoing support.">Dos formas de entrar a El Estudio: resolver algo puntual o acompañarte de forma continua.</p>
     </div>
     <div class="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-2">
       <article class="flex flex-col rounded-3xl border border-border bg-background p-10 shadow-sm">
@@ -309,74 +520,18 @@
   </div>
 </section>
 
-<!-- LEARNING EXPERIENCE -->
-<section class="border-t border-border/60 px-6 py-20">
-  <div class="mx-auto max-w-7xl">
-    <div class="text-center">
-      <h2 class="font-serif text-3xl font-light italic text-foreground sm:text-4xl" data-es="Cómo se vive el aprendizaje" data-en="What the learning experience feels like">Cómo se vive el aprendizaje</h2>
-      <p class="mx-auto mt-5 max-w-2xl font-serif text-lg text-muted-foreground" data-es="Lo que estamos construyendo, con honestidad sobre qué llega primero." data-en="What we're building, with honesty about what arrives first.">Lo que estamos construyendo, con honestidad sobre qué llega primero.</p>
-    </div>
-    <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      <article class="rounded-2xl border border-border bg-background p-8 shadow-sm"><h3 class="font-serif text-xl text-foreground" data-es="Videos a demanda" data-en="On-demand videos">Videos a demanda</h3><p class="mt-3 text-sm text-muted-foreground" data-es="Aprende a tu ritmo, cuando el día te lo permita." data-en="Learn at your own pace, whenever your day allows.">Aprende a tu ritmo, cuando el día te lo permita.</p><span class="tag tag-launch mt-5" data-es="Disponible en lanzamiento" data-en="Available at launch">Disponible en lanzamiento</span></article>
-      <article class="rounded-2xl border border-border bg-background p-8 shadow-sm"><h3 class="font-serif text-xl text-foreground" data-es="Talleres en vivo con Nari" data-en="Live workshops with Nari">Talleres en vivo con Nari</h3><p class="mt-3 text-sm text-muted-foreground" data-es="Sesiones para profundizar y resolver dudas en tiempo real." data-en="Sessions to go deeper and answer questions in real time.">Sesiones para profundizar y resolver dudas en tiempo real.</p><span class="tag tag-prep mt-5" data-es="En preparación" data-en="In preparation">En preparación</span></article>
-      <article class="rounded-2xl border border-border bg-background p-8 shadow-sm"><h3 class="font-serif text-xl text-foreground" data-es="Guías y recursos descargables" data-en="Downloadable guides and resources">Guías y recursos descargables</h3><p class="mt-3 text-sm text-muted-foreground" data-es="Material que te llevas y usas fuera de la pantalla." data-en="Materials you can take with you and use off-screen.">Material que te llevas y usas fuera de la pantalla.</p><span class="tag tag-launch mt-5" data-es="Disponible en lanzamiento" data-en="Available at launch">Disponible en lanzamiento</span></article>
-      <article class="rounded-2xl border border-border bg-background p-8 shadow-sm"><h3 class="font-serif text-xl text-foreground" data-es="Frases y scripts prácticos" data-en="Practical phrases and scripts">Frases y scripts prácticos</h3><p class="mt-3 text-sm text-muted-foreground" data-es="Qué decir, palabra por palabra, en el momento de tensión." data-en="What to say—word for word—in moments of tension.">Qué decir, palabra por palabra, en el momento de tensión.</p><span class="tag tag-launch mt-5" data-es="Disponible en lanzamiento" data-en="Available at launch">Disponible en lanzamiento</span></article>
-      <article class="rounded-2xl border border-border bg-background p-8 shadow-sm"><h3 class="font-serif text-xl text-foreground" data-es="Rutas de aprendizaje guiadas" data-en="Guided learning paths">Rutas de aprendizaje guiadas</h3><p class="mt-3 text-sm text-muted-foreground" data-es="Un orden claro, para no perderte entre tanto material." data-en="A clear sequence, so you don't get lost in the material.">Un orden claro, para no perderte entre tanto material.</p><span class="tag tag-prep mt-5" data-es="En preparación" data-en="In preparation">En preparación</span></article>
-      <article class="rounded-2xl border border-border bg-background p-8 shadow-sm"><h3 class="font-serif text-xl text-foreground" data-es="Comunidad y acompañamiento" data-en="Community and support">Comunidad y acompañamiento</h3><p class="mt-3 text-sm text-muted-foreground" data-es="No criar en soledad. Un espacio para sostenerte con otros." data-en="Don't parent alone. A space to be supported by others.">No criar en soledad. Un espacio para sostenerte con otros.</p><span class="tag tag-soon mt-5" data-es="Próximamente" data-en="Coming soon">Próximamente</span></article>
-    </div>
-  </div>
-</section>
-
-<!-- CATALOG -->
-<section class="bg-secondary/30 px-6 py-20">
-  <div class="mx-auto max-w-6xl">
-    <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
-      <figure class="frame plate-bl w-full order-2 lg:order-1" itemscope itemtype="https://schema.org/ImageObject">
-        <span class="plate" aria-hidden="true"></span>
-        <span class="dot" aria-hidden="true"></span>
-        <div class="shot">
-          <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto,f_auto/v1782414428/ChatGPT_Image_Jun_25_2026_10_52_47_AM_mesatt.png" alt="Madre e hijo armando un rompecabezas juntos" data-alt-es="Madre e hijo armando un rompecabezas juntos" data-alt-en="Mother and child assembling a puzzle together" class="h-[28rem]" itemprop="contentUrl" loading="lazy" decoding="async">
-        </div>
-        <a class="credit-plate" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía: SHARNAY PHOTOGRAPHY" data-aria-es="Fotografía: SHARNAY PHOTOGRAPHY" data-aria-en="Photography: SHARNAY PHOTOGRAPHY">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          <span data-es="SHARNAY PHOTOGRAPHY" data-en="SHARNAY PHOTOGRAPHY">SHARNAY PHOTOGRAPHY</span>
-          <span class="arrow" aria-hidden="true">↗</span>
-        </a>
-        <p class="credit-plate-mob"><span data-es="Fotografía por " data-en="Photography by ">Fotografía por </span><a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">Erika Sharnay</a></p>
-      </figure>
-      <div class="order-1 lg:order-2">
-        <h2 class="font-serif text-3xl font-light italic text-foreground sm:text-4xl" data-es="Un espacio nacido de más de 50 talleres originales" data-en="A space born from more than 50 original workshops">Un espacio nacido de más de 50 talleres originales</h2>
-        <p class="mt-5 text-sm leading-relaxed text-muted-foreground" data-es="El material existe. Lo estamos ordenando en rutas claras y fáciles de usar." data-en="The material already exists. We're organizing it into clear, easy-to-use paths.">El material existe. Lo estamos ordenando en rutas claras y fáciles de usar.</p>
-        <div class="mt-8 flex flex-wrap gap-2">
-          <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-es="Crianza digital y pantallas" data-en="Digital parenting and screens">Crianza digital y pantallas</span>
-          <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-es="Regulación emocional" data-en="Emotional regulation">Regulación emocional</span>
-          <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-es="Límites sin culpa" data-en="Limits without guilt">Límites sin culpa</span>
-          <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-es="Rutinas familiares" data-en="Family routines">Rutinas familiares</span>
-          <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-es="Sueño y hora de dormir" data-en="Sleep and bedtime">Sueño y hora de dormir</span>
-          <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-es="Conflictos entre hermanos" data-en="Sibling conflict">Conflictos entre hermanos</span>
-          <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-es="Comunicación con adolescentes" data-en="Communicating with teens">Comunicación con adolescentes</span>
-          <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-es="Reparación y reconexión" data-en="Repair and reconnection">Reparación y reconexión</span>
-          <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-es="Disciplina consciente" data-en="Conscious discipline">Disciplina consciente</span>
-          <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-es="Herramientas para padres agotados" data-en="Tools for exhausted parents">Herramientas para padres agotados</span>
-        </div>
-        <p class="mt-8 font-serif text-lg italic text-muted-foreground" data-es="Es un espacio que crece a partir del trabajo original de Nari. No prometemos las 50 piezas el primer día: prometemos organizarlas bien." data-en="It's a space that grows from Nari's original work. We don't promise all 50 pieces on day one—we promise to organize them well.">Es un espacio que crece a partir del trabajo original de Nari. No prometemos las 50 piezas el primer día: prometemos organizarlas bien.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- FOUNDING CAPTURE -->
 <section id="fundador" class="px-6 pb-32 pt-16" data-track-section="fundador">
   <div class="mx-auto max-w-2xl rounded-3xl bg-primary px-8 py-14 text-primary-foreground sm:px-12 sm:py-16">
     <div class="text-center">
-      <span class="inline-block rounded-full border border-primary-foreground/25 px-5 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-primary-foreground/70" data-es="Inscripción Anticipada" data-en="Early Enrollment">Inscripción Anticipada</span>
+      <span class="inline-block rounded-full border border-primary-foreground/25 px-5 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-primary-foreground/70" data-es="Pre-inscripción" data-en="Pre-enrollment">Pre-inscripción</span>
       <h2 class="mt-6 font-serif text-3xl font-light italic sm:text-4xl" data-es="Forma parte de quienes entran primero" data-en="Be part of the first to enter">Forma parte de quienes entran primero</h2>
-      <p class="mx-auto mt-5 max-w-lg text-sm leading-relaxed text-primary-foreground/75" data-es="Inscríbete para estar entre quienes entran primero. Tendrás prioridad de acceso y aviso anticipado en cuanto abramos los primeros recursos." data-en="Sign up to be among the first to enter. You'll get priority access and early notice as soon as the first resources open.">Inscríbete para estar entre quienes entran primero. Tendrás prioridad de acceso y aviso anticipado en cuanto abramos los primeros recursos.</p>
+      <p class="mx-auto mt-5 max-w-lg text-sm leading-relaxed text-primary-foreground/75" data-es="Pre-inscríbete para entrar primero a El Estudio. Tendrás prioridad de acceso y aviso anticipado en cuanto abramos los primeros recursos." data-en="Pre-enroll to enter El Estudio first. You'll get priority access and early notice as soon as the first resources open.">Pre-inscríbete para entrar primero a El Estudio. Tendrás prioridad de acceso y aviso anticipado en cuanto abramos los primeros recursos.</p>
       <p class="mx-auto mt-6 max-w-md rounded-2xl border border-primary-foreground/15 bg-primary-foreground/5 px-5 py-3 text-xs text-primary-foreground/70" data-es="Sin compromiso de compra. Tú decides si quieres avanzar cuando llegue el momento." data-en="No commitment to buy. You decide if you want to move forward when the time comes.">Sin compromiso de compra. Tú decides si quieres avanzar cuando llegue el momento.</p>
     </div>
 
     <form id="fundador-form" action="https://formspree.io/f/mykapzqj" method="POST" class="mt-14 space-y-6">
-      <input type="hidden" name="Pagina" value="Inscripción Anticipada · Capa de Aprendizaje">
+      <input type="hidden" name="Pagina" value="Pre-inscripción · El Estudio">
       <div>
         <label for="f-nombre" class="text-[10px] font-bold uppercase tracking-wider text-primary-foreground/70" data-es="Nombre" data-en="Name">Nombre</label>
         <input class="mt-2 w-full rounded-xl border border-primary-foreground/20 bg-primary-foreground/5 px-4 py-3 text-sm text-primary-foreground placeholder:text-primary-foreground/40 focus:border-accent focus:outline-none" type="text" id="f-nombre" name="Nombre" placeholder="¿Cómo te llamas?" data-es-ph="¿Cómo te llamas?" data-en-ph="What's your name?" required>
@@ -408,15 +563,15 @@
           <input class="mt-2 w-full rounded-xl border border-primary-foreground/20 bg-primary-foreground/5 px-4 py-3 text-sm text-primary-foreground placeholder:text-primary-foreground/40 focus:border-accent focus:outline-none" type="text" id="f-tema" name="Tema_Interes" placeholder="Ej: pantallas, sueño..." data-es-ph="Ej: pantallas, sueño..." data-en-ph="e.g., screens, sleep...">
         </div>
       </div>
-      <button type="submit" id="fundador-submit" class="inline-flex w-full items-center justify-center rounded-full bg-accent px-8 py-4 text-sm font-medium tracking-wide text-accent-foreground shadow-lg shadow-accent/20 transition-transform hover:-translate-y-0.5 disabled:opacity-60" data-track-cta="form_submit" data-cta-location="fundador_form" data-es="Quiero inscripción anticipada" data-en="I want early enrollment" data-es-sending="Enviando…" data-en-sending="Sending…">Quiero inscripción anticipada</button>
-      <p id="capture-error" class="hidden text-center text-xs text-accent" data-es="No pudimos enviar tu inscripción. Inténtalo de nuevo en unos minutos." data-en="We couldn't submit your registration. Please try again in a few minutes."></p>
+      <button type="submit" id="fundador-submit" class="inline-flex w-full items-center justify-center rounded-full bg-accent px-8 py-4 text-sm font-medium tracking-wide text-accent-foreground shadow-lg shadow-accent/20 transition-transform hover:-translate-y-0.5 disabled:opacity-60" data-track-cta="form_submit" data-cta-location="fundador_form" data-es="Quiero pre-inscribirme" data-en="I want to pre-enroll" data-es-sending="Enviando…" data-en-sending="Sending…">Quiero pre-inscribirme</button>
+      <p id="capture-error" class="hidden text-center text-xs text-accent" data-es="No pudimos enviar tu pre-inscripción. Inténtalo de nuevo en unos minutos." data-en="We couldn't submit your pre-enrollment. Please try again in a few minutes."></p>
       <p class="text-center text-xs text-primary-foreground/50" data-es="Sin spam. Te escribimos solo cuando haya algo real que mostrarte." data-en="No spam. We'll write only when there's something real to show you.">Sin spam. Te escribimos solo cuando haya algo real que mostrarte.</p>
     </form>
 
     <div id="capture-success" class="mt-14 hidden rounded-2xl border border-primary-foreground/15 bg-primary-foreground/5 p-12 text-center">
       <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-accent/20 text-accent">✓</div>
       <h3 class="font-serif text-2xl text-primary-foreground" data-es="Gracias." data-en="Thank you.">Gracias.</h3>
-      <p class="mt-3 text-sm text-primary-foreground/75" data-es="Te avisaremos cuando la inscripción anticipada esté lista. Formas parte de quienes llegaron primero." data-en="We'll let you know when early enrollment is ready. You're part of the first group to arrive.">Te avisaremos cuando la inscripción anticipada esté lista. Formas parte de quienes llegaron primero.</p>
+      <p class="mt-3 text-sm text-primary-foreground/75" data-es="Te avisaremos en cuanto abramos las primeras puertas de El Estudio. Formas parte de quienes llegaron primero." data-en="We'll let you know as soon as we open the first doors of El Estudio. You're part of the first to arrive.">Te avisaremos en cuanto abramos las primeras puertas de El Estudio. Formas parte de quienes llegaron primero.</p>
     </div>
   </div>
 </section>
@@ -668,4 +823,3 @@
 </script>
 </body>
 </html>
-
