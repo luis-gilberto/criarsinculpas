@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<!--
+  Criar Sin Culpas · Reporte de Progreso (bilingue ES/EN)
+  Disenado, construido y escrito por LG Studio · Luis Gilberto
+  https://luis-gilberto.com
+  Fotografia: Erika Sharnay · Sharnay Photography
+  Nota: el ingles es borrador para revision.
+-->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Luis Gilberto · LG Studio">
+<title>Criar Sin Culpas · Reporte de Progreso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF6EF;
+    --paper-2:#F3ECE0;
+    --ink:#1F2E3C;
+    --body:#574F44;
+    --muted:#8C8475;
+    --line:#E5DBCB;
+    --terra:#BC6044;
+    --coral:#DC7551;
+    --navy:#18242F;
+    --navy-2:#22323F;
+    --serif:"Cormorant Garamond", Georgia, serif;
+    --sans:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--body);
+    font-family:var(--sans);
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  .progress{
+    position:fixed; top:0; left:0; height:2px; width:0%;
+    background:var(--terra); z-index:50; transition:width .1s linear;
+  }
+
+  /* language toggle */
+  .langtoggle{
+    position:fixed; top:16px; right:16px; z-index:60;
+    display:inline-flex; border:1px solid rgba(229,219,203,.7); border-radius:999px; overflow:hidden;
+    background:rgba(251,246,239,.84); backdrop-filter:blur(8px);
+    box-shadow:0 8px 24px -12px rgba(22,34,45,.45);
+  }
+  .langtoggle button{
+    border:0; background:transparent; font-family:var(--sans); font-size:12px; font-weight:600;
+    letter-spacing:.06em; padding:7px 14px; cursor:pointer; color:var(--muted);
+  }
+  .langtoggle button.on{ background:var(--ink); color:var(--paper); }
+  .langtoggle button:focus-visible{ outline:2px solid var(--terra); outline-offset:-2px; }
+
+  /* ---------- COVER ---------- */
+  .cover{
+    position:relative; min-height:100svh; display:flex; flex-direction:column; justify-content:space-between;
+    overflow:hidden; color:#F5EFE6;
+  }
+  .cover-bg{ position:absolute; inset:0; background:#0e1820; z-index:0; }
+  .cover-bg img{
+    width:100%; height:100%; object-fit:cover; object-position:center 30%;
+    opacity:.62; animation:kenburns 26s ease-out forwards;
+  }
+  @keyframes kenburns{ from{transform:scale(1.04);} to{transform:scale(1.14);} }
+  .cover-bg::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(14,24,32,.55) 0%, rgba(14,24,32,.20) 35%, rgba(14,24,32,.78) 100%);
+  }
+  .cover-inner{ position:relative; z-index:2; padding:42px clamp(24px,6vw,80px); }
+  .cover-top{ display:flex; justify-content:space-between; align-items:baseline; gap:16px; }
+  .wordmark{ font-family:var(--sans); font-weight:600; font-size:12px; letter-spacing:.32em; text-transform:uppercase; color:#EDE5D8; }
+  .cover-date{ font-family:var(--sans); font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:rgba(245,239,230,.7); }
+  .cover-mid{ position:relative; z-index:2; padding:0 clamp(24px,6vw,80px); }
+  .cover-eyebrow{
+    font-family:var(--sans); font-size:12px; letter-spacing:.3em; text-transform:uppercase; color:var(--coral);
+    margin-bottom:22px; opacity:0; animation:rise .9s .15s ease-out forwards;
+  }
+  .cover-title{
+    font-family:var(--serif); font-weight:300; font-size:clamp(3.2rem,9vw,7rem); line-height:.96; letter-spacing:.005em;
+    margin:0; color:#FCF8F1; opacity:0; animation:rise 1s .3s ease-out forwards;
+  }
+  .cover-title em{ font-style:italic; color:#F1C9B4; }
+  .cover-sub{
+    margin:26px 0 0; max-width:34ch; font-family:var(--serif); font-style:italic; font-weight:400;
+    font-size:clamp(1.15rem,2.3vw,1.5rem); line-height:1.5; color:rgba(245,239,230,.9);
+    opacity:0; animation:rise 1s .5s ease-out forwards;
+  }
+  .cover-foot{ position:relative; z-index:2; padding:0 clamp(24px,6vw,80px) 42px; }
+  .cover-prepared{ font-family:var(--sans); font-size:12px; letter-spacing:.14em; color:rgba(245,239,230,.78); opacity:0; animation:rise 1s .7s ease-out forwards; }
+  .cover-prepared strong{ color:#F5EFE6; font-weight:600; }
+  .scrollcue{
+    margin-top:18px; font-family:var(--sans); font-size:10.5px; letter-spacing:.26em; text-transform:uppercase;
+    color:rgba(245,239,230,.55); display:flex; align-items:center; gap:10px; opacity:0; animation:rise 1s .9s ease-out forwards;
+  }
+  .scrollcue .bar{ width:34px; height:1px; background:rgba(245,239,230,.5); position:relative; overflow:hidden; }
+  .scrollcue .bar::after{ content:""; position:absolute; inset:0; background:var(--coral); transform:translateX(-100%); animation:slide 2.4s ease-in-out infinite; }
+  @keyframes slide{ 0%{transform:translateX(-100%);} 60%{transform:translateX(100%);} 100%{transform:translateX(100%);} }
+  @keyframes rise{ from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);} }
+
+  /* ---------- DOCUMENT SHELL ---------- */
+  .doc{ max-width:1080px; margin:0 auto; padding:0 clamp(24px,6vw,80px); }
+  .col{ max-width:660px; }
+
+  .intro{ padding:clamp(72px,12vh,140px) 0 clamp(40px,7vh,72px); }
+  .salutation{ font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.5rem,3.5vw,2.2rem); color:var(--ink); margin:0 0 24px; }
+  .lead{ font-size:clamp(1.05rem,1.6vw,1.18rem); line-height:1.8; color:var(--body); }
+  .lead + .lead{ margin-top:1.1em; }
+  .lead strong{ color:var(--ink); font-weight:600; }
+
+  .movement{ padding:clamp(48px,8vh,86px) 0; border-top:1px solid var(--line); }
+  .m-head{ display:flex; align-items:baseline; gap:20px; margin-bottom:30px; flex-wrap:wrap; }
+  .m-num{ font-family:var(--serif); font-weight:300; font-size:clamp(2.4rem,5vw,3.4rem); line-height:1; color:var(--terra); min-width:1.6ch; }
+  .m-label{ font-family:var(--sans); font-size:11px; letter-spacing:.26em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+  .m-title{ font-family:var(--serif); font-weight:400; font-size:clamp(1.9rem,3.6vw,2.7rem); line-height:1.08; color:var(--ink); margin:0; }
+  .m-title em{ font-style:italic; color:var(--terra); }
+  .body{ font-size:clamp(1rem,1.5vw,1.1rem); line-height:1.82; color:var(--body); }
+  .body + .body{ margin-top:1.05em; }
+  .body strong{ color:var(--ink); font-weight:600; }
+
+  .standing{ list-style:none; margin:30px 0 0; padding:0; }
+  .standing li{ padding:16px 0; border-top:1px solid var(--line); display:grid; grid-template-columns:18px 1fr; gap:16px; align-items:start; font-size:1rem; line-height:1.65; color:var(--body); }
+  .standing li:last-child{ border-bottom:1px solid var(--line); }
+  .standing .tick{ color:var(--terra); font-family:var(--serif); font-size:1.3rem; line-height:1; }
+
+  .note{ margin-top:30px; padding:22px 26px; border-left:2px solid var(--terra); background:var(--paper-2); border-radius:0 10px 10px 0; }
+  .note p{ margin:0; font-family:var(--serif); font-style:italic; font-size:1.2rem; line-height:1.5; color:var(--ink); }
+
+  /* ---------- CINEMATIC BAND ---------- */
+  .band{ position:relative; height:clamp(340px,62vh,560px); overflow:hidden; margin:0; background:#101b23; }
+  .band img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; will-change:transform; }
+  .band::after{ content:""; position:absolute; inset:0; background:linear-gradient(90deg, rgba(16,27,35,.66) 0%, rgba(16,27,35,.15) 55%, rgba(16,27,35,.45) 100%); }
+  .band-cap{ position:absolute; z-index:2; left:clamp(24px,6vw,80px); bottom:clamp(28px,5vh,48px); max-width:30ch; color:#F4EEE4; }
+  .band-cap .k{ font-family:var(--sans); font-size:11px; letter-spacing:.26em; text-transform:uppercase; color:#F1C9B4; }
+  .band-cap .t{ font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.5rem,3vw,2.1rem); line-height:1.32; margin-top:12px; }
+  .band-credit{ position:absolute; z-index:2; right:clamp(20px,5vw,64px); bottom:18px; font-family:var(--sans); font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:rgba(244,238,228,.66); }
+  .band-credit a{ color:rgba(244,238,228,.82); text-decoration:none; border-bottom:1px solid rgba(244,238,228,.3); }
+
+  /* ---------- STATUS ---------- */
+  .status{ text-align:center; padding:clamp(80px,13vh,150px) clamp(24px,6vw,80px); border-top:1px solid var(--line); }
+  .status .k{ font-family:var(--sans); font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:var(--muted); }
+  .status .big{ font-family:var(--serif); font-weight:300; font-size:clamp(1.8rem,4.2vw,3rem); line-height:1.2; color:var(--ink); max-width:20ch; margin:22px auto 0; }
+  .status .big em{ font-style:italic; color:var(--terra); }
+
+  /* ---------- DECISIONS ---------- */
+  .decisions{ background:var(--navy); color:#EFE8DC; }
+  .decisions-inner{ max-width:1080px; margin:0 auto; padding:clamp(72px,12vh,128px) clamp(24px,6vw,80px); }
+  .decisions .m-label{ color:var(--coral); }
+  .decisions h2{ font-family:var(--serif); font-weight:300; font-size:clamp(2rem,4vw,2.9rem); line-height:1.1; color:#FBF6EE; margin:8px 0 14px; max-width:18ch; }
+  .decisions .sub{ font-size:1.02rem; line-height:1.7; color:rgba(239,232,220,.74); max-width:54ch; }
+  .dlist{ list-style:none; margin:46px 0 0; padding:0; counter-reset:d; }
+  .dlist li{ counter-increment:d; padding:28px 0; border-top:1px solid rgba(239,232,220,.16); display:grid; grid-template-columns:auto 1fr; gap:24px; align-items:start; }
+  .dlist li::before{ content:counter(d,decimal-leading-zero); font-family:var(--serif); font-weight:300; font-size:1.5rem; color:var(--coral); line-height:1.2; }
+  .dlist h3{ font-family:var(--serif); font-weight:500; font-size:1.4rem; color:#FBF6EE; margin:0 0 6px; }
+  .dlist p{ margin:0; font-size:.98rem; line-height:1.66; color:rgba(239,232,220,.74); max-width:56ch; }
+
+  /* ---------- CLOSE ---------- */
+  .close{ background:var(--navy-2); color:#F2EBDE; text-align:center; }
+  .close-inner{ max-width:760px; margin:0 auto; padding:clamp(90px,15vh,170px) clamp(24px,6vw,64px); }
+  .close .k{ font-family:var(--sans); font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:var(--coral); margin-bottom:30px; }
+  .close .statement{ font-family:var(--serif); font-weight:300; font-size:clamp(1.7rem,3.6vw,2.6rem); line-height:1.36; color:#FCF8F1; }
+  .close .statement em{ font-style:italic; color:#F1C9B4; }
+  .close .sign{ margin-top:46px; }
+  .close .sign .by{ font-family:var(--serif); font-weight:500; font-size:1.5rem; color:#FCF8F1; }
+  .close .sign .studio{ margin-top:6px; font-family:var(--sans); font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:rgba(242,235,222,.7); }
+
+  /* ---------- COLOPHON ---------- */
+  .colophon{ background:var(--paper); }
+  .colophon-inner{ max-width:1080px; margin:0 auto; padding:40px clamp(24px,6vw,80px) 56px; display:flex; flex-wrap:wrap; gap:8px 28px; justify-content:space-between; align-items:center; border-top:1px solid var(--line); }
+  .colophon span{ font-family:var(--sans); font-size:11.5px; letter-spacing:.06em; color:var(--muted); }
+  .colophon a{ color:var(--terra); text-decoration:none; }
+  .colophon a:hover{ text-decoration:underline; }
+
+  .reveal{ opacity:0; transform:translateY(22px); transition:opacity .9s ease, transform .9s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+
+  @media (max-width:620px){
+    .standing li{ grid-template-columns:16px 1fr; gap:12px; }
+    .dlist li{ grid-template-columns:auto 1fr; gap:16px; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{ animation:none !important; }
+    .reveal{ opacity:1; transform:none; transition:none; }
+    html{ scroll-behavior:auto; }
+    .cover-bg img{ animation:none; transform:none; }
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<div class="langtoggle" role="group" aria-label="Idioma / Language">
+  <button type="button" data-lang="es" class="on">ES</button>
+  <button type="button" data-lang="en">EN</button>
+</div>
+
+<!-- ============ COVER ============ -->
+<header class="cover">
+  <div class="cover-bg">
+    <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto,f_auto,w_2000/v1782499698/Nari_inscripciones_hero_wybeam.png" alt="Nari trabajando en Criar Sin Culpas" data-alt-es="Nari trabajando en Criar Sin Culpas" data-alt-en="Nari working on Criar Sin Culpas">
+  </div>
+  <div class="cover-inner">
+    <div class="cover-top">
+      <span class="wordmark">LG Studio</span>
+      <span class="cover-date" data-es="Reporte de progreso · Junio 2026" data-en="Progress report · June 2026">Reporte de progreso · Junio 2026</span>
+    </div>
+  </div>
+  <div class="cover-mid">
+    <p class="cover-eyebrow" data-es="Estado del ecosistema" data-en="State of the ecosystem">Estado del ecosistema</p>
+    <h1 class="cover-title">Criar<br>Sin <em>Culpas</em></h1>
+    <p class="cover-sub" data-es="El trabajo de estas semanas, y dónde estamos parados ahora." data-en="The work of these weeks, and where we stand now.">El trabajo de estas semanas, y dónde estamos parados ahora.</p>
+  </div>
+  <div class="cover-foot">
+    <p class="cover-prepared" data-es="Preparado para Nari Fateha · por &lt;strong&gt;Luis Gilberto · LG Studio&lt;/strong&gt;" data-en="Prepared for Nari Fateha · by &lt;strong&gt;Luis Gilberto · LG Studio&lt;/strong&gt;">Preparado para Nari Fateha · por <strong>Luis Gilberto · LG Studio</strong></p>
+    <div class="scrollcue"><span class="bar"></span> <span data-es="Desliza" data-en="Scroll">Desliza</span></div>
+  </div>
+</header>
+
+<!-- ============ INTRO ============ -->
+<main class="doc">
+  <section class="intro reveal">
+    <div class="col">
+      <p class="salutation">Nari,</p>
+      <p class="lead" data-es="Quería compartir contigo dónde estamos hoy." data-en="I wanted to share where we are today.">Quería compartir contigo dónde estamos hoy.</p>
+      <p class="lead" data-es="Han sido semanas de trabajo profundo. Mucho de lo construido no siempre se ve a primera vista porque ocurrió en los cimientos. Hoy esos cimientos sostienen una marca mucho más sólida, coherente y preparada para crecer." data-en="These have been weeks of deep work. Much of what was built isn't visible at first glance because it happened in the foundations. Today those foundations hold up a brand that is far more solid, coherent, and ready to grow.">Han sido semanas de trabajo profundo. Mucho de lo construido no siempre se ve a primera vista porque ocurrió en los cimientos. Hoy esos cimientos sostienen una marca mucho más sólida, coherente y preparada para crecer.</p>
+      <p class="lead" data-es="Lo organizo en cinco frentes porque eso es lo que hoy existe. Ya no hablamos de una página web. Hablamos de &lt;strong&gt;un ecosistema&lt;/strong&gt;." data-en="I'm organizing it into five fronts, because that is what exists today. We are no longer talking about a website. We are talking about &lt;strong&gt;an ecosystem&lt;/strong&gt;.">Lo organizo en cinco frentes porque eso es lo que hoy existe. Ya no hablamos de una página web. Hablamos de <strong>un ecosistema</strong>.</p>
+    </div>
+  </section>
+
+  <!-- 01 -->
+  <section class="movement reveal">
+    <div class="m-head">
+      <span class="m-num">01</span>
+      <div>
+        <p class="m-label" data-es="Frente uno" data-en="Front one">Frente uno</p>
+        <h2 class="m-title" data-es="Tu rostro y &lt;em&gt;tu voz&lt;/em&gt;" data-en="Your face and &lt;em&gt;your voice&lt;/em&gt;">Tu rostro y <em>tu voz</em></h2>
+      </div>
+    </div>
+    <div class="col">
+      <p class="body" data-es="La sesión fotográfica dio origen a un sistema visual completo gracias al trabajo de mi hermana Erika Sharnay. Más que una colección de fotografías, construimos un lenguaje visual donde cada imagen cumple un propósito específico dentro del ecosistema." data-en="The photo session gave rise to a complete visual system, thanks to the work of my sister Erika Sharnay. More than a collection of photographs, we built a visual language where every image serves a specific purpose within the ecosystem.">La sesión fotográfica dio origen a un sistema visual completo gracias al trabajo de mi hermana Erika Sharnay. Más que una colección de fotografías, construimos un lenguaje visual donde cada imagen cumple un propósito específico dentro del ecosistema.</p>
+      <p class="body" data-es="El sistema se amplió para incluir momentos de conexión contigo y con Louie, siguiendo una regla que protege el tono de la marca: esas imágenes viven en los espacios de encuentro y de método, nunca en los momentos de crisis. La ternura acompaña donde corresponde, sin distraer cuando una familia necesita contención." data-en="The system grew to include moments of connection with you and with Louie, following a rule that protects the brand's tone: those images live in the spaces of encounter and method, never in moments of crisis. Tenderness accompanies where it belongs, without distracting when a family needs containment.">El sistema se amplió para incluir momentos de conexión contigo y con Louie, siguiendo una regla que protege el tono de la marca: esas imágenes viven en los espacios de encuentro y de método, nunca en los momentos de crisis. La ternura acompaña donde corresponde, sin distraer cuando una familia necesita contención.</p>
+      <p class="body" data-es="Cada fotografía incorpora un sistema de atribución que reconoce el trabajo de Erika tanto para las personas como para los buscadores, protegiendo su autoría sin interrumpir la experiencia." data-en="Each photograph carries an attribution system that credits Erika's work both to people and to search engines, protecting her authorship without interrupting the experience.">Cada fotografía incorpora un sistema de atribución que reconoce el trabajo de Erika tanto para las personas como para los buscadores, protegiendo su autoría sin interrumpir la experiencia.</p>
+    </div>
+  </section>
+</main>
+
+<!-- BAND: conexión -->
+<section class="band reveal" aria-label="Fotografía de conexión">
+  <img data-parallax src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto,f_auto,w_2000/v1782414428/ChatGPT_Image_Jun_25_2026_10_52_47_AM_mesatt.png" alt="Madre e hijo armando un rompecabezas juntos" data-alt-es="Madre e hijo armando un rompecabezas juntos" data-alt-en="A mother and child assembling a puzzle together">
+  <div class="band-cap">
+    <div class="k" data-es="El lenguaje visual" data-en="The visual language">El lenguaje visual</div>
+    <div class="t" data-es="Calidez con intención, puesta exactamente donde acompaña." data-en="Warmth with intention, placed exactly where it belongs.">Calidez con intención, puesta exactamente donde acompaña.</div>
+  </div>
+  <div class="band-credit"><span data-es="Fotografía" data-en="Photography">Fotografía</span> · <a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">Erika Sharnay</a></div>
+</section>
+
+<main class="doc">
+  <!-- 02 -->
+  <section class="movement reveal">
+    <div class="m-head">
+      <span class="m-num">02</span>
+      <div>
+        <p class="m-label" data-es="Frente dos" data-en="Front two">Frente dos</p>
+        <h2 class="m-title" data-es="La casa: &lt;em&gt;el sitio&lt;/em&gt;" data-en="The house: &lt;em&gt;the site&lt;/em&gt;">La casa: <em>el sitio</em></h2>
+      </div>
+    </div>
+    <div class="col">
+      <p class="body" data-es="El sitio evolucionó hacia una identidad completamente nueva: más cálida, más clara y, sobre todo, más fiel a Criar Sin Culpas. No adoptamos una plantilla. Construimos un hogar para la marca." data-en="The site evolved into a completely new identity: warmer, clearer, and above all truer to Criar Sin Culpas. We did not adopt a template. We built a home for the brand.">El sitio evolucionó hacia una identidad completamente nueva: más cálida, más clara y, sobre todo, más fiel a Criar Sin Culpas. No adoptamos una plantilla. Construimos un hogar para la marca.</p>
+      <p class="body" data-es="Hoy ese hogar ya cuenta con:" data-en="Today that home already includes:">Hoy ese hogar ya cuenta con:</p>
+      <ul class="standing">
+        <li><span class="tick">·</span><span data-es="Una página de inicio completamente reconstruida bajo la nueva dirección visual." data-en="A home page completely rebuilt under the new visual direction.">Una página de inicio completamente reconstruida bajo la nueva dirección visual.</span></li>
+        <li><span class="tick">·</span><span data-es="Las cuatro guías de crisis, organizadas con un sistema que diferencia claramente lo urgente de lo que contiene y acompaña." data-en="The four crisis guides, organized with a system that clearly separates the urgent from what contains and accompanies.">Las cuatro guías de crisis, organizadas con un sistema que diferencia claramente lo urgente de lo que contiene y acompaña.</span></li>
+        <li><span class="tick">·</span><span data-es="La página del Método, restaurada a toda su profundidad." data-en="The Método page, restored to its full depth.">La página del Método, restaurada a toda su profundidad.</span></li>
+        <li><span class="tick">·</span><span data-es="Un sistema bilingüe que permite conversar naturalmente con familias en español e inglés, recordando el idioma de cada visitante." data-en="A bilingual system that lets us speak naturally with families in Spanish and English, remembering each visitor's language.">Un sistema bilingüe que permite conversar naturalmente con familias en español e inglés, recordando el idioma de cada visitante.</span></li>
+        <li><span class="tick">·</span><span data-es="Una navegación y un pie de página unificados en todo el sitio para que la experiencia se sienta consistente de principio a fin." data-en="A navigation and footer unified across the whole site, so the experience feels consistent from start to finish.">Una navegación y un pie de página unificados en todo el sitio para que la experiencia se sienta consistente de principio a fin.</span></li>
+      </ul>
+      <div class="note"><p data-es="Las guías gratuitas siguen siendo exactamente eso: gratuitas. Los momentos de crisis nunca se convierten en oportunidades de venta. La confianza viene primero." data-en="The free guides remain exactly that: free. Moments of crisis never become opportunities to sell. Trust comes first.">Las guías gratuitas siguen siendo exactamente eso: gratuitas. Los momentos de crisis nunca se convierten en oportunidades de venta. La confianza viene primero.</p></div>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section class="movement reveal">
+    <div class="m-head">
+      <span class="m-num">03</span>
+      <div>
+        <p class="m-label" data-es="Frente tres" data-en="Front three">Frente tres</p>
+        <h2 class="m-title">El <em>Estudio</em></h2>
+      </div>
+    </div>
+    <div class="col">
+      <p class="body" data-es="Aquí está uno de los avances más importantes. Lo que antes llamábamos por su nombre de trabajo ahora tiene su nombre real: &lt;strong&gt;El Estudio de Criar Sin Culpas&lt;/strong&gt;, el espacio donde tu método toma forma de enseñanza práctica y cercana." data-en="Here is one of the most important advances. What we used to call by its working name now has its real name: &lt;strong&gt;El Estudio de Criar Sin Culpas&lt;/strong&gt;, the space where your method takes the form of practical, close teaching.">Aquí está uno de los avances más importantes. Lo que antes llamábamos por su nombre de trabajo ahora tiene su nombre real: <strong>El Estudio de Criar Sin Culpas</strong>, el espacio donde tu método toma forma de enseñanza práctica y cercana.</p>
+      <p class="body" data-es="La página de entrada a El Estudio está construida y reorganizada para que cuente una sola historia, de principio a fin: reconocer lo que se siente criar, explicar con calma qué es este espacio, mostrar lo que hay dentro, y recién entonces invitar a entrar. Sin prisa, sin presión." data-en="The entry page to El Estudio is built and reorganized to tell a single story, from start to finish: recognize what parenting feels like, calmly explain what this space is, show what's inside, and only then invite people in. No rush, no pressure.">La página de entrada a El Estudio está construida y reorganizada para que cuente una sola historia, de principio a fin: reconocer lo que se siente criar, explicar con calma qué es este espacio, mostrar lo que hay dentro, y recién entonces invitar a entrar. Sin prisa, sin presión.</p>
+      <p class="body" data-es="Y cambiamos una palabra que importa: ahora hablamos de &lt;strong&gt;pre-inscripción&lt;/strong&gt;, no de inscripción. Porque es la verdad: El Estudio está en construcción, hecho con intención, y esa palabra respira esa misma honestidad. No empujamos a nadie a algo que todavía no existe; invitamos a entrar primero cuando abramos las puertas." data-en="And we changed a word that matters: we now speak of &lt;strong&gt;pre-enrollment&lt;/strong&gt;, not enrollment. Because it's the truth: El Estudio is being built, made with intention, and that word breathes that same honesty. We don't push anyone toward something that doesn't yet exist; we invite them to enter first when we open the doors.">Y cambiamos una palabra que importa: ahora hablamos de <strong>pre-inscripción</strong>, no de inscripción. Porque es la verdad: El Estudio está en construcción, hecho con intención, y esa palabra respira esa misma honestidad. No empujamos a nadie a algo que todavía no existe; invitamos a entrar primero cuando abramos las puertas.</p>
+    </div>
+  </section>
+</main>
+
+<!-- BAND: construyendo -->
+<section class="band reveal" aria-label="Nari trabajando">
+  <img data-parallax src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto,f_auto,w_2000/v1782414429/ChatGPT_Image_Jun_25_2026_10_22_22_AM_k9tey7.png" alt="Nari escribiendo en su cuaderno de trabajo" data-alt-es="Nari escribiendo en su cuaderno de trabajo" data-alt-en="Nari writing in her workbook">
+  <div class="band-cap">
+    <div class="k">El Estudio</div>
+    <div class="t" data-es="Construido con intención, sin prisa, y con tu nombre real." data-en="Built with intention, without rush, and with your real name.">Construido con intención, sin prisa, y con tu nombre real.</div>
+  </div>
+  <div class="band-credit"><span data-es="Fotografía" data-en="Photography">Fotografía</span> · <a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">Erika Sharnay</a></div>
+</section>
+
+<main class="doc">
+  <!-- 04 -->
+  <section class="movement reveal">
+    <div class="m-head">
+      <span class="m-num">04</span>
+      <div>
+        <p class="m-label" data-es="Frente cuatro" data-en="Front four">Frente cuatro</p>
+        <h2 class="m-title" data-es="La inteligencia &lt;em&gt;silenciosa&lt;/em&gt;" data-en="The quiet &lt;em&gt;intelligence&lt;/em&gt;">La inteligencia <em>silenciosa</em></h2>
+      </div>
+    </div>
+    <div class="col">
+      <p class="body" data-es="Detrás de lo visible, el ecosistema ahora tiene la capacidad de escuchar. Cada visita deja señales que nos ayudan a entender qué genera confianza, qué contenidos acompañan mejor a las familias y dónde existen oportunidades para seguir mejorando. Las próximas decisiones ya no dependerán únicamente de intuición, sino también de evidencia." data-en="Behind what is visible, the ecosystem can now listen. Every visit leaves signals that help us understand what builds trust, which content best accompanies families, and where the opportunities to keep improving are. The next decisions will no longer rest on intuition alone, but also on evidence.">Detrás de lo visible, el ecosistema ahora tiene la capacidad de escuchar. Cada visita deja señales que nos ayudan a entender qué genera confianza, qué contenidos acompañan mejor a las familias y dónde existen oportunidades para seguir mejorando. Las próximas decisiones ya no dependerán únicamente de intuición, sino también de evidencia.</p>
+      <p class="body" data-es="También quedó en marcha el sistema de señales que organiza y preserva el conocimiento acumulado durante más de seis años de conversaciones reales con la comunidad. Es un activo profundamente difícil de reproducir porque nace de la confianza que tú has construido con las familias." data-en="We also set in motion the signal system that organizes and preserves the knowledge accumulated over more than six years of real conversations with the community. It is an asset profoundly hard to replicate, because it is born from the trust you have built with families.">También quedó en marcha el sistema de señales que organiza y preserva el conocimiento acumulado durante más de seis años de conversaciones reales con la comunidad. Es un activo profundamente difícil de reproducir porque nace de la confianza que tú has construido con las familias.</p>
+    </div>
+  </section>
+</main>
+
+<!-- BAND: sistema de correos / CRM -->
+<section class="band reveal" aria-label="Sistema de correos de bienvenida">
+  <img data-parallax src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto,f_auto,w_2000/v1782527669/3TneCHIA_vwimlh.png" alt="Vista de la secuencia de correos de bienvenida en distintos dispositivos" data-alt-es="Vista de la secuencia de correos de bienvenida en distintos dispositivos" data-alt-en="View of the welcome email sequence across devices">
+  <div class="band-cap">
+    <div class="k" data-es="El sistema que acompaña" data-en="The system that accompanies">El sistema que acompaña</div>
+    <div class="t" data-es="Un canal que crece con la estructura, no con tus horas." data-en="A channel that grows with the structure, not with your hours.">Un canal que crece con la estructura, no con tus horas.</div>
+  </div>
+</section>
+
+<main class="doc">
+  <!-- 05 -->
+  <section class="movement reveal">
+    <div class="m-head">
+      <span class="m-num">05</span>
+      <div>
+        <p class="m-label" data-es="Frente cinco" data-en="Front five">Frente cinco</p>
+        <h2 class="m-title" data-es="La voz que &lt;em&gt;acompaña&lt;/em&gt;" data-en="The voice that &lt;em&gt;accompanies&lt;/em&gt;">La voz que <em>acompaña</em></h2>
+      </div>
+    </div>
+    <div class="col">
+      <p class="body" data-es="Estamos preparando una secuencia bilingüe de seis correos de bienvenida que acompaña a cada nueva familia con calma y sin abrumar. No intenta vender en el momento de mayor vulnerabilidad. Primero construye confianza; después, cuando sea el momento adecuado, abre la puerta a una relación más profunda con Criar Sin Culpas." data-en="We are preparing a bilingual sequence of six welcome emails that accompanies each new family calmly and without overwhelming them. It does not try to sell in the moment of greatest vulnerability. First it builds trust; then, when the time is right, it opens the door to a deeper relationship with Criar Sin Culpas.">Estamos preparando una secuencia bilingüe de seis correos de bienvenida que acompaña a cada nueva familia con calma y sin abrumar. No intenta vender en el momento de mayor vulnerabilidad. Primero construye confianza; después, cuando sea el momento adecuado, abre la puerta a una relación más profunda con Criar Sin Culpas.</p>
+      <p class="body" data-es="Una vez construido, el sistema deja de crecer al ritmo de tu agenda. Puede acompañar a una persona o a mil sin exigir más tiempo operativo. Ese cambio convierte al correo en &lt;strong&gt;infraestructura, no en una tarea recurrente&lt;/strong&gt;." data-en="Once built, the system stops growing at the pace of your schedule. It can accompany one person or a thousand without demanding more operating time. That shift turns email into &lt;strong&gt;infrastructure, not a recurring task&lt;/strong&gt;.">Una vez construido, el sistema deja de crecer al ritmo de tu agenda. Puede acompañar a una persona o a mil sin exigir más tiempo operativo. Ese cambio convierte al correo en <strong>infraestructura, no en una tarea recurrente</strong>.</p>
+      <p class="body" data-es="Junto con un envío mensual preparado por lotes, la comunicación deja de depender del esfuerzo constante y pasa a formar parte de una estructura que sigue trabajando incluso cuando tú estás enfocada en crear el siguiente paso del proyecto." data-en="Together with a monthly send prepared in batches, communication stops depending on constant effort and becomes part of a structure that keeps working even when you are focused on creating the project's next step.">Junto con un envío mensual preparado por lotes, la comunicación deja de depender del esfuerzo constante y pasa a formar parte de una estructura que sigue trabajando incluso cuando tú estás enfocada en crear el siguiente paso del proyecto.</p>
+      <p class="body" data-es="El libro de marca también quedó documentado en dos versiones, una de trabajo interno y otra pública, para que la voz de Criar Sin Culpas se mantenga coherente sin importar dónde aparezca." data-en="The brand book was also documented in two versions, one for internal work and one public, so that the voice of Criar Sin Culpas stays coherent no matter where it appears.">El libro de marca también quedó documentado en dos versiones, una de trabajo interno y otra pública, para que la voz de Criar Sin Culpas se mantenga coherente sin importar dónde aparezca.</p>
+    </div>
+  </section>
+</main>
+
+<!-- STATUS -->
+<section class="status reveal">
+  <p class="k" data-es="Dónde estamos hoy" data-en="Where we are today">Dónde estamos hoy</p>
+  <p class="big" data-es="La marca tiene rostro, casa, voz, oído y un portal con &lt;em&gt;nombre propio&lt;/em&gt;." data-en="The brand now has a face, a home, a voice, ears, and a portal with &lt;em&gt;a name of its own&lt;/em&gt;.">La marca tiene rostro, casa, voz, oído y un portal con <em>nombre propio</em>.</p>
+</section>
+
+<!-- DECISIONS -->
+<section class="decisions">
+  <div class="decisions-inner reveal">
+    <p class="m-label" data-es="Lo que me gustaría conversar contigo" data-en="What I'd love to talk through with you">Lo que me gustaría conversar contigo</p>
+    <h2 data-es="Tres decisiones que son tuyas." data-en="Three decisions that are yours.">Tres decisiones que son tuyas.</h2>
+    <p class="sub" data-es="Vale la pena tomarlas con intención, no por inercia. Ninguna es urgente al punto de quitarte el sueño, pero sí quiero que las tomemos juntos y a tiempo." data-en="They're worth making with intention, not by inertia. None is urgent enough to cost you sleep, but I do want us to make them together and in good time.">Vale la pena tomarlas con intención, no por inercia. Ninguna es urgente al punto de quitarte el sueño, pero sí quiero que las tomemos juntos y a tiempo.</p>
+    <ul class="dlist">
+      <li>
+        <div>
+          <h3 data-es="El documental" data-en="The documentary">El documental</h3>
+          <p data-es="El camino de distribución todavía está abierto, y conviene decidirlo pronto, porque cada semana que pasa el rumbo se va fijando solo. Me encantaría sentarme contigo a definirlo." data-en="The distribution path is still open, and it's worth deciding soon, because with each week that passes the direction sets itself by default. I'd love to sit down with you and define it.">El camino de distribución todavía está abierto, y conviene decidirlo pronto, porque cada semana que pasa el rumbo se va fijando solo. Me encantaría sentarme contigo a definirlo.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3 data-es="Cuándo probar" data-en="When to test">Cuándo probar</h3>
+          <p data-es="Tenemos la página y la medición listas para una primera prueba suave de El Estudio. Cuando tú sientas que es el momento, está todo preparado." data-en="We have the page and the measurement ready for a first gentle test of El Estudio. Whenever you feel it's the moment, everything is in place.">Tenemos la página y la medición listas para una primera prueba suave de El Estudio. Cuando tú sientas que es el momento, está todo preparado.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3 data-es="Tu voz alimentando el sistema" data-en="Your voice feeding the system">Tu voz alimentando el sistema</h3>
+          <p data-es="El sistema de señales se vuelve poderoso cuando le llega tu intuición y los mensajes reales de la comunidad. Podemos hacerlo ligero, unos pocos por semana." data-en="The signal system becomes powerful when it receives your intuition and the real messages from the community. We can keep it light, just a few a week.">El sistema de señales se vuelve poderoso cuando le llega tu intuición y los mensajes reales de la comunidad. Podemos hacerlo ligero, unos pocos por semana.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- CLOSE -->
+<section class="close">
+  <div class="close-inner reveal">
+    <p class="k" data-es="Una nota final" data-en="A final note">Una nota final</p>
+    <p class="statement" data-es="Cuando empezamos hablábamos de construir una página web. Hoy existe algo mucho más amplio: un ecosistema donde diseño, contenido, fotografía, ingeniería, automatización y estrategia funcionan como &lt;em&gt;un solo sistema&lt;/em&gt;." data-en="When we began, we were talking about building a website. Today there is something far larger: an ecosystem where design, content, photography, engineering, automation, and strategy work as &lt;em&gt;one single system&lt;/em&gt;.">Cuando empezamos hablábamos de construir una página web. Hoy existe algo mucho más amplio: un ecosistema donde diseño, contenido, fotografía, ingeniería, automatización y estrategia funcionan como <em>un solo sistema</em>.</p>
+    <p class="statement" style="font-size:clamp(1.3rem,2.6vw,1.8rem);margin-top:1.1em;" data-es="Todo esto lo construí para ti, end to end y con mucho cariño. Pero la casa es tuya, y todavía estamos en una fase suave, donde todo se puede mover, ajustar y repensar." data-en="I built all of this for you, end to end and with great care. But the house is yours, and we are still in a soft phase, where everything can be moved, adjusted, and rethought.">Todo esto lo construí para ti, end to end y con mucho cariño. Pero la casa es tuya, y todavía estamos en una fase suave, donde todo se puede mover, ajustar y repensar.</p>
+    <p class="statement" style="font-size:clamp(1.2rem,2.3vw,1.6rem);margin-top:1.1em;color:rgba(252,248,241,.84);" data-es="Así que esto no es un punto final, es una invitación. Léelo con calma, dime qué resuena y qué no, qué cambiarías, qué falta. Tu voz es la que termina de darle vida a todo esto." data-en="So this is not a final word, it is an invitation. Read it slowly, tell me what resonates and what doesn't, what you would change, what's missing. Your voice is what finally brings all of this to life.">Así que esto no es un punto final, es una invitación. Léelo con calma, dime qué resuena y qué no, qué cambiarías, qué falta. Tu voz es la que termina de darle vida a todo esto.</p>
+    <div class="sign">
+      <div class="by">Luis Gilberto</div>
+      <div class="studio">LG Studio</div>
+    </div>
+  </div>
+</section>
+
+<!-- COLOPHON -->
+<footer class="colophon">
+  <div class="colophon-inner">
+    <span data-es="Criar Sin Culpas · Reporte de progreso" data-en="Criar Sin Culpas · Progress report">Criar Sin Culpas · Reporte de progreso</span>
+    <span data-es="Compuesto en Cormorant Garamond e Inter" data-en="Set in Cormorant Garamond and Inter">Compuesto en Cormorant Garamond e Inter</span>
+    <span data-es="Por &lt;a href=&quot;https://luis-gilberto.com&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;LG Studio&lt;/a&gt; · Junio 2026" data-en="By &lt;a href=&quot;https://luis-gilberto.com&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;LG Studio&lt;/a&gt; · June 2026">Por <a href="https://luis-gilberto.com" target="_blank" rel="noopener noreferrer">LG Studio</a> · Junio 2026</span>
+  </div>
+</footer>
+
+<script>
+  // language engine (starts in Spanish)
+  var KEY = 'lg_parent_lang';
+  var tbtns = document.querySelectorAll('.langtoggle button');
+  function applyLang(l){
+    document.documentElement.lang = l;
+    document.querySelectorAll('[data-es]').forEach(function(el){
+      var v = el.getAttribute('data-' + l);
+      if (v !== null) el.innerHTML = v;
+    });
+    document.querySelectorAll('[data-alt-es]').forEach(function(el){
+      var v = el.getAttribute('data-alt-' + l);
+      if (v !== null) el.setAttribute('alt', v);
+    });
+    tbtns.forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-lang') === l); });
+    try { localStorage.setItem(KEY, l); } catch(e){}
+  }
+  tbtns.forEach(function(b){ b.addEventListener('click', function(){ applyLang(b.getAttribute('data-lang')); }); });
+  var startLang = 'es';
+  try { startLang = localStorage.getItem(KEY) || 'es'; } catch(e){}
+  applyLang(startLang);
+
+  // reading progress
+  var progress = document.getElementById('progress');
+  function onScroll(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var pct = max > 0 ? (h.scrollTop || document.body.scrollTop) / max * 100 : 0;
+    progress.style.width = pct + '%';
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // reveals
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // gentle parallax on bands
+  if (!reduce){
+    var bands = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
+    function parallax(){
+      var vh = window.innerHeight;
+      bands.forEach(function(img){
+        var r = img.parentElement.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > vh) return;
+        var prog = (r.top + r.height/2 - vh/2) / vh;
+        img.style.transform = 'translateY(' + (prog * -28) + 'px) scale(1.12)';
+      });
+    }
+    document.addEventListener('scroll', parallax, {passive:true});
+    window.addEventListener('resize', parallax);
+    parallax();
+  }
+</script>
+</body>
+</html>
