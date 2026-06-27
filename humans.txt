@@ -1,0 +1,28 @@
+/* TEAM */
+
+  Design, Architecture & Engineering
+  Luis Gilberto · LG Studio
+  Strategy, systems, design, build, copy and voice
+  https://luis-gilberto.com
+  Seattle, WA · USA
+
+/* PHOTOGRAPHY */
+
+  Erika Sharnay · Sharnay Photography
+  https://www.instagram.com/sharnay_photography/
+
+/* BRAND */
+
+  Criar Sin Culpas
+  Nari Fateha, founder
+  https://criarsinculpas.com
+
+/* COLOPHON */
+
+  Built: 2026, by hand, in record time
+  Stack: HTML5, CSS3, vanilla JavaScript
+  Components: hand-built, no framework
+  Hosting: Cloudflare Pages
+  Type: Cormorant Garamond, Inter, DM Sans
+
+  Hecho con cuidado en el noroeste, con alma de Caracas.
