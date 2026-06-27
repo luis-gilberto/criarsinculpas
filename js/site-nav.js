@@ -183,3 +183,8 @@
     boot();
   }
 })();
+
+try {
+  console.log('%cCriar Sin Culpas', 'font:600 22px Georgia,serif;color:#243246');
+  console.log('%cDisenado y construido por LG Studio · Luis Gilberto\nhttps://luis-gilberto.com', 'color:#9E5F53;font-size:13px;line-height:1.6');
+} catch (e) {}
