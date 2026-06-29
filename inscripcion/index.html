@@ -158,6 +158,9 @@
     .outcome-strip { display: grid; grid-template-columns: 1fr; gap: 1px; background: oklch(0.88 0.018 70); border: 1px solid oklch(0.88 0.018 70); border-radius: 1.25rem; overflow: hidden; }
     @media (min-width: 640px) { .outcome-strip { grid-template-columns: repeat(4, 1fr); } }
     .outcome-cell { background: oklch(0.985 0.008 75); padding: 1.6rem 1.25rem; text-align: center; }
+
+    /* Pill CTAs: stay inside their container, wrap gracefully on narrow widths */
+    .cta-pill { max-width: 100%; box-sizing: border-box; white-space: normal; text-align: center; overflow-wrap: break-word; }
   </style>
 </head>
 <body class="min-h-screen bg-background text-foreground" data-protocol="inscripciones" data-guide="learning_layer">
@@ -175,7 +178,7 @@
   <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
     <div>
       <span class="inline-block rounded-full border border-accent/30 bg-background px-5 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-accent" data-es="Pre-inscripción a El Estudio" data-en="Pre-enrollment to El Estudio">Pre-inscripción a El Estudio</span>
-      <h1 class="mt-7 font-serif text-4xl font-light italic leading-tight text-foreground sm:text-5xl lg:text-[3.4rem]" data-es="Hay días en que criar se siente imposible. &lt;em class=&quot;not-italic text-teal&quot;&gt;Aquí aprendes&lt;/em&gt; a que no lo sea." data-en="Some days, parenting feels impossible. &lt;em class=&quot;not-italic text-teal&quot;&gt;Here you learn&lt;/em&gt; how it doesn't have to be.">Hay días en que criar se siente imposible. <em class="not-italic text-teal">Aquí aprendes</em> a que no lo sea.</h1>
+      <h1 class="mt-7 font-serif text-4xl font-light leading-tight text-foreground sm:text-5xl lg:text-[3.4rem]" data-es="Hay días en que criar se siente imposible. &lt;em class=&quot;not-italic text-teal&quot;&gt;Aquí aprendes&lt;/em&gt; a que no lo sea." data-en="Some days, parenting feels impossible. &lt;em class=&quot;not-italic text-teal&quot;&gt;Here you learn&lt;/em&gt; how it doesn't have to be.">Hay días en que criar se siente imposible. <em class="not-italic text-teal">Aquí aprendes</em> a que no lo sea.</h1>
       <p class="mt-6 font-serif text-xl italic text-accent sm:text-2xl" data-es="El trabajo de Nari, organizado en rutas claras y prácticas para los momentos reales de la crianza." data-en="Nari's work, organized into clear, practical paths for the real moments of parenting.">El trabajo de Nari, organizado en rutas claras y prácticas para los momentos reales de la crianza.</p>
       <p class="mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground" data-es="El Estudio: un nuevo espacio para quienes cuidan y quieren ir más a fondo, con talleres, guías y recursos, paso a paso." data-en="El Estudio: a new space for caregivers who want to go deeper, with workshops, guides, and step-by-step resources.">El Estudio: un nuevo espacio para quienes cuidan y quieren ir más a fondo, con talleres, guías y recursos, paso a paso.</p>
       <div class="mt-8 inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-2 text-xs text-muted-foreground">
@@ -183,8 +186,8 @@
         <span data-es="En construcción a partir de más de 50 talleres originales de Nari." data-en="Built from more than 50 of Nari's original workshops.">En construcción a partir de más de 50 talleres originales de Nari.</span>
       </div>
       <div class="mt-10 flex flex-wrap items-center gap-3">
-        <a href="#fundador" class="rounded-full bg-accent px-7 py-3 text-sm font-medium text-accent-foreground shadow-lg shadow-accent/20 transition-transform hover:-translate-y-0.5" data-track-cta="fundador" data-cta-location="hero" data-es="Quiero pre-inscribirme →" data-en="I want to pre-enroll →">Quiero pre-inscribirme →</a>
-        <a href="#como-funciona" class="rounded-full border border-border px-7 py-3 text-sm font-medium text-foreground/80 transition-colors hover:bg-secondary/60" data-track-cta="como_funciona" data-cta-location="hero" data-es="Ver cómo funciona" data-en="See how it works">Ver cómo funciona</a>
+        <a href="#fundador" class="cta-pill rounded-full bg-accent px-7 py-3 text-sm font-medium text-accent-foreground shadow-lg shadow-accent/20 transition-transform hover:-translate-y-0.5" data-track-cta="fundador" data-cta-location="hero" data-es="Quiero pre-inscribirme&nbsp;→" data-en="I want to pre-enroll&nbsp;→">Quiero pre-inscribirme&nbsp;→</a>
+        <a href="#como-funciona" class="cta-pill rounded-full border border-border px-7 py-3 text-sm font-medium text-foreground/80 transition-colors hover:bg-secondary/60" data-track-cta="como_funciona" data-cta-location="hero" data-es="Ver cómo funciona" data-en="See how it works">Ver cómo funciona</a>
       </div>
       <a href="#dos-caminos" class="mt-5 inline-flex items-center gap-1 text-xs font-medium text-muted-foreground underline-offset-4 transition-colors hover:text-accent hover:underline" data-track-cta="dos_caminos" data-cta-location="hero" data-es="o mira las dos formas de entrar →" data-en="or see the two ways to join →">o mira las dos formas de entrar →</a>
     </div>
@@ -264,7 +267,7 @@
     </figure>
     <div>
       <p class="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent" data-es="Quién está detrás del método" data-en="Who's behind the method">Quién está detrás del método</p>
-      <h2 class="mt-4 font-serif text-4xl font-light italic text-foreground">Nari</h2>
+      <h2 class="mt-4 font-serif text-4xl font-light text-foreground">Nari</h2>
       <p class="mt-6 text-sm leading-relaxed text-muted-foreground" data-es="Nari es la creadora del método Criar Sin Culpas: un enfoque nacido de acompañar a familias reales en momentos de tensión, no de teoría." data-en="Nari is the creator of the Criar Sin Culpas method: an approach born from supporting real families in moments of tension, not from theory.">Nari es la creadora del método Criar Sin Culpas: un enfoque nacido de acompañar a familias reales en momentos de tensión, no de teoría.</p>
       <p class="mt-4 text-sm leading-relaxed text-muted-foreground" data-es="Su trabajo reúne más de 50 talleres y materiales originales, ese es el conjunto que ahora estamos organizando dentro de El Estudio." data-en="Her work brings together more than 50 original workshops and materials, that's the body of work we're now organizing inside El Estudio.">Su trabajo reúne más de 50 talleres y materiales originales, ese es el conjunto que ahora estamos organizando dentro de El Estudio.</p>
     </div>
@@ -275,7 +278,7 @@
 <section id="incluye" class="px-6 py-20" data-track-section="incluye">
   <div class="mx-auto max-w-6xl">
     <div class="text-center">
-      <h2 class="font-serif text-3xl font-light italic text-foreground sm:text-4xl" data-es="Qué encuentras dentro" data-en="What you'll find inside">Qué encuentras dentro</h2>
+      <h2 class="font-serif text-3xl font-light text-foreground sm:text-4xl" data-es="Qué encuentras dentro" data-en="What you'll find inside">Qué encuentras dentro</h2>
       <p class="mx-auto mt-5 max-w-2xl font-serif text-lg text-muted-foreground" data-es="Lo necesario para aprender, aplicar y sostener. Con honestidad sobre qué llega primero." data-en="What you need to learn, apply, and sustain. With honesty about what arrives first.">Lo necesario para aprender, aplicar y sostener. Con honestidad sobre qué llega primero.</p>
     </div>
     <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -307,7 +310,7 @@
 <section id="modulos" class="border-t border-border/60 bg-secondary/20 px-6 py-20" data-track-section="modulos">
   <div class="mx-auto max-w-6xl">
     <div class="text-center">
-      <h2 class="font-serif text-3xl font-light italic text-foreground sm:text-4xl" data-es="El método, en cuatro movimientos" data-en="The method, in four movements">El método, en cuatro movimientos</h2>
+      <h2 class="font-serif text-3xl font-light text-foreground sm:text-4xl" data-es="El método, en cuatro movimientos" data-en="The method, in four movements">El método, en cuatro movimientos</h2>
       <p class="mx-auto mt-5 max-w-2xl font-serif text-lg text-muted-foreground" data-es="Una primera mirada a cómo se ordena el camino, de entender a sostener." data-en="A first look at how the path is ordered, from understanding to sustaining.">Una primera mirada a cómo se ordena el camino, de entender a sostener.</p>
     </div>
     <div class="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2">
@@ -315,7 +318,7 @@
       <article class="rounded-2xl border border-border bg-background p-8 shadow-sm">
         <div class="flex items-baseline gap-4">
           <span class="stage-num">01</span>
-          <h3 class="font-serif text-2xl italic text-foreground" data-es="Entender" data-en="Understand">Entender</h3>
+          <h3 class="font-serif text-2xl text-foreground" data-es="Entender" data-en="Understand">Entender</h3>
         </div>
         <ul class="mt-5 space-y-4">
           <li>
@@ -332,7 +335,7 @@
       <article class="rounded-2xl border border-border bg-background p-8 shadow-sm">
         <div class="flex items-baseline gap-4">
           <span class="stage-num">02</span>
-          <h3 class="font-serif text-2xl italic text-foreground" data-es="Reconocer tu patrón" data-en="Recognize your pattern">Reconocer tu patrón</h3>
+          <h3 class="font-serif text-2xl text-foreground" data-es="Reconocer tu patrón" data-en="Recognize your pattern">Reconocer tu patrón</h3>
         </div>
         <ul class="mt-5 space-y-4">
           <li>
@@ -349,7 +352,7 @@
       <article class="rounded-2xl border border-border bg-background p-8 shadow-sm">
         <div class="flex items-baseline gap-4">
           <span class="stage-num">03</span>
-          <h3 class="font-serif text-2xl italic text-foreground" data-es="Responder con calma" data-en="Respond with calm">Responder con calma</h3>
+          <h3 class="font-serif text-2xl text-foreground" data-es="Responder con calma" data-en="Respond with calm">Responder con calma</h3>
         </div>
         <ul class="mt-5 space-y-4">
           <li>
@@ -366,7 +369,7 @@
       <article class="rounded-2xl border border-border bg-background p-8 shadow-sm">
         <div class="flex items-baseline gap-4">
           <span class="stage-num">04</span>
-          <h3 class="font-serif text-2xl italic text-foreground" data-es="Sostener y reparar" data-en="Sustain and repair">Sostener y reparar</h3>
+          <h3 class="font-serif text-2xl text-foreground" data-es="Sostener y reparar" data-en="Sustain and repair">Sostener y reparar</h3>
         </div>
         <ul class="mt-5 space-y-4">
           <li>
@@ -397,7 +400,7 @@
 <section id="para-quien" class="border-t border-border/60 bg-secondary/30 px-6 py-20" data-track-section="para_quien">
   <div class="mx-auto max-w-3xl">
     <div class="text-center">
-      <h2 class="font-serif text-3xl font-light italic text-foreground sm:text-4xl" data-es="¿Para quién es este espacio?" data-en="Who is this space for?">¿Para quién es este espacio?</h2>
+      <h2 class="font-serif text-3xl font-light text-foreground sm:text-4xl" data-es="¿Para quién es este espacio?" data-en="Who is this space for?">¿Para quién es este espacio?</h2>
       <p class="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted-foreground" data-es="Para madres, padres y cuidadores que quieren acompañar distinto, sin perderse en el camino." data-en="For mothers, fathers, and caregivers who want to show up differently, without losing their way.">Para madres, padres y cuidadores que quieren acompañar distinto, sin perderse en el camino.</p>
     </div>
     <ul class="mx-auto mt-12 max-w-2xl space-y-4">
@@ -414,7 +417,7 @@
 <section id="como-inscripcion" class="border-t border-border/60 bg-secondary/20 px-6 py-20" data-track-section="como_inscripcion">
   <div class="mx-auto max-w-5xl">
     <div class="text-center">
-      <h2 class="font-serif text-3xl font-light italic text-foreground sm:text-4xl" data-es="Cómo funciona la pre-inscripción" data-en="How pre-enrollment works">Cómo funciona la pre-inscripción</h2>
+      <h2 class="font-serif text-3xl font-light text-foreground sm:text-4xl" data-es="Cómo funciona la pre-inscripción" data-en="How pre-enrollment works">Cómo funciona la pre-inscripción</h2>
     </div>
     <ol class="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
       <li class="rounded-2xl border border-border bg-background p-8 shadow-sm">
@@ -466,7 +469,7 @@
       <p class="credit-plate-mob"><span data-es="Fotografía por " data-en="Photography by ">Fotografía por </span><a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">Erika Sharnay</a></p>
     </figure>
     <div class="order-1 lg:order-2">
-      <h2 class="font-serif text-3xl font-light italic text-foreground sm:text-4xl" data-es="Por qué abrimos la pre-inscripción antes del lanzamiento" data-en="Why we're opening pre-enrollment before launch">Por qué abrimos la pre-inscripción antes del lanzamiento</h2>
+      <h2 class="font-serif text-3xl font-light text-foreground sm:text-4xl" data-es="Por qué abrimos la pre-inscripción antes del lanzamiento" data-en="Why we're opening pre-enrollment before launch">Por qué abrimos la pre-inscripción antes del lanzamiento</h2>
       <p class="mt-6 text-sm leading-relaxed text-muted-foreground" data-es="Abrimos la pre-inscripción para construir con claridad, no con suposiciones. Tus respuestas nos ayudan a priorizar los temas que necesitan más profundidad." data-en="We're opening pre-enrollment to build with clarity, not assumptions. Your responses help us prioritize the topics that need more depth.">Abrimos la pre-inscripción para construir con claridad, no con suposiciones. Tus respuestas nos ayudan a priorizar los temas que necesitan más profundidad.</p>
       <div class="mt-7 flex flex-wrap gap-2">
         <span class="rounded-full border border-accent/30 bg-background px-3 py-1 text-xs text-foreground" data-es="Pantallas" data-en="Screens">Pantallas</span>
@@ -488,25 +491,25 @@
 <section id="dos-caminos" class="bg-secondary/40 px-6 py-20" data-track-section="dos_caminos">
   <div class="mx-auto max-w-5xl">
     <div class="text-center">
-      <h2 class="font-serif text-3xl font-light italic text-foreground sm:text-4xl" data-es="Elige tu camino" data-en="Choose your path">Elige tu camino</h2>
+      <h2 class="font-serif text-3xl font-light text-foreground sm:text-4xl" data-es="Elige tu camino" data-en="Choose your path">Elige tu camino</h2>
       <p class="mx-auto mt-5 max-w-2xl font-serif text-lg text-muted-foreground" data-es="Dos formas de entrar a El Estudio: resolver algo puntual o acompañarte de forma continua." data-en="Two ways to join El Estudio: solve something specific or receive ongoing support.">Dos formas de entrar a El Estudio: resolver algo puntual o acompañarte de forma continua.</p>
     </div>
     <div class="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-2">
       <article class="flex flex-col rounded-3xl border border-border bg-background p-10 shadow-sm">
         <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-teal" data-es="Pase de Acceso" data-en="Access Pass">Pase de Acceso</p>
-        <h3 class="mt-3 font-serif text-3xl italic text-foreground" data-es="Para un reto específico" data-en="For a specific challenge">Para un reto específico</h3>
+        <h3 class="mt-3 font-serif text-3xl text-foreground" data-es="Para un reto específico" data-en="For a specific challenge">Para un reto específico</h3>
         <p class="mt-2 font-serif italic text-muted-foreground" data-es="Resuelve lo que tienes enfrente, hoy." data-en="Solve what's in front of you, today.">Resuelve lo que tienes enfrente, hoy.</p>
         <ul class="mt-8 flex-1 space-y-4 text-sm text-muted-foreground">
           <li class="flex gap-3"><span class="text-teal">✓</span><span data-es="Acceso a un taller o recurso específico." data-en="Access to a specific workshop or resource.">Acceso a un taller o recurso específico.</span></li>
           <li class="flex gap-3"><span class="text-teal">✓</span><span data-es="Pago único, sin compromiso recurrente." data-en="One-time payment, no recurring commitment.">Pago único, sin compromiso recurrente.</span></li>
           <li class="flex gap-3"><span class="text-teal">✓</span><span data-es="Enfocado, práctico, directo al punto." data-en="Focused, practical, and straight to the point.">Enfocado, práctico, directo al punto.</span></li>
         </ul>
-        <a href="#fundador" class="path-select mt-10 inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-secondary/60" data-plan="Pase de Acceso (Pago único)" data-es="Quiero esta opción" data-en="I want this option">Quiero esta opción</a>
+        <a href="#fundador" class="cta-pill path-select mt-10 inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-secondary/60" data-plan="Pase de Acceso (Pago único)" data-es="Quiero esta opción" data-en="I want this option">Quiero esta opción</a>
       </article>
       <article class="relative flex flex-col rounded-3xl bg-primary p-10 text-primary-foreground shadow-xl">
         <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-accent px-4 py-1 text-[10px] font-bold uppercase tracking-wider text-accent-foreground" data-es="Ruta completa" data-en="Full path">Ruta completa</span>
         <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-accent" data-es="Membresía CSC" data-en="CSC Membership">Membresía CSC</p>
-        <h3 class="mt-3 font-serif text-3xl italic" data-es="Para crecer de forma continua" data-en="For ongoing growth">Para crecer de forma continua</h3>
+        <h3 class="mt-3 font-serif text-3xl" data-es="Para crecer de forma continua" data-en="For ongoing growth">Para crecer de forma continua</h3>
         <p class="mt-2 font-serif italic opacity-85" data-es="Una membresía en diseño, para acceso continuo a talleres y recursos nuevos." data-en="A membership in development, offering continuous access to new workshops and resources.">Una membresía en diseño, para acceso continuo a talleres y recursos nuevos.</p>
         <ul class="mt-8 flex-1 space-y-4 text-sm opacity-90">
           <li class="flex gap-3"><span class="text-accent">✓</span><span data-es="Acceso al espacio de aprendizaje en crecimiento." data-en="Access to the growing learning space.">Acceso al espacio de aprendizaje en crecimiento.</span></li>
@@ -514,7 +517,7 @@
           <li class="flex gap-3"><span class="text-accent">✓</span><span data-es="Recursos, guías y herramientas continuas." data-en="Ongoing resources, guides, and tools.">Recursos, guías y herramientas continuas.</span></li>
           <li class="flex gap-3"><span class="text-accent">✓</span><span data-es="Comunidad y acompañamiento (próximamente)." data-en="Community and support (coming soon).">Comunidad y acompañamiento (próximamente).</span></li>
         </ul>
-        <a href="#fundador" class="path-select mt-10 inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-foreground shadow-lg shadow-accent/20 transition-transform hover:-translate-y-0.5" data-plan="Membresía CSC (Acceso mensual)" data-es="Quiero esta opción →" data-en="I want this option →">Quiero esta opción →</a>
+        <a href="#fundador" class="cta-pill path-select mt-10 inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-foreground shadow-lg shadow-accent/20 transition-transform hover:-translate-y-0.5" data-plan="Membresía CSC (Acceso mensual)" data-es="Quiero esta opción&nbsp;→" data-en="I want this option&nbsp;→">Quiero esta opción&nbsp;→</a>
       </article>
     </div>
   </div>
@@ -525,7 +528,7 @@
   <div class="mx-auto max-w-2xl rounded-3xl bg-primary px-8 py-14 text-primary-foreground sm:px-12 sm:py-16">
     <div class="text-center">
       <span class="inline-block rounded-full border border-primary-foreground/25 px-5 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-primary-foreground/70" data-es="Pre-inscripción" data-en="Pre-enrollment">Pre-inscripción</span>
-      <h2 class="mt-6 font-serif text-3xl font-light italic sm:text-4xl" data-es="Forma parte de quienes entran primero" data-en="Be part of the first to enter">Forma parte de quienes entran primero</h2>
+      <h2 class="mt-6 font-serif text-3xl font-light sm:text-4xl" data-es="Forma parte de quienes entran primero" data-en="Be part of the first to enter">Forma parte de quienes entran primero</h2>
       <p class="mx-auto mt-5 max-w-lg text-sm leading-relaxed text-primary-foreground/75" data-es="Pre-inscríbete para entrar primero a El Estudio. Tendrás prioridad de acceso y aviso anticipado en cuanto abramos los primeros recursos." data-en="Pre-enroll to enter El Estudio first. You'll get priority access and early notice as soon as the first resources open.">Pre-inscríbete para entrar primero a El Estudio. Tendrás prioridad de acceso y aviso anticipado en cuanto abramos los primeros recursos.</p>
       <p class="mx-auto mt-6 max-w-md rounded-2xl border border-primary-foreground/15 bg-primary-foreground/5 px-5 py-3 text-xs text-primary-foreground/70" data-es="Sin compromiso de compra. Tú decides si quieres avanzar cuando llegue el momento." data-en="No commitment to buy. You decide if you want to move forward when the time comes.">Sin compromiso de compra. Tú decides si quieres avanzar cuando llegue el momento.</p>
     </div>
