@@ -79,9 +79,24 @@
       mix-blend-mode: overlay;
     }
 
-    .page-band { background: #FBF7F3; border-bottom: 1px solid var(--line); text-align: center; padding: 16px 24px; position: relative; z-index: 10; }
-    .pb-kicker { font-family: 'DM Sans', system-ui, sans-serif; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #D96B47; }
-    .pb-sub { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 1.02rem; color: oklch(0.45 0.03 260); margin-top: 5px; }
+    /* Reusable promotional banner system: stationary card + sticky strip (swap text for future promos) */
+    .promo-banner { position: relative; max-width: 64rem; margin: 18px auto 0; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; padding: 16px 22px; background: #FBF1E9; border: 1px solid #EAD9C8; border-radius: 14px; box-shadow: 0 16px 38px -28px oklch(0.22 0.04 260 / .5); overflow: hidden; }
+    .promo-banner::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, #D96B47 0%, #E0A36F 100%); }
+    .promo-text { flex: 1 1 280px; min-width: 0; }
+    .promo-title { font-family: "Cormorant Garamond", serif; font-style: normal; font-size: 21px; line-height: 1.25; color: #33414C; }
+    .promo-sub { font-family: Inter, system-ui, sans-serif; font-size: 12px; color: #8C8475; margin-top: 3px; }
+    .promo-pill { display: inline-flex; align-items: center; gap: 7px; flex: none; background: #fff; border: 1px solid #EAD9C8; border-radius: 999px; padding: 6px 12px; font-family: 'DM Sans', system-ui, sans-serif; font-size: 9.5px; font-weight: 500; letter-spacing: .13em; text-transform: uppercase; color: #8C8475; }
+    .promo-dot { width: 5px; height: 5px; border-radius: 50%; background: #D96B47; flex: none; animation: promo-pulse 2.6s var(--ease-silk) infinite; }
+    @keyframes promo-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(217,107,71,.45); } 70% { box-shadow: 0 0 0 6px rgba(217,107,71,0); } }
+    .promo-name { color: #33414C; font-weight: 700; border-bottom: 1.5px solid #D96B47; }
+    /* Sticky one-line strip, revealed once the card scrolls out of view */
+    .promo-strip { position: fixed; top: 0; left: 0; right: 0; z-index: 120; display: flex; align-items: center; gap: 8px; padding: 9px 16px; background: #FBEFE4; border-bottom: 1px solid #EAD9C8; box-shadow: 0 6px 18px -12px oklch(0.22 0.04 260 / .4); font-family: 'DM Sans', system-ui, sans-serif; font-size: 12px; color: #8C8475; transform: translateY(-100%); opacity: 0; pointer-events: none; transition: transform .45s var(--ease-silk), opacity .35s var(--ease-silk); }
+    .promo-strip.is-visible { transform: translateY(0); opacity: 1; pointer-events: auto; }
+    .promo-strip-text { flex: 1 1 auto; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .promo-close { flex: none; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; border: 0; background: transparent; color: #8C8475; font-size: 15px; line-height: 1; cursor: pointer; border-radius: 50%; transition: background .25s, color .25s; }
+    .promo-close:hover { background: rgba(140,132,117,.12); color: #33414C; }
+    @media (max-width: 640px) { .promo-banner { margin: 14px 16px 0; } .promo-title { font-size: 19px; } .promo-strip { font-size: 11px; } }
+    @media (prefers-reduced-motion: reduce) { .promo-dot { animation: none; } .promo-strip { transition: none; } }
 
     @keyframes photo-jiggle {
       0%,100%{transform:translate3d(0,0,0) rotate(0)}
@@ -168,10 +183,53 @@
 
 <div id="site-nav" data-active="inscripcion"></div>
 
-<div class="page-band">
-  <p class="pb-kicker" data-es="Pre-inscripción abierta · Sin compromiso · Acceso prioritario" data-en="Pre-enrollment open · No commitment · Priority access">Pre-inscripción abierta · Sin compromiso · Acceso prioritario</p>
-  <p class="pb-sub" data-es="Una invitación a profundizar, sin prisa y sin compromiso de compra." data-en="An invitation to go deeper, without pressure and without any commitment to buy.">Una invitación a profundizar, sin prisa y sin compromiso de compra.</p>
+<!-- Promotional banner: stationary card + sticky strip (reusable .promo-* system) -->
+<div class="promo-banner" id="promo-card" role="region" aria-label="Anuncio" data-aria-es="Anuncio" data-aria-en="Announcement">
+  <span class="promo-pill">
+    <span class="promo-dot" aria-hidden="true"></span>
+    <span class="promo-pill-text" data-es="Estamos construyendo &lt;span class=&quot;promo-name&quot;&gt;El Estudio&lt;/span&gt;" data-en="We are building &lt;span class=&quot;promo-name&quot;&gt;El Estudio&lt;/span&gt;">Estamos construyendo <span class="promo-name">El Estudio</span></span>
+  </span>
+  <div class="promo-text">
+    <p class="promo-title" data-es="Pre-inscríbete y ayúdanos a darle forma." data-en="Pre-enroll and help us shape it.">Pre-inscríbete y ayúdanos a darle forma.</p>
+    <p class="promo-sub" data-es="Acceso prioritario cuando abramos · sin compromiso." data-en="Priority access when we open · no commitment.">Acceso prioritario cuando abramos · sin compromiso.</p>
+  </div>
 </div>
+
+<div class="promo-strip" id="promo-strip" role="region" aria-label="Anuncio" data-aria-es="Anuncio" data-aria-en="Announcement">
+  <span class="promo-dot" aria-hidden="true"></span>
+  <span class="promo-strip-text" data-es="Estamos construyendo &lt;span class=&quot;promo-name&quot;&gt;El Estudio&lt;/span&gt; · pre-inscríbete y ayúdanos a darle forma" data-en="We are building &lt;span class=&quot;promo-name&quot;&gt;El Estudio&lt;/span&gt; · pre-enroll and help us shape it">Estamos construyendo <span class="promo-name">El Estudio</span> · pre-inscríbete y ayúdanos a darle forma</span>
+  <button type="button" class="promo-close" aria-label="Cerrar" data-aria-es="Cerrar" data-aria-en="Close">✕</button>
+</div>
+<script>
+  (function () {
+    var KEY = 'csc_promo_strip_closed';
+    var card = document.getElementById('promo-card');
+    var strip = document.getElementById('promo-strip');
+    if (!card || !strip) return;
+    var closed = false;
+    try { closed = sessionStorage.getItem(KEY) === '1'; } catch (e) {}
+    var btn = strip.querySelector('.promo-close');
+    if (btn) btn.addEventListener('click', function () {
+      closed = true;
+      strip.classList.remove('is-visible');
+      try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
+    });
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (closed) { strip.classList.remove('is-visible'); return; }
+          strip.classList.toggle('is-visible', !en.isIntersecting);
+        });
+      }, { threshold: 0 });
+      io.observe(card);
+    } else if (!closed) {
+      window.addEventListener('scroll', function () {
+        if (closed) return;
+        strip.classList.toggle('is-visible', card.getBoundingClientRect().bottom < 0);
+      }, { passive: true });
+    }
+  })();
+</script>
 
 <!-- HERO -->
 <section class="px-6 py-16 lg:py-24">
