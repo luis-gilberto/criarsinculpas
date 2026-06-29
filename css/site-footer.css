@@ -1,3 +1,4 @@
+#site-footer{display:contents;}
 .site-footer{background:oklch(0.97 0.012 75);border-top:1px solid oklch(0.22 0.04 260 / .08);padding:4rem 1.5rem 2.5rem;color:oklch(0.22 0.04 260);font-family:'Inter',system-ui,sans-serif;}
 .site-footer .foot-grid{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:2.5rem;}
 .site-footer .foot-brand{grid-column:1 / -1;}

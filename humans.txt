@@ -25,4 +25,4 @@
   Hosting: Cloudflare Pages
   Type: Cormorant Garamond, Inter, DM Sans
 
-  Hecho con cuidado en el noroeste, con alma de Caracas.
+  Hecho con cuidado en el noroeste norteamericano y con alma venezolana
