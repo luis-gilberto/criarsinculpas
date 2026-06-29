@@ -33,6 +33,9 @@
 
   *{ box-sizing:border-box; }
   html{ scroll-behavior:smooth; }
+  /* Nari prefers no italic faces: emphasis carries through accent color, not slant. Italics reserved for quotes (.quote). */
+  em{ font-style:normal; }
+  .quote, blockquote{ font-style:italic; }
   body{
     margin:0;
     background:var(--paper);
@@ -90,9 +93,9 @@
     font-family:var(--serif); font-weight:300; font-size:clamp(3.2rem,9vw,7rem); line-height:.96; letter-spacing:.005em;
     margin:0; color:#FCF8F1; opacity:0; animation:rise 1s .3s ease-out forwards;
   }
-  .cover-title em{ font-style:italic; color:#F1C9B4; }
+  .cover-title em{ font-style:normal; color:#F1C9B4; }
   .cover-sub{
-    margin:26px 0 0; max-width:34ch; font-family:var(--serif); font-style:italic; font-weight:400;
+    margin:26px 0 0; max-width:34ch; font-family:var(--serif); font-style:normal; font-weight:400;
     font-size:clamp(1.15rem,2.3vw,1.5rem); line-height:1.5; color:rgba(245,239,230,.9);
     opacity:0; animation:rise 1s .5s ease-out forwards;
   }
@@ -113,7 +116,7 @@
   .col{ max-width:660px; }
 
   .intro{ padding:clamp(72px,12vh,140px) 0 clamp(40px,7vh,72px); }
-  .salutation{ font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.5rem,3.5vw,2.2rem); color:var(--ink); margin:0 0 24px; }
+  .salutation{ font-family:var(--serif); font-style:normal; font-weight:400; font-size:clamp(1.5rem,3.5vw,2.2rem); color:var(--ink); margin:0 0 24px; }
   .lead{ font-size:clamp(1.05rem,1.6vw,1.18rem); line-height:1.8; color:var(--body); }
   .lead + .lead{ margin-top:1.1em; }
   .lead strong{ color:var(--ink); font-weight:600; }
@@ -123,7 +126,7 @@
   .m-num{ font-family:var(--serif); font-weight:300; font-size:clamp(2.4rem,5vw,3.4rem); line-height:1; color:var(--terra); min-width:1.6ch; }
   .m-label{ font-family:var(--sans); font-size:11px; letter-spacing:.26em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
   .m-title{ font-family:var(--serif); font-weight:400; font-size:clamp(1.9rem,3.6vw,2.7rem); line-height:1.08; color:var(--ink); margin:0; }
-  .m-title em{ font-style:italic; color:var(--terra); }
+  .m-title em{ font-style:normal; color:var(--terra); }
   .body{ font-size:clamp(1rem,1.5vw,1.1rem); line-height:1.82; color:var(--body); }
   .body + .body{ margin-top:1.05em; }
   .body strong{ color:var(--ink); font-weight:600; }
@@ -134,7 +137,19 @@
   .standing .tick{ color:var(--terra); font-family:var(--serif); font-size:1.3rem; line-height:1; }
 
   .note{ margin-top:30px; padding:22px 26px; border-left:2px solid var(--terra); background:var(--paper-2); border-radius:0 10px 10px 0; }
-  .note p{ margin:0; font-family:var(--serif); font-style:italic; font-size:1.2rem; line-height:1.5; color:var(--ink); }
+  .note p{ margin:0; font-family:var(--serif); font-style:normal; font-size:1.2rem; line-height:1.5; color:var(--ink); }
+
+  /* first signals (data, in the document's voice) */
+  .sig-label{ font-family:var(--sans); font-size:11px; letter-spacing:.26em; text-transform:uppercase; color:var(--muted); margin:38px 0 2px; }
+  .signals{ margin:6px 0 4px; border-top:1px solid var(--line); }
+  .signals .sig{ display:grid; grid-template-columns:minmax(4ch,auto) 1fr; gap:clamp(18px,3vw,34px); align-items:baseline; padding:22px 0; border-bottom:1px solid var(--line); }
+  .signals .fig{ font-family:var(--serif); font-weight:300; font-size:clamp(1.7rem,4vw,2.5rem); line-height:1; color:var(--terra); letter-spacing:.01em; white-space:nowrap; }
+  .signals .cap{ font-size:clamp(1rem,1.5vw,1.08rem); line-height:1.62; color:var(--body); }
+  .signals .cap em{ font-style:normal; color:var(--terra); }
+  .deeplink{ margin:30px 0 0; font-family:var(--sans); font-size:12px; letter-spacing:.04em; }
+  .deeplink a{ color:var(--terra); text-decoration:none; border-bottom:1px solid rgba(188,96,68,.4); padding-bottom:3px; transition:border-color .2s ease; }
+  .deeplink a:hover{ border-color:var(--terra); }
+  @media (max-width:520px){ .signals .sig{ grid-template-columns:1fr; gap:6px; } }
 
   /* ---------- CINEMATIC BAND ---------- */
   .band{ position:relative; height:clamp(340px,62vh,560px); overflow:hidden; margin:0; background:#101b23; }
@@ -142,7 +157,7 @@
   .band::after{ content:""; position:absolute; inset:0; background:linear-gradient(90deg, rgba(16,27,35,.66) 0%, rgba(16,27,35,.15) 55%, rgba(16,27,35,.45) 100%); }
   .band-cap{ position:absolute; z-index:2; left:clamp(24px,6vw,80px); bottom:clamp(28px,5vh,48px); max-width:30ch; color:#F4EEE4; }
   .band-cap .k{ font-family:var(--sans); font-size:11px; letter-spacing:.26em; text-transform:uppercase; color:#F1C9B4; }
-  .band-cap .t{ font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.5rem,3vw,2.1rem); line-height:1.32; margin-top:12px; }
+  .band-cap .t{ font-family:var(--serif); font-style:normal; font-weight:400; font-size:clamp(1.5rem,3vw,2.1rem); line-height:1.32; margin-top:12px; }
   .band-credit{ position:absolute; z-index:2; right:clamp(20px,5vw,64px); bottom:18px; font-family:var(--sans); font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:rgba(244,238,228,.66); }
   .band-credit a{ color:rgba(244,238,228,.82); text-decoration:none; border-bottom:1px solid rgba(244,238,228,.3); }
 
@@ -150,7 +165,7 @@
   .status{ text-align:center; padding:clamp(80px,13vh,150px) clamp(24px,6vw,80px); border-top:1px solid var(--line); }
   .status .k{ font-family:var(--sans); font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:var(--muted); }
   .status .big{ font-family:var(--serif); font-weight:300; font-size:clamp(1.8rem,4.2vw,3rem); line-height:1.2; color:var(--ink); max-width:20ch; margin:22px auto 0; }
-  .status .big em{ font-style:italic; color:var(--terra); }
+  .status .big em{ font-style:normal; color:var(--terra); }
 
   /* ---------- DECISIONS ---------- */
   .decisions{ background:var(--navy); color:#EFE8DC; }
@@ -169,7 +184,7 @@
   .close-inner{ max-width:760px; margin:0 auto; padding:clamp(90px,15vh,170px) clamp(24px,6vw,64px); }
   .close .k{ font-family:var(--sans); font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:var(--coral); margin-bottom:30px; }
   .close .statement{ font-family:var(--serif); font-weight:300; font-size:clamp(1.7rem,3.6vw,2.6rem); line-height:1.36; color:#FCF8F1; }
-  .close .statement em{ font-style:italic; color:#F1C9B4; }
+  .close .statement em{ font-style:normal; color:#F1C9B4; }
   .close .sign{ margin-top:46px; }
   .close .sign .by{ font-family:var(--serif); font-weight:500; font-size:1.5rem; color:#FCF8F1; }
   .close .sign .studio{ margin-top:6px; font-family:var(--sans); font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:rgba(242,235,222,.7); }
@@ -328,6 +343,27 @@
     <div class="col">
       <p class="body" data-es="Detrás de lo visible, el ecosistema ahora tiene la capacidad de escuchar. Cada visita deja señales que nos ayudan a entender qué genera confianza, qué contenidos acompañan mejor a las familias y dónde existen oportunidades para seguir mejorando. Las próximas decisiones ya no dependerán únicamente de intuición, sino también de evidencia." data-en="Behind what is visible, the ecosystem can now listen. Every visit leaves signals that help us understand what builds trust, which content best accompanies families, and where the opportunities to keep improving are. The next decisions will no longer rest on intuition alone, but also on evidence.">Detrás de lo visible, el ecosistema ahora tiene la capacidad de escuchar. Cada visita deja señales que nos ayudan a entender qué genera confianza, qué contenidos acompañan mejor a las familias y dónde existen oportunidades para seguir mejorando. Las próximas decisiones ya no dependerán únicamente de intuición, sino también de evidencia.</p>
       <p class="body" data-es="También quedó en marcha el sistema de señales que organiza y preserva el conocimiento acumulado durante más de seis años de conversaciones reales con la comunidad. Es un activo profundamente difícil de reproducir porque nace de la confianza que tú has construido con las familias." data-en="We also set in motion the signal system that organizes and preserves the knowledge accumulated over more than six years of real conversations with the community. It is an asset profoundly hard to replicate, because it is born from the trust you have built with families.">También quedó en marcha el sistema de señales que organiza y preserva el conocimiento acumulado durante más de seis años de conversaciones reales con la comunidad. Es un activo profundamente difícil de reproducir porque nace de la confianza que tú has construido con las familias.</p>
+      <p class="body" data-es="Todavía estamos en una ventana silenciosa, antes de abrir las puertas de par en par. Por eso lo que importa hoy no es cuánta gente entra, sino qué hacen quienes entran. Y ahí ya hay señales que dan confianza." data-en="We are still in a quiet window, before opening the doors wide. So what matters today isn't how many people come in, but what those who do come in actually do. And there, there are already signals that give us confidence.">Todavía estamos en una ventana silenciosa, antes de abrir las puertas de par en par. Por eso lo que importa hoy no es cuánta gente entra, sino qué hacen quienes entran. Y ahí ya hay señales que dan confianza.</p>
+
+      <p class="sig-label" data-es="Primeras señales" data-en="First signals">Primeras señales</p>
+      <div class="signals">
+        <div class="sig">
+          <div class="fig" data-es="casi 80%" data-en="nearly 80%">casi 80%</div>
+          <div class="cap" data-es="de las guías más densas es lo que una familia llega a recorrer. No las hojea, &lt;em&gt;las lee&lt;/em&gt;." data-en="of the densest guides is how far a family actually gets. They don't skim them, &lt;em&gt;they read them&lt;/em&gt;.">de las guías más densas es lo que una familia llega a recorrer. No las hojea, <em>las lee</em>.</div>
+        </div>
+        <div class="sig">
+          <div class="fig" data-es="minutos" data-en="minutes">minutos</div>
+          <div class="cap" data-es="es el tiempo que pasan dentro de una guía, no segundos. La contención se está leyendo &lt;em&gt;con calma&lt;/em&gt;." data-en="is how long they spend inside a guide, not seconds. The containment is being read &lt;em&gt;calmly&lt;/em&gt;.">es el tiempo que pasan dentro de una guía, no segundos. La contención se está leyendo <em>con calma</em>.</div>
+        </div>
+        <div class="sig">
+          <div class="fig" data-es="ES · EN" data-en="ES · EN">ES · EN</div>
+          <div class="cap" data-es="el cambio entre español e inglés se usa de verdad. El sistema bilingüe &lt;em&gt;no es decorativo&lt;/em&gt;." data-en="switching between Spanish and English gets real use. The bilingual system &lt;em&gt;is not decorative&lt;/em&gt;.">el cambio entre español e inglés se usa de verdad. El sistema bilingüe <em>no es decorativo</em>.</div>
+        </div>
+      </div>
+
+      <p class="body" style="margin-top:1.3em;" data-es="Las señales también confirman algo que cuidamos desde el diseño: en el hogar, las familias llegan hasta el momento donde se les dice &lt;strong&gt;no estás fallando&lt;/strong&gt; y cruzan el puente hacia el Método. Y en las guías de crisis no aparece ninguna invitación a comprar. La confianza primero, tal como lo prometimos." data-en="The signals also confirm something we protected by design: on the home, families reach the moment where they're told &lt;strong&gt;you're not failing&lt;/strong&gt; and cross the bridge toward the Método. And on the crisis guides, no invitation to buy appears. Trust first, exactly as we promised.">Las señales también confirman algo que cuidamos desde el diseño: en el hogar, las familias llegan hasta el momento donde se les dice <strong>no estás fallando</strong> y cruzan el puente hacia el Método. Y en las guías de crisis no aparece ninguna invitación a comprar. La confianza primero, tal como lo prometimos.</p>
+      <div class="note"><p data-es="El verdadero retrato de la demanda llegará cuando decidamos abrir las puertas y promover la pre-inscripción con intención. Hasta entonces, estas primeras señales nos dicen que el sistema acompaña como debe." data-en="The real portrait of demand will come when we decide to open the doors and promote pre-enrollment with intention. Until then, these first signals tell us the system accompanies as it should.">El verdadero retrato de la demanda llegará cuando decidamos abrir las puertas y promover la pre-inscripción con intención. Hasta entonces, estas primeras señales nos dicen que el sistema acompaña como debe.</p></div>
+      <p class="deeplink"><a href="csc-reporte-trafico.html" data-es="Ver el análisis completo del tráfico →" data-en="See the full traffic analysis →">Ver el análisis completo del tráfico →</a></p>
     </div>
   </section>
 </main>

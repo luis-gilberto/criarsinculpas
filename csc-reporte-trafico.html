@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<!--
+  Criar Sin Culpas · Análisis de Tráfico (anexo del Reporte de Progreso)
+  Diseñado, construido y escrito por LG Studio · Luis Gilberto
+  https://luis-gilberto.com
+  Fuente de datos: Plausible Analytics · 31 may – 27 jun 2026
+  Nota: el inglés es borrador para revisión.
+-->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Luis Gilberto · LG Studio">
+<title>Criar Sin Culpas · Análisis de Tráfico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF6EF;
+    --paper-2:#F3ECE0;
+    --ink:#1F2E3C;
+    --body:#574F44;
+    --muted:#8C8475;
+    --line:#E5DBCB;
+    --terra:#BC6044;
+    --coral:#DC7551;
+    --navy:#18242F;
+    --navy-2:#22323F;
+    --serif:"Cormorant Garamond", Georgia, serif;
+    --sans:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  /* Nari prefers no italic faces: emphasis carries through accent color, not slant. Italics reserved for quotes (.quote). */
+  em{ font-style:normal; }
+  .quote, blockquote{ font-style:italic; }
+
+  body{
+    margin:0; background:var(--paper); color:var(--body);
+    font-family:var(--sans); font-weight:400;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+
+  /* language toggle */
+  .langtoggle{
+    position:fixed; top:16px; right:16px; z-index:60;
+    display:inline-flex; border:1px solid rgba(229,219,203,.85); border-radius:999px; overflow:hidden;
+    background:rgba(251,246,239,.9); backdrop-filter:blur(8px);
+    box-shadow:0 8px 24px -12px rgba(22,34,45,.4);
+  }
+  .langtoggle button{
+    border:0; background:transparent; font-family:var(--sans); font-size:12px; font-weight:600;
+    letter-spacing:.06em; padding:7px 14px; cursor:pointer; color:var(--muted);
+  }
+  .langtoggle button.on{ background:var(--ink); color:var(--paper); }
+  .langtoggle button:focus-visible{ outline:2px solid var(--terra); outline-offset:-2px; }
+
+  .doc{ max-width:1080px; margin:0 auto; padding:0 clamp(24px,6vw,80px); }
+  .col{ max-width:680px; }
+
+  /* masthead */
+  .masthead{ padding:clamp(40px,8vh,80px) 0 clamp(30px,5vh,54px); border-bottom:1px solid var(--line); }
+  .backlink{ font-family:var(--sans); font-size:12px; letter-spacing:.04em; color:var(--terra); text-decoration:none; border-bottom:1px solid rgba(188,96,68,.4); padding-bottom:3px; }
+  .backlink:hover{ border-color:var(--terra); }
+  .mast-eyebrow{ font-family:var(--sans); font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted); margin:34px 0 14px; }
+  .mast-title{ font-family:var(--serif); font-weight:300; font-size:clamp(2.4rem,6vw,4rem); line-height:1.02; color:var(--ink); margin:0; }
+  .mast-title em{ color:var(--terra); }
+  .mast-sub{ margin:22px 0 0; max-width:46ch; font-family:var(--serif); font-weight:400; font-size:clamp(1.15rem,2.2vw,1.45rem); line-height:1.5; color:var(--body); }
+  .mast-date{ font-family:var(--sans); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-top:24px; }
+
+  /* sections */
+  .block{ padding:clamp(44px,7vh,78px) 0; border-top:1px solid var(--line); }
+  .block:first-of-type{ border-top:0; }
+  .b-label{ font-family:var(--sans); font-size:11px; letter-spacing:.26em; text-transform:uppercase; color:var(--muted); margin:0 0 12px; }
+  .b-title{ font-family:var(--serif); font-weight:400; font-size:clamp(1.7rem,3.4vw,2.4rem); line-height:1.1; color:var(--ink); margin:0 0 22px; }
+  .b-title em{ color:var(--terra); }
+  .body{ font-size:clamp(1rem,1.5vw,1.1rem); line-height:1.8; color:var(--body); }
+  .body + .body{ margin-top:1.05em; }
+  .body strong{ color:var(--ink); font-weight:600; }
+
+  /* signal recap row */
+  .sig-label{ font-family:var(--sans); font-size:11px; letter-spacing:.26em; text-transform:uppercase; color:var(--muted); margin:30px 0 2px; }
+  .signals{ margin:6px 0 4px; border-top:1px solid var(--line); }
+  .signals .sig{ display:grid; grid-template-columns:minmax(4ch,auto) 1fr; gap:clamp(18px,3vw,34px); align-items:baseline; padding:22px 0; border-bottom:1px solid var(--line); }
+  .signals .fig{ font-family:var(--serif); font-weight:300; font-size:clamp(1.7rem,4vw,2.5rem); line-height:1; color:var(--terra); white-space:nowrap; }
+  .signals .cap{ font-size:clamp(1rem,1.5vw,1.08rem); line-height:1.62; color:var(--body); }
+  .signals .cap em{ color:var(--terra); }
+  @media (max-width:520px){ .signals .sig{ grid-template-columns:1fr; gap:6px; } }
+
+  /* reading table */
+  .readtable{ width:100%; border-collapse:collapse; margin-top:10px; }
+  .readtable th{ text-align:left; font-family:var(--sans); font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); font-weight:500; padding:0 0 14px; border-bottom:1px solid var(--line); }
+  .readtable th.r,.readtable td.r{ text-align:right; }
+  .readtable td{ padding:18px 0; border-bottom:1px solid var(--line); vertical-align:baseline; }
+  .readtable .g{ font-family:var(--serif); font-size:1.25rem; color:var(--ink); line-height:1.2; }
+  .readtable .g small{ display:block; font-family:var(--sans); font-size:.74rem; letter-spacing:.04em; color:var(--muted); margin-top:3px; }
+  .readtable .n{ font-family:var(--serif); font-weight:300; font-size:1.45rem; color:var(--terra); white-space:nowrap; }
+  .readtable .t{ font-family:var(--sans); font-size:.95rem; color:var(--body); white-space:nowrap; }
+  @media (max-width:520px){ .readtable .hide-sm{ display:none; } .readtable td,.readtable th{ padding-left:0; } }
+
+  /* standing list */
+  .standing{ list-style:none; margin:8px 0 0; padding:0; }
+  .standing li{ padding:16px 0; border-top:1px solid var(--line); display:grid; grid-template-columns:18px 1fr; gap:16px; align-items:start; font-size:1.02rem; line-height:1.6; color:var(--body); }
+  .standing li:last-child{ border-bottom:1px solid var(--line); }
+  .standing .tick{ color:var(--terra); font-family:var(--serif); font-size:1.3rem; line-height:1; }
+  .standing b{ color:var(--ink); font-weight:600; }
+
+  /* note */
+  .note{ margin-top:28px; padding:22px 26px; border-left:2px solid var(--terra); background:var(--paper-2); border-radius:0 10px 10px 0; }
+  .note p{ margin:0; font-family:var(--serif); font-size:1.2rem; line-height:1.5; color:var(--ink); }
+
+  /* close */
+  .close{ background:var(--navy); color:#EFE8DC; }
+  .close-inner{ max-width:760px; margin:0 auto; padding:clamp(64px,11vh,120px) clamp(24px,6vw,64px); }
+  .close .k{ font-family:var(--sans); font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:var(--coral); margin:0 0 22px; }
+  .close .statement{ font-family:var(--serif); font-weight:300; font-size:clamp(1.5rem,3.2vw,2.2rem); line-height:1.36; color:#FCF8F1; margin:0; }
+  .close .statement em{ color:#F1C9B4; }
+  .close .back{ margin-top:34px; }
+  .close .back a{ font-family:var(--sans); font-size:12px; letter-spacing:.06em; color:#F1C9B4; text-decoration:none; border-bottom:1px solid rgba(241,201,180,.4); padding-bottom:3px; }
+
+  /* colophon */
+  .colophon{ background:var(--paper); }
+  .colophon-inner{ max-width:1080px; margin:0 auto; padding:40px clamp(24px,6vw,80px) 56px; display:flex; flex-wrap:wrap; gap:8px 28px; justify-content:space-between; align-items:center; border-top:1px solid var(--line); }
+  .colophon span{ font-family:var(--sans); font-size:11.5px; letter-spacing:.06em; color:var(--muted); }
+  .colophon a{ color:var(--terra); text-decoration:none; }
+  .colophon a:hover{ text-decoration:underline; }
+
+  .reveal{ opacity:0; transform:translateY(20px); transition:opacity .8s ease, transform .8s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+
+  @media (max-width:620px){ .standing li{ grid-template-columns:16px 1fr; gap:12px; } }
+  @media (prefers-reduced-motion:reduce){
+    *{ animation:none !important; }
+    .reveal{ opacity:1; transform:none; transition:none; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="langtoggle" role="group" aria-label="Idioma / Language">
+  <button type="button" data-lang="es" class="on">ES</button>
+  <button type="button" data-lang="en">EN</button>
+</div>
+
+<main class="doc">
+
+  <!-- MASTHEAD -->
+  <header class="masthead reveal">
+    <a class="backlink" href="csc-reporte-progreso.html" data-es="← Volver al reporte de progreso" data-en="← Back to the progress report">← Volver al reporte de progreso</a>
+    <p class="mast-eyebrow" data-es="Anexo · La inteligencia silenciosa, a fondo" data-en="Appendix · The quiet intelligence, in depth">Anexo · La inteligencia silenciosa, a fondo</p>
+    <h1 class="mast-title" data-es="Qué nos dicen las &lt;em&gt;primeras señales&lt;/em&gt;" data-en="What the &lt;em&gt;first signals&lt;/em&gt; tell us">Qué nos dicen las <em>primeras señales</em></h1>
+    <p class="mast-sub" data-es="Una mirada más detallada al comportamiento del sitio, para quien quiera indagar. Sigue siendo una fase suave, así que lo leemos con calma y sin sacar conclusiones de más." data-en="A closer look at how the site behaves, for whoever wants to dig in. It's still a soft phase, so we read it calmly and without over-concluding.">Una mirada más detallada al comportamiento del sitio, para quien quiera indagar. Sigue siendo una fase suave, así que lo leemos con calma y sin sacar conclusiones de más.</p>
+    <p class="mast-date" data-es="Plausible Analytics · 31 may – 27 jun 2026 · 28 días" data-en="Plausible Analytics · May 31 – Jun 27, 2026 · 28 days">Plausible Analytics · 31 may – 27 jun 2026 · 28 días</p>
+  </header>
+
+  <!-- 1 · READING DEPTH -->
+  <section class="block reveal">
+    <div class="col">
+      <p class="b-label" data-es="Lo que de verdad importa hoy" data-en="What really matters today">Lo que de verdad importa hoy</p>
+      <h2 class="b-title" data-es="Cuando una familia llega a una guía, &lt;em&gt;la lee&lt;/em&gt;" data-en="When a family reaches a guide, &lt;em&gt;they read it&lt;/em&gt;">Cuando una familia llega a una guía, <em>la lee</em></h2>
+      <p class="body" data-es="La señal más fuerte no es cuánta gente entra, sino qué tan a fondo lee. En las dos guías principales, las familias recorren casi toda la página y se quedan minutos, no segundos. Eso es lectura real, no un vistazo." data-en="The strongest signal isn't how many people come in, but how deeply they read. On the two main guides, families move through almost the whole page and stay for minutes, not seconds. That's real reading, not a glance.">La señal más fuerte no es cuánta gente entra, sino qué tan a fondo lee. En las dos guías principales, las familias recorren casi toda la página y se quedan minutos, no segundos. Eso es lectura real, no un vistazo.</p>
+    </div>
+    <div class="col">
+      <table class="readtable">
+        <thead>
+          <tr>
+            <th data-es="Guía" data-en="Guide">Guía</th>
+            <th class="r" data-es="Cuánto leen" data-en="How far they read">Cuánto leen</th>
+            <th class="r hide-sm" data-es="Tiempo dentro" data-en="Time inside">Tiempo dentro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="g">emotional-escalation<small data-es="La más leída del sitio" data-en="The most-read on the site">La más leída del sitio</small></td>
+            <td class="r"><span class="n">casi 80%</span></td>
+            <td class="r hide-sm"><span class="t" data-es="2 a 3 min" data-en="2 to 3 min">2 a 3 min</span></td>
+          </tr>
+          <tr>
+            <td class="g">screen-time<small data-es="La puerta de entrada más común" data-en="The most common entry point">La puerta de entrada más común</small></td>
+            <td class="r"><span class="n">casi 80%</span></td>
+            <td class="r hide-sm"><span class="t" data-es="cerca de 1 min" data-en="around 1 min">cerca de 1 min</span></td>
+          </tr>
+          <tr>
+            <td class="g" data-es="Guías más nuevas" data-en="Newer guides"><span data-es="Guías más nuevas" data-en="Newer guides">Guías más nuevas</span><small data-es="bedtime · sibling-conflict" data-en="bedtime · sibling-conflict">bedtime · sibling-conflict</small></td>
+            <td class="r"><span class="t" data-es="aún afinándose" data-en="still being tuned">aún afinándose</span></td>
+            <td class="r hide-sm"><span class="t">·</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 2 · MOMENTS THAT WORK -->
+  <section class="block reveal">
+    <div class="col">
+      <p class="b-label" data-es="Los momentos que funcionan" data-en="The moments that work">Los momentos que funcionan</p>
+      <h2 class="b-title" data-es="El recorrido emocional &lt;em&gt;sí ocurre&lt;/em&gt;" data-en="The emotional journey &lt;em&gt;does happen&lt;/em&gt;">El recorrido emocional <em>sí ocurre</em></h2>
+      <p class="body" data-es="Más allá de leer, la gente hace cosas. Cada una de estas acciones es una pequeña confirmación de que la arquitectura de la marca está acompañando como la diseñamos." data-en="Beyond reading, people do things. Each of these actions is a small confirmation that the brand's architecture is accompanying the way we designed it.">Más allá de leer, la gente hace cosas. Cada una de estas acciones es una pequeña confirmación de que la arquitectura de la marca está acompañando como la diseñamos.</p>
+      <ul class="standing">
+        <li><span class="tick">·</span><span data-es="Entran al portal de &lt;b&gt;El Estudio&lt;/b&gt;." data-en="They enter the &lt;b&gt;El Estudio&lt;/b&gt; portal.">Entran al portal de <b>El Estudio</b>.</span></li>
+        <li><span class="tick">·</span><span data-es="Llegan al momento donde se les dice &lt;b&gt;no estás fallando&lt;/b&gt; y cruzan el puente hacia el Método." data-en="They reach the moment where they're told &lt;b&gt;you're not failing&lt;/b&gt; and cross the bridge to the Método.">Llegan al momento donde se les dice <b>no estás fallando</b> y cruzan el puente hacia el Método.</span></li>
+        <li><span class="tick">·</span><span data-es="Copian una frase para llevársela." data-en="They copy a phrase to take with them.">Copian una frase para llevársela.</span></li>
+        <li><span class="tick">·</span><span data-es="Piden la guía completa." data-en="They request the full guide.">Piden la guía completa.</span></li>
+        <li><span class="tick">·</span><span data-es="Cambian de idioma: el bilingüe se usa de verdad." data-en="They switch language: the bilingual system gets real use.">Cambian de idioma: el bilingüe se usa de verdad.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3 · WHERE IT COMES FROM -->
+  <section class="block reveal">
+    <div class="col">
+      <p class="b-label" data-es="De dónde viene" data-en="Where it comes from">De dónde viene</p>
+      <h2 class="b-title" data-es="Por ahora, &lt;em&gt;local y cercano&lt;/em&gt;" data-en="For now, &lt;em&gt;local and close&lt;/em&gt;">Por ahora, <em>local y cercano</em></h2>
+      <p class="body" data-es="Casi todo el tráfico de estas semanas es local y de personas cercanas al proyecto. Es lo natural en esta fase de prueba: todavía no hemos invitado al público de verdad, así que esto aún no representa a tu audiencia real." data-en="Almost all the traffic of these weeks is local and from people close to the project. That's natural in this testing phase: we haven't truly invited the public yet, so this doesn't represent your real audience yet.">Casi todo el tráfico de estas semanas es local y de personas cercanas al proyecto. Es lo natural en esta fase de prueba: todavía no hemos invitado al público de verdad, así que esto aún no representa a tu audiencia real.</p>
+      <ul class="standing">
+        <li><span class="tick">·</span><span data-es="La mayoría llega &lt;b&gt;desde el teléfono&lt;/b&gt;. Por eso cuidamos tanto la experiencia móvil." data-en="Most arrive &lt;b&gt;from their phone&lt;/b&gt;. That's why we care so much about the mobile experience.">La mayoría llega <b>desde el teléfono</b>. Por eso cuidamos tanto la experiencia móvil.</span></li>
+        <li><span class="tick">·</span><span data-es="Español e inglés, ambos en uso. El sistema bilingüe no es decorativo." data-en="Spanish and English, both in use. The bilingual system is not decorative.">Español e inglés, ambos en uso. El sistema bilingüe no es decorativo.</span></li>
+        <li><span class="tick">·</span><span data-es="Las familias entran directo a las guías, no por la portada. El contenido de contención es la primera puerta." data-en="Families land straight on the guides, not the home page. The containment content is the first door.">Las familias entran directo a las guías, no por la portada. El contenido de contención es la primera puerta.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4 · WHAT WE PROTECT -->
+  <section class="block reveal">
+    <div class="col">
+      <p class="b-label" data-es="Lo que cuidamos" data-en="What we protect">Lo que cuidamos</p>
+      <h2 class="b-title" data-es="La confianza, &lt;em&gt;primero&lt;/em&gt;" data-en="Trust, &lt;em&gt;first&lt;/em&gt;">La confianza, <em>primero</em></h2>
+      <p class="body" data-es="Los datos confirman una regla que cuidamos desde el diseño: en las guías de crisis no aparece ninguna invitación a comprar. Quien llega en un momento difícil recibe contención, no una oferta. Las decisiones de inscripción viven en el hogar y en el Método, nunca en la crisis." data-en="The data confirms a rule we protected by design: on the crisis guides, no invitation to buy appears. Whoever arrives in a hard moment receives containment, not an offer. Enrollment decisions live on the home and the Método, never in the crisis.">Los datos confirman una regla que cuidamos desde el diseño: en las guías de crisis no aparece ninguna invitación a comprar. Quien llega en un momento difícil recibe contención, no una oferta. Las decisiones de inscripción viven en el hogar y en el Método, nunca en la crisis.</p>
+      <div class="note"><p data-es="Los momentos de crisis nunca se convierten en oportunidades de venta. Eso no cambió, y los datos muestran que se está respetando." data-en="Moments of crisis never become opportunities to sell. That didn't change, and the data shows it's being respected.">Los momentos de crisis nunca se convierten en oportunidades de venta. Eso no cambió, y los datos muestran que se está respetando.</p></div>
+    </div>
+  </section>
+
+  <!-- 5 · WHAT WE CANNOT READ YET -->
+  <section class="block reveal">
+    <div class="col">
+      <p class="b-label" data-es="Para leerlo con honestidad" data-en="To read it honestly">Para leerlo con honestidad</p>
+      <h2 class="b-title" data-es="Lo que &lt;em&gt;todavía&lt;/em&gt; no podemos saber" data-en="What we &lt;em&gt;still&lt;/em&gt; can't know">Lo que <em>todavía</em> no podemos saber</h2>
+      <p class="body" data-es="Es una ventana silenciosa y los números son pequeños. Por eso no conviene leer estas cifras como si fueran la demanda real: todavía no lo son. Lo que sí nos dicen es que el sistema, cuando alguien lo usa, acompaña como debe." data-en="It's a quiet window and the numbers are small. So it's best not to read these figures as if they were real demand: they aren't yet. What they do tell us is that the system, when someone uses it, accompanies as it should.">Es una ventana silenciosa y los números son pequeños. Por eso no conviene leer estas cifras como si fueran la demanda real: todavía no lo son. Lo que sí nos dicen es que el sistema, cuando alguien lo usa, acompaña como debe.</p>
+      <p class="body" data-es="El verdadero retrato de la demanda llegará cuando decidamos abrir las puertas y promover la pre-inscripción con intención. Ahí empezaremos a ver de dónde llega tu audiencia real, qué temas pesan y qué busca cada familia. Todo está listo para ese momento, cuando tú sientas que es el momento." data-en="The real portrait of demand will come when we decide to open the doors and promote pre-enrollment with intention. That's when we'll start to see where your real audience comes from, which topics matter, and what each family is looking for. Everything is ready for that moment, whenever you feel it's time.">El verdadero retrato de la demanda llegará cuando decidamos abrir las puertas y promover la pre-inscripción con intención. Ahí empezaremos a ver de dónde llega tu audiencia real, qué temas pesan y qué busca cada familia. Todo está listo para ese momento, cuando tú sientas que es el momento.</p>
+    </div>
+  </section>
+</main>
+
+<!-- CLOSE -->
+<section class="close reveal">
+  <div class="close-inner">
+    <p class="k" data-es="En resumen" data-en="In short">En resumen</p>
+    <p class="statement" data-es="Pocas visitas todavía, pero las que llegan &lt;em&gt;leen, se quedan y avanzan&lt;/em&gt;. Los cimientos escuchan bien. Falta abrir las puertas." data-en="Few visits still, but the ones who arrive &lt;em&gt;read, stay, and move forward&lt;/em&gt;. The foundations listen well. What's left is to open the doors.">Pocas visitas todavía, pero las que llegan <em>leen, se quedan y avanzan</em>. Los cimientos escuchan bien. Falta abrir las puertas.</p>
+    <p class="back"><a href="csc-reporte-progreso.html" data-es="← Volver al reporte de progreso" data-en="← Back to the progress report">← Volver al reporte de progreso</a></p>
+  </div>
+</section>
+
+<!-- COLOPHON -->
+<footer class="colophon">
+  <div class="colophon-inner">
+    <span data-es="Criar Sin Culpas · Análisis de tráfico" data-en="Criar Sin Culpas · Traffic analysis">Criar Sin Culpas · Análisis de tráfico</span>
+    <span data-es="Fuente: Plausible Analytics" data-en="Source: Plausible Analytics">Fuente: Plausible Analytics</span>
+    <span data-es="Por &lt;a href=&quot;https://luis-gilberto.com&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;LG Studio&lt;/a&gt; · Junio 2026" data-en="By &lt;a href=&quot;https://luis-gilberto.com&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;LG Studio&lt;/a&gt; · June 2026">Por <a href="https://luis-gilberto.com" target="_blank" rel="noopener noreferrer">LG Studio</a> · Junio 2026</span>
+  </div>
+</footer>
+
+<script>
+  // language engine (starts in Spanish), same pattern as the progress report
+  var KEY = 'lg_parent_lang';
+  var tbtns = document.querySelectorAll('.langtoggle button');
+  function applyLang(l){
+    document.documentElement.lang = l;
+    document.querySelectorAll('[data-es]').forEach(function(el){
+      var v = el.getAttribute('data-' + l);
+      if (v !== null) el.innerHTML = v;
+    });
+    tbtns.forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-lang') === l); });
+    try { localStorage.setItem(KEY, l); } catch(e){}
+  }
+  tbtns.forEach(function(b){ b.addEventListener('click', function(){ applyLang(b.getAttribute('data-lang')); }); });
+  var startLang = 'es';
+  try { startLang = localStorage.getItem(KEY) || 'es'; } catch(e){}
+  applyLang(startLang);
+
+  // reveals
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+</script>
+</body>
+</html>
