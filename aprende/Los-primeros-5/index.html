@@ -1,21 +1,26 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
+<html lang="es" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title data-i18n="title_tag" data-es="Criar Sin Culpas · Aprender" data-en="Criar Sin Culpas · Learn">Criar Sin Culpas · Aprender</title>
-  <meta name="description" data-i18n-meta="description" data-es="Los Primeros 5 Minutos. Una guía de respuesta rápida para bajar la intensidad antes del desborde. Diseñado para momentos de agobio." data-en="The First 5 Minutes. A calm-response guide for lowering intensity before escalation. Designed for overwhelmed moments." content="Los Primeros 5 Minutos. Una guía de respuesta rápida para bajar la intensidad antes del desborde. Diseñado para momentos de agobio.">
+  <title data-i18n="title_tag" data-es="Los Primeros 5 Minutos · Recurso · Criar Sin Culpas" data-en="The First 5 Minutes · Resource · Criar Sin Culpas">Los Primeros 5 Minutos · Recurso · Criar Sin Culpas</title>
+  <meta name="description" data-i18n-meta="description" data-es="Los Primeros 5 Minutos: un recurso breve, en preparación, para bajar la intensidad en los primeros minutos antes del desborde. Déjanos tu correo y te avisamos al publicarlo." data-en="The First 5 Minutes: a short resource, in preparation, to lower the intensity in the first minutes before a meltdown. Leave your email and we'll let you know when it's ready." content="Los Primeros 5 Minutos: un recurso breve, en preparación, para bajar la intensidad en los primeros minutos antes del desborde. Déjanos tu correo y te avisamos al publicarlo.">
   <link rel="canonical" href="https://criarsinculpas.com/aprende/Los-primeros-5/">
+
+  <!-- Open Graph / social share -->
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://criarsinculpas.com/aprende/Los-primeros-5/">
+  <meta property="og:site_name" content="Criar Sin Culpas">
   <meta property="og:title" content="Los Primeros 5 Minutos · Criar Sin Culpas">
-  <meta property="og:description" content="Una guía de respuesta rápida para bajar la intensidad antes del desborde. Diseñado para momentos de agobio.">
+  <meta property="og:description" content="Un recurso breve, en preparación, para bajar la intensidad en los primeros minutos antes del desborde.">
   <meta property="og:image" content="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1780818555/ChatGPT_Image_Jun_7_2026_12_48_33_AM_1_ytg3g4.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Criar Sin Culpas, crianza consciente">
+  <meta property="og:locale" content="es_ES">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Los Primeros 5 Minutos · Criar Sin Culpas">
-  <meta name="twitter:description" content="Una guía de respuesta rápida para bajar la intensidad antes del desborde. Diseñado para momentos de agobio.">
+  <meta name="twitter:description" content="Un recurso breve, en preparación, para bajar la intensidad en los primeros minutos antes del desborde.">
   <meta name="twitter:image" content="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1780818555/ChatGPT_Image_Jun_7_2026_12_48_33_AM_1_ytg3g4.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,277 +43,281 @@
     };
   </script>
   <script defer src="/js/track.js"></script>
+  <script defer src="/js/site-nav.js"></script>
+  <link rel="stylesheet" href="/css/site-footer.css">
+  <link rel="stylesheet" href="/css/site-nav.css">
+
+  <!-- Structured data: BreadcrumbList only. This is an upcoming resource, not a published Article. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://criarsinculpas.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Aprende", "item": "https://criarsinculpas.com/aprende/" },
+      { "@type": "ListItem", "position": 3, "name": "Los Primeros 5 Minutos", "item": "https://criarsinculpas.com/aprende/Los-primeros-5/" }
+    ]
+  }
+  </script>
 
   <style>
     :root {
-      --void:        #0e0b12;
-      --void-mid:    #13101a;
-      --void-lift:   #1a1624;
-      --text:        #F2EEE9;
-      --text-dim:    rgba(242,238,233,.62);
-      --text-ghost:  rgba(242,238,233,.34);
-      --gold:        #C9A96E;
-
+      --void:        #FAF6F2;
+      --void-lift:   #FFFFFF;
+      --text:        #1F2E46;
+      --text-dim:    rgba(31,46,70,.66);
+      --text-ghost:  rgba(31,46,70,.42);
+      --coral:       #F4A88A;
+      --coral-dim:   rgba(244,168,138,.20);
+      --coral-ink:   #D96B47;
+      --teal:        #8599AD;
+      --teal-dim:    rgba(133,153,173,.18);
+      --navy:        #1F2E46;
       --serif:  'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
       --sans:   'DM Sans', system-ui, sans-serif;
-
       --ease-silk:   cubic-bezier(0.16, 1, 0.3, 1);
       --pill: 999px;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: var(--sans);
-      background: var(--void);
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
-      min-height: 100dvh;
-      overflow-x: hidden;
+      font-family: var(--sans); background: var(--void); color: var(--text);
+      -webkit-font-smoothing: antialiased; overflow-x: hidden;
+      min-height: 100dvh; display: flex; flex-direction: column;
     }
-
     a { color: inherit; text-decoration: none; }
-    a:hover { color: var(--gold); }
 
     body::before {
-      content: '';
-      position: fixed; inset: 0;
+      content: ''; position: fixed; top: -30vh; right: -20vw; width: 80vw; height: 80vh;
+      background: radial-gradient(ellipse at center, rgba(133,153,173,.06) 0%, transparent 68%);
       pointer-events: none; z-index: 0;
-      background:
-        radial-gradient(ellipse at 70% 10%, rgba(201,169,110,.06) 0%, transparent 55%),
-        radial-gradient(ellipse at 20% 90%, rgba(201,169,110,.035) 0%, transparent 60%);
     }
-
+    body::after {
+      content: ''; position: fixed; bottom: -20vh; left: -10vw; width: 60vw; height: 60vh;
+      background: radial-gradient(ellipse at center, rgba(244,168,138,.06) 0%, transparent 68%);
+      pointer-events: none; z-index: 0;
+    }
     .grain {
-      position: fixed; inset: 0; z-index: 1;
-      pointer-events: none; opacity: .022;
+      position: fixed; inset: 0; z-index: 200; pointer-events: none; opacity: .028;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 192px;
     }
 
-    main {
-      position: relative; z-index: 2;
-      min-height: 100dvh;
-      display: grid;
-      place-items: center;
-      padding: max(88px, 12vh) 22px 56px;
+    .page { flex: 1; position: relative; z-index: 2; padding-top: clamp(1.5rem, 4vw, 2.5rem); }
+    .article-shell { max-width: 720px; margin: 0 auto; width: 100%; padding: 0 24px 24px; }
+
+    .crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: .72rem; color: var(--text-ghost); margin: 24px 0 28px; }
+    .crumbs a { color: var(--text-dim); }
+    .crumbs a:hover { color: var(--coral-ink); }
+    .crumbs .sep { opacity: .5; }
+    .crumbs .current { color: var(--text); }
+
+    .art-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: .6rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--coral-ink); margin-bottom: 16px; }
+    .art-eyebrow .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--coral); }
+    h1.art-title { font-family: var(--serif); font-weight: 400; line-height: 1.08; font-size: clamp(2.1rem, 5vw, 3.2rem); letter-spacing: -.01em; color: var(--text); }
+    .art-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 16px; margin-top: 18px; padding-bottom: 26px; border-bottom: 1px solid rgba(31,46,70,.1); font-size: .78rem; color: var(--text-ghost); }
+    .art-meta .m { display: inline-flex; align-items: center; gap: 6px; }
+    .art-meta a { color: var(--coral-ink); }
+
+    .prose { padding-top: 30px; }
+    .prose p { font-size: 1.04rem; line-height: 1.78; color: var(--text-dim); margin: 0 0 20px; }
+    .prose .lead { font-size: 1.16rem; color: var(--text); line-height: 1.7; }
+    .prose h2 { font-family: var(--serif); font-weight: 500; letter-spacing: -.01em; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.2; color: var(--text); margin: 40px 0 14px; }
+    .prose ul { margin: 0 0 22px; padding-left: 0; list-style: none; }
+    .prose ul li { position: relative; padding-left: 26px; margin-bottom: 12px; font-size: 1.02rem; line-height: 1.7; color: var(--text-dim); }
+    .prose ul li::before { content: ''; position: absolute; left: 4px; top: .62em; width: 7px; height: 7px; border-radius: 50%; background: var(--coral); }
+
+    /* Resource / notify card */
+    .resource-card {
+      margin: 32px 0; padding: 32px; border-radius: 18px;
+      background: var(--void-lift); border: 1px solid rgba(31,46,70,.1);
+      box-shadow: 0 16px 40px rgba(31,46,70,.06);
     }
-
-    .hero {
-      width: 100%;
-      max-width: 980px;
-      padding: 56px 52px;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,.07);
-      background: rgba(255,255,255,.03);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      position: relative;
-      overflow: hidden;
+    .resource-card .rc-status {
+      display: inline-flex; align-items: center; gap: 7px; margin-bottom: 14px;
+      padding: 5px 12px; border-radius: var(--pill);
+      background: var(--teal-dim); border: 1px solid rgba(133,153,173,.3);
+      font-size: .58rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--teal);
     }
+    .resource-card .rc-status .dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+    .resource-card h2 { font-family: var(--serif); font-weight: 500; font-size: 1.5rem; color: var(--text); margin-bottom: 8px; }
+    .resource-card p { color: var(--text-dim); font-size: .96rem; line-height: 1.6; margin-bottom: 18px; }
 
-    .hero::before {
-      content: '';
-      position: absolute; inset: -30%;
-      background: radial-gradient(circle at 40% 30%, rgba(201,169,110,.10), transparent 55%);
-      pointer-events: none;
-      opacity: .7;
-    }
-
-    .hero > * { position: relative; z-index: 1; }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: .62rem;
-      font-weight: 700;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--text-ghost);
-      margin-bottom: 18px;
-    }
-
-    .eyebrow::before {
-      content: '';
-      width: 28px;
-      height: 1px;
-      background: rgba(201,169,110,.7);
-    }
-
-    h1 {
-      font-family: var(--serif);
-      font-weight: 400;
-      font-size: clamp(2.4rem, 4.8vw, 4.1rem);
-      letter-spacing: .01em;
-      line-height: 1.05;
-      margin-bottom: 14px;
-    }
-
-    .subcopy {
-      font-size: 1.02rem;
-      color: var(--text-dim);
-      line-height: 1.6;
-      margin-bottom: 10px;
-      max-width: 62ch;
-    }
-
-    .paragraph {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 1.05rem;
-      color: rgba(242,238,233,.70);
-      line-height: 1.65;
-      max-width: 62ch;
-      margin-bottom: 26px;
-    }
-
-    .waitlist-row {
-      display: flex;
-      gap: 10px;
-      max-width: 520px;
-      width: 100%;
-      margin-top: 6px;
-    }
-
-    .waitlist-row input {
-      flex: 1;
-      min-width: 0;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: 12px;
-      padding: 14px 18px;
-      color: var(--text);
-      font-family: var(--sans);
-      font-size: .92rem;
-      outline: none;
+    .notify-row { display: flex; gap: 10px; max-width: 520px; }
+    .notify-row input {
+      flex: 1; min-width: 0; background: var(--void); border: 1px solid rgba(31,46,70,.16);
+      border-radius: 12px; padding: 13px 16px; color: var(--text); font-family: var(--sans); font-size: .92rem; outline: none;
       transition: border-color .3s var(--ease-silk);
     }
-
-    .waitlist-row input:focus { border-color: rgba(201,169,110,.55); }
-    .waitlist-row input::placeholder { color: var(--text-ghost); }
-
-    .waitlist-row button {
-      border: none;
-      border-radius: 12px;
-      padding: 14px 22px;
-      font-family: var(--sans);
-      font-size: .82rem;
-      font-weight: 700;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      cursor: pointer;
-      white-space: nowrap;
-      background: rgba(201,169,110,.92);
-      color: #0e0b12;
-      box-shadow: 0 10px 34px rgba(0,0,0,.28);
-      transition: transform .35s var(--ease-silk), box-shadow .35s var(--ease-silk), background .35s var(--ease-silk);
-      flex-shrink: 0;
+    .notify-row input:focus { border-color: var(--coral); }
+    .notify-row input::placeholder { color: var(--text-ghost); }
+    .notify-row button {
+      flex-shrink: 0; border: none; border-radius: 12px; padding: 13px 22px;
+      font-family: var(--sans); font-size: .8rem; font-weight: 700; letter-spacing: .04em;
+      cursor: pointer; white-space: nowrap; background: var(--navy); color: #FAF6F2;
+      box-shadow: 0 8px 22px -12px rgba(31,46,70,.6);
+      transition: transform .3s var(--ease-silk), background .3s var(--ease-silk);
     }
+    .notify-row button:hover { transform: translateY(-1px); background: #273846; }
+    #notify-success { display: none; margin-top: 4px; font-family: var(--serif); font-style: italic; color: var(--coral-ink); font-size: 1.1rem; }
 
-    .waitlist-row button:hover {
-      transform: translateY(-1px);
-      background: rgba(201,169,110,1);
-      box-shadow: 0 14px 42px rgba(0,0,0,.38);
+    .related { margin: 44px 0 8px; }
+    .related .rel-label { font-size: .62rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--text-ghost); margin-bottom: 16px; }
+    .related .rel-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .rel-card {
+      display: flex; flex-direction: column; gap: 8px; padding: 22px; border-radius: 16px;
+      background: var(--void-lift); border: 1px solid rgba(31,46,70,.08); box-shadow: 0 2px 6px rgba(31,46,70,.04);
+      transition: transform .4s var(--ease-silk), box-shadow .4s var(--ease-silk), border-color .4s var(--ease-silk);
     }
+    .rel-card:hover { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(31,46,70,.1); border-color: rgba(31,46,70,.16); }
+    .rel-card .rc-cat { font-size: .58rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-ghost); }
+    .rel-card .rc-title { font-family: var(--serif); font-size: 1.18rem; font-weight: 500; line-height: 1.2; color: var(--text); }
+    .rel-card .rc-cta { margin-top: auto; font-size: .68rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--coral-ink); }
 
-    #waitlist-success {
-      display: none;
-      text-align: left;
-      font-family: var(--serif);
-      font-style: italic;
-      color: rgba(201,169,110,.95);
-      font-size: 1.2rem;
-      line-height: 1.6;
-      max-width: 62ch;
-      margin-top: 6px;
-    }
+    .back-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 36px; font-size: .8rem; font-weight: 600; color: var(--text-dim); }
+    .back-link:hover { color: var(--coral-ink); }
 
-    @media (max-width: 740px) {
-      .hero { padding: 42px 26px; }
-      .waitlist-row { flex-direction: column; max-width: none; }
-      .waitlist-row button { width: 100%; padding: 16px 22px; }
+    @media (max-width: 720px) {
+      .related .rel-grid { grid-template-columns: 1fr; }
+      .resource-card { padding: 26px 22px; }
+      .notify-row { flex-direction: column; max-width: none; }
+      .notify-row button { width: 100%; }
     }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
 </head>
 <body data-protocol="general">
+
   <div class="grain" aria-hidden="true"></div>
 
-  <main>
-    <section class="hero" aria-label="Aprender">
-      <div class="eyebrow" data-i18n="hero_eyebrow" data-es="CRIAR SIN CULPAS · APRENDER" data-en="CRIAR SIN CULPAS · LEARN">CRIAR SIN CULPAS · APRENDER</div>
-      <h1 data-i18n="hero_headline" data-es="Los Primeros 5 Minutos." data-en="The First 5 Minutes.">Los Primeros 5 Minutos.</h1>
-      <p class="subcopy" data-i18n="hero_subcopy" data-es="Una guía de respuesta rápida para bajar la intensidad antes del desborde. Diseñado para momentos de agobio." data-en="A calm-response guide for lowering intensity before escalation. Designed for overwhelmed moments.">Una guía de respuesta rápida para bajar la intensidad antes del desborde. Diseñado para momentos de agobio.</p>
+  <div id="site-nav" data-active="aprende"></div>
 
-      <form class="waitlist-row" id="waitlist-form">
-        <input type="email" data-i18n-placeholder="waitlist_placeholder" placeholder="Tu correo electrónico" required aria-label="Tu correo electrónico">
-        <button type="submit" data-i18n="hero_cta" data-es="Avísame cuando esté disponible" data-en="Notify me when available">Avísame cuando esté disponible</button>
-      </form>
+  <main class="page">
+    <article class="article-shell">
 
-      <div id="waitlist-success" data-i18n="waitlist_success" data-es="Gracias. Te avisaremos cuando esté disponible." data-en="Thank you. We’ll notify you when it’s available.">Gracias. Te avisaremos cuando esté disponible.</div>
-    </section>
+      <nav class="crumbs" aria-label="Ruta de navegación">
+        <a href="/" data-i18n="cr_home" data-es="Inicio" data-en="Home">Inicio</a>
+        <span class="sep" aria-hidden="true">/</span>
+        <a href="/aprende/" data-i18n="cr_aprende" data-es="Aprende" data-en="Learn">Aprende</a>
+        <span class="sep" aria-hidden="true">/</span>
+        <span class="current" data-i18n="cr_current" data-es="Los Primeros 5 Minutos" data-en="The First 5 Minutes">Los Primeros 5 Minutos</span>
+      </nav>
+
+      <header>
+        <div class="art-eyebrow"><span class="dot"></span><span data-i18n="eyebrow" data-es="Aprende · Recurso" data-en="Learn · Resource">Aprende · Recurso</span></div>
+        <h1 class="art-title" data-i18n="h1" data-es="Los Primeros 5 Minutos" data-en="The First 5 Minutes">Los Primeros 5 Minutos</h1>
+        <div class="art-meta">
+          <span class="m" data-i18n="meta_kind" data-es="Recurso en preparación" data-en="Resource in preparation">Recurso en preparación</span>
+          <span class="m"><span data-i18n="meta_rel" data-es="Guía relacionada:" data-en="Related guide:">Guía relacionada:</span> <a href="/apoyo/emotional-escalation" data-i18n="meta_rel_link" data-es="Desbordes" data-en="Meltdowns">Desbordes</a></span>
+        </div>
+      </header>
+
+      <div class="prose">
+        <p class="lead" data-i18n="lead" data-es="Los Primeros 5 Minutos será una guía breve de respuesta rápida: qué hacer en los primeros minutos de un desborde, antes de que la intensidad se vuelva tormenta." data-en="The First 5 Minutes will be a short, rapid-response guide: what to do in the first minutes of a meltdown, before the intensity becomes a storm.">Los Primeros 5 Minutos será una guía breve de respuesta rápida: qué hacer en los primeros minutos de un desborde, antes de que la intensidad se vuelva tormenta.</p>
+
+        <p data-i18n="intro2" data-es="La estamos preparando como un recurso descargable para tener a la mano en el momento difícil. Mientras tanto, déjanos tu correo y te avisamos en cuanto esté disponible." data-en="We're preparing it as a downloadable resource to keep handy in the hard moment. In the meantime, leave us your email and we'll let you know as soon as it's ready.">La estamos preparando como un recurso descargable para tener a la mano en el momento difícil. Mientras tanto, déjanos tu correo y te avisamos en cuanto esté disponible.</p>
+
+        <h2 data-i18n="will_title" data-es="Qué incluirá" data-en="What it will include">Qué incluirá</h2>
+        <ul>
+          <li data-i18n="will_1" data-es="Una secuencia simple para los primeros cinco minutos, paso a paso." data-en="A simple step-by-step sequence for the first five minutes.">Una secuencia simple para los primeros cinco minutos, paso a paso.</li>
+          <li data-i18n="will_2" data-es="Frases cortas para decir en voz alta cuando no sabes qué decir." data-en="Short phrases to say out loud when you don't know what to say.">Frases cortas para decir en voz alta cuando no sabes qué decir.</li>
+          <li data-i18n="will_3" data-es="Una versión imprimible para pegar en la nevera o guardar en el teléfono." data-en="A printable version to stick on the fridge or save on your phone.">Una versión imprimible para pegar en la nevera o guardar en el teléfono.</li>
+        </ul>
+      </div>
+
+      <!-- Notify / lead magnet -->
+      <aside class="resource-card">
+        <span class="rc-status"><span class="dot"></span><span data-i18n="status" data-es="En preparación" data-en="In preparation">En preparación</span></span>
+        <h2 data-i18n="rc_title" data-es="Te avisamos cuando esté listo" data-en="We'll let you know when it's ready">Te avisamos cuando esté listo</h2>
+        <p data-i18n="rc_sub" data-es="Sin spam. Solo un correo cuando publiquemos Los Primeros 5 Minutos." data-en="No spam. Just one email when we publish The First 5 Minutes.">Sin spam. Solo un correo cuando publiquemos Los Primeros 5 Minutos.</p>
+        <form class="notify-row" id="notify-form">
+          <input type="email" data-i18n-placeholder="notify_placeholder" placeholder="Tu correo electrónico" required aria-label="Tu correo electrónico">
+          <button type="submit" data-i18n="notify_btn" data-es="Avísame" data-en="Notify me">Avísame</button>
+        </form>
+        <div id="notify-success" data-i18n="notify_success" data-es="Gracias. Te avisaremos en cuanto esté disponible." data-en="Thank you. We'll notify you as soon as it's available.">Gracias. Te avisaremos en cuanto esté disponible.</div>
+      </aside>
+
+      <!-- Related -->
+      <section class="related" aria-labelledby="rel-title">
+        <p class="rel-label" id="rel-title" data-i18n="rel_label" data-es="Mientras tanto" data-en="In the meantime">Mientras tanto</p>
+        <div class="rel-grid">
+          <a class="rel-card" href="/aprende/que-hacer-en-un-berrinche/">
+            <span class="rc-cat" data-i18n="rc1_cat" data-es="Berrinches y desbordes" data-en="Tantrums and meltdowns">Berrinches y desbordes</span>
+            <span class="rc-title" data-i18n="rc1_title" data-es="Qué hacer cuando tu hijo hace un berrinche" data-en="What to do when your child has a tantrum">Qué hacer cuando tu hijo hace un berrinche</span>
+            <span class="rc-cta" data-i18n="rc1_cta" data-es="Leer el artículo →" data-en="Read the article →">Leer el artículo →</span>
+          </a>
+          <a class="rel-card" href="/apoyo/emotional-escalation">
+            <span class="rc-cat" data-i18n="rc2_cat" data-es="Guía rápida" data-en="Quick guide">Guía rápida</span>
+            <span class="rc-title" data-i18n="rc2_title" data-es="Desbordes: calma en crisis" data-en="Meltdowns: calm in crisis">Desbordes: calma en crisis</span>
+            <span class="rc-cta" data-i18n="rc2_cta" data-es="Abrir la guía →" data-en="Open the guide →">Abrir la guía →</span>
+          </a>
+        </div>
+        <a href="/aprende/" class="back-link" data-i18n="back_aprende" data-es="← Volver a Aprende" data-en="← Back to Learn">← Volver a Aprende</a>
+      </section>
+
+    </article>
   </main>
+
+  <!-- ─────── FOOTER ─────── -->
+  <div id="site-footer"></div>
+  <script defer src="/js/site-footer.js"></script>
 
   <script>
   (function () {
     const STORAGE_KEY = 'lg_parent_lang';
     let lang = localStorage.getItem(STORAGE_KEY) || 'es';
 
-    window.addEventListener('pageshow', (e) => { if (e.persisted) document.body.style.opacity = '1'; });
-
     function applyLang(l) {
       lang = l;
-      localStorage.setItem(STORAGE_KEY, l);
+      try { localStorage.setItem(STORAGE_KEY, l); } catch (e) {}
       document.documentElement.lang = l;
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const txt = el.getAttribute('data-' + l);
-        if (txt) el.innerHTML = txt;
+        if (txt !== null) el.innerHTML = txt;
       });
       document.querySelectorAll('[data-i18n-meta]').forEach(el => {
         const txt = el.getAttribute('data-' + l);
-        if (txt) el.setAttribute('content', txt);
+        if (txt !== null) el.setAttribute('content', txt);
       });
       document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const map = { notify_placeholder: { es: 'Tu correo electrónico', en: 'Your email address' } };
         const key = el.getAttribute('data-i18n-placeholder');
-        const map = {
-          waitlist_placeholder: { es: 'Tu correo electrónico', en: 'Your email address' }
-        };
-        if (map[key]) {
-          el.placeholder = map[key][l];
-          el.setAttribute('aria-label', map[key][l]);
-        }
+        if (map[key]) { el.placeholder = map[key][l]; el.setAttribute('aria-label', map[key][l]); }
+      });
+      document.querySelectorAll('.lang button').forEach(btn => {
+        btn.setAttribute('aria-pressed', btn.getAttribute('data-lang') === l ? 'true' : 'false');
       });
     }
 
+    document.addEventListener('click', e => {
+      const btn = e.target.closest('.lang button');
+      if (btn) {
+        applyLang(btn.getAttribute('data-lang'));
+        if (typeof window.track === 'function') window.track('language_changed', { to_lang: lang, location: 'aprende_los-primeros-5' });
+      }
+    });
+
     applyLang(lang);
 
-    const waitlistForm = document.getElementById('waitlist-form');
-    const waitlistSuccess = document.getElementById('waitlist-success');
-    if (!waitlistForm || !waitlistSuccess) return;
+    const form = document.getElementById('notify-form');
+    const success = document.getElementById('notify-success');
+    if (form && success) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (form.dataset.submitted === '1') return;
+        form.dataset.submitted = '1';
+        form.style.transition = 'opacity .4s ease, transform .4s ease';
+        form.style.opacity = '0'; form.style.transform = 'translateY(8px)';
+        setTimeout(() => {
+          form.style.display = 'none';
+          success.style.display = 'block';
+        }, 420);
+        if (window.track) window.track('waitlist_joined', { location: 'aprende_los-primeros-5', language: lang });
+      });
+    }
 
-    waitlistForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (waitlistForm.dataset.submitted === '1') return;
-      waitlistForm.dataset.submitted = '1';
-
-      waitlistForm.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-      waitlistForm.style.opacity = '0';
-      waitlistForm.style.transform = 'translateY(8px)';
-
-      setTimeout(() => {
-        waitlistForm.style.display = 'none';
-        waitlistSuccess.style.display = 'block';
-        waitlistSuccess.style.opacity = '0';
-        waitlistSuccess.style.transform = 'translateY(8px)';
-        waitlistSuccess.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-        requestAnimationFrame(() => {
-          waitlistSuccess.style.opacity = '1';
-          waitlistSuccess.style.transform = 'translateY(0)';
-        });
-      }, 420);
-
-      if (window.track) window.track('waitlist_joined', { location: 'aprende_hero', language: lang });
-    });
-  })();
+    if (typeof window.track === 'function') window.track('Aprende: Resource Load', { resource: 'los-primeros-5', language: lang });
+  }());
   </script>
 </body>
 </html>

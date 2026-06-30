@@ -7,13 +7,13 @@
   var NAV_LINKS = [
     { id: 'inicio', href: '/', i18n: 'nav_inicio', i18nM: 'nav_inicio_m', es: 'Inicio', en: 'Home' },
     { id: 'guias', href: '/apoyo/', i18n: 'nav_guias', i18nM: 'nav_guias_m', es: 'Guías', en: 'Guides' },
+    { id: 'aprende', href: '/aprende/', i18n: 'nav_aprende', i18nM: 'nav_aprende_m', es: 'Aprende', en: 'Learn' },
     { id: 'metodo', href: '/metodo/', i18n: 'nav_metodo', i18nM: 'nav_metodo_m', es: 'El Método', en: 'The Method' },
     { id: 'inscripcion', href: '/inscripcion/', i18n: 'nav_inscripcion', i18nM: 'nav_inscripcion_m', es: 'Inscripciones', en: 'Early Access' },
     { id: 'sobre-nari', href: '/sobre-nari/', i18n: 'nav_nari', i18nM: 'nav_nari_m', es: 'Sobre Nari', en: 'About Nari' }
   ];
 
   var SOON_LINKS = [
-    { i18n: 'nav_aprende', i18nM: 'nav_aprende_m', es: 'Aprende', en: 'Learn' },
     { i18n: 'nav_comunidad', i18nM: 'nav_comunidad_m', es: 'Comunidad', en: 'Community' }
   ];
 

@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="title_tag" data-es="Aprende · Biblioteca de crianza · Criar Sin Culpas" data-en="Learn · Parenting library · Criar Sin Culpas">Aprende · Biblioteca de crianza · Criar Sin Culpas</title>
+  <meta name="description" content="La biblioteca de crianza de Criar Sin Culpas: lecciones sencillas sobre berrinches, pantallas, sueño, hermanos, límites y cansancio parental, para acompañar con calma y sin culpa.">
+  <link rel="canonical" href="https://criarsinculpas.com/aprende/">
+
+  <!-- Open Graph / social share -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://criarsinculpas.com/aprende/">
+  <meta property="og:site_name" content="Criar Sin Culpas">
+  <meta property="og:title" content="Aprende · Biblioteca de crianza de Criar Sin Culpas">
+  <meta property="og:description" content="Lecciones sencillas sobre berrinches, pantallas, sueño, hermanos, límites y cansancio parental, para acompañar con calma y sin culpa.">
+  <meta property="og:image" content="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1780818555/ChatGPT_Image_Jun_7_2026_12_48_33_AM_1_ytg3g4.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Criar Sin Culpas, crianza consciente">
+  <meta property="og:locale" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Aprende · Biblioteca de crianza de Criar Sin Culpas">
+  <meta name="twitter:description" content="Lecciones sencillas sobre berrinches, pantallas, sueño, hermanos, límites y cansancio parental, para acompañar con calma y sin culpa.">
+  <meta name="twitter:image" content="https://res.cloudinary.com/dogtoagya/image/upload/q_auto/f_auto/v1780818555/ChatGPT_Image_Jun_7_2026_12_48_33_AM_1_ytg3g4.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <script>
+    if (window.location.hostname === 'criarsinculpas.com') {
+      const script = document.createElement('script');
+      script.defer = true;
+      script.setAttribute('data-domain', 'criarsinculpas.com');
+      script.src = 'https://plausible.io/js/script.js';
+      document.head.appendChild(script);
+    }
+
+    window.plausible = window.plausible || function() {
+      if (window.location.hostname !== 'criarsinculpas.com') {
+        console.log('Plausible [Local]:', arguments[0], arguments[1]);
+      }
+    };
+  </script>
+  <script defer src="/js/track.js"></script>
+  <script defer src="/js/site-nav.js"></script>
+  <link rel="stylesheet" href="/css/site-footer.css">
+  <link rel="stylesheet" href="/css/site-nav.css">
+
+  <!-- Structured data: learning hub (only the published article is listed) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://criarsinculpas.com/aprende/#page",
+        "url": "https://criarsinculpas.com/aprende/",
+        "name": "Aprende · Biblioteca de crianza de Criar Sin Culpas",
+        "description": "Lecciones sencillas sobre berrinches, pantallas, sueño, hermanos, límites y cansancio parental, para acompañar con calma y sin culpa.",
+        "inLanguage": "es",
+        "isPartOf": { "@id": "https://criarsinculpas.com/#website" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://criarsinculpas.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Aprende", "item": "https://criarsinculpas.com/aprende/" }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "name": "Artículos publicados",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "url": "https://criarsinculpas.com/aprende/que-hacer-en-un-berrinche/",
+            "name": "Qué hacer cuando tu hijo hace un berrinche"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --void:        #FAF6F2;
+      --void-mid:    #FCE7DD;
+      --void-lift:   #FFFFFF;
+      --text:        #1F2E46;
+      --text-dim:    rgba(31,46,70,.66);
+      --text-ghost:  rgba(31,46,70,.42);
+
+      --coral:       #F4A88A;
+      --coral-dim:   rgba(244,168,138,.20);
+      --coral-ink:   #D96B47;
+
+      --teal:        #8599AD;
+      --teal-dim:    rgba(133,153,173,.18);
+
+      --navy:        #1F2E46;
+      --cream:       #FAF6F2;
+
+      --serif:  'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
+      --sans:   'DM Sans', system-ui, sans-serif;
+
+      --ease-silk:   cubic-bezier(0.16, 1, 0.3, 1);
+      --pill: 999px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box; margin: 0; padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--void);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100dvh;
+      display: flex; flex-direction: column;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* Ambient glows */
+    body::before {
+      content: ''; position: fixed; top: -30vh; right: -20vw;
+      width: 80vw; height: 80vh;
+      background: radial-gradient(ellipse at center, rgba(133,153,173,.06) 0%, transparent 68%);
+      pointer-events: none; z-index: 0;
+    }
+    body::after {
+      content: ''; position: fixed; bottom: -20vh; left: -10vw;
+      width: 60vw; height: 60vh;
+      background: radial-gradient(ellipse at center, rgba(244,168,138,.06) 0%, transparent 68%);
+      pointer-events: none; z-index: 0;
+    }
+
+    .grain {
+      position: fixed; inset: 0; z-index: 200;
+      pointer-events: none; opacity: .028;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 192px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .r1 { animation: fadeUp .9s var(--ease-silk) .05s both; }
+    .r2 { animation: fadeUp .9s var(--ease-silk) .16s both; }
+    .r3 { animation: fadeUp .9s var(--ease-silk) .28s both; }
+
+    .scroll-reveal {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity .8s var(--ease-silk), transform .8s var(--ease-silk);
+    }
+    .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
+    .scroll-reveal.d1 { transition-delay: .06s; }
+    .scroll-reveal.d2 { transition-delay: .12s; }
+    .scroll-reveal.d3 { transition-delay: .18s; }
+    .scroll-reveal.d4 { transition-delay: .24s; }
+
+    .page {
+      flex: 1; position: relative; z-index: 2;
+      display: flex; flex-direction: column;
+      padding-top: clamp(2rem, 5vw, 3rem);
+    }
+
+    /* HEADER */
+    .page-header {
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      padding: 52px 56px 28px;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; text-align: center;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .6rem; font-weight: 700; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--text-ghost);
+      margin-bottom: 16px;
+    }
+    .eyebrow::before {
+      content: ''; display: block; width: 20px; height: 1px; background: currentColor;
+    }
+    .page-title {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      font-weight: 300; line-height: 1.05;
+      letter-spacing: -.01em; color: var(--text);
+      max-width: 20ch;
+    }
+    .page-title em { font-style: italic; font-weight: 400; color: var(--coral-ink); }
+    .page-sub {
+      margin-top: 16px;
+      font-size: clamp(.9rem, 1.1vw, 1rem);
+      font-weight: 400; color: rgba(31,46,70,.74);
+      line-height: 1.7; max-width: 52ch;
+    }
+
+    /* CATEGORY PILLS */
+    .cats-wrap {
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      padding: 8px 56px 8px;
+    }
+    .cats-label {
+      font-size: .62rem; font-weight: 700; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--text-ghost);
+      text-align: center; margin-bottom: 16px;
+    }
+    .cats-row {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+    }
+    .cat-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 16px; border-radius: var(--pill);
+      border: 1px solid rgba(31,46,70,.1);
+      background: var(--void-lift);
+      font-size: .76rem; font-weight: 500; color: var(--text-dim);
+      box-shadow: 0 2px 6px rgba(31,46,70,.04);
+    }
+    .cat-pill .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(31,46,70,.22); flex: none;
+    }
+    .cat-pill.has-content { color: var(--coral-ink); border-color: rgba(244,168,138,.4); }
+    .cat-pill.has-content .dot { background: var(--coral); }
+
+    /* ARTICLES */
+    .lib-wrap {
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      padding: 40px 56px 56px;
+    }
+    .lib-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;
+    }
+
+    .article-card {
+      display: flex; flex-direction: column;
+      padding: 30px 30px 26px;
+      border-radius: 20px;
+      border: 1px solid rgba(31,46,70,.08);
+      background: var(--void-lift);
+      position: relative; overflow: hidden;
+      box-shadow: 0 2px 6px rgba(31,46,70,.05), 0 16px 38px rgba(31,46,70,.03);
+      transition: transform .45s var(--ease-silk), box-shadow .45s var(--ease-silk), border-color .45s var(--ease-silk);
+    }
+    a.article-card { cursor: pointer; }
+    a.article-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 14px rgba(31,46,70,.08), 0 30px 64px rgba(31,46,70,.12);
+      border-color: rgba(31,46,70,.16);
+    }
+    .article-card[data-status="coming-soon"] { background: rgba(255,255,255,.55); border-style: dashed; }
+
+    .ac-top {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; margin-bottom: 18px;
+    }
+    .ac-cat {
+      font-size: .6rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--text-ghost);
+    }
+    .ac-status {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px; border-radius: var(--pill);
+      font-size: .56rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    }
+    .ac-status.published { color: var(--coral-ink); background: var(--coral-dim); border: 1px solid rgba(244,168,138,.3); }
+    .ac-status.soon { color: var(--teal); background: var(--teal-dim); border: 1px solid rgba(133,153,173,.3); }
+    .ac-status.resource { color: var(--teal); background: var(--teal-dim); border: 1px solid rgba(133,153,173,.3); }
+    .ac-status .dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex: none; }
+
+    .ac-title {
+      font-family: var(--serif);
+      font-size: clamp(1.35rem, 2vw, 1.7rem);
+      font-weight: 500; line-height: 1.16; letter-spacing: -.01em;
+      color: var(--text); margin-bottom: 10px;
+    }
+    .ac-desc {
+      font-size: .85rem; color: var(--text-dim); line-height: 1.65;
+      flex: 1; margin-bottom: 20px;
+    }
+    .ac-meta {
+      display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px;
+      padding-top: 16px; border-top: 1px solid rgba(31,46,70,.07);
+      font-size: .72rem; color: var(--text-ghost);
+    }
+    .ac-meta .ac-time { display: inline-flex; align-items: center; gap: 6px; }
+    .ac-meta .ac-protocol { color: var(--text-dim); }
+    .ac-meta .ac-protocol a { color: var(--coral-ink); border-bottom: 1px solid rgba(244,168,138,.4); }
+    .ac-cta {
+      margin-left: auto; display: inline-flex; align-items: center; gap: 8px;
+      font-size: .7rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--text-ghost); transition: color .3s, gap .35s var(--ease-silk);
+    }
+    a.article-card:hover .ac-cta { color: var(--coral-ink); gap: 13px; }
+
+    /* SOFT CTA / BRIDGE */
+    .soft-cta {
+      max-width: 1100px; margin: 0 auto 72px; width: 100%;
+      padding: 0 56px;
+    }
+    .soft-cta-card {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 32px; flex-wrap: wrap;
+      padding: 36px 44px; border-radius: 20px;
+      background: var(--navy); color: var(--void);
+      position: relative; overflow: hidden;
+      box-shadow: 0 30px 80px rgba(31,46,70,.22);
+    }
+    .soft-cta-card::before {
+      content: ''; position: absolute; top: 50%; right: -5%;
+      transform: translateY(-50%); width: 60%; height: 200%;
+      background: radial-gradient(ellipse at right, rgba(244,168,138,.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .soft-cta-text { position: relative; z-index: 1; max-width: 52ch; }
+    .soft-cta-title {
+      font-family: var(--serif); font-weight: 300;
+      font-size: clamp(1.4rem, 2.2vw, 1.9rem); line-height: 1.2; margin-bottom: 8px;
+    }
+    .soft-cta-title em { font-style: italic; color: var(--coral); }
+    .soft-cta-sub { font-size: .9rem; color: rgba(250,246,242,.72); line-height: 1.6; }
+    .soft-cta-actions { position: relative; z-index: 1; display: flex; gap: 12px; flex-wrap: wrap; }
+    .soft-cta-btn {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 13px 24px; border-radius: var(--pill);
+      font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+      border: 1px solid rgba(250,246,242,.35); color: var(--void);
+      transition: all .35s var(--ease-silk);
+    }
+    .soft-cta-btn:hover { background: rgba(250,246,242,.08); border-color: rgba(250,246,242,.6); gap: 14px; }
+    .soft-cta-btn.primary {
+      background: var(--coral); color: var(--navy); border-color: var(--coral);
+      box-shadow: 0 4px 18px rgba(244,168,138,.2);
+    }
+    .soft-cta-btn.primary:hover { transform: translateY(-1px); box-shadow: 0 8px 28px rgba(244,168,138,.35); background: var(--coral); }
+
+    /* MOBILE */
+    @media (max-width: 1000px) {
+      .page-header { padding: 40px 24px 24px; }
+      .cats-wrap { padding: 8px 24px; }
+      .lib-wrap { padding: 32px 24px 48px; }
+      .lib-grid { grid-template-columns: 1fr; gap: 14px; }
+      .soft-cta { padding: 0 24px; }
+      .soft-cta-card { padding: 28px 24px; flex-direction: column; align-items: flex-start; gap: 22px; }
+      .soft-cta-actions { width: 100%; }
+      .soft-cta-btn { flex: 1; justify-content: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .r1, .r2, .r3 { animation: none; }
+      .scroll-reveal { transition: none; opacity: 1; transform: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body data-protocol="general">
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <div id="site-nav" data-active="aprende"></div>
+
+  <main class="page">
+
+    <!-- Header -->
+    <header class="page-header">
+      <div class="eyebrow r1" data-i18n="ap_eyebrow" data-es="Aprende" data-en="Learn">Aprende</div>
+      <h1 class="page-title r2" data-i18n="ap_h1"
+          data-es="La biblioteca de crianza para los días <em>de verdad.</em>"
+          data-en="The parenting library for the days <em>that are real.</em>">La biblioteca de crianza para los días <em>de verdad.</em></h1>
+      <p class="page-sub r3" data-i18n="ap_sub"
+         data-es="Lecciones sencillas que te dan claridad en los momentos de caos. Para entender qué pasa, qué decir y cómo acompañar, con calma y sin culpa."
+         data-en="Simple lessons that give you clarity in the moments of chaos. To understand what's happening, what to say, and how to show up, with calm and without guilt.">Lecciones sencillas que te dan claridad en los momentos de caos. Para entender qué pasa, qué decir y cómo acompañar, con calma y sin culpa.</p>
+    </header>
+
+    <!-- Categories -->
+    <section class="cats-wrap" aria-labelledby="cats-label">
+      <p class="cats-label" id="cats-label" data-i18n="ap_cats_label" data-es="Explora por tema" data-en="Explore by topic">Explora por tema</p>
+      <div class="cats-row">
+        <span class="cat-pill has-content"><span class="dot"></span><span data-i18n="cat_berrinches" data-es="Berrinches y desbordes" data-en="Tantrums and meltdowns">Berrinches y desbordes</span></span>
+        <span class="cat-pill"><span class="dot"></span><span data-i18n="cat_pantallas" data-es="Pantallas" data-en="Screens">Pantallas</span></span>
+        <span class="cat-pill"><span class="dot"></span><span data-i18n="cat_sueno" data-es="Sueño y rutinas" data-en="Sleep and routines">Sueño y rutinas</span></span>
+        <span class="cat-pill"><span class="dot"></span><span data-i18n="cat_hermanos" data-es="Hermanos" data-en="Siblings">Hermanos</span></span>
+        <span class="cat-pill"><span class="dot"></span><span data-i18n="cat_limites" data-es="Límites sin gritar" data-en="Limits without yelling">Límites sin gritar</span></span>
+        <span class="cat-pill"><span class="dot"></span><span data-i18n="cat_ansiedad" data-es="Ansiedad y separación" data-en="Anxiety and separation">Ansiedad y separación</span></span>
+        <span class="cat-pill"><span class="dot"></span><span data-i18n="cat_cansancio" data-es="Cansancio parental" data-en="Parental burnout">Cansancio parental</span></span>
+        <span class="cat-pill"><span class="dot"></span><span data-i18n="cat_faq" data-es="Preguntas frecuentes" data-en="Frequently asked questions">Preguntas frecuentes</span></span>
+      </div>
+    </section>
+
+    <!-- Library -->
+    <section class="lib-wrap" aria-label="Artículos">
+      <div class="lib-grid">
+
+        <!-- PUBLISHED: Qué hacer cuando tu hijo hace un berrinche -->
+        <a class="article-card scroll-reveal d1" href="/aprende/que-hacer-en-un-berrinche/"
+           data-status="published" data-category="berrinches" data-protocol="emotional-escalation"
+           aria-label="Qué hacer cuando tu hijo hace un berrinche">
+          <div class="ac-top">
+            <span class="ac-cat" data-i18n="cat_berrinches" data-es="Berrinches y desbordes" data-en="Tantrums and meltdowns">Berrinches y desbordes</span>
+            <span class="ac-status published"><span class="dot"></span><span data-i18n="st_pub" data-es="Publicado" data-en="Published">Publicado</span></span>
+          </div>
+          <h2 class="ac-title" data-i18n="a0_title" data-es="Qué hacer cuando tu hijo hace un berrinche" data-en="What to do when your child has a tantrum">Qué hacer cuando tu hijo hace un berrinche</h2>
+          <p class="ac-desc" data-i18n="a0_desc"
+             data-es="Qué pasa de verdad durante un berrinche, qué decir y qué hacer en el momento y después, con calma y sin culpa."
+             data-en="What really happens during a tantrum, what to say, and what to do in the moment and after, with calm and without guilt.">Qué pasa de verdad durante un berrinche, qué decir y qué hacer en el momento y después, con calma y sin culpa.</p>
+          <div class="ac-meta">
+            <span class="ac-time"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span data-i18n="a0_time" data-es="6 min de lectura" data-en="6 min read">6 min de lectura</span></span>
+            <span class="ac-protocol"><span data-i18n="rel_label" data-es="Guía relacionada:" data-en="Related guide:">Guía relacionada:</span> <a href="/apoyo/emotional-escalation" data-i18n="rel_desbordes" data-es="Desbordes" data-en="Meltdowns">Desbordes</a></span>
+            <span class="ac-cta" data-i18n="ac_cta_open" data-es="Leer →" data-en="Read →">Leer →</span>
+          </div>
+        </a>
+
+        <!-- RESOURCE (in preparation): Los Primeros 5 Minutos -->
+        <a class="article-card scroll-reveal d2" href="/aprende/Los-primeros-5/"
+           data-status="resource" data-category="berrinches" data-protocol="emotional-escalation"
+           aria-label="Los Primeros 5 Minutos">
+          <div class="ac-top">
+            <span class="ac-cat" data-i18n="cat_berrinches" data-es="Berrinches y desbordes" data-en="Tantrums and meltdowns">Berrinches y desbordes</span>
+            <span class="ac-status resource"><span class="dot"></span><span data-i18n="st_resource" data-es="Recurso" data-en="Resource">Recurso</span></span>
+          </div>
+          <h2 class="ac-title" data-i18n="a1_title" data-es="Los Primeros 5 Minutos" data-en="The First 5 Minutes">Los Primeros 5 Minutos</h2>
+          <p class="ac-desc" data-i18n="a1_desc"
+             data-es="Una guía breve de respuesta rápida para bajar la intensidad antes del desborde. En preparación: déjanos tu correo y te avisamos al publicarla."
+             data-en="A short rapid-response guide to lower the intensity before a meltdown. In preparation: leave your email and we'll let you know when it's ready.">Una guía breve de respuesta rápida para bajar la intensidad antes del desborde. En preparación: déjanos tu correo y te avisamos al publicarla.</p>
+          <div class="ac-meta">
+            <span class="ac-time"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span data-i18n="a1_time" data-es="Recurso · en preparación" data-en="Resource · in preparation">Recurso · en preparación</span></span>
+            <span class="ac-protocol"><span data-i18n="rel_label" data-es="Guía relacionada:" data-en="Related guide:">Guía relacionada:</span> <a href="/apoyo/emotional-escalation" data-i18n="rel_desbordes" data-es="Desbordes" data-en="Meltdowns">Desbordes</a></span>
+            <span class="ac-cta" data-i18n="ac_cta_resource" data-es="Ver recurso →" data-en="View resource →">Ver recurso →</span>
+          </div>
+        </a>
+
+        <!-- COMING SOON: Pantallas -->
+        <article class="article-card scroll-reveal d2" data-status="coming-soon" data-category="pantallas" aria-disabled="true">
+          <div class="ac-top">
+            <span class="ac-cat" data-i18n="cat_pantallas" data-es="Pantallas" data-en="Screens">Pantallas</span>
+            <span class="ac-status soon"><span class="dot"></span><span data-i18n="st_soon" data-es="Próximamente" data-en="Coming soon">Próximamente</span></span>
+          </div>
+          <h2 class="ac-title" data-i18n="a2_title" data-es="Pantallas por edad: límites sin pelea" data-en="Screens by age: limits without a fight">Pantallas por edad: límites sin pelea</h2>
+          <p class="ac-desc" data-i18n="a2_desc"
+             data-es="Cuánto, cuándo y cómo retirar la pantalla según la edad, sin culpa y sin guerra diaria."
+             data-en="How much, when, and how to take the screen away by age, without guilt and without a daily war.">Cuánto, cuándo y cómo retirar la pantalla según la edad, sin culpa y sin guerra diaria.</p>
+          <div class="ac-meta">
+            <span class="ac-time"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span data-i18n="in_prep" data-es="En preparación" data-en="In preparation">En preparación</span></span>
+            <span class="ac-protocol"><span data-i18n="rel_label" data-es="Guía relacionada:" data-en="Related guide:">Guía relacionada:</span> <span data-i18n="rel_pantallas" data-es="Pantallas" data-en="Screens">Pantallas</span></span>
+          </div>
+        </article>
+
+        <!-- COMING SOON: Sueño y rutinas -->
+        <article class="article-card scroll-reveal d3" data-status="coming-soon" data-category="sueno" aria-disabled="true">
+          <div class="ac-top">
+            <span class="ac-cat" data-i18n="cat_sueno" data-es="Sueño y rutinas" data-en="Sleep and routines">Sueño y rutinas</span>
+            <span class="ac-status soon"><span class="dot"></span><span data-i18n="st_soon" data-es="Próximamente" data-en="Coming soon">Próximamente</span></span>
+          </div>
+          <h2 class="ac-title" data-i18n="a3_title" data-es="Rutinas de sueño que sostienen la noche" data-en="Sleep routines that hold the night">Rutinas de sueño que sostienen la noche</h2>
+          <p class="ac-desc" data-i18n="a3_desc"
+             data-es="Cómo armar un ritual de sueño por edad para que la hora de dormir deje de ser una negociación infinita."
+             data-en="How to build a sleep ritual by age so bedtime stops being an endless negotiation.">Cómo armar un ritual de sueño por edad para que la hora de dormir deje de ser una negociación infinita.</p>
+          <div class="ac-meta">
+            <span class="ac-time"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span data-i18n="in_prep" data-es="En preparación" data-en="In preparation">En preparación</span></span>
+            <span class="ac-protocol"><span data-i18n="rel_label" data-es="Guía relacionada:" data-en="Related guide:">Guía relacionada:</span> <span data-i18n="rel_sueno" data-es="Sueño" data-en="Sleep">Sueño</span></span>
+          </div>
+        </article>
+
+        <!-- COMING SOON: Hermanos -->
+        <article class="article-card scroll-reveal d4" data-status="coming-soon" data-category="hermanos" aria-disabled="true">
+          <div class="ac-top">
+            <span class="ac-cat" data-i18n="cat_hermanos" data-es="Hermanos" data-en="Siblings">Hermanos</span>
+            <span class="ac-status soon"><span class="dot"></span><span data-i18n="st_soon" data-es="Próximamente" data-en="Coming soon">Próximamente</span></span>
+          </div>
+          <h2 class="ac-title" data-i18n="a4_title" data-es="Celos y peleas entre hermanos" data-en="Jealousy and fights between siblings">Celos y peleas entre hermanos</h2>
+          <p class="ac-desc" data-i18n="a4_desc"
+             data-es="Cómo acompañar la llegada de un hermanito y mediar las peleas sin elegir bandos ni repartir culpas."
+             data-en="How to support a new sibling's arrival and mediate fights without choosing sides or assigning blame.">Cómo acompañar la llegada de un hermanito y mediar las peleas sin elegir bandos ni repartir culpas.</p>
+          <div class="ac-meta">
+            <span class="ac-time"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span data-i18n="in_prep" data-es="En preparación" data-en="In preparation">En preparación</span></span>
+            <span class="ac-protocol"><span data-i18n="rel_label" data-es="Guía relacionada:" data-en="Related guide:">Guía relacionada:</span> <span data-i18n="rel_hermanos" data-es="Hermanos" data-en="Siblings">Hermanos</span></span>
+          </div>
+        </article>
+
+        <!-- COMING SOON: Límites sin gritar -->
+        <article class="article-card scroll-reveal d1" data-status="coming-soon" data-category="limites" aria-disabled="true">
+          <div class="ac-top">
+            <span class="ac-cat" data-i18n="cat_limites" data-es="Límites sin gritar" data-en="Limits without yelling">Límites sin gritar</span>
+            <span class="ac-status soon"><span class="dot"></span><span data-i18n="st_soon" data-es="Próximamente" data-en="Coming soon">Próximamente</span></span>
+          </div>
+          <h2 class="ac-title" data-i18n="a5_title" data-es="Límites firmes sin gritos" data-en="Firm limits without yelling">Límites firmes sin gritos</h2>
+          <p class="ac-desc" data-i18n="a5_desc"
+             data-es="Cómo sostener un límite con firmeza y calma, incluso cuando tú también estás al borde."
+             data-en="How to hold a limit with firmness and calm, even when you're on edge too.">Cómo sostener un límite con firmeza y calma, incluso cuando tú también estás al borde.</p>
+          <div class="ac-meta">
+            <span class="ac-time"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span data-i18n="in_prep" data-es="En preparación" data-en="In preparation">En preparación</span></span>
+            <span class="ac-protocol"><span data-i18n="rel_label" data-es="Guía relacionada:" data-en="Related guide:">Guía relacionada:</span> <span data-i18n="rel_metodo" data-es="El Método" data-en="The Method">El Método</span></span>
+          </div>
+        </article>
+
+        <!-- COMING SOON: Ansiedad y separación -->
+        <article class="article-card scroll-reveal d2" data-status="coming-soon" data-category="ansiedad" aria-disabled="true">
+          <div class="ac-top">
+            <span class="ac-cat" data-i18n="cat_ansiedad" data-es="Ansiedad y separación" data-en="Anxiety and separation">Ansiedad y separación</span>
+            <span class="ac-status soon"><span class="dot"></span><span data-i18n="st_soon" data-es="Próximamente" data-en="Coming soon">Próximamente</span></span>
+          </div>
+          <h2 class="ac-title" data-i18n="a6_title" data-es="Ansiedad por separación: despedidas tranquilas" data-en="Separation anxiety: calm goodbyes">Ansiedad por separación: despedidas tranquilas</h2>
+          <p class="ac-desc" data-i18n="a6_desc"
+             data-es="Cómo acompañar el llanto al despedirte en la escuela o la guardería, sin escabullirte ni alargar la angustia."
+             data-en="How to support the tears at school or daycare drop-off, without sneaking away or prolonging the distress.">Cómo acompañar el llanto al despedirte en la escuela o la guardería, sin escabullirte ni alargar la angustia.</p>
+          <div class="ac-meta">
+            <span class="ac-time"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span data-i18n="in_prep" data-es="En preparación" data-en="In preparation">En preparación</span></span>
+            <span class="ac-protocol"><span data-i18n="rel_label" data-es="Guía relacionada:" data-en="Related guide:">Guía relacionada:</span> <span data-i18n="rel_desbordes" data-es="Desbordes" data-en="Meltdowns">Desbordes</span></span>
+          </div>
+        </article>
+
+        <!-- COMING SOON: Cansancio parental -->
+        <article class="article-card scroll-reveal d3" data-status="coming-soon" data-category="cansancio" aria-disabled="true">
+          <div class="ac-top">
+            <span class="ac-cat" data-i18n="cat_cansancio" data-es="Cansancio parental" data-en="Parental burnout">Cansancio parental</span>
+            <span class="ac-status soon"><span class="dot"></span><span data-i18n="st_soon" data-es="Próximamente" data-en="Coming soon">Próximamente</span></span>
+          </div>
+          <h2 class="ac-title" data-i18n="a7_title" data-es="Cansancio parental: recargar sin culpa" data-en="Parental burnout: recharge without guilt">Cansancio parental: recargar sin culpa</h2>
+          <p class="ac-desc" data-i18n="a7_desc"
+             data-es="Qué hacer cuando ya no te queda paciencia. Cómo cuidarte para poder sostener, sin sentir que fallas."
+             data-en="What to do when you have no patience left. How to care for yourself so you can keep showing up, without feeling like you're failing.">Qué hacer cuando ya no te queda paciencia. Cómo cuidarte para poder sostener, sin sentir que fallas.</p>
+          <div class="ac-meta">
+            <span class="ac-time"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span data-i18n="in_prep" data-es="En preparación" data-en="In preparation">En preparación</span></span>
+            <span class="ac-protocol"><span data-i18n="rel_label" data-es="Guía relacionada:" data-en="Related guide:">Guía relacionada:</span> <span data-i18n="rel_sobre" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</span></span>
+          </div>
+        </article>
+
+        <!-- COMING SOON: Preguntas frecuentes -->
+        <article class="article-card scroll-reveal d4" data-status="coming-soon" data-category="faq" aria-disabled="true">
+          <div class="ac-top">
+            <span class="ac-cat" data-i18n="cat_faq" data-es="Preguntas frecuentes" data-en="Frequently asked questions">Preguntas frecuentes</span>
+            <span class="ac-status soon"><span class="dot"></span><span data-i18n="st_soon" data-es="Próximamente" data-en="Coming soon">Próximamente</span></span>
+          </div>
+          <h2 class="ac-title" data-i18n="a8_title" data-es="Preguntas frecuentes sobre crianza respetuosa" data-en="Frequently asked questions about respectful parenting">Preguntas frecuentes sobre crianza respetuosa</h2>
+          <p class="ac-desc" data-i18n="a8_desc"
+             data-es="Las dudas más comunes sobre criar con respeto y límites, respondidas con calma y sin tecnicismos."
+             data-en="The most common questions about raising with respect and limits, answered calmly and without jargon.">Las dudas más comunes sobre criar con respeto y límites, respondidas con calma y sin tecnicismos.</p>
+          <div class="ac-meta">
+            <span class="ac-time"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span data-i18n="in_prep" data-es="En preparación" data-en="In preparation">En preparación</span></span>
+            <span class="ac-protocol"><span data-i18n="rel_label" data-es="Guía relacionada:" data-en="Related guide:">Guía relacionada:</span> <span data-i18n="rel_metodo" data-es="El Método" data-en="The Method">El Método</span></span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Soft CTA -->
+    <div class="soft-cta">
+      <div class="soft-cta-card scroll-reveal">
+        <div class="soft-cta-text">
+          <h2 class="soft-cta-title" data-i18n="cta_title"
+              data-es="¿Necesitas algo <em>ahora mismo?</em>"
+              data-en="Need something <em>right now?</em>">¿Necesitas algo <em>ahora mismo?</em></h2>
+          <p class="soft-cta-sub" data-i18n="cta_sub"
+             data-es="Mientras la biblioteca crece, las guías rápidas te dan frases y pasos para el momento difícil. Y el método transforma la raíz."
+             data-en="While the library grows, the quick guides give you phrases and steps for the hard moment. And the method transforms the root.">Mientras la biblioteca crece, las guías rápidas te dan frases y pasos para el momento difícil. Y el método transforma la raíz.</p>
+        </div>
+        <div class="soft-cta-actions">
+          <a href="/apoyo/" class="soft-cta-btn primary" data-i18n="cta_guides" data-es="Ver las guías rápidas →" data-en="See the quick guides →">Ver las guías rápidas →</a>
+          <a href="/metodo/" class="soft-cta-btn" data-i18n="cta_method" data-es="Conocer el método" data-en="Explore the method">Conocer el método</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ─────── FOOTER ─────── -->
+  <div id="site-footer"></div>
+  <script defer src="/js/site-footer.js"></script>
+
+  <script>
+  (function () {
+    const STORAGE_KEY = 'lg_parent_lang';
+    let lang = localStorage.getItem(STORAGE_KEY) || 'es';
+
+    function applyLang(l) {
+      lang = l;
+      try { localStorage.setItem(STORAGE_KEY, l); } catch (e) {}
+      document.documentElement.lang = l;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const txt = el.getAttribute('data-' + l);
+        if (txt !== null) el.innerHTML = txt;
+      });
+      document.querySelectorAll('.lang button').forEach(btn => {
+        btn.setAttribute('aria-pressed', btn.getAttribute('data-lang') === l ? 'true' : 'false');
+      });
+    }
+
+    document.addEventListener('click', e => {
+      const btn = e.target.closest('.lang button');
+      if (btn) {
+        applyLang(btn.getAttribute('data-lang'));
+        if (typeof window.track === 'function')
+          window.track('language_changed', { to_lang: lang, location: 'aprende' });
+      }
+    });
+
+    applyLang(lang);
+
+    /* Track article card opens (published only are links) */
+    document.querySelectorAll('a.article-card').forEach(card => {
+      card.addEventListener('click', () => {
+        if (typeof window.track === 'function')
+          window.track('aprende_article_opened', { article: card.getAttribute('href'), language: lang });
+      });
+    });
+
+    if (typeof window.track === 'function') window.track('Aprende: Hub Load', { language: lang });
+
+    /* Scroll reveals */
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(en => {
+          if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.08 });
+      document.querySelectorAll('.scroll-reveal').forEach(el => io.observe(el));
+    } else {
+      document.querySelectorAll('.scroll-reveal').forEach(el => el.classList.add('visible'));
+    }
+  }());
+  </script>
+</body>
+</html>

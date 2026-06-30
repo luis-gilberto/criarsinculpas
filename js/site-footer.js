@@ -27,7 +27,7 @@
               '<li><a href="/apoyo/" data-i18n="nav_guias_f" data-es="Guías" data-en="Guides">Guías</a></li>' +
               '<li><a href="/metodo/" data-i18n="nav_metodo_f" data-es="El Método" data-en="The Method">El Método</a></li>' +
               '<li><a href="/sobre-nari/" data-i18n="nav_nari_f" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</a></li>' +
-              '<li class="is-soon"><span class="foot-label" data-i18n="nav_aprende_f" data-es="Aprende" data-en="Learn">Aprende</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></li>' +
+              '<li><a href="/aprende/" data-i18n="nav_aprende_f" data-es="Aprende" data-en="Learn">Aprende</a></li>' +
               '<li class="is-soon"><span class="foot-label" data-i18n="nav_comunidad_f" data-es="Comunidad" data-en="Community">Comunidad</span><span class="soon-tag" data-i18n="soon" data-es="Pronto" data-en="Soon">Pronto</span></li>' +
             '</ul>' +
           '</div>' +
