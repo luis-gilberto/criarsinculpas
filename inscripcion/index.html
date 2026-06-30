@@ -19,7 +19,7 @@
       var script = document.createElement('script');
       script.defer = true;
       script.setAttribute('data-domain', 'criarsinculpas.com');
-      script.src = 'https://plausible.io/js/script.manual.js';
+      script.src = 'https://plausible.io/js/script.js';
       document.head.appendChild(script);
     }
     window.plausible = window.plausible || function () {
@@ -157,8 +157,8 @@
       html { scroll-behavior: auto; }
     }
 
-    .tag { display: inline-flex; align-items: center; gap: 6px; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 11px; border-radius: var(--pill); white-space: nowrap; font-family: 'DM Sans', system-ui, sans-serif; }
-    .tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; }
+    .tag { display: inline-flex; align-items: center; gap: 6px; max-width: 100%; box-sizing: border-box; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 11px; border-radius: var(--pill); white-space: normal; font-family: 'DM Sans', system-ui, sans-serif; }
+    .tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; flex: none; }
     .tag-launch { color: oklch(0.55 0.16 32); background: oklch(0.74 0.13 38 / .16); }
     .tag-launch::before { background: oklch(0.74 0.13 38); }
     .tag-prep { color: oklch(0.45 0.03 260); background: oklch(0.66 0.04 245 / .16); }
