@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Criar Sin Culpas · Correos de Bienvenida · Revisión</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{ --paper:#FCF8F1; --canvas:#EEE6DA; --ink:#1F2E3C; --body:#574F44; --muted:#8C8475; --line:#E5DBCB; --terra:#BC6044; --terra-soft:#F1DCCF; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--canvas); color:var(--body); font-family:'Inter',Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; padding-bottom:88px; }
+
+  .review-bar{ background:var(--ink); color:#F3ECDF; padding:18px 20px; text-align:center; }
+  .review-bar .hi{ font-family:'Cormorant Garamond',Georgia,serif; font-size:22px; color:#fff; margin:0 0 5px; }
+  .review-bar p{ margin:0 auto; max-width:56ch; font-size:13.5px; line-height:1.55; color:#D9CFBE; }
+  .langswap{ display:inline-flex; margin-top:13px; border:1px solid rgba(255,255,255,.25); border-radius:999px; overflow:hidden; }
+  .langswap button{ border:0; background:transparent; color:#D9CFBE; font-family:'DM Sans',sans-serif; font-size:12px; font-weight:500; letter-spacing:.06em; padding:7px 15px; cursor:pointer; }
+  .langswap button.on{ background:var(--terra); color:#fff; }
+
+  .index{ position:sticky; top:0; z-index:30; background:rgba(238,230,218,.94); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); padding:9px 12px; text-align:center; }
+  .index a{ display:inline-flex; width:30px; height:30px; align-items:center; justify-content:center; margin:0 3px; border-radius:50%; text-decoration:none; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; color:var(--muted); border:1px solid var(--line); background:#fff; }
+  .index a:hover{ color:var(--terra); border-color:var(--terra); }
+
+  .stage{ max-width:640px; margin:0 auto; padding:22px 16px 20px; }
+  .email-block{ margin-bottom:30px; }
+  .elabel{ display:flex; align-items:center; gap:10px; margin-bottom:10px; flex-wrap:wrap; }
+  .elabel .tag{ font-family:'DM Sans',sans-serif; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#fff; background:var(--terra); border-radius:999px; padding:4px 11px; }
+  .elabel .day{ font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+  .elabel .does{ font-size:13px; color:var(--ink); }
+
+  .inbox{ background:#fff; border:1px solid var(--line); border-bottom:0; border-radius:12px 12px 0 0; padding:13px 18px; display:flex; gap:12px; align-items:center; }
+  .inbox .av{ width:36px; height:36px; border-radius:50%; background:var(--terra-soft); color:var(--terra); font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:600; display:flex; align-items:center; justify-content:center; flex:0 0 auto; }
+  .inbox .from{ font-family:'DM Sans',sans-serif; font-size:12.5px; font-weight:700; color:var(--ink); }
+  .inbox .subj{ font-size:13.5px; color:var(--ink); margin-top:1px; }
+  .inbox .pre{ font-size:12px; color:var(--muted); margin-top:1px; }
+
+  .placeholder-box{ background:var(--terra-soft); border:1px dashed var(--terra); border-radius:8px; padding:14px 16px; margin:2px 0; }
+  .placeholder-box .k{ font-family:'DM Sans',sans-serif; font-size:10.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--terra); margin-bottom:5px; }
+  .placeholder-box p{ margin:0; font-size:14px; line-height:1.6; color:#8a4d38; font-style:normal; }
+
+  /* feedback */
+  .fb{ background:#fff; border:1px solid var(--line); border-top:0; border-radius:0 0 12px 12px; padding:14px 18px; }
+  .fb .q{ display:flex; align-items:center; gap:12px; }
+  .fb .q .lab{ flex:1 1 auto; font-size:13.5px; color:var(--muted); }
+  .fb .q .btns{ display:flex; gap:8px; }
+  .tapbtn{ border:1px solid var(--line); background:#fff; border-radius:999px; padding:9px 15px; font-family:'DM Sans',sans-serif; font-size:14px; cursor:pointer; transition:all .15s ease; color:var(--body); }
+  .tapbtn:hover{ border-color:var(--muted); }
+  .tapbtn.like.on{ background:#EAF3EC; border-color:#6FA07F; color:#3C6E52; }
+  .tapbtn.change.on{ background:var(--terra-soft); border-color:var(--terra); color:var(--terra); }
+  .fb .note{ margin-top:11px; display:none; }
+  .fb .note.show{ display:block; }
+  .fb textarea{ width:100%; min-height:60px; resize:vertical; border:1px solid var(--line); border-radius:9px; padding:10px 12px; font-family:'Inter',sans-serif; font-size:14px; color:var(--ink); background:#FCFAF6; }
+  .fb textarea:focus{ outline:none; border-color:var(--terra); }
+  .fb .note-lab{ font-size:12px; color:var(--muted); margin-bottom:5px; }
+
+  .story-fb textarea{ min-height:96px; }
+
+  /* fixed send bar */
+  .sendbar{ position:fixed; left:0; right:0; bottom:0; z-index:40; background:#fff; border-top:1px solid var(--line); box-shadow:0 -10px 30px -20px rgba(31,46,60,.5); padding:12px 16px; }
+  .sendbar .inner{ max-width:640px; margin:0 auto; display:flex; gap:10px; align-items:center; }
+  .send{ flex:1 1 auto; background:var(--terra); color:#fff; border:0; border-radius:999px; padding:14px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:700; cursor:pointer; box-shadow:0 12px 26px -14px rgba(188,96,68,.8); transition:transform .15s ease, background .15s ease; }
+  .send:hover{ background:#A9553B; transform:translateY(-1px); }
+  .copybtn{ flex:0 0 auto; background:transparent; color:var(--muted); border:1px solid var(--line); border-radius:999px; padding:14px 16px; font-family:'DM Sans',sans-serif; font-size:13px; cursor:pointer; }
+  .sent-note{ max-width:640px; margin:6px auto 0; text-align:center; font-size:12px; color:var(--muted); min-height:14px; }
+
+  .foot{ text-align:center; font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:.04em; color:var(--muted); margin:8px 0 0; }
+</style>
+</head>
+<body>
+
+<div class="review-bar">
+  <p class="hi">Hola Nari 💛</p>
+  <p>Estos son los seis correos de bienvenida, en borrador. Léelos como si te llegaran al buzón. Debajo de cada uno, dime si te gusta con 💛 o si cambiarías algo con ✎. En el Correo 3 hay un espacio para que escribas tu historia. Al terminar, toca el botón de abajo y me lo mandas. No tienes que escribir nada largo.</p>
+  <div class="langswap" role="group" aria-label="Idioma del correo">
+    <button type="button" data-lang="es" class="on">Correos en Español</button>
+    <button type="button" data-lang="en">In English</button>
+  </div>
+</div>
+
+<div class="index">
+  <a href="#c1">1</a><a href="#c2">2</a><a href="#c3">3</a><a href="#c4">4</a><a href="#c5">5</a><a href="#c6">6</a>
+</div>
+
+<div class="stage">
+
+  <!-- ============ CORREO 1 ============ -->
+  <section class="email-block" id="c1">
+    <div class="elabel"><span class="tag">Correo 1</span><span class="day">Día 0 · inmediato</span><span class="does" data-es="Bienvenida y la idea que lo cambia todo" data-en="Welcome and the one idea that changes everything">Bienvenida y la idea que lo cambia todo</span></div>
+    <div class="inbox"><div class="av">N</div><div><div class="from">Nari · Criar Sin Culpas</div><div class="subj" data-es="Bienvenida a Criar Sin Culpas" data-en="Welcome to Criar Sin Culpas">Bienvenida a Criar Sin Culpas</div><div class="pre" data-es="Empecemos por una idea que lo cambia todo." data-en="Let's start with the one idea that changes everything.">Empecemos por una idea que lo cambia todo.</div></div></div>
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="border-collapse:collapse; background:#FCF8F1; border:1px solid #E5DBCB;">
+      <tr><td style="height:4px; line-height:4px; font-size:4px; background:#BC6044;">&nbsp;</td></tr>
+      <tr><td style="padding:28px 40px 0; text-align:center;">
+        <div style="margin:0 auto 12px; width:34px; height:34px;"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Una puerta hacia la conexión"><path d="M4 10 L14 10 L14 24 L4 24 z" fill="#F4A88A" opacity="0.42"/><path d="M18 10 L28 10 L28 24 L18 24 z" fill="#8FA8C4" opacity="0.38"/><g fill="none" stroke="#1F2E46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 24 L4 10 L14 10"/><path d="M18 10 L28 10 L28 24"/><path d="M3 24 L29 24"/><path d="M14 24 L14 15 Q14 13 16 13 Q18 13 18 15 L18 24"/></g><circle cx="16" cy="18" r="1.4" fill="#E4A85C"/></svg></div>
+        <div style="font-family:'DM Sans',Helvetica,Arial,sans-serif; font-size:11px; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:#8C8475;">Criar Sin Culpas</div>
+        <div style="width:34px; height:1px; background:#BC6044; margin:13px auto 0; opacity:.6;">&nbsp;</div>
+      </td></tr>
+      <tr><td style="padding:24px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="Hola [Nombre]:" data-en="Hi [Name],">Hola [Nombre]:</p></td></tr>
+      <tr><td style="padding:16px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="Gracias por estar aquí. Antes de cualquier consejo, quiero darte la idea que sostiene todo lo demás: el desborde de tu hijo, y el tuyo, no es una falla que hay que arreglar. Es &lt;strong style=&quot;color:#BC6044;font-weight:600;&quot;&gt;una puerta hacia la conexión&lt;/strong&gt;." data-en="Thank you for being here. Before any advice, I want to give you the idea that holds up everything else: your child's overwhelm, and your own, is not a failure to fix. It is &lt;strong style=&quot;color:#BC6044;font-weight:600;&quot;&gt;a doorway to connection&lt;/strong&gt;.">Gracias por estar aquí. Antes de cualquier consejo, quiero darte la idea que sostiene todo lo demás: el desborde de tu hijo, y el tuyo, no es una falla que hay que arreglar. Es <strong style="color:#BC6044;font-weight:600;">una puerta hacia la conexión</strong>.</p></td></tr>
+      <tr><td style="padding:18px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="Criar sin culpas no significa criar sin errores. Significa dejar de cargar la culpa como castigo y empezar a usar esos momentos difíciles como lo que en verdad son: la oportunidad de entender a tu hijo, y de que te entienda." data-en="Raising without guilt does not mean raising without mistakes. It means you stop carrying guilt as punishment and start using the hard moments for what they really are: a chance to understand your child, and to be understood.">Criar sin culpas no significa criar sin errores. Significa dejar de cargar la culpa como castigo y empezar a usar esos momentos difíciles como lo que en verdad son: la oportunidad de entender a tu hijo, y de que te entienda.</p></td></tr>
+      <tr><td style="padding:18px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="Te voy a escribir solo unas pocas veces estas semanas. Sin prisa y sin venderte nada. Las guías gratuitas son &lt;strong style=&quot;color:#BC6044;font-weight:600;&quot;&gt;tuyas para siempre&lt;/strong&gt;." data-en="I will only write to you a few times over the coming weeks. No rush, and nothing to sell. The free guides are &lt;strong style=&quot;color:#BC6044;font-weight:600;&quot;&gt;yours to keep&lt;/strong&gt;.">Te voy a escribir solo unas pocas veces estas semanas. Sin prisa y sin venderte nada. Las guías gratuitas son <strong style="color:#BC6044;font-weight:600;">tuyas para siempre</strong>.</p></td></tr>
+      <tr><td style="padding:22px 40px 0;"><p style="margin:0 0 13px; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="Cuando quieras, están aquí:" data-en="Whenever you want them, they are here:">Cuando quieras, están aquí:</p><table role="presentation" cellspacing="0" cellpadding="0" border="0"><tr><td style="border:1px solid #BC6044; border-radius:999px;"><a href="https://criarsinculpas.com/apoyo" style="display:inline-block; padding:11px 24px; font-family:'DM Sans',Helvetica,Arial,sans-serif; font-size:13px; font-weight:500; color:#BC6044; text-decoration:none;" data-es="Ver las guías gratuitas" data-en="See the free guides">Ver las guías gratuitas</a></td></tr></table></td></tr>
+      <tr><td style="padding:26px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="Con calma," data-en="Warmly,">Con calma,</p><p style="margin:2px 0 0; font-family:'Cormorant Garamond',Georgia,serif; font-size:24px; font-weight:600; color:#1F2E3C;">Nari</p></td></tr>
+      <tr><td style="padding:26px 40px 30px;"><div style="height:1px; background:#E5DBCB; margin-bottom:16px;">&nbsp;</div><p style="margin:0; font-family:'DM Sans',Helvetica,Arial,sans-serif; font-size:11px; line-height:1.7; color:#8C8475;">Criar Sin Culpas · criarsinculpas.com<br><span data-es="Recibes esto porque descargaste una guía o te suscribiste en el sitio." data-en="You're receiving this because you downloaded a guide or subscribed on the site.">Recibes esto porque descargaste una guía o te suscribiste en el sitio.</span><br><a href="{$unsubscribe}" style="color:#8C8475;" data-es="Cancelar suscripción" data-en="Unsubscribe">Cancelar suscripción</a> <span data-es="· (todos los correos llevan este mismo pie)" data-en="· (every email carries this same footer)">· (todos los correos llevan este mismo pie)</span></p></td></tr>
+    </table>
+    <div class="fb" data-email="Correo 1"><div class="q"><span class="lab" data-es="¿Este correo?" data-en="This email?">¿Este correo?</span><span class="btns"><button class="tapbtn like" type="button">💛</button><button class="tapbtn change" type="button">✎</button></span></div><div class="note"><div class="note-lab">¿Qué cambiarías?</div><textarea></textarea></div></div>
+  </section>
+
+  <!-- ============ CORREO 2 ============ -->
+  <section class="email-block" id="c2">
+    <div class="elabel"><span class="tag">Correo 2</span><span class="day">Día 2</span><span class="does" data-es="Valor real: pantallas, la puerta de entrada" data-en="Real value: screens, the way in">Valor real: pantallas, la puerta de entrada</span></div>
+    <div class="inbox"><div class="av">N</div><div><div class="from">Nari · Criar Sin Culpas</div><div class="subj" data-es="Por dónde empezar: las pantallas" data-en="Where to begin: screens">Por dónde empezar: las pantallas</div><div class="pre" data-es="La puerta de entrada, sin culpa." data-en="The way in, without the guilt.">La puerta de entrada, sin culpa.</div></div></div>
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="border-collapse:collapse; background:#FCF8F1; border:1px solid #E5DBCB;">
+      <tr><td style="height:4px; line-height:4px; font-size:4px; background:#BC6044;">&nbsp;</td></tr>
+      <tr><td style="padding:28px 40px 0; text-align:center;"><div style="margin:0 auto 12px; width:34px; height:34px;"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Una pantalla que se apaga con calma"><rect x="5" y="8" width="22" height="14" rx="2" fill="#F4A88A" opacity="0.45"/><rect x="6" y="9" width="20" height="12" rx="1.5" fill="#E89BA8" opacity="0.35"/><g fill="none" stroke="#1F2E46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="22" height="14" rx="2"/><path d="M12 26 L20 26"/><path d="M16 22 L16 26"/></g><circle cx="16" cy="15" r="1.6" fill="#E4A85C"/></svg></div><div style="font-family:'DM Sans',Helvetica,Arial,sans-serif; font-size:11px; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:#8C8475;">Criar Sin Culpas</div><div style="width:34px; height:1px; background:#BC6044; margin:13px auto 0; opacity:.6;">&nbsp;</div></td></tr>
+      <tr><td style="padding:24px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="Hola [Nombre]:" data-en="Hi [Name],">Hola [Nombre]:</p></td></tr>
+      <tr><td style="padding:16px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="Si hay un tema por donde empezar, son las pantallas. Es lo más cotidiano, lo más práctico, y casi siempre la primera batalla del día." data-en="If there is one place to begin, it is screens. It is the most everyday, the most practical, and almost always the first battle of the day.">Si hay un tema por donde empezar, son las pantallas. Es lo más cotidiano, lo más práctico, y casi siempre la primera batalla del día.</p></td></tr>
+      <tr><td style="padding:18px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="Una idea para hoy: el problema rara vez es la pantalla en sí, sino la transición de salir de ella. Avisar antes (&quot;en cinco minutos guardamos&quot;) y nombrar lo que viene después le da a tu hijo algo a lo que sostenerse, y a ti &lt;strong style=&quot;color:#BC6044;font-weight:600;&quot;&gt;una pelea menos&lt;/strong&gt;." data-en="One idea for today: the problem is rarely the screen itself, but the transition out of it. A heads-up before (&quot;in five minutes we put it away&quot;) and naming what comes next gives your child something to hold onto, and you &lt;strong style=&quot;color:#BC6044;font-weight:600;&quot;&gt;one less fight&lt;/strong&gt;.">Una idea para hoy: el problema rara vez es la pantalla en sí, sino la transición de salir de ella. Avisar antes ("en cinco minutos guardamos") y nombrar lo que viene después le da a tu hijo algo a lo que sostenerse, y a ti <strong style="color:#BC6044;font-weight:600;">una pelea menos</strong>.</p></td></tr>
+      <tr><td style="padding:22px 40px 0;"><p style="margin:0 0 13px; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="La guía completa está aquí:" data-en="The full guide is here:">La guía completa está aquí:</p><table role="presentation" cellspacing="0" cellpadding="0" border="0"><tr><td style="border:1px solid #BC6044; border-radius:999px;"><a href="https://criarsinculpas.com/apoyo/pantallas" style="display:inline-block; padding:11px 24px; font-family:'DM Sans',Helvetica,Arial,sans-serif; font-size:13px; font-weight:500; color:#BC6044; text-decoration:none;" data-es="Ver la guía de pantallas" data-en="See the screens guide">Ver la guía de pantallas</a></td></tr></table></td></tr>
+      <tr><td style="padding:22px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="Pantallas abre la puerta. En los próximos correos entramos a lo que hay detrás." data-en="Screens open the door. In the next emails we step into what is behind it.">Pantallas abre la puerta. En los próximos correos entramos a lo que hay detrás.</p></td></tr>
+      <tr><td style="padding:22px 40px 30px;"><p style="margin:0; font-family:'Cormorant Garamond',Georgia,serif; font-size:24px; font-weight:600; color:#1F2E3C;">Nari</p></td></tr>
+    </table>
+    <div class="fb" data-email="Correo 2"><div class="q"><span class="lab" data-es="¿Este correo?" data-en="This email?">¿Este correo?</span><span class="btns"><button class="tapbtn like" type="button">💛</button><button class="tapbtn change" type="button">✎</button></span></div><div class="note"><div class="note-lab">¿Qué cambiarías?</div><textarea></textarea></div></div>
+  </section>
+
+  <!-- ============ CORREO 3 (historia · en espera) ============ -->
+  <section class="email-block" id="c3">
+    <div class="elabel"><span class="tag">Correo 3</span><span class="day">Día 5</span><span class="does" data-es="Tu historia · en tus palabras" data-en="Your story · in your words">Tu historia · en tus palabras</span></div>
+    <div class="inbox"><div class="av">N</div><div><div class="from">Nari · Criar Sin Culpas</div><div class="subj" data-es="Por qué existe Criar Sin Culpas" data-en="Why Criar Sin Culpas exists">Por qué existe Criar Sin Culpas</div><div class="pre" data-es="La historia detrás del método." data-en="The story behind the method.">La historia detrás del método.</div></div></div>
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="border-collapse:collapse; background:#FCF8F1; border:1px solid #E5DBCB;">
+      <tr><td style="height:4px; line-height:4px; font-size:4px; background:#BC6044;">&nbsp;</td></tr>
+      <tr><td style="padding:28px 40px 0; text-align:center;"><div style="margin:0 auto 12px; width:34px; height:34px;"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Un corazón cálido"><path d="M16 10 c -2 -3.5, -6 -4, -8.5 -1.5 c -2.5 2.5, -2 6.5, 1 9.5 l 7.5 7 l 7.5 -7 c 3 -3, 3.5 -7, 1 -9.5 c -2.5 -2.5, -6.5 -2, -8.5 1.5z" fill="#E4A85C" opacity="0.55" transform="translate(0.5 1) rotate(-3 16 16)"/><path d="M16 10 c -2 -3.5, -6 -4, -8.5 -1.5 c -2.5 2.5, -2 6.5, 1 9.5 l 7.5 7 l 7.5 -7 c 3 -3, 3.5 -7, 1 -9.5 c -2.5 -2.5, -6.5 -2, -8.5 1.5z" fill="none" stroke="#1F2E46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div style="font-family:'DM Sans',Helvetica,Arial,sans-serif; font-size:11px; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:#8C8475;">Criar Sin Culpas</div><div style="width:34px; height:1px; background:#BC6044; margin:13px auto 0; opacity:.6;">&nbsp;</div></td></tr>
+      <tr><td style="padding:24px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="Hola [Nombre]:" data-en="Hi [Name],">Hola [Nombre]:</p></td></tr>
+      <tr><td style="padding:16px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="Quiero contarte por qué existe esto." data-en="I want to tell you why this exists.">Quiero contarte por qué existe esto.</p></td></tr>
+      <tr><td style="padding:16px 40px 0;"><div class="placeholder-box"><div class="k" data-es="Aquí va tu historia" data-en="Your story goes here">Aquí va tu historia</div><p data-es="Nari: una o dos frases en tu propia voz sobre tu momento de quiebre. El día en que algo no funcionó, lo que sentiste, lo que decidiste cambiar. Esto tiene que ser tuyo, no mío. Puedes escribirlo abajo 👇" data-en="Nari: one or two sentences in your own voice about your breaking point. The day something did not work, what you felt, what you decided to change. This has to be yours, not mine. You can write it below 👇">Nari: una o dos frases en tu propia voz sobre tu momento de quiebre. El día en que algo no funcionó, lo que sentiste, lo que decidiste cambiar. Esto tiene que ser tuyo, no mío. Puedes escribirlo abajo 👇</p></div></td></tr>
+      <tr><td style="padding:16px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="De ahí nació el método. No desde la teoría, sino desde más de cincuenta talleres con familias reales, grabados uno a uno, muchas veces con mi hijo cerca. Lo que comparto contigo es &lt;strong style=&quot;color:#BC6044;font-weight:600;&quot;&gt;lo que vi funcionar de verdad&lt;/strong&gt;, no lo que suena bien." data-en="That is where the method came from. Not from theory, but from more than fifty workshops with real families, recorded one by one, often with my son nearby. What I share with you is &lt;strong style=&quot;color:#BC6044;font-weight:600;&quot;&gt;what I saw truly work&lt;/strong&gt;, not what sounds good.">De ahí nació el método. No desde la teoría, sino desde más de cincuenta talleres con familias reales, grabados uno a uno, muchas veces con mi hijo cerca. Lo que comparto contigo es <strong style="color:#BC6044;font-weight:600;">lo que vi funcionar de verdad</strong>, no lo que suena bien.</p></td></tr>
+      <tr><td style="padding:18px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="No tienes que hacerlo perfecto. Solo distinto, un poco, hoy." data-en="You do not have to do it perfectly. Just a little differently, today.">No tienes que hacerlo perfecto. Solo distinto, un poco, hoy.</p></td></tr>
+      <tr><td style="padding:22px 40px 30px;"><p style="margin:0; font-family:'Cormorant Garamond',Georgia,serif; font-size:24px; font-weight:600; color:#1F2E3C;">Nari</p></td></tr>
+    </table>
+    <div class="fb story-fb" data-email="Correo 3"><div class="q"><span class="lab" data-es="Escribe tu historia aquí (o mándame un audio)" data-en="Write your story here (or send me an audio)">Escribe tu historia aquí (o mándame un audio)</span></div><div class="note show"><textarea id="story" placeholder="El día en que…"></textarea></div></div>
+  </section>
+
+  <!-- ============ CORREO 4 ============ -->
+  <section class="email-block" id="c4">
+    <div class="elabel"><span class="tag">Correo 4</span><span class="day">Día 9</span><span class="does" data-es="El puente: la guía es parte de algo más grande" data-en="The bridge: the guide is part of something larger">El puente: la guía es parte de algo más grande</span></div>
+    <div class="inbox"><div class="av">N</div><div><div class="from">Nari · Criar Sin Culpas</div><div class="subj" data-es="La guía que leíste es parte de algo más grande" data-en="The guide you read is part of something larger">La guía que leíste es parte de algo más grande</div><div class="pre" data-es="Un método, no una colección de consejos." data-en="A method, not a collection of tips.">Un método, no una colección de consejos.</div></div></div>
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="border-collapse:collapse; background:#FCF8F1; border:1px solid #E5DBCB;">
+      <tr><td style="height:4px; line-height:4px; font-size:4px; background:#BC6044;">&nbsp;</td></tr>
+      <tr><td style="padding:28px 40px 0; text-align:center;"><div style="margin:0 auto 12px; width:34px; height:34px;"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="El arco del método: entender, conectar, reparar"><path d="M4 22 Q16 6 28 22" fill="#C45A47" opacity="0.28" stroke="none"/><g fill="none" stroke="#1F2E46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22 Q16 8 27 22"/><path d="M3 26 L29 26"/></g><circle cx="5" cy="22" r="2" fill="#FCF8F1" stroke="#1F2E46" stroke-width="1.4"/><circle cx="16" cy="10" r="2.2" fill="#E4A85C" stroke="#1F2E46" stroke-width="1.4"/><circle cx="27" cy="22" r="2" fill="#FCF8F1" stroke="#1F2E46" stroke-width="1.4"/></svg></div><div style="font-family:'DM Sans',Helvetica,Arial,sans-serif; font-size:11px; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:#8C8475;">Criar Sin Culpas</div><div style="width:34px; height:1px; background:#BC6044; margin:13px auto 0; opacity:.6;">&nbsp;</div></td></tr>
+      <tr><td style="padding:24px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="Hola [Nombre]:" data-en="Hi [Name],">Hola [Nombre]:</p></td></tr>
+      <tr><td style="padding:16px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="Algo que quizá no notaste: la guía que ya usaste no es un consejo suelto. Es una aplicación de &lt;strong style=&quot;color:#BC6044;font-weight:600;&quot;&gt;un método más amplio&lt;/strong&gt;." data-en="Something you may not have noticed: the guide you already used is not a loose tip. It is one application of &lt;strong style=&quot;color:#BC6044;font-weight:600;&quot;&gt;a larger method&lt;/strong&gt;.">Algo que quizá no notaste: la guía que ya usaste no es un consejo suelto. Es una aplicación de <strong style="color:#BC6044;font-weight:600;">un método más amplio</strong>.</p></td></tr>
+      <tr><td style="padding:18px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="Todo en Criar Sin Culpas sigue un mismo arco: primero entender de dónde viene el dolor, luego abrir un canal de conexión (muchas veces el juego), y solo después reparar, sin culpa. Cuando manejaste esa pataleta o esa pelea con una guía, ya estabas usando una pieza de ese sistema sin saberlo." data-en="Everything in Criar Sin Culpas follows the same arc: first understand where the pain comes from, then open a channel of connection (often through play), and only then repair, without guilt. When you handled that meltdown or that fight with a guide, you were already using a piece of that system without knowing it.">Todo en Criar Sin Culpas sigue un mismo arco: primero entender de dónde viene el dolor, luego abrir un canal de conexión (muchas veces el juego), y solo después reparar, sin culpa. Cuando manejaste esa pataleta o esa pelea con una guía, ya estabas usando una pieza de ese sistema sin saberlo.</p></td></tr>
+      <tr><td style="padding:18px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="No hay nada que comprar hoy. Solo quiero que veas que detrás de cada consejo hay una lógica, y que esa lógica se puede aprender entera." data-en="There is nothing to buy today. I just want you to see that behind each tip there is a logic, and that the whole logic can be learned.">No hay nada que comprar hoy. Solo quiero que veas que detrás de cada consejo hay una lógica, y que esa lógica se puede aprender entera.</p></td></tr>
+      <tr><td style="padding:22px 40px 30px;"><p style="margin:0; font-family:'Cormorant Garamond',Georgia,serif; font-size:24px; font-weight:600; color:#1F2E3C;">Nari</p></td></tr>
+    </table>
+    <div class="fb" data-email="Correo 4"><div class="q"><span class="lab" data-es="¿Este correo?" data-en="This email?">¿Este correo?</span><span class="btns"><button class="tapbtn like" type="button">💛</button><button class="tapbtn change" type="button">✎</button></span></div><div class="note"><div class="note-lab">¿Qué cambiarías?</div><textarea></textarea></div></div>
+  </section>
+
+  <!-- ============ CORREO 5 ============ -->
+  <section class="email-block" id="c5">
+    <div class="elabel"><span class="tag">Correo 5</span><span class="day">Día 13</span><span class="does" data-es="La invitación a El Método, con calma" data-en="The invitation to El Método, gently">La invitación a El Método, con calma</span></div>
+    <div class="inbox"><div class="av">N</div><div><div class="from">Nari · Criar Sin Culpas</div><div class="subj" data-es="Si quieres ir más a fondo" data-en="If you want to go deeper">Si quieres ir más a fondo</div><div class="pre" data-es="Cuando estés lista, no antes." data-en="When you are ready, not before.">Cuando estés lista, no antes.</div></div></div>
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="border-collapse:collapse; background:#FCF8F1; border:1px solid #E5DBCB;">
+      <tr><td style="height:4px; line-height:4px; font-size:4px; background:#BC6044;">&nbsp;</td></tr>
+      <tr><td style="padding:28px 40px 0; text-align:center;"><div style="margin:0 auto 12px; width:34px; height:34px;"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Una mano abierta, una invitación"><path d="M9 18 c 0 -3, 2 -5, 5 -5 c 0 -3, 2 -4, 4 -4 c 2 0, 4 1, 4 4 c 2 0, 3 2, 3 4 c 0 3 -1 6 -3 8 c -2 2 -5 3 -8 3 c -3 -0 -5 -2 -5 -5z" fill="#F4A88A" opacity="0.5" transform="translate(-0.5 1) rotate(-4 16 18)"/><g fill="none" stroke="#1F2E46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 20 c -1 -1, -2 -2, -1.5 -3.5 c 0.5 -1, 1.5 -1, 2 -0 c 0.5 1, 1 2, 1 3"/><path d="M13 18 c -0.5 -2, 0 -5, 0.8 -6.5 c 0.4 -1, 1.8 -1, 2 0 c 0.4 1, 0.4 4, 0.4 6.5"/><path d="M17 18 c -0.5 -2.5, 0 -6, 0.8 -7.5 c 0.4 -1, 1.8 -1, 2 0 c 0.4 1, 0.4 5, 0.4 7.5"/><path d="M21 18 c 0 -2, 0.5 -5, 1.2 -6 c 0.5 -1, 1.8 -0.5, 1.8 0.5 c 0 1, -0.4 4, -0.6 6"/><path d="M10 20 c -1 2, 0 5, 2 6.5 c 1.5 2, 4.5 2.5, 6.5 2 c 2.5 -0.5, 4 -2.5, 4.5 -5 c 0.3 -1.3, 0.3 -2.5, 0.3 -4"/></g></svg></div><div style="font-family:'DM Sans',Helvetica,Arial,sans-serif; font-size:11px; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:#8C8475;">Criar Sin Culpas</div><div style="width:34px; height:1px; background:#BC6044; margin:13px auto 0; opacity:.6;">&nbsp;</div></td></tr>
+      <tr><td style="padding:24px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="Hola [Nombre]:" data-en="Hi [Name],">Hola [Nombre]:</p></td></tr>
+      <tr><td style="padding:16px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="Si las guías te han servido, hay un siguiente paso, y quiero ofrecértelo con cuidado: solo si es el momento adecuado para ti." data-en="If the guides have helped, there is a next step, and I want to offer it carefully: only if this is the right moment for you.">Si las guías te han servido, hay un siguiente paso, y quiero ofrecértelo con cuidado: solo si es el momento adecuado para ti.</p></td></tr>
+      <tr><td style="padding:18px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="El Método reúne todo el arco en un solo lugar: &lt;strong style=&quot;color:#BC6044;font-weight:600;&quot;&gt;entender, conectar, reparar&lt;/strong&gt;. Es para cuando quieres dejar de apagar incendios uno por uno y empezar a criar desde una lógica que se sostiene sola." data-en="El Método brings the whole arc into one place: &lt;strong style=&quot;color:#BC6044;font-weight:600;&quot;&gt;understand, connect, repair&lt;/strong&gt;. It is for when you want to stop putting out fires one by one and start parenting from a logic that holds on its own.">El Método reúne todo el arco en un solo lugar: <strong style="color:#BC6044;font-weight:600;">entender, conectar, reparar</strong>. Es para cuando quieres dejar de apagar incendios uno por uno y empezar a criar desde una lógica que se sostiene sola.</p></td></tr>
+      <tr><td style="padding:22px 40px 0;"><p style="margin:0 0 13px; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="Puedes conocerlo aquí, sin compromiso:" data-en="You can explore it here, no commitment:">Puedes conocerlo aquí, sin compromiso:</p><table role="presentation" cellspacing="0" cellpadding="0" border="0"><tr><td style="background:#1F2E3C; border-radius:999px;"><a href="https://criarsinculpas.com/metodo" style="display:inline-block; padding:12px 26px; font-family:'DM Sans',Helvetica,Arial,sans-serif; font-size:13px; font-weight:600; color:#FBF4EC; text-decoration:none;" data-es="Conocer El Método" data-en="Explore El Método">Conocer El Método</a></td></tr></table></td></tr>
+      <tr><td style="padding:22px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="Y quiero ser clara en algo: las guías gratuitas siguen siendo gratuitas, siempre. Nada de lo que te di depende de que pagues por lo demás." data-en="And I want to be clear about one thing: the free guides stay free, always. Nothing I gave you depends on paying for the rest.">Y quiero ser clara en algo: las guías gratuitas siguen siendo gratuitas, siempre. Nada de lo que te di depende de que pagues por lo demás.</p></td></tr>
+      <tr><td style="padding:22px 40px 30px;"><p style="margin:0; font-family:'Cormorant Garamond',Georgia,serif; font-size:24px; font-weight:600; color:#1F2E3C;">Nari</p></td></tr>
+    </table>
+    <div class="fb" data-email="Correo 5"><div class="q"><span class="lab" data-es="¿Este correo?" data-en="This email?">¿Este correo?</span><span class="btns"><button class="tapbtn like" type="button">💛</button><button class="tapbtn change" type="button">✎</button></span></div><div class="note"><div class="note-lab">¿Qué cambiarías?</div><textarea></textarea></div></div>
+  </section>
+
+  <!-- ============ CORREO 6 ============ -->
+  <section class="email-block" id="c6">
+    <div class="elabel"><span class="tag">Correo 6</span><span class="day">Día 18</span><span class="does" data-es="Cierre amable y cadencia mensual" data-en="Warm close and monthly cadence">Cierre amable y cadencia mensual</span></div>
+    <div class="inbox"><div class="av">N</div><div><div class="from">Nari · Criar Sin Culpas</div><div class="subj" data-es="Aquí seguiré, a tu ritmo" data-en="I will be here, at your pace">Aquí seguiré, a tu ritmo</div><div class="pre" data-es="Una vez al mes, nada más." data-en="Once a month, nothing more.">Una vez al mes, nada más.</div></div></div>
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="border-collapse:collapse; background:#FCF8F1; border:1px solid #E5DBCB;">
+      <tr><td style="height:4px; line-height:4px; font-size:4px; background:#BC6044;">&nbsp;</td></tr>
+      <tr><td style="padding:28px 40px 0; text-align:center;"><div style="margin:0 auto 12px; width:34px; height:34px;"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Presencia · aquí seguiré, a tu ritmo"><ellipse cx="16" cy="18" rx="11" ry="6" fill="#E4A85C" opacity="0.32" transform="translate(0.5 1) rotate(-2 16 18)"/><g fill="none" stroke="#1F2E46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="14" r="2.6"/><path d="M10 16.6 L 10 24"/><path d="M10 20 L 8 23"/><path d="M10 20 L 12 23"/><circle cx="22" cy="12" r="3"/><path d="M22 15 L 22 25"/><path d="M22 20 L 19.5 23.5"/><path d="M22 20 L 24.5 23.5"/></g><circle cx="16" cy="18" r="1.1" fill="#E4A85C" stroke="#1F2E46" stroke-width="0.5"/></svg></div><div style="font-family:'DM Sans',Helvetica,Arial,sans-serif; font-size:11px; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:#8C8475;">Criar Sin Culpas</div><div style="width:34px; height:1px; background:#BC6044; margin:13px auto 0; opacity:.6;">&nbsp;</div></td></tr>
+      <tr><td style="padding:24px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="Hola [Nombre]:" data-en="Hi [Name],">Hola [Nombre]:</p></td></tr>
+      <tr><td style="padding:16px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="Esta es la última carta de bienvenida. De aquí en adelante te escribiré una vez al mes, más o menos: una idea útil, algo nuevo, nada que te llene la bandeja." data-en="This is the last welcome letter. From here on I will write about once a month: one useful idea, something new, nothing that floods your inbox.">Esta es la última carta de bienvenida. De aquí en adelante te escribiré una vez al mes, más o menos: una idea útil, algo nuevo, nada que te llene la bandeja.</p></td></tr>
+      <tr><td style="padding:18px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="No tienes que responder ni hacer nada. Solo quiero que sepas que cuando llegue un día difícil, y llegará, esto sigue aquí. Las guías, el método, y alguien que entiende por qué es tan duro." data-en="You do not have to reply or do anything. I just want you to know that when a hard day comes, and it will, this is still here. The guides, the method, and someone who understands why it is so hard.">No tienes que responder ni hacer nada. Solo quiero que sepas que cuando llegue un día difícil, y llegará, esto sigue aquí. Las guías, el método, y alguien que entiende por qué es tan duro.</p></td></tr>
+      <tr><td style="padding:18px 40px 0;"><p style="margin:0; font-family:'Inter',Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#574F44;" data-es="Criar sin culpas no es criar sin errores. Es &lt;strong style=&quot;color:#BC6044;font-weight:600;&quot;&gt;no criar en soledad&lt;/strong&gt;." data-en="Raising without guilt is not raising without mistakes. It is &lt;strong style=&quot;color:#BC6044;font-weight:600;&quot;&gt;not raising alone&lt;/strong&gt;.">Criar sin culpas no es criar sin errores. Es <strong style="color:#BC6044;font-weight:600;">no criar en soledad</strong>.</p></td></tr>
+      <tr><td style="padding:22px 40px 30px;"><p style="margin:0; font-family:'Cormorant Garamond',Georgia,serif; font-size:24px; font-weight:600; color:#1F2E3C;">Nari</p></td></tr>
+    </table>
+    <div class="fb" data-email="Correo 6"><div class="q"><span class="lab" data-es="¿Este correo?" data-en="This email?">¿Este correo?</span><span class="btns"><button class="tapbtn like" type="button">💛</button><button class="tapbtn change" type="button">✎</button></span></div><div class="note"><div class="note-lab">¿Qué cambiarías?</div><textarea></textarea></div></div>
+  </section>
+
+  <p class="foot">LG Studio · Criar Sin Culpas · Secuencia de bienvenida · borrador para revisión</p>
+</div>
+
+<div class="sendbar">
+  <div class="inner">
+    <button class="send" type="button" id="send">Enviarle mis comentarios a Luis</button>
+    <button class="copybtn" type="button" id="copy">Copiar</button>
+  </div>
+  <p class="sent-note" id="sent"></p>
+</div>
+
+<script>
+  var btns = document.querySelectorAll('.langswap button');
+  function setLang(l){
+    document.querySelectorAll('[data-es]').forEach(function(el){ var v=el.getAttribute('data-'+l); if(v!==null) el.innerHTML=v; });
+    btns.forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-lang')===l); });
+    window.__lang=l;
+  }
+  btns.forEach(function(b){ b.addEventListener('click', function(){ setLang(b.getAttribute('data-lang')); }); });
+  setLang('es');
+
+  document.querySelectorAll('.fb').forEach(function(fb){
+    var like=fb.querySelector('.like'), change=fb.querySelector('.change'), note=fb.querySelector('.note');
+    if(!like) return;
+    like.addEventListener('click', function(){ like.classList.toggle('on'); if(like.classList.contains('on')){ change.classList.remove('on'); if(note) note.classList.remove('show'); } });
+    change.addEventListener('click', function(){ change.classList.toggle('on'); if(change.classList.contains('on')){ like.classList.remove('on'); if(note) note.classList.add('show'); } else { if(note) note.classList.remove('show'); } });
+  });
+
+  function buildSummary(){
+    var lines=['Comentarios de Nari · Correos de bienvenida', ''];
+    document.querySelectorAll('.email-block').forEach(function(sec){
+      var fb=sec.querySelector('.fb'); if(!fb) return;
+      var name=fb.getAttribute('data-email');
+      if(fb.classList.contains('story-fb')){
+        var st=(document.getElementById('story')||{}).value||'';
+        lines.push('• '+name+' (tu historia): '+(st.trim()? st.trim() : '(pendiente)'));
+        return;
+      }
+      var state=fb.querySelector('.like.on')?'💛 me gusta':(fb.querySelector('.change.on')?'✎ cambiar':'(sin marcar)');
+      var ta=fb.querySelector('textarea'); var nota=ta&&ta.value.trim()?ta.value.trim():'';
+      lines.push('• '+name+': '+state+(nota?(' · '+nota):''));
+    });
+    lines.push('', 'Idioma revisado: '+((window.__lang==='en')?'Inglés':'Español'));
+    return lines.join('\n');
+  }
+  document.getElementById('send').addEventListener('click', function(){
+    window.open('https://wa.me/?text='+encodeURIComponent(buildSummary()), '_blank');
+    document.getElementById('sent').textContent='Se abrió WhatsApp. Elige a Luis y toca enviar.';
+  });
+  document.getElementById('copy').addEventListener('click', function(){
+    var txt=buildSummary();
+    if(navigator.clipboard){ navigator.clipboard.writeText(txt).then(function(){ document.getElementById('sent').textContent='Copiado. Pégalo en tu chat con Luis.'; }); }
+    else { document.getElementById('sent').textContent='Copia y envía a Luis:\n\n'+txt; }
+  });
+</script>
+</body>
+</html>
