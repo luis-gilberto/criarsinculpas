@@ -33,10 +33,14 @@
     {
       "slug": "pantallas",
       "guide": "Pantallas",
-      "metaphor": "La muralla",
-      "file": null,
-      "status": "reserved",
-      "description": "TBD \u2014 a wall of light between figures. Limite sin guerra."
+      "metaphor": "El corredor",
+      "metaphorPrevious": "La muralla",
+      "file": "assets/illustrations/hero-pantallas.svg",
+      "status": "designed",
+      "washes": ["ambar", "rosa", "terracota", "sereno", "blush"],
+      "description": "One-point-perspective corridor; warm screen world on one side, calmer world on the other, adult and child walking through the transition together.",
+      "note": "First perspective-based landscape in the Aprende illustration library.",
+      "designed": "2026-07-03"
     },
     {
       "slug": "sueno",
@@ -57,7 +61,7 @@
   ],
   "iconLibrary": {
     "path": "assets/icons/",
-    "count": 15,
+    "count": 16,
     "canonical": [
       { "n": "01", "name": "cerebro",       "file": "assets/icons/cerebro.svg",       "wash": "rosa",         "replaces": "\ud83e\udde0", "use": "El cerebro en tormenta / secci\u00f3n \u2018Qu\u00e9 pasa en el cerebro\u2019" },
       { "n": "02", "name": "mano",          "file": "assets/icons/mano.svg",          "wash": "peach",        "replaces": "\ud83e\udd1c", "use": "Presencia activa, palma abierta" },
@@ -73,7 +77,8 @@
       { "n": "12", "name": "simplificar",   "file": "assets/icons/simplificar.svg",   "wash": "musgo",        "replaces": "\ud83d\udce6", "use": "Minuto 2 / reducir est\u00edmulos" },
       { "n": "13", "name": "limite",        "file": "assets/icons/limite.svg",        "wash": "terracota",    "replaces": "\ud83d\udee1\ufe0f", "use": "Minuto 4 / sostener l\u00edmite" },
       { "n": "14", "name": "presencia",     "file": "assets/icons/presencia.svg",     "wash": "ambar",        "replaces": "\ud83e\udec2", "use": "Minuto 5 / no forzar cierre" },
-      { "n": "15", "name": "despues",       "file": "assets/icons/despues.svg",       "wash": "sereno+ambar", "replaces": "\ud83c\udf24\ufe0f", "use": "Post-crisis / cuando pase la intensidad" }
+      { "n": "15", "name": "despues",       "file": "assets/icons/despues.svg",       "wash": "sereno+ambar", "replaces": "\ud83c\udf24\ufe0f", "use": "Post-crisis / cuando pase la intensidad" },
+      { "n": "16", "name": "umbral",        "file": "assets/icons/umbral.svg",        "wash": "sereno+ambar", "replaces": null, "use": "CTA icon for guide-to-Protocol links; the two-worlds passage", "semanticRole": "Transition from reflective guide into live Protocol support" }
     ]
   },
   "articleMap": {
@@ -102,6 +107,19 @@
         { "id": "que-evitar",       "icon": "prohibido.svg",   "heading": "Qu\u00e9 evitar" },
         { "id": "banner-emocional", "icon": "corazon.svg",     "heading": "Bloque emocional", "surface": "banner" },
         { "id": "post-crisis",      "icon": "despues.svg",     "heading": "Cuando pase la intensidad" }
+      ]
+    },
+    "pantallas": {
+      "hero": "hero-pantallas.svg",
+      "sections": [
+        { "id": "que-pasa",       "icon": "cerebro.svg",   "heading": "Qu\u00e9 est\u00e1 pasando realmente" },
+        { "id": "que-hacer",      "icon": "mano.svg",      "heading": "Qu\u00e9 hacer" },
+        { "id": "que-no-hacer",   "icon": "prohibido.svg", "heading": "Qu\u00e9 no hacer" },
+        { "id": "que-decir",      "icon": "bocadillo.svg", "heading": "Qu\u00e9 decir" },
+        { "id": "en-calma",       "icon": "corazon.svg",   "heading": "Cuando todos est\u00e9n en calma" },
+        { "id": "apoyo",          "icon": "sos.svg",       "heading": "Cu\u00e1ndo buscar apoyo adicional" },
+        { "id": "manana",         "icon": "despues.svg",   "heading": "Una forma m\u00e1s amable de intentarlo ma\u00f1ana" },
+        { "id": "protocol-cta",   "icon": "umbral.svg",    "heading": "Protocol CTA", "surface": "protocol-cta" }
       ]
     }
   }

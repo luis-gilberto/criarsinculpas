@@ -1,0 +1,92 @@
+<!--
+  Hero v2 · Pantallas · "El corredor"
+  A hallway/corridor at eye level. Left wall: warm rosa/peach with a
+  bright rectangle (the screen glowing). Right wall: cooler sereno.
+  The floor recedes into an arched opening at the end.
+  Two figures walk down the corridor together, small in scale — the
+  metaphor is the *journey* through the transition, not the doorway itself.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480" aria-labelledby="ttl-p-v2">
+  <title id="ttl-p-v2">El corredor — un pasillo con una pantalla brillando a la izquierda, adulto y niño caminando hacia una puerta arqueada al fondo.</title>
+
+  <!-- background walls — perspective corridor -->
+  <!-- left wall — peach fading darker toward viewer -->
+  <path d="M0 100 L 360 200 L 360 380 L 0 460 z" fill="#F4A88A" opacity="0.4"/>
+  <!-- right wall — sereno cool -->
+  <path d="M800 100 L 440 200 L 440 380 L 800 460 z" fill="#8FA8C4" opacity="0.32"/>
+  <!-- floor — blush, receding -->
+  <path d="M0 460 L 360 380 L 440 380 L 800 460 L 800 480 L 0 480 z" fill="#FCE7DD" opacity="0.85"/>
+  <!-- ceiling — cream, subtly tinted -->
+  <path d="M0 0 L 800 0 L 800 100 L 440 200 L 360 200 L 0 100 z" fill="#F5E8DC" opacity="0.6"/>
+
+  <!-- ==== the "screen" on the left wall — a rectangle of light ==== -->
+  <!-- rosa wash glow surrounding it -->
+  <path d="M120 200 L 260 240 L 260 340 L 120 300 z" fill="#E89BA8" opacity="0.45"/>
+  <!-- ambar center — the "screen content" -->
+  <path d="M140 220 L 240 250 L 240 320 L 140 290 z" fill="#E4A85C" opacity="0.7"/>
+  <!-- soft glow lines emanating from the screen -->
+  <g stroke="#E4A85C" stroke-width="1.6" stroke-linecap="round" opacity="0.5" fill="none">
+    <path d="M100 260 L 60 250"/>
+    <path d="M100 300 L 60 310"/>
+    <path d="M100 340 L 60 360"/>
+  </g>
+
+  <!-- ==== end of corridor — the arched doorway at the vanishing point ==== -->
+  <!-- sereno wash inside the arch — the "after" light -->
+  <path d="M370 260 L 370 380 L 430 380 L 430 260 c 0 -18, -14 -30, -30 -30 c -16 0, -30 12, -30 30 z"
+        fill="#8FA8C4" opacity="0.55"/>
+  <!-- ambar warmth at the arch base -->
+  <ellipse cx="400" cy="378" rx="34" ry="4" fill="#E4A85C" opacity="0.7"/>
+  <!-- arch outline, hand-drawn -->
+  <g fill="none" stroke="#1F2E46" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M370 380 L 370 260 c 0 -16, 13 -28, 30 -28 c 17 0, 30 12, 30 28 v 120"/>
+  </g>
+
+  <!-- floor perspective lines — soft dashed navy -->
+  <g stroke="#1F2E46" stroke-width="1.3" stroke-linecap="round" opacity="0.22" fill="none">
+    <path d="M0 480 L 380 380"/>
+    <path d="M800 480 L 420 380"/>
+    <path d="M400 480 L 400 380" stroke-dasharray="4 6"/>
+  </g>
+
+  <!-- ==== FIGURES — walking down the corridor together, mid-distance ==== -->
+  <!-- ADULT — right of center, slightly taller, hand back to child -->
+  <g fill="none" stroke="#1F2E46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="460" cy="330" r="14"/>
+    <path d="M454 330 l 3 0"/>
+    <path d="M463 330 l 3 0"/>
+    <path d="M456 338 l 8 0"/>
+    <!-- body -->
+    <path d="M460 344 L 460 400"/>
+    <!-- reaching arm back -->
+    <path d="M460 358 C 446 366, 428 372, 414 378"/>
+    <!-- other arm forward -->
+    <path d="M460 358 C 470 370, 476 384, 476 396"/>
+    <!-- legs mid-step -->
+    <path d="M460 400 L 452 424"/>
+    <path d="M460 400 L 468 420"/>
+  </g>
+
+  <!-- CHILD — left of adult, smaller, walking forward, hand up -->
+  <g fill="none" stroke="#1F2E46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="400" cy="350" r="11"/>
+    <path d="M395 350 l 2 0"/>
+    <path d="M403 350 l 2 0"/>
+    <path d="M397 356 l 6 0"/>
+    <!-- body -->
+    <path d="M400 361 L 400 402"/>
+    <!-- hand up toward adult's hand -->
+    <path d="M400 372 C 406 374, 411 376, 414 378"/>
+    <!-- other arm at side -->
+    <path d="M400 372 C 394 380, 390 392, 390 402"/>
+    <!-- legs mid-step -->
+    <path d="M400 402 L 394 422"/>
+    <path d="M400 402 L 406 422"/>
+  </g>
+
+  <!-- small ambar heart floating above the two, mid-corridor -->
+  <g transform="translate(418 296) scale(0.2)">
+    <path d="M50 32 c -6 -10, -19 -12, -26 -5 c -8 7, -7 21, 3 31 l 23 22 l 24 -22 c 10 -10, 11 -24, 3 -31 c -7 -7, -21 -5, -27 5z"
+          fill="#E4A85C" opacity="0.95" stroke="#1F2E46" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+</svg>
