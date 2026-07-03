@@ -233,3 +233,28 @@ Also ships: hero illustration (`/assets/illustrations/hero-berrinche.svg`), CSC 
 **Follow-up:** create a dedicated 1200×630 social card for the berrinche article and update
 OG/Twitter meta separately. In-article hero and JSON-LD Article `image` may differ from social
 cards until then.
+
+### 11.12 Los primeros 5 minutos (crisis-time guide)
+
+The second shipped Aprende article — optimized for scannability during a meltdown:
+
+`/aprende/Los-primeros-5/index.html`
+
+Also ships: hero illustration (`/assets/illustrations/hero-primeros-5-minutos.svg`), standalone
+section icons in `/assets/icons/` (ritmo, pulso, respiracion, simplificar, limite, presencia,
+despues, plus reused prohibido / bocadillo / corazon), and manifest entry in
+`/assets/illustrations/manifest.json`.
+
+New primitives on this page: `.cs-tldr`, `.cs-banner`, `.alert-list`, `.csc-icon-img`.
+
+**Follow-up:**
+
+- **English adaptation pending.** No English copy was provided in the GenSpark handoff. The page
+  uses `data-en-pending` so the EN toggle mirrors Spanish for article body until a human-reviewed
+  English adaptation is delivered.
+- **Dedicated 1200×630 social card pending.** OG/Twitter meta remain on the Cloudinary brand
+  image until a social card is authored. In-article hero and JSON-LD Article `image` may differ
+  from social cards until then.
+
+Handoff audit trail: `assets/handoff/primeros_5_minutos/` (leave untracked; do not edit in place
+after production assets are copied).

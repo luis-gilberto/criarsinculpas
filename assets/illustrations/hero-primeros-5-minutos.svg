@@ -1,0 +1,74 @@
+<!--
+  Hero v1 · "El reloj lento — arcos radiantes"
+  Time-slowing metaphor. Five ambar arcs radiating outward from a small figure
+  standing calm at center-right. Each arc longer than the last — the pace of
+  the first five minutes stretched wide. Same 800×480 canvas, same rules as La ola.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480" aria-labelledby="ttl-r5-v1">
+  <title id="ttl-r5-v1">El reloj lento — cinco arcos radiantes marcando el tiempo que se estira, con una figura calmada al centro.</title>
+
+  <!-- blush wash pooled below — the "ground" -->
+  <path d="M60 380 c 100 -30, 260 -50, 400 -50 s 220 20, 280 50 c 20 10 0 40 -40 44 c -180 10 -400 10 -560 -4 c -60 -6 -80 -30 -80 -40z"
+        fill="#FCE7DD" opacity="0.65" transform="translate(0 6) rotate(-1 400 400)"/>
+
+  <!-- ==== FIVE ARCS — radiating from figure position (right side) ==== -->
+  <!-- arc 1 (closest, smallest) — sereno, tightest -->
+  <path d="M 480 340 A 60 60 0 0 0 600 340" fill="none" stroke="#8FA8C4" stroke-width="2.1" stroke-linecap="round" opacity="0.75"/>
+  <!-- arc 2 -->
+  <path d="M 430 340 A 110 110 0 0 0 650 340" fill="none" stroke="#E4A85C" stroke-width="2.1" stroke-linecap="round" opacity="0.7"/>
+  <!-- arc 3 -->
+  <path d="M 370 340 A 170 170 0 0 0 710 340" fill="none" stroke="#E89BA8" stroke-width="2.1" stroke-linecap="round" opacity="0.65"/>
+  <!-- arc 4 -->
+  <path d="M 300 340 A 240 240 0 0 0 780 340" fill="none" stroke="#C45A47" stroke-width="1.9" stroke-linecap="round" opacity="0.55"/>
+  <!-- arc 5 (widest, most distant — the whole moment ending) -->
+  <path d="M 220 340 A 320 320 0 0 0 860 340" fill="none" stroke="#8A9E7E" stroke-width="1.8" stroke-linecap="round" opacity="0.45"/>
+
+  <!-- tick marks on the innermost arc — the 5 minute segments -->
+  <g fill="#1F2E46" opacity="0.85">
+    <!-- minute 1 through 5, positioned along the arc -->
+    <circle cx="500" cy="308" r="2.6"/>
+    <circle cx="524" cy="292" r="2.6"/>
+    <circle cx="552" cy="284" r="2.6"/>
+    <circle cx="580" cy="288" r="2.6"/>
+    <circle cx="604" cy="304" r="2.6"/>
+  </g>
+
+  <!-- ==== FIGURE — right of center, calm, arms slightly open ==== -->
+  <ellipse cx="540" cy="360" rx="52" ry="60" fill="#FCE7DD" opacity="0.9" transform="rotate(-2 540 360)"/>
+
+  <g fill="none" stroke="#1F2E46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <!-- head -->
+    <circle cx="540" cy="336" r="16"/>
+    <!-- calm eyes -->
+    <path d="M534 336 l 3 0"/>
+    <path d="M543 336 l 3 0"/>
+    <!-- soft mouth -->
+    <path d="M536 346 l 8 0"/>
+
+    <!-- body -->
+    <path d="M540 352 L 540 402"/>
+    <!-- arms open, receptive — soft downward angle -->
+    <path d="M540 368 C 522 374, 510 386, 506 400"/>
+    <path d="M540 368 C 558 374, 570 386, 574 400"/>
+    <!-- legs -->
+    <path d="M540 402 L 530 424"/>
+    <path d="M540 402 L 550 424"/>
+  </g>
+
+  <!-- small ambar heart on the innermost arc, above the figure — the "presencia" beat -->
+  <g transform="translate(526 258) scale(0.24)">
+    <path d="M50 32 c -6 -10, -19 -12, -26 -5 c -8 7, -7 21, 3 31 l 23 22 l 24 -22 c 10 -10, 11 -24, 3 -31 c -7 -7, -21 -5, -27 5z"
+          fill="#E4A85C" opacity="0.9" stroke="#1F2E46" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+
+  <!-- horizon line, subtle -->
+  <path d="M60 440 C 240 438, 500 442, 700 440"
+        fill="none" stroke="#1F2E46" stroke-width="1.4" stroke-linecap="round" opacity="0.22"/>
+
+  <!-- LEFT SIDE — the "before" of the moment — three faint terra scribbles (residue of the storm) -->
+  <g fill="none" stroke="#C45A47" stroke-width="1.9" stroke-linecap="round" opacity="0.5">
+    <path d="M100 200 l -10 -14 l 6 -2 l -8 -12"/>
+    <path d="M140 240 l -6 -12 l 4 -2 l -6 -10"/>
+    <path d="M180 280 l 4 -10"/>
+  </g>
+</svg>

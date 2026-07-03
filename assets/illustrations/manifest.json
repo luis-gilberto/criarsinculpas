@@ -1,0 +1,108 @@
+{
+  "$schema": "csc-illustrations-v1",
+  "description": "Manifest of every hero illustration in the Criar Sin Culpas landscape-metaphor library. Cursor reads this to know which SVGs exist for each guide slug; humans read it to see which metaphors are reserved vs designed vs still to author.",
+  "canvas": { "width": 800, "height": 480 },
+  "frame": {
+    "background": "var(--blush)",
+    "borderRadius": 22,
+    "padding": 22
+  },
+  "illustrations": [
+    {
+      "slug": "berrinche",
+      "guide": "Desbordes",
+      "metaphor": "La ola",
+      "file": "assets/illustrations/hero-berrinche.svg",
+      "status": "designed",
+      "washes": ["musgo", "rosa", "terracota", "blush", "ambar"],
+      "description": "Three overlapping waves rising toward a small figure on the shore. Ambar heart above the crest.",
+      "designed": "2026-07-02",
+      "compareArtifact": "Hero Illustration Compare.html"
+    },
+    {
+      "slug": "primeros-5-minutos",
+      "guide": "Los primeros 5 minutos",
+      "metaphor": "El reloj lento",
+      "file": "assets/illustrations/hero-primeros-5-minutos.svg",
+      "status": "designed",
+      "washes": ["sereno", "ambar", "rosa", "terracota", "musgo", "blush"],
+      "description": "Five arcs radiating outward from a small calm figure, each arc coded to one of the five minutes. Residue-of-storm scribbles to the left. Ambar heart on the innermost arc.",
+      "designed": "2026-07-03",
+      "compareArtifact": "Primeros 5 Minutos \u2014 Icon & Hero Compare.html"
+    },
+    {
+      "slug": "pantallas",
+      "guide": "Pantallas",
+      "metaphor": "La muralla",
+      "file": null,
+      "status": "reserved",
+      "description": "TBD \u2014 a wall of light between figures. Limite sin guerra."
+    },
+    {
+      "slug": "sueno",
+      "guide": "Sue\u00f1o",
+      "metaphor": "La noche",
+      "file": null,
+      "status": "reserved",
+      "description": "TBD \u2014 layered horizons at dusk. Ritual y reparaci\u00f3n."
+    },
+    {
+      "slug": "hermanos",
+      "guide": "Hermanos",
+      "metaphor": "Las corrientes",
+      "file": null,
+      "status": "reserved",
+      "description": "TBD \u2014 two streams that cross without collision. Separar, validar, limitar."
+    }
+  ],
+  "iconLibrary": {
+    "path": "assets/icons/",
+    "count": 15,
+    "canonical": [
+      { "n": "01", "name": "cerebro",       "file": "assets/icons/cerebro.svg",       "wash": "rosa",         "replaces": "\ud83e\udde0", "use": "El cerebro en tormenta / secci\u00f3n \u2018Qu\u00e9 pasa en el cerebro\u2019" },
+      { "n": "02", "name": "mano",          "file": "assets/icons/mano.svg",          "wash": "peach",        "replaces": "\ud83e\udd1c", "use": "Presencia activa, palma abierta" },
+      { "n": "03", "name": "prohibido",     "file": "assets/icons/prohibido.svg",     "wash": "terracota",    "replaces": "\ud83d\udeab", "use": "Qu\u00e9 NO hacer / alertas / Qu\u00e9 evitar" },
+      { "n": "04", "name": "bocadillo",     "file": "assets/icons/bocadillo.svg",     "wash": "sereno",       "replaces": "\ud83d\udcac", "use": "Palabras cortas / Qu\u00e9 decir" },
+      { "n": "05", "name": "pin",           "file": "assets/icons/pin.svg",           "wash": "terracota",    "replaces": "\ud83d\udccd", "use": "Marcador de tip en listas" },
+      { "n": "06", "name": "corazon",       "file": "assets/icons/corazon.svg",       "wash": "ambar",        "replaces": "\ud83e\udde1", "use": "Reparaci\u00f3n / banner emocional / Contenci\u00f3n" },
+      { "n": "07", "name": "sos",           "file": "assets/icons/sos.svg",           "wash": "terracota",    "replaces": "\ud83c\udd98", "use": "Cu\u00e1ndo buscar apoyo" },
+      { "n": "08", "name": "estetoscopio",  "file": "assets/icons/estetoscopio.svg",  "wash": "sereno",       "replaces": "\ud83e\ude7a", "use": "Callout m\u00e9dico. Cream variant available." },
+      { "n": "09", "name": "pulso",         "file": "assets/icons/pulso.svg",         "wash": "sereno",       "replaces": "\ud83e\udee7", "use": "Apertura del art\u00edculo / bajar ritmo" },
+      { "n": "10", "name": "ritmo",         "file": "assets/icons/ritmo.svg",         "wash": "terracota",    "replaces": "\u26a1",      "use": "TL;DR crisis / pasos r\u00e1pidos" },
+      { "n": "11", "name": "respiracion",   "file": "assets/icons/respiracion.svg",   "wash": "sereno",       "replaces": "\ud83c\udf2c", "use": "Minuto 1 / baja tu velocidad" },
+      { "n": "12", "name": "simplificar",   "file": "assets/icons/simplificar.svg",   "wash": "musgo",        "replaces": "\ud83d\udce6", "use": "Minuto 2 / reducir est\u00edmulos" },
+      { "n": "13", "name": "limite",        "file": "assets/icons/limite.svg",        "wash": "terracota",    "replaces": "\ud83d\udee1\ufe0f", "use": "Minuto 4 / sostener l\u00edmite" },
+      { "n": "14", "name": "presencia",     "file": "assets/icons/presencia.svg",     "wash": "ambar",        "replaces": "\ud83e\udec2", "use": "Minuto 5 / no forzar cierre" },
+      { "n": "15", "name": "despues",       "file": "assets/icons/despues.svg",       "wash": "sereno+ambar", "replaces": "\ud83c\udf24\ufe0f", "use": "Post-crisis / cuando pase la intensidad" }
+    ]
+  },
+  "articleMap": {
+    "berrinche": {
+      "hero": "hero-berrinche.svg",
+      "sections": [
+        { "id": "cerebro",    "icon": "cerebro.svg",         "heading": "Qu\u00e9 pasa en el cerebro" },
+        { "id": "momento",    "icon": "mano.svg",            "heading": "Qu\u00e9 hacer en el momento" },
+        { "id": "no-hacer",   "icon": "prohibido.svg",       "heading": "Qu\u00e9 NO hacer" },
+        { "id": "que-decir",  "icon": "bocadillo.svg",       "heading": "Qu\u00e9 decir" },
+        { "id": "despues",    "icon": "corazon.svg",         "heading": "Despu\u00e9s del berrinche" },
+        { "id": "apoyo",      "icon": "sos.svg",             "heading": "Cu\u00e1ndo buscar apoyo" },
+        { "id": "pediatra",   "icon": "estetoscopio-cream.svg", "heading": "Cu\u00e1ndo llamar al pediatra", "surface": "navy-callout" }
+      ]
+    },
+    "primeros-5-minutos": {
+      "hero": "hero-primeros-5-minutos.svg",
+      "sections": [
+        { "id": "apertura",         "icon": "pulso.svg",       "heading": "Apertura", "surface": "article-open" },
+        { "id": "tldr",             "icon": "ritmo.svg",       "heading": "Crisis TL;DR", "surface": "tldr-block" },
+        { "id": "minuto-1",         "icon": "respiracion.svg", "heading": "Minuto 1 \u2014 Baja tu propia velocidad" },
+        { "id": "minuto-2",         "icon": "simplificar.svg", "heading": "Minuto 2 \u2014 Haz el entorno m\u00e1s simple" },
+        { "id": "minuto-3",         "icon": "bocadillo.svg",   "heading": "Minuto 3 \u2014 Usa pocas palabras" },
+        { "id": "minuto-4",         "icon": "limite.svg",      "heading": "Minuto 4 \u2014 Sost\u00e9n el l\u00edmite sin pelear" },
+        { "id": "minuto-5",         "icon": "presencia.svg",   "heading": "Minuto 5 \u2014 No busques cierre todav\u00eda" },
+        { "id": "que-evitar",       "icon": "prohibido.svg",   "heading": "Qu\u00e9 evitar" },
+        { "id": "banner-emocional", "icon": "corazon.svg",     "heading": "Bloque emocional", "surface": "banner" },
+        { "id": "post-crisis",      "icon": "despues.svg",     "heading": "Cuando pase la intensidad" }
+      ]
+    }
+  }
+}
