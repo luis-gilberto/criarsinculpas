@@ -1,0 +1,72 @@
+<!--
+  Hero Illustration · v3 · "La ola"
+  Metaphor-forward, not literal figures.
+  A wave of rosa+terra rises over one small navy stick figure who stands calm.
+  "Cuando pase la ola" — the article's own language, made visual.
+  Warm-imperfect wave paths, same 1.9pt navy line for the figure.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480" aria-labelledby="ttl-v3">
+  <title id="ttl-v3">La ola — la emoción como marea, un adulto calmado esperándola pasar.</title>
+
+  <!-- ==== THE WAVE — three overlapping washes, back to front ==== -->
+  <!-- back wave — musgo faint, distant -->
+  <path d="M0 240 C 80 200, 160 210, 240 230 S 400 260, 480 240 S 640 210, 720 240 S 780 260, 800 250 L 800 480 L 0 480 Z"
+        fill="#8A9E7E" opacity="0.18"/>
+
+  <!-- middle wave — rosa, rising higher -->
+  <path d="M-20 280 C 60 220, 140 230, 220 260 C 300 290, 380 240, 460 270 C 540 300, 620 240, 700 270 C 760 290, 800 280, 820 300 L 820 480 L -20 480 Z"
+        fill="#E89BA8" opacity="0.55" transform="translate(0 -6)"/>
+
+  <!-- foreground wave — terra, tallest peak on left where child would be -->
+  <path d="M-40 320 C 20 220, 100 200, 180 240 C 260 280, 340 300, 420 290 C 500 280, 580 320, 660 340 C 720 354, 800 340, 840 350 L 840 480 L -40 480 Z"
+        fill="#C45A47" opacity="0.72"/>
+
+  <!-- wave crest line — hand-drawn, terra deep, sits on foreground wave top -->
+  <g fill="none" stroke="#1F2E46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" opacity="0.85">
+    <path d="M-40 320 C 20 220, 100 200, 180 240 C 260 280, 340 300, 420 290 C 500 280, 580 320, 660 340 C 720 354, 800 340, 840 350"/>
+  </g>
+
+  <!-- foam flecks on wave crest — small ambar dots, hand-placed -->
+  <g fill="#E4A85C" opacity="0.85">
+    <circle cx="90" cy="228" r="2.4"/>
+    <circle cx="128" cy="216" r="1.8"/>
+    <circle cx="176" cy="242" r="2.1"/>
+    <circle cx="228" cy="264" r="1.6"/>
+    <circle cx="378" cy="298" r="2"/>
+    <circle cx="592" cy="322" r="1.8"/>
+    <circle cx="672" cy="342" r="2.2"/>
+  </g>
+
+  <!-- ==== THE FIGURE — small, calm, right-of-center, standing on shore ==== -->
+  <!-- soft blush wash halo behind figure (presence) -->
+  <ellipse cx="580" cy="360" rx="60" ry="70" fill="#FCE7DD" opacity="0.9" transform="rotate(-3 580 360)"/>
+
+  <g fill="none" stroke="#1F2E46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <!-- head -->
+    <circle cx="580" cy="330" r="18"/>
+    <!-- calm eyes — small dashes -->
+    <path d="M572 330 l 3 0"/>
+    <path d="M585 330 l 3 0"/>
+    <!-- neutral mouth -->
+    <path d="M576 340 l 8 0"/>
+
+    <!-- body — upright, unmoving -->
+    <path d="M580 350 L 580 410"/>
+    <!-- arms slightly open, receptive -->
+    <path d="M580 366 C 566 372, 554 384, 550 396"/>
+    <path d="M580 366 C 594 372, 606 384, 610 396"/>
+    <!-- legs -->
+    <path d="M580 410 L 570 434"/>
+    <path d="M580 410 L 590 434"/>
+  </g>
+
+  <!-- shore line — faint horizon detail, right of figure -->
+  <path d="M540 442 C 580 440, 640 442, 700 440"
+        fill="none" stroke="#1F2E46" stroke-width="1.4" stroke-linecap="round" opacity="0.28"/>
+
+  <!-- one small heart mark just above wave crest, ambar, near figure — the reparación beat -->
+  <g transform="translate(546 288) scale(0.24)">
+    <path d="M50 32 c -6 -10, -19 -12, -26 -5 c -8 7, -7 21, 3 31 l 23 22 l 24 -22 c 10 -10, 11 -24, 3 -31 c -7 -7, -21 -5, -27 5z"
+          fill="#E4A85C" opacity="0.9" stroke="#1F2E46" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+</svg>

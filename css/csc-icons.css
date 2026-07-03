@@ -1,0 +1,34 @@
+/* =====================================================
+   Criar Sin Culpas — Icon utility CSS
+   Drop into your global stylesheet (or import once).
+   ===================================================== */
+
+.csc-icon {
+  /* Scales with surrounding font-size — 1.2em means the icon
+     is slightly larger than its heading text. Baseline aligned. */
+  display: inline-block;
+  width: 1.2em;
+  height: 1.2em;
+  vertical-align: -0.22em;
+  flex: none;
+  overflow: visible;
+}
+
+/* Larger variants for hero moments or explicit sizing */
+.csc-icon--lg  { width: 1.6em; height: 1.6em; vertical-align: -0.32em; }
+.csc-icon--xl  { width: 2.4em; height: 2.4em; vertical-align: -0.5em;  }
+
+/* Marker variant — smaller, tuned for bullets inside tip boxes */
+.csc-icon--marker {
+  width: 0.9em;
+  height: 0.9em;
+  vertical-align: -0.15em;
+  margin-right: 0.25em;
+}
+
+/* Standard section-header pairing: icon + heading text */
+.csc-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}

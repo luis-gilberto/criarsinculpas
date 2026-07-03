@@ -14,8 +14,9 @@ never replaces Spanish and never lives on a separate URL (for now).
 - Every article is written in Spanish first. Spanish is the source of truth.
 - Tone: warm, direct, calm, Criar Sin Culpas-native. No clinical or generic-blog voice.
 - Gender-neutral by default. Avoid assuming the parent is always female.
-  - Use forms like "cansada o cansado" or rewrite to avoid gender ("estás agotado/a", or
-    rephrase). Refer to the child as "tu hijo" / "tu peque" / "tu hija o hijo" as fits.
+  - Prefer neutral phrasing: `con cansancio`, `con frustración`, `sin mucha energía`.
+  - Avoid gendered adjectives like `cansada`, `agotado`, `frustrada` for the adult reader.
+  - See section 11 (Exhausted Parent Optimization Pattern) for full editorial rules.
 - Keep paragraphs short. Prefer plain language over jargon.
 - The Spanish text is the visible default content in the static HTML (see section 6).
 
@@ -138,3 +139,97 @@ Rules:
 - [ ] Internal links resolve; reciprocal link added from the mapped guide.
 - [ ] Added to `sitemap.xml`.
 - [ ] Hub card status set correctly (`published` / `resource` / `coming-soon`).
+
+---
+
+## 11. Exhausted Parent Optimization Pattern
+
+Aprende pages are compassionate learning tools for tired parents — not SEO blog posts.
+Every article should be easier to use on mobile, especially when a parent is reading during
+a hard moment. The reader should finish feeling: *“Mañana puedo intentarlo de otra manera.”*
+
+Apply this pattern to all Aprende articles, especially crisis-adjacent topics (berrinches,
+desbordes, pantallas, límites, transiciones).
+
+### 11.1 Mobile-first structure
+
+- Assume the reader is on a phone, tired, interrupted, or reading during the parenting moment.
+- Keep sections short. Avoid long uninterrupted paragraphs.
+- Use visual hierarchy (micro-chapters, callouts, phrase blocks) to reduce cognitive load.
+
+### 11.2 Crisis TL;DR (crisis-adjacent articles)
+
+- Place a short **“Si estás en el momento” / “If you are in it right now”** block immediately
+  after the opening intro, before deeper explanation.
+- Include 3–5 short, practical actions (one per line).
+- Add a soft CTA to the relevant `/apoyo/...` protocol (for example
+  `Necesito ayuda ahora →` / `I need help now →`).
+
+### 11.3 Micro-chapters
+
+- Use short sections with clear emotional purpose; each answers one immediate question.
+- Keep most sections to 3–5 short paragraphs or short blocks.
+- Emoji in headings is optional and sparing (only when it aids scanability on mobile).
+
+### 11.4 Callouts
+
+- Use **emotional callouts** and **practical callouts** to anchor the parent — not decorate.
+- Examples: `No es manipulación. Es una emoción demasiado grande.` /
+  `Tu calma ayuda, aunque no sea perfecta.` / `Conexión primero, corrección después.` /
+  `Pedir ayuda es cuidado, no fracaso.`
+- Markup: `.callout` (see reference article `que-hacer-en-un-berrinche`).
+
+### 11.5 Phrase blocks
+
+- “Qué decir” sections use `.say-box` with one phrase per line.
+- Repetition is allowed. Avoid long scripts.
+
+### 11.6 What NOT to do
+
+- Clear, short bullets. No shaming the parent.
+- If using ❌ markers, use them consistently; prefer `<span aria-hidden="true">❌ </span>`
+  plus plain text for screen readers.
+
+### 11.7 Soft CTA
+
+- CTA language should feel useful, not aggressive: `Necesito ayuda ahora`, `Ir a la guía`,
+  `Abrir la guía`.
+- Connect naturally to the mapped protocol.
+
+### 11.8 FAQ
+
+- Usually 3–5 questions. Each answer: no more than 3–4 short lines.
+- FAQ resolves doubts without reopening the whole article. Visible FAQ must match `FAQPage` JSON-LD.
+
+### 11.9 Neutral Spanish (parent/adult)
+
+- Avoid gendered adjectives for the parent whenever possible.
+- Prefer: `con cansancio`, `con frustración`, `sin mucha energía`,
+  `cuando en casa ya no queda mucho margen`.
+- Avoid: `cansada`, `agotado`, `frustrada` (as standalone parent descriptors).
+- For child-directed phrases, prefer neutral wording when possible:
+  `Estás a salvo` instead of `Estás seguro`.
+
+### 11.10 CSC tone guardrails
+
+- Do not use `tu calma es contagiosa` as a standalone absolute.
+- Prefer: `Tu calma ayuda, aunque no sea perfecta.`
+- Avoid overly clinical phrases such as `su cerebro lógico está offline`.
+- Prefer: `en ese momento no puede razonar como cuando está calmado.`
+- Avoid framing that makes parents feel responsible for perfect regulation.
+
+### 11.11 Reference implementation
+
+The canonical retrofitted example is:
+
+`/aprende/que-hacer-en-un-berrinche/index.html`
+
+Clone its CSS classes (`crisis-block`, `callout`, `say-box`, `action-block`, `notdo-list`,
+`read-badge`) when building or updating other Aprende articles.
+
+Also ships: hero illustration (`/assets/illustrations/hero-berrinche.svg`), CSC section icons
+(`/assets/icons/criar-icons.svg`, `/css/csc-icons.css`).
+
+**Follow-up:** create a dedicated 1200×630 social card for the berrinche article and update
+OG/Twitter meta separately. In-article hero and JSON-LD Article `image` may differ from social
+cards until then.
