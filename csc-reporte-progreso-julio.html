@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="es">
+<!--
+  Criar Sin Culpas · Reporte de Progreso
+  Disenado, construido y escrito por LG Studio · Luis Gilberto
+  https://luis-gilberto.com
+  Fotografia: Erika Sharnay · Sharnay Photography
+  Nota: el ingles es borrador para revision.
+-->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Luis Gilberto · LG Studio">
+<title>Criar Sin Culpas · Reporte de Progreso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF6EF;
+    --paper-2:#F3ECE0;
+    --ink:#1F2E3C;
+    --body:#574F44;
+    --muted:#8C8475;
+    --line:#E5DBCB;
+    --terra:#BC6044;
+    --coral:#DC7551;
+    --navy:#18242F;
+    --navy-2:#22323F;
+    --serif:"Cormorant Garamond", Georgia, serif;
+    --sans:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  /* Nari prefiere sin cursiva: el enfasis va por color de acento, no por inclinacion. Cursiva reservada a citas (.quote). */
+  em{ font-style:normal; }
+  .quote, blockquote{ font-style:italic; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--body);
+    font-family:var(--sans);
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  .progress{
+    position:fixed; top:0; left:0; height:2px; width:0%;
+    background:var(--terra); z-index:50; transition:width .1s linear;
+  }
+
+  .langtoggle{
+    position:fixed; top:16px; right:16px; z-index:60;
+    display:inline-flex; border:1px solid rgba(229,219,203,.7); border-radius:999px; overflow:hidden;
+    background:rgba(251,246,239,.84); backdrop-filter:blur(8px);
+    box-shadow:0 8px 24px -12px rgba(22,34,45,.45);
+  }
+  .langtoggle button{
+    border:0; background:transparent; font-family:var(--sans); font-size:12px; font-weight:600;
+    letter-spacing:.06em; padding:7px 14px; cursor:pointer; color:var(--muted);
+  }
+  .langtoggle button.on{ background:var(--ink); color:var(--paper); }
+  .langtoggle button:focus-visible{ outline:2px solid var(--terra); outline-offset:-2px; }
+
+  /* ---------- COVER ---------- */
+  .cover{
+    position:relative; min-height:100svh; display:flex; flex-direction:column; justify-content:space-between;
+    overflow:hidden; color:#F5EFE6;
+  }
+  .cover-bg{ position:absolute; inset:0; background:#0e1820; z-index:0; }
+  .cover-bg img{
+    width:100%; height:100%; object-fit:cover; object-position:center 30%;
+    opacity:.62; animation:kenburns 26s ease-out forwards;
+  }
+  @keyframes kenburns{ from{transform:scale(1.04);} to{transform:scale(1.14);} }
+  .cover-bg::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(14,24,32,.55) 0%, rgba(14,24,32,.20) 35%, rgba(14,24,32,.78) 100%);
+  }
+  .cover-inner{ position:relative; z-index:2; padding:42px clamp(24px,6vw,80px); }
+  .cover-top{ display:flex; justify-content:space-between; align-items:baseline; gap:16px; }
+  .wordmark{ font-family:var(--sans); font-weight:600; font-size:12px; letter-spacing:.32em; text-transform:uppercase; color:#EDE5D8; }
+  .cover-date{ font-family:var(--sans); font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:rgba(245,239,230,.7); }
+  .cover-mid{ position:relative; z-index:2; padding:0 clamp(24px,6vw,80px); }
+  .cover-eyebrow{
+    font-family:var(--sans); font-size:12px; letter-spacing:.3em; text-transform:uppercase; color:var(--coral);
+    margin-bottom:22px; opacity:0; animation:rise .9s .15s ease-out forwards;
+  }
+  .cover-title{
+    font-family:var(--serif); font-weight:300; font-size:clamp(3.2rem,9vw,7rem); line-height:.96; letter-spacing:.005em;
+    margin:0; color:#FCF8F1; opacity:0; animation:rise 1s .3s ease-out forwards;
+  }
+  .cover-title em{ font-style:normal; color:#F1C9B4; }
+  .cover-sub{
+    margin:26px 0 0; max-width:38ch; font-family:var(--serif); font-style:normal; font-weight:400;
+    font-size:clamp(1.15rem,2.3vw,1.5rem); line-height:1.5; color:rgba(245,239,230,.9);
+    opacity:0; animation:rise 1s .5s ease-out forwards;
+  }
+  .cover-foot{ position:relative; z-index:2; padding:0 clamp(24px,6vw,80px) 42px; }
+  .cover-prepared{ font-family:var(--sans); font-size:12px; letter-spacing:.14em; color:rgba(245,239,230,.78); opacity:0; animation:rise 1s .7s ease-out forwards; }
+  .cover-prepared strong{ color:#F5EFE6; font-weight:600; }
+  .scrollcue{
+    margin-top:18px; font-family:var(--sans); font-size:10.5px; letter-spacing:.26em; text-transform:uppercase;
+    color:rgba(245,239,230,.55); display:flex; align-items:center; gap:10px; opacity:0; animation:rise 1s .9s ease-out forwards;
+  }
+  .scrollcue .bar{ width:34px; height:1px; background:rgba(245,239,230,.5); position:relative; overflow:hidden; }
+  .scrollcue .bar::after{ content:""; position:absolute; inset:0; background:var(--coral); transform:translateX(-100%); animation:slide 2.4s ease-in-out infinite; }
+  @keyframes slide{ 0%{transform:translateX(-100%);} 60%{transform:translateX(100%);} 100%{transform:translateX(100%);} }
+  @keyframes rise{ from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);} }
+
+  /* ---------- DOCUMENT SHELL ---------- */
+  .doc{ max-width:1080px; margin:0 auto; padding:0 clamp(24px,6vw,80px); }
+  .col{ max-width:660px; }
+
+  .intro{ padding:clamp(72px,12vh,140px) 0 clamp(40px,7vh,72px); }
+  .salutation{ font-family:var(--serif); font-style:normal; font-weight:400; font-size:clamp(1.5rem,3.5vw,2.2rem); color:var(--ink); margin:0 0 24px; }
+  .lead{ font-size:clamp(1.05rem,1.6vw,1.18rem); line-height:1.8; color:var(--body); }
+  .lead + .lead{ margin-top:1.1em; }
+  .lead strong{ color:var(--ink); font-weight:600; }
+
+  .movement{ padding:clamp(48px,8vh,86px) 0; border-top:1px solid var(--line); }
+  .m-head{ display:flex; align-items:baseline; gap:20px; margin-bottom:30px; flex-wrap:wrap; }
+  .m-num{ font-family:var(--serif); font-weight:300; font-size:clamp(2.4rem,5vw,3.4rem); line-height:1; color:var(--terra); min-width:1.6ch; }
+  .m-label{ font-family:var(--sans); font-size:11px; letter-spacing:.26em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+  .m-title{ font-family:var(--serif); font-weight:400; font-size:clamp(1.9rem,3.6vw,2.7rem); line-height:1.08; color:var(--ink); margin:0; }
+  .m-title em{ font-style:normal; color:var(--terra); }
+  .body{ font-size:clamp(1rem,1.5vw,1.1rem); line-height:1.82; color:var(--body); }
+  .body + .body{ margin-top:1.05em; }
+  .body strong{ color:var(--ink); font-weight:600; }
+
+  .standing{ list-style:none; margin:30px 0 0; padding:0; }
+  .standing li{ padding:16px 0; border-top:1px solid var(--line); display:grid; grid-template-columns:18px 1fr; gap:16px; align-items:start; font-size:1rem; line-height:1.65; color:var(--body); }
+  .standing li:last-child{ border-bottom:1px solid var(--line); }
+  .standing .tick{ color:var(--terra); font-family:var(--serif); font-size:1.3rem; line-height:1; }
+  .standing b{ color:var(--ink); font-weight:600; }
+
+  .note{ margin-top:30px; padding:22px 26px; border-left:2px solid var(--terra); background:var(--paper-2); border-radius:0 10px 10px 0; }
+  .note p{ margin:0; font-family:var(--serif); font-style:normal; font-size:1.2rem; line-height:1.5; color:var(--ink); }
+
+  .tlink{ color:var(--terra); font-weight:600; text-decoration:none; border-bottom:1px solid rgba(188,96,68,.4); transition:border-color .2s ease, color .2s ease; }
+  .tlink:hover{ border-color:var(--terra); }
+  .decisions .tlink, .close .tlink{ color:var(--coral); border-bottom-color:rgba(220,117,81,.45); }
+
+  .review-cta{ background:var(--paper-2); border-radius:14px; padding:clamp(32px,5vw,48px) clamp(28px,5vw,52px); }
+  .review-cta .m-label{ color:var(--terra); }
+  .review-cta h2{ font-family:var(--serif); font-weight:400; font-size:clamp(1.6rem,3vw,2.2rem); line-height:1.2; color:var(--ink); margin:6px 0 18px; max-width:22ch; }
+  .review-cta ul{ list-style:none; margin:22px 0 0; padding:0; }
+  .review-cta ul li{ position:relative; padding:8px 0 8px 22px; font-size:1rem; line-height:1.6; color:var(--body); }
+  .review-cta ul li::before{ content:"·"; position:absolute; left:2px; color:var(--terra); font-family:var(--serif); font-size:1.4rem; line-height:1; }
+  .review-btn{ display:inline-block; margin-top:28px; background:var(--terra); color:#fff !important; font-family:var(--sans); font-weight:600; font-size:14.5px; text-decoration:none; padding:15px 30px; border-radius:999px; box-shadow:0 14px 28px -16px rgba(188,96,68,.7); transition:background .2s ease, transform .2s ease; }
+  .review-btn:hover{ background:#A9553B; transform:translateY(-1px); }
+  .review-note{ margin-top:16px; font-size:12.5px; color:var(--muted); }
+
+  .pending{ margin-top:24px; padding:20px 24px; border:1px dashed var(--line); border-radius:10px; background:rgba(243,236,224,.5); }
+  .pending .pk{ font-family:var(--sans); font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--terra); margin:0 0 8px; }
+  .pending p{ margin:0; font-family:var(--serif); font-size:1.12rem; line-height:1.55; color:var(--body); }
+
+  /* identity showcase grid */
+  .showcase{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:36px; }
+  @media (max-width:760px){ .showcase{ grid-template-columns:1fr; } }
+  .sc-card{ background:var(--paper-2); border-radius:10px; padding:26px 24px 28px; }
+  .sc-card svg{ display:block; margin-bottom:16px; }
+  .sc-card h3{ font-family:var(--serif); font-weight:500; font-size:19px; color:var(--ink); margin:0 0 8px; }
+  .sc-card p{ font-family:var(--sans); font-size:13px; line-height:1.6; color:var(--body); margin:0; }
+
+  .palette-strip{ display:flex; gap:4px; margin-top:24px; border-radius:8px; overflow:hidden; box-shadow:0 8px 24px -12px rgba(31,46,70,.25); max-width:520px; }
+  .palette-strip div{ flex:1; height:52px; }
+
+  /* ---------- CINEMATIC BAND ---------- */
+  .band{ position:relative; height:clamp(340px,62vh,560px); overflow:hidden; margin:0; background:#101b23; }
+  .band img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; will-change:transform; }
+  .band::after{ content:""; position:absolute; inset:0; background:linear-gradient(90deg, rgba(16,27,35,.66) 0%, rgba(16,27,35,.15) 55%, rgba(16,27,35,.45) 100%); }
+  .band.cap-left-strong::after{ background:linear-gradient(90deg, rgba(12,20,27,.8) 0%, rgba(12,20,27,.5) 30%, rgba(12,20,27,.06) 58%, rgba(12,20,27,.28) 100%), linear-gradient(0deg, rgba(10,17,23,.62) 0%, rgba(10,17,23,0) 42%); }
+  .band-cap{ position:absolute; z-index:2; left:clamp(24px,6vw,80px); bottom:clamp(28px,5vh,48px); max-width:30ch; color:#F4EEE4; }
+  .band-cap .k{ font-family:var(--sans); font-size:11px; letter-spacing:.26em; text-transform:uppercase; color:#F1C9B4; }
+  .band-cap .t{ font-family:var(--serif); font-style:normal; font-weight:400; font-size:clamp(1.5rem,3vw,2.1rem); line-height:1.32; margin-top:12px; }
+  .band-credit{ position:absolute; z-index:2; right:clamp(20px,5vw,64px); bottom:18px; font-family:var(--sans); font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:rgba(244,238,228,.66); }
+  .band-credit a{ color:rgba(244,238,228,.82); text-decoration:none; border-bottom:1px solid rgba(244,238,228,.3); }
+
+  /* ---------- STATUS ---------- */
+  .status{ text-align:center; padding:clamp(80px,13vh,150px) clamp(24px,6vw,80px); border-top:1px solid var(--line); }
+  .status .k{ font-family:var(--sans); font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:var(--muted); }
+  .status .big{ font-family:var(--serif); font-weight:300; font-size:clamp(1.8rem,4.2vw,3rem); line-height:1.2; color:var(--ink); max-width:22ch; margin:22px auto 0; }
+  .status .big em{ font-style:normal; color:var(--terra); }
+
+  /* ---------- DECISIONS ---------- */
+  .decisions{ background:var(--navy); color:#EFE8DC; }
+  .decisions-inner{ max-width:1080px; margin:0 auto; padding:clamp(72px,12vh,128px) clamp(24px,6vw,80px); }
+  .decisions .m-label{ color:var(--coral); }
+  .decisions h2{ font-family:var(--serif); font-weight:300; font-size:clamp(2rem,4vw,2.9rem); line-height:1.1; color:#FBF6EE; margin:8px 0 14px; max-width:18ch; }
+  .decisions .sub{ font-size:1.02rem; line-height:1.7; color:rgba(239,232,220,.74); max-width:56ch; }
+  .dlist{ list-style:none; margin:46px 0 0; padding:0; counter-reset:d; }
+  .dlist li{ counter-increment:d; padding:28px 0; border-top:1px solid rgba(239,232,220,.16); display:grid; grid-template-columns:auto 1fr; gap:24px; align-items:start; }
+  .dlist li::before{ content:counter(d,decimal-leading-zero); font-family:var(--serif); font-weight:300; font-size:1.5rem; color:var(--coral); line-height:1.2; }
+  .dlist h3{ font-family:var(--serif); font-weight:500; font-size:1.4rem; color:#FBF6EE; margin:0 0 6px; }
+  .dlist p{ margin:0; font-size:.98rem; line-height:1.66; color:rgba(239,232,220,.74); max-width:58ch; }
+  .dlist p + p{ margin-top:.8em; }
+
+  /* ---------- CLOSE ---------- */
+  .close{ background:var(--navy-2); color:#F2EBDE; text-align:center; }
+  .close-inner{ max-width:760px; margin:0 auto; padding:clamp(90px,15vh,170px) clamp(24px,6vw,64px); }
+  .close .k{ font-family:var(--sans); font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:var(--coral); margin-bottom:30px; }
+  .close .statement{ font-family:var(--serif); font-weight:300; font-size:clamp(1.7rem,3.6vw,2.6rem); line-height:1.36; color:#FCF8F1; }
+  .close .statement em{ font-style:normal; color:#F1C9B4; }
+  .close .sign{ margin-top:46px; }
+  .close .sign .by{ font-family:var(--serif); font-weight:500; font-size:1.5rem; color:#FCF8F1; }
+  .close .sign .studio{ margin-top:6px; font-family:var(--sans); font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:rgba(242,235,222,.7); }
+
+  /* ---------- COLOPHON ---------- */
+  .colophon{ background:var(--paper); }
+  .colophon-inner{ max-width:1080px; margin:0 auto; padding:40px clamp(24px,6vw,80px) 56px; display:flex; flex-wrap:wrap; gap:8px 28px; justify-content:space-between; align-items:center; border-top:1px solid var(--line); }
+  .colophon span{ font-family:var(--sans); font-size:11.5px; letter-spacing:.06em; color:var(--muted); }
+  .colophon a{ color:var(--terra); text-decoration:none; }
+  .colophon a:hover{ text-decoration:underline; }
+
+  .reveal{ opacity:0; transform:translateY(22px); transition:opacity .9s ease, transform .9s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+
+  @media (max-width:620px){
+    .standing li{ grid-template-columns:16px 1fr; gap:12px; }
+    .dlist li{ grid-template-columns:auto 1fr; gap:16px; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{ animation:none !important; }
+    .reveal{ opacity:1; transform:none; transition:none; }
+    html{ scroll-behavior:auto; }
+    .cover-bg img{ animation:none; transform:none; }
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<div class="langtoggle" role="group" aria-label="Idioma / Language">
+  <button type="button" data-lang="es" class="on">ES</button>
+  <button type="button" data-lang="en">EN</button>
+</div>
+
+<!-- ============ COVER ============ -->
+<header class="cover">
+  <div class="cover-bg">
+    <img src="https://res.cloudinary.com/dogtoagya/image/upload/v1783100850/Editorial_overhead_still-life_photograph_Kinfolk_-1783100562290_ggl9rz.png" alt="Fotografía editorial de naturaleza muerta, estilo Kinfolk" data-alt-es="Fotografía editorial de naturaleza muerta, estilo Kinfolk" data-alt-en="Editorial still-life photograph, Kinfolk style">
+  </div>
+  <div class="cover-inner">
+    <div class="cover-top">
+      <span class="wordmark">LG Studio</span>
+      <span class="cover-date" data-es="Reporte de progreso · Julio 2026" data-en="Progress report · July 2026">Reporte de progreso · Julio 2026</span>
+    </div>
+  </div>
+  <div class="cover-mid">
+    <p class="cover-eyebrow" data-es="Estado del ecosistema" data-en="State of the ecosystem">Estado del ecosistema</p>
+    <h1 class="cover-title">Criar<br>Sin <em>Culpas</em></h1>
+    <p class="cover-sub" data-es="Esta semana la marca ganó una cara propia, y el sitio empezó a aprender de las familias." data-en="This week the brand gained a face of its own, and the site began learning from families.">Esta semana la marca ganó una cara propia, y el sitio empezó a aprender de las familias.</p>
+  </div>
+  <div class="cover-foot">
+    <p class="cover-prepared" data-es="Preparado para Nari Fateha · por &lt;strong&gt;Luis Gilberto · LG Studio&lt;/strong&gt;" data-en="Prepared for Nari Fateha · by &lt;strong&gt;Luis Gilberto · LG Studio&lt;/strong&gt;">Preparado para Nari Fateha · por <strong>Luis Gilberto · LG Studio</strong></p>
+    <div class="scrollcue"><span class="bar"></span> <span data-es="Desliza" data-en="Scroll">Desliza</span></div>
+  </div>
+</header>
+
+<!-- ============ INTRO ============ -->
+<main class="doc">
+  <section class="intro reveal">
+    <div class="col">
+      <p class="salutation">Nari,</p>
+      <p class="lead" data-es="Quería compartir contigo dónde estamos hoy." data-en="I wanted to share where we are today.">Quería compartir contigo dónde estamos hoy.</p>
+      <p class="lead" data-es="Ha sido una semana de las que no se ven a simple vista pero que cambian todo lo que viene después. El ecosistema ganó una identidad visual completa, empezó a construir memoria propia, y la secuencia de correos que acompañará a cada familia nueva quedó lista para activarse." data-en="This has been one of those weeks that isn't obvious at a glance but changes everything that follows. The ecosystem gained a complete visual identity, began building its own memory, and the email sequence that will accompany every new family is ready to activate.">Ha sido una semana de las que no se ven a simple vista pero que cambian todo lo que viene después. El ecosistema ganó una identidad visual completa, empezó a construir memoria propia, y la secuencia de correos que acompañará a cada familia nueva quedó lista para activarse.</p>
+      <p class="lead" data-es="Lo organizo en cinco frentes, y cierro con lo poco que necesito de tu parte para seguir avanzando sin puntos ciegos." data-en="I'm organizing it into five fronts, and closing with the little I need from you to keep moving without blind spots.">Lo organizo en cinco frentes, y cierro con lo poco que necesito de tu parte para seguir avanzando sin puntos ciegos.</p>
+    </div>
+  </section>
+
+  <!-- 01 · IDENTIDAD VISUAL -->
+  <section class="movement reveal">
+    <div class="m-head">
+      <span class="m-num">01</span>
+      <div>
+        <p class="m-label" data-es="Frente uno" data-en="Front one">Frente uno</p>
+        <h2 class="m-title" data-es="Una identidad que &lt;em&gt;ya tiene rostro&lt;/em&gt;" data-en="An identity that &lt;em&gt;now has a face&lt;/em&gt;">Una identidad que <em>ya tiene rostro</em></h2>
+      </div>
+    </div>
+    <div class="col">
+      <p class="body" data-es="Criar Sin Culpas empezó como una colección de guías bien escritas. Esta semana, el lenguaje visual que las acompaña maduró hasta convertirse en un sistema completo, algo que se puede sostener y repetir en cada pieza nueva sin volver a inventarlo cada vez." data-en="Criar Sin Culpas started as a collection of well-written guides. This week, the visual language around them matured into a complete system, something that can be sustained and repeated in every new piece without reinventing it each time.">Criar Sin Culpas empezó como una colección de guías bien escritas. Esta semana, el lenguaje visual que las acompaña maduró hasta convertirse en un sistema completo, algo que se puede sostener y repetir en cada pieza nueva sin volver a inventarlo cada vez.</p>
+      <p class="body" data-es="Tres piezas nuevas, construidas para acompañar en silencio, no para llamar la atención:" data-en="Three new pieces, built to accompany quietly, not to call attention to themselves:">Tres piezas nuevas, construidas para acompañar en silencio, no para llamar la atención:</p>
+    </div>
+
+    <div class="showcase">
+      <div class="sc-card">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="18" stroke="#1F2E3C" stroke-width="1.4"/>
+          <path d="M20 12v8l5.5 3.5" stroke="#BC6044" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3 data-es="Dieciséis íconos, dibujados a mano" data-en="Sixteen icons, hand-drawn">Dieciséis íconos, dibujados a mano</h3>
+        <p data-es="Uno por cada emoción o momento que aparece una y otra vez en las guías: la pausa antes de reaccionar, la reparación, el límite puesto con calma." data-en="One for each emotion or moment that appears again and again in the guides: the pause before reacting, repair, a boundary held with calm.">Uno por cada emoción o momento que aparece una y otra vez en las guías: la pausa antes de reaccionar, la reparación, el límite puesto con calma.</p>
+      </div>
+      <div class="sc-card">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <rect x="3" y="7" width="34" height="26" rx="3" stroke="#1F2E3C" stroke-width="1.4"/>
+          <path d="M3 27l9-9 7 6 8-8 10 11" stroke="#BC6044" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3 data-es="Tres escenas ilustradas" data-en="Three illustrated scenes">Tres escenas ilustradas</h3>
+        <p data-es="Una por cada guía larga, pensadas para dar el tono correcto antes de leer una sola palabra." data-en="One per long guide, designed to set the right tone before a single word is read.">Una por cada guía larga, pensadas para dar el tono correcto antes de leer una sola palabra.</p>
+      </div>
+      <div class="sc-card">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <circle cx="13" cy="20" r="7" fill="#1F2E3C"/>
+          <circle cx="26" cy="20" r="7" fill="#BC6044" fill-opacity="0.85"/>
+        </svg>
+        <h3 data-es="Una paleta afinada" data-en="A refined palette">Una paleta afinada</h3>
+        <p data-es="Los mismos colores, usados con más disciplina en cada rincón del sitio, para que nada se sienta improvisado." data-en="The same colors, used with more discipline in every corner of the site, so nothing feels improvised.">Los mismos colores, usados con más disciplina en cada rincón del sitio, para que nada se sienta improvisado.</p>
+      </div>
+    </div>
+
+    <div class="palette-strip">
+      <div style="background:#1F2E3C"></div>
+      <div style="background:#574F44"></div>
+      <div style="background:#8C8475"></div>
+      <div style="background:#BC6044"></div>
+      <div style="background:#DC7551"></div>
+      <div style="background:#F3ECE0;border:1px solid var(--line)"></div>
+    </div>
+
+    <p class="body" style="margin-top:30px;" data-es="A medida que el proyecto ha crecido, he estado consolidando el lenguaje visual para que los artículos, los correos, las herramientas y los futuros productos de aprendizaje se sientan como una sola experiencia coherente de Criar Sin Culpas. Lo más importante de esta actualización es que los elementos visuales de los artículos maduraron hasta convertirse en un lenguaje de diseño más completo, con íconos personalizados, ilustraciones para las guías y reglas de color más precisas. Estoy integrando todo esto al sistema de correos y a la documentación de marca antes de escalar más iniciativas." data-en="As the project has grown, I've been consolidating the visual system so the articles, emails, tools, and future learning products all feel like one coherent Criar Sin Culpas experience. The biggest update is that the article visuals have matured into a more complete design language, including custom icons, illustrated guide heroes, and tighter color rules. I'm folding that into the email system and brand documentation before we scale more tactics.">A medida que el proyecto ha crecido, he estado consolidando el lenguaje visual para que los artículos, los correos, las herramientas y los futuros productos de aprendizaje se sientan como una sola experiencia coherente de Criar Sin Culpas. Lo más importante de esta actualización es que los elementos visuales de los artículos maduraron hasta convertirse en un lenguaje de diseño más completo, con íconos personalizados, ilustraciones para las guías y reglas de color más precisas. Estoy integrando todo esto al sistema de correos y a la documentación de marca antes de escalar más iniciativas.</p>
+
+    <div class="note"><p data-es="Nada de lo que ya está en línea cambia por esto. Es la base sobre la que se construye todo lo que viene después: correos, artículos nuevos y el libro de marca." data-en="Nothing already live changes because of this. It's the foundation everything that comes next is built on: emails, new articles, and the brand book.">Nada de lo que ya está en línea cambia por esto. Es la base sobre la que se construye todo lo que viene después: correos, artículos nuevos y el libro de marca.</p></div>
+  </section>
+</main>
+
+<!-- BAND -->
+<section class="band reveal" aria-label="Las señales reales">
+  <img data-parallax src="https://res.cloudinary.com/dogtoagya/image/upload/v1783111467/csc-de-biblioteca-a-sistema-vivo-wide-banner_jthckr.png" alt="Composición editorial que representa la conexión entre artículos de Aprende" data-alt-es="Composición editorial que representa la conexión entre artículos de Aprende" data-alt-en="Editorial composition representing the connections between Aprende articles">
+  <div class="band-cap">
+    <div class="k" data-es="Las señales reales" data-en="The real signals">Las señales reales</div>
+    <div class="t" data-es="Cada pregunta puede convertirse en guía." data-en="Every question can become a guide.">Cada pregunta puede convertirse en guía.</div>
+  </div>
+  <div class="band-credit"><span data-es="Composición editorial · &lt;a class=&quot;tlink&quot; href=&quot;https://criarsinculpas.com/aprende&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; style=&quot;color:inherit;border-bottom-color:rgba(244,238,228,.5)&quot;&gt;Aprende&lt;/a&gt;" data-en="Editorial composition · &lt;a class=&quot;tlink&quot; href=&quot;https://criarsinculpas.com/aprende&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; style=&quot;color:inherit;border-bottom-color:rgba(244,238,228,.5)&quot;&gt;Aprende&lt;/a&gt;">Composición editorial · <a class="tlink" href="https://criarsinculpas.com/aprende" target="_blank" rel="noopener" style="color:inherit;border-bottom-color:rgba(244,238,228,.5)">Aprende</a></span></div>
+</section>
+
+<main class="doc">
+  <!-- 02 · APRENDE -->
+  <section class="movement reveal">
+    <div class="m-head">
+      <span class="m-num">02</span>
+      <div>
+        <p class="m-label" data-es="Frente dos" data-en="Front two">Frente dos</p>
+        <h2 class="m-title" data-es="De ideas aisladas a un &lt;em&gt;sistema que aprende&lt;/em&gt;" data-en="From scattered ideas to a &lt;em&gt;system that learns&lt;/em&gt;">De ideas aisladas a un <em>sistema que aprende</em></h2>
+      </div>
+    </div>
+    <div class="col">
+      <p class="body" data-es="&lt;a class=&quot;tlink&quot; href=&quot;https://criarsinculpas.com/aprende&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Aprende&lt;/a&gt; empezó como una biblioteca de artículos útiles: un lugar claro, ordenado y fácil de consultar cuando una familia necesita orientación en medio de una pregunta, una crisis o una situación cotidiana de crianza." data-en="&lt;a class=&quot;tlink&quot; href=&quot;https://criarsinculpas.com/aprende&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Aprende&lt;/a&gt; started as a library of useful articles: a clear, organized place to turn to when a family needs guidance in the middle of a question, a crisis, or an everyday parenting moment."><a class="tlink" href="https://criarsinculpas.com/aprende" target="_blank" rel="noopener">Aprende</a> empezó como una biblioteca de artículos útiles: un lugar claro, ordenado y fácil de consultar cuando una familia necesita orientación en medio de una pregunta, una crisis o una situación cotidiana de crianza.</p>
+      <p class="body" data-es="Esa idea sigue siendo importante, pero esta semana empezó a tomar una forma más profunda. En lugar de tratar cada artículo como una pieza aislada, estoy diseñando Aprende como una estructura conectada: cada tema puede relacionarse con otras preguntas, otros momentos de la crianza y otros recursos dentro de Criar Sin Culpas." data-en="That idea is still important, but this week it began taking a deeper shape. Instead of treating each article as an isolated piece, I'm designing Aprende as a connected structure: each topic can relate to other questions, other parenting moments, and other resources within Criar Sin Culpas.">Esa idea sigue siendo importante, pero esta semana empezó a tomar una forma más profunda. En lugar de tratar cada artículo como una pieza aislada, estoy diseñando Aprende como una estructura conectada: cada tema puede relacionarse con otras preguntas, otros momentos de la crianza y otros recursos dentro de Criar Sin Culpas.</p>
+      <p class="body" data-es="El trabajo inmediato sigue siendo artesanal. Los primeros artículos los estoy escribiendo, editando y armando uno por uno, porque esta etapa define algo muy importante: la voz de Aprende. Cómo suena, cuánto explica, qué tan directo es, qué tan cálido se siente y cómo acompaña a una mamá o un papá que probablemente llega cansado, apurado o emocionalmente saturado." data-en="The immediate work is still handmade. I'm writing, editing, and building the first articles one by one, because this stage defines something important: the voice of Aprende. How it sounds, how much it explains, how direct it is, how warm it feels, and how it accompanies a mom or dad who probably arrives tired, rushed, or emotionally maxed out.">El trabajo inmediato sigue siendo artesanal. Los primeros artículos los estoy escribiendo, editando y armando uno por uno, porque esta etapa define algo muy importante: la voz de Aprende. Cómo suena, cuánto explica, qué tan directo es, qué tan cálido se siente y cómo acompaña a una mamá o un papá que probablemente llega cansado, apurado o emocionalmente saturado.</p>
+      <p class="body" data-es="La diferencia es que esta estructura no tiene que crecer solo desde intuición o desde una lista fija de temas. Puede crecer a partir de señales reales: preguntas que se repiten, frases que usan las familias, temas que generan más ansiedad, respuestas en formularios, check-ins, patrones de navegación o conversaciones donde aparece una necesidad que todavía no tiene respuesta clara." data-en="The difference is that this structure doesn't have to grow only from intuition or a fixed list of topics. It can grow from real signals: questions that repeat, phrases families actually use, topics that generate more anxiety, form responses, check-ins, navigation patterns, or conversations where a need shows up that doesn't have a clear answer yet.">La diferencia es que esta estructura no tiene que crecer solo desde intuición o desde una lista fija de temas. Puede crecer a partir de señales reales: preguntas que se repiten, frases que usan las familias, temas que generan más ansiedad, respuestas en formularios, check-ins, patrones de navegación o conversaciones donde aparece una necesidad que todavía no tiene respuesta clara.</p>
+      <p class="body" data-es="Por eso es importante que yo pueda estar cerca de esos espacios de escucha, especialmente el grupo de WhatsApp. No para participar ni intervenir, sino para observar con respeto y discreción qué están preguntando las familias, qué palabras usan y qué temas aparecen una y otra vez. Ahí hay señales muy valiosas para decidir qué artículo escribir después, qué guía conectar, qué recurso convertir en descargable o qué tema merece una explicación más profunda." data-en="That's why it matters that I can stay close to those listening spaces, especially the WhatsApp group. Not to participate or intervene, but to observe with respect and discretion what families are asking, what words they use, and which topics keep coming up. There are valuable signals there for deciding what article to write next, which guide to connect, what resource to turn into a downloadable, or which topic deserves a deeper explanation.">Por eso es importante que yo pueda estar cerca de esos espacios de escucha, especialmente el grupo de WhatsApp. No para participar ni intervenir, sino para observar con respeto y discreción qué están preguntando las familias, qué palabras usan y qué temas aparecen una y otra vez. Ahí hay señales muy valiosas para decidir qué artículo escribir después, qué guía conectar, qué recurso convertir en descargable o qué tema merece una explicación más profunda.</p>
+      <p class="body" data-es="Así, Aprende deja de funcionar como un blog tradicional. Empieza a convertirse en un sistema que aprende: una forma más propia, sensible y sostenible de organizar el conocimiento de Criar Sin Culpas alrededor de lo que las familias realmente necesitan." data-en="This way, Aprende stops functioning like a traditional blog. It starts becoming a system that learns: a more personal, sensitive, and sustainable way to organize Criar Sin Culpas's knowledge around what families actually need.">Así, Aprende deja de funcionar como un blog tradicional. Empieza a convertirse en un sistema que aprende: una forma más propia, sensible y sostenible de organizar el conocimiento de Criar Sin Culpas alrededor de lo que las familias realmente necesitan.</p>
+      <p class="body" data-es="Nada de esto está cerrado. Esta primera versión sirve precisamente para que puedas revisar si los temas se sienten correctos, si el tono representa bien tu voz y si la forma en que están escritos los artículos acompaña de verdad a las familias que quieres servir. Mi prioridad ahora es que lo que ya está publicado se sienta útil, claro y fiel a Criar Sin Culpas antes de seguir expandiéndolo." data-en="None of this is set in stone. This first version exists precisely so you can review whether the topics feel right, whether the tone truly represents your voice, and whether the way the articles are written really accompanies the families you want to serve. My priority right now is making sure what's already published feels useful, clear, and true to Criar Sin Culpas before expanding it further.">Nada de esto está cerrado. Esta primera versión sirve precisamente para que puedas revisar si los temas se sienten correctos, si el tono representa bien tu voz y si la forma en que están escritos los artículos acompaña de verdad a las familias que quieres servir. Mi prioridad ahora es que lo que ya está publicado se sienta útil, claro y fiel a Criar Sin Culpas antes de seguir expandiéndolo.</p>
+    </div>
+  </section>
+
+  <!-- 03 · SEO -->
+  <section class="movement reveal">
+    <div class="m-head">
+      <span class="m-num">03</span>
+      <div>
+        <p class="m-label" data-es="Frente tres" data-en="Front three">Frente tres</p>
+        <h2 class="m-title" data-es="Descubrimiento &lt;em&gt;con propósito&lt;/em&gt;" data-en="Discovery &lt;em&gt;with purpose&lt;/em&gt;">Descubrimiento <em>con propósito</em></h2>
+      </div>
+    </div>
+    <div class="col">
+      <p class="body" data-es="Esta semana dediqué una parte importante del trabajo a fortalecer la base técnica de &lt;a class=&quot;tlink&quot; href=&quot;https://criarsinculpas.com/aprende&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Aprende&lt;/a&gt;: la estructura, la indexación, los metadatos, la navegación y la forma en que los artículos se conectan entre sí." data-en="This week I dedicated a meaningful part of the work to strengthening the technical foundation of &lt;a class=&quot;tlink&quot; href=&quot;https://criarsinculpas.com/aprende&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Aprende&lt;/a&gt;: the structure, the indexing, the metadata, the navigation, and the way the articles connect to each other.">Esta semana dediqué una parte importante del trabajo a fortalecer la base técnica de <a class="tlink" href="https://criarsinculpas.com/aprende" target="_blank" rel="noopener">Aprende</a>: la estructura, la indexación, los metadatos, la navegación y la forma en que los artículos se conectan entre sí.</p>
+      <p class="body" data-es="Esto no es solo una tarea técnica. Es lo que permite que el contenido pueda ser encontrado por familias que todavía no conocen Criar Sin Culpas, pero que ya están buscando respuestas muy concretas: cómo acompañar un berrinche, cómo poner límites sin gritar, qué hacer cuando una transición se vuelve difícil o cómo recuperar la calma después de un momento intenso." data-en="This isn't just a technical task. It's what allows the content to be found by families who don't yet know Criar Sin Culpas, but who are already searching for very concrete answers: how to accompany a tantrum, how to set limits without yelling, what to do when a transition gets difficult, or how to recover calm after an intense moment.">Esto no es solo una tarea técnica. Es lo que permite que el contenido pueda ser encontrado por familias que todavía no conocen Criar Sin Culpas, pero que ya están buscando respuestas muy concretas: cómo acompañar un berrinche, cómo poner límites sin gritar, qué hacer cuando una transición se vuelve difícil o cómo recuperar la calma después de un momento intenso.</p>
+      <p class="body" data-es="Mi intención no es &quot;ganarle al algoritmo&quot;. Es construir una base para que Criar Sin Culpas pueda aparecer en el momento correcto, con una respuesta clara, útil y profundamente alineada con su forma de acompañar." data-en="My intention isn't to &quot;beat the algorithm.&quot; It's to build a foundation so Criar Sin Culpas can show up at the right moment, with an answer that's clear, useful, and deeply aligned with how it accompanies.">Mi intención no es "ganarle al algoritmo". Es construir una base para que Criar Sin Culpas pueda aparecer en el momento correcto, con una respuesta clara, útil y profundamente alineada con su forma de acompañar.</p>
+      <p class="body" data-es="Por eso también preparé una red de enlaces internos y recomendaciones entre artículos. Cada guía puede abrir la puerta a otra: de una pregunta urgente a una explicación más profunda, de un artículo a una herramienta, de una lectura rápida a un recurso que acompañe más allá de la visita inicial." data-en="That's why I also prepared a network of internal links and recommendations between articles. Each guide can open the door to another: from an urgent question to a deeper explanation, from an article to a tool, from a quick read to a resource that accompanies beyond the initial visit.">Por eso también preparé una red de enlaces internos y recomendaciones entre artículos. Cada guía puede abrir la puerta a otra: de una pregunta urgente a una explicación más profunda, de un artículo a una herramienta, de una lectura rápida a un recurso que acompañe más allá de la visita inicial.</p>
+      <p class="body" data-es="Esa interconexión es importante porque convierte a &lt;a class=&quot;tlink&quot; href=&quot;https://criarsinculpas.com/aprende&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Aprende&lt;/a&gt; en algo más que una sección de contenido. Lo convierte en un canal de descubrimiento, orientación y relación: las familias pueden llegar por búsqueda, encontrar una respuesta útil, seguir explorando temas relacionados y, más adelante, conectar con recursos o correos que mantengan vivo ese acompañamiento." data-en="That interconnection matters because it turns &lt;a class=&quot;tlink&quot; href=&quot;https://criarsinculpas.com/aprende&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Aprende&lt;/a&gt; into more than a content section. It turns it into a channel for discovery, orientation, and relationship: families can arrive through search, find a useful answer, keep exploring related topics, and later connect with resources or emails that keep that accompaniment alive.">Esa interconexión es importante porque convierte a <a class="tlink" href="https://criarsinculpas.com/aprende" target="_blank" rel="noopener">Aprende</a> en algo más que una sección de contenido. Lo convierte en un canal de descubrimiento, orientación y relación: las familias pueden llegar por búsqueda, encontrar una respuesta útil, seguir explorando temas relacionados y, más adelante, conectar con recursos o correos que mantengan vivo ese acompañamiento.</p>
+      <p class="body" data-es="Nada de esto está terminado ni cerrado. Esta primera base sirve para empezar a ordenar el contenido con más intención, medir qué temas generan más interés y ajustar la arquitectura de Aprende según lo que las familias realmente buscan y necesitan." data-en="None of this is finished or closed. This first foundation is here to start organizing the content with more intention, measure which topics generate more interest, and adjust Aprende's architecture based on what families actually search for and need.">Nada de esto está terminado ni cerrado. Esta primera base sirve para empezar a ordenar el contenido con más intención, medir qué temas generan más interés y ajustar la arquitectura de Aprende según lo que las familias realmente buscan y necesitan.</p>
+    </div>
+  </section>
+</main>
+
+<!-- BAND -->
+<section class="band cap-left-strong reveal" aria-label="Una biblioteca inteligente">
+  <picture>
+    <source media="(max-width: 640px)" srcset="https://res.cloudinary.com/dogtoagya/image/upload/v1783113585/ChatGPT_Image_Jul_3_2026_02_19_16_PM_3_puoyya.png">
+    <source media="(max-width: 1024px)" srcset="https://res.cloudinary.com/dogtoagya/image/upload/v1783113585/ChatGPT_Image_Jul_3_2026_02_19_15_PM_2_saimku.png">
+    <img data-parallax src="https://res.cloudinary.com/dogtoagya/image/upload/v1783113585/ChatGPT_Image_Jul_3_2026_02_19_15_PM_1_awi1nx.png" alt="Infografía de la biblioteca inteligente y su arquitectura de enlaces internos" data-alt-es="Infografía de la biblioteca inteligente y su arquitectura de enlaces internos" data-alt-en="Infographic of the smart library and its internal linking architecture">
+  </picture>
+  <div class="band-cap">
+    <div class="k" data-es="Una biblioteca inteligente" data-en="A smart library">Una biblioteca inteligente</div>
+    <div class="t" data-es="Contenido que se conecta, se encuentra y sigue acompañando." data-en="Content that connects, gets found, and keeps accompanying.">Contenido que se conecta, se encuentra y sigue acompañando.</div>
+  </div>
+</section>
+
+<main class="doc">
+  <!-- 04 · CORREOS -->
+  <section class="movement reveal">
+    <div class="m-head">
+      <span class="m-num">04</span>
+      <div>
+        <p class="m-label" data-es="Frente cuatro" data-en="Front four">Frente cuatro</p>
+        <h2 class="m-title" data-es="Una secuencia que &lt;em&gt;acompaña desde el primer día&lt;/em&gt;" data-en="A sequence that &lt;em&gt;accompanies from day one&lt;/em&gt;">Una secuencia que <em>acompaña desde el primer día</em></h2>
+      </div>
+    </div>
+    <div class="col">
+      <p class="body" data-es="Cuando una familia se suscribe desde una guía, ese es el momento de mayor confianza y de mayor necesidad. Esta semana dejamos lista la secuencia de bienvenida que las acompaña durante sus primeras semanas, sin prisa y sin presión." data-en="When a family subscribes from a guide, that is the moment of greatest trust and greatest need. This week we finished the welcome sequence that accompanies them through their first weeks, without rush and without pressure.">Cuando una familia se suscribe desde una guía, ese es el momento de mayor confianza y de mayor necesidad. Esta semana dejamos lista la secuencia de bienvenida que las acompaña durante sus primeras semanas, sin prisa y sin presión.</p>
+      <p class="body" data-es="Son seis correos escritos en tu voz, repartidos a lo largo de dieciocho días. El primero da la bienvenida y reencuadra la culpa. El segundo entrega valor práctico con las pantallas. El tercero cuenta por qué existe Criar Sin Culpas. El cuarto muestra que cada guía es parte de un método más amplio. El quinto invita con calma a conocer &lt;a class=&quot;tlink&quot; href=&quot;https://criarsinculpas.com/metodo&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;El Método&lt;/a&gt;. El sexto cierra con cariño y baja la cadencia a una vez al mes." data-en="They are six emails written in your voice, spread across eighteen days. The first welcomes and reframes guilt. The second delivers practical value with screens. The third tells why Criar Sin Culpas exists. The fourth shows that each guide is part of a larger method. The fifth gently invites them to explore &lt;a class=&quot;tlink&quot; href=&quot;https://criarsinculpas.com/metodo&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;El Método&lt;/a&gt;. The sixth closes warmly and slows the cadence to once a month.">Son seis correos escritos en tu voz, repartidos a lo largo de dieciocho días. El primero da la bienvenida y reencuadra la culpa. El segundo entrega valor práctico con las pantallas. El tercero cuenta por qué existe Criar Sin Culpas. El cuarto muestra que cada guía es parte de un método más amplio. El quinto invita con calma a conocer <a class="tlink" href="https://criarsinculpas.com/metodo" target="_blank" rel="noopener">El Método</a>. El sexto cierra con cariño y baja la cadencia a una vez al mes.</p>
+      <p class="body" data-es="El principio que gobierna toda la secuencia es el de la marca: nunca vender en el momento de dolor. Ningún correo empuja a comprar en una crisis, y las guías gratuitas se reafirman como gratuitas para siempre." data-en="The principle governing the whole sequence is the brand's own: never sell in the moment of pain. No email pushes a purchase during a crisis, and the free guides are reaffirmed as free forever.">El principio que gobierna toda la secuencia es el de la marca: nunca vender en el momento de dolor. Ningún correo empuja a comprar en una crisis, y las guías gratuitas se reafirman como gratuitas para siempre.</p>
+
+      <div class="pending reveal">
+        <p class="pk" data-es="Lo único que falta · para ti" data-en="The only thing left · for you">Lo único que falta · para ti</p>
+        <p data-es="El tercer correo tiene un espacio reservado para tu historia: una o dos frases sobre tu momento de quiebre, en tus propias palabras. Es la parte que da alma a toda la secuencia, y es la única que no puedo escribir por ti. Cuando la tengas, la secuencia queda lista para activarse." data-en="The third email has a space reserved for your story: one or two sentences about your breaking point, in your own words. It is the part that gives the whole sequence its soul, and the only one I cannot write for you. Once you have it, the sequence is ready to activate.">El tercer correo tiene un espacio reservado para tu historia: una o dos frases sobre tu momento de quiebre, en tus propias palabras. Es la parte que da alma a toda la secuencia, y es la única que no puedo escribir por ti. Cuando la tengas, la secuencia queda lista para activarse.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · TIPOGRAFÍA -->
+  <section class="movement reveal">
+    <div class="m-head">
+      <span class="m-num">05</span>
+      <div>
+        <p class="m-label" data-es="Frente cinco" data-en="Front five">Frente cinco</p>
+        <h2 class="m-title" data-es="Una tipografía &lt;em&gt;afinada en todo el sitio&lt;/em&gt;" data-en="Typography &lt;em&gt;refined across the site&lt;/em&gt;">Una tipografía <em>afinada en todo el sitio</em></h2>
+      </div>
+    </div>
+    <div class="col">
+      <p class="body" data-es="Recogí tu comentario sobre una tipografía más sobria, sin letra cursiva, y esta semana la apliqué de forma consistente en todo el sitio. Ahora el énfasis se logra con color, no con inclinación, y la cursiva queda reservada para lo que de verdad es una cita." data-en="I took in your feedback about a more sober typography, without cursive type, and this week I applied it consistently across the site. Emphasis now comes through color, not slant, and italics are reserved for what is truly a quote.">Recogí tu comentario sobre una tipografía más sobria, sin letra cursiva, y esta semana la apliqué de forma consistente en todo el sitio. Ahora el énfasis se logra con color, no con inclinación, y la cursiva queda reservada para lo que de verdad es una cita.</p>
+      <p class="body" data-es="Esta corrección no fue un ajuste aislado. La integré al mismo sistema visual que mencioné al inicio de este reporte: los mismos íconos, la misma paleta y las mismas reglas de énfasis conviven ahora con esta preferencia tipográfica, para que el sitio hable con una sola voz visual, sin excepciones sueltas página por página." data-en="This correction wasn't an isolated tweak. I folded it into the same visual system I mentioned earlier in this report: the same icons, the same palette, and the same emphasis rules now live alongside this typographic preference, so the site speaks with one visual voice, without loose exceptions page by page.">Esta corrección no fue un ajuste aislado. La integré al mismo sistema visual que mencioné al inicio de este reporte: los mismos íconos, la misma paleta y las mismas reglas de énfasis conviven ahora con esta preferencia tipográfica, para que el sitio hable con una sola voz visual, sin excepciones sueltas página por página.</p>
+      <p class="body" data-es="Vale la pena nombrar algo con honestidad, porque me importa que sigamos construyendo bien juntos: este tipo de ajuste es sencillo de aplicar cuando llega temprano, antes de que una página ya esté terminada y publicada. Cuando una preferencia de marca llega después de que el trabajo ya está en línea, ese mismo cambio implica revisar página por página, en lugar de nacer ya resuelto desde el diseño. No es un reclamo, es solo la razón por la que te pediría que, en la medida de lo posible, compartas este tipo de preferencias lo antes posible. Así protegemos el ritmo y la calidad del trabajo, en lugar de tener que rehacerlo." data-en="Worth naming honestly, because I care about us continuing to build this well together: this kind of adjustment is easy to apply when it arrives early, before a page is already finished and published. When a brand preference arrives after the work is already live, that same change means reviewing page by page instead of being resolved from the design stage onward. This isn't a complaint, it's just the reason I'd ask that, whenever possible, you share this kind of preference as early as you can. That's how we protect both the pace and the quality of the work, instead of having to redo it.">Vale la pena nombrar algo con honestidad, porque me importa que sigamos construyendo bien juntos: este tipo de ajuste es sencillo de aplicar cuando llega temprano, antes de que una página ya esté terminada y publicada. Cuando una preferencia de marca llega después de que el trabajo ya está en línea, ese mismo cambio implica revisar página por página, en lugar de nacer ya resuelto desde el diseño. No es un reclamo, es solo la razón por la que te pediría que, en la medida de lo posible, compartas este tipo de preferencias lo antes posible. Así protegemos el ritmo y la calidad del trabajo, en lugar de tener que rehacerlo.</p>
+      <ul class="standing">
+        <li><span class="tick">·</span><span data-es="&lt;a class=&quot;tlink&quot; href=&quot;https://criarsinculpas.com/guias&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; style=&quot;font-weight:600&quot;&gt;Guías de crisis&lt;/a&gt;, &lt;b&gt;Sobre Nari y la portada&lt;/b&gt; ya cumplen la nueva regla tipográfica." data-en="&lt;a class=&quot;tlink&quot; href=&quot;https://criarsinculpas.com/guias&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; style=&quot;font-weight:600&quot;&gt;The crisis guides&lt;/a&gt;, &lt;b&gt;About Nari and the homepage&lt;/b&gt; already follow the new typographic rule."><a class="tlink" href="https://criarsinculpas.com/guias" target="_blank" rel="noopener" style="font-weight:600">Guías de crisis</a>, <b>Sobre Nari y la portada</b> ya cumplen la nueva regla tipográfica.</span></li>
+        <li><span class="tick">·</span><span data-es="&lt;b&gt;El resto de las páginas públicas&lt;/b&gt; quedan en revisión final esta semana, una por una." data-en="&lt;b&gt;The rest of the public pages&lt;/b&gt; are in final review this week, one by one."><b>El resto de las páginas públicas</b> quedan en revisión final esta semana, una por una.</span></li>
+        <li><span class="tick">·</span><span data-es="&lt;b&gt;El sistema queda documentado&lt;/b&gt;, para que toda pieza nueva nazca ya cumpliendo la regla, sin retrabajo." data-en="&lt;b&gt;The system is documented&lt;/b&gt;, so every new piece is born compliant, with no rework."><b>El sistema queda documentado</b>, para que toda pieza nueva nazca ya cumpliendo la regla, sin retrabajo.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- REVISIÓN DE CORREOS -->
+  <section class="movement reveal">
+    <div class="review-cta">
+      <p class="m-label" data-es="Antes de cerrar" data-en="Before wrapping up">Antes de cerrar</p>
+      <h2 data-es="Los correos de bienvenida ya están listos para que los revises" data-en="The welcome emails are ready for your review">Los correos de bienvenida ya están listos para que los revises</h2>
+      <p class="body" data-es="Preparé una página privada donde puedes leer los seis correos completos, tal como llegarían a tu bandeja. Debajo de cada uno hay dos botones simples: 💛 si te gusta como está, o ✎ si algo te gustaría cambiar." data-en="I set up a private page where you can read all six emails in full, just as they would arrive in your inbox. Under each one there are two simple buttons: 💛 if you like it as is, or ✎ if there's something you'd change.">Preparé una página privada donde puedes leer los seis correos completos, tal como llegarían a tu bandeja. Debajo de cada uno hay dos botones simples: 💛 si te gusta como está, o ✎ si algo te gustaría cambiar.</p>
+      <ul>
+        <li data-es="El Correo 3 tiene un espacio reservado para que escribas tu historia, en tus propias palabras." data-en="Email 3 has a space reserved for you to write your story, in your own words.">El Correo 3 tiene un espacio reservado para que escribas tu historia, en tus propias palabras.</li>
+        <li data-es="No hace falta escribir nada largo, con marcar 💛 o ✎ en cada uno ya es suficiente." data-en="No need to write anything long, marking 💛 or ✎ on each one is already enough.">No hace falta escribir nada largo, con marcar 💛 o ✎ en cada uno ya es suficiente.</li>
+        <li data-es="Al terminar, un botón en esa misma página me envía tus comentarios directamente." data-en="When you're done, a button on that same page sends your feedback directly to me.">Al terminar, un botón en esa misma página me envía tus comentarios directamente.</li>
+      </ul>
+      <a class="review-btn" href="https://criarsinculpas.com/revision/correos-bienvenida/" target="_blank" rel="noopener" data-es="Revisar los correos de bienvenida" data-en="Review the welcome emails">Revisar los correos de bienvenida</a>
+      <p class="review-note" data-es="Página privada de revisión, no aparece en el sitio ni en buscadores." data-en="Private review page, not visible on the site or in search engines.">Página privada de revisión, no aparece en el sitio ni en buscadores.</p>
+    </div>
+  </section>
+</main>
+
+<!-- BAND -->
+<section class="band reveal" aria-label="Una tipografía que ya habla en una sola voz">
+  <img data-parallax src="https://res.cloudinary.com/dogtoagya/image/upload/v1783119309/ChatGPT_Image_Jul_3_2026_03_54_48_PM_giv3lh.png" alt="Composición editorial de tipografía y pruebas de imprenta" data-alt-es="Composición editorial de tipografía y pruebas de imprenta" data-alt-en="Editorial composition of typography and printing proofs">
+  <div class="band-cap">
+    <div class="k" data-es="Una sola voz visual" data-en="One visual voice">Una sola voz visual</div>
+    <div class="t" data-es="Cada detalle, afinado, para que nada se sienta suelto." data-en="Every detail, tuned, so nothing feels loose.">Cada detalle, afinado, para que nada se sienta suelto.</div>
+  </div>
+</section>
+
+<!-- STATUS -->
+<section class="status reveal">
+  <p class="k" data-es="Dónde estamos hoy" data-en="Where we are today">Dónde estamos hoy</p>
+  <p class="big" data-es="La marca tiene rostro, voz, un sistema que aprende, y una secuencia lista para acompañar a &lt;em&gt;cada familia nueva&lt;/em&gt;." data-en="The brand now has a face, a voice, a system that learns, and a sequence ready to accompany &lt;em&gt;every new family&lt;/em&gt;.">La marca tiene rostro, voz, un sistema que aprende, y una secuencia lista para acompañar a <em>cada familia nueva</em>.</p>
+</section>
+
+<!-- DECISIONS -->
+<section class="decisions">
+  <div class="decisions-inner reveal">
+    <p class="m-label" data-es="Lo que necesito de tu lado" data-en="What I need from your side">Lo que necesito de tu lado</p>
+    <h2 data-es="Tres cosas para seguir bien." data-en="Three things to keep moving well.">Tres cosas para seguir bien.</h2>
+    <p class="sub" data-es="Nada urgente, pero sí importante para mantener el ritmo y ayudarte bien." data-en="Nothing urgent, but important for keeping the momentum and supporting you well.">Nada urgente, pero sí importante para mantener el ritmo y ayudarte bien.</p>
+    <ul class="dlist">
+      <li>
+        <div>
+          <h3 data-es="Tu historia para el tercer correo" data-en="Your story for the third email">Tu historia para el tercer correo</h3>
+          <p data-es="Una o dos frases sobre tu momento de quiebre, en tus propias palabras. Es lo único que falta para activar la secuencia de bienvenida." data-en="One or two sentences about your breaking point, in your own words. It's the only thing left to activate the welcome sequence.">Una o dos frases sobre tu momento de quiebre, en tus propias palabras. Es lo único que falta para activar la secuencia de bienvenida.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3 data-es="Posibles proyectos en marcha... ¿o en limbo?" data-en="Projects in motion... or in limbo?">Posibles proyectos en marcha... ¿o en limbo?</h3>
+          <p data-es="Hay tres frentes de los que me gustaría tener una actualización: el documental, la posible exposición en Córdoba y los talleres presenciales de octubre. Tener el panorama actual me ayudaría a acompañarte y planificar mejor." data-en="There are three fronts I'd love an update on: the documentary, the possible exhibition in Córdoba, and the in-person workshops in October. Having the current picture would help me support you and plan better.">Hay tres frentes de los que me gustaría tener una actualización: el documental, la posible exposición en Córdoba y los talleres presenciales de octubre. Tener el panorama actual me ayudaría a acompañarte y planificar mejor.</p>
+          <p style="margin-top:.9em;" data-es="Y algo concreto que nos simplificaría la vida a los dos: si me agregas al canal de WhatsApp de la comunidad, puedo ver las señales directamente sin que tengas que reenviarme nada." data-en="And one concrete thing that would simplify life for both of us: if you add me to the community's WhatsApp channel, I can see the signals directly without you forwarding anything.">Y algo concreto que nos simplificaría la vida a los dos: si me agregas al canal de WhatsApp de la comunidad, puedo ver las señales directamente sin que tengas que reenviarme nada.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3 data-es="Cuándo amplificar las &lt;a class=&quot;tlink&quot; href=&quot;https://criarsinculpas.com/inscripcion&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; style=&quot;color:inherit;border-bottom-color:rgba(251,246,238,.4)&quot;&gt;pre-inscripciones&lt;/a&gt;" data-en="When to amplify &lt;a class=&quot;tlink&quot; href=&quot;https://criarsinculpas.com/inscripcion&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; style=&quot;color:inherit;border-bottom-color:rgba(251,246,238,.4)&quot;&gt;pre-enrollments&lt;/a&gt;">Cuándo amplificar las <a class="tlink" href="https://criarsinculpas.com/inscripcion" target="_blank" rel="noopener" style="color:inherit;border-bottom-color:rgba(251,246,238,.4)">pre-inscripciones</a></h3>
+          <p data-es="La página ya está al aire y recogiendo a quien llega. Lo que falta decidir es cuándo empezamos a promoverla de verdad. No corre prisa, pero cuando tú sientas que es el momento, todo está listo para empujar." data-en="The page is already live and gathering whoever arrives. What's left to decide is when we start really promoting it. There's no rush, but whenever you feel it's the moment, everything is ready to push.">La página ya está al aire y recogiendo a quien llega. Lo que falta decidir es cuándo empezamos a promoverla de verdad. No corre prisa, pero cuando tú sientas que es el momento, todo está listo para empujar.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- CLOSE -->
+<section class="close reveal">
+  <div class="close-inner">
+    <p class="k" data-es="En una línea" data-en="In one line">En una línea</p>
+    <p class="statement" data-es="Esta semana Criar Sin Culpas ganó una cara propia, y empezó a &lt;em&gt;aprender de las familias&lt;/em&gt;, no solo a hablarles." data-en="This week Criar Sin Culpas gained a face of its own, and began to &lt;em&gt;learn from families&lt;/em&gt;, not only to speak to them.">Esta semana Criar Sin Culpas ganó una cara propia, y empezó a <em>aprender de las familias</em>, no solo a hablarles.</p>
+    <div class="sign">
+      <div class="by">Luis Gilberto</div>
+      <div class="studio">LG Studio</div>
+    </div>
+  </div>
+</section>
+
+<!-- COLOPHON -->
+<footer class="colophon">
+  <div class="colophon-inner">
+    <span data-es="Criar Sin Culpas · Reporte de progreso" data-en="Criar Sin Culpas · Progress report">Criar Sin Culpas · Reporte de progreso</span>
+    <span data-es="Compuesto en Cormorant Garamond e Inter" data-en="Set in Cormorant Garamond and Inter">Compuesto en Cormorant Garamond e Inter</span>
+    <span data-es="Por &lt;a href=&quot;https://luis-gilberto.com&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;LG Studio&lt;/a&gt; · Julio 2026" data-en="By &lt;a href=&quot;https://luis-gilberto.com&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;LG Studio&lt;/a&gt; · July 2026">Por <a href="https://luis-gilberto.com" target="_blank" rel="noopener noreferrer">LG Studio</a> · Julio 2026</span>
+  </div>
+</footer>
+
+<script>
+  var KEY = 'lg_parent_lang';
+  var tbtns = document.querySelectorAll('.langtoggle button');
+  function applyLang(l){
+    document.documentElement.lang = l;
+    document.querySelectorAll('[data-es]').forEach(function(el){
+      var v = el.getAttribute('data-' + l);
+      if (v !== null) el.innerHTML = v;
+    });
+    document.querySelectorAll('[data-alt-es]').forEach(function(el){
+      var v = el.getAttribute('data-alt-' + l);
+      if (v !== null) el.setAttribute('alt', v);
+    });
+    tbtns.forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-lang') === l); });
+    try { localStorage.setItem(KEY, l); } catch(e){}
+  }
+  tbtns.forEach(function(b){ b.addEventListener('click', function(){ applyLang(b.getAttribute('data-lang')); }); });
+  var startLang = 'es';
+  try { startLang = localStorage.getItem(KEY) || 'es'; } catch(e){}
+  applyLang(startLang);
+
+  var progress = document.getElementById('progress');
+  function onScroll(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var pct = max > 0 ? (h.scrollTop || document.body.scrollTop) / max * 100 : 0;
+    progress.style.width = pct + '%';
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+
+  if (!reduce){
+    var bands = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
+    function parallax(){
+      var vh = window.innerHeight;
+      bands.forEach(function(img){
+        var r = img.parentElement.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > vh) return;
+        var prog = (r.top + r.height/2 - vh/2) / vh;
+        img.style.transform = 'translateY(' + (prog * -28) + 'px) scale(1.12)';
+      });
+    }
+    document.addEventListener('scroll', parallax, {passive:true});
+    window.addEventListener('resize', parallax);
+    parallax();
+  }
+</script>
+</body>
+</html>
