@@ -211,21 +211,58 @@
     }
     .csc-icon-img { width: 32px; height: 32px; flex: none; display: block; }
     .crisis-block .csc-icon-img { width: 30px; height: 30px; }
-    .micro-summary .csc-icon-img { width: 28px; height: 28px; margin-bottom: 12px; }
+    .micro-summary-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .micro-summary-icon { width: 28px; height: 28px; flex: none; display: block; }
+    .micro-summary-title {
+      font-family: var(--sans);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin: 0;
+    }
     .cs-tldr { background: var(--blush); border: none; }
     .cs-banner {
       background: var(--blush);
-      border-radius: 14px;
-      padding: 40px 44px 44px;
-      margin: 48px 0;
-      text-align: center;
-      border-left: none;
+      border-radius: 18px;
+      padding: clamp(28px, 5vw, 44px);
+      margin: 32px 0;
       font-style: normal;
     }
-    .cs-banner .csc-icon-img { width: 36px; height: 36px; margin: 0 auto 16px; }
-    .cs-banner p { font-family: var(--serif); font-weight: 400; font-size: 1.22rem; line-height: 1.4; color: var(--text); margin: 0 0 10px; max-width: 32ch; margin-inline: auto; }
-    .cs-banner p:last-child { margin-bottom: 0; }
-    .cs-banner .callout-label { margin-bottom: 16px; }
+    .cs-banner-inner { max-width: 600px; margin: 0 auto; }
+    .cs-banner-head {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .cs-banner-icon { width: 36px; height: 36px; flex: none; display: block; }
+    .cs-banner-title {
+      font-family: var(--sans);
+      font-style: normal;
+      font-weight: 600;
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--coral-ink);
+      text-align: center;
+      margin: 0;
+    }
+    .cs-banner-body { margin-top: 20px; font-style: normal; text-align: left; }
+    .cs-banner-body p {
+      font-family: var(--sans);
+      font-size: 1.04rem;
+      line-height: 1.7;
+      color: var(--text-dim);
+      margin: 0 0 12px;
+    }
+    .cs-banner-body p:last-child { margin-bottom: 0; }
     .alert-list { list-style: none; padding: 0; margin: 0 0 18px; }
     .alert-list li { display: flex; align-items: flex-start; gap: 10px; padding-left: 0; margin-bottom: 10px; font-size: 1.02rem; line-height: 1.65; color: var(--text-dim); }
     .alert-list li::before { display: none; }
@@ -316,7 +353,8 @@
       .minute-chapter { padding: 18px 16px; }
       .prose p { font-size: 1rem; }
       .cs-article-hero { padding: 16px; margin-bottom: 28px; border-radius: 16px; }
-      .cs-banner { padding: 28px 24px 32px; margin: 32px 0; }
+      .cs-banner { margin: 28px 0; }
+      .cs-banner-body { margin-top: 16px; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
@@ -372,7 +410,10 @@
         <p data-i18n="p_open5" data-es="Y tú sientes que si no haces algo ya, el momento se va a volver enorme." data-en="And you feel that if you do not do something right now, the moment is going to become huge.">Y tú sientes que si no haces algo ya, el momento se va a volver enorme.</p>
 
         <aside class="micro-summary">
-          <img class="csc-icon-img" src="/assets/icons/pulso.svg" alt="" aria-hidden="true" width="28" height="28">
+          <div class="micro-summary-head">
+            <img class="micro-summary-icon" src="/assets/icons/pulso.svg" alt="" aria-hidden="true" width="28" height="28">
+            <p class="micro-summary-title" data-i18n="sum_title" data-es="En pocas palabras" data-en="En pocas palabras">En pocas palabras</p>
+          </div>
           <p data-i18n="sum1" data-es="El cuerpo del niño reacciona antes que las palabras." data-en="El cuerpo del niño reacciona antes que las palabras.">El cuerpo del niño reacciona antes que las palabras.</p>
           <p data-i18n="sum2" data-es="Lo que haces al principio puede bajar o subir la intensidad." data-en="Lo que haces al principio puede bajar o subir la intensidad.">Lo que haces al principio puede bajar o subir la intensidad.</p>
           <p data-i18n="sum3" data-es="Tu meta no es controlar: es no echar más fuego." data-en="Tu meta no es controlar: es no echar más fuego.">Tu meta no es controlar: es no echar más fuego.</p>
@@ -536,16 +577,22 @@
           <p data-i18n="p_avoid5" data-es="Después aprendizaje." data-en="Then learning.">Después aprendizaje.</p>
         </section>
 
-        <aside class="callout callout--banner cs-banner">
-          <img class="csc-icon-img" src="/assets/icons/corazon.svg" alt="" aria-hidden="true" width="36" height="36">
-          <p class="callout-label" data-i18n="h2_remember" data-es="Una frase para recordar" data-en="Una frase para recordar">Una frase para recordar</p>
-          <p data-i18n="p_rem1" data-es="En los primeros cinco minutos, no tienes que ganar." data-en="In the first five minutes, you do not have to win.">En los primeros cinco minutos, no tienes que ganar.</p>
-          <p data-i18n="p_rem2" data-es="No tienes que convencer." data-en="You do not have to convince.">No tienes que convencer.</p>
-          <p data-i18n="p_rem3" data-es="No tienes que enseñar toda la lección." data-en="You do not have to teach the whole lesson.">No tienes que enseñar toda la lección.</p>
-          <p data-i18n="p_rem4" data-es="Solo tienes que hacer el momento un poco más seguro." data-en="You only have to make the moment a little safer.">Solo tienes que hacer el momento un poco más seguro.</p>
-          <p data-i18n="p_rem5" data-es="Un poco más lento." data-en="A little slower.">Un poco más lento.</p>
-          <p data-i18n="p_rem6" data-es="Un poco menos solo." data-en="A little less lonely.">Un poco menos solo.</p>
-          <p data-i18n="p_rem7" data-es="Y desde ahí, algo puede empezar a bajar." data-en="And from there, something can begin to soften.">Y desde ahí, algo puede empezar a bajar.</p>
+        <aside class="cs-banner">
+          <div class="cs-banner-inner">
+            <div class="cs-banner-head">
+              <img class="cs-banner-icon" src="/assets/icons/corazon.svg" alt="" aria-hidden="true" width="36" height="36">
+              <p class="cs-banner-title" data-i18n="h2_remember" data-es="Una frase para recordar" data-en="Una frase para recordar">Una frase para recordar</p>
+            </div>
+            <div class="cs-banner-body">
+              <p data-i18n="p_rem1" data-es="En los primeros cinco minutos, no tienes que ganar." data-en="In the first five minutes, you do not have to win.">En los primeros cinco minutos, no tienes que ganar.</p>
+              <p data-i18n="p_rem2" data-es="No tienes que convencer." data-en="You do not have to convince.">No tienes que convencer.</p>
+              <p data-i18n="p_rem3" data-es="No tienes que enseñar toda la lección." data-en="You do not have to teach the whole lesson.">No tienes que enseñar toda la lección.</p>
+              <p data-i18n="p_rem4" data-es="Solo tienes que hacer el momento un poco más seguro." data-en="You only have to make the moment a little safer.">Solo tienes que hacer el momento un poco más seguro.</p>
+              <p data-i18n="p_rem5" data-es="Un poco más lento." data-en="A little slower.">Un poco más lento.</p>
+              <p data-i18n="p_rem6" data-es="Un poco menos solo." data-en="A little less lonely.">Un poco menos solo.</p>
+              <p data-i18n="p_rem7" data-es="Y desde ahí, algo puede empezar a bajar." data-en="And from there, something can begin to soften.">Y desde ahí, algo puede empezar a bajar.</p>
+            </div>
+          </div>
         </aside>
 
         <section class="minute-chapter chapter--repair">
