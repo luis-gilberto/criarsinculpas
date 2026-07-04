@@ -115,6 +115,17 @@
 
       --navy:        #1F2E46;
       --cream:       #FAF6F2;
+      --blush:       #FCE7DD;
+      --peach-deep:  #E8896A;
+      --ink-mute:    #4A5B75;
+      --ink-quiet:   #7F8DA1;
+      --slate-blue:  #8599AD;
+      --border:      rgba(31,46,70,.08);
+      --border-strong: rgba(31,46,70,.16);
+      --border-dashed: rgba(31,46,70,.14);
+      --shadow-1:    0 1px 0 rgba(31,46,70,.04), 0 1px 2px rgba(31,46,70,.04);
+      --shadow-2:    0 1px 0 rgba(31,46,70,.04), 0 8px 24px -12px rgba(31,46,70,.14);
+      --ease-card:   cubic-bezier(0.22, 1, 0.36, 1);
 
       --serif:  'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
       --sans:   'DM Sans', system-ui, sans-serif;
@@ -248,70 +259,164 @@
       max-width: 1100px; margin: 0 auto; width: 100%;
       padding: 40px 56px 56px;
     }
-    .lib-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;
-    }
+    .lib-published { display: flex; flex-direction: column; gap: 14px; }
 
     .article-card {
-      display: flex; flex-direction: column;
-      padding: 30px 30px 26px;
-      border-radius: 20px;
-      border: 1px solid rgba(31,46,70,.08);
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 20px;
+      align-items: center;
+      padding: 18px 20px 20px;
+      margin-bottom: 0;
+      border-radius: 10px;
+      border: 1px solid var(--border);
       background: var(--void-lift);
-      position: relative; overflow: hidden;
-      box-shadow: 0 2px 6px rgba(31,46,70,.05), 0 16px 38px rgba(31,46,70,.03);
-      transition: transform .45s var(--ease-silk), box-shadow .45s var(--ease-silk), border-color .45s var(--ease-silk);
+      box-shadow: var(--shadow-1);
+      transition: box-shadow 260ms var(--ease-card);
     }
     a.article-card { cursor: pointer; }
-    a.article-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 6px 14px rgba(31,46,70,.08), 0 30px 64px rgba(31,46,70,.12);
-      border-color: rgba(31,46,70,.16);
-    }
-    .article-card[data-status="coming-soon"] { background: rgba(255,255,255,.55); border-style: dashed; }
+    a.article-card:hover { box-shadow: var(--shadow-2); }
 
-    .ac-top {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 12px; margin-bottom: 18px;
+    .ac-hero-frame {
+      background: var(--blush);
+      border-radius: 12px;
+      padding: 10px;
+      aspect-ratio: 5 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .ac-cat {
-      font-size: .6rem; font-weight: 700; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--text-ghost);
+    .ac-hero-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
-    .ac-status {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 4px 10px; border-radius: var(--pill);
-      font-size: .56rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+
+    .ac-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .53rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--slate-blue);
+      margin: 0 0 4px;
     }
-    .ac-status.published { color: var(--coral-ink); background: var(--coral-dim); border: 1px solid rgba(244,168,138,.3); }
-    .ac-status.soon { color: var(--teal); background: var(--teal-dim); border: 1px solid rgba(133,153,173,.3); }
-    .ac-status.resource { color: var(--teal); background: var(--teal-dim); border: 1px solid rgba(133,153,173,.3); }
-    .ac-status .dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex: none; }
+    .ac-eyebrow .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--coral);
+      flex: none;
+    }
 
     .ac-title {
       font-family: var(--serif);
-      font-size: clamp(1.35rem, 2vw, 1.7rem);
-      font-weight: 500; line-height: 1.16; letter-spacing: -.01em;
-      color: var(--text); margin-bottom: 10px;
+      font-size: 1.3125rem;
+      font-weight: 500;
+      line-height: 1.15;
+      letter-spacing: -.005em;
+      color: var(--navy);
+      margin: 0 0 6px;
     }
     .ac-desc {
-      font-size: .85rem; color: var(--text-dim); line-height: 1.65;
-      flex: 1; margin-bottom: 20px;
+      font-size: .719rem;
+      color: var(--ink-mute);
+      line-height: 1.55;
+      margin: 0 0 12px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
     .ac-meta {
-      display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px;
-      padding-top: 16px; border-top: 1px solid rgba(31,46,70,.07);
-      font-size: .72rem; color: var(--text-ghost);
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+      font-size: .625rem;
+      color: var(--ink-mute);
     }
-    .ac-meta .ac-time { display: inline-flex; align-items: center; gap: 6px; }
-    .ac-meta .ac-protocol { color: var(--text-dim); }
-    .ac-meta .ac-protocol a { color: var(--coral-ink); border-bottom: 1px solid rgba(244,168,138,.4); }
+    .ac-meta .ac-time {
+      color: var(--navy);
+      font-weight: 500;
+    }
+    .ac-meta .ac-meta-sep { color: var(--ink-quiet); }
+    .ac-meta .ac-protocol { color: var(--ink-mute); font-weight: 400; }
+    .ac-meta .ac-protocol a { color: var(--ink-mute); border-bottom: none; }
+    .ac-meta .ac-protocol a:hover { color: var(--peach-deep); }
     .ac-cta {
-      margin-left: auto; display: inline-flex; align-items: center; gap: 8px;
-      font-size: .7rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
-      color: var(--text-ghost); transition: color .3s, gap .35s var(--ease-silk);
+      margin-left: auto;
+      font-size: .594rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--peach-deep);
     }
-    a.article-card:hover .ac-cta { color: var(--coral-ink); gap: 13px; }
+
+    .lib-separator {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 36px 0 24px;
+    }
+    .lib-separator::before,
+    .lib-separator::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border-strong);
+    }
+    .lib-separator span {
+      font-size: .5625rem;
+      font-weight: 500;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--slate-blue);
+      white-space: nowrap;
+    }
+
+    .lib-upcoming { margin-top: 8px; }
+    .upcoming-row {
+      display: grid;
+      grid-template-columns: 24px 1fr auto auto;
+      gap: 12px;
+      align-items: baseline;
+      padding: 14px 6px;
+      border-bottom: 1px dashed var(--border-dashed);
+      cursor: default;
+    }
+    .upcoming-row:last-child { border-bottom: none; }
+    .upcoming-row .ur-num {
+      font-size: .594rem;
+      letter-spacing: .06em;
+      color: var(--slate-blue);
+    }
+    .upcoming-row .ur-title {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: .9375rem;
+      line-height: 1.2;
+      color: var(--navy);
+    }
+    .upcoming-row .ur-theme {
+      font-size: .625rem;
+      color: var(--ink-quiet);
+    }
+    .upcoming-row .ur-status {
+      font-size: .53rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--slate-blue);
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(31,46,70,.05);
+      white-space: nowrap;
+    }
 
     /* SOFT CTA / BRIDGE */
     .soft-cta {
@@ -359,7 +464,21 @@
       .page-header { padding: 40px 24px 24px; }
       .cats-wrap { padding: 8px 24px; }
       .lib-wrap { padding: 32px 24px 48px; }
-      .lib-grid { grid-template-columns: 1fr; gap: 14px; }
+      .article-card {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        align-items: start;
+      }
+      .upcoming-row {
+        grid-template-columns: 24px 1fr;
+        grid-template-rows: auto auto;
+      }
+      .upcoming-row .ur-theme { grid-column: 2; }
+      .upcoming-row .ur-status {
+        grid-column: 2;
+        justify-self: end;
+        margin-top: 4px;
+      }
       .soft-cta { padding: 0 24px; }
       .soft-cta-card { padding: 28px 24px; flex-direction: column; align-items: flex-start; gap: 22px; }
       .soft-cta-actions { width: 100%; }
@@ -408,24 +527,27 @@
 
     <!-- Library -->
     <section class="lib-wrap" aria-label="Artículos">
-      <div class="lib-grid">
+      <div class="lib-published">
 
         <!-- PUBLISHED: Qué hacer cuando tu hijo tiene un berrinche -->
         <a class="article-card scroll-reveal d1" href="/aprende/que-hacer-en-un-berrinche/"
            data-status="published" data-category="berrinches" data-protocol="emotional-escalation"
            aria-label="Qué hacer cuando tu hijo tiene un berrinche">
-          <div class="ac-top">
-            <span class="ac-cat" data-i18n="cat_berrinches" data-es="Berrinches y desbordes" data-en="Tantrums and meltdowns">Berrinches y desbordes</span>
-            <span class="ac-status published"><span class="dot"></span><span data-i18n="st_pub" data-es="Publicado" data-en="Published">Publicado</span></span>
+          <div class="ac-hero-frame">
+            <img src="/assets/illustrations/hero-berrinche.svg" alt="" aria-hidden="true" width="800" height="480">
           </div>
-          <h2 class="ac-title" data-i18n="a0_title" data-es="Qué hacer cuando tu hijo tiene un berrinche" data-en="What to Do When Your Child Has a Tantrum">Qué hacer cuando tu hijo tiene un berrinche</h2>
-          <p class="ac-desc" data-i18n="a0_desc"
-             data-es="Una guía breve para acompañar un berrinche sin gritos, amenazas ni culpa."
-             data-en="A short guide for getting through a tantrum without yelling, threats or shame.">Una guía breve para acompañar un berrinche sin gritos, amenazas ni culpa.</p>
-          <div class="ac-meta">
-            <span class="ac-time"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span data-i18n="a0_time" data-es="6 min de lectura" data-en="6 min read">6 min de lectura</span></span>
-            <span class="ac-protocol"><span data-i18n="rel_label" data-es="Guía relacionada:" data-en="Related guide:">Guía relacionada:</span> <a href="/apoyo/emotional-escalation" data-i18n="rel_desbordes" data-es="Desbordes" data-en="Meltdowns">Desbordes</a></span>
-            <span class="ac-cta" data-i18n="ac_cta_open" data-es="Leer →" data-en="Read →">Leer →</span>
+          <div class="ac-body">
+            <p class="ac-eyebrow"><span class="dot" aria-hidden="true"></span><span data-i18n="a0_eyebrow" data-es="Berrinches y desbordes · publicado" data-en="Tantrums and meltdowns · published">Berrinches y desbordes · publicado</span></p>
+            <h2 class="ac-title" data-i18n="a0_title" data-es="Qué hacer cuando tu hijo tiene un berrinche" data-en="What to Do When Your Child Has a Tantrum">Qué hacer cuando tu hijo tiene un berrinche</h2>
+            <p class="ac-desc" data-i18n="a0_desc"
+               data-es="Una guía breve para acompañar un berrinche sin gritos, amenazas ni culpa."
+               data-en="A short guide for getting through a tantrum without yelling, threats or shame.">Una guía breve para acompañar un berrinche sin gritos, amenazas ni culpa.</p>
+            <div class="ac-meta">
+              <span class="ac-time" data-i18n="a0_time" data-es="6 min lectura" data-en="6 min read">6 min lectura</span>
+              <span class="ac-meta-sep" aria-hidden="true">·</span>
+              <span class="ac-protocol"><span data-i18n="a0_meta" data-es="Guía relacionada · Desbordes" data-en="Related guide · Meltdowns">Guía relacionada · Desbordes</span></span>
+              <span class="ac-cta" data-i18n="ac_cta_open" data-es="Leer →" data-en="Read →">Leer →</span>
+            </div>
           </div>
         </a>
 
@@ -433,18 +555,21 @@
         <a class="article-card scroll-reveal d2" href="/aprende/Los-primeros-5/"
            data-status="published" data-category="berrinches" data-protocol="emotional-escalation"
            aria-label="Los primeros 5 minutos de un desborde">
-          <div class="ac-top">
-            <span class="ac-cat" data-i18n="cat_berrinches" data-es="Berrinches y desbordes" data-en="Tantrums and meltdowns">Berrinches y desbordes</span>
-            <span class="ac-status published"><span class="dot"></span><span data-i18n="st_pub" data-es="Publicado" data-en="Published">Publicado</span></span>
+          <div class="ac-hero-frame">
+            <img src="/assets/illustrations/hero-primeros-5-minutos.svg" alt="" aria-hidden="true" width="800" height="480">
           </div>
-          <h2 class="ac-title" data-i18n="a1_title" data-es="Los primeros 5 minutos de un desborde" data-en="Los primeros 5 minutos de un desborde">Los primeros 5 minutos de un desborde</h2>
-          <p class="ac-desc" data-i18n="a1_desc"
-             data-es="Una guía breve para saber qué hacer en los primeros minutos de un desborde."
-             data-en="Una guía breve para saber qué hacer en los primeros minutos de un desborde.">Una guía breve para saber qué hacer en los primeros minutos de un desborde.</p>
-          <div class="ac-meta">
-            <span class="ac-time"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span data-i18n="a1_time" data-es="4 min lectura" data-en="4 min read">4 min lectura</span></span>
-            <span class="ac-protocol"><span data-i18n="rel_label" data-es="Guía relacionada:" data-en="Related guide:">Guía relacionada:</span> <a href="/apoyo/emotional-escalation" data-i18n="rel_desbordes" data-es="Desbordes" data-en="Meltdowns">Desbordes</a></span>
-            <span class="ac-cta" data-i18n="ac_cta_open" data-es="Leer →" data-en="Read →">Leer →</span>
+          <div class="ac-body">
+            <p class="ac-eyebrow"><span class="dot" aria-hidden="true"></span><span data-i18n="a1_eyebrow" data-es="Berrinches y desbordes · publicado" data-en="Tantrums and meltdowns · published">Berrinches y desbordes · publicado</span></p>
+            <h2 class="ac-title" data-i18n="a1_title" data-es="Los primeros 5 minutos de un desborde" data-en="Los primeros 5 minutos de un desborde">Los primeros 5 minutos de un desborde</h2>
+            <p class="ac-desc" data-i18n="a1_desc"
+               data-es="Una guía breve para saber qué hacer en los primeros minutos de un desborde."
+               data-en="Una guía breve para saber qué hacer en los primeros minutos de un desborde.">Una guía breve para saber qué hacer en los primeros minutos de un desborde.</p>
+            <div class="ac-meta">
+              <span class="ac-time" data-i18n="a1_time" data-es="4 min lectura" data-en="4 min read">4 min lectura</span>
+              <span class="ac-meta-sep" aria-hidden="true">·</span>
+              <span class="ac-protocol"><span data-i18n="a1_meta" data-es="Guía relacionada · Desbordes" data-en="Related guide · Meltdowns">Guía relacionada · Desbordes</span></span>
+              <span class="ac-cta" data-i18n="ac_cta_open" data-es="Leer →" data-en="Read →">Leer →</span>
+            </div>
           </div>
         </a>
 
@@ -452,117 +577,67 @@
         <a class="article-card scroll-reveal d2" href="/aprende/cuando-apagar-la-pantalla-termina-en-llanto/"
            data-status="published" data-category="pantallas" data-protocol="screen-time"
            aria-label="Cuando apagar la pantalla termina en llanto">
-          <div class="ac-top">
-            <span class="ac-cat" data-i18n="cat_pantallas" data-es="Pantallas" data-en="Screens">Pantallas</span>
-            <span class="ac-status published"><span class="dot"></span><span data-i18n="st_pub" data-es="Publicado" data-en="Published">Publicado</span></span>
+          <div class="ac-hero-frame">
+            <img src="/assets/illustrations/hero-pantallas.svg" alt="" aria-hidden="true" width="800" height="480">
           </div>
-          <h2 class="ac-title" data-i18n="a2_title" data-es="Cuando apagar la pantalla termina en llanto" data-en="When turning off the screen ends in tears">Cuando apagar la pantalla termina en llanto</h2>
-          <p class="ac-desc" data-i18n="a2_desc"
-             data-es="Una guía tranquila para acompañar a tu hijo cuando apagar la pantalla termina en llanto, gritos o negociación."
-             data-en="A calm guide for helping your child when turning off the screen leads to tears, shouting, or negotiation.">Una guía tranquila para acompañar a tu hijo cuando apagar la pantalla termina en llanto, gritos o negociación.</p>
-          <div class="ac-meta">
-            <span class="ac-time"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span data-i18n="a2_time" data-es="8 min de lectura" data-en="8 min read">8 min de lectura</span></span>
-            <span class="ac-protocol"><span data-i18n="rel_label" data-es="Guía relacionada:" data-en="Related guide:">Guía relacionada:</span> <a href="/apoyo/screen-time" data-i18n="rel_pantallas" data-es="Pantallas" data-en="Screens">Pantallas</a></span>
-            <span class="ac-cta" data-i18n="ac_cta_open" data-es="Leer →" data-en="Read →">Leer →</span>
+          <div class="ac-body">
+            <p class="ac-eyebrow"><span class="dot" aria-hidden="true"></span><span data-i18n="a2_eyebrow" data-es="Pantallas · publicado" data-en="Screens · published">Pantallas · publicado</span></p>
+            <h2 class="ac-title" data-i18n="a2_title" data-es="Cuando apagar la pantalla termina en llanto" data-en="When turning off the screen ends in tears">Cuando apagar la pantalla termina en llanto</h2>
+            <p class="ac-desc" data-i18n="a2_desc"
+               data-es="Una guía tranquila para acompañar a tu hijo cuando apagar la pantalla termina en llanto, gritos o negociación."
+               data-en="A calm guide for helping your child when turning off the screen leads to tears, shouting, or negotiation.">Una guía tranquila para acompañar a tu hijo cuando apagar la pantalla termina en llanto, gritos o negociación.</p>
+            <div class="ac-meta">
+              <span class="ac-time" data-i18n="a2_time" data-es="8 min lectura" data-en="8 min read">8 min lectura</span>
+              <span class="ac-meta-sep" aria-hidden="true">·</span>
+              <span class="ac-protocol"><span data-i18n="a2_meta" data-es="Guía relacionada · Pantallas" data-en="Related guide · Screens">Guía relacionada · Pantallas</span></span>
+              <span class="ac-cta" data-i18n="ac_cta_open" data-es="Leer →" data-en="Read →">Leer →</span>
+            </div>
           </div>
         </a>
 
-        <!-- COMING SOON: Sueño y rutinas -->
-        <article class="article-card scroll-reveal d3" data-status="coming-soon" data-category="sueno" aria-disabled="true">
-          <div class="ac-top">
-            <span class="ac-cat" data-i18n="cat_sueno" data-es="Sueño y rutinas" data-en="Sleep and routines">Sueño y rutinas</span>
-            <span class="ac-status soon"><span class="dot"></span><span data-i18n="st_soon" data-es="Próximamente" data-en="Coming soon">Próximamente</span></span>
-          </div>
-          <h2 class="ac-title" data-i18n="a3_title" data-es="Rutinas de sueño que sostienen la noche" data-en="Sleep routines that hold the night">Rutinas de sueño que sostienen la noche</h2>
-          <p class="ac-desc" data-i18n="a3_desc"
-             data-es="Cómo armar un ritual de sueño por edad para que la hora de dormir deje de ser una negociación infinita."
-             data-en="How to build a sleep ritual by age so bedtime stops being an endless negotiation.">Cómo armar un ritual de sueño por edad para que la hora de dormir deje de ser una negociación infinita.</p>
-          <div class="ac-meta">
-            <span class="ac-time"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span data-i18n="in_prep" data-es="En preparación" data-en="In preparation">En preparación</span></span>
-            <span class="ac-protocol"><span data-i18n="rel_label" data-es="Guía relacionada:" data-en="Related guide:">Guía relacionada:</span> <span data-i18n="rel_sueno" data-es="Sueño" data-en="Sleep">Sueño</span></span>
-          </div>
-        </article>
+      </div>
 
-        <!-- COMING SOON: Hermanos -->
-        <article class="article-card scroll-reveal d4" data-status="coming-soon" data-category="hermanos" aria-disabled="true">
-          <div class="ac-top">
-            <span class="ac-cat" data-i18n="cat_hermanos" data-es="Hermanos" data-en="Siblings">Hermanos</span>
-            <span class="ac-status soon"><span class="dot"></span><span data-i18n="st_soon" data-es="Próximamente" data-en="Coming soon">Próximamente</span></span>
-          </div>
-          <h2 class="ac-title" data-i18n="a4_title" data-es="Celos y peleas entre hermanos" data-en="Jealousy and fights between siblings">Celos y peleas entre hermanos</h2>
-          <p class="ac-desc" data-i18n="a4_desc"
-             data-es="Cómo acompañar la llegada de un hermanito y mediar las peleas sin elegir bandos ni repartir culpas."
-             data-en="How to support a new sibling's arrival and mediate fights without choosing sides or assigning blame.">Cómo acompañar la llegada de un hermanito y mediar las peleas sin elegir bandos ni repartir culpas.</p>
-          <div class="ac-meta">
-            <span class="ac-time"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span data-i18n="in_prep" data-es="En preparación" data-en="In preparation">En preparación</span></span>
-            <span class="ac-protocol"><span data-i18n="rel_label" data-es="Guía relacionada:" data-en="Related guide:">Guía relacionada:</span> <span data-i18n="rel_hermanos" data-es="Hermanos" data-en="Siblings">Hermanos</span></span>
-          </div>
-        </article>
+      <div class="lib-separator scroll-reveal" aria-hidden="true">
+        <span data-i18n="sep_upcoming" data-es="En preparación · 6 guías" data-en="In preparation · 6 guides">En preparación · 6 guías</span>
+      </div>
 
-        <!-- COMING SOON: Límites sin gritar -->
-        <article class="article-card scroll-reveal d1" data-status="coming-soon" data-category="limites" aria-disabled="true">
-          <div class="ac-top">
-            <span class="ac-cat" data-i18n="cat_limites" data-es="Límites sin gritar" data-en="Limits without yelling">Límites sin gritar</span>
-            <span class="ac-status soon"><span class="dot"></span><span data-i18n="st_soon" data-es="Próximamente" data-en="Coming soon">Próximamente</span></span>
-          </div>
-          <h2 class="ac-title" data-i18n="a5_title" data-es="Límites firmes sin gritos" data-en="Firm limits without yelling">Límites firmes sin gritos</h2>
-          <p class="ac-desc" data-i18n="a5_desc"
-             data-es="Cómo sostener un límite con firmeza y calma, incluso cuando tú también estás al borde."
-             data-en="How to hold a limit with firmness and calm, even when you're on edge too.">Cómo sostener un límite con firmeza y calma, incluso cuando tú también estás al borde.</p>
-          <div class="ac-meta">
-            <span class="ac-time"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span data-i18n="in_prep" data-es="En preparación" data-en="In preparation">En preparación</span></span>
-            <span class="ac-protocol"><span data-i18n="rel_label" data-es="Guía relacionada:" data-en="Related guide:">Guía relacionada:</span> <span data-i18n="rel_metodo" data-es="El Método" data-en="The Method">El Método</span></span>
-          </div>
-        </article>
-
-        <!-- COMING SOON: Ansiedad y separación -->
-        <article class="article-card scroll-reveal d2" data-status="coming-soon" data-category="ansiedad" aria-disabled="true">
-          <div class="ac-top">
-            <span class="ac-cat" data-i18n="cat_ansiedad" data-es="Ansiedad y separación" data-en="Anxiety and separation">Ansiedad y separación</span>
-            <span class="ac-status soon"><span class="dot"></span><span data-i18n="st_soon" data-es="Próximamente" data-en="Coming soon">Próximamente</span></span>
-          </div>
-          <h2 class="ac-title" data-i18n="a6_title" data-es="Ansiedad por separación: despedidas tranquilas" data-en="Separation anxiety: calm goodbyes">Ansiedad por separación: despedidas tranquilas</h2>
-          <p class="ac-desc" data-i18n="a6_desc"
-             data-es="Cómo acompañar el llanto al despedirte en la escuela o la guardería, sin escabullirte ni alargar la angustia."
-             data-en="How to support the tears at school or daycare drop-off, without sneaking away or prolonging the distress.">Cómo acompañar el llanto al despedirte en la escuela o la guardería, sin escabullirte ni alargar la angustia.</p>
-          <div class="ac-meta">
-            <span class="ac-time"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span data-i18n="in_prep" data-es="En preparación" data-en="In preparation">En preparación</span></span>
-            <span class="ac-protocol"><span data-i18n="rel_label" data-es="Guía relacionada:" data-en="Related guide:">Guía relacionada:</span> <span data-i18n="rel_desbordes" data-es="Desbordes" data-en="Meltdowns">Desbordes</span></span>
-          </div>
-        </article>
-
-        <!-- COMING SOON: Cansancio parental -->
-        <article class="article-card scroll-reveal d3" data-status="coming-soon" data-category="cansancio" aria-disabled="true">
-          <div class="ac-top">
-            <span class="ac-cat" data-i18n="cat_cansancio" data-es="Cansancio parental" data-en="Parental burnout">Cansancio parental</span>
-            <span class="ac-status soon"><span class="dot"></span><span data-i18n="st_soon" data-es="Próximamente" data-en="Coming soon">Próximamente</span></span>
-          </div>
-          <h2 class="ac-title" data-i18n="a7_title" data-es="Cansancio parental: recargar sin culpa" data-en="Parental burnout: recharge without guilt">Cansancio parental: recargar sin culpa</h2>
-          <p class="ac-desc" data-i18n="a7_desc"
-             data-es="Qué hacer cuando ya no te queda paciencia. Cómo cuidarte para poder sostener, sin sentir que fallas."
-             data-en="What to do when you have no patience left. How to care for yourself so you can keep showing up, without feeling like you're failing.">Qué hacer cuando ya no te queda paciencia. Cómo cuidarte para poder sostener, sin sentir que fallas.</p>
-          <div class="ac-meta">
-            <span class="ac-time"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span data-i18n="in_prep" data-es="En preparación" data-en="In preparation">En preparación</span></span>
-            <span class="ac-protocol"><span data-i18n="rel_label" data-es="Guía relacionada:" data-en="Related guide:">Guía relacionada:</span> <span data-i18n="rel_sobre" data-es="Sobre Nari" data-en="About Nari">Sobre Nari</span></span>
-          </div>
-        </article>
-
-        <!-- COMING SOON: Preguntas frecuentes -->
-        <article class="article-card scroll-reveal d4" data-status="coming-soon" data-category="faq" aria-disabled="true">
-          <div class="ac-top">
-            <span class="ac-cat" data-i18n="cat_faq" data-es="Preguntas frecuentes" data-en="Frequently asked questions">Preguntas frecuentes</span>
-            <span class="ac-status soon"><span class="dot"></span><span data-i18n="st_soon" data-es="Próximamente" data-en="Coming soon">Próximamente</span></span>
-          </div>
-          <h2 class="ac-title" data-i18n="a8_title" data-es="Preguntas frecuentes sobre crianza respetuosa" data-en="Frequently asked questions about respectful parenting">Preguntas frecuentes sobre crianza respetuosa</h2>
-          <p class="ac-desc" data-i18n="a8_desc"
-             data-es="Las dudas más comunes sobre criar con respeto y límites, respondidas con calma y sin tecnicismos."
-             data-en="The most common questions about raising with respect and limits, answered calmly and without jargon.">Las dudas más comunes sobre criar con respeto y límites, respondidas con calma y sin tecnicismos.</p>
-          <div class="ac-meta">
-            <span class="ac-time"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span data-i18n="in_prep" data-es="En preparación" data-en="In preparation">En preparación</span></span>
-            <span class="ac-protocol"><span data-i18n="rel_label" data-es="Guía relacionada:" data-en="Related guide:">Guía relacionada:</span> <span data-i18n="rel_metodo" data-es="El Método" data-en="The Method">El Método</span></span>
-          </div>
-        </article>
-
+      <div class="lib-upcoming scroll-reveal" aria-label="Guías en preparación">
+        <div class="upcoming-row" data-status="coming-soon" data-category="sueno">
+          <span class="ur-num" aria-hidden="true">04</span>
+          <span class="ur-title" data-i18n="a3_title" data-es="Rutinas de sueño que sostienen la noche" data-en="Sleep routines that hold the night">Rutinas de sueño que sostienen la noche</span>
+          <span class="ur-theme" data-i18n="cat_sueno" data-es="Sueño y rutinas" data-en="Sleep and routines">Sueño y rutinas</span>
+          <span class="ur-status" data-i18n="st_soon" data-es="Próximamente" data-en="Coming soon">Próximamente</span>
+        </div>
+        <div class="upcoming-row" data-status="coming-soon" data-category="hermanos">
+          <span class="ur-num" aria-hidden="true">05</span>
+          <span class="ur-title" data-i18n="a4_title" data-es="Celos y peleas entre hermanos" data-en="Jealousy and fights between siblings">Celos y peleas entre hermanos</span>
+          <span class="ur-theme" data-i18n="cat_hermanos" data-es="Hermanos" data-en="Siblings">Hermanos</span>
+          <span class="ur-status" data-i18n="st_soon" data-es="Próximamente" data-en="Coming soon">Próximamente</span>
+        </div>
+        <div class="upcoming-row" data-status="coming-soon" data-category="limites">
+          <span class="ur-num" aria-hidden="true">06</span>
+          <span class="ur-title" data-i18n="a5_title" data-es="Límites firmes sin gritos" data-en="Firm limits without yelling">Límites firmes sin gritos</span>
+          <span class="ur-theme" data-i18n="cat_limites" data-es="Límites sin gritar" data-en="Limits without yelling">Límites sin gritar</span>
+          <span class="ur-status" data-i18n="st_soon" data-es="Próximamente" data-en="Coming soon">Próximamente</span>
+        </div>
+        <div class="upcoming-row" data-status="coming-soon" data-category="ansiedad">
+          <span class="ur-num" aria-hidden="true">07</span>
+          <span class="ur-title" data-i18n="a6_title" data-es="Ansiedad por separación: despedidas tranquilas" data-en="Separation anxiety: calm goodbyes">Ansiedad por separación: despedidas tranquilas</span>
+          <span class="ur-theme" data-i18n="cat_ansiedad" data-es="Ansiedad y separación" data-en="Anxiety and separation">Ansiedad y separación</span>
+          <span class="ur-status" data-i18n="st_soon" data-es="Próximamente" data-en="Coming soon">Próximamente</span>
+        </div>
+        <div class="upcoming-row" data-status="coming-soon" data-category="cansancio">
+          <span class="ur-num" aria-hidden="true">08</span>
+          <span class="ur-title" data-i18n="a7_title" data-es="Cansancio parental: recargar sin culpa" data-en="Parental burnout: recharge without guilt">Cansancio parental: recargar sin culpa</span>
+          <span class="ur-theme" data-i18n="cat_cansancio" data-es="Cansancio parental" data-en="Parental burnout">Cansancio parental</span>
+          <span class="ur-status" data-i18n="st_soon" data-es="Próximamente" data-en="Coming soon">Próximamente</span>
+        </div>
+        <div class="upcoming-row" data-status="coming-soon" data-category="faq">
+          <span class="ur-num" aria-hidden="true">09</span>
+          <span class="ur-title" data-i18n="a8_title" data-es="Preguntas frecuentes sobre crianza respetuosa" data-en="Frequently asked questions about respectful parenting">Preguntas frecuentes sobre crianza respetuosa</span>
+          <span class="ur-theme" data-i18n="up_faq_theme" data-es="FAQ" data-en="FAQ">FAQ</span>
+          <span class="ur-status" data-i18n="st_soon" data-es="Próximamente" data-en="Coming soon">Próximamente</span>
+        </div>
       </div>
     </section>
 
