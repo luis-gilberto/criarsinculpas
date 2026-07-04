@@ -46,9 +46,11 @@
       "slug": "sueno",
       "guide": "Sue\u00f1o",
       "metaphor": "La noche",
-      "file": null,
-      "status": "reserved",
-      "description": "TBD \u2014 layered horizons at dusk. Ritual y reparaci\u00f3n."
+      "file": "assets/illustrations/hero-sueno.svg",
+      "status": "designed",
+      "washes": ["ambar", "sereno", "blush", "rosa"],
+      "description": "Serene night sky with dominant amber moon upper right. Three soft stars. Isometric bed with child, blanket silhouette, small foot. Adult seated on floor beside bed. Amber heart floating between figures.",
+      "designed": "2026-07-04"
     },
     {
       "slug": "hermanos",
@@ -59,6 +61,18 @@
       "description": "TBD \u2014 two streams that cross without collision. Separar, validar, limitar."
     }
   ],
+  "doodleLibrary": {
+    "$comment": "Tier 2 protocol-card doodles. Rules: close-up of the hero landscape when a hero exists (Pantallas, Desbordes). Scene-based when no hero yet (Sueño, Hermanos) \u2014 to be redrawn as close-ups when their heroes are designed.",
+    "path": "assets/doodles/",
+    "canvas": { "width": 250, "height": 250 },
+    "frame": { "background": "var(--blush)", "borderRadius": 4, "size": "140px in card frame" },
+    "entries": [
+      { "slug": "pantallas",  "file": "assets/doodles/pantallas.svg",  "heroSibling": "hero-pantallas.svg",              "metaphor": "El corredor",  "moment": "La pantalla que atrae (close-up de la pared izquierda del corredor)", "status": "aligned" },
+      { "slug": "desbordes",  "file": "assets/doodles/desbordes.svg",  "heroSibling": "hero-berrinche.svg",              "metaphor": "La ola",       "moment": "El momento de la cresta con la figura en la orilla (close-up)",         "status": "aligned" },
+      { "slug": "sueno",      "file": "assets/doodles/sueno.svg",      "heroSibling": "hero-sueno.svg",                  "metaphor": "La noche",     "moment": "Luna \u00e1mbar dominante arriba + cama peque\u00f1a con ni\u00f1o abajo (close-up del hero)", "status": "aligned" },
+      { "slug": "hermanos",   "file": "assets/doodles/hermanos.svg",   "heroSibling": null,                              "metaphor": "Las corrientes","moment": "Dos ni\u00f1os + adulto mediador + coraz\u00f3n \u00e1mbar",                     "status": "awaiting-hero" }
+    ]
+  },
   "iconLibrary": {
     "path": "assets/icons/",
     "count": 16,
@@ -77,8 +91,7 @@
       { "n": "12", "name": "simplificar",   "file": "assets/icons/simplificar.svg",   "wash": "musgo",        "replaces": "\ud83d\udce6", "use": "Minuto 2 / reducir est\u00edmulos" },
       { "n": "13", "name": "limite",        "file": "assets/icons/limite.svg",        "wash": "terracota",    "replaces": "\ud83d\udee1\ufe0f", "use": "Minuto 4 / sostener l\u00edmite" },
       { "n": "14", "name": "presencia",     "file": "assets/icons/presencia.svg",     "wash": "ambar",        "replaces": "\ud83e\udec2", "use": "Minuto 5 / no forzar cierre" },
-      { "n": "15", "name": "despues",       "file": "assets/icons/despues.svg",       "wash": "sereno+ambar", "replaces": "\ud83c\udf24\ufe0f", "use": "Post-crisis / cuando pase la intensidad" },
-      { "n": "16", "name": "umbral",        "file": "assets/icons/umbral.svg",        "wash": "sereno+ambar", "replaces": null, "use": "CTA icon for guide-to-Protocol links; the two-worlds passage", "semanticRole": "Transition from reflective guide into live Protocol support" }
+      { "n": "15", "name": "despues",       "file": "assets/icons/despues.svg",       "wash": "sereno+ambar", "replaces": "\ud83c\udf24\ufe0f", "use": "Post-crisis / cuando pase la intensidad" }
     ]
   },
   "articleMap": {
@@ -107,19 +120,6 @@
         { "id": "que-evitar",       "icon": "prohibido.svg",   "heading": "Qu\u00e9 evitar" },
         { "id": "banner-emocional", "icon": "corazon.svg",     "heading": "Bloque emocional", "surface": "banner" },
         { "id": "post-crisis",      "icon": "despues.svg",     "heading": "Cuando pase la intensidad" }
-      ]
-    },
-    "pantallas": {
-      "hero": "hero-pantallas.svg",
-      "sections": [
-        { "id": "que-pasa",       "icon": "cerebro.svg",   "heading": "Qu\u00e9 est\u00e1 pasando realmente" },
-        { "id": "que-hacer",      "icon": "mano.svg",      "heading": "Qu\u00e9 hacer" },
-        { "id": "que-no-hacer",   "icon": "prohibido.svg", "heading": "Qu\u00e9 no hacer" },
-        { "id": "que-decir",      "icon": "bocadillo.svg", "heading": "Qu\u00e9 decir" },
-        { "id": "en-calma",       "icon": "corazon.svg",   "heading": "Cuando todos est\u00e9n en calma" },
-        { "id": "apoyo",          "icon": "sos.svg",       "heading": "Cu\u00e1ndo buscar apoyo adicional" },
-        { "id": "manana",         "icon": "despues.svg",   "heading": "Una forma m\u00e1s amable de intentarlo ma\u00f1ana" },
-        { "id": "protocol-cta",   "icon": "umbral.svg",    "heading": "Protocol CTA", "surface": "protocol-cta" }
       ]
     }
   }
