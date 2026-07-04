@@ -1,0 +1,77 @@
+<!-- Protocol doodle · 04 Hermanos
+     Two same-size child figures facing each other, ambar heart between them.
+     An adult figure smaller, further back (the mediator, present but not central).
+     "Separar, validar, limitar" — the sibling mediation moment. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250" width="250" height="250" aria-labelledby="ttl-hermanos">
+  <title id="ttl-hermanos">Hermanos — dos niños de frente el uno al otro con un corazón ámbar entre ellos, un adulto pequeño detrás observando.</title>
+
+  <!-- soft peach ground wash under both children -->
+  <ellipse cx="125" cy="196" rx="82" ry="12" fill="#F4A88A" opacity="0.3" transform="translate(1 2) rotate(-1 125 196)"/>
+
+  <!-- ADULT, small and further back — the mediator, present but not central -->
+  <g fill="none" stroke="#1F2E46" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.75">
+    <!-- head -->
+    <circle cx="125" cy="72" r="9"/>
+    <path d="M121 71 l 2 0"/>
+    <path d="M127 71 l 2 0"/>
+    <path d="M122 78 l 6 0"/>
+    <!-- body -->
+    <path d="M125 81 L 125 132"/>
+    <!-- arms at sides -->
+    <path d="M125 96 C 118 100, 114 110, 114 118"/>
+    <path d="M125 96 C 132 100, 136 110, 136 118"/>
+    <!-- legs -->
+    <path d="M125 132 L 119 152"/>
+    <path d="M125 132 L 131 152"/>
+  </g>
+
+  <!-- LEFT CHILD, facing right -->
+  <g fill="none" stroke="#1F2E46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <!-- head -->
+    <circle cx="76" cy="128" r="12"/>
+    <!-- eyes -->
+    <path d="M71 127 l 3 0"/>
+    <path d="M78 127 l 3 0"/>
+    <!-- neutral mouth -->
+    <path d="M72 135 l 6 0"/>
+    <!-- body -->
+    <path d="M76 140 L 76 186"/>
+    <!-- one arm crossing toward the other child -->
+    <path d="M76 156 C 90 158, 102 156, 108 152"/>
+    <!-- other arm at side -->
+    <path d="M76 158 C 68 166, 64 178, 66 190"/>
+    <!-- legs, standing -->
+    <path d="M76 186 L 70 206"/>
+    <path d="M76 186 L 82 206"/>
+  </g>
+
+  <!-- RIGHT CHILD, facing left, mirror of the first -->
+  <g fill="none" stroke="#1F2E46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <!-- head -->
+    <circle cx="174" cy="128" r="12"/>
+    <!-- eyes -->
+    <path d="M167 127 l 3 0"/>
+    <path d="M174 127 l 3 0"/>
+    <!-- neutral mouth -->
+    <path d="M170 135 l 6 0"/>
+    <!-- body -->
+    <path d="M174 140 L 174 186"/>
+    <!-- one arm crossing toward the other child -->
+    <path d="M174 156 C 160 158, 148 156, 142 152"/>
+    <!-- other arm at side -->
+    <path d="M174 158 C 182 166, 186 178, 184 190"/>
+    <!-- legs -->
+    <path d="M174 186 L 168 206"/>
+    <path d="M174 186 L 180 206"/>
+  </g>
+
+  <!-- ámbar heart floating between them (or maybe conflict + care) -->
+  <g transform="translate(112 132) scale(0.26)">
+    <path d="M50 32 c -6 -10, -19 -12, -26 -5 c -8 7, -7 21, 3 31 l 23 22 l 24 -22 c 10 -10, 11 -24, 3 -31 c -7 -7, -21 -5, -27 5z"
+          fill="#E4A85C" opacity="0.9" stroke="#1F2E46" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+
+  <!-- floor line -->
+  <path d="M32 208 L 218 208"
+        fill="none" stroke="#1F2E46" stroke-width="1.5" stroke-linecap="round" opacity="0.28"/>
+</svg>

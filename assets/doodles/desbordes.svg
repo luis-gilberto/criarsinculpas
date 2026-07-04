@@ -1,0 +1,68 @@
+<!-- Protocol doodle · 02 Desbordes · v3
+     Close-up del hero "La ola" — ahora con la figura de la orilla,
+     porque el doodle tiene que explicarse solo. Sin ella, sería
+     "un corazón sobre olas" (abstracción vacía). Con ella,
+     es inmediatamente legible: alguien esperando calmado
+     mientras la emoción pasa como ola. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250" width="250" height="250" aria-labelledby="ttl-desbordes">
+  <title id="ttl-desbordes">Desbordes — una figura calmada esperando la ola de la emoción.</title>
+
+  <!-- back wave — musgo faint -->
+  <path d="M0 105 C 60 90, 130 92, 190 100 C 220 104, 245 104, 250 102 L 250 250 L 0 250 z"
+        fill="#8A9E7E" opacity="0.16"/>
+
+  <!-- middle wave — rosa -->
+  <path d="M-10 130 C 40 96, 110 100, 170 116 C 210 126, 240 116, 260 128 L 260 250 L -10 250 z"
+        fill="#E89BA8" opacity="0.55" transform="translate(0 -4)"/>
+
+  <!-- foreground wave — terra, peak on the left where it rises highest -->
+  <path d="M-20 160 C 30 96, 90 82, 140 108 C 175 124, 200 158, 240 172 C 255 178, 265 176, 275 178 L 275 250 L -20 250 z"
+        fill="#C45A47" opacity="0.75"/>
+
+  <!-- wave crest line — navy hand-drawn -->
+  <g fill="none" stroke="#1F2E46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" opacity="0.85">
+    <path d="M-20 160 C 30 96, 90 82, 140 108 C 175 124, 200 158, 240 172"/>
+  </g>
+
+  <!-- foam flecks on the crest -->
+  <g fill="#E4A85C" opacity="0.9">
+    <circle cx="42" cy="120" r="2.4"/>
+    <circle cx="72" cy="98" r="2"/>
+    <circle cx="100" cy="88" r="2.6"/>
+    <circle cx="128" cy="102" r="1.9"/>
+    <circle cx="160" cy="122" r="2.1"/>
+    <circle cx="192" cy="146" r="1.8"/>
+  </g>
+
+  <!-- ==== THE FIGURE — small, calm, right side on the shore ==== -->
+  <!-- soft blush halo behind figure (presence) -->
+  <ellipse cx="204" cy="192" rx="30" ry="36" fill="#FCE7DD" opacity="0.9" transform="rotate(-3 204 192)"/>
+
+  <g fill="none" stroke="#1F2E46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <!-- head -->
+    <circle cx="204" cy="176" r="10"/>
+    <!-- calm eyes — small dashes -->
+    <path d="M199 176 l 2 0"/>
+    <path d="M207 176 l 2 0"/>
+    <!-- neutral mouth -->
+    <path d="M201 182 l 6 0"/>
+    <!-- body — upright, unmoving -->
+    <path d="M204 186 L 204 220"/>
+    <!-- arms slightly open, receptive -->
+    <path d="M204 194 C 198 198, 194 206, 192 214"/>
+    <path d="M204 194 C 210 198, 214 206, 216 214"/>
+    <!-- legs -->
+    <path d="M204 220 L 200 234"/>
+    <path d="M204 220 L 208 234"/>
+  </g>
+
+  <!-- ámbar heart just above wave crest, near figure — the reparación beat -->
+  <g transform="translate(178 84) scale(0.28)">
+    <path d="M50 32 c -6 -10, -19 -12, -26 -5 c -8 7, -7 21, 3 31 l 23 22 l 24 -22 c 10 -10, 11 -24, 3 -31 c -7 -7, -21 -5, -27 5z"
+          fill="#E4A85C" opacity="0.92" stroke="#1F2E46" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+
+  <!-- shore line — faint horizon under the figure -->
+  <path d="M172 234 C 200 232, 232 234, 240 232"
+        fill="none" stroke="#1F2E46" stroke-width="1.4" stroke-linecap="round" opacity="0.28"/>
+</svg>

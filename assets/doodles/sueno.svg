@@ -1,0 +1,66 @@
+<!-- Protocol doodle · 03 Sueño
+     A child figure horizontal on a soft "bed" wash. A small navy 'z' above the head.
+     One ambar dot suggesting a warm nightlight. Parent figure smaller, seated by bed.
+     "Ritual y reparación" — the negotiation of sleep. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250" width="250" height="250" aria-labelledby="ttl-sueno">
+  <title id="ttl-sueno">Sueño — un niño acostado sobre una cama suave, un adulto sentado cerca, una pequeña z de sueño arriba.</title>
+
+  <!-- sereno wash — the calm night atmosphere -->
+  <path d="M0 60 c 60 -10, 140 -12, 250 0 L 250 250 L 0 250 z"
+        fill="#8FA8C4" opacity="0.14"/>
+
+  <!-- bed — blush wash rectangle with rounded corners -->
+  <rect x="42" y="140" width="164" height="50" rx="14"
+        fill="#FCE7DD" opacity="0.9" transform="translate(1 2) rotate(-1 124 165)"/>
+
+  <!-- bed outline -->
+  <g fill="none" stroke="#1F2E46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="42" y="140" width="164" height="50" rx="14"/>
+    <!-- pillow — small square at left end of bed -->
+    <path d="M56 148 L 92 148 L 92 172 L 56 172 z" opacity="0.85"/>
+  </g>
+
+  <!-- CHILD, horizontal on the bed -->
+  <g fill="none" stroke="#1F2E46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <!-- head on the pillow -->
+    <circle cx="74" cy="160" r="11"/>
+    <!-- closed eyes — dashes, sideways -->
+    <path d="M69 158 c 1 -1, 3 -1, 4 0"/>
+    <path d="M77 158 c 1 -1, 3 -1, 4 0"/>
+    <!-- soft mouth -->
+    <path d="M74 165 l 4 0"/>
+    <!-- body lying — horizontal line to feet -->
+    <path d="M85 160 C 120 158, 155 162, 180 160"/>
+  </g>
+
+  <!-- soft 'z' of sleep above the child's head, navy Cormorant-ish -->
+  <text x="80" y="118" font-family="'Cormorant Garamond', 'Times New Roman', serif" font-style="italic" font-weight="400" font-size="26" fill="#1F2E46" opacity="0.85">z</text>
+  <text x="94" y="106" font-family="'Cormorant Garamond', 'Times New Roman', serif" font-style="italic" font-weight="400" font-size="18" fill="#1F2E46" opacity="0.55">z</text>
+
+  <!-- ADULT, seated on the floor by the bed, smaller and further back -->
+  <g fill="none" stroke="#1F2E46" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" opacity="0.85">
+    <!-- head -->
+    <circle cx="212" cy="152" r="9"/>
+    <path d="M208 151 l 2 0"/>
+    <path d="M214 151 l 2 0"/>
+    <path d="M209 158 l 4 0"/>
+    <!-- body seated, torso slight forward tilt -->
+    <path d="M212 161 L 212 194"/>
+    <!-- one arm resting on bed edge -->
+    <path d="M212 172 C 204 170, 198 170, 194 172"/>
+    <!-- one arm at side -->
+    <path d="M212 176 C 220 182, 224 190, 224 200"/>
+    <!-- legs folded, seated -->
+    <path d="M212 194 C 220 200, 226 208, 224 214"/>
+    <path d="M212 194 C 204 202, 200 210, 202 216"/>
+  </g>
+
+  <!-- one warm ambar dot — the nightlight, upper right -->
+  <circle cx="202" cy="72" r="4" fill="#E4A85C" opacity="0.9"/>
+  <!-- soft ambar glow ring -->
+  <circle cx="202" cy="72" r="10" fill="none" stroke="#E4A85C" stroke-width="1.4" opacity="0.4"/>
+
+  <!-- floor line under bed -->
+  <path d="M32 194 L 218 194"
+        fill="none" stroke="#1F2E46" stroke-width="1.5" stroke-linecap="round" opacity="0.28"/>
+</svg>

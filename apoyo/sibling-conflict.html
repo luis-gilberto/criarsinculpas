@@ -155,6 +155,68 @@
       color: var(--ok); font-size: .67rem; font-weight: 700;
     }
 
+
+    /* ── SECTION HEADERS (unified template) ── */
+    .sec-head {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin: 48px 0 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(31, 46, 70, 0.08);
+    }
+    .sec-head .sec-num {
+      font-family: 'DM Mono', 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--accent-ink);
+      font-weight: 500;
+    }
+    .sec-head .sec-lbl {
+      font-family: 'DM Sans', 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text);
+      display: inline;
+      margin: 0;
+    }
+    @media (max-width: 600px) {
+      .sec-head { margin: 40px 0 14px; }
+    }
+
+    /* ── MUTED CROSS-PROTOCOL ── */
+    .cross-protocol-muted { opacity: 0.72; }
+    .cp-link-muted {
+      cursor: default;
+      background: rgba(31, 46, 70, 0.02) !important;
+      border: 1px dashed rgba(31, 46, 70, 0.14) !important;
+      color: rgba(31, 46, 70, 0.5) !important;
+      transform: none !important;
+      box-shadow: none !important;
+      transition: none;
+    }
+    .cp-link-muted:hover {
+      transform: none !important;
+      box-shadow: none !important;
+    }
+    .cp-link-muted:active {
+      transform: none !important;
+    }
+    .cp-status {
+      font-family: 'DM Sans', 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(31, 46, 70, 0.5);
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(31, 46, 70, 0.05);
+      white-space: nowrap;
+    }
+
     .hero-grid { display: block; }
     .hero-text { animation: fadeInUp .6s .05s both; }
 
@@ -612,6 +674,10 @@
 
     <main class="content-wrapper">
       <section class="hero-section" id="protocol-content">
+        <div class="sec-head">
+          <span class="sec-num">01</span>
+          <span class="sec-lbl" data-i18n="sec_1_entiende" data-es="Entiende" data-en="Understand">Entiende</span>
+        </div>
         <div class="hero-grid">
           <div class="hero-text">
             <div class="eyebrow">
@@ -620,17 +686,7 @@
             </div>
 
             <div class="hero-illo-wrap" aria-hidden="true">
-              <svg viewBox="0 0 300 150" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-                <path class="gl" d="M70 128 L250 128" stroke-opacity=".18"/>
-                <path class="ga" d="M142 66 L150 56 L156 68 L164 56"/>
-                <circle cx="100" cy="64" r="16" class="gl"/>
-                <path class="gl" d="M100 80 C101 98,99 112,99 120"/>
-                <path class="gl" d="M108 92 C122 92,130 96,136 100"/>
-                <circle cx="204" cy="66" r="14" class="gl"/>
-                <path class="gl" d="M204 82 C205 98,203 110,203 120"/>
-                <path class="gl" d="M196 94 C182 94,174 98,168 102"/>
-                <path d="M153 104 C145.3 96.6 149.5 91 153 95.5 C156.5 91 160.7 96.6 153 104 Z" fill="#D96B47"/>
-              </svg>
+              <img src="/assets/doodles/hermanos.svg" alt="" style="width:100%;height:auto;display:block;">
             </div>
 
             <h1 class="hero-title" data-i18n="title" data-es="Peleas entre hermanos: cómo <em>intervenir sin escalar</em>" data-en="Sibling conflict: how to <em>step in without escalating</em>">Peleas entre hermanos: cómo <em>intervenir sin escalar</em></h1>
@@ -642,6 +698,10 @@
               <p class="primer-main" data-i18n="primer_main" data-es="No empieces buscando quién tuvo la culpa. Primero baja la intensidad. Tu papel no es decidir quién tiene razón, sino ayudarles a volver a la calma." data-en="Don't start by looking for who's to blame. First, lower the intensity. Your role is not to decide who is right, but to help them return to calm.">No empieces buscando quién tuvo la culpa. Primero baja la intensidad. Tu papel no es decidir quién tiene razón, sino ayudarles a volver a la calma.</p>
             </div>
 
+            <div class="sec-head">
+              <span class="sec-num">02</span>
+              <span class="sec-lbl" data-i18n="sec_2_actua" data-es="Actúa · 3 frases" data-en="Act · 3 phrases">Actúa · 3 frases</span>
+            </div>
             <div id="mobile-cards-section">
               <div class="arc-intro">
                 <span class="sec-lbl" data-i18n="cards_intro" data-es="De menos a más intensidad · Toca para copiar" data-en="From low to high intensity · Tap to copy">De menos a más intensidad · Toca para copiar</span>
@@ -654,6 +714,10 @@
           </div>
 
           <div class="hero-cards-col" id="desktop-cards-col" style="display:none;">
+          <div class="sec-head">
+            <span class="sec-num">02</span>
+            <span class="sec-lbl" data-i18n="sec_2_actua" data-es="Actúa · 3 frases" data-en="Act · 3 phrases">Actúa · 3 frases</span>
+          </div>
             <div class="arc-intro">
               <span class="sec-lbl" data-i18n="cards_intro" data-es="De menos a más intensidad · Toca para copiar" data-en="From low to high intensity · Tap to copy">De menos a más intensidad · Toca para copiar</span>
               <span class="arc-track" aria-hidden="true">
@@ -667,6 +731,10 @@
       </section>
 
       <div class="lower-content">
+        <div class="sec-head">
+          <span class="sec-num">03</span>
+          <span class="sec-lbl" data-i18n="sec_3_profundiza" data-es="Profundiza · 3 preguntas" data-en="Go deeper · 3 questions">Profundiza · 3 preguntas</span>
+        </div>
         <div class="accordion-stack">
           <div class="accordion" data-topic="why_explode">
             <button type="button" class="acc-trig">
@@ -706,23 +774,52 @@
           </div>
         </div>
 
+        <div class="sec-head">
+          <span class="sec-num">04</span>
+          <span class="sec-lbl" data-i18n="sec_4_sigue" data-es="Sigue · guía rápida + artículo" data-en="Continue · quick guide + article">Sigue · guía rápida + artículo</span>
+        </div>
         <section class="cross-protocol">
           <p class="cp-eyebrow">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <img src="/assets/icons/umbral.svg" alt="" width="18" height="18" style="display:inline-block;vertical-align:middle;">
             <span data-i18n="cross_title" data-es="¿La situación escaló a un berrinche?" data-en="Did the situation escalate to a meltdown?">¿La situación escaló a un berrinche?</span>
           </p>
           <a href="/apoyo/emotional-escalation" class="cp-link" data-cross-target="emotional_escalation">
             <span class="cp-link-left">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              <span data-i18n="cross_link" data-es="Ir al Protocolo de Desborde" data-en="Go to Escalation Protocol">Ir al Protocolo de Desborde</span>
+              <img src="/assets/icons/umbral.svg" alt="" width="20" height="20" style="display:inline-block;vertical-align:middle;">
+              <span data-i18n="cross_link" data-es="Ir a la Guía Rápida de Desbordes" data-en="Go to the Meltdowns Quick Guide">Ir a la Guía Rápida de Desbordes</span>
             </span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
           </a>
         </section>
 
+        <section class="cross-protocol cross-protocol-muted">
+          <p class="cp-eyebrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.5"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
+            <span data-i18n="cross_aprende_soon_title"
+                  data-es="¿Quieres entender mejor por qué pasa?"
+                  data-en="Want to understand better why this happens?">¿Quieres entender mejor por qué pasa?</span>
+          </p>
+          <div class="cp-link cp-link-muted" aria-disabled="true">
+            <span class="cp-link-left">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.5"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
+              <span data-i18n="cross_aprende_soon_link"
+                    data-es="Celos y peleas entre hermanos"
+                    data-en="Jealousy and fights between siblings">Celos y peleas entre hermanos</span>
+            </span>
+            <span class="cp-status"
+                  data-i18n="cross_status_soon"
+                  data-es="Próximamente"
+                  data-en="Coming soon">Próximamente</span>
+          </div>
+        </section>
+
+        <div class="sec-head">
+          <span class="sec-num">05</span>
+          <span class="sec-lbl" data-i18n="sec_5_cierra" data-es="Cierra · comparte y respira" data-en="Close · share and breathe">Cierra · comparte y respira</span>
+        </div>
         <div class="share-panel">
           <p class="share-title" data-i18n="share_label" data-es="Crianza en sintonía" data-en="Parenting on the same page">Crianza en sintonía</p>
-          <p class="share-sub" data-i18n="share_helper" data-es="Comparte este protocolo con quien te ayuda en la crianza (pareja, abuelos o cuidadores) para bajar la tensión." data-en="Share this with your parenting village (partner, grandparents, or caregivers) to lower the tension.">Comparte este protocolo con quien te ayuda en la crianza (pareja, abuelos o cuidadores) para bajar la tensión.</p>
+          <p class="share-sub" data-i18n="share_helper" data-es="Comparte esta guía rápida con quien te ayuda en la crianza (pareja, abuelos o cuidadores) para bajar la tensión." data-en="Share this with your parenting village (partner, grandparents, or caregivers) to lower the tension.">Comparte esta guía rápida con quien te ayuda en la crianza (pareja, abuelos o cuidadores) para bajar la tensión.</p>
           <div class="share-actions">
             <button type="button" class="sc-btn wa share-wa">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51h-.57c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -744,17 +841,17 @@
       <div class="checkin-card">
         <div class="checkin-card-inner">
       <div class="checkin-step is-active" id="checkinStep1">
-        <div class="checkin-icon checkin-icon-emoji" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><defs><style>@keyframes grow{0%{opacity:.8;transform:scaleY(.95)}50%{opacity:1;transform:scaleY(1.02)}100%{opacity:.8;transform:scaleY(.95)}}.plant-stem{stroke:#1F2E46;animation:grow 3s ease-in-out infinite}.plant-leaf{stroke:#4CAF50;animation:grow 3s ease-in-out infinite}.plant-soil{stroke:#8B6F47;animation:grow 3s ease-in-out infinite}</style></defs><path d="M 12 20 Q 12 15 12 10" class="plant-stem"/><path d="M 12 14 Q 8 12.5 5 13.5" class="plant-leaf"/><path d="M 5 13.5 Q 6 14 7 13.8" class="plant-leaf" stroke-width="0.8"/><path d="M 12 12 Q 16 10.5 19 11.5" class="plant-leaf"/><path d="M 19 11.5 Q 18 12.2 17 12" class="plant-leaf" stroke-width="0.8"/><path d="M 12 10 Q 11 6 12 3" class="plant-leaf"/><path d="M 12 3 Q 12.5 5 12.2 7" class="plant-leaf" stroke-width="0.8"/><ellipse cx="12" cy="21" rx="3" ry="1.5" class="plant-soil" opacity="0.4"/></svg></div>
+        <div class="checkin-icon checkin-icon-emoji" aria-hidden="true"><img src="/assets/icons/corazon.svg" alt="" style="display:block;width:32px;height:32px;"></div>
         <h2 class="checkin-heading" data-i18n="ci_h1" data-es="¿Cómo te sientes ahora?" data-en="How are you feeling right now?">¿Cómo te sientes ahora?</h2>
         <p class="checkin-subtext" data-i18n="ci_sub" data-es="Si llegaste hasta aquí, espero que haya habido aunque sea un pequeño momento para respirar." data-en="If you made it this far, I hope there was at least a small moment to breathe.">Si llegaste hasta aquí, espero que haya habido aunque sea un pequeño momento para respirar.</p>
-        <p class="checkin-question" data-i18n="ci_q1" data-es="¿Este protocolo te ayudó hoy?" data-en="Did this protocol help you today?">¿Este protocolo te ayudó hoy?</p>
+        <p class="checkin-question" data-i18n="ci_q1" data-es="¿Esta guía rápida te ayudó hoy?" data-en="Did this quick guide help you today?">¿Esta guía rápida te ayudó hoy?</p>
         <div class="checkin-actions">
           <button type="button" class="checkin-btn" data-step1="mejor" data-i18n="ci_s1_mejor" data-es="Sí, un poco mejor" data-en="Yes, a little better">Sí, un poco mejor</button>
           <button type="button" class="checkin-btn checkin-btn-secondary" data-step1="apoyo" data-i18n="ci_s1_apoyo" data-es="Todavía necesito apoyo" data-en="I still need support">Todavía necesito apoyo</button>
         </div>
       </div>
       <div class="checkin-step" id="checkinStep2a" hidden>
-        <div class="checkin-icon checkin-icon-emoji" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><defs><style>@keyframes grow{0%{opacity:.8;transform:scaleY(.95)}50%{opacity:1;transform:scaleY(1.02)}100%{opacity:.8;transform:scaleY(.95)}}.plant-stem{stroke:#1F2E46;animation:grow 3s ease-in-out infinite}.plant-leaf{stroke:#4CAF50;animation:grow 3s ease-in-out infinite}.plant-soil{stroke:#8B6F47;animation:grow 3s ease-in-out infinite}</style></defs><path d="M 12 20 Q 12 15 12 10" class="plant-stem"/><path d="M 12 14 Q 8 12.5 5 13.5" class="plant-leaf"/><path d="M 5 13.5 Q 6 14 7 13.8" class="plant-leaf" stroke-width="0.8"/><path d="M 12 12 Q 16 10.5 19 11.5" class="plant-leaf"/><path d="M 19 11.5 Q 18 12.2 17 12" class="plant-leaf" stroke-width="0.8"/><path d="M 12 10 Q 11 6 12 3" class="plant-leaf"/><path d="M 12 3 Q 12.5 5 12.2 7" class="plant-leaf" stroke-width="0.8"/><ellipse cx="12" cy="21" rx="3" ry="1.5" class="plant-soil" opacity="0.4"/></svg></div>
+        <div class="checkin-icon checkin-icon-emoji" aria-hidden="true"><img src="/assets/icons/corazon.svg" alt="" style="display:block;width:32px;height:32px;"></div>
         <p class="checkin-message" data-i18n="ci_2a_msg" data-es="Me alegra acompañarte. Guarda esta guía para volver cuando la necesites." data-en="I'm glad to walk with you. Save this guide to return when you need it.">Me alegra acompañarte. Guarda esta guía para volver cuando la necesites.</p>
         <p class="checkin-question" data-i18n="ci_2a_q" data-es="¿Quieres recibir más recursos como este?" data-en="Would you like to receive more resources like this?">¿Quieres recibir más recursos como este?</p>
         <div class="checkin-actions">
@@ -772,7 +869,7 @@
         </div>
       </div>
       <div class="checkin-step" id="checkinStep2b" hidden>
-        <div class="checkin-icon checkin-icon-emoji" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><defs><style>@keyframes grow{0%{opacity:.8;transform:scaleY(.95)}50%{opacity:1;transform:scaleY(1.02)}100%{opacity:.8;transform:scaleY(.95)}}.plant-stem{stroke:#1F2E46;animation:grow 3s ease-in-out infinite}.plant-leaf{stroke:#4CAF50;animation:grow 3s ease-in-out infinite}.plant-soil{stroke:#8B6F47;animation:grow 3s ease-in-out infinite}</style></defs><path d="M 12 20 Q 12 15 12 10" class="plant-stem"/><path d="M 12 14 Q 8 12.5 5 13.5" class="plant-leaf"/><path d="M 5 13.5 Q 6 14 7 13.8" class="plant-leaf" stroke-width="0.8"/><path d="M 12 12 Q 16 10.5 19 11.5" class="plant-leaf"/><path d="M 19 11.5 Q 18 12.2 17 12" class="plant-leaf" stroke-width="0.8"/><path d="M 12 10 Q 11 6 12 3" class="plant-leaf"/><path d="M 12 3 Q 12.5 5 12.2 7" class="plant-leaf" stroke-width="0.8"/><ellipse cx="12" cy="21" rx="3" ry="1.5" class="plant-soil" opacity="0.4"/></svg></div>
+        <div class="checkin-icon checkin-icon-emoji" aria-hidden="true"><img src="/assets/icons/corazon.svg" alt="" style="display:block;width:32px;height:32px;"></div>
         <p class="checkin-message" data-i18n="ci_2b_msg" data-es="A veces una sola lectura no basta. Puedes volver a la guía o explorar recursos más profundos." data-en="Sometimes one reading isn't enough. You can return to the guide or explore deeper resources.">A veces una sola lectura no basta. Puedes volver a la guía o explorar recursos más profundos.</p>
         <p class="checkin-question" data-i18n="ci_2b_q" data-es="¿Quieres saber sobre recursos relacionados?" data-en="Would you like to know about related resources?">¿Quieres saber sobre recursos relacionados?</p>
         <div class="checkin-actions">
@@ -781,7 +878,7 @@
         </div>
       </div>
       <div class="checkin-step" id="checkinStep3" hidden>
-        <div class="checkin-icon checkin-icon-emoji" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><defs><style>@keyframes grow{0%{opacity:.8;transform:scaleY(.95)}50%{opacity:1;transform:scaleY(1.02)}100%{opacity:.8;transform:scaleY(.95)}}.plant-stem{stroke:#1F2E46;animation:grow 3s ease-in-out infinite}.plant-leaf{stroke:#4CAF50;animation:grow 3s ease-in-out infinite}.plant-soil{stroke:#8B6F47;animation:grow 3s ease-in-out infinite}</style></defs><path d="M 12 20 Q 12 15 12 10" class="plant-stem"/><path d="M 12 14 Q 8 12.5 5 13.5" class="plant-leaf"/><path d="M 5 13.5 Q 6 14 7 13.8" class="plant-leaf" stroke-width="0.8"/><path d="M 12 12 Q 16 10.5 19 11.5" class="plant-leaf"/><path d="M 19 11.5 Q 18 12.2 17 12" class="plant-leaf" stroke-width="0.8"/><path d="M 12 10 Q 11 6 12 3" class="plant-leaf"/><path d="M 12 3 Q 12.5 5 12.2 7" class="plant-leaf" stroke-width="0.8"/><ellipse cx="12" cy="21" rx="3" ry="1.5" class="plant-soil" opacity="0.4"/></svg></div>
+        <div class="checkin-icon checkin-icon-emoji" aria-hidden="true"><img src="/assets/icons/corazon.svg" alt="" style="display:block;width:32px;height:32px;"></div>
         <p class="checkin-message checkin-farewell" data-i18n="ci_3_msg" data-es="Gracias por estar aquí. No tienes que decidir nada hoy. Esta guía seguirá aquí cuando la necesites." data-en="Thank you for being here. You don't have to decide anything today. This guide will still be here when you need it.">Gracias por estar aquí. No tienes que decidir nada hoy. Esta guía seguirá aquí cuando la necesites.</p>
         <nav class="checkin-farewell-links" aria-label="Enlaces de cierre">
           <a href="/" data-i18n="ci_3_inicio" data-es="Volver al inicio" data-en="Back to home">Volver al inicio</a>
@@ -1006,8 +1103,8 @@
     function getShareData() {
       return {
         text: lang === 'es'
-          ? 'Para tener a la mano. Protocolo de Criar Sin Culpas para conflictos entre hermanos: '
-          : 'Keep this handy. Sibling conflict protocol: ',
+          ? 'Para tener a la mano. Guía rápida de Criar Sin Culpas para conflictos entre hermanos: '
+          : 'Keep this handy. Sibling conflict quick guide: ',
         url: window.location.href.split('?')[0]
       };
     }

@@ -1,0 +1,52 @@
+<!-- Protocol doodle · 01 Pantallas · v2
+     Close-up del hero "El corredor". La pantalla ámbar en la pared
+     izquierda, sus rayos de luz saliendo, y una pequeña figura
+     de espaldas mirándola. El "pull" que hay que interrumpir.
+     Sin el corredor completo — solo el foco de tensión. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250" width="250" height="250" aria-labelledby="ttl-pantallas">
+  <title id="ttl-pantallas">Pantallas — un momento del corredor: la pantalla ámbar brillando, una figura pequeña mirándola.</title>
+
+  <!-- peach wash floor / ambient warmth from the screen -->
+  <path d="M0 160 L 250 160 L 250 250 L 0 250 z" fill="#F4A88A" opacity="0.28"/>
+
+  <!-- rosa wash surrounding the screen — the aura -->
+  <rect x="24" y="52" width="128" height="120" rx="6" fill="#E89BA8" opacity="0.42"/>
+
+  <!-- ámbar center — the screen content itself, bright -->
+  <rect x="40" y="68" width="96" height="88" rx="4" fill="#E4A85C" opacity="0.85"/>
+
+  <!-- screen frame — navy outline, hand-drawn slight imperfection -->
+  <g fill="none" stroke="#1F2E46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="24" y="52" width="128" height="120" rx="6"/>
+  </g>
+
+  <!-- glow rays emanating right — the "pull" -->
+  <g fill="none" stroke="#E4A85C" stroke-width="2.2" stroke-linecap="round" opacity="0.75">
+    <path d="M152 84 L 190 76"/>
+    <path d="M152 112 L 200 108"/>
+    <path d="M152 140 L 190 148"/>
+    <path d="M152 168 L 184 176"/>
+  </g>
+
+  <!-- one small ámbar particle drifting from the screen -->
+  <circle cx="176" cy="94" r="2.4" fill="#E4A85C" opacity="0.9"/>
+  <circle cx="196" cy="128" r="1.8" fill="#E4A85C" opacity="0.7"/>
+
+  <!-- CHILD FIGURE — small, right of screen, back to viewer, pulled toward the light -->
+  <g fill="none" stroke="#1F2E46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <!-- head, back to us — no face -->
+    <circle cx="204" cy="128" r="10"/>
+    <!-- body -->
+    <path d="M204 138 L 204 190"/>
+    <!-- arms slightly forward, reaching -->
+    <path d="M204 152 C 198 156, 194 164, 194 172"/>
+    <path d="M204 152 C 210 156, 214 164, 214 172"/>
+    <!-- legs -->
+    <path d="M204 190 L 198 214"/>
+    <path d="M204 190 L 210 214"/>
+  </g>
+
+  <!-- floor line -->
+  <path d="M20 216 L 232 216"
+        fill="none" stroke="#1F2E46" stroke-width="1.5" stroke-linecap="round" opacity="0.28"/>
+</svg>

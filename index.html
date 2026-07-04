@@ -227,28 +227,28 @@
     .pillar h3{margin-top:1.4rem;font-family:var(--serif);font-size:1.5rem;font-weight:500;color:var(--foreground);line-height:1.2;}
     .pillar p{margin-top:.75rem;font-size:.9rem;line-height:1.7;color:var(--muted-foreground);}
 
-    /* ═══════════════ GUIDES · monoline cards (sacred, untouched art) ═══════════════ */
-    .guides{padding:clamp(4rem,9vw,6.5rem) 0;}
-    .guides-head{text-align:center;max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter);}
-    .guides-head h2{margin-top:1rem;font-family:var(--serif);font-size:clamp(2.2rem,4.8vw,3rem);font-weight:400;line-height:1.12;color:var(--foreground);max-width:30rem;margin-left:auto;margin-right:auto;}
-    .guides-head h2 em{color:var(--accent);font-style:normal;}
-    .guides-grid{margin:clamp(2.75rem,5vw,3.75rem) auto 0;max-width:var(--maxw);padding:0 var(--gutter);display:grid;grid-template-columns:repeat(2,1fr);gap:.85rem;}
-    @media(min-width:900px){ .guides-grid{grid-template-columns:repeat(4,1fr);gap:1rem;} }
-    .guide-card{display:flex;flex-direction:column;padding:1.25rem 1.25rem 1.5rem;border-radius:1.1rem;background:var(--background);border:1px solid var(--border);transition:transform .35s var(--ease-silk),box-shadow .35s var(--ease-silk),border-color .35s;position:relative;overflow:hidden;}
-    .guide-card:hover{transform:translateY(-3px);border-color:oklch(0.74 0.13 38 / .35);box-shadow:0 24px 50px -28px oklch(0.22 0.04 260 / .35);}
-    .guide-art{display:block;border-radius:.75rem;aspect-ratio:2/1;position:relative;overflow:hidden;margin-bottom:1rem;}
-    .guide-num{position:absolute;top:.55rem;left:.7rem;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.6rem;letter-spacing:.18em;color:oklch(0.22 0.04 260 / .55);z-index:2;}
-    .guide-art svg{position:absolute;inset:0;width:100%;height:100%;}
-    .guide-art .gl{stroke:oklch(0.22 0.04 260 / .55);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round;}
-    .guide-art .ga{stroke:var(--accent);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round;}
-    .guide-card h3{font-family:var(--serif);font-size:1.4rem;font-weight:500;color:var(--foreground);line-height:1.15;}
-    .guide-sub{margin-top:.25rem;font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500;}
-    .guide-card > p{margin-top:.75rem;font-size:.825rem;line-height:1.6;color:var(--muted-foreground);flex-grow:1;}
-    .guide-states{margin-top:1rem;display:flex;gap:.4rem;flex-wrap:wrap;}
-    .state-tag{font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;padding:.22rem .55rem;border-radius:999px;font-weight:500;}
-    .state-tag.emer{background:oklch(0.74 0.13 38 / .12);color:var(--accent-ink);}
-    .state-tag.cont{background:oklch(0.66 0.04 245 / .14);color:var(--teal);}
-    .guides-foot{margin:clamp(2.5rem,4vw,3rem) auto 0;text-align:center;}
+    /* ═══════════════ GRID DE PROTOCOLOS · SECCIÓN 02 ═══════════════ */
+    .protocolos-sec{padding:clamp(4rem,9vw,7rem) 0;}
+    .protocolos-inner{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter);}
+    .protocolos-head{text-align:center;margin-bottom:clamp(2.5rem,5vw,4rem);}
+    .protocolos-idx{font-family:'JetBrains Mono','SFMono-Regular',ui-monospace,monospace;font-size:.6875rem;letter-spacing:.18em;color:var(--muted-foreground);display:block;margin-bottom:1rem;}
+    .protocolos-title{font-family:var(--serif);font-weight:300;font-size:clamp(1.9rem,3.4vw,2.9rem);line-height:1.15;letter-spacing:-.01em;color:var(--foreground);max-width:22ch;margin:0 auto 1rem;}
+    .protocolos-title em{font-style:italic;color:var(--accent-ink);}
+    .protocolos-sub{font-family:var(--sans);font-weight:300;font-size:clamp(.95rem,1.15vw,1.05rem);line-height:1.6;color:var(--muted-foreground);max-width:52ch;margin:0 auto;}
+    .protocolos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;}
+    .protocolo-card{display:flex;flex-direction:column;padding:1rem 1rem 1.5rem;background:oklch(0.985 0.008 75);border:1px solid var(--border);border-radius:14px;box-shadow:0 1px 0 rgba(31,46,70,.04),0 1px 2px rgba(31,46,70,.04);transition:transform .5s var(--ease-silk),box-shadow .5s var(--ease-silk);cursor:pointer;color:inherit;}
+    .protocolo-card:hover{transform:translateY(-3px);box-shadow:0 1px 0 rgba(31,46,70,.04),0 8px 24px -12px rgba(31,46,70,.16);}
+    .protocolo-frame{position:relative;background:oklch(0.94 0.045 45);border-radius:8px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:1rem;margin-bottom:1.15rem;}
+    .protocolo-frame img{width:100%;height:100%;}
+    .protocolo-n{position:absolute;top:.75rem;left:1rem;font-family:'JetBrains Mono','SFMono-Regular',ui-monospace,monospace;font-size:.625rem;letter-spacing:.14em;color:var(--muted-foreground);}
+    .protocolo-title{font-family:var(--serif);font-weight:500;font-size:1.5rem;line-height:1.15;color:var(--foreground);margin:0 0 .375rem;padding:0 .375rem;}
+    .protocolo-kicker{font-family:var(--sans);font-size:.65625rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);padding:0 .375rem;margin-bottom:.875rem;}
+    .protocolo-blurb{font-size:.84rem;font-weight:300;line-height:1.55;color:var(--muted-foreground);padding:0 .375rem;margin:0 0 1.15rem;flex:1;}
+    .protocolo-tags{display:flex;flex-wrap:wrap;gap:.375rem;padding:0 .375rem;}
+    .protocolo-chip{display:inline-flex;align-items:center;padding:.25rem .75rem;border-radius:999px;font-family:var(--sans);font-size:.5625rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;background:oklch(0.74 0.13 38 / .18);color:var(--accent-ink);}
+    @media(max-width:900px){ .protocolos-grid{grid-template-columns:repeat(2,1fr);gap:1rem;} }
+    @media(max-width:560px){ .protocolos-grid{grid-template-columns:1fr;} .protocolo-frame{aspect-ratio:3/2;} }
+    .guides-foot{margin:clamp(2.5rem,4vw,3rem) auto 0;text-align:center;padding:0 var(--gutter);}
     .link-pill{display:inline-flex;align-items:center;gap:.6rem;padding:.65rem 1.4rem;border-radius:999px;border:1px solid var(--border);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-foreground);transition:all .3s var(--ease-silk),gap .18s var(--ease-silk);font-weight:500;}
     .link-pill:hover{color:var(--accent);border-color:var(--accent);gap:.9rem;}
 
@@ -376,15 +376,10 @@
       .pillar h3{ font-size:1.35rem; }
       .pillar p{ font-size:.88rem; }
 
-      /* guides — fix subtitle wrap, tighten card padding */
-      .guides{ padding:clamp(3.25rem,9vw,5rem) 0; }
-      .guides-grid{ gap:.7rem; }
-      .guide-card{ padding:1rem 1rem 1.2rem; border-radius:.95rem; }
-      .guide-card h3{ font-size:1.15rem; }
-      .guide-sub{ font-size:.575rem; letter-spacing:.18em; }
-      .guide-card > p{ font-size:.78rem; line-height:1.55; }
-      .state-tag{ font-size:.5rem; padding:.18rem .45rem; }
-      .guide-art{ margin-bottom:.85rem; }
+      /* protocolos — tighter rhythm on small screens */
+      .protocolos-sec{ padding:clamp(3.25rem,9vw,5rem) 0; }
+      .protocolo-title{ font-size:1.25rem; }
+      .protocolo-blurb{ font-size:.78rem; }
 
       /* nari band — match hero plate tuning */
       .nari-band{ padding:clamp(3.5rem,10vw,5rem) 0; }
@@ -563,65 +558,114 @@
 
   <!-- ─────── PROTOCOLS ─────── -->
   <div id="protocolos" aria-hidden="true"></div>
-  <section class="guides topline" id="apoyo" aria-labelledby="guides-heading">
-    <div class="guides-head">
-      <span class="section-idx scroll-reveal">02 ·&nbsp;</span><span class="eyebrow scroll-reveal" data-i18n="guides_eyebrow" data-es="Guías de Apoyo" data-en="Support Guides">Guías de Apoyo</span>
-      <h2 class="scroll-reveal delay-1" id="guides-heading" data-i18n="guides_h2"
-          data-es="Herramientas para los momentos que <em>sí pasan.</em>"
-          data-en="Tools for the moments that <em>actually happen.</em>">Herramientas para los momentos que <em>sí pasan.</em></h2>
-    </div>
+  <section class="protocolos-sec topline" id="apoyo" aria-labelledby="protocolos-heading">
+    <div class="protocolos-inner">
 
-    <div class="guides-grid">
-      <a href="/apoyo/screen-time" class="guide-card scroll-reveal">
-        <span class="guide-art" style="background:oklch(0.93 0.03 48 / .6)" aria-hidden="true"><span class="guide-num">01</span><svg viewBox="0 0 300 150" preserveAspectRatio="xMidYMid meet"><path class="gl" d="M70 126 L250 126" stroke-opacity=".18"/><circle cx="104" cy="60" r="15" class="gl"/><path class="gl" d="M104 75 C105 92,103 106,102 116"/><path class="gl" d="M103 86 C128 84,150 90,166 94"/><rect x="190" y="60" width="40" height="50" rx="6" class="gl"/><path class="gl" d="M176 118 L244 118"/><path class="gl" d="M198 110 L198 118"/><path class="gl" d="M222 110 L222 118"/><path d="M212 80 A8 8 0 1 0 212 96 A6 6 0 0 1 212 80 Z" fill="oklch(0.24 0.06 265)"/><circle cx="210" cy="103" r="2.6" fill="oklch(0.55 0.16 32)"/></svg></span>
-        <h3 data-i18n="g1_h" data-es="Pantallas" data-en="Screens">Pantallas</h3>
-        <div class="guide-sub" data-i18n="g1_s" data-es="Límite sin guerra" data-en="Limits without war">Límite sin guerra</div>
-        <p data-i18n="g1_p" data-es="Cuando apagar la pantalla se convierte en batalla." data-en="When turning off the screen becomes a battle.">Cuando apagar la pantalla se convierte en batalla.</p>
-        <div class="guide-states">
-          <span class="state-tag emer" data-i18n="st_emer" data-es="En el momento" data-en="In the moment">En el momento</span>
-          <span class="state-tag cont" data-i18n="st_cont" data-es="Después" data-en="After">Después</span>
-        </div>
-      </a>
+      <header class="protocolos-head">
+        <span class="protocolos-idx scroll-reveal">02 · Guías de Apoyo</span>
+        <h2 id="protocolos-heading" class="protocolos-title scroll-reveal delay-1"
+            data-i18n="protocolos_h" data-es="Herramientas para los momentos que <em>sí pasan.</em>"
+            data-en="Tools for the moments that <em>actually happen.</em>">Herramientas para los momentos que <em>sí pasan.</em></h2>
+        <p class="protocolos-sub scroll-reveal delay-1"
+           data-i18n="protocolos_sub"
+           data-es="Guías rápidas para pantallas, desbordes, sueño y hermanos. Para cuando lo necesitas justo ahora."
+           data-en="Quick guides for screens, meltdowns, sleep, and siblings. For when you need it right now.">Guías rápidas para pantallas, desbordes, sueño y hermanos. Para cuando lo necesitas justo ahora.</p>
+      </header>
 
-      <a href="/apoyo/emotional-escalation" class="guide-card scroll-reveal delay-1">
-        <span class="guide-art" style="background:oklch(0.88 0.045 35 / .5)" aria-hidden="true"><span class="guide-num">02</span><svg viewBox="0 0 300 150" preserveAspectRatio="xMidYMid meet"><path class="gl" d="M70 128 L250 128" stroke-opacity=".18"/><path class="ga" d="M100 46 q8 -11 15 0 q7 11 15 0 q8 -11 15 0"/><circle cx="116" cy="66" r="14" class="gl"/><path class="gl" d="M116 80 C117 96,115 108,115 118"/><path class="gl" d="M110 84 C100 76,95 68,92 60"/><path class="gl" d="M122 84 C132 76,138 68,142 60"/><circle cx="196" cy="58" r="16" class="gl"/><path class="gl" d="M196 74 C198 92,196 106,192 118"/><path class="gl" d="M188 90 C172 94,158 98,148 102"/></svg></span>
-        <h3 data-i18n="g2_h" data-es="Desbordes" data-en="Meltdowns">Desbordes</h3>
-        <div class="guide-sub" data-i18n="g2_s" data-es="Calma en crisis" data-en="Calm in crisis">Calma en crisis</div>
-        <p data-i18n="g2_p" data-es="Cuando la emoción ya desbordó a todos." data-en="When the emotion has already overflowed everyone.">Cuando la emoción ya desbordó a todos.</p>
-        <div class="guide-states">
-          <span class="state-tag emer" data-i18n="st_emer" data-es="En el momento" data-en="In the moment">En el momento</span>
-          <span class="state-tag cont" data-i18n="st_cont" data-es="Después" data-en="After">Después</span>
-        </div>
-      </a>
+      <div class="protocolos-grid">
 
-      <a href="/apoyo/bedtime-resistance" class="guide-card scroll-reveal delay-2">
-        <span class="guide-art" style="background:oklch(0.88 0.025 245 / .55)" aria-hidden="true"><span class="guide-num">03</span><svg viewBox="0 0 300 150" preserveAspectRatio="xMidYMid meet"><rect x="196" y="30" width="72" height="56" rx="8" class="gl"/><path d="M224 43 A9 9 0 1 0 224 61 A7 7 0 0 1 224 43 Z" fill="oklch(0.24 0.06 265)"/><path d="M250 44 L251.2 46.8 L254 48 L251.2 49.2 L250 52 L248.8 49.2 L246 48 L248.8 46.8 Z" fill="oklch(0.55 0.16 32)"/><circle cx="252" cy="68" r="1.8" fill="oklch(0.24 0.06 265)"/><ellipse cx="76" cy="88" rx="17" ry="9" class="gl"/><circle cx="76" cy="84" r="10" class="gl"/><path class="gl" d="M92 98 C130 90,168 96,200 102"/><rect x="54" y="100" width="152" height="14" rx="7" class="gl"/><path class="ga" d="M96 60 L108 60 L96 72 L108 72"/></svg></span>
-        <h3 data-i18n="g3_h" data-es="Sueño" data-en="Sleep">Sueño</h3>
-        <div class="guide-sub" data-i18n="g3_s" data-es="Ritual y reparación" data-en="Ritual and repair">Ritual y reparación</div>
-        <p data-i18n="g3_p" data-es="Cuando dormir se vuelve una negociación infinita." data-en="When bedtime becomes an endless negotiation.">Cuando dormir se vuelve una negociación infinita.</p>
-        <div class="guide-states">
-          <span class="state-tag emer" data-i18n="st_emer" data-es="En el momento" data-en="In the moment">En el momento</span>
-          <span class="state-tag cont" data-i18n="st_cont" data-es="Después" data-en="After">Después</span>
-        </div>
-      </a>
+        <a class="protocolo-card scroll-reveal" href="/apoyo/screen-time"
+           data-protocol="screen-time"
+           aria-label="Pantallas · Límite sin guerra">
+          <div class="protocolo-frame">
+            <span class="protocolo-n">01</span>
+            <img src="/assets/doodles/pantallas.svg" alt="" aria-hidden="true" width="250" height="250">
+          </div>
+          <h3 class="protocolo-title"
+              data-i18n="p1_title" data-es="Pantallas" data-en="Screens">Pantallas</h3>
+          <div class="protocolo-kicker"
+               data-i18n="p1_kicker" data-es="Límite sin guerra" data-en="Limits without war">Límite sin guerra</div>
+          <p class="protocolo-blurb"
+             data-i18n="p1_blurb"
+             data-es="Cuando apagar la pantalla se convierte en batalla."
+             data-en="When turning off the screen becomes a battle.">Cuando apagar la pantalla se convierte en batalla.</p>
+          <div class="protocolo-tags">
+            <span class="protocolo-chip" data-i18n="tag_moment" data-es="En el momento" data-en="In the moment">En el momento</span>
+            <span class="protocolo-chip" data-i18n="tag_after" data-es="Después" data-en="Afterward">Después</span>
+          </div>
+        </a>
 
-      <a href="/apoyo/sibling-conflict" class="guide-card scroll-reveal delay-3">
-        <span class="guide-art" style="background:oklch(0.93 0.03 48 / .6)" aria-hidden="true"><span class="guide-num">04</span><svg viewBox="0 0 300 150" preserveAspectRatio="xMidYMid meet"><path class="gl" d="M70 128 L250 128" stroke-opacity=".18"/><path class="ga" d="M142 66 L150 56 L156 68 L164 56"/><circle cx="100" cy="64" r="16" class="gl"/><path class="gl" d="M100 80 C101 98,99 112,99 120"/><path class="gl" d="M108 92 C122 92,130 96,136 100"/><circle cx="204" cy="66" r="14" class="gl"/><path class="gl" d="M204 82 C205 98,203 110,203 120"/><path class="gl" d="M196 94 C182 94,174 98,168 102"/><path d="M153 104 C145.3 96.6 149.5 91 153 95.5 C156.5 91 160.7 96.6 153 104 Z" fill="oklch(0.55 0.16 32)"/></svg></span>
-        <h3 data-i18n="g4_h" data-es="Hermanos" data-en="Siblings">Hermanos</h3>
-        <div class="guide-sub" data-i18n="g4_s" data-es="Separar, validar, limitar" data-en="Separate, validate, limit">Separar, validar, limitar</div>
-        <p data-i18n="g4_p" data-es="Cuando mediar entre hermanos te deja agotada." data-en="When mediating between siblings leaves you exhausted.">Cuando mediar entre hermanos te deja agotada.</p>
-        <div class="guide-states">
-          <span class="state-tag emer" data-i18n="st_emer" data-es="En el momento" data-en="In the moment">En el momento</span>
-          <span class="state-tag cont" data-i18n="st_cont" data-es="Después" data-en="After">Después</span>
-        </div>
-      </a>
-    </div>
+        <a class="protocolo-card scroll-reveal delay-1" href="/apoyo/emotional-escalation"
+           data-protocol="emotional-escalation"
+           aria-label="Desbordes · Calma en crisis">
+          <div class="protocolo-frame">
+            <span class="protocolo-n">02</span>
+            <img src="/assets/doodles/desbordes.svg" alt="" aria-hidden="true" width="250" height="250">
+          </div>
+          <h3 class="protocolo-title"
+              data-i18n="p2_title" data-es="Desbordes" data-en="Meltdowns">Desbordes</h3>
+          <div class="protocolo-kicker"
+               data-i18n="p2_kicker" data-es="Calma en crisis" data-en="Calm in a crisis">Calma en crisis</div>
+          <p class="protocolo-blurb"
+             data-i18n="p2_blurb"
+             data-es="Cuando la emoción ya desbordó a todos."
+             data-en="When the emotion has overflowed everyone.">Cuando la emoción ya desbordó a todos.</p>
+          <div class="protocolo-tags">
+            <span class="protocolo-chip" data-i18n="tag_moment" data-es="En el momento" data-en="In the moment">En el momento</span>
+            <span class="protocolo-chip" data-i18n="tag_after" data-es="Después" data-en="Afterward">Después</span>
+          </div>
+        </a>
 
-    <div class="guides-foot scroll-reveal">
-      <a href="/apoyo/index.html" class="link-pill" data-i18n="guides_all" data-es="Ver todas las guías →" data-en="View all guides →">Ver todas las guías →</a>
-      <a href="/aprende/" class="link-pill" data-i18n="guides_aprende" data-es="Explorar la biblioteca Aprende →" data-en="Explore the Learn library →">Explorar la biblioteca Aprende →</a>
+        <a class="protocolo-card scroll-reveal delay-2" href="/apoyo/bedtime-resistance"
+           data-protocol="bedtime-resistance"
+           aria-label="Sueño · Ritual y reparación">
+          <div class="protocolo-frame">
+            <span class="protocolo-n">03</span>
+            <img src="/assets/doodles/sueno.svg" alt="" aria-hidden="true" width="250" height="250">
+          </div>
+          <h3 class="protocolo-title"
+              data-i18n="p3_title" data-es="Sueño" data-en="Sleep">Sueño</h3>
+          <div class="protocolo-kicker"
+               data-i18n="p3_kicker" data-es="Ritual y reparación" data-en="Ritual and repair">Ritual y reparación</div>
+          <p class="protocolo-blurb"
+             data-i18n="p3_blurb"
+             data-es="Cuando dormir se vuelve una negociación infinita."
+             data-en="When sleep becomes an endless negotiation.">Cuando dormir se vuelve una negociación infinita.</p>
+          <div class="protocolo-tags">
+            <span class="protocolo-chip" data-i18n="tag_moment" data-es="En el momento" data-en="In the moment">En el momento</span>
+            <span class="protocolo-chip" data-i18n="tag_after" data-es="Después" data-en="Afterward">Después</span>
+          </div>
+        </a>
+
+        <a class="protocolo-card scroll-reveal delay-3" href="/apoyo/sibling-conflict"
+           data-protocol="sibling-conflict"
+           aria-label="Hermanos · Separar, validar, limitar">
+          <div class="protocolo-frame">
+            <span class="protocolo-n">04</span>
+            <img src="/assets/doodles/hermanos.svg" alt="" aria-hidden="true" width="250" height="250">
+          </div>
+          <h3 class="protocolo-title"
+              data-i18n="p4_title" data-es="Hermanos" data-en="Siblings">Hermanos</h3>
+          <div class="protocolo-kicker"
+               data-i18n="p4_kicker" data-es="Separar, validar, limitar" data-en="Separate, validate, limit">Separar, validar, limitar</div>
+          <p class="protocolo-blurb"
+             data-i18n="p4_blurb"
+             data-es="Cuando mediar entre hermanos te deja agotada."
+             data-en="When mediating between siblings leaves you exhausted.">Cuando mediar entre hermanos te deja agotada.</p>
+          <div class="protocolo-tags">
+            <span class="protocolo-chip" data-i18n="tag_moment" data-es="En el momento" data-en="In the moment">En el momento</span>
+            <span class="protocolo-chip" data-i18n="tag_after" data-es="Después" data-en="Afterward">Después</span>
+          </div>
+        </a>
+
+      </div>
     </div>
   </section>
+
+  <div class="guides-foot scroll-reveal">
+    <a href="/apoyo/index.html" class="link-pill" data-i18n="guides_all" data-es="Ver todas las guías →" data-en="View all guides →">Ver todas las guías →</a>
+    <a href="/aprende/" class="link-pill" data-i18n="guides_aprende" data-es="Explorar la biblioteca Aprende →" data-en="Explore the Learn library →">Explorar la biblioteca Aprende →</a>
+  </div>
 
   <!-- ─────── PUENTE AL MÉTODO ─────── -->
   <section id="puente-metodo" class="bridge">
