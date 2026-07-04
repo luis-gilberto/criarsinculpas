@@ -1065,8 +1065,9 @@
       trackSignal('full_guide_requested', {});
     });
 
-    document.querySelectorAll('.lang button').forEach(btn => {
-      btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+    document.addEventListener('click', e => {
+      const btn = e.target.closest('.lang button');
+      if (btn) applyLang(btn.getAttribute('data-lang'));
     });
 
     const mq = window.matchMedia('(min-width: 900px)');
