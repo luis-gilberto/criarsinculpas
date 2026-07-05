@@ -70,7 +70,7 @@
           "height": 480
         },
         "datePublished": "2026-07-04",
-        "dateModified": "2026-07-04",
+        "dateModified": "2026-07-05",
         "articleSection": "Sueño y descanso",
         "keywords": "rutinas de sueño para niños, hora de dormir sin batalla, rutina nocturna niños, sueño infantil sin culpa",
         "author": { "@type": "Person", "name": "Nari Fateha", "url": "https://criarsinculpas.com/sobre-nari/" },
@@ -88,12 +88,12 @@
             "name": "¿Cuánto debe durar una rutina de sueño?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Debe durar lo suficiente para que el cuerpo baje el ritmo, pero no tanto que se convierta en otra fuente de cansancio. Para muchas familias, una rutina simple y repetible funciona mejor que una rutina larga llena de pasos."
+              "text": "Debe durar lo suficiente para que el cuerpo baje el ritmo, pero no tanto que se convierta en otra fuente de cansancio. Para muchas familias, una rutina simple y repetible funciona mejor que una rutina larga llena de pasos. Lo más importante es que puedas sostenerla con calma la mayoría de las noches."
             }
           },
           {
             "@type": "Question",
-            "name": "¿Qué hago si mi hijo pide una cosa más todas las noches?",
+            "name": "¿Qué hago si mi hijo pide \"una cosa más\" todas las noches?",
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "Puedes validar el deseo sin volver a abrir la rutina. Por ejemplo: \"Sé que quieres otro cuento. El cuento de hoy ya terminó. Mañana leemos otro.\" La clave es que el cierre sea amable, pero claro."
@@ -104,7 +104,7 @@
             "name": "¿Está mal quedarme con mi hijo hasta que se duerma?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No necesariamente. Cada familia tiene necesidades distintas. Lo importante es mirar si esa forma de acompañar está funcionando para todos o si se volvió algo que ya no puedes sostener."
+              "text": "No necesariamente. Cada familia tiene necesidades distintas. Lo importante es mirar si esa forma de acompañar está funcionando para todos o si se volvió algo que ya no puedes sostener. Si quieres hacer un cambio, hazlo poco a poco, con claridad y presencia."
             }
           },
           {
@@ -120,7 +120,7 @@
             "name": "¿Las pantallas antes de dormir siempre arruinan la noche?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No se trata de culpa ni de reglas perfectas. Pero si notas que después de la pantalla tu hijo tiene más dificultad para bajar el ritmo, puede ayudar crear más espacio entre la pantalla y la cama."
+              "text": "No se trata de culpa ni de reglas perfectas. Pero si notas que después de la pantalla tu hijo tiene más dificultad para bajar el ritmo, puede ayudar crear más espacio entre la pantalla y la cama. El cuerpo necesita señales claras para entender que el día está cerrando."
             }
           }
         ]
@@ -307,7 +307,7 @@
        ARTICLE VISUAL HIERARCHY · patch
        ══════════════════════════════════════════════════════════ */
 
-    /* Section heading — number + icon + title */
+    /* Section heading · number + icon + title */
     .prose .csc-heading {
       display: grid !important;
       grid-template-columns: 40px auto 1fr;
@@ -336,28 +336,28 @@
 
     /* Lead paragraph after each section heading */
     .prose .a-lead {
-      font-family: var(--serif); font-style: italic; font-weight: 400;
+      font-family: var(--serif); font-style: normal; font-weight: 400;
       font-size: 1.25rem; line-height: 1.55;
       color: var(--text) !important;
       margin: 24px 0 28px !important; letter-spacing: -.005em;
     }
 
-    /* Pull quote — the tesis of a section */
+    /* Pull quote · the tesis of a section */
     .prose .a-pull {
       margin: 32px 0 !important;
       padding: 16px 0 16px 24px;
       border-left: 2px solid var(--coral);
     }
     .prose .a-pull p {
-      font-family: var(--serif); font-style: italic; font-weight: 300;
+      font-family: var(--serif); font-style: normal; font-weight: 300;
       font-size: 1.4rem; line-height: 1.4; color: var(--text) !important;
       margin: 0 !important; letter-spacing: -.005em;
     }
     .prose .a-pull em {
-      font-style: italic; color: var(--coral-ink);
+      font-style: normal; color: var(--coral-ink);
     }
 
-    /* Tesis box — closes a section with emotional beat */
+    /* Tesis box · closes a section with emotional beat */
     .prose .a-tesis {
       background: linear-gradient(135deg, rgba(244,168,138,.10) 0%, rgba(252,231,221,.55) 100%);
       border-left: 3px solid var(--coral);
@@ -375,10 +375,10 @@
       margin: 0 !important; letter-spacing: -.005em;
     }
     .prose .a-tesis em {
-      font-style: italic; color: var(--coral-ink);
+      font-style: normal; color: var(--coral-ink);
     }
 
-    /* Phrase card — for "puedes decir" lists */
+    /* Phrase card · for "puedes decir" lists */
     .prose .a-phrases {
       background: #FFFFFF;
       border: 1px solid rgba(31,46,70,.08);
@@ -419,7 +419,7 @@
       top: auto !important; left: auto !important;
     }
 
-    /* Ritual card — for ordered steps */
+    /* Ritual card · for ordered steps */
     .prose .a-ritual {
       background: #FFFFFF;
       border: 1px solid rgba(31,46,70,.08);
@@ -467,7 +467,7 @@
       font-size: 12px; font-weight: 500;
     }
 
-    /* Choice pills — for small decision offerings */
+    /* Choice pills · for small decision offerings */
     .prose .a-choices {
       display: flex; flex-direction: column; gap: 10px;
       margin: 22px 0 !important;
@@ -491,6 +491,33 @@
       content: '·'; color: var(--coral); font-size: 24px;
       font-weight: bold; line-height: 0.6; flex: none;
     }
+
+    /* Short version card */
+    .a-tldr { border-color: rgba(217,107,71,.28); box-shadow: 0 4px 14px rgba(31,46,70,.06); }
+    .a-tldr .a-ritual-h .t { color: var(--coral-ink); }
+    .a-tldr-note {
+      margin: 10px 24px 4px !important;
+      padding-top: 14px;
+      border-top: 1px dashed rgba(31,46,70,.08);
+      font-size: .88rem !important; line-height: 1.6 !important;
+      color: var(--text-ghost) !important;
+    }
+
+    /* FAQ accordions */
+    .faq details.faq-item summary {
+      list-style: none; cursor: pointer;
+      display: flex; align-items: baseline; justify-content: space-between; gap: 14px;
+    }
+    .faq details.faq-item summary::-webkit-details-marker { display: none; }
+    .faq details.faq-item summary::after {
+      content: '+'; flex: none;
+      font-family: var(--serif); font-size: 1.35rem; line-height: 1;
+      color: var(--coral-ink);
+      transition: transform .3s var(--ease-silk);
+    }
+    .faq details.faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq details.faq-item summary h3 { margin-bottom: 0; }
+    .faq details.faq-item[open] summary { margin-bottom: 10px; }
   </style>
 </head>
 <body data-channel="aprende" data-content-type="article" data-page-role="article" data-article-slug="rutinas-de-sueno-que-sostienen-la-noche" data-article-category="sueno" data-protocol="bedtime-resistance">
@@ -514,7 +541,8 @@
         <div class="art-eyebrow"><span class="dot"></span><span data-i18n="eyebrow" data-es="Guía relacionada · Sueño y descanso" data-en="Related guide · Sleep and rest">Guía relacionada · Sueño y descanso</span></div>
         <h1 class="art-title" data-i18n="h1" data-es="Rutinas de sueño que sostienen la noche" data-en="Sleep Routines That Help Hold the Night">Rutinas de sueño que sostienen la noche</h1>
         <div class="art-meta">
-          <span class="m"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span data-i18n="read_time" data-es="8 min de lectura" data-en="8 min read">8 min de lectura</span></span>
+          <span class="m"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span data-i18n="read_time" data-es="6 min de lectura" data-en="6 min read">6 min de lectura</span></span>
+          <span class="m"><a href="#version-corta" data-i18n="meta_short" data-es="↓ Versión de 2 minutos" data-en="↓ 2-minute version">↓ Versión de 2 minutos</a></span>
           <span class="m"><span data-i18n="meta_rel" data-es="Guía relacionada:" data-en="Related guide:">Guía relacionada:</span> <a href="/apoyo/bedtime-resistance" data-i18n="meta_rel_link" data-es="Sueño" data-en="Sleep">Sueño</a></span>
         </div>
       </header>
@@ -524,9 +552,9 @@
           class="cs-article-hero-img"
           src="/assets/illustrations/hero-sueno.svg"
           data-i18n-alt
-          data-es="Sueño — un niño acostado sobre una cama suave, un adulto sentado cerca, una pequeña z de sueño arriba."
-          data-en="Sleep — a child lying on a soft bed, an adult seated nearby, a small sleep z above."
-          alt="Sueño — un niño acostado sobre una cama suave, un adulto sentado cerca, una pequeña z de sueño arriba."
+          data-es="Sueño · un niño acostado sobre una cama suave, un adulto sentado cerca, una pequeña z de sueño arriba."
+          data-en="Sleep · a child lying on a soft bed, an adult seated nearby, a small sleep z above."
+          alt="Sueño · un niño acostado sobre una cama suave, un adulto sentado cerca, una pequeña z de sueño arriba."
           width="800"
           height="480"
         />
@@ -534,37 +562,33 @@
 
       <div class="prose">
         <p class="lead" data-i18n="lead" data-es="Hay noches en las que todo parece ir bien hasta que llega la hora de dormir." data-en="Some nights everything seems fine until bedtime arrives.">Hay noches en las que todo parece ir bien hasta que llega la hora de dormir.</p>
-        <p data-i18n="p_open1" data-es="El baño. El pijama. El cuento." data-en="The bath. The pajamas. The story.">El baño. El pijama. El cuento.</p>
-        <p data-i18n="p_open2" data-es="Y de pronto, tu hijo no quiere ir a la cama, pide agua, se levanta, llora, o dice que no tiene sueño cuando tú sabes que sí lo tiene." data-en="And suddenly your child does not want to go to bed, asks for water, gets up, cries, or says they are not sleepy when you know they are.">Y de pronto, tu hijo no quiere ir a la cama, pide agua, se levanta, llora, o dice que no tiene sueño cuando tú sabes que sí lo tiene.</p>
-        <p data-i18n="p_open3" data-es="Tú tampoco llegas con mucha energía." data-en="You do not arrive with much energy either.">Tú tampoco llegas con mucha energía.</p>
-        <p data-i18n="p_open4" data-es="A veces entras a la noche con la sensación de que ya no te queda paciencia." data-en="Sometimes you enter the night feeling like you have no patience left.">A veces entras a la noche con la sensación de que ya no te queda paciencia.</p>
-        <p data-i18n="p_open5" data-es="No porque no quieras hacer las cosas bien." data-en="Not because you do not want to do things well.">No porque no quieras hacer las cosas bien.</p>
-        <p data-i18n="p_open6" data-es="Sino porque el día fue largo, el cansancio es real, y la noche no se siente como un descanso." data-en="But because the day was long, exhaustion is real, and the night does not feel like rest.">Sino porque el día fue largo, el cansancio es real, y la noche no se siente como un descanso.</p>
-        <p data-i18n="p_open7" data-es="Muchas familias piensan que el problema es &quot;que no hay rutina&quot; o &quot;que la rutina no funciona&quot;." data-en="Many families think the problem is &quot;there is no routine&quot; or &quot;the routine does not work.&quot;">Muchas familias piensan que el problema es "que no hay rutina" o "que la rutina no funciona".</p>
-        <p data-i18n="p_open8" data-es="Pero muchas veces el problema no es tener una rutina." data-en="But many times the problem is not having a routine.">Pero muchas veces el problema no es tener una rutina.</p>
-        <p data-i18n="p_open9" data-es="Es que la rutina se siente como otra pelea pendiente." data-en="It is that the routine feels like one more fight waiting to happen.">Es que la rutina se siente como otra pelea pendiente.</p>
-        <p data-i18n="p_open10" data-es="Para un niño, ir a dormir no es solo acostarse." data-en="For a child, going to sleep is not just lying down.">Para un niño, ir a dormir no es solo acostarse.</p>
-        <p data-i18n="p_open11" data-es="Es separarse del día, soltar lo que estaba pasando, pasar del movimiento al silencio, del mundo con adultos al cuarto con sus propios pensamientos." data-en="It is leaving the day behind, letting go of what was happening, moving from activity to quiet, from the world with adults to a room with their own thoughts.">Es separarse del día, soltar lo que estaba pasando, pasar del movimiento al silencio, del mundo con adultos al cuarto con sus propios pensamientos.</p>
-        <p data-i18n="p_open12" data-es="Eso puede ser difícil." data-en="That can be hard.">Eso puede ser difícil.</p>
-        <p data-i18n="p_open13" data-es="Y si cada noche termina en gritos, negociación o culpa, la rutina deja de ser un refugio." data-en="And if every night ends in shouting, bargaining or guilt, the routine stops being a refuge.">Y si cada noche termina en gritos, negociación o culpa, la rutina deja de ser un refugio.</p>
-        <p data-i18n="p_open14" data-es="Una rutina de sueño no necesita ser perfecta." data-en="A sleep routine does not need to be perfect.">Una rutina de sueño no necesita ser perfecta.</p>
-        <p data-i18n="p_open15" data-es="Necesita ser repetible, predecible y lo bastante amable como para que el cuerpo del niño aprenda: &quot;Esto ya lo conozco. Puedo ir cerrando el día.&quot;" data-en="It needs to be repeatable, predictable and gentle enough that your child's body learns: &quot;I know this. I can start closing the day.&quot;">Necesita ser repetible, predecible y lo bastante amable como para que el cuerpo del niño aprenda: "Esto ya lo conozco. Puedo ir cerrando el día."</p>
-        <p data-i18n="p_open16" data-es="Cuando eso empieza a pasar, la noche empieza a sostenerse un poquito mejor." data-en="When that begins to happen, the night starts to hold a little better.">Cuando eso empieza a pasar, la noche empieza a sostenerse un poquito mejor.</p>
+        <p data-i18n="p_open1" data-es="El baño. El pijama. El cuento. Y de pronto, tu hijo no quiere ir a la cama, pide agua, se levanta, llora, o dice que no tiene sueño cuando tú sabes que sí lo tiene." data-en="The bath. The pajamas. The story. And suddenly your child does not want to go to bed, asks for water, gets up, cries, or says they are not sleepy when you know they are.">El baño. El pijama. El cuento. Y de pronto, tu hijo no quiere ir a la cama, pide agua, se levanta, llora, o dice que no tiene sueño cuando tú sabes que sí lo tiene.</p>
+        <p data-i18n="p_open3" data-es="Tú tampoco llegas con mucha energía. A veces entras a la noche con la sensación de que ya no te queda paciencia. No porque no quieras hacer las cosas bien, sino porque el día fue largo, el cansancio es real, y la noche no se siente como un descanso." data-en="You do not arrive with much energy either. Sometimes you enter the night feeling like you have no patience left. Not because you do not want to do things well, but because the day was long, exhaustion is real, and the night does not feel like rest.">Tú tampoco llegas con mucha energía. A veces entras a la noche con la sensación de que ya no te queda paciencia. No porque no quieras hacer las cosas bien, sino porque el día fue largo, el cansancio es real, y la noche no se siente como un descanso.</p>
+        <p data-i18n="p_open7" data-es="Muchas familias piensan que el problema es &quot;que no hay rutina&quot; o &quot;que la rutina no funciona&quot;. Pero muchas veces el problema no es tener una rutina. Es que la rutina se siente como otra pelea pendiente." data-en="Many families think the problem is &quot;there is no routine&quot; or &quot;the routine does not work.&quot; But many times the problem is not having a routine. It is that the routine feels like one more fight waiting to happen.">Muchas familias piensan que el problema es "que no hay rutina" o "que la rutina no funciona". Pero muchas veces el problema no es tener una rutina. Es que la rutina se siente como otra pelea pendiente.</p>
+        <p data-i18n="p_open10" data-es="Para un niño, ir a dormir no es solo acostarse. Es separarse del día, soltar lo que estaba pasando, pasar del movimiento al silencio, del mundo con adultos al cuarto con sus propios pensamientos. Eso puede ser difícil. Y si cada noche termina en gritos, negociación o culpa, la rutina deja de ser un refugio." data-en="For a child, going to sleep is not just lying down. It is leaving the day behind, letting go of what was happening, moving from activity to quiet, from the world with adults to a room with their own thoughts. That can be hard. And if every night ends in shouting, bargaining or guilt, the routine stops being a refuge.">Para un niño, ir a dormir no es solo acostarse. Es separarse del día, soltar lo que estaba pasando, pasar del movimiento al silencio, del mundo con adultos al cuarto con sus propios pensamientos. Eso puede ser difícil. Y si cada noche termina en gritos, negociación o culpa, la rutina deja de ser un refugio.</p>
+        <p data-i18n="p_open14" data-es="Una rutina de sueño no necesita ser perfecta. Necesita ser repetible, predecible y lo bastante amable como para que el cuerpo del niño aprenda: &quot;Esto ya lo conozco. Puedo ir cerrando el día.&quot; Cuando eso empieza a pasar, la noche empieza a sostenerse un poquito mejor." data-en="A sleep routine does not need to be perfect. It needs to be repeatable, predictable and gentle enough that your child's body learns: &quot;I know this. I can start closing the day.&quot; When that begins to happen, the night starts to hold a little better.">Una rutina de sueño no necesita ser perfecta. Necesita ser repetible, predecible y lo bastante amable como para que el cuerpo del niño aprenda: "Esto ya lo conozco. Puedo ir cerrando el día." Cuando eso empieza a pasar, la noche empieza a sostenerse un poquito mejor.</p>
+        <div class="a-ritual a-tldr" id="version-corta">
+          <div class="a-ritual-h">
+            <span class="t" data-i18n="tldr_t" data-es="Si solo tienes dos minutos" data-en="If you only have two minutes">Si solo tienes dos minutos</span>
+            <span class="n" data-i18n="tldr_n" data-es="La guía en 5 ideas" data-en="The guide in 5 ideas">La guía en 5 ideas</span>
+          </div>
+          <ol>
+            <li><span class="step-n">1</span><span data-i18n="tldr_1" data-es="Avisa que el día está cerrando, con una señal corta y repetible." data-en="Give a short, repeatable signal that the day is closing.">Avisa que el día está cerrando, con una señal corta y repetible.</span></li>
+            <li><span class="step-n">2</span><span data-i18n="tldr_2" data-es="Mantén el mismo orden básico cada noche. No largo: reconocible." data-en="Keep the same basic order every night. Not long: recognizable.">Mantén el mismo orden básico cada noche. No largo: reconocible.</span></li>
+            <li><span class="step-n">3</span><span data-i18n="tldr_3" data-es="Ofrece una elección pequeña dentro del límite, nunca una negociación." data-en="Offer a small choice inside the limit, never a negotiation.">Ofrece una elección pequeña dentro del límite, nunca una negociación.</span></li>
+            <li><span class="step-n">4</span><span data-i18n="tldr_4" data-es="Si llora, sostén el límite con calma y con menos palabras." data-en="If there are tears, hold the limit calmly, with fewer words.">Si llora, sostén el límite con calma y con menos palabras.</span></li>
+            <li><span class="step-n">5</span><span data-i18n="tldr_5" data-es="Al día siguiente, repara si hace falta y vuelve a la rutina." data-en="The next day, repair if needed and return to the routine.">Al día siguiente, repara si hace falta y vuelve a la rutina.</span></li>
+          </ol>
+          <p class="a-tldr-note" data-i18n="tldr_note" data-es="Leer solo esto ya cuenta. El resto está aquí para cuando tengas un momento más tranquilo." data-en="Reading just this already counts. The rest is here for a calmer moment.">Leer solo esto ya cuenta. El resto está aquí para cuando tengas un momento más tranquilo.</p>
+        </div>
         <h2 class="csc-heading">
           <span class="sec-num">01</span>
           <img class="csc-icon-img" src="/assets/icons/cerebro.svg" alt="" aria-hidden="true" width="32" height="32">
           <span data-i18n="h2_what" data-es="Lo que realmente está pasando" data-en="What is really happening">Lo que realmente está pasando</span>
         </h2>
-        <p data-i18n="p_what1" data-es="Para un adulto, acostarse puede parecer simple." data-en="For an adult, going to bed can seem simple.">Para un adulto, acostarse puede parecer simple.</p>
-        <p data-i18n="p_what2" data-es="Se apagan las luces. Se cierra el día." data-en="Turn off the lights. Close the day.">Se apagan las luces. Se cierra el día.</p>
-        <p data-i18n="p_what3" data-es="Para un niño, muchas veces se siente distinto." data-en="For a child, it often feels different.">Para un niño, muchas veces se siente distinto.</p>
-        <p data-i18n="p_what4" data-es="La cama no es solo un lugar para dormir. Es un umbral: el paso entre el día activo y el descanso." data-en="The bed is not just a place to sleep. It is a threshold: the step between an active day and rest.">La cama no es solo un lugar para dormir. Es un umbral: el paso entre el día activo y el descanso.</p>
-        <p data-i18n="p_what5" data-es="Si el día estuvo intenso — pantallas, juego, visitas, cambios de humor — el cuerpo puede seguir activo aunque los ojos estén pesados." data-en="If the day was intense — screens, play, visitors, mood swings — the body may still be active even when the eyes feel heavy.">Si el día estuvo intenso — pantallas, juego, visitas, cambios de humor — el cuerpo puede seguir activo aunque los ojos estén pesados.</p>
-        <p data-i18n="p_what6" data-es="Cuando le pedimos que se acueste, no solo le estamos pidiendo que cierre los ojos." data-en="When we ask a child to go to bed, we are not only asking them to close their eyes.">Cuando le pedimos que se acueste, no solo le estamos pidiendo que cierre los ojos.</p>
-        <p data-i18n="p_what7" data-es="Le estamos pidiendo que suelte lo que estaba haciendo, que acepte un límite y que confíe en que el adulto va a sostener la noche." data-en="We are asking them to let go of what they were doing, accept a limit, and trust that the adult will hold the night.">Le estamos pidiendo que suelte lo que estaba haciendo, que acepte un límite y que confíe en que el adulto va a sostener la noche.</p>
-        <p data-i18n="p_what8" data-es="Eso no significa que el niño mande." data-en="That does not mean the child is in charge.">Eso no significa que el niño mande.</p>
-        <p data-i18n="p_what9" data-es="Significa que la transición necesita más apoyo." data-en="It means the transition needs more support.">Significa que la transición necesita más apoyo.</p>
-        <p data-i18n="p_what10" data-es="Un niño puede entender que &quot;ya es hora&quot; y aun así resistirse. Puede querer dormir y aun así sentirse frustrado. Puede necesitar tu firmeza y tu calma al mismo tiempo." data-en="A child can understand that &quot;it is time&quot; and still resist. They can want sleep and still feel frustrated. They can need your firmness and your calm at the same time.">Un niño puede entender que "ya es hora" y aun así resistirse. Puede querer dormir y aun así sentirse frustrado. Puede necesitar tu firmeza y tu calma al mismo tiempo.</p>
+        <p data-i18n="p_what1" data-es="Para un adulto, acostarse puede parecer simple. Se apagan las luces. Se cierra el día. Para un niño, muchas veces se siente distinto. La cama no es solo un lugar para dormir. Es un umbral: el paso entre el día activo y el descanso." data-en="For an adult, going to bed can seem simple. Turn off the lights. Close the day. For a child, it often feels different. The bed is not just a place to sleep. It is a threshold: the step between an active day and rest.">Para un adulto, acostarse puede parecer simple. Se apagan las luces. Se cierra el día. Para un niño, muchas veces se siente distinto. La cama no es solo un lugar para dormir. Es un umbral: el paso entre el día activo y el descanso.</p>
+        <p data-i18n="p_what5" data-es="Si el día estuvo intenso (pantallas, juego, visitas, cambios de humor), el cuerpo puede seguir activo aunque los ojos estén pesados. Cuando le pedimos que se acueste, no solo le estamos pidiendo que cierre los ojos. Le estamos pidiendo que suelte lo que estaba haciendo, que acepte un límite y que confíe en que el adulto va a sostener la noche." data-en="If the day was intense (screens, play, visitors, mood swings), the body may still be active even when the eyes feel heavy. When we ask a child to go to bed, we are not only asking them to close their eyes. We are asking them to let go of what they were doing, accept a limit, and trust that the adult will hold the night.">Si el día estuvo intenso (pantallas, juego, visitas, cambios de humor), el cuerpo puede seguir activo aunque los ojos estén pesados. Cuando le pedimos que se acueste, no solo le estamos pidiendo que cierre los ojos. Le estamos pidiendo que suelte lo que estaba haciendo, que acepte un límite y que confíe en que el adulto va a sostener la noche.</p>
+        <p data-i18n="p_what8" data-es="Eso no significa que el niño mande. Significa que la transición necesita más apoyo. Un niño puede entender que &quot;ya es hora&quot; y aun así resistirse. Puede querer dormir y aun así sentirse frustrado. Puede necesitar tu firmeza y tu calma al mismo tiempo." data-en="That does not mean the child is in charge. It means the transition needs more support. A child can understand that &quot;it is time&quot; and still resist. They can want sleep and still feel frustrated. They can need your firmness and your calm at the same time.">Eso no significa que el niño mande. Significa que la transición necesita más apoyo. Un niño puede entender que "ya es hora" y aun así resistirse. Puede querer dormir y aun así sentirse frustrado. Puede necesitar tu firmeza y tu calma al mismo tiempo.</p>
         <div class="a-pull">
           <p data-i18n="p_what12" data-es="La meta no es que nunca proteste. La meta es que, poco a poco, la noche deje de sentirse como una batalla diaria." data-en="The goal is not for your child to never protest. The goal is for the night to slowly stop feeling like a daily battle.">La meta no es que nunca proteste. La meta es que, poco a poco, la noche deje de sentirse como una batalla diaria.</p>
         </div>
@@ -573,9 +597,7 @@
           <img class="csc-icon-img" src="/assets/icons/mano.svg" alt="" aria-hidden="true" width="32" height="32">
           <span data-i18n="h2_do" data-es="Qué hacer" data-en="What to do">Qué hacer</span>
         </h2>
-        <p data-i18n="p_do1" data-es="Antes de la hora de dormir, ayuda mucho avisar que se acerca el cierre del día." data-en="Before bedtime, it helps to signal that the day is closing.">Antes de la hora de dormir, ayuda mucho avisar que se acerca el cierre del día.</p>
-        <p data-i18n="p_do2" data-es="No con un discurso largo." data-en="Not with a long lecture.">No con un discurso largo.</p>
-        <p data-i18n="p_do3" data-es="Con una señal clara y repetible." data-en="With a clear, repeatable signal.">Con una señal clara y repetible.</p>
+        <p data-i18n="p_do1" data-es="Antes de la hora de dormir, ayuda mucho avisar que se acerca el cierre del día. No con un discurso largo. Con una señal clara y repetible." data-en="Before bedtime, it helps to signal that the day is closing. Not with a long lecture. With a clear, repeatable signal.">Antes de la hora de dormir, ayuda mucho avisar que se acerca el cierre del día. No con un discurso largo. Con una señal clara y repetible.</p>
         <div class="a-phrases">
           <div class="a-phrases-h">
             <span class="k">Puedes decir · el aviso</span>
@@ -587,9 +609,7 @@
           </ul>
         </div>
         <p data-i18n="p_do5" data-es="Los niños necesitan saber cuándo viene el cambio. No siempre van a aceptarlo con felicidad, pero anticiparlo les da una oportunidad de prepararse." data-en="Children need to know a change is coming. They may not happily accept it, but the warning gives them a chance to prepare.">Los niños necesitan saber cuándo viene el cambio. No siempre van a aceptarlo con felicidad, pero anticiparlo les da una oportunidad de prepararse.</p>
-        <p data-i18n="p_do6" data-es="Luego, mantén un orden básico que se repita." data-en="Then, keep a basic order that repeats.">Luego, mantén un orden básico que se repita.</p>
-        <p data-i18n="p_do7" data-es="No tiene que ser largo." data-en="It does not have to be long.">No tiene que ser largo.</p>
-        <p data-i18n="p_do8" data-es="Tiene que ser reconocible." data-en="It needs to be recognizable.">Tiene que ser reconocible.</p>
+        <p data-i18n="p_do6" data-es="Luego, mantén un orden básico que se repita. No tiene que ser largo. Tiene que ser reconocible." data-en="Then, keep a basic order that repeats. It does not have to be long. It needs to be recognizable.">Luego, mantén un orden básico que se repita. No tiene que ser largo. Tiene que ser reconocible.</p>
         <div class="a-ritual">
           <div class="a-ritual-h">
             <span class="t">Un orden básico que se repita</span>
@@ -616,10 +636,8 @@
         <p data-i18n="p_do11" data-es="La elección no cambia el límite. Solo le da al niño una pequeña participación dentro de ese límite." data-en="The choice does not change the limit. It simply gives your child a little participation inside the limit.">La elección no cambia el límite. Solo le da al niño una pequeña participación dentro de ese límite.</p>
         <div class="a-tesis">
           <div class="k">Y si llora</div>
-          <p data-i18n="p_do12" data-es="Mantén el límite con calma. No porque quieras ganar — sino porque <em>el límite solo se vuelve seguro cuando se sostiene con presencia.</em>" data-en="Hold the limit calmly. Not because you need to win — but because <em>a limit becomes safer when it is held with presence.</em>">Mantén el límite con calma. No porque quieras ganar — sino porque <em>el límite solo se vuelve seguro cuando se sostiene con presencia.</em></p>
+          <p data-i18n="p_do12" data-es="Mantén el límite con calma. No porque quieras ganar, sino porque <em>el límite solo se vuelve seguro cuando se sostiene con presencia.</em>" data-en="Hold the limit calmly. Not because you need to win, but because <em>a limit becomes safer when it is held with presence.</em>">Mantén el límite con calma. No porque quieras ganar, sino porque <em>el límite solo se vuelve seguro cuando se sostiene con presencia.</em></p>
         </div>
-        <p data-i18n="p_do15" data-es="Puedes decir:" data-en="You can say:">Puedes decir:</p>
-        <p data-i18n="p_do16" data-es="&quot;Sé que no quieres parar todavía. Es difícil cerrar el día. Ahora es hora de dormir.&quot;" data-en="&quot;I know you do not want to stop yet. It is hard to close the day. Now it is time to sleep.&quot;">"Sé que no quieres parar todavía. Es difícil cerrar el día. Ahora es hora de dormir."</p>
         <h2 class="csc-heading">
           <span class="sec-num">03</span>
           <img class="csc-icon-img" src="/assets/icons/prohibido.svg" alt="" aria-hidden="true" width="32" height="32">
@@ -648,12 +666,9 @@
             <li data-i18n="notdo_6" data-es="&quot;Bueno, este sí es el último.&quot;" data-en="&quot;This is really the last one.&quot;">"Bueno, este sí es el último."</li>
           </ul>
         </div>
-        <p data-i18n="p_notdo4" data-es="A veces creemos que estamos evitando un conflicto, pero en realidad le enseñamos al niño que el límite todavía está abierto." data-en="Sometimes we think we are avoiding conflict, but we are actually teaching the child that the limit is still open.">A veces creemos que estamos evitando un conflicto, pero en realidad le enseñamos al niño que el límite todavía está abierto.</p>
-        <p data-i18n="p_notdo5" data-es="Y cuando finalmente apagamos la luz, el llanto puede ser más grande." data-en="And when we finally turn off the light, the tears may be even bigger.">Y cuando finalmente apagamos la luz, el llanto puede ser más grande.</p>
+        <p data-i18n="p_notdo4" data-es="A veces creemos que estamos evitando un conflicto, pero en realidad le enseñamos al niño que el límite todavía está abierto. Y cuando finalmente apagamos la luz, el llanto puede ser más grande." data-en="Sometimes we think we are avoiding conflict, but we are actually teaching the child that the limit is still open. And when we finally turn off the light, the tears may be even bigger.">A veces creemos que estamos evitando un conflicto, pero en realidad le enseñamos al niño que el límite todavía está abierto. Y cuando finalmente apagamos la luz, el llanto puede ser más grande.</p>
         <p data-i18n="p_notdo6" data-es="No ayuda apresurar la rutina con prisa y tensión. Una rutina hecha a la carrera no transmite seguridad." data-en="It also does not help to rush the routine with tension. A routine done in a hurry does not communicate safety.">No ayuda apresurar la rutina con prisa y tensión. Una rutina hecha a la carrera no transmite seguridad.</p>
-        <p data-i18n="p_notdo7" data-es="Tampoco hace falta avergonzar." data-en="And your child does not need to be shamed.">Tampoco hace falta avergonzar.</p>
-        <p data-i18n="p_notdo8" data-es="No es necesario decirle que &quot;nunca duerme bien&quot;, que &quot;por eso está cansado todo el día&quot; o que &quot;otros niños sí se acuestan solos&quot;." data-en="You do not need to tell them they &quot;never sleep well,&quot; that &quot;this is why they are tired all day,&quot; or that &quot;other kids go to bed on their own.&quot;">No es necesario decirle que "nunca duerme bien", que "por eso está cansado todo el día" o que "otros niños sí se acuestan solos".</p>
-        <p data-i18n="p_notdo9" data-es="Un niño puede estar aprendiendo a cerrar la noche sin necesitar que lo definamos por su peor momento." data-en="A child can be learning how to close the night without being defined by their hardest moment.">Un niño puede estar aprendiendo a cerrar la noche sin necesitar que lo definamos por su peor momento.</p>
+        <p data-i18n="p_notdo7" data-es="Tampoco hace falta avergonzar. No es necesario decirle que &quot;nunca duerme bien&quot;, que &quot;por eso está cansado todo el día&quot; o que &quot;otros niños sí se acuestan solos&quot;. Un niño puede estar aprendiendo a cerrar la noche sin necesitar que lo definamos por su peor momento." data-en="And your child does not need to be shamed. You do not need to tell them they &quot;never sleep well,&quot; that &quot;this is why they are tired all day,&quot; or that &quot;other kids go to bed on their own.&quot; A child can be learning how to close the night without being defined by their hardest moment.">Tampoco hace falta avergonzar. No es necesario decirle que "nunca duerme bien", que "por eso está cansado todo el día" o que "otros niños sí se acuestan solos". Un niño puede estar aprendiendo a cerrar la noche sin necesitar que lo definamos por su peor momento.</p>
         <h2 class="csc-heading">
           <span class="sec-num">04</span>
           <img class="csc-icon-img" src="/assets/icons/bocadillo.svg" alt="" aria-hidden="true" width="32" height="32">
@@ -677,10 +692,7 @@
           <li data-i18n="say_10" data-es="&quot;Buenas noches. Te quiero.&quot;" data-en="&quot;Goodnight. I love you.&quot;">"Buenas noches. Te quiero."</li>
           </ul>
         </div>
-        <p data-i18n="p_say2" data-es="Si el llanto sube, puedes repetir menos." data-en="If the crying gets louder, you can say less.">Si el llanto sube, puedes repetir menos.</p>
-        <p data-i18n="p_say3" data-es="No necesitas convencerlo una y otra vez." data-en="You do not need to convince your child over and over again.">No necesitas convencerlo una y otra vez.</p>
-        <p data-i18n="p_say4" data-es="A veces basta con decir:" data-en="Sometimes it is enough to say:">A veces basta con decir:</p>
-        <p data-i18n="p_say5" data-es="&quot;Sí. Es difícil. Ahora es hora de dormir.&quot;" data-en="&quot;Yes. It is hard. Now it is time to sleep.&quot;">"Sí. Es difícil. Ahora es hora de dormir."</p>
+        <p data-i18n="p_say2" data-es="Si el llanto sube, puedes repetir menos. No necesitas convencerlo una y otra vez. A veces basta con decir: &quot;Sí. Es difícil. Ahora es hora de dormir.&quot;" data-en="If the crying gets louder, you can say less. You do not need to convince your child over and over again. Sometimes it is enough to say: &quot;Yes. It is hard. Now it is time to sleep.&quot;">Si el llanto sube, puedes repetir menos. No necesitas convencerlo una y otra vez. A veces basta con decir: "Sí. Es difícil. Ahora es hora de dormir."</p>
         <div class="a-pull">
           <p data-i18n="p_say7" data-es="Tu calma no tiene que ser perfecta. Solo tiene que ser un poquito más grande que el momento." data-en="Your calm does not have to be perfect. It only needs to be a little bigger than the moment.">Tu calma no tiene que ser perfecta. Solo tiene que ser un poquito más grande que el momento.</p>
         </div>
@@ -689,11 +701,8 @@
           <img class="csc-icon-img" src="/assets/icons/corazon.svg" alt="" aria-hidden="true" width="32" height="32">
           <span data-i18n="h2_calm" data-es="Cuando todos estén en calma" data-en="When everyone is calm">Cuando todos estén en calma</span>
         </h2>
-        <p data-i18n="p_calm1" data-es="La enseñanza más importante muchas veces no ocurre durante el llanto." data-en="The most important teaching often does not happen during the tears.">La enseñanza más importante muchas veces no ocurre durante el llanto.</p>
-        <p data-i18n="p_calm2" data-es="Ocurre después." data-en="It happens later.">Ocurre después.</p>
-        <p data-i18n="p_calm3" data-es="Cuando tu hijo ya comió, se bañó, jugó otra cosa o se calmó, puedes volver al momento sin regaño." data-en="When your child has eaten, bathed, played something else or settled down, you can return to the moment without scolding.">Cuando tu hijo ya comió, se bañó, jugó otra cosa o se calmó, puedes volver al momento sin regaño.</p>
-        <p data-i18n="p_calm4" data-es="No como juicio." data-en="Not as judgment.">No como juicio.</p>
-        <p data-i18n="p_calm5" data-es="Como aprendizaje." data-en="As learning.">Como aprendizaje.</p>
+        <p data-i18n="p_calm1" data-es="La enseñanza más importante muchas veces no ocurre durante el llanto. Ocurre después." data-en="The most important teaching often does not happen during the tears. It happens later.">La enseñanza más importante muchas veces no ocurre durante el llanto. Ocurre después.</p>
+        <p data-i18n="p_calm3" data-es="Cuando tu hijo ya comió, se bañó, jugó otra cosa o se calmó, puedes volver al momento sin regaño. No como juicio. Como aprendizaje." data-en="When your child has eaten, bathed, played something else or settled down, you can return to the moment without scolding. Not as judgment. As learning.">Cuando tu hijo ya comió, se bañó, jugó otra cosa o se calmó, puedes volver al momento sin regaño. No como juicio. Como aprendizaje.</p>
         <div class="a-phrases">
           <div class="a-phrases-h">
             <span class="k">Cuando ya todos están en calma</span>
@@ -705,13 +714,11 @@
         </div>
         <p data-i18n="p_calm7" data-es="Si tú también perdiste la paciencia, puedes reparar." data-en="If you lost your patience too, you can repair.">Si tú también perdiste la paciencia, puedes reparar.</p>
         <p data-i18n="p_calm8" data-es="&quot;Estaba con mucho cansancio y levanté la voz. Lo siento. Mañana voy a intentar hablar más bajito. El límite va a seguir siendo el mismo, pero quiero ayudarte mejor.&quot;" data-en="&quot;I was very tired and I raised my voice. I am sorry. Tomorrow I am going to try to speak more quietly. The limit will still be the same, but I want to help you better.&quot;">"Estaba con mucho cansancio y levanté la voz. Lo siento. Mañana voy a intentar hablar más bajito. El límite va a seguir siendo el mismo, pero quiero ayudarte mejor."</p>
-        <p data-i18n="p_calm9" data-es="Eso no te quita autoridad." data-en="That does not take away your authority.">Eso no te quita autoridad.</p>
-        <p data-i18n="p_calm10" data-es="La vuelve más humana." data-en="It makes it more human.">La vuelve más humana.</p>
+        <p data-i18n="p_calm9" data-es="Eso no te quita autoridad. La vuelve más humana." data-en="That does not take away your authority. It makes it more human.">Eso no te quita autoridad. La vuelve más humana.</p>
         <div class="a-pull">
           <p data-i18n="p_calm11" data-es="Los niños aprenden mucho cuando ven que un adulto puede reconocer un error sin abandonar el límite." data-en="Children learn a lot when they see an adult recognize a mistake without abandoning the limit.">Los niños aprenden mucho cuando ven que un adulto puede reconocer un error sin abandonar el límite.</p>
         </div>
-        <p data-i18n="p_calm12" data-es="También puedes crear un pequeño ritual de cierre." data-en="You can also create a small closing ritual.">También puedes crear un pequeño ritual de cierre.</p>
-        <p data-i18n="p_calm13" data-es="Por ejemplo:" data-en="For example:">Por ejemplo:</p>
+        <p data-i18n="p_calm12" data-es="También puedes crear un pequeño ritual de cierre. Por ejemplo:" data-en="You can also create a small closing ritual. For example:">También puedes crear un pequeño ritual de cierre. Por ejemplo:</p>
         <div class="a-ritual">
           <div class="a-ritual-h">
             <span class="t">Un pequeño ritual de cierre</span>
@@ -725,20 +732,15 @@
             <li><span class="step-n">5</span><span data-i18n="calm_7" data-es="Un beso en la frente." data-en="A kiss on the forehead.">Un beso en la frente.</span></li>
           </ol>
         </div>
-        <p data-i18n="p_calm14" data-es="No tiene que ser especial." data-en="It does not need to be special.">No tiene que ser especial.</p>
-        <p data-i18n="p_calm15" data-es="Tiene que ser repetible." data-en="It needs to be repeatable.">Tiene que ser repetible.</p>
-        <p data-i18n="p_calm16" data-es="La repetición le dice al cuerpo del niño: &quot;Esto ya lo conozco. Puedo hacerlo otra vez.&quot;" data-en="Repetition tells your child's body: &quot;I know this. I can do it again.&quot;">La repetición le dice al cuerpo del niño: "Esto ya lo conozco. Puedo hacerlo otra vez."</p>
+        <p data-i18n="p_calm14" data-es="No tiene que ser especial. Tiene que ser repetible." data-en="It does not need to be special. It needs to be repeatable.">No tiene que ser especial. Tiene que ser repetible.</p>
         <h2 class="csc-heading">
           <span class="sec-num">06</span>
           <img class="csc-icon-img" src="/assets/icons/sos.svg" alt="" aria-hidden="true" width="32" height="32">
           <span data-i18n="h2_support" data-es="Cuándo buscar apoyo adicional" data-en="When to seek additional support">Cuándo buscar apoyo adicional</span>
         </h2>
-        <p data-i18n="p_support1" data-es="Hay momentos en los que la hora de dormir se vuelve muy difícil para toda la familia." data-en="Sometimes bedtime becomes very hard for the whole family.">Hay momentos en los que la hora de dormir se vuelve muy difícil para toda la familia.</p>
-        <p data-i18n="p_support2" data-es="Si casi cada noche termina en una crisis intensa, si tu hijo tarda mucho en recuperarse, si hay miedo persistente, o si el sueño, la escuela o la convivencia se están afectando, puede ser buena idea buscar apoyo adicional." data-en="If almost every night ends in an intense crisis, if your child takes a long time to recover, if fear persists, or if sleep, school, or family life are being affected, it may be a good idea to seek additional support.">Si casi cada noche termina en una crisis intensa, si tu hijo tarda mucho en recuperarse, si hay miedo persistente, o si el sueño, la escuela o la convivencia se están afectando, puede ser buena idea buscar apoyo adicional.</p>
-        <p data-i18n="p_support3" data-es="No porque hayas fallado." data-en="Not because you failed.">No porque hayas fallado.</p>
-        <p data-i18n="p_support4" data-es="Sino porque algunas familias necesitan más acompañamiento, más estructura o una mirada profesional que ayude a entender qué está pasando." data-en="But because some families need more support, more structure or a professional perspective to understand what is happening.">Sino porque algunas familias necesitan más acompañamiento, más estructura o una mirada profesional que ayude a entender qué está pasando.</p>
-        <p data-i18n="p_support5" data-es="También vale la pena observar el contexto." data-en="It is also worth looking at the larger context.">También vale la pena observar el contexto.</p>
-        <p data-i18n="p_support6" data-es="A veces la noche se vuelve más pesada porque el día ya dejó a todos sin mucha energía. A veces la rutina se rompe porque hubo un cambio grande, una enfermedad o semanas de mucho estrés. Eso no dice nada malo de ti como madre, padre o cuidador." data-en="Sometimes nights become heavier because the day already left everyone with little energy. Sometimes the routine breaks because of a big change, illness or weeks of stress. That does not make you a bad parent.">A veces la noche se vuelve más pesada porque el día ya dejó a todos sin mucha energía. A veces la rutina se rompe porque hubo un cambio grande, una enfermedad o semanas de mucho estrés. Eso no dice nada malo de ti como madre, padre o cuidador.</p>
+        <p data-i18n="p_support1" data-es="Hay momentos en los que la hora de dormir se vuelve muy difícil para toda la familia. Si casi cada noche termina en una crisis intensa, si tu hijo tarda mucho en recuperarse, si hay miedo persistente, o si el sueño, la escuela o la convivencia se están afectando, puede ser buena idea buscar apoyo adicional." data-en="Sometimes bedtime becomes very hard for the whole family. If almost every night ends in an intense crisis, if your child takes a long time to recover, if fear persists, or if sleep, school, or family life are being affected, it may be a good idea to seek additional support.">Hay momentos en los que la hora de dormir se vuelve muy difícil para toda la familia. Si casi cada noche termina en una crisis intensa, si tu hijo tarda mucho en recuperarse, si hay miedo persistente, o si el sueño, la escuela o la convivencia se están afectando, puede ser buena idea buscar apoyo adicional.</p>
+        <p data-i18n="p_support3" data-es="No porque hayas fallado. Sino porque algunas familias necesitan más acompañamiento, más estructura o una mirada profesional que ayude a entender qué está pasando." data-en="Not because you failed. But because some families need more support, more structure or a professional perspective to understand what is happening.">No porque hayas fallado. Sino porque algunas familias necesitan más acompañamiento, más estructura o una mirada profesional que ayude a entender qué está pasando.</p>
+        <p data-i18n="p_support5" data-es="También vale la pena observar el contexto. A veces la noche se vuelve más pesada porque el día ya dejó a todos sin mucha energía. A veces la rutina se rompe porque hubo un cambio grande, una enfermedad o semanas de mucho estrés. Eso no dice nada malo de ti como madre, padre o cuidador." data-en="It is also worth looking at the larger context. Sometimes nights become heavier because the day already left everyone with little energy. Sometimes the routine breaks because of a big change, illness or weeks of stress. That does not make you a bad parent.">También vale la pena observar el contexto. A veces la noche se vuelve más pesada porque el día ya dejó a todos sin mucha energía. A veces la rutina se rompe porque hubo un cambio grande, una enfermedad o semanas de mucho estrés. Eso no dice nada malo de ti como madre, padre o cuidador.</p>
         <div class="a-pull">
           <p data-i18n="p_support7" data-es="Pero si algo se volvió más pesado de lo que puedes sostener en soledad, pedir ayuda también es una forma de cuidar." data-en="But if something has become heavier than you can carry alone, asking for help is also a form of care.">Pero si algo se volvió más pesado de lo que puedes sostener en soledad, pedir ayuda también es una forma de cuidar.</p>
         </div>
@@ -747,8 +749,7 @@
           <img class="csc-icon-img" src="/assets/icons/despues.svg" alt="" aria-hidden="true" width="32" height="32">
           <span data-i18n="h2_tomorrow" data-es="Una forma más amable de cerrar el día" data-en="A gentler way to end the day">Una forma más amable de cerrar el día</span>
         </h2>
-        <p data-i18n="p_tom1" data-es="No necesitas resolver todo hoy." data-en="You do not need to fix everything today.">No necesitas resolver todo hoy.</p>
-        <p data-i18n="p_tom2" data-es="Puedes empezar con una sola cosa." data-en="You can begin with one thing.">Puedes empezar con una sola cosa.</p>
+        <p data-i18n="p_tom1" data-es="No necesitas resolver todo hoy. Puedes empezar con una sola cosa." data-en="You do not need to fix everything today. You can begin with one thing.">No necesitas resolver todo hoy. Puedes empezar con una sola cosa.</p>
         <div class="a-ritual">
           <div class="a-ritual-h">
             <span class="t">Puedes empezar con una sola cosa</span>
@@ -762,14 +763,10 @@
             <li><span class="step-n">5</span><span data-i18n="tom_5" data-es="Reparar después." data-en="Repair afterward.">Reparar después.</span></li>
           </ol>
         </div>
-        <p data-i18n="p_tom3" data-es="La próxima noche quizás no sea perfecta. Tal vez haya llanto otra vez. Tal vez tú también te sientas impaciente." data-en="The next night may not be perfect. There may be tears again. You may feel impatient too.">La próxima noche quizás no sea perfecta. Tal vez haya llanto otra vez. Tal vez tú también te sientas impaciente.</p>
-        <p data-i18n="p_tom4" data-es="Pero puedes intentarlo de otra manera." data-en="But you can try it a different way.">Pero puedes intentarlo de otra manera.</p>
+        <p data-i18n="p_tom3" data-es="La próxima noche quizás no sea perfecta. Tal vez haya llanto otra vez. Tal vez tú también te sientas impaciente. Pero puedes intentarlo de otra manera." data-en="The next night may not be perfect. There may be tears again. You may feel impatient too. But you can try it a different way.">La próxima noche quizás no sea perfecta. Tal vez haya llanto otra vez. Tal vez tú también te sientas impaciente. Pero puedes intentarlo de otra manera.</p>
         <div class="a-pull">
           <p data-i18n="p_tom5" data-es="Y esa diferencia, aunque parezca pequeña, ya empieza a cambiar el momento." data-en="And that difference, even if it seems small, can begin to change the moment.">Y esa diferencia, aunque parezca pequeña, ya empieza a cambiar el momento.</p>
         </div>
-        <p data-i18n="p_follow_h" data-es="<strong>Para seguir acompañándote</strong>" data-en="<strong>To keep supporting you</strong>"><strong>Para seguir acompañándote</strong></p>
-        <p data-i18n="p_follow1" data-es="Si la noche suele terminar en pelea, puedes abrir la <a href=&quot;/apoyo/bedtime-resistance&quot;>guía rápida de hora de dormir</a> cuando lo necesites: pasos concretos, frases cortas y una forma de sostener el límite sin convertirlo en batalla." data-en="If bedtime often turns into a fight, you can open the <a href=&quot;/apoyo/bedtime-resistance&quot;>bedtime quick guide</a> when you need it: concrete steps, short phrases and a way to hold the limit without turning it into a battle.">Si la noche suele terminar en pelea, puedes abrir la <a href="/apoyo/bedtime-resistance">guía rápida de hora de dormir</a> cuando lo necesites: pasos concretos, frases cortas y una forma de sostener el límite sin convertirlo en batalla.</p>
-        <p data-i18n="p_follow2" data-es="Si el llanto ya empezó y necesitas acompañar los primeros minutos de una crisis, también puedes leer <a href=&quot;/aprende/Los-primeros-5/&quot;>Los primeros 5 minutos</a>." data-en="If the tears have already started and you need to support the first minutes of a crisis, you can also read <a href=&quot;/aprende/Los-primeros-5/&quot;>The First 5 Minutes</a>.">Si el llanto ya empezó y necesitas acompañar los primeros minutos de una crisis, también puedes leer <a href="/aprende/Los-primeros-5/">Los primeros 5 minutos</a>.</p>
       </div>
 
       <aside class="cs-protocol-cta" aria-labelledby="protocol-cta-title">
@@ -784,26 +781,26 @@
 
       <section class="faq" aria-labelledby="faq-title">
         <h2 id="faq-title" data-i18n="faq_title" data-es="Preguntas frecuentes" data-en="Frequently asked questions">Preguntas frecuentes</h2>
-        <div class="faq-item">
-          <h3 data-i18n="faq_q1" data-es="¿Cuánto debe durar una rutina de sueño?" data-en="How long should a sleep routine be?">¿Cuánto debe durar una rutina de sueño?</h3>
+        <details class="faq-item">
+          <summary><h3 data-i18n="faq_q1" data-es="¿Cuánto debe durar una rutina de sueño?" data-en="How long should a sleep routine be?">¿Cuánto debe durar una rutina de sueño?</h3></summary>
           <p data-i18n="faq_a1" data-es="Debe durar lo suficiente para que el cuerpo baje el ritmo, pero no tanto que se convierta en otra fuente de cansancio. Para muchas familias, una rutina simple y repetible funciona mejor que una rutina larga llena de pasos. Lo más importante es que puedas sostenerla con calma la mayoría de las noches." data-en="It should be long enough to help the body slow down, but not so long that it becomes another source of exhaustion. For many families, a simple and repeatable routine works better than a long routine with too many steps. What matters most is that you can hold it calmly most nights.">Debe durar lo suficiente para que el cuerpo baje el ritmo, pero no tanto que se convierta en otra fuente de cansancio. Para muchas familias, una rutina simple y repetible funciona mejor que una rutina larga llena de pasos. Lo más importante es que puedas sostenerla con calma la mayoría de las noches.</p>
-        </div>
-        <div class="faq-item">
-          <h3 data-i18n="faq_q2" data-es="¿Qué hago si mi hijo pide &quot;una cosa más&quot; todas las noches?" data-en="What should I do if my child asks for &quot;one more thing&quot; every night?">¿Qué hago si mi hijo pide "una cosa más" todas las noches?</h3>
+        </details>
+        <details class="faq-item">
+          <summary><h3 data-i18n="faq_q2" data-es="¿Qué hago si mi hijo pide &quot;una cosa más&quot; todas las noches?" data-en="What should I do if my child asks for &quot;one more thing&quot; every night?">¿Qué hago si mi hijo pide "una cosa más" todas las noches?</h3></summary>
           <p data-i18n="faq_a2" data-es="Puedes validar el deseo sin volver a abrir la rutina. Por ejemplo: &quot;Sé que quieres otro cuento. El cuento de hoy ya terminó. Mañana leemos otro.&quot; La clave es que el cierre sea amable, pero claro." data-en="You can validate the wish without reopening the routine. For example: &quot;I know you want another story. Tonight's story is finished. We can read another one tomorrow.&quot; The key is to make the ending kind, but clear.">Puedes validar el deseo sin volver a abrir la rutina. Por ejemplo: "Sé que quieres otro cuento. El cuento de hoy ya terminó. Mañana leemos otro." La clave es que el cierre sea amable, pero claro.</p>
-        </div>
-        <div class="faq-item">
-          <h3 data-i18n="faq_q3" data-es="¿Está mal quedarme con mi hijo hasta que se duerma?" data-en="Is it wrong to stay with my child until they fall asleep?">¿Está mal quedarme con mi hijo hasta que se duerma?</h3>
+        </details>
+        <details class="faq-item">
+          <summary><h3 data-i18n="faq_q3" data-es="¿Está mal quedarme con mi hijo hasta que se duerma?" data-en="Is it wrong to stay with my child until they fall asleep?">¿Está mal quedarme con mi hijo hasta que se duerma?</h3></summary>
           <p data-i18n="faq_a3" data-es="No necesariamente. Cada familia tiene necesidades distintas. Lo importante es mirar si esa forma de acompañar está funcionando para todos o si se volvió algo que ya no puedes sostener. Si quieres hacer un cambio, hazlo poco a poco, con claridad y presencia." data-en="Not necessarily. Every family has different needs. What matters is whether that kind of support is still working for everyone or whether it has become something you can no longer sustain. If you want to make a change, do it gradually, with clarity and presence.">No necesariamente. Cada familia tiene necesidades distintas. Lo importante es mirar si esa forma de acompañar está funcionando para todos o si se volvió algo que ya no puedes sostener. Si quieres hacer un cambio, hazlo poco a poco, con claridad y presencia.</p>
-        </div>
-        <div class="faq-item">
-          <h3 data-i18n="faq_q4" data-es="¿Qué pasa si una noche rompemos la rutina?" data-en="What if we break the routine one night?">¿Qué pasa si una noche rompemos la rutina?</h3>
+        </details>
+        <details class="faq-item">
+          <summary><h3 data-i18n="faq_q4" data-es="¿Qué pasa si una noche rompemos la rutina?" data-en="What if we break the routine one night?">¿Qué pasa si una noche rompemos la rutina?</h3></summary>
           <p data-i18n="faq_a4" data-es="No pasa nada terrible. Las rutinas no se dañan por una noche difícil. Se construyen volviendo a ellas. Puedes decir: &quot;Ayer fue diferente. Hoy volvemos a nuestra rutina.&quot;" data-en="Nothing terrible happens. Routines are not ruined by one hard night. They are built by returning to them. You can simply say: &quot;Yesterday was different. Today we're coming back to our routine.&quot;">No pasa nada terrible. Las rutinas no se dañan por una noche difícil. Se construyen volviendo a ellas. Puedes decir: "Ayer fue diferente. Hoy volvemos a nuestra rutina."</p>
-        </div>
-        <div class="faq-item">
-          <h3 data-i18n="faq_q5" data-es="¿Las pantallas antes de dormir siempre arruinan la noche?" data-en="Do screens before bed always ruin the night?">¿Las pantallas antes de dormir siempre arruinan la noche?</h3>
+        </details>
+        <details class="faq-item">
+          <summary><h3 data-i18n="faq_q5" data-es="¿Las pantallas antes de dormir siempre arruinan la noche?" data-en="Do screens before bed always ruin the night?">¿Las pantallas antes de dormir siempre arruinan la noche?</h3></summary>
           <p data-i18n="faq_a5" data-es="No se trata de culpa ni de reglas perfectas. Pero si notas que después de la pantalla tu hijo tiene más dificultad para bajar el ritmo, puede ayudar crear más espacio entre la pantalla y la cama. El cuerpo necesita señales claras para entender que el día está cerrando." data-en="This is not about guilt or perfect rules. But if you notice your child has a harder time settling after screen time, it may help to create more space between the screen and the bed. The body needs clear signals that the day is ending.">No se trata de culpa ni de reglas perfectas. Pero si notas que después de la pantalla tu hijo tiene más dificultad para bajar el ritmo, puede ayudar crear más espacio entre la pantalla y la cama. El cuerpo necesita señales claras para entender que el día está cerrando.</p>
-        </div>
+        </details>
       </section>
 
       <section class="related" aria-labelledby="rel-title">

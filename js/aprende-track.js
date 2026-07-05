@@ -127,11 +127,27 @@
     });
   }
 
+  function initShortVersionClick() {
+    document.addEventListener('click', function (e) {
+      var el = e.target.closest('a[href="#version-corta"]');
+      if (!el) return;
+      if (typeof window.track !== 'function') return;
+      var meta = readBodyMeta();
+      window.track('Aprende: Short Version Click', {
+        article: meta.article_slug || 'rutinas-de-sueno-que-sostienen-la-noche',
+        target: 'version-corta',
+        location: 'article_meta',
+        language: meta.language || getLanguage()
+      });
+    });
+  }
+
   function initAprende() {
     initPageView();
     if (readBodyMeta().page_role === 'hub') initHubCards();
     initProtocolCta();
     initRelatedClicks();
+    initShortVersionClick();
     initArticleComplete();
   }
 
