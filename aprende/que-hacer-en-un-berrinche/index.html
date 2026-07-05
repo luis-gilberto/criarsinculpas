@@ -18,6 +18,7 @@
   <meta property="og:image:alt" content="Criar Sin Culpas, crianza consciente">
   <meta property="og:locale" content="es_ES">
   <meta property="article:published_time" content="2026-06-30">
+  <meta property="article:modified_time" content="2026-07-05">
   <meta property="article:section" content="Berrinches y desbordes">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Qué hacer cuando tu hijo tiene un berrinche">
@@ -61,8 +62,9 @@
         "mainEntityOfPage": "https://criarsinculpas.com/aprende/que-hacer-en-un-berrinche/",
         "image": "https://criarsinculpas.com/assets/illustrations/hero-berrinche.svg",
         "datePublished": "2026-06-30",
-        "dateModified": "2026-07-02",
+        "dateModified": "2026-07-05",
         "articleSection": "Berrinches y desbordes",
+        "keywords": "berrinches, desbordes emocionales, qué hacer en un berrinche, berrinches sin gritos, crianza sin culpa",
         "author": { "@type": "Person", "name": "Nari Fateha", "url": "https://criarsinculpas.com/sobre-nari/" },
         "publisher": {
           "@type": "Organization",
@@ -216,7 +218,7 @@
     }
     .crisis-link:hover { opacity: .85; }
     .callout {
-      font-family: var(--serif); font-style: italic; font-size: 1.14rem; line-height: 1.5;
+      font-family: var(--serif); font-style: normal; font-size: 1.14rem; line-height: 1.5;
       color: var(--coral-ink); background: var(--coral-dim);
       border-left: 3px solid var(--coral); border-radius: 10px;
       padding: 16px 20px; margin: 18px 0 22px;
@@ -262,9 +264,23 @@
       .cs-article-hero { padding: 16px; margin-bottom: 28px; border-radius: 16px; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    .faq details.faq-item summary {
+      list-style: none; cursor: pointer;
+      display: flex; align-items: baseline; justify-content: space-between; gap: 14px;
+    }
+    .faq details.faq-item summary::-webkit-details-marker { display: none; }
+    .faq details.faq-item summary::after {
+      content: '+'; flex: none;
+      font-family: var(--serif); font-size: 1.35rem; line-height: 1;
+      color: var(--coral-ink);
+      transition: transform .3s var(--ease-silk);
+    }
+    .faq details.faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq details.faq-item summary h3 { margin-bottom: 0; }
+    .faq details.faq-item[open] summary { margin-bottom: 10px; }
   </style>
 </head>
-<body data-channel="aprende" data-content-type="article" data-page-role="article" data-article-slug="que-hacer-en-un-berrinche" data-article-category="berrinches" data-protocol="general">
+<body data-channel="aprende" data-content-type="article" data-page-role="article" data-article-slug="que-hacer-en-un-berrinche" data-article-category="berrinches" data-protocol="emotional-escalation">
 
   <div class="grain" aria-hidden="true"></div>
   <div id="site-nav" data-active="aprende"></div>
@@ -286,7 +302,7 @@
         <p class="art-subtitle" data-i18n="subtitle" data-es="Una guía breve para acompañar un berrinche sin gritos, amenazas ni culpa." data-en="A short guide for getting through a tantrum without yelling, threats or shame.">Una guía breve para acompañar un berrinche sin gritos, amenazas ni culpa.</p>
         <div class="read-badge">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
-          <span data-i18n="read_time" data-es="6 min de lectura" data-en="6 min read">6 min de lectura</span>
+          <span data-i18n="read_time" data-es="5 min de lectura" data-en="5 min read">5 min de lectura</span>
         </div>
         <div class="art-meta">
           <span class="m"><span data-i18n="meta_rel" data-es="Guía relacionada:" data-en="Related guide:">Guía relacionada:</span> <a href="/apoyo/emotional-escalation" data-i18n="meta_rel_link" data-es="Desbordes" data-en="Meltdowns">Desbordes</a></span>
@@ -308,12 +324,8 @@
 
       <div class="prose">
         <p class="lead" data-i18n="lead1" data-es="Estás en el supermercado, o en la sala, o saliendo tarde, y de pronto tu hijo se tira al piso, grita, llora, y nada funciona." data-en="You are at the grocery store, or in the living room, or already running late, and suddenly your child drops to the floor, cries, yells, and nothing works.">Estás en el supermercado, o en la sala, o saliendo tarde, y de pronto tu hijo se tira al piso, grita, llora, y nada funciona.</p>
-        <p data-i18n="lead2" data-es="Sientes miradas." data-en="You feel the looks.">Sientes miradas.</p>
-        <p data-i18n="lead3" data-es="Sientes presión." data-en="You feel the pressure.">Sientes presión.</p>
-        <p data-i18n="lead4" data-es="Y una parte de ti quiere gritar también." data-en="And part of you wants to yell too.">Y una parte de ti quiere gritar también.</p>
-        <p data-i18n="lead5" data-es="Si estás aquí, es porque sigues buscando una forma de acompañarlo sin perderte tú." data-en="If you are here, it is because you are still looking for a way to support your child without losing yourself.">Si estás aquí, es porque sigues buscando una forma de acompañarlo sin perderte tú.</p>
-        <p data-i18n="lead6" data-es="Eso no es fracaso." data-en="That is not failure.">Eso no es fracaso.</p>
-        <p data-i18n="lead7" data-es="Es amor haciendo su trabajo en un día difícil." data-en="That is love doing its job on a hard day.">Es amor haciendo su trabajo en un día difícil.</p>
+        <p data-i18n="lead2" data-es="Sientes miradas. Sientes presión. Y una parte de ti quiere gritar también." data-en="You feel the looks. You feel the pressure. And part of you wants to yell too.">Sientes miradas. Sientes presión. Y una parte de ti quiere gritar también.</p>
+        <p data-i18n="lead5" data-es="Si estás aquí, es porque sigues buscando una forma de acompañarlo sin perderte tú. Eso no es fracaso. Es amor haciendo su trabajo en un día difícil." data-en="If you are here, it is because you are still looking for a way to support your child without losing yourself. That is not failure. That is love doing its job on a hard day.">Si estás aquí, es porque sigues buscando una forma de acompañarlo sin perderte tú. Eso no es fracaso. Es amor haciendo su trabajo en un día difícil.</p>
 
         <aside class="crisis-block" aria-labelledby="crisis-title">
           <h2 id="crisis-title" data-i18n="h2_crisis" data-es="Si estás en el momento" data-en="If you are in it right now">Si estás en el momento</h2>
@@ -330,24 +342,19 @@
           <svg class="csc-icon" aria-hidden="true" focusable="false"><use href="/assets/icons/criar-icons.svg#i-cerebro"></use></svg>
           <span data-i18n="h2_what" data-es="Qué está pasando dentro del berrinche" data-en="What is happening inside the tantrum">Qué está pasando dentro del berrinche</span>
         </h2>
-        <p data-i18n="p_what1" data-es="Un berrinche no siempre es manipulación." data-en="A tantrum is not always manipulation.">Un berrinche no siempre es manipulación.</p>
-        <p data-i18n="p_what2" data-es="Muchas veces es una emoción demasiado grande para un sistema que todavía está aprendiendo a manejarla." data-en="Often, it is an emotion that is too big for a system still learning how to manage it.">Muchas veces es una emoción demasiado grande para un sistema que todavía está aprendiendo a manejarla.</p>
-        <p data-i18n="p_what3" data-es="Cuando llega frustración, cansancio, hambre o decepción, tu hijo puede abrumarse rápido. En ese momento, no puede razonar como cuando está calmado." data-en="When frustration, tiredness, hunger or disappointment show up, your child can become overwhelmed quickly. In that moment, they cannot reason the way they can when they are calm.">Cuando llega frustración, cansancio, hambre o decepción, tu hijo puede abrumarse rápido. En ese momento, no puede razonar como cuando está calmado.</p>
-        <p data-i18n="p_what4" data-es="No está eligiendo portarse mal." data-en="They are not choosing to be difficult.">No está eligiendo portarse mal.</p>
-        <p data-i18n="p_what5" data-es="Está perdido dentro de una emoción que todavía no sabe sostener." data-en="They are lost inside an emotion they do not yet know how to hold.">Está perdido dentro de una emoción que todavía no sabe sostener.</p>
-        <p data-i18n="p_what6" data-es="Cuando entiendes esto, deja de ser tú contra tu hijo." data-en="When you understand this, it stops being you against your child.">Cuando entiendes esto, deja de ser tú contra tu hijo.</p>
-        <p data-i18n="p_what7" data-es="Es tu hijo contra una tormenta interna, contigo a su lado." data-en="It becomes your child against an internal storm, with you beside them.">Es tu hijo contra una tormenta interna, contigo a su lado.</p>
+        <p data-i18n="p_what1" data-es="Un berrinche no siempre es manipulación. Muchas veces es una emoción demasiado grande para un sistema que todavía está aprendiendo a manejarla." data-en="A tantrum is not always manipulation. Often, it is an emotion that is too big for a system still learning how to manage it.">Un berrinche no siempre es manipulación. Muchas veces es una emoción demasiado grande para un sistema que todavía está aprendiendo a manejarla.</p>
+        <p data-i18n="p_what3" data-es="Cuando llega frustración, cansancio, hambre o decepción, tu hijo puede abrumarse rápido. En ese momento, no puede razonar como cuando está calmado. No está eligiendo portarse mal. Está perdido dentro de una emoción que todavía no sabe sostener." data-en="When frustration, tiredness, hunger or disappointment show up, your child can become overwhelmed quickly. In that moment, they cannot reason the way they can when they are calm. They are not choosing to be difficult. They are lost inside an emotion they do not yet know how to hold.">Cuando llega frustración, cansancio, hambre o decepción, tu hijo puede abrumarse rápido. En ese momento, no puede razonar como cuando está calmado. No está eligiendo portarse mal. Está perdido dentro de una emoción que todavía no sabe sostener.</p>
+        <p data-i18n="p_what6" data-es="Cuando entiendes esto, deja de ser tú contra tu hijo. Es tu hijo contra una tormenta interna, contigo a su lado." data-en="When you understand this, it stops being you against your child. It becomes your child against an internal storm, with you beside them.">Cuando entiendes esto, deja de ser tú contra tu hijo. Es tu hijo contra una tormenta interna, contigo a su lado.</p>
         <p class="callout" data-i18n="callout_what" data-es="No es manipulación. Es una emoción demasiado grande." data-en="It is not manipulation. It is an emotion that is too big right now.">No es manipulación. Es una emoción demasiado grande.</p>
 
         <h2 class="csc-heading">
           <svg class="csc-icon" aria-hidden="true" focusable="false"><use href="/assets/icons/criar-icons.svg#i-mano"></use></svg>
           <span data-i18n="h2_moment" data-es="Qué hacer en el momento" data-en="What to do in the moment">Qué hacer en el momento</span>
         </h2>
-        <p data-i18n="p_moment1" data-es="Tu objetivo no es apagar el berrinche de inmediato." data-en="Your goal is not to stop the tantrum immediately.">Tu objetivo no es apagar el berrinche de inmediato.</p>
-        <p data-i18n="p_moment2" data-es="Es ser el ancla mientras pasa la ola." data-en="It is to be the anchor while the wave passes.">Es ser el ancla mientras pasa la ola.</p>
+        <p data-i18n="p_moment1" data-es="Tu objetivo no es apagar el berrinche de inmediato. Es ser el ancla mientras pasa la ola." data-en="Your goal is not to stop the tantrum immediately. It is to be the anchor while the wave passes.">Tu objetivo no es apagar el berrinche de inmediato. Es ser el ancla mientras pasa la ola.</p>
         <div class="action-block">
           <p class="ab-title" data-i18n="act_1_t" data-es="Baja tu volumen primero." data-en="Lower your voice first.">Baja tu volumen primero.</p>
-          <p data-i18n="act_1_p" data-es="Una respiración lenta. Tu calma ayuda, aunque no sea perfecta." data-en="One slow breath. Your calm helps, even when it is not perfect.">Una respiración lenta. Tu calma ayuda, aunque no sea perfecta.</p>
+          <p data-i18n="act_1_p" data-es="Una respiración lenta antes de hablar." data-en="One slow breath before you speak.">Una respiración lenta antes de hablar.</p>
         </div>
         <div class="action-block">
           <p class="ab-title" data-i18n="act_2_t" data-es="Acércate y baja a su nivel." data-en="Get close and lower yourself to their level.">Acércate y baja a su nivel.</p>
@@ -384,9 +391,7 @@
           <svg class="csc-icon" aria-hidden="true" focusable="false"><use href="/assets/icons/criar-icons.svg#i-bocadillo"></use></svg>
           <span data-i18n="h2_say" data-es="Qué decir" data-en="What to say">Qué decir</span>
         </h2>
-        <p data-i18n="p_say1" data-es="Menos es más." data-en="Less is more.">Menos es más.</p>
-        <p data-i18n="p_say2" data-es="Voz suave." data-en="Soft voice.">Voz suave.</p>
-        <p data-i18n="p_say3" data-es="Frases cortas." data-en="Short phrases.">Frases cortas.</p>
+        <p data-i18n="p_say1" data-es="Menos es más. Voz suave. Frases cortas." data-en="Less is more. Soft voice. Short phrases.">Menos es más. Voz suave. Frases cortas.</p>
         <div class="say-box"><ul>
           <li data-i18n="say_1" data-es="&quot;Estoy aquí. Estás a salvo.&quot;" data-en="&quot;I'm here. You're safe.&quot;">"Estoy aquí. Estás a salvo."</li>
           <li data-i18n="say_2" data-es="&quot;Veo que esto es muy difícil.&quot;" data-en="&quot;I can see this is really hard.&quot;">"Veo que esto es muy difícil."</li>
@@ -394,7 +399,6 @@
           <li data-i18n="say_4" data-es="&quot;Cuando estés listo, te ayudo.&quot;" data-en="&quot;When you're ready, I'll help.&quot;">"Cuando estés listo, te ayudo."</li>
           <li data-i18n="say_5" data-es="&quot;Es duro cuando algo no sale como querías.&quot;" data-en="&quot;It is hard when something does not go the way you wanted.&quot;">"Es duro cuando algo no sale como querías."</li>
         </ul></div>
-        <p data-i18n="p_say4" data-es="A veces una sola frase, repetida con calma, puede ser suficiente." data-en="Sometimes one simple phrase, repeated calmly, can be enough.">A veces una sola frase, repetida con calma, puede ser suficiente.</p>
         <p class="callout" data-i18n="callout_say" data-es="Una sola frase, repetida con calma, puede ser suficiente." data-en="One simple phrase, repeated calmly, can be enough.">Una sola frase, repetida con calma, puede ser suficiente.</p>
 
         <h2 class="csc-heading">
@@ -424,9 +428,7 @@
           <svg class="csc-icon" aria-hidden="true" focusable="false"><use href="/assets/icons/criar-icons.svg#i-sos"></use></svg>
           <span data-i18n="h2_support" data-es="Cuándo buscar apoyo" data-en="When to seek support">Cuándo buscar apoyo</span>
         </h2>
-        <p data-i18n="p_support1" data-es="Los berrinches son normales." data-en="Tantrums are common.">Los berrinches son normales.</p>
-        <p data-i18n="p_support2" data-es="Aun así, confía en tu instinto." data-en="Even so, trust your instinct.">Aun así, confía en tu instinto.</p>
-        <p data-i18n="p_support3" data-es="Busca apoyo si:" data-en="Seek support if:">Busca apoyo si:</p>
+        <p data-i18n="p_support1" data-es="Los berrinches son normales. Aun así, confía en tu instinto. Busca apoyo si:" data-en="Tantrums are common. Even so, trust your instinct. Seek support if:">Los berrinches son normales. Aun así, confía en tu instinto. Busca apoyo si:</p>
         <ul>
           <li data-i18n="sup_1" data-es="Son muy frecuentes o intensos para su edad." data-en="Tantrums feel very frequent or intense for their age.">Son muy frecuentes o intensos para su edad.</li>
           <li data-i18n="sup_2" data-es="Se lastima o lastima a otros." data-en="Your child hurts themselves or others.">Se lastima o lastima a otros.</li>
@@ -448,18 +450,18 @@
 
       <section class="faq" aria-labelledby="faq-title">
         <h2 id="faq-title" data-i18n="faq_title" data-es="Preguntas frecuentes" data-en="Frequently asked questions">Preguntas frecuentes</h2>
-        <div class="faq-item">
-          <h3 data-i18n="faq_q1" data-es="¿A qué edad son normales los berrinches?" data-en="At what age are tantrums normal?">¿A qué edad son normales los berrinches?</h3>
+        <details class="faq-item">
+          <summary><h3 data-i18n="faq_q1" data-es="¿A qué edad son normales los berrinches?" data-en="At what age are tantrums normal?">¿A qué edad son normales los berrinches?</h3></summary>
           <p data-i18n="faq_a1" data-es="Son comunes entre 1.5 y 4 años, aunque cada niño tiene su ritmo. También pueden aparecer fuera de esa edad cuando hay cansancio, hambre, cambios grandes o emociones difíciles de manejar." data-en="They are common between 1.5 and 4 years old, though every child has their own rhythm. They can also happen outside that age range when there is tiredness, hunger, big change or difficult emotions.">Son comunes entre 1.5 y 4 años, aunque cada niño tiene su ritmo. También pueden aparecer fuera de esa edad cuando hay cansancio, hambre, cambios grandes o emociones difíciles de manejar.</p>
-        </div>
-        <div class="faq-item">
-          <h3 data-i18n="faq_q2" data-es="¿Debo ignorar los berrinches?" data-en="Should I ignore tantrums?">¿Debo ignorar los berrinches?</h3>
+        </details>
+        <details class="faq-item">
+          <summary><h3 data-i18n="faq_q2" data-es="¿Debo ignorar los berrinches?" data-en="Should I ignore tantrums?">¿Debo ignorar los berrinches?</h3></summary>
           <p data-i18n="faq_a2" data-es="No hace falta ignorar a tu hijo para sostener un límite. Puedes acompañar la emoción, cuidar la seguridad y mantener la regla con calma." data-en="You do not have to ignore your child in order to hold a limit. You can stay with the emotion, protect safety and keep the rule calmly.">No hace falta ignorar a tu hijo para sostener un límite. Puedes acompañar la emoción, cuidar la seguridad y mantener la regla con calma.</p>
-        </div>
-        <div class="faq-item">
-          <h3 data-i18n="faq_q3" data-es="¿Cómo evito gritar?" data-en="How do I avoid yelling?">¿Cómo evito gritar?</h3>
+        </details>
+        <details class="faq-item">
+          <summary><h3 data-i18n="faq_q3" data-es="¿Cómo evito gritar?" data-en="How do I avoid yelling?">¿Cómo evito gritar?</h3></summary>
           <p data-i18n="faq_a3" data-es="Empieza por una respiración y baja tu volumen antes de hablar. Si un día gritas, puedes reparar después. La calma también se practica." data-en="Start with one breath and lower your voice before speaking. If you yell one day, you can repair afterward. Calm is something we practice too.">Empieza por una respiración y baja tu volumen antes de hablar. Si un día gritas, puedes reparar después. La calma también se practica.</p>
-        </div>
+        </details>
       </section>
 
       <section class="related" aria-labelledby="rel-title">

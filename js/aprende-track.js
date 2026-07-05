@@ -142,12 +142,40 @@
     });
   }
 
+  function initArticleProtocolCtaClicks() {
+    document.addEventListener('click', function (e) {
+      var crisis = e.target.closest('a.crisis-link[href="/apoyo/emotional-escalation"]');
+      if (crisis) {
+        if (typeof window.track !== 'function') return;
+        var meta = readBodyMeta();
+        window.track('Aprende: Crisis CTA Click', {
+          article: meta.article_slug || 'que-hacer-en-un-berrinche',
+          protocol: meta.protocol || 'emotional-escalation',
+          location: 'crisis_block',
+          language: meta.language || getLanguage()
+        });
+        return;
+      }
+      var cta = e.target.closest('a.cta-btn[href="/apoyo/emotional-escalation"]');
+      if (!cta) return;
+      if (typeof window.track !== 'function') return;
+      var metaBtn = readBodyMeta();
+      window.track('Aprende: Protocol CTA Click', {
+        article: metaBtn.article_slug || 'que-hacer-en-un-berrinche',
+        protocol: metaBtn.protocol || 'emotional-escalation',
+        location: 'cta_card',
+        language: metaBtn.language || getLanguage()
+      });
+    });
+  }
+
   function initAprende() {
     initPageView();
     if (readBodyMeta().page_role === 'hub') initHubCards();
     initProtocolCta();
     initRelatedClicks();
     initShortVersionClick();
+    initArticleProtocolCtaClicks();
     initArticleComplete();
   }
 
