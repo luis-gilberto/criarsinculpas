@@ -346,7 +346,10 @@
       .hero-shot{transform:scale(1.05)!important;}
       .hero .r1,.hero .r2,.hero .r3,.hero .r4{opacity:1!important;transform:none!important;}
       .hero-type .status-dot{animation:none!important;}
+      .scroll-reveal{opacity:1!important;transform:none!important;}
     }
+    /* Guías de apoyo: tarjetas y enlaces deben verse al llegar a la sección */
+    .protocolo-card,.guides-foot{opacity:1;transform:none;}
 
     /* ═══════════════ MOBILE TUNING (≤640px) ═══════════════ */
     @media(max-width:640px){
@@ -574,7 +577,7 @@
 
       <div class="protocolos-grid">
 
-        <a class="protocolo-card scroll-reveal" href="/apoyo/screen-time"
+        <a class="protocolo-card" href="/apoyo/screen-time"
            data-protocol="screen-time"
            aria-label="Pantallas · Límite sin guerra">
           <div class="protocolo-frame">
@@ -595,7 +598,7 @@
           </div>
         </a>
 
-        <a class="protocolo-card scroll-reveal delay-1" href="/apoyo/emotional-escalation"
+        <a class="protocolo-card" href="/apoyo/emotional-escalation"
            data-protocol="emotional-escalation"
            aria-label="Desbordes · Calma en crisis">
           <div class="protocolo-frame">
@@ -616,7 +619,7 @@
           </div>
         </a>
 
-        <a class="protocolo-card scroll-reveal delay-2" href="/apoyo/bedtime-resistance"
+        <a class="protocolo-card" href="/apoyo/bedtime-resistance"
            data-protocol="bedtime-resistance"
            aria-label="Sueño · Ritual y reparación">
           <div class="protocolo-frame">
@@ -637,7 +640,7 @@
           </div>
         </a>
 
-        <a class="protocolo-card scroll-reveal delay-3" href="/apoyo/sibling-conflict"
+        <a class="protocolo-card" href="/apoyo/sibling-conflict"
            data-protocol="sibling-conflict"
            aria-label="Hermanos · Separar, validar, limitar">
           <div class="protocolo-frame">
@@ -662,7 +665,7 @@
     </div>
   </section>
 
-  <div class="guides-foot scroll-reveal">
+  <div class="guides-foot">
     <a href="/apoyo/index.html" class="link-pill" data-i18n="guides_all" data-es="Ver todas las guías →" data-en="View all guides →">Ver todas las guías →</a>
     <a href="/aprende/" class="link-pill" data-i18n="guides_aprende" data-es="Explorar la biblioteca Aprende →" data-en="Explore the Learn library →">Explorar la biblioteca Aprende →</a>
   </div>
@@ -814,12 +817,19 @@
 
     (function() {
       const reveals = document.querySelectorAll('.scroll-reveal');
+      const revealVisible = el => el.classList.add('visible');
       if ('IntersectionObserver' in window) {
         const io = new IntersectionObserver((entries) => {
-          entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); } });
-        }, { threshold: 0.12 });
+          entries.forEach(en => { if (en.isIntersecting) { revealVisible(en.target); io.unobserve(en.target); } });
+        }, { threshold: 0.08, rootMargin: '0px 0px 8% 0px' });
         reveals.forEach(el => io.observe(el));
-      } else { reveals.forEach(el => el.classList.add('visible')); }
+        requestAnimationFrame(() => {
+          reveals.forEach(el => {
+            const r = el.getBoundingClientRect();
+            if (r.top < window.innerHeight * 0.92 && r.bottom > 0) revealVisible(el);
+          });
+        });
+      } else { reveals.forEach(revealVisible); }
     })();
 
     /* ── Plausible Goals (preserved) ── */
