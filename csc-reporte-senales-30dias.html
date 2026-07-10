@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Criar Sin Culpas · Lectura de señales · 30 días</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #18242F;
+    --navy-soft: #2A3B4A;
+    --cream: #FAF6EF;
+    --paper: #FFFFFF;
+    --peach: #F3D9C4;
+    --peach-deep: #E8C3A4;
+    --terra: #BC6044;
+    --coral: #DC7551;
+    --teal: #4E8F88;
+    --ink: #1E2A34;
+    --ink-soft: #5A6873;
+    --hairline: rgba(24, 36, 47, 0.12);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 28px; }
+  .mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .accent { color: var(--terra); font-weight: 600; }
+
+  /* Language toggle */
+  .lang-toggle {
+    position: fixed; top: 16px; right: 16px; z-index: 50;
+    display: flex; background: var(--navy); border: 1px solid rgba(250,246,239,0.25);
+    border-radius: 999px; padding: 3px;
+  }
+  .lang-toggle button {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em;
+    background: transparent; color: rgba(250,246,239,0.6); border: none;
+    padding: 6px 14px; border-radius: 999px; cursor: pointer;
+    min-height: 32px;
+  }
+  .lang-toggle button.active { background: var(--peach-deep); color: var(--navy); font-weight: 500; }
+
+  /* Cover */
+  .cover { background: var(--navy); color: var(--cream); padding: 88px 0 72px; }
+  .cover .mono { color: var(--peach-deep); margin-bottom: 24px; display: flex; align-items: center; gap: 14px; }
+  .cover .mono::after { content: ''; height: 1px; width: 64px; background: var(--terra); flex-shrink: 0; }
+  .cover h1 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(38px, 7vw, 72px); line-height: 1.08; letter-spacing: -0.01em; max-width: 16ch; }
+  .cover h1 span { color: var(--peach-deep); }
+  .cover .sub { margin-top: 28px; max-width: 52ch; color: rgba(250, 246, 239, 0.78); font-size: 16px; }
+  .cover-meta { margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px 32px; border-top: 1px solid rgba(250, 246, 239, 0.18); padding-top: 22px; }
+  .cover-meta .k { display: block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(250, 246, 239, 0.55); margin-bottom: 6px; }
+  .cover-meta .v { display: block; font-size: 14px; color: var(--cream); }
+
+  /* Sections */
+  section { padding: 64px 0 8px; }
+  .eyebrow { color: var(--terra); margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
+  .eyebrow::before { content: ''; height: 1px; width: 36px; background: var(--terra); flex-shrink: 0; }
+  h2 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(28px, 4.4vw, 42px); line-height: 1.14; color: var(--navy); max-width: 24ch; margin-bottom: 18px; }
+  .lede { max-width: 60ch; color: var(--ink-soft); margin-bottom: 36px; }
+
+  /* KPI band */
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; margin-bottom: 40px; }
+  .kpi { background: var(--paper); border: 1px solid var(--hairline); border-radius: 14px; padding: 20px 20px 16px; }
+  .kpi .n { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 46px); line-height: 1; color: var(--navy); font-weight: 500; }
+  .kpi .n small { font-size: 0.5em; color: var(--ink-soft); }
+  .kpi .l { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--ink-soft); }
+
+  /* Chart cards with HTML bars */
+  .chart-card { background: var(--paper); border: 1px solid var(--hairline); border-radius: 14px; padding: 26px; margin-bottom: 20px; }
+  .chart-card h3 { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+  .chart-card .note { font-size: 13px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 22px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: 12px; color: var(--ink-soft); margin-bottom: 18px; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .sw { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+
+  .brow { margin-bottom: 16px; }
+  .brow .bl { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 5px; }
+  .brow .name { font-size: 13px; color: var(--ink); }
+  .brow .val { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--navy); font-weight: 500; white-space: nowrap; }
+  .brow .track { height: 14px; background: rgba(24,36,47,0.05); border-radius: 5px; overflow: hidden; }
+  .brow .fill { height: 100%; border-radius: 5px; min-width: 4px; }
+  .brow .track + .track { margin-top: 4px; }
+
+  /* Lecturas */
+  .lectura { border-top: 1px solid var(--hairline); padding: 32px 0; display: grid; grid-template-columns: 88px 1fr; gap: 24px; }
+  .lectura .num { font-family: 'Cormorant Garamond', serif; font-size: 44px; color: var(--peach-deep); line-height: 1; font-weight: 500; }
+  .lectura h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 23px; color: var(--navy); margin-bottom: 10px; line-height: 1.25; }
+  .lectura p { color: var(--ink-soft); max-width: 62ch; font-size: 15px; }
+
+  /* Depth grid */
+  .depth-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-bottom: 40px; }
+  .depth { background: var(--navy); color: var(--cream); border-radius: 14px; padding: 20px; }
+  .depth .pg { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--peach-deep); margin-bottom: 12px; }
+  .depth .pct { font-family: 'Cormorant Garamond', serif; font-size: 42px; line-height: 1; font-weight: 500; }
+  .depth .t { font-size: 12px; color: rgba(250, 246, 239, 0.65); margin-top: 8px; }
+  .depth-bar { height: 4px; background: rgba(250, 246, 239, 0.16); border-radius: 2px; margin-top: 14px; overflow: hidden; }
+  .depth-bar i { display: block; height: 100%; background: var(--peach-deep); border-radius: 2px; }
+
+  /* Vitals */
+  .vitals { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 22px; }
+  .vital { background: var(--paper); border: 1px solid var(--hairline); border-radius: 14px; padding: 18px 20px; }
+  .vital .k { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+  .vital .v { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 500; color: var(--teal); line-height: 1.1; margin-top: 8px; }
+  .vital .d { font-size: 12px; line-height: 1.5; color: var(--ink-soft); margin-top: 4px; }
+  .outlier { border-left: 3px solid var(--coral); background: var(--paper); border-top: 1px solid var(--hairline); border-right: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); padding: 16px 20px; margin: 8px 0 40px; }
+  .outlier .k { font-size: 13px; font-weight: 600; color: var(--navy); }
+  .outlier .v { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-soft); margin-top: 4px; word-break: break-all; }
+
+  /* Next steps */
+  .steps { counter-reset: step; margin-bottom: 48px; }
+  .step { background: var(--paper); border: 1px solid var(--hairline); border-radius: 14px; padding: 22px 24px; margin-bottom: 14px; display: grid; grid-template-columns: 40px 1fr; gap: 16px; align-items: start; }
+  .step::before { counter-increment: step; content: counter(step, decimal-leading-zero); font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--terra); padding-top: 3px; }
+  .step h4 { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+  .step p { font-size: 14px; color: var(--ink-soft); max-width: 62ch; }
+
+  /* Footer */
+  footer { background: var(--navy); color: rgba(250, 246, 239, 0.7); padding: 48px 0; margin-top: 40px; }
+  footer .brand { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--cream); font-weight: 500; }
+  footer .line { margin-top: 10px; font-size: 13px; max-width: 60ch; }
+  footer .meta { margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(250, 246, 239, 0.14); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(250, 246, 239, 0.45); line-height: 1.9; }
+
+  @media (max-width: 640px) {
+    body { font-size: 15px; }
+    .wrap { padding: 0 20px; }
+    .cover { padding: 76px 0 52px; }
+    .cover .sub { font-size: 15px; margin-top: 22px; }
+    .cover-meta { grid-template-columns: 1fr 1fr; margin-top: 36px; }
+    section { padding: 48px 0 8px; }
+    .lede { margin-bottom: 28px; font-size: 15px; }
+    .kpis { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .kpi { padding: 16px 16px 14px; }
+    .chart-card { padding: 20px 18px; }
+    .lectura { grid-template-columns: 1fr; gap: 10px; padding: 26px 0; }
+    .lectura .num { font-size: 30px; }
+    .depth-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .depth { padding: 16px; }
+    .depth .pct { font-size: 34px; }
+    .vitals { grid-template-columns: 1fr; }
+    .step { padding: 18px 18px; grid-template-columns: 34px 1fr; gap: 12px; }
+  }
+  @media print {
+    body { background: #fff; }
+    .lang-toggle { display: none; }
+    .cover, .depth, footer { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="lang-toggle" role="group" aria-label="Idioma / Language">
+  <button id="btn-es" onclick="setLang('es')">ES</button>
+  <button id="btn-en" onclick="setLang('en')">EN</button>
+</div>
+
+<header class="cover">
+  <div class="wrap">
+    <p class="mono" data-es="Criar Sin Culpas · Lectura de señales" data-en="Criar Sin Culpas · Signal reading">Criar Sin Culpas · Lectura de señales</p>
+    <h1 data-es="El sitio ya sabe recibir. <span>Ahora le toca conocer gente nueva.</span>" data-en="The site already knows how to welcome. <span>Now it needs to meet new people.</span>">El sitio ya sabe recibir. <span>Ahora le toca conocer gente nueva.</span></h1>
+    <p class="sub" data-es="Treinta días de datos cruzados entre comportamiento (Plausible) y rendimiento técnico (Cloudflare). Dos fuentes, una sola historia: el contenido funciona, la infraestructura responde, y la próxima palanca está fuera del sitio." data-en="Thirty days of data crossed between behavior (Plausible) and technical performance (Cloudflare). Two sources, one story: the content works, the infrastructure responds, and the next lever lives outside the site.">Treinta días de datos cruzados entre comportamiento (Plausible) y rendimiento técnico (Cloudflare). Dos fuentes, una sola historia: el contenido funciona, la infraestructura responde, y la próxima palanca está fuera del sitio.</p>
+    <div class="cover-meta">
+      <div><span class="k" data-es="Periodo" data-en="Period">Periodo</span><span class="v" data-es="9 jun · 9 jul 2026" data-en="Jun 9 · Jul 9, 2026">9 jun · 9 jul 2026</span></div>
+      <div><span class="k" data-es="Preparado para" data-en="Prepared for">Preparado para</span><span class="v">Nari Fateha</span></div>
+      <div><span class="k" data-es="Preparado por" data-en="Prepared by">Preparado por</span><span class="v">LG Studio</span></div>
+      <div><span class="k" data-es="Fuentes" data-en="Sources">Fuentes</span><span class="v">Plausible + Cloudflare</span></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="mono eyebrow" data-es="01 · El pulso" data-en="01 · The pulse">01 · El pulso</p>
+    <h2 data-es="Un mes de sesiones profundas, no de tráfico masivo" data-en="A month of deep sessions, not mass traffic">Un mes de sesiones profundas, no de tráfico masivo</h2>
+    <p class="lede" data-es="Los números absolutos todavía son pequeños y reflejan, en gran medida, un círculo cercano y sesiones de revisión. Lo valioso en esta etapa no es fingir escala, sino identificar si la experiencia sostiene la atención. En eso, las señales son <span class='accent'>prometedoras y consistentes</span>." data-en="The absolute numbers are still small and largely reflect an inner circle and review sessions. The value at this stage is not pretending we have scale, but identifying whether the experience holds attention. On that front, the signals are <span class='accent'>promising and consistent</span>.">Los números absolutos todavía son pequeños y reflejan, en gran medida, un círculo cercano y sesiones de revisión. Lo valioso en esta etapa no es fingir escala, sino identificar si la experiencia sostiene la atención. En eso, las señales son <span class="accent">prometedoras y consistentes</span>.</p>
+
+    <div class="kpis">
+      <div class="kpi"><div class="n">93</div><div class="l" data-es="Visitantes únicos" data-en="Unique visitors">Visitantes únicos</div></div>
+      <div class="kpi"><div class="n">383</div><div class="l" data-es="Páginas vistas" data-en="Pageviews">Páginas vistas</div></div>
+      <div class="kpi"><div class="n">57<small>%</small></div><div class="l" data-es="Tráfico móvil (iOS + Safari dominan)" data-en="Mobile traffic (iOS + Safari lead)">Tráfico móvil (iOS + Safari dominan)</div></div>
+      <div class="kpi"><div class="n">~2<small>%</small></div><div class="l" data-es="Tasa de rebote · la gente entra y recorre" data-en="Bounce rate · people enter and explore">Tasa de rebote · la gente entra y recorre</div></div>
+    </div>
+
+    <div class="chart-card">
+      <h3 data-es="Ritmo semanal" data-en="Weekly rhythm">Ritmo semanal</h3>
+      <p class="note" data-es="La semana del 29 de junio concentró 262 páginas vistas. El volumen de páginas por visitante sugiere sesiones de revisión intensiva más que navegación casual, por lo que debe leerse como una señal de profundidad, no todavía como crecimiento de audiencia." data-en="The week of June 29 concentrated 262 pageviews. The volume of pages per visitor suggests intensive review sessions rather than casual browsing, so it should be read as a depth signal, not yet as audience growth.">La semana del 29 de junio concentró 262 páginas vistas. El volumen de páginas por visitante sugiere sesiones de revisión intensiva más que navegación casual, por lo que debe leerse como una señal de profundidad, no todavía como crecimiento de audiencia.</p>
+      <div class="legend">
+        <span><span class="sw" style="background:#18242F;"></span><span data-es="Visitantes" data-en="Visitors">Visitantes</span></span>
+        <span><span class="sw" style="background:#E8C3A4;"></span><span data-es="Páginas vistas" data-en="Pageviews">Páginas vistas</span></span>
+      </div>
+      <div class="brow">
+        <div class="bl"><span class="name" data-es="Semana del 9 jun" data-en="Week of Jun 9">Semana del 9 jun</span><span class="val">11 · 9</span></div>
+        <div class="track"><div class="fill" style="width:4.2%; background:#18242F;"></div></div>
+        <div class="track"><div class="fill" style="width:3.4%; background:#E8C3A4;"></div></div>
+      </div>
+      <div class="brow">
+        <div class="bl"><span class="name" data-es="Semana del 15 jun" data-en="Week of Jun 15">Semana del 15 jun</span><span class="val">15 · 36</span></div>
+        <div class="track"><div class="fill" style="width:5.7%; background:#18242F;"></div></div>
+        <div class="track"><div class="fill" style="width:13.7%; background:#E8C3A4;"></div></div>
+      </div>
+      <div class="brow">
+        <div class="bl"><span class="name" data-es="Semana del 22 jun" data-en="Week of Jun 22">Semana del 22 jun</span><span class="val">34 · 48</span></div>
+        <div class="track"><div class="fill" style="width:13%; background:#18242F;"></div></div>
+        <div class="track"><div class="fill" style="width:18.3%; background:#E8C3A4;"></div></div>
+      </div>
+      <div class="brow">
+        <div class="bl"><span class="name" data-es="Semana del 29 jun" data-en="Week of Jun 29">Semana del 29 jun</span><span class="val">27 · 262</span></div>
+        <div class="track"><div class="fill" style="width:10.3%; background:#18242F;"></div></div>
+        <div class="track"><div class="fill" style="width:100%; background:#E8C3A4;"></div></div>
+      </div>
+      <div class="brow" style="margin-bottom:0;">
+        <div class="bl"><span class="name" data-es="Semana del 6 jul" data-en="Week of Jul 6">Semana del 6 jul</span><span class="val">6 · 28</span></div>
+        <div class="track"><div class="fill" style="width:2.3%; background:#18242F;"></div></div>
+        <div class="track"><div class="fill" style="width:10.7%; background:#E8C3A4;"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="mono eyebrow" data-es="02 · Las puertas de entrada" data-en="02 · The entry doors">02 · Las puertas de entrada</p>
+    <h2 data-es="Los protocolos reciben más gente que la portada" data-en="The protocols welcome more people than the homepage">Los protocolos reciben más gente que la portada</h2>
+    <p class="lede" data-es="La apuesta arquitectónica del sitio era que las familias llegaran directo a la página construida para su momento de necesidad. Los datos lo confirman: <span class='accent'>los protocolos de crisis superan a la portada como puerta de entrada</span>." data-en="The site's architectural bet was that families would land directly on the page built for their moment of need. The data confirms it: <span class='accent'>the crisis protocols outperform the homepage as an entry door</span>.">La apuesta arquitectónica del sitio era que las familias llegaran directo a la página construida para su momento de necesidad. Los datos lo confirman: <span class="accent">los protocolos de crisis superan a la portada como puerta de entrada</span>.</p>
+
+    <div class="chart-card">
+      <h3 data-es="Entradas únicas por página" data-en="Unique entrances by page">Entradas únicas por página</h3>
+      <p class="note" data-es="Pantallas y escalada emocional suman 35 entradas frente a las 19 de la portada." data-en="Screen time and emotional escalation add up to 35 entrances against the homepage's 19.">Pantallas y escalada emocional suman 35 entradas frente a las 19 de la portada.</p>
+      <div class="brow">
+        <div class="bl"><span class="name">/apoyo/screen-time</span><span class="val">21</span></div>
+        <div class="track"><div class="fill" style="width:100%; background:#BC6044;"></div></div>
+      </div>
+      <div class="brow">
+        <div class="bl"><span class="name" data-es="/ (portada)" data-en="/ (homepage)">/ (portada)</span><span class="val">19</span></div>
+        <div class="track"><div class="fill" style="width:90.5%; background:#18242F;"></div></div>
+      </div>
+      <div class="brow">
+        <div class="bl"><span class="name">/apoyo/emotional-escalation</span><span class="val">14</span></div>
+        <div class="track"><div class="fill" style="width:66.7%; background:#BC6044;"></div></div>
+      </div>
+      <div class="brow">
+        <div class="bl"><span class="name">/aprende/</span><span class="val">7</span></div>
+        <div class="track"><div class="fill" style="width:33.3%; background:#18242F;"></div></div>
+      </div>
+      <div class="brow" style="margin-bottom:0;">
+        <div class="bl"><span class="name" data-es="Otras páginas" data-en="Other pages">Otras páginas</span><span class="val">9</span></div>
+        <div class="track"><div class="fill" style="width:42.9%; background:#E8C3A4;"></div></div>
+      </div>
+      <div class="legend" style="margin-top: 18px; margin-bottom: 0;">
+        <span><span class="sw" style="background:#BC6044;"></span><span data-es="Protocolos de apoyo" data-en="Support protocols">Protocolos de apoyo</span></span>
+        <span><span class="sw" style="background:#18242F;"></span><span data-es="Superficies principales" data-en="Core surfaces">Superficies principales</span></span>
+      </div>
+    </div>
+
+    <p class="lede" style="margin-top: 32px;" data-es="Y una vez adentro, la gente <span class='accent'>lee hasta el final</span>. Estas son las profundidades de lectura de las páginas clave:" data-en="And once inside, people <span class='accent'>read to the end</span>. These are the reading depths of the key pages:">Y una vez adentro, la gente <span class="accent">lee hasta el final</span>. Estas son las profundidades de lectura de las páginas clave:</p>
+
+    <div class="depth-grid">
+      <div class="depth">
+        <div class="pg" data-es="Escalada emocional" data-en="Emotional escalation">Escalada emocional</div>
+        <div class="pct">83%</div>
+        <div class="t" data-es="160 segundos en página" data-en="160 seconds on page">160 segundos en página</div>
+        <div class="depth-bar"><i style="width:83%"></i></div>
+      </div>
+      <div class="depth">
+        <div class="pg" data-es="Pantallas" data-en="Screen time">Pantallas</div>
+        <div class="pct">71%</div>
+        <div class="t" data-es="57 segundos en página" data-en="57 seconds on page">57 segundos en página</div>
+        <div class="depth-bar"><i style="width:71%"></i></div>
+      </div>
+      <div class="depth">
+        <div class="pg" data-es="Berrinches (artículo)" data-en="Tantrums (article)">Berrinches (artículo)</div>
+        <div class="pct">90%</div>
+        <div class="t" data-es="282 segundos en página" data-en="282 seconds on page">282 segundos en página</div>
+        <div class="depth-bar"><i style="width:90%"></i></div>
+      </div>
+      <div class="depth">
+        <div class="pg" data-es="Rutinas de sueño" data-en="Sleep routines">Rutinas de sueño</div>
+        <div class="pct">91%</div>
+        <div class="t" data-es="503 segundos en página" data-en="503 seconds on page">503 segundos en página</div>
+        <div class="depth-bar"><i style="width:91%"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="mono eyebrow" data-es="03 · El recorrido" data-en="03 · The journey">03 · El recorrido</p>
+    <h2 data-es="Las señales de conversión ya cuentan una historia" data-en="The conversion signals already tell a story">Las señales de conversión ya cuentan una historia</h2>
+    <div class="lectura" style="border-top: none; padding-top: 12px;">
+      <div class="num">35</div>
+      <div>
+        <h3 data-es="Vieron el puente al método" data-en="Saw the bridge to the method">Vieron el puente al método</h3>
+        <p data-es="De 69 visitantes de la portada, 35 llegaron al puente que conecta el momento de crisis con el método. 25 alcanzaron la sección de <span class='accent'>&quot;No estás fallando&quot;</span>, y 17 hicieron clic en el llamado al método. 29 personas entraron al portal." data-en="Of 69 homepage visitors, 35 reached the bridge that connects the moment of crisis with the method. 25 reached the <span class='accent'>&quot;No estás fallando&quot;</span> section, and 17 clicked the method call to action. 29 people entered the portal.">De 69 visitantes de la portada, 35 llegaron al puente que conecta el momento de crisis con el método. 25 alcanzaron la sección de <span class="accent">"No estás fallando"</span>, y 17 hicieron clic en el llamado al método. 29 personas entraron al portal.</p>
+      </div>
+    </div>
+    <div class="lectura">
+      <div class="num">16</div>
+      <div>
+        <h3 data-es="Usaron el cambio de idioma" data-en="Used the language toggle">Usaron el cambio de idioma</h3>
+        <p data-es="Uno de cada seis visitantes activó el motor bilingüe. La decisión de mantenerlo visible y central queda <span class='accent'>validada</span>." data-en="One in six visitors activated the bilingual engine. The decision to keep it visible and central is <span class='accent'>validated</span>.">Uno de cada seis visitantes activó el motor bilingüe. La decisión de mantenerlo visible y central queda <span class="accent">validada</span>.</p>
+      </div>
+    </div>
+    <div class="lectura">
+      <div class="num">1</div>
+      <div>
+        <h3 data-es="Una sola visita desde Instagram, y se quedó seis minutos" data-en="A single visit from Instagram, and it stayed six minutes">Una sola visita desde Instagram, y se quedó seis minutos</h3>
+        <p data-es="El 98% del tráfico es directo y el 94% viene del estado de Washington, señal de que la audiencia todavía proviene principalmente del entorno cercano. La única visita atribuida a Instagram permaneció más de seis minutos. Es una muestra demasiado pequeña para concluir, pero sí una señal direccional que justifica abrir la distribución y medir de nuevo." data-en="98% of traffic is direct and 94% comes from Washington state, indicating that the audience still comes primarily from the close network. The single visit attributed to Instagram stayed more than six minutes. The sample is too small for a conclusion, but it is a directional signal that supports opening distribution and measuring again.">El 98% del tráfico es directo y el 94% viene del estado de Washington, señal de que la audiencia todavía proviene principalmente del entorno cercano. La única visita atribuida a Instagram permaneció más de seis minutos. Es una muestra demasiado pequeña para concluir, pero sí una señal direccional que justifica abrir la distribución y medir de nuevo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="mono eyebrow" data-es="04 · La intersección técnica" data-en="04 · The technical intersection">04 · La intersección técnica</p>
+    <h2 data-es="Rápido en todas partes, salvo en el lugar donde va todo el mundo" data-en="Fast everywhere, except the one place everyone goes">Rápido en todas partes, salvo en el lugar donde va todo el mundo</h2>
+    <p class="lede" data-es="Aquí es donde cruzar Cloudflare con Plausible paga. La salud técnica del sitio es sobresaliente, y el único punto débil de todo el mes vive exactamente en la página con más tráfico: <span class='accent'>la imagen hero de la portada</span>." data-en="This is where crossing Cloudflare with Plausible pays off. The site's technical health is outstanding, and the single weak point of the entire month lives exactly on the highest-traffic page: <span class='accent'>the homepage hero image</span>.">Aquí es donde cruzar Cloudflare con Plausible paga. La salud técnica del sitio es sobresaliente, y el único punto débil de todo el mes vive exactamente en la página con más tráfico: <span class="accent">la imagen hero de la portada</span>.</p>
+
+    <div class="vitals">
+      <div class="vital"><div class="k" data-es="LCP · carga visual" data-en="LCP · visual load">LCP · carga visual</div><div class="v">98%</div><div class="d" data-es="de cargas en rango bueno · mediana 556ms" data-en="of loads in the good range · median 556ms">de cargas en rango bueno · mediana 556ms</div></div>
+      <div class="vital"><div class="k" data-es="INP · respuesta táctil" data-en="INP · touch response">INP · respuesta táctil</div><div class="v">96%</div><div class="d" data-es="de interacciones en rango bueno" data-en="of interactions in the good range">de interacciones en rango bueno</div></div>
+      <div class="vital"><div class="k" data-es="CLS · estabilidad" data-en="CLS · stability">CLS · estabilidad</div><div class="v">100%</div><div class="d" data-es="cero saltos de contenido inesperados" data-en="zero unexpected layout shifts">cero saltos de contenido inesperados</div></div>
+    </div>
+
+    <div class="chart-card">
+      <h3 data-es="LCP por percentil" data-en="LCP by percentile">LCP por percentil</h3>
+      <p class="note" data-es="La mediana carga en medio segundo. El percentil 99 se dispara a 10.3 segundos, y Cloudflare identifica al responsable: la imagen hero servida desde Cloudinary." data-en="The median loads in half a second. The 99th percentile spikes to 10.3 seconds, and Cloudflare identifies the culprit: the hero image served from Cloudinary.">La mediana carga en medio segundo. El percentil 99 se dispara a 10.3 segundos, y Cloudflare identifica al responsable: la imagen hero servida desde Cloudinary.</p>
+      <div class="brow">
+        <div class="bl"><span class="name">P50</span><span class="val">556ms</span></div>
+        <div class="track"><div class="fill" style="width:5.4%; background:#4E8F88;"></div></div>
+      </div>
+      <div class="brow">
+        <div class="bl"><span class="name">P75</span><span class="val">748ms</span></div>
+        <div class="track"><div class="fill" style="width:7.3%; background:#4E8F88;"></div></div>
+      </div>
+      <div class="brow">
+        <div class="bl"><span class="name">P90</span><span class="val">1,144ms</span></div>
+        <div class="track"><div class="fill" style="width:11.1%; background:#4E8F88;"></div></div>
+      </div>
+      <div class="brow" style="margin-bottom:0;">
+        <div class="bl"><span class="name">P99</span><span class="val" style="color:#BC6044;">10,292ms</span></div>
+        <div class="track"><div class="fill" style="width:100%; background:#DC7551;"></div></div>
+      </div>
+    </div>
+
+    <div class="outlier">
+      <div class="k" data-es="El elemento responsable" data-en="The responsible element">El elemento responsable</div>
+      <div class="v" data-es="img.shot · CSC_hero_kk7odu.png · Cloudinary · hero de la portada" data-en="img.shot · CSC_hero_kk7odu.png · Cloudinary · homepage hero">img.shot · CSC_hero_kk7odu.png · Cloudinary · hero de la portada</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="mono eyebrow" data-es="05 · Lo que sigue" data-en="05 · What comes next">05 · Lo que sigue</p>
+    <h2 data-es="Tres movimientos, en este orden" data-en="Three moves, in this order">Tres movimientos, en este orden</h2>
+    <div class="steps" style="margin-top: 32px;">
+      <div class="step">
+        <div>
+          <h4 data-es="Optimizar la imagen hero de la portada" data-en="Optimize the homepage hero image">Optimizar la imagen hero de la portada</h4>
+          <p data-es="Transformación más estricta en Cloudinary, parámetros de ancho explícitos para que móvil no descargue un recurso de escritorio, y prioridad alta de carga. Es la corrección más barata con el mayor retorno, especialmente porque el 57% de la audiencia navega desde un iPhone." data-en="A tighter Cloudinary transform, explicit width parameters so mobile does not download a desktop-sized asset, and high load priority. It is the cheapest fix with the largest return, especially since 57% of the audience browses from an iPhone.">Transformación más estricta en Cloudinary, parámetros de ancho explícitos para que móvil no descargue un recurso de escritorio, y prioridad alta de carga. Es la corrección más barata con el mayor retorno, especialmente porque el 57% de la audiencia navega desde un iPhone.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h4 data-es="Abrir la llave de distribución" data-en="Open the distribution tap">Abrir la llave de distribución</h4>
+          <p data-es="El sitio está técnica y estructuralmente listo para recibir una audiencia más amplia. La restricción principal ya no está en la construcción del sitio, sino en la distribución y la cadencia. Instagram dejó una señal inicial; ahora hace falta volumen suficiente para validarla." data-en="The site is technically and structurally ready to receive a broader audience. The primary constraint is no longer site construction, but distribution and cadence. Instagram left an initial signal; now we need enough volume to validate it.">El sitio está técnica y estructuralmente listo para recibir una audiencia más amplia. La restricción principal ya no está en la construcción del sitio, sino en la distribución y la cadencia. Instagram dejó una señal inicial; ahora hace falta volumen suficiente para validarla.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h4 data-es="No tocar el embudo todavía" data-en="Leave the funnel alone for now">No tocar el embudo todavía</h4>
+          <p data-es="El recorrido de portada a método se estrecha donde era de esperarse, pero con esta muestra cualquier ajuste sería adivinar. Primero extraños reales, después releemos estos números." data-en="The homepage-to-method journey narrows where you would expect, but with this sample any adjustment would be guessing. Real strangers first, then we reread these numbers.">El recorrido de portada a método se estrecha donde era de esperarse, pero con esta muestra cualquier ajuste sería adivinar. Primero extraños reales, después releemos estos números.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="mono eyebrow" data-es="06 · La condición para avanzar" data-en="06 · The condition for progress">06 · La condición para avanzar</p>
+    <h2 data-es="La próxima etapa necesita dirección de marca, no más construcción silenciosa" data-en="The next stage needs brand direction, not more silent building">La próxima etapa necesita dirección de marca, no más construcción silenciosa</h2>
+    <p class="lede" data-es="La infraestructura, el contenido y la medición ya están produciendo señales útiles. Para convertirlas en crecimiento, necesito participación activa de Nari en decisiones de voz, distribución, correo, fotografía y prioridades. Este proyecto representa su experiencia y su presencia pública; por eso, la siguiente fase no puede avanzar de forma responsable sin tiempo regular para revisar y decidir." data-en="The infrastructure, content, and measurement are already producing useful signals. Turning them into growth requires Nari’s active participation in decisions about voice, distribution, email, photography, and priorities. This project represents her expertise and public presence, so the next phase cannot move forward responsibly without regular time to review and decide.">La infraestructura, el contenido y la medición ya están produciendo señales útiles. Para convertirlas en crecimiento, necesito participación activa de Nari en decisiones de voz, distribución, correo, fotografía y prioridades. Este proyecto representa su experiencia y su presencia pública; por eso, la siguiente fase no puede avanzar de forma responsable sin tiempo regular para revisar y decidir.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">LG Studio</div>
+    <p class="line" data-es="Reporte de señales preparado para Criar Sin Culpas. El sistema registra el patrón. Nosotros leemos lo que significa." data-en="Signal report prepared for Criar Sin Culpas. The system maps the pattern. We read what it means.">Reporte de señales preparado para Criar Sin Culpas. El sistema registra el patrón. Nosotros leemos lo que significa.</p>
+    <p class="meta" data-es="Periodo 2026-06-09 · 2026-07-09 &nbsp;·&nbsp; Fuentes: Plausible Analytics + Cloudflare Web Analytics &nbsp;·&nbsp; criarsinculpas.com" data-en="Period 2026-06-09 · 2026-07-09 &nbsp;·&nbsp; Sources: Plausible Analytics + Cloudflare Web Analytics &nbsp;·&nbsp; criarsinculpas.com">Periodo 2026-06-09 · 2026-07-09 &nbsp;·&nbsp; Fuentes: Plausible Analytics + Cloudflare Web Analytics &nbsp;·&nbsp; criarsinculpas.com</p>
+  </div>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('[data-es]').forEach(function (el) {
+      var content = el.getAttribute('data-' + lang);
+      if (content !== null) { el.innerHTML = content; }
+    });
+    document.documentElement.lang = lang;
+    document.title = lang === 'es'
+      ? 'Criar Sin Culpas · Lectura de señales · 30 días'
+      : 'Criar Sin Culpas · Signal reading · 30 days';
+    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    try { localStorage.setItem('csc_lang', lang); } catch (e) {}
+  }
+  var saved = 'es';
+  try { saved = localStorage.getItem('csc_lang') || 'es'; } catch (e) {}
+  setLang(saved);
+</script>
+
+</body>
+</html>
