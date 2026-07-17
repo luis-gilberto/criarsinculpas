@@ -61,7 +61,15 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" fetchpriority="high"
+    imagesrcset="https://res.cloudinary.com/dogtoagya/image/upload/f_auto,q_auto:good,c_limit,w_480/v1782367676/CSC_hero_kk7odu.png 480w,
+                 https://res.cloudinary.com/dogtoagya/image/upload/f_auto,q_auto:good,c_limit,w_768/v1782367676/CSC_hero_kk7odu.png 768w,
+                 https://res.cloudinary.com/dogtoagya/image/upload/f_auto,q_auto:good,c_limit,w_1080/v1782367676/CSC_hero_kk7odu.png 1080w,
+                 https://res.cloudinary.com/dogtoagya/image/upload/f_auto,q_auto:good,c_limit,w_1440/v1782367676/CSC_hero_kk7odu.png 1440w,
+                 https://res.cloudinary.com/dogtoagya/image/upload/f_auto,q_auto:good,c_limit,w_1920/v1782367676/CSC_hero_kk7odu.png 1920w"
+    imagesizes="100vw">
 
   <script>
     if (window.location.hostname === 'criarsinculpas.com') {
@@ -426,7 +434,7 @@
   <!-- ─────── HERO · cinematic full-bleed, doors overlap bottom ─────── -->
   <section class="hero" id="top" aria-label="Inicio">
     <figure class="hero-cinema" itemscope itemtype="https://schema.org/ImageObject">
-      <meta itemprop="contentUrl" content="https://res.cloudinary.com/dogtoagya/image/upload/q_auto,f_auto,w_2200/v1782367676/CSC_hero_kk7odu.png">
+      <meta itemprop="contentUrl" content="https://res.cloudinary.com/dogtoagya/image/upload/f_auto,q_auto:good,c_limit,w_1440/v1782367676/CSC_hero_kk7odu.png">
       <meta itemprop="creditText" content="Photography by Erika Sharnay · Sharnay Photography">
       <meta itemprop="copyrightNotice" content="© Erika Sharnay · Sharnay Photography. All rights reserved.">
       <meta itemprop="acquireLicensePage" content="https://www.instagram.com/sharnay_photography/">
@@ -436,11 +444,18 @@
       </span>
       <div class="hero-media">
         <img class="hero-shot"
-             src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto,f_auto,w_2200/v1782367676/CSC_hero_kk7odu.png"
+             src="https://res.cloudinary.com/dogtoagya/image/upload/f_auto,q_auto:good,c_limit,w_1440/v1782367676/CSC_hero_kk7odu.png"
+             srcset="https://res.cloudinary.com/dogtoagya/image/upload/f_auto,q_auto:good,c_limit,w_480/v1782367676/CSC_hero_kk7odu.png 480w,
+                     https://res.cloudinary.com/dogtoagya/image/upload/f_auto,q_auto:good,c_limit,w_768/v1782367676/CSC_hero_kk7odu.png 768w,
+                     https://res.cloudinary.com/dogtoagya/image/upload/f_auto,q_auto:good,c_limit,w_1080/v1782367676/CSC_hero_kk7odu.png 1080w,
+                     https://res.cloudinary.com/dogtoagya/image/upload/f_auto,q_auto:good,c_limit,w_1440/v1782367676/CSC_hero_kk7odu.png 1440w,
+                     https://res.cloudinary.com/dogtoagya/image/upload/f_auto,q_auto:good,c_limit,w_1920/v1782367676/CSC_hero_kk7odu.png 1920w"
+             sizes="100vw"
+             width="1672" height="941"
              alt="Madre abrazando a su hijo en un espacio cálido y luminoso"
              data-alt-es="Madre abrazando a su hijo en un espacio cálido y luminoso"
              data-alt-en="Mother embracing her son in a warm, light-filled space"
-             itemprop="contentUrl" loading="eager" decoding="async">
+             itemprop="contentUrl" fetchpriority="high" loading="eager" decoding="async">
         <span class="hero-scrim-h" aria-hidden="true"></span>
         <span class="hero-scrim-v" aria-hidden="true"></span>
       </div>
