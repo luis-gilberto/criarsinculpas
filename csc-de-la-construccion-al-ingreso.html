@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Criar Sin Culpas · Lo que ya construimos. Lo que viene ahora.</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF6EF;
+    --cream:#F4ECDF;
+    --peach:#F3CDB3;
+    --terra:#BC6044;
+    --coral:#DC7551;
+    --navy:#18242F;
+    --ink:#18242F;
+    --ink-soft:rgba(24,36,47,.66);
+    --ink-faint:rgba(24,36,47,.38);
+    --hairline:rgba(24,36,47,.12);
+    --measure:34em;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',-apple-system,sans-serif;
+    font-size:17px;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  em,i{font-style:normal;}
+
+  /* ---------- language toggle ---------- */
+  .lang-toggle{
+    position:fixed;top:22px;right:22px;z-index:50;
+    display:flex;gap:2px;
+    background:var(--paper);
+    border:1px solid var(--hairline);
+    border-radius:100px;
+    padding:3px;
+  }
+  .lang-toggle button{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;letter-spacing:.14em;
+    border:none;background:transparent;color:var(--ink-faint);
+    padding:6px 13px;border-radius:100px;cursor:pointer;
+    transition:color .3s ease, background .3s ease;
+  }
+  .lang-toggle button.active{background:var(--navy);color:var(--paper);}
+  .lang-toggle button:focus-visible{outline:2px solid var(--terra);outline-offset:2px;}
+
+  /* ---------- spreads ---------- */
+  .spread{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:14vh 8vw;
+    position:relative;
+  }
+  .spread-inner{max-width:920px;margin:0 auto;width:100%;}
+  .centered{text-align:center;}
+  .centered .spread-inner{display:flex;flex-direction:column;align-items:center;}
+
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--terra);
+    margin-bottom:2.6rem;
+  }
+  .eyebrow .idx{color:var(--ink-faint);margin-right:.9em;}
+
+  h1,h2,.display{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    line-height:1.12;
+    letter-spacing:-.005em;
+  }
+  h1{font-size:clamp(3rem,7.5vw,5.8rem);}
+  h2{font-size:clamp(2.4rem,5.4vw,4.2rem);margin-bottom:3rem;}
+  .t{color:var(--terra);}
+
+  .lede{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:clamp(1.55rem,2.6vw,2.1rem);
+    line-height:1.42;
+    max-width:30em;
+  }
+  .body-copy{
+    max-width:var(--measure);
+    color:var(--ink-soft);
+    font-size:1.06rem;
+  }
+  .body-copy + .body-copy{margin-top:1.6rem;}
+  .lede + .body-copy,.body-copy + .lede{margin-top:2.4rem;}
+
+  .caption{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    line-height:2;
+  }
+
+  .rule{width:44px;height:1px;background:var(--terra);margin:3rem 0;}
+  .centered .rule{margin:3rem auto;}
+
+  /* ---------- cover ---------- */
+  .cover .brand{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:.34em;text-transform:uppercase;
+    color:var(--ink);margin-bottom:5rem;
+  }
+  .cover .brand .dot{color:var(--terra);}
+  .cover h1{margin-bottom:2.4rem;}
+  .cover .sub{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(1.3rem,2.2vw,1.7rem);
+    color:var(--terra);
+    font-weight:500;
+  }
+  .cover .meta{margin-top:6rem;}
+
+  /* ---------- opening decision ---------- */
+  .decision-lines{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:clamp(1.5rem,2.6vw,2.1rem);
+    line-height:1.5;
+    color:var(--ink-soft);
+    margin:2.6rem 0;
+  }
+
+  /* ---------- capability spreads ---------- */
+  .capability h2{font-size:clamp(3rem,7vw,5.4rem);margin-bottom:2.6rem;}
+
+  /* ---------- platform flow ---------- */
+  .flow{display:flex;flex-direction:column;align-items:center;margin-top:1rem;}
+  .flow .node{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:clamp(1.5rem,2.6vw,2.1rem);
+    line-height:1;
+  }
+  .flow .node.final{
+    font-size:clamp(2.8rem,6vw,4.6rem);
+    font-weight:600;
+    letter-spacing:-.01em;
+  }
+  .flow .link{width:1px;height:clamp(26px,4vh,44px);background:var(--hairline);margin:14px 0;}
+
+  /* ---------- transition page (04) ---------- */
+  .hurt-1{
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:clamp(2.6rem,6vw,4.4rem);line-height:1.15;
+  }
+  .hurt-2{
+    font-family:'Cormorant Garamond',serif;font-weight:400;
+    font-size:clamp(1.5rem,2.8vw,2.1rem);
+    color:var(--ink-soft);
+    margin:3.5rem 0;
+  }
+  .hurt-3{
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:clamp(1.9rem,4.2vw,3.1rem);line-height:1.28;
+    max-width:22em;
+  }
+
+  /* ---------- august numbers ---------- */
+  .triptych{display:grid;grid-template-columns:repeat(3,1fr);gap:4rem;margin-top:1rem;}
+  .triptych .num{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:400;
+    font-size:clamp(3.4rem,7vw,5.6rem);
+    color:var(--peach);
+    line-height:1;
+    margin-bottom:1.4rem;
+  }
+  .triptych h3{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;
+    font-size:clamp(1.5rem,2.4vw,1.9rem);
+    margin-bottom:1rem;
+  }
+  .triptych p{color:var(--ink-soft);font-size:1rem;max-width:22em;}
+
+  /* ---------- september trailer ---------- */
+  .imagine{
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:clamp(1.8rem,3.4vw,2.6rem);
+    margin-bottom:1.4rem;
+  }
+  .trailer{list-style:none;margin:0 0 3rem 0;}
+  .trailer li{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:clamp(1.5rem,2.8vw,2.2rem);
+    line-height:1.35;
+    padding:1.1rem 0;
+    border-bottom:1px solid var(--hairline);
+  }
+  .trailer li:last-child{border-bottom:none;color:var(--terra);}
+
+  /* ---------- evidence + arithmetic tiers ---------- */
+  .tiers{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:3rem;width:100%;
+    border-top:1px solid var(--hairline);
+    padding-top:3rem;
+  }
+  .tier .n{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:400;
+    font-size:clamp(2.8rem,6vw,4.6rem);
+    line-height:1;
+  }
+  .tier .g{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:clamp(1.3rem,2.2vw,1.7rem);
+    color:var(--ink-soft);
+    margin-top:.6rem;
+  }
+  .tier .caption{margin-top:1.1rem;}
+  .tier.key .n,.tier.key .g{color:var(--terra);}
+  .tier.key .caption{color:var(--terra);}
+  .evidence-lede{margin-top:4.5rem;}
+  .source-cap{margin-top:2.6rem;}
+
+  /* ---------- offer specs ---------- */
+  .specs{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:0;margin-top:3.4rem;
+    border-top:1px solid var(--hairline);
+  }
+  .specs .spec{
+    padding:1.8rem 1.6rem 1.8rem 0;
+    border-bottom:1px solid var(--hairline);
+  }
+  .specs .spec .k{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--ink-faint);display:block;margin-bottom:.7rem;
+  }
+  .specs .spec .v{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;font-size:1.4rem;line-height:1.2;
+  }
+  .specs .spec .v.t{color:var(--terra);}
+
+  /* ---------- ledger ---------- */
+  .ledger{margin-top:1rem;}
+  .ledger .row{
+    display:grid;
+    grid-template-columns:minmax(130px,220px) 50px 1fr;
+    align-items:baseline;
+    padding:1.6rem 0;
+    border-bottom:1px solid var(--hairline);
+  }
+  .ledger .row:first-child{border-top:1px solid var(--hairline);}
+  .ledger .inv{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;
+    font-size:clamp(1.3rem,2.2vw,1.7rem);
+  }
+  .ledger .arrow{
+    text-align:center;color:var(--terra);
+    font-family:'JetBrains Mono',monospace;font-size:.95rem;
+  }
+  .ledger .ret{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:clamp(1.25rem,2.1vw,1.6rem);
+    line-height:1.4;
+  }
+  .ledger .row.key .inv,.ledger .row.key .ret{color:var(--terra);}
+
+  /* ---------- arithmetic ---------- */
+  .arith-price{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:400;
+    font-size:clamp(5.5rem,15vw,11rem);
+    line-height:.95;
+    letter-spacing:-.01em;
+  }
+  .arith-price-cap{margin-top:1.2rem;margin-bottom:5rem;}
+  .arith-copy{margin-top:4.5rem;max-width:33em;}
+  .disclosure{margin-top:3.4rem;max-width:42em;text-transform:none;letter-spacing:.06em;font-size:10.5px;}
+
+  /* ---------- calendar ---------- */
+  .cal{margin-top:1rem;}
+  .cal .row{
+    display:grid;grid-template-columns:minmax(170px,260px) 1fr;
+    align-items:baseline;gap:3rem;
+    padding:2rem 0;
+    border-bottom:1px solid var(--hairline);
+  }
+  .cal .row:first-child{border-top:1px solid var(--hairline);}
+  .cal .verb{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:clamp(2rem,4.2vw,3.1rem);
+    line-height:1;
+  }
+  .cal .when{margin-bottom:.5rem;}
+  .cal .what{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:clamp(1.25rem,2.1vw,1.6rem);
+  }
+  .cal .row.key .verb,.cal .row.key .what{color:var(--terra);}
+
+  /* ---------- final ---------- */
+  .final{background:var(--navy);color:var(--cream);}
+  .final .line-a{
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.2;
+    color:rgba(244,236,223,.62);
+  }
+  .final .line-b{
+    font-family:'Cormorant Garamond',serif;font-weight:600;
+    font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.18;
+    color:var(--peach);
+    margin-top:2rem;
+    max-width:15em;
+  }
+  .final .caption{color:rgba(244,236,223,.4);margin-top:7rem;}
+
+
+  /* ---------- what is already true ---------- */
+  .truth-neg{
+    font-family:'Cormorant Garamond',serif;font-weight:400;
+    font-size:clamp(1.5rem,2.8vw,2.1rem);line-height:1.65;
+    color:var(--ink-soft);
+  }
+  .truth-pos{
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:clamp(1.9rem,4vw,3rem);line-height:1.32;
+    margin-top:3.2rem;max-width:20em;
+  }
+
+  .twenty{
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:clamp(3rem,8vw,6rem);line-height:1;
+    margin:3rem 0 3.4rem 0;
+  }
+  .arith-bridge{margin-bottom:4.5rem;max-width:26em;}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1);}
+  .reveal.in{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:760px){
+    .spread{padding:12vh 7vw;}
+    .triptych{grid-template-columns:1fr;gap:3rem;}
+    .specs{grid-template-columns:1fr 1fr;}
+    .tiers{grid-template-columns:1fr;gap:2.6rem;}
+    .cal .row{grid-template-columns:1fr;gap:.7rem;}
+    .ledger .row{grid-template-columns:1fr;gap:.4rem;}
+    .ledger .arrow{display:none;}
+  }
+
+  /* ---------- print ---------- */
+  @media print{
+    body{font-size:12.5px;}
+    .lang-toggle{display:none;}
+    .spread{min-height:auto;padding:2.2cm 1.8cm;page-break-after:always;}
+    .spread:last-child{page-break-after:auto;}
+    .reveal{opacity:1;transform:none;}
+    .final{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="lang-toggle" aria-label="Idioma">
+  <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
+  <button id="btn-en" onclick="setLang('en')">EN</button>
+</nav>
+
+<!-- ============ COVER ============ -->
+<section class="spread cover centered">
+  <div class="spread-inner">
+    <div class="brand reveal">CRIAR SIN CULPAS <span class="dot">·</span> <span data-es="DOCUMENTO EJECUTIVO" data-en="EXECUTIVE DOCUMENT">DOCUMENTO EJECUTIVO</span></div>
+    <h1 class="reveal" data-es="Lo que ya construimos.<br>Lo que viene ahora." data-en="What we already built.<br>What comes next.">Lo que ya construimos.<br>Lo que viene ahora.</h1>
+    <p class="sub reveal" data-es="Cómo esta inversión empieza a regresar." data-en="How this investment begins to return.">Cómo esta inversión empieza a regresar.</p>
+    <div class="meta caption reveal" data-es="JULIO 2026 · PREPARADO POR LUIS GILBERTO · LG STUDIO" data-en="JULY 2026 · PREPARED BY LUIS GILBERTO · LG STUDIO">JULIO 2026 · PREPARADO POR LUIS GILBERTO · LG STUDIO</div>
+  </div>
+</section>
+
+<!-- ============ 01 THE DECISION ============ -->
+<section class="spread">
+  <div class="spread-inner">
+    <div class="eyebrow reveal"><span class="idx">01</span><span data-es="POR QUÉ EXISTE ESTE DOCUMENTO" data-en="WHY THIS DOCUMENT EXISTS">POR QUÉ EXISTE ESTE DOCUMENTO</span></div>
+    <h2 class="reveal" data-es="Hace unos meses tomaste una decisión poco común.<br><span class='t'>Decidiste construir primero.</span>" data-en="A few months ago you made an uncommon decision.<br><span class='t'>You decided to build first.</span>">Hace unos meses tomaste una decisión poco común.<br><span class="t">Decidiste construir primero.</span></h2>
+    <p class="decision-lines reveal" data-es="Antes de vender.<br>Antes de lanzar.<br>Antes de monetizar." data-en="Before selling.<br>Before launching.<br>Before monetizing.">Antes de vender.<br>Antes de lanzar.<br>Antes de monetizar.</p>
+    <p class="body-copy reveal" data-es="Este documento existe para mostrar a dónde conduce esa decisión. Lo que ya construyó. Y cómo empieza a regresar." data-en="This document exists to show where that decision leads. What it already built. And how it begins to return.">Este documento existe para mostrar a dónde conduce esa decisión. Lo que ya construyó. Y cómo empieza a regresar.</p>
+  </div>
+</section>
+
+<!-- ============ 02 CAPABILITIES INTRO ============ -->
+<section class="spread centered">
+  <div class="spread-inner">
+    <div class="eyebrow reveal"><span class="idx">02</span><span data-es="LO QUE TU INVERSIÓN HA CONSTRUIDO" data-en="WHAT YOUR INVESTMENT HAS BUILT">LO QUE TU INVERSIÓN HA CONSTRUIDO</span></div>
+    <h2 class="reveal" data-es="No entregables.<br><span class='t'>Capacidades.</span>" data-en="Not deliverables.<br><span class='t'>Capabilities.</span>">No entregables.<br><span class="t">Capacidades.</span></h2>
+    <p class="body-copy reveal" data-es="Cuatro activos que hoy existen y antes no existían." data-en="Four assets that exist today and did not exist before.">Cuatro activos que hoy existen y antes no existían.</p>
+  </div>
+</section>
+
+<!-- ============ CAPABILITY 1 ============ -->
+<section class="spread capability">
+  <div class="spread-inner">
+    <div class="eyebrow reveal"><span class="idx">02.1</span><span data-es="CAPACIDAD" data-en="CAPABILITY">CAPACIDAD</span></div>
+    <h2 class="reveal" data-es="Confianza" data-en="Trust">Confianza</h2>
+    <p class="lede reveal" data-es="Hoy una madre puede llegar desesperada y encontrar <span class='t'>estructura</span> en lugar de ruido." data-en="Today a mother can arrive desperate and find <span class='t'>structure</span> instead of noise.">Hoy una madre puede llegar desesperada y encontrar <span class="t">estructura</span> en lugar de ruido.</p>
+  </div>
+</section>
+
+<!-- ============ CAPABILITY 2 ============ -->
+<section class="spread capability">
+  <div class="spread-inner">
+    <div class="eyebrow reveal"><span class="idx">02.2</span><span data-es="CAPACIDAD" data-en="CAPABILITY">CAPACIDAD</span></div>
+    <h2 class="reveal" data-es="Audiencia propia" data-en="An owned audience">Audiencia propia</h2>
+    <p class="lede reveal" data-es="El algoritmo ya no es el único camino hacia tus familias. Cada visita puede convertirse en una <span class='t'>relación de largo plazo</span>." data-en="The algorithm is no longer the only path to your families. Every visit can become a <span class='t'>long-term relationship</span>.">El algoritmo ya no es el único camino hacia tus familias. Cada visita puede convertirse en una <span class="t">relación de largo plazo</span>.</p>
+  </div>
+</section>
+
+<!-- ============ CAPABILITY 3 ============ -->
+<section class="spread capability">
+  <div class="spread-inner">
+    <div class="eyebrow reveal"><span class="idx">02.3</span><span data-es="CAPACIDAD" data-en="CAPABILITY">CAPACIDAD</span></div>
+    <h2 class="reveal" data-es="Autoridad" data-en="Authority">Autoridad</h2>
+    <p class="lede reveal" data-es="Cada punto de contacto <span class='t'>suena a ti</span>. La marca se reconoce, se recuerda y se respeta." data-en="Every touchpoint <span class='t'>sounds like you</span>. The brand is recognized, remembered and respected.">Cada punto de contacto <span class="t">suena a ti</span>. La marca se reconoce, se recuerda y se respeta.</p>
+  </div>
+</section>
+
+<!-- ============ CAPABILITY 4 ============ -->
+<section class="spread capability">
+  <div class="spread-inner">
+    <div class="eyebrow reveal"><span class="idx">02.4</span><span data-es="CAPACIDAD" data-en="CAPABILITY">CAPACIDAD</span></div>
+    <h2 class="reveal" data-es="Infraestructura" data-en="Infrastructure">Infraestructura</h2>
+    <p class="lede reveal" data-es="El próximo programa no empieza desde cero. La base para <span class='t'>educación pagada</span>, talleres y productos futuros ya existe." data-en="The next program does not start from zero. The foundation for <span class='t'>paid education</span>, workshops and future products already exists.">El próximo programa no empieza desde cero. La base para <span class="t">educación pagada</span>, talleres y productos futuros ya existe.</p>
+  </div>
+</section>
+
+<!-- ============ 03 PLATFORM ============ -->
+<section class="spread centered">
+  <div class="spread-inner">
+    <div class="eyebrow reveal"><span class="idx">03</span><span data-es="LA PLATAFORMA QUE CONSTRUIMOS" data-en="THE PLATFORM WE BUILT">LA PLATAFORMA QUE CONSTRUIMOS</span></div>
+    <div class="flow reveal">
+      <div class="node">Instagram</div>
+      <div class="link"></div>
+      <div class="node" data-es="Sitio" data-en="Website">Sitio</div>
+      <div class="link"></div>
+      <div class="node" data-es="Protocolos" data-en="Protocols">Protocolos</div>
+      <div class="link"></div>
+      <div class="node">Email</div>
+      <div class="link"></div>
+      <div class="node">Aprende</div>
+      <div class="link"></div>
+      <div class="node" data-es="Confianza" data-en="Trust">Confianza</div>
+      <div class="link"></div>
+      <div class="node" data-es="Inscripción" data-en="Enrollment">Inscripción</div>
+      <div class="link"></div>
+      <div class="node final" data-es="Ingreso" data-en="Revenue">Ingreso</div>
+    </div>
+    <div class="rule"></div>
+    <p class="body-copy reveal" style="margin-left:auto;margin-right:auto;" data-es="Cada pieza existe para mover a una persona un paso más cerca de la inscripción." data-en="Every piece exists to move one person one step closer to enrollment.">Cada pieza existe para mover a una persona un paso más cerca de la inscripción.</p>
+  </div>
+</section>
+
+<!-- ============ 04 THE TRANSITION ============ -->
+<section class="spread centered">
+  <div class="spread-inner">
+    <div class="eyebrow reveal"><span class="idx">04</span><span data-es="EL PUNTO DE TRANSICIÓN" data-en="THE TRANSITION POINT">EL PUNTO DE TRANSICIÓN</span></div>
+    <p class="hurt-1 reveal" data-es="Todavía no ha generado ingresos." data-en="It has not generated revenue yet.">Todavía no ha generado ingresos.</p>
+    <p class="hurt-2 reveal" data-es="No porque el sistema no funcione." data-en="Not because the system does not work.">No porque el sistema no funcione.</p>
+    <p class="hurt-3 reveal" data-es="Sino porque todavía no le hemos pedido que haga <span class='t'>aquello para lo que fue construido</span>." data-en="But because we have not yet asked it to do <span class='t'>what it was built to do</span>.">Sino porque todavía no le hemos pedido que haga <span class="t">aquello para lo que fue construido</span>.</p>
+  </div>
+</section>
+
+<!-- ============ 05 AUGUST ============ -->
+<section class="spread">
+  <div class="spread-inner">
+    <div class="eyebrow reveal"><span class="idx">05</span><span data-es="LO QUE AGOSTO CAMBIA" data-en="WHAT AUGUST CHANGES">LO QUE AGOSTO CAMBIA</span></div>
+    <div class="triptych">
+      <div class="reveal">
+        <div class="num">01</div>
+        <h3 data-es="Activación" data-en="Activation">Activación</h3>
+        <p data-es="Dejar de crear. Empezar a dirigir la atención." data-en="Stop creating. Start directing attention.">Dejar de crear. Empezar a dirigir la atención.</p>
+      </div>
+      <div class="reveal">
+        <div class="num">02</div>
+        <h3 data-es="Inscripción" data-en="Enrollment">Inscripción</h3>
+        <p data-es="Completar los sistemas necesarios para aceptar registros y pagos." data-en="Complete the systems required to accept registrations and payments.">Completar los sistemas necesarios para aceptar registros y pagos.</p>
+      </div>
+      <div class="reveal">
+        <div class="num">03</div>
+        <h3 data-es="Medición" data-en="Measurement">Medición</h3>
+        <p data-es="Saber con precisión qué convierte y qué no." data-en="Know exactly what converts and what does not.">Saber con precisión qué convierte y qué no.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 SEPTEMBER ============ -->
+<section class="spread">
+  <div class="spread-inner">
+    <div class="eyebrow reveal"><span class="idx">06</span><span data-es="LO QUE SEPTIEMBRE DESBLOQUEA" data-en="WHAT SEPTEMBER UNLOCKS">LO QUE SEPTIEMBRE DESBLOQUEA</span></div>
+    <p class="imagine reveal" data-es="Imagina." data-en="Imagine.">Imagina.</p>
+    <ul class="trailer">
+      <li class="reveal" data-es="Una madre descubre Criar Sin Culpas en Instagram." data-en="A mother discovers Criar Sin Culpas on Instagram.">Una madre descubre Criar Sin Culpas en Instagram.</li>
+      <li class="reveal" data-es="Se une a la lista de correo." data-en="She joins the email list.">Se une a la lista de correo.</li>
+      <li class="reveal" data-es="Se registra en El Estudio." data-en="She registers for El Estudio.">Se registra en El Estudio.</li>
+      <li class="reveal" data-es="Compra su primer taller." data-en="She purchases her first workshop.">Compra su primer taller.</li>
+      <li class="reveal" data-es="Lo comparte. Regresa." data-en="She shares it. She returns.">Lo comparte. Regresa.</li>
+    </ul>
+    <p class="lede reveal" data-es="Después de varios meses construyendo infraestructura, septiembre será la primera vez que el sistema tenga <span class='t'>permiso de producir ingresos</span>." data-en="After months of building infrastructure, September will be the first time the system has <span class='t'>permission to produce revenue</span>.">Después de varios meses construyendo infraestructura, septiembre será la primera vez que el sistema tenga <span class="t">permiso de producir ingresos</span>.</p>
+    <p class="body-copy reveal" data-es="La audiencia ya existe alrededor de la marca. Las señales lo demuestran." data-en="The audience already exists around the brand. The signals prove it.">La audiencia ya existe alrededor de la marca. Las señales lo demuestran.</p>
+  </div>
+</section>
+
+<!-- ============ 07 THE EVIDENCE ============ -->
+<!-- Cifras verificadas contra la exportación de Plausible (91 días, tráfico activo desde el 5 de mayo de 2026). Duración: promedio ponderado por visita, incluye rebotes. Profundidad: promedio ponderado por vistas de página. -->
+<section class="spread centered">
+  <div class="spread-inner">
+    <div class="eyebrow reveal"><span class="idx">07</span><span data-es="LA EVIDENCIA" data-en="THE EVIDENCE">LA EVIDENCIA</span></div>
+    <div class="tiers">
+      <div class="tier reveal">
+        <div class="n">5:05</div>
+        <div class="caption" data-es="DURACIÓN PROMEDIO DE VISITA" data-en="AVERAGE VISIT DURATION">DURACIÓN PROMEDIO DE VISITA</div>
+      </div>
+      <div class="tier reveal">
+        <div class="n">74%</div>
+        <div class="caption" data-es="PROFUNDIDAD DE LECTURA" data-en="READING DEPTH">PROFUNDIDAD DE LECTURA</div>
+      </div>
+      <div class="tier reveal">
+        <div class="n">0</div>
+        <div class="caption" data-es="PUBLICIDAD PAGADA" data-en="PAID ADVERTISING">PUBLICIDAD PAGADA</div>
+      </div>
+    </div>
+    <p class="lede evidence-lede reveal" data-es="Estas cifras ocurrieron antes de intentar vender <span class='t'>absolutamente nada</span>." data-en="These numbers happened before trying to sell <span class='t'>anything at all</span>.">Estas cifras ocurrieron antes de intentar vender <span class="t">absolutamente nada</span>.</p>
+    <p class="body-copy reveal" style="margin-left:auto;margin-right:auto;" data-es="El número de personas que llega hoy a la plataforma es pequeño. Su comportamiento no lo es." data-en="The number of people reaching the platform today is small. Their behavior is not.">El número de personas que llega hoy a la plataforma es pequeño. Su comportamiento no lo es.</p>
+    <p class="caption source-cap reveal" data-es="FUENTE: PLAUSIBLE ANALYTICS · MAYO A JULIO 2026" data-en="SOURCE: PLAUSIBLE ANALYTICS · MAY TO JULY 2026">FUENTE: PLAUSIBLE ANALYTICS · MAYO A JULIO 2026</p>
+  </div>
+</section>
+
+
+<!-- ============ 08 WHAT IS ALREADY TRUE ============ -->
+<section class="spread centered">
+  <div class="spread-inner">
+    <div class="eyebrow reveal"><span class="idx">08</span><span data-es="LO QUE YA ES VERDAD" data-en="WHAT IS ALREADY TRUE">LO QUE YA ES VERDAD</span></div>
+    <p class="truth-neg reveal" data-es="Hoy Criar Sin Culpas ya no es una idea.<br>Ya no es una cuenta de Instagram.<br>Ya no es contenido." data-en="Today Criar Sin Culpas is no longer an idea.<br>No longer an Instagram account.<br>No longer content.">Hoy Criar Sin Culpas ya no es una idea.<br>Ya no es una cuenta de Instagram.<br>Ya no es contenido.</p>
+    <p class="truth-pos reveal" data-es="Es una empresa. Con una plataforma, un método, una audiencia y un sistema. Y con una <span class='t'>oportunidad real de generar ingresos</span>." data-en="It is a company. With a platform, a method, an audience and a system. And with a <span class='t'>real opportunity to generate revenue</span>.">Es una empresa. Con una plataforma, un método, una audiencia y un sistema. Y con una <span class="t">oportunidad real de generar ingresos</span>.</p>
+  </div>
+</section>
+
+<!-- ============ 09 THE OFFER ============ -->
+<section class="spread">
+  <div class="spread-inner">
+    <div class="eyebrow reveal"><span class="idx">09</span><span data-es="LA PROPUESTA DE LANZAMIENTO" data-en="THE LAUNCH PROPOSAL">LA PROPUESTA DE LANZAMIENTO</span></div>
+    <h2 class="reveal" data-es="El Estudio<br><span class='t'>Cohorte Fundadora</span>" data-en="El Estudio<br><span class='t'>Founding Cohort</span>">El Estudio<br><span class="t">Cohorte Fundadora</span></h2>
+    <p class="lede reveal" data-es="Una experiencia educativa en vivo, corta y acotada, construida alrededor de un solo problema de crianza." data-en="A short, bounded, live educational experience built around one defined parenting problem.">Una experiencia educativa en vivo, corta y acotada, construida alrededor de un solo problema de crianza.</p>
+    <p class="body-copy reveal" data-es="Es la primera experiencia que recomiendo lanzar. No la única posible." data-en="It is the first experience I recommend launching. Not the only one possible.">Es la primera experiencia que recomiendo lanzar. No la única posible.</p>
+    <p class="body-copy reveal" data-es="¿Por qué un solo problema? Porque una transformación completa vale más que diez promesas pequeñas." data-en="Why only one problem? Because one complete transformation is worth more than ten small promises.">¿Por qué un solo problema? Porque una transformación completa vale más que diez promesas pequeñas.</p>
+    <div class="specs reveal">
+      <div class="spec"><span class="k" data-es="FORMATO" data-en="FORMAT">FORMATO</span><span class="v" data-es="3 sesiones en vivo · 3 semanas" data-en="3 live sessions · 3 weeks">3 sesiones en vivo · 3 semanas</span></div>
+      <div class="spec"><span class="k" data-es="MATERIALES" data-en="MATERIALS">MATERIALES</span><span class="v" data-es="Cuaderno de trabajo práctico" data-en="Practical workbook">Cuaderno de trabajo práctico</span></div>
+      <div class="spec"><span class="k" data-es="GRABACIONES" data-en="RECORDINGS">GRABACIONES</span><span class="v" data-es="Acceso por tiempo limitado" data-en="Limited-time access">Acceso por tiempo limitado</span></div>
+      <div class="spec"><span class="k" data-es="CIERRE" data-en="CLOSING">CIERRE</span><span class="v" data-es="Sesión de preguntas" data-en="Q&amp;A session">Sesión de preguntas</span></div>
+      <div class="spec"><span class="k" data-es="CAPACIDAD" data-en="CAPACITY">CAPACIDAD</span><span class="v" data-es="25 cupos" data-en="25 seats">25 cupos</span></div>
+      <div class="spec"><span class="k" data-es="PRECIO" data-en="PRICE">PRECIO</span><span class="v t" data-es="$225 por inscripción" data-en="$225 per enrollment">$225 por inscripción</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 LEDGER ============ -->
+<section class="spread">
+  <div class="spread-inner">
+    <div class="eyebrow reveal"><span class="idx">10</span><span data-es="EL LIBRO DE INVERSIÓN" data-en="THE INVESTMENT LEDGER">EL LIBRO DE INVERSIÓN</span></div>
+    <h2 class="reveal" data-es="Siete inversiones.<br>Siete retornos." data-en="Seven investments.<br>Seven returns.">Siete inversiones.<br>Siete retornos.</h2>
+    <div class="ledger reveal">
+      <div class="row"><div class="inv" data-es="Marca" data-en="Brand">Marca</div><div class="arrow">→</div><div class="ret" data-es="Las personas recuerdan quién eres." data-en="People remember who you are.">Las personas recuerdan quién eres.</div></div>
+      <div class="row"><div class="inv" data-es="Sitio" data-en="Website">Sitio</div><div class="arrow">→</div><div class="ret" data-es="Ya no dependes únicamente de Instagram." data-en="You no longer depend solely on Instagram.">Ya no dependes únicamente de Instagram.</div></div>
+      <div class="row"><div class="inv" data-es="Protocolos" data-en="Protocols">Protocolos</div><div class="arrow">→</div><div class="ret" data-es="Tu experiencia guía a las familias incluso cuando tú no estás." data-en="Your expertise guides families even when you are not there.">Tu experiencia guía a las familias incluso cuando tú no estás.</div></div>
+      <div class="row"><div class="inv">Aprende</div><div class="arrow">→</div><div class="ret" data-es="Cada artículo sigue atrayendo familias mucho después de publicarse." data-en="Every article keeps attracting families long after it is published.">Cada artículo sigue atrayendo familias mucho después de publicarse.</div></div>
+      <div class="row"><div class="inv">Email</div><div class="arrow">→</div><div class="ret" data-es="Puedes volver a hablar con quienes ya confiaron en ti." data-en="You can speak again with those who already trusted you.">Puedes volver a hablar con quienes ya confiaron en ti.</div></div>
+      <div class="row"><div class="inv">Workspace</div><div class="arrow">→</div><div class="ret" data-es="Cada nuevo programa requiere menos esfuerzo que el anterior." data-en="Each new program requires less effort than the last.">Cada nuevo programa requiere menos esfuerzo que el anterior.</div></div>
+      <div class="row key"><div class="inv">El Estudio</div><div class="arrow">→</div><div class="ret" data-es="El lugar donde todo lo anterior se convierte en ingreso." data-en="Where everything above becomes revenue.">El lugar donde todo lo anterior se convierte en ingreso.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 ARITHMETIC ============ -->
+<section class="spread centered">
+  <div class="spread-inner">
+    <div class="eyebrow reveal"><span class="idx">11</span><span data-es="LA ARITMÉTICA DE SEPTIEMBRE" data-en="THE SEPTEMBER ARITHMETIC">LA ARITMÉTICA DE SEPTIEMBRE</span></div>
+    <p class="lede arith-bridge reveal" data-es="Todo lo anterior creó las condiciones. Ahora la pregunta cambia: ¿cuántas familias necesitamos para demostrar que el modelo funciona?" data-en="Everything above created the conditions. Now the question changes: how many families do we need to prove the model works?">Todo lo anterior creó las condiciones. Ahora la pregunta cambia: ¿cuántas familias necesitamos para demostrar que el modelo funciona?</p>
+    <div class="arith-price reveal">$225</div>
+    <div class="caption arith-price-cap reveal" data-es="POR INSCRIPCIÓN" data-en="PER ENROLLMENT">POR INSCRIPCIÓN</div>
+    <div class="tiers">
+      <div class="tier reveal">
+        <div class="n">10</div>
+        <div class="g">$2,250</div>
+        <div class="caption" data-es="VALIDACIÓN MÍNIMA" data-en="MINIMUM VALIDATION">VALIDACIÓN MÍNIMA</div>
+      </div>
+      <div class="tier key reveal">
+        <div class="n">20</div>
+        <div class="g">$4,500</div>
+        <div class="caption" data-es="OBJETIVO CENTRAL" data-en="CORE TARGET">OBJETIVO CENTRAL</div>
+      </div>
+      <div class="tier reveal">
+        <div class="n">25</div>
+        <div class="g">$5,625</div>
+        <div class="caption" data-es="COHORTE FUNDADORA FUERTE" data-en="STRONG FOUNDING COHORT">COHORTE FUNDADORA FUERTE</div>
+      </div>
+    </div>
+    <p class="lede arith-copy reveal" data-es="Si veinte familias dicen que sí, este mes de trabajo se paga solo. Si veinticinco dicen que sí, la activación deja de ser un gasto y empieza a convertirse en <span class='t'>crecimiento</span>." data-en="If twenty families say yes, this month of work pays for itself. If twenty-five say yes, the activation stops being an expense and starts becoming <span class='t'>growth</span>.">Si veinte familias dicen que sí, este mes de trabajo se paga solo. Si veinticinco dicen que sí, la activación deja de ser un gasto y empieza a convertirse en <span class="t">crecimiento</span>.</p>
+    <p class="caption disclosure reveal" data-es="Las cifras representan ingresos brutos, antes de comisiones, impuestos y costos adicionales. No constituyen una garantía de resultados." data-en="Figures represent gross revenue, before fees, taxes and additional costs. They do not constitute a guarantee of results.">Las cifras representan ingresos brutos, antes de comisiones, impuestos y costos adicionales. No constituyen una garantía de resultados.</p>
+  </div>
+</section>
+
+
+<!-- ============ 12 WHY TWENTY IS REALISTIC ============ -->
+<section class="spread centered">
+  <div class="spread-inner">
+    <div class="eyebrow reveal"><span class="idx">12</span><span data-es="POR QUÉ VEINTE ES REALISTA" data-en="WHY TWENTY IS REALISTIC">POR QUÉ VEINTE ES REALISTA</span></div>
+    <p class="lede reveal" data-es="No necesitamos que miles de familias digan que sí. Necesitamos que un grupo pequeño de las familias que <span class='t'>ya encuentran valor en este trabajo</span> decida dar el siguiente paso." data-en="We do not need thousands of families to say yes. We need a small group of the families who <span class='t'>already find value in this work</span> to decide to take the next step.">No necesitamos que miles de familias digan que sí. Necesitamos que un grupo pequeño de las familias que <span class="t">ya encuentran valor en este trabajo</span> decida dar el siguiente paso.</p>
+    <p class="twenty reveal" data-es="Veinte familias." data-en="Twenty families.">Veinte familias.</p>
+    <p class="body-copy reveal" style="margin-left:auto;margin-right:auto;" data-es="Como referencia: veinte inscripciones representan apenas el 0.05 por ciento de la audiencia que hoy sigue a Criar Sin Culpas en Instagram. Y quienes ya llegan a la plataforma demuestran exactamente el nivel de compromiso que esa invitación necesita." data-en="For reference: twenty enrollments represent just 0.05 percent of the audience following Criar Sin Culpas on Instagram today. And those already reaching the platform show exactly the level of engagement that invitation needs.">Como referencia: veinte inscripciones representan apenas el 0.05 por ciento de la audiencia que hoy sigue a Criar Sin Culpas en Instagram. Y quienes ya llegan a la plataforma demuestran exactamente el nivel de compromiso que esa invitación necesita.</p>
+  </div>
+</section>
+
+<!-- ============ 13 CALENDAR ============ -->
+<section class="spread">
+  <div class="spread-inner">
+    <div class="eyebrow reveal"><span class="idx">13</span><span data-es="EL CALENDARIO DEL PRIMER CICLO" data-en="THE FIRST CYCLE CALENDAR">EL CALENDARIO DEL PRIMER CICLO</span></div>
+    <div class="cal reveal">
+      <div class="row">
+        <div class="verb" data-es="Preparar." data-en="Prepare.">Preparar.</div>
+        <div>
+          <div class="caption when" data-es="ANTES DEL 05 SEPT" data-en="BEFORE SEPT 05">ANTES DEL 05 SEPT</div>
+          <div class="what" data-es="Preinscripción abierta" data-en="Pre-enrollment opens">Preinscripción abierta</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="verb" data-es="Validar." data-en="Validate.">Validar.</div>
+        <div>
+          <div class="caption when" data-es="ANTES DEL 15 SEPT" data-en="BEFORE SEPT 15">ANTES DEL 15 SEPT</div>
+          <div class="what" data-es="Primera transacción pagada" data-en="First paid transaction">Primera transacción pagada</div>
+        </div>
+      </div>
+      <div class="row key">
+        <div class="verb" data-es="Decidir." data-en="Decide.">Decidir.</div>
+        <div>
+          <div class="caption when" data-es="ANTES DEL 30 SEPT" data-en="BEFORE SEPT 30">ANTES DEL 30 SEPT</div>
+          <div class="what" data-es="Objetivo de validación: 20 inscripciones pagadas" data-en="Validation target: 20 paid enrollments">Objetivo de validación: 20 inscripciones pagadas</div>
+        </div>
+      </div>
+    </div>
+    <p class="body-copy reveal" style="margin-top:3rem;" data-es="Agosto prepara y activa el sistema. La preinscripción abre antes del 5 de septiembre. La primera transacción ocurre antes del 15. Y al cerrar el mes, evaluamos el ciclo contra el objetivo y decidimos el siguiente paso juntos." data-en="August prepares and activates the system. Pre-enrollment opens before September 5. The first transaction happens before the 15th. And when the month closes, we evaluate the cycle against the target and decide the next step together.">Agosto prepara y activa el sistema. La preinscripción abre antes del 5 de septiembre. La primera transacción ocurre antes del 15. Y al cerrar el mes, evaluamos el ciclo contra el objetivo y decidimos el siguiente paso juntos.</p>
+    <p class="body-copy reveal" data-es="El objetivo no es una garantía. Es la medida contra la cual evaluaremos el primer ciclo." data-en="The target is not a guarantee. It is the measure against which we will evaluate the first cycle.">El objetivo no es una garantía. Es la medida contra la cual evaluaremos el primer ciclo.</p>
+  </div>
+</section>
+
+<!-- ============ 14 THE WORK AHEAD ============ -->
+<section class="spread">
+  <div class="spread-inner">
+    <div class="eyebrow reveal"><span class="idx">14</span><span data-es="EL TRABAJO QUE VIENE" data-en="THE WORK AHEAD">EL TRABAJO QUE VIENE</span></div>
+    <p class="lede reveal" data-es="Queda una pregunta justa: ¿qué pasa entre hoy y el momento en que ese retorno <span class='t'>empieza a llegar</span>?" data-en="One fair question remains: what happens between today and the moment that return <span class='t'>begins to arrive</span>?">Queda una pregunta justa: ¿qué pasa entre hoy y el momento en que ese retorno <span class="t">empieza a llegar</span>?</p>
+    <p class="body-copy reveal" data-es="La respuesta es que el trabajo cambia de naturaleza. La primera fase invirtió en construir capacidad: la plataforma, la experiencia, el contenido, la infraestructura, el sistema comercial. Esa fase terminó, y no porque el trabajo se detenga, sino porque su propósito ya se cumplió." data-en="The answer is that the work changes in nature. The first phase invested in building capability: the platform, the experience, the content, the infrastructure, the commercial system. That phase is complete, not because the work stops, but because its purpose has been fulfilled.">La respuesta es que el trabajo cambia de naturaleza. La primera fase invirtió en construir capacidad: la plataforma, la experiencia, el contenido, la infraestructura, el sistema comercial. Esa fase terminó, y no porque el trabajo se detenga, sino porque su propósito ya se cumplió.</p>
+    <p class="body-copy reveal" data-es="La siguiente fase invierte en convertir esa capacidad en desempeño medible: leer las señales del negocio, priorizar oportunidades, diseñar experimentos, medir resultados y convertir evidencia en decisiones. No es más trabajo. Es un trabajo distinto." data-en="The next phase invests in turning that capability into measurable performance: reading the business signals, prioritizing opportunities, designing experiments, measuring results, and turning evidence into decisions. It is not more work. It is different work.">La siguiente fase invierte en convertir esa capacidad en desempeño medible: leer las señales del negocio, priorizar oportunidades, diseñar experimentos, medir resultados y convertir evidencia en decisiones. No es más trabajo. Es un trabajo distinto.</p>
+    <p class="lede reveal" data-es="El objetivo ya no es construir más. Es aumentar el valor de todo lo que ya existe. Y mi medida es simple: que mi participación genere <span class='t'>mucho más valor del que cuesta</span>." data-en="The goal is no longer to build more. It is to increase the value of everything that already exists. And my measure is simple: that my involvement generates <span class='t'>far more value than it costs</span>.">El objetivo ya no es construir más. Es aumentar el valor de todo lo que ya existe. Y mi medida es simple: que mi participación genere <span class="t">mucho más valor del que cuesta</span>.</p>
+  </div>
+</section>
+
+<!-- ============ 15 RECOMMENDATION ============ -->
+<section class="spread">
+  <div class="spread-inner">
+    <div class="eyebrow reveal"><span class="idx">15</span><span data-es="RECOMENDACIÓN ESTRATÉGICA" data-en="STRATEGIC RECOMMENDATION">RECOMENDACIÓN ESTRATÉGICA</span></div>
+    <h2 class="reveal" data-es="Después de leer todas las señales, mi recomendación es esta." data-en="After reading all the signals, my recommendation is this.">Después de leer todas las señales, mi recomendación es esta.</h2>
+    <p class="lede reveal" data-es="No construir más. <span class='t'>Activar lo que ya existe.</span> Medir el primer ciclo con honestidad. Y decidir el siguiente paso con datos reales, no con suposiciones." data-en="Build nothing new. <span class='t'>Activate what already exists.</span> Measure the first cycle honestly. And decide the next step with real data, not assumptions.">No construir más. <span class="t">Activar lo que ya existe.</span> Medir el primer ciclo con honestidad. Y decidir el siguiente paso con datos reales, no con suposiciones.</p>
+  </div>
+</section>
+
+<!-- ============ FINAL ============ -->
+<section class="spread final centered">
+  <div class="spread-inner">
+    <p class="line-a reveal" data-es="La inversión ya construyó la plataforma." data-en="The investment already built the platform.">La inversión ya construyó la plataforma.</p>
+    <p class="line-b reveal" data-es="Ahora toca darle la oportunidad de regresar." data-en="Now it is time to give it the chance to return.">Ahora toca darle la oportunidad de regresar.</p>
+    <div class="caption reveal">CRIAR SIN CULPAS · 2026 · LG STUDIO</div>
+  </div>
+</section>
+
+
+<script>
+  var LANG_KEY = 'csc_lang';
+
+  function setLang(lang){
+    document.querySelectorAll('[data-es]').forEach(function(el){
+      var content = el.getAttribute('data-' + lang);
+      if(content !== null){ el.innerHTML = content; }
+    });
+    document.documentElement.lang = lang;
+    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    try{ localStorage.setItem(LANG_KEY, lang); }catch(e){}
+  }
+
+  (function init(){
+    var saved = 'es';
+    try{ saved = localStorage.getItem(LANG_KEY) || 'es'; }catch(e){}
+    if(saved === 'en'){ setLang('en'); }
+  })();
+
+  (function reveals(){
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var els = document.querySelectorAll('.reveal');
+    if(reduced || !('IntersectionObserver' in window)){
+      els.forEach(function(el){ el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    els.forEach(function(el){ io.observe(el); });
+  })();
+</script>
+
+</body>
+</html>
