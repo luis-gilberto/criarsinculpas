@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Criar Sin Culpas · La evidencia detrás de la conversación</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF6EF; --cream:#F4ECDF; --peach:#F3CDB3;
+    --terra:#BC6044; --navy:#18242F; --ink:#18242F;
+    --ink-soft:rgba(24,36,47,.68); --ink-faint:rgba(24,36,47,.42);
+    --hairline:rgba(24,36,47,.12);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--paper);color:var(--ink);font-family:'Inter',-apple-system,sans-serif;font-size:15.5px;line-height:1.75;-webkit-font-smoothing:antialiased;}
+  em,i{font-style:normal;}
+  .wrap{max-width:860px;margin:0 auto;padding:9vh 6vw 14vh 6vw;}
+
+  .lang-toggle{position:fixed;top:18px;right:18px;z-index:50;display:flex;gap:2px;background:var(--paper);border:1px solid var(--hairline);border-radius:100px;padding:3px;}
+  .lang-toggle button{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;border:none;background:transparent;color:var(--ink-faint);padding:6px 13px;border-radius:100px;cursor:pointer;transition:color .3s,background .3s;}
+  .lang-toggle button.active{background:var(--navy);color:var(--paper);}
+
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--terra);margin-bottom:1.6rem;}
+  .eyebrow .idx{color:var(--ink-faint);margin-right:.8em;}
+  h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(2.6rem,6vw,4.4rem);line-height:1.12;margin-bottom:1.4rem;}
+  h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(1.9rem,4vw,2.8rem);line-height:1.2;margin:0 0 2rem 0;}
+  h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.35rem;margin:2.6rem 0 .8rem 0;}
+  .t{color:var(--terra);}
+  .lede{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(1.35rem,2.4vw,1.8rem);line-height:1.45;max-width:32em;}
+  p.body,li.body{color:var(--ink-soft);max-width:42em;}
+  p.body + p.body{margin-top:1rem;}
+  .caption{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9;}
+  section{padding:4.5rem 0 2rem 0;border-top:1px solid var(--hairline);margin-top:3rem;}
+  section:first-of-type{border-top:none;margin-top:0;}
+
+  /* chips */
+  .chip{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px;border-radius:100px;white-space:nowrap;}
+  .chip.ver{background:var(--navy);color:var(--paper);}
+  .chip.int{border:1px solid var(--navy);color:var(--navy);background:transparent;}
+  .chip.hyp{background:var(--terra);color:var(--paper);}
+  .chip.unk{border:1px solid var(--hairline);color:var(--ink-faint);background:transparent;}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:1.6rem 0 0 0;padding:1.2rem 1.4rem;border:1px solid var(--hairline);background:var(--cream);}
+  .legend span.lbl{font-size:12.5px;color:var(--ink-soft);}
+
+  /* toc */
+  .toc{margin:2.6rem 0 0 0;border:1px solid var(--hairline);padding:1.6rem 1.8rem;}
+  .toc ol{list-style:none;counter-reset:toc;}
+  .toc li{counter-increment:toc;padding:.45rem 0;border-bottom:1px solid var(--hairline);}
+  .toc li:last-child{border-bottom:none;}
+  .toc a{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.15rem;color:var(--ink);text-decoration:none;}
+  .toc a:hover{color:var(--terra);}
+  .toc li::before{content:counter(toc,decimal-leading-zero);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--terra);margin-right:1em;letter-spacing:.1em;}
+
+  /* tables */
+  table{width:100%;border-collapse:collapse;margin:1.6rem 0;font-size:13.5px;}
+  th{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);text-align:left;padding:10px 12px 10px 0;border-bottom:1px solid var(--ink);font-weight:500;}
+  td{padding:12px 12px 12px 0;border-bottom:1px solid var(--hairline);vertical-align:top;color:var(--ink-soft);}
+  td.k{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.05rem;color:var(--ink);}
+  td.n{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink);white-space:nowrap;}
+  .scroll-x{overflow-x:auto;}
+
+  /* metric cards */
+  .metric{border:1px solid var(--hairline);border-left:3px solid var(--peach);padding:1.6rem 1.8rem;margin:1.4rem 0;}
+  .metric .num{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:2.6rem;line-height:1;}
+  .metric .src{margin-top:.5rem;}
+  .metric dl{margin-top:1.1rem;}
+  .metric dt{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);margin-top:.9rem;}
+  .metric dd{color:var(--ink-soft);margin-top:.2rem;max-width:44em;}
+  .metric dt.np{color:var(--ink-faint);}
+
+  .qa-block{margin:2.2rem 0;}
+  .callout{border-left:3px solid var(--terra);background:var(--cream);padding:1.3rem 1.6rem;margin:1.6rem 0;color:var(--ink-soft);max-width:46em;}
+  .callout strong{color:var(--ink);font-weight:600;}
+
+  ul.plain{list-style:none;max-width:44em;}
+  ul.plain li{padding:.55rem 0;border-bottom:1px solid var(--hairline);color:var(--ink-soft);}
+  ul.plain li:last-child{border-bottom:none;}
+
+  footer{margin-top:5rem;padding-top:1.4rem;border-top:1px solid var(--hairline);}
+
+  @media (max-width:700px){
+    td,th{font-size:12px;padding-right:8px;}
+    .metric .num{font-size:2.1rem;}
+  }
+  @media print{
+    .lang-toggle{display:none;}
+    body{font-size:11.5px;}
+    section{page-break-inside:auto;}
+    .metric,.callout,table{page-break-inside:avoid;}
+    a{color:var(--ink);text-decoration:none;}
+  }
+</style>
+</head>
+<body>
+<nav class="lang-toggle" aria-label="Idioma"><button id="btn-es" class="active" onclick="setLang('es')">ES</button><button id="btn-en" onclick="setLang('en')">EN</button></nav>
+<div class="wrap">
+
+<!-- COVER -->
+<header>
+  <div class="eyebrow">CRIAR SIN CULPAS · <span data-es="PAQUETE DE EVIDENCIA" data-en="EVIDENCE PACKAGE">PAQUETE DE EVIDENCIA</span></div>
+  <h1 data-es="La evidencia detrás<br>de la conversación" data-en="The evidence behind<br>the conversation">La evidencia detrás<br>de la conversación</h1>
+  <p class="lede" data-es="Datos, señales, supuestos y preguntas abiertas de Criar Sin Culpas." data-en="Data, signals, assumptions and open questions of Criar Sin Culpas.">Datos, señales, supuestos y preguntas abiertas de Criar Sin Culpas.</p>
+  <p class="body" style="margin-top:1.8rem;" data-es="Este documento reúne la evidencia utilizada para evaluar el momento actual de Criar Sin Culpas. Separa los datos observados, la interpretación estratégica y las hipótesis que todavía necesitamos validar. Está diseñado para revisión independiente: no tienes que confiar en mi lectura de los números. Aquí están los números, de dónde vienen, y qué falta por saber." data-en="This document gathers the evidence used to evaluate the current moment of Criar Sin Culpas. It separates observed data, strategic interpretation, and the hypotheses we still need to validate. It is designed for independent review: you do not have to rely on my reading of the numbers. Here are the numbers, where they come from, and what remains unknown.">Este documento reúne la evidencia utilizada para evaluar el momento actual de Criar Sin Culpas. Separa los datos observados, la interpretación estratégica y las hipótesis que todavía necesitamos validar. Está diseñado para revisión independiente: no tienes que confiar en mi lectura de los números. Aquí están los números, de dónde vienen, y qué falta por saber.</p>
+  <p class="caption" style="margin-top:1.6rem;" data-es="JULIO 2026 · PREPARADO POR LUIS GILBERTO · LG STUDIO · VERSIÓN 3 · ACTUALIZADO 17 JUL 2026" data-en="JULY 2026 · PREPARED BY LUIS GILBERTO · LG STUDIO · VERSION 3 · UPDATED JUL 17 2026">JULIO 2026 · PREPARADO POR LUIS GILBERTO · LG STUDIO · VERSIÓN 3 · ACTUALIZADO 17 JUL 2026</p>
+
+  <div class="legend">
+    <span class="chip ver" data-es="VERIFICADO" data-en="VERIFIED">VERIFICADO</span>
+    <span class="lbl" data-es="Hecho respaldado directamente por datos o registros." data-en="Fact directly supported by data or records.">Hecho respaldado directamente por datos o registros.</span>
+    <span class="chip int" data-es="INTERPRETACIÓN" data-en="INTERPRETATION">INTERPRETACIÓN</span>
+    <span class="lbl" data-es="Lectura razonable de la evidencia; no un hecho." data-en="Reasonable reading of the evidence; not a fact.">Lectura razonable de la evidencia; no un hecho.</span>
+    <span class="chip hyp" data-es="HIPÓTESIS · OBJETIVO" data-en="HYPOTHESIS · TARGET">HIPÓTESIS · OBJETIVO</span>
+    <span class="lbl" data-es="Prueba comercial por validar; nunca una promesa." data-en="Commercial test to validate; never a promise.">Prueba comercial por validar; nunca una promesa.</span>
+    <span class="chip unk" data-es="DESCONOCIDO" data-en="UNKNOWN">DESCONOCIDO</span>
+    <span class="lbl" data-es="Aún no hay datos." data-en="No data yet.">Aún no hay datos.</span>
+  </div>
+
+  <nav class="toc">
+    <ol>
+      <li><a href="#s1" data-es="Qué datos se revisaron" data-en="What data was reviewed">Qué datos se revisaron</a></li>
+      <li><a href="#s2" data-es="Resumen ejecutivo de métricas" data-en="Executive metric snapshot">Resumen ejecutivo de métricas</a></li>
+      <li><a href="#s3" data-es="La evidencia por pregunta de negocio" data-en="Evidence by business question">La evidencia por pregunta de negocio</a></li>
+      <li><a href="#s4" data-es="Mapa de afirmaciones y evidencia" data-en="Claim-to-evidence map">Mapa de afirmaciones y evidencia</a></li>
+      <li><a href="#s5" data-es="Por qué empezar probando $225" data-en="Why begin by testing $225">Por qué empezar probando $225</a></li>
+      <li><a href="#s6" data-es="Qué pasa si estamos equivocados" data-en="What if we are wrong">Qué pasa si estamos equivocados</a></li>
+      <li><a href="#s7" data-es="El primer ciclo de validación comercial" data-en="The first commercial validation cycle">El primer ciclo de validación comercial</a></li>
+      <li><a href="#s8" data-es="Lo que estos datos todavía no pueden decirnos" data-en="What this data cannot tell us yet">Lo que estos datos todavía no pueden decirnos</a></li>
+      <li><a href="#s9" data-es="Acceso y propiedad de los datos" data-en="Data access and ownership">Acceso y propiedad de los datos</a></li>
+      <li><a href="#s10" data-es="Apéndice: definiciones, fórmulas y fuentes" data-en="Appendix: definitions, formulas and sources">Apéndice: definiciones, fórmulas y fuentes</a></li>
+    </ol>
+  </nav>
+</header>
+
+<section id="s1">
+  <div class="eyebrow"><span class="idx">01</span><span data-es="QUÉ DATOS SE REVISARON" data-en="WHAT DATA WAS REVIEWED">QUÉ DATOS SE REVISARON</span></div>
+  <h2 data-es="El inventario de fuentes" data-en="The source inventory">El inventario de fuentes</h2>
+  <p class="body" data-es="Todo número en este documento proviene de una de estas fuentes. Si una fuente no existe o está incompleta, se dice explícitamente." data-en="Every number in this document comes from one of these sources. If a source does not exist or is incomplete, it is stated explicitly.">Todo número en este documento proviene de una de estas fuentes. Si una fuente no existe o está incompleta, se dice explícitamente.</p>
+  <div class="scroll-x"><table>
+    <tr>
+      <th data-es="FUENTE" data-en="SOURCE">FUENTE</th>
+      <th data-es="PERÍODO" data-en="PERIOD">PERÍODO</th>
+      <th data-es="QUÉ APORTA" data-en="WHAT IT PROVIDES">QUÉ APORTA</th>
+      <th data-es="LIMITACIONES" data-en="LIMITATIONS">LIMITACIONES</th>
+      <th data-es="ESTADO" data-en="STATUS">ESTADO</th>
+    </tr>
+    <tr>
+      <td class="k">Plausible Analytics</td>
+      <td class="n">16 ABR · 15 JUL 2026</td>
+      <td data-es="Comportamiento humano en criarsinculpas.com: visitas, duración, profundidad de lectura, páginas, canales, geografía, eventos." data-en="Human behavior on criarsinculpas.com: visits, duration, reading depth, pages, channels, geography, events.">Comportamiento humano en criarsinculpas.com: visitas, duración, profundidad de lectura, páginas, canales, geografía, eventos.</td>
+      <td data-es="El tráfico comenzó el 5 de mayo; 64 días con actividad. Volumen pequeño. Puede incluir visitas del equipo (sin exclusión configurada)." data-en="Traffic began May 5; 64 active days. Small volume. May include team visits (no exclusion configured).">El tráfico comenzó el 5 de mayo; 64 días con actividad. Volumen pequeño. Puede incluir visitas del equipo (sin exclusión configurada).</td>
+      <td data-es="Completa para el período" data-en="Complete for the period">Completa para el período</td>
+    </tr>
+    <tr>
+      <td class="k">Cloudflare Web Analytics (RUM)</td>
+      <td class="n">17 JUN · 17 JUL 2026</td>
+      <td data-es="Experiencia técnica medida en navegadores reales: velocidad de carga (LCP), respuesta (INP), estabilidad visual (CLS)." data-en="Technical experience measured in real browsers: load speed (LCP), responsiveness (INP), visual stability (CLS).">Experiencia técnica medida en navegadores reales: velocidad de carga (LCP), respuesta (INP), estabilidad visual (CLS).</td>
+      <td data-es="Ventana de solo 30 días. La vista de cuenta puede mezclar un segundo dominio; una ruta observada está pendiente de confirmar." data-en="30-day window only. The account view may mix a second domain; one observed path is pending confirmation.">Ventana de solo 30 días. La vista de cuenta puede mezclar un segundo dominio; una ruta observada está pendiente de confirmar.</td>
+      <td data-es="Completa para 30 días" data-en="Complete for 30 days">Completa para 30 días</td>
+    </tr>
+    <tr>
+      <td class="k" data-es="Registro de peticiones de borde (Cloudflare, cuenta completa)" data-en="Edge request log (Cloudflare, full account)">Registro de peticiones de borde (Cloudflare, cuenta completa)</td>
+      <td class="n">30 DÍAS</td>
+      <td data-es="239,023 peticiones brutas al servidor, ambos dominios de la cuenta." data-en="239,023 raw server requests, both domains on the account.">239,023 peticiones brutas al servidor, ambos dominios de la cuenta.</td>
+      <td data-es="Más del 95% es tráfico automatizado (robots y rastreadores). No distingue dominios. EXCLUIDO de toda conclusión de este documento." data-en="Over 95% is automated traffic (bots and crawlers). Does not distinguish domains. EXCLUDED from every conclusion in this document.">Más del 95% es tráfico automatizado (robots y rastreadores). No distingue dominios. EXCLUIDO de toda conclusión de este documento.</td>
+      <td data-es="Excluida por diseño" data-en="Excluded by design">Excluida por diseño</td>
+    </tr>
+    <tr>
+      <td class="k">Instagram</td>
+      <td class="n">JUL 2026</td>
+      <td data-es="Tamaño de audiencia: aproximadamente 40,000 seguidores." data-en="Audience size: approximately 40,000 followers.">Tamaño de audiencia: aproximadamente 40,000 seguidores.</td>
+      <td data-es="Cifra aproximada, reportada, pendiente de verificación directa. Métricas controladas por la plataforma. Sin datos de alcance ni engagement en este documento." data-en="Approximate, reported figure, pending direct verification. Platform-controlled metrics. No reach or engagement data in this document.">Cifra aproximada, reportada, pendiente de verificación directa. Métricas controladas por la plataforma. Sin datos de alcance ni engagement en este documento.</td>
+      <td data-es="Parcial · por verificar" data-en="Partial · to verify">Parcial · por verificar</td>
+    </tr>
+    <tr>
+      <td class="k">MailerLite (email)</td>
+      <td class="n">·</td>
+      <td data-es="El sistema existe: secuencia de bienvenida bilingüe de seis correos, activa." data-en="The system exists: a bilingual six-email welcome sequence, active.">El sistema existe: secuencia de bienvenida bilingüe de seis correos, activa.</td>
+      <td data-es="El número de suscriptores y el desempeño de la secuencia NO están incluidos aquí; exportación pendiente." data-en="Subscriber count and sequence performance are NOT included here; export pending.">El número de suscriptores y el desempeño de la secuencia NO están incluidos aquí; exportación pendiente.</td>
+      <td data-es="Pendiente" data-en="Pending">Pendiente</td>
+    </tr>
+    <tr>
+      <td class="k" data-es="Registros de ventas y pagos" data-en="Sales and payment records">Registros de ventas y pagos</td>
+      <td class="n">·</td>
+      <td data-es="No existen todavía. No se ha intentado vender." data-en="They do not exist yet. No sales attempt has been made.">No existen todavía. No se ha intentado vender.</td>
+      <td data-es="El primer ciclo comercial creará esta fuente." data-en="The first commercial cycle will create this source.">El primer ciclo comercial creará esta fuente.</td>
+      <td data-es="No existe aún" data-en="Does not exist yet">No existe aún</td>
+    </tr>
+    <tr>
+      <td class="k" data-es="Retroalimentación cualitativa" data-en="Qualitative feedback">Retroalimentación cualitativa</td>
+      <td class="n">·</td>
+      <td data-es="Mensajes y comentarios de la audiencia." data-en="Audience messages and comments.">Mensajes y comentarios de la audiencia.</td>
+      <td data-es="No se recopila sistemáticamente todavía. No se usa como evidencia en este documento." data-en="Not yet systematically collected. Not used as evidence in this document.">No se recopila sistemáticamente todavía. No se usa como evidencia en este documento.</td>
+      <td data-es="Pendiente" data-en="Pending">Pendiente</td>
+    </tr>
+  </table></div>
+</section>
+
+<section id="s2">
+  <div class="eyebrow"><span class="idx">02</span><span data-es="RESUMEN EJECUTIVO" data-en="EXECUTIVE SNAPSHOT">RESUMEN EJECUTIVO</span></div>
+  <h2 data-es="Las métricas verificadas" data-en="The verified metrics">Las métricas verificadas</h2>
+  <p class="body" data-es="Cada métrica incluye su fuente, su período exacto, y lo que no demuestra. Ese último campo es el que mantiene honesto este documento." data-en="Each metric includes its source, its exact period, and what it does not prove. That last field is what keeps this document honest.">Cada métrica incluye su fuente, su período exacto, y lo que no demuestra. Ese último campo es el que mantiene honesto este documento.</p>
+
+  <div class="metric">
+    <div class="num">339 · 447 · 1,280</div>
+    <div class="caption src" data-es="VISITANTES · VISITAS · VISTAS DE PÁGINA · PLAUSIBLE · 5 MAY A 15 JUL 2026" data-en="VISITORS · VISITS · PAGEVIEWS · PLAUSIBLE · MAY 5 TO JUL 15 2026">VISITANTES · VISITAS · VISTAS DE PÁGINA · PLAUSIBLE · 5 MAY A 15 JUL 2026</div>
+    <dl>
+      <dt data-es="QUÉ SIGNIFICA" data-en="WHAT IT MEANS">QUÉ SIGNIFICA</dt><dd data-es="339 personas distintas hicieron 447 visitas y vieron 1,280 páginas en 64 días con actividad, sin promoción deliberada." data-en="339 distinct people made 447 visits and viewed 1,280 pages across 64 active days, without deliberate promotion.">339 personas distintas hicieron 447 visitas y vieron 1,280 páginas en 64 días con actividad, sin promoción deliberada.</dd>
+      <dt data-es="POR QUÉ IMPORTA" data-en="WHY IT MATTERS">POR QUÉ IMPORTA</dt><dd data-es="Establece la escala real: el sitio recibe poca gente todavía. Todo lo demás en este documento debe leerse contra este tamaño." data-en="It establishes the real scale: the site still receives few people. Everything else in this document must be read against this size.">Establece la escala real: el sitio recibe poca gente todavía. Todo lo demás en este documento debe leerse contra este tamaño.</dd>
+      <dt class="np" data-es="QUÉ NO DEMUESTRA" data-en="WHAT IT DOES NOT PROVE">QUÉ NO DEMUESTRA</dt><dd data-es="No demuestra demanda comercial ni crecimiento. De hecho, los visitantes bajaron mes a mes: 189 en mayo, 111 en junio, 39 en la primera mitad de julio. Sin distribución, la atención decae." data-en="It does not prove commercial demand or growth. In fact, visitors declined month over month: 189 in May, 111 in June, 39 in the first half of July. Without distribution, attention decays.">No demuestra demanda comercial ni crecimiento. De hecho, los visitantes bajaron mes a mes: 189 en mayo, 111 en junio, 39 en la primera mitad de julio. Sin distribución, la atención decae.</dd>
+    </dl>
+  </div>
+  <div class="metric">
+    <div class="num">5:05</div>
+    <div class="caption src" data-es="DURACIÓN PROMEDIO DE VISITA · PLAUSIBLE · 5 MAY A 15 JUL 2026 · PROMEDIO PONDERADO, INCLUYE REBOTES" data-en="AVERAGE VISIT DURATION · PLAUSIBLE · MAY 5 TO JUL 15 2026 · WEIGHTED AVERAGE, INCLUDES BOUNCES">DURACIÓN PROMEDIO DE VISITA · PLAUSIBLE · 5 MAY A 15 JUL 2026 · PROMEDIO PONDERADO, INCLUYE REBOTES</div>
+    <dl>
+      <dt data-es="QUÉ SIGNIFICA" data-en="WHAT IT MEANS">QUÉ SIGNIFICA</dt><dd data-es="Una visita típica dura cinco minutos y cinco segundos, incluyendo las visitas que se van de inmediato." data-en="A typical visit lasts five minutes and five seconds, including visits that leave immediately.">Una visita típica dura cinco minutos y cinco segundos, incluyendo las visitas que se van de inmediato.</dd>
+      <dt data-es="POR QUÉ IMPORTA" data-en="WHY IT MATTERS">POR QUÉ IMPORTA</dt><dd data-es="Cinco minutos es tiempo real con el contenido. La mayoría de los sitios pierde a la gente en segundos." data-en="Five minutes is real time with the content. Most sites lose people in seconds.">Cinco minutos es tiempo real con el contenido. La mayoría de los sitios pierde a la gente en segundos.</dd>
+      <dt class="np" data-es="QUÉ NO DEMUESTRA" data-en="WHAT IT DOES NOT PROVE">QUÉ NO DEMUESTRA</dt><dd data-es="No demuestra intención de compra ni conversión futura. Atención no es ingreso." data-en="It does not prove purchase intent or future conversion. Attention is not revenue.">No demuestra intención de compra ni conversión futura. Atención no es ingreso.</dd>
+    </dl>
+  </div>
+  <div class="metric">
+    <div class="num">73.6%</div>
+    <div class="caption src" data-es="PROFUNDIDAD DE LECTURA · PLAUSIBLE · 5 MAY A 15 JUL 2026 · PONDERADA POR VISTAS DE PÁGINA" data-en="READING DEPTH · PLAUSIBLE · MAY 5 TO JUL 15 2026 · WEIGHTED BY PAGEVIEWS">PROFUNDIDAD DE LECTURA · PLAUSIBLE · 5 MAY A 15 JUL 2026 · PONDERADA POR VISTAS DE PÁGINA</div>
+    <dl>
+      <dt data-es="QUÉ SIGNIFICA" data-en="WHAT IT MEANS">QUÉ SIGNIFICA</dt><dd data-es="En promedio, quien abre una página recorre casi tres cuartas partes de su contenido. En el inicio: 81%. En el protocolo de escalada emocional: 83%." data-en="On average, whoever opens a page scrolls through nearly three quarters of its content. On the homepage: 81%. On the emotional escalation protocol: 83%.">En promedio, quien abre una página recorre casi tres cuartas partes de su contenido. En el inicio: 81%. En el protocolo de escalada emocional: 83%.</dd>
+      <dt data-es="POR QUÉ IMPORTA" data-en="WHY IT MATTERS">POR QUÉ IMPORTA</dt><dd data-es="La gente no está rebotando en el primer párrafo. Está leyendo." data-en="People are not bouncing off the first paragraph. They are reading.">La gente no está rebotando en el primer párrafo. Está leyendo.</dd>
+      <dt class="np" data-es="QUÉ NO DEMUESTRA" data-en="WHAT IT DOES NOT PROVE">QUÉ NO DEMUESTRA</dt><dd data-es="No demuestra comprensión, aplicación del método, ni disposición a pagar." data-en="It does not prove comprehension, application of the method, or willingness to pay.">No demuestra comprensión, aplicación del método, ni disposición a pagar.</dd>
+    </dl>
+  </div>
+  <div class="metric">
+    <div class="num">26.1%</div>
+    <div class="caption src" data-es="TASA DE REBOTE · PLAUSIBLE · 5 MAY A 15 JUL 2026 · PONDERADA POR VISITAS" data-en="BOUNCE RATE · PLAUSIBLE · MAY 5 TO JUL 15 2026 · WEIGHTED BY VISITS">TASA DE REBOTE · PLAUSIBLE · 5 MAY A 15 JUL 2026 · PONDERADA POR VISITAS</div>
+    <dl>
+      <dt data-es="QUÉ SIGNIFICA" data-en="WHAT IT MEANS">QUÉ SIGNIFICA</dt><dd data-es="Solo una de cada cuatro visitas termina sin interacción. Tres de cada cuatro continúan." data-en="Only one in four visits ends without interaction. Three in four continue.">Solo una de cada cuatro visitas termina sin interacción. Tres de cada cuatro continúan.</dd>
+      <dt data-es="POR QUÉ IMPORTA" data-en="WHY IT MATTERS">POR QUÉ IMPORTA</dt><dd data-es="Para contenido editorial, es una tasa notablemente baja: la primera impresión retiene." data-en="For editorial content, this is a remarkably low rate: the first impression retains.">Para contenido editorial, es una tasa notablemente baja: la primera impresión retiene.</dd>
+      <dt class="np" data-es="QUÉ NO DEMUESTRA" data-en="WHAT IT DOES NOT PROVE">QUÉ NO DEMUESTRA</dt><dd data-es="No demuestra lealtad ni retorno futuro de esas personas." data-en="It does not prove loyalty or those people returning in the future.">No demuestra lealtad ni retorno futuro de esas personas.</dd>
+    </dl>
+  </div>
+  <div class="metric">
+    <div class="num">95.2% · 0</div>
+    <div class="caption src" data-es="TRÁFICO DIRECTO · PUBLICIDAD PAGADA · PLAUSIBLE · 5 MAY A 15 JUL 2026" data-en="DIRECT TRAFFIC · PAID ADVERTISING · PLAUSIBLE · MAY 5 TO JUL 15 2026">TRÁFICO DIRECTO · PUBLICIDAD PAGADA · PLAUSIBLE · 5 MAY A 15 JUL 2026</div>
+    <dl>
+      <dt data-es="QUÉ SIGNIFICA" data-en="WHAT IT MEANS">QUÉ SIGNIFICA</dt><dd data-es="299 de 314 visitantes con canal atribuido llegaron de forma directa. Instagram aportó 9. No existe ni una visita de publicidad pagada." data-en="299 of 314 channel-attributed visitors arrived directly. Instagram contributed 9. There is not a single visit from paid advertising.">299 de 314 visitantes con canal atribuido llegaron de forma directa. Instagram aportó 9. No existe ni una visita de publicidad pagada.</dd>
+      <dt data-es="POR QUÉ IMPORTA" data-en="WHY IT MATTERS">POR QUÉ IMPORTA</dt><dd data-es="Todo el comportamiento observado ocurrió sin comprar atención. Es la línea base más limpia posible antes de activar distribución." data-en="All observed behavior happened without buying attention. It is the cleanest possible baseline before activating distribution.">Todo el comportamiento observado ocurrió sin comprar atención. Es la línea base más limpia posible antes de activar distribución.</dd>
+      <dt class="np" data-es="QUÉ NO DEMUESTRA" data-en="WHAT IT DOES NOT PROVE">QUÉ NO DEMUESTRA</dt><dd data-es="El tráfico directo no revela su origen real (enlaces compartidos, mensajes, marcadores). No sabemos con precisión cómo llega la gente." data-en="Direct traffic does not reveal its true origin (shared links, messages, bookmarks). We do not know precisely how people arrive.">El tráfico directo no revela su origen real (enlaces compartidos, mensajes, marcadores). No sabemos con precisión cómo llega la gente.</dd>
+    </dl>
+  </div>
+  <div class="metric">
+    <div class="num">108 / 125</div>
+    <div class="caption src" data-es="ENTRADAS POR PROTOCOLOS DE CRISIS VS. INICIO · PLAUSIBLE · 5 MAY A 15 JUL 2026 · ENTRADAS ÚNICAS" data-en="ENTRIES VIA CRISIS PROTOCOLS VS. HOMEPAGE · PLAUSIBLE · MAY 5 TO JUL 15 2026 · UNIQUE ENTRANCES">ENTRADAS POR PROTOCOLOS DE CRISIS VS. INICIO · PLAUSIBLE · 5 MAY A 15 JUL 2026 · ENTRADAS ÚNICAS</div>
+    <dl>
+      <dt data-es="QUÉ SIGNIFICA" data-en="WHAT IT MEANS">QUÉ SIGNIFICA</dt><dd data-es="Los cuatro protocolos de apoyo sumaron 108 entradas únicas; el inicio, 125. Quien entra por el protocolo de escalada emocional permanece 10:05 en promedio y solo rebota el 18% de las veces." data-en="The four support protocols combined for 108 unique entrances; the homepage, 125. Whoever enters through the emotional escalation protocol stays 10:05 on average and bounces only 18% of the time.">Los cuatro protocolos de apoyo sumaron 108 entradas únicas; el inicio, 125. Quien entra por el protocolo de escalada emocional permanece 10:05 en promedio y solo rebota el 18% de las veces.</dd>
+      <dt data-es="POR QUÉ IMPORTA" data-en="WHY IT MATTERS">POR QUÉ IMPORTA</dt><dd data-es="La gente llega a Criar Sin Culpas en momentos de necesidad concreta, y el contenido la sostiene. Los protocolos funcionan como puertas de entrada, no solo como páginas internas." data-en="People arrive at Criar Sin Culpas in moments of concrete need, and the content holds them. The protocols work as entry doors, not just internal pages.">La gente llega a Criar Sin Culpas en momentos de necesidad concreta, y el contenido la sostiene. Los protocolos funcionan como puertas de entrada, no solo como páginas internas.</dd>
+      <dt class="np" data-es="QUÉ NO DEMUESTRA" data-en="WHAT IT DOES NOT PROVE">QUÉ NO DEMUESTRA</dt><dd data-es="No demuestra que esas mismas personas se inscribirían en una experiencia pagada." data-en="It does not prove those same people would enroll in a paid experience.">No demuestra que esas mismas personas se inscribirían en una experiencia pagada.</dd>
+    </dl>
+  </div>
+  <div class="metric">
+    <div class="num">91 · 19</div>
+    <div class="caption src" data-es="ENTRADAS AL PORTAL · CLICS AL MÉTODO · PLAUSIBLE (EVENTOS) · 5 MAY A 15 JUL 2026 · ÚNICOS" data-en="PORTAL ENTRIES · METHOD CTA CLICKS · PLAUSIBLE (EVENTS) · MAY 5 TO JUL 15 2026 · UNIQUE">ENTRADAS AL PORTAL · CLICS AL MÉTODO · PLAUSIBLE (EVENTOS) · 5 MAY A 15 JUL 2026 · ÚNICOS</div>
+    <dl>
+      <dt data-es="QUÉ SIGNIFICA" data-en="WHAT IT MEANS">QUÉ SIGNIFICA</dt><dd data-es="91 visitantes distintos activaron el evento portal_entered (27% de todos los visitantes). 19 hicieron clic en el llamado al método (method_cta_clicked). 26 llegaron a la sección de inicio registrada como Home · Llegó a &quot;No estás fallando&quot;." data-en="91 distinct visitors triggered the portal_entered event (27% of all visitors). 19 clicked the method call to action (method_cta_clicked). 26 reached the homepage section recorded as Home · Llegó a &quot;No estás fallando&quot;.">91 visitantes distintos activaron el evento portal_entered (27% de todos los visitantes). 19 hicieron clic en el llamado al método (method_cta_clicked). 26 llegaron a la sección de inicio registrada como Home · Llegó a &quot;No estás fallando&quot;.</dd>
+      <dt data-es="POR QUÉ IMPORTA" data-en="WHY IT MATTERS">POR QUÉ IMPORTA</dt><dd data-es="Son los primeros indicios de movimiento más allá de leer: pasos dentro del sistema, en dirección al método." data-en="These are the first signs of movement beyond reading: steps inside the system, toward the method.">Son los primeros indicios de movimiento más allá de leer: pasos dentro del sistema, en dirección al método.</dd>
+      <dt class="np" data-es="QUÉ NO DEMUESTRA" data-en="WHAT IT DOES NOT PROVE">QUÉ NO DEMUESTRA</dt><dd data-es="Un clic no es una inscripción. Estos eventos miden interés en el camino, no decisión de compra." data-en="A click is not an enrollment. These events measure interest in the path, not a purchase decision.">Un clic no es una inscripción. Estos eventos miden interés en el camino, no decisión de compra.</dd>
+    </dl>
+  </div>
+  <div class="metric">
+    <div class="num">98% · 95% · 100%</div>
+    <div class="caption src" data-es="LCP · INP · CLS EN RANGO BUENO · CLOUDFLARE RUM · 17 JUN A 17 JUL 2026" data-en="LCP · INP · CLS IN GOOD RANGE · CLOUDFLARE RUM · JUN 17 TO JUL 17 2026">LCP · INP · CLS EN RANGO BUENO · CLOUDFLARE RUM · 17 JUN A 17 JUL 2026</div>
+    <dl>
+      <dt data-es="QUÉ SIGNIFICA" data-en="WHAT IT MEANS">QUÉ SIGNIFICA</dt><dd data-es="La experiencia técnica es sólida: carga mediana de 473ms, cero inestabilidad visual, respuesta buena en el 95% de las interacciones. La única excepción: la imagen principal del inicio, que en 10 ocasiones tardó más de 10 segundos. La corrección ya está especificada y en curso." data-en="The technical experience is solid: 473ms median load, zero visual instability, good responsiveness in 95% of interactions. The single exception: the homepage hero image, which took over 10 seconds on 10 occasions. The fix is already specified and in progress.">La experiencia técnica es sólida: carga mediana de 473ms, cero inestabilidad visual, respuesta buena en el 95% de las interacciones. La única excepción: la imagen principal del inicio, que en 10 ocasiones tardó más de 10 segundos. La corrección ya está especificada y en curso.</dd>
+      <dt data-es="POR QUÉ IMPORTA" data-en="WHY IT MATTERS">POR QUÉ IMPORTA</dt><dd data-es="Antes de invitar tráfico en septiembre, la puerta de entrada debe abrir rápido. Hoy casi todo el sitio ya lo hace." data-en="Before inviting traffic in September, the front door must open fast. Today almost the entire site already does.">Antes de invitar tráfico en septiembre, la puerta de entrada debe abrir rápido. Hoy casi todo el sitio ya lo hace.</dd>
+      <dt class="np" data-es="QUÉ NO DEMUESTRA" data-en="WHAT IT DOES NOT PROVE">QUÉ NO DEMUESTRA</dt><dd data-es="Velocidad no es demanda. Un sitio rápido no vende por sí solo." data-en="Speed is not demand. A fast site does not sell on its own.">Velocidad no es demanda. Un sitio rápido no vende por sí solo.</dd>
+    </dl>
+  </div></section>
+<section id="s3">
+  <div class="eyebrow"><span class="idx">03</span><span data-es="LA EVIDENCIA POR PREGUNTA DE NEGOCIO" data-en="EVIDENCE BY BUSINESS QUESTION">LA EVIDENCIA POR PREGUNTA DE NEGOCIO</span></div>
+  <h2 data-es="Cinco preguntas, cinco respuestas honestas" data-en="Five questions, five honest answers">Cinco preguntas, cinco respuestas honestas</h2>
+
+  <div class="qa-block">
+    <h3 data-es="¿La audiencia está prestando atención?" data-en="Is the audience paying attention?">¿La audiencia está prestando atención?</h3>
+    <p class="body"><span class="chip ver" data-es="VERIFICADO" data-en="VERIFIED">VERIFICADO</span></p>
+    <p class="body" data-es="Sí, con una precisión importante: la audiencia que llega es pequeña y su atención es profunda. 5:05 de duración promedio, 73.6% de profundidad de lectura, 26.1% de rebote, todo sin promoción ni publicidad. Al mismo tiempo, los visitantes mensuales bajaron de 189 en mayo a 39 en la primera mitad de julio. Una lectura posible es que la atención existe pero no se renueva sola: sin distribución deliberada, decae. Esa es exactamente la tesis de la fase de activación, y estos datos la respaldan en ambas direcciones." data-en="Yes, with one important precision: the audience that arrives is small and its attention is deep. 5:05 average duration, 73.6% reading depth, 26.1% bounce, all without promotion or advertising. At the same time, monthly visitors fell from 189 in May to 39 in the first half of July. One possible reading is that attention exists but does not renew itself: without deliberate distribution, it decays. That is exactly the thesis of the activation phase, and this data supports it in both directions.">Sí, con una precisión importante: la audiencia que llega es pequeña y su atención es profunda. 5:05 de duración promedio, 73.6% de profundidad de lectura, 26.1% de rebote, todo sin promoción ni publicidad. Al mismo tiempo, los visitantes mensuales bajaron de 189 en mayo a 39 en la primera mitad de julio. Una lectura posible es que la atención existe pero no se renueva sola: sin distribución deliberada, decae. Esa es exactamente la tesis de la fase de activación, y estos datos la respaldan en ambas direcciones.</p>
+  </div>
+
+  <div class="qa-block">
+    <h3 data-es="¿La audiencia confía lo suficiente para continuar?" data-en="Does the audience trust the material enough to continue?">¿La audiencia confía lo suficiente para continuar?</h3>
+    <p class="body"><span class="chip int" data-es="INTERPRETACIÓN" data-en="INTERPRETATION">INTERPRETACIÓN</span></p>
+    <p class="body" data-es="Las señales sugieren que sí. 91 visitantes entraron al portal del método (27% del total). Quien llega en crisis por el protocolo de escalada emocional permanece más de diez minutos. La mitad de la audiencia navega desde el móvil, la mitad desde escritorio, lo que sugiere consulta tanto en el momento de necesidad como en momentos de estudio. Todavía necesitamos validar el siguiente eslabón: no hay datos de suscripción de correo en este documento (exportación de MailerLite pendiente) ni retroalimentación cualitativa sistemática. Confianza en el contenido está sugerida; confianza suficiente para dar datos personales o dinero, aún no medida." data-en="The signals suggest yes. 91 visitors entered the method portal (27% of the total). Whoever arrives in crisis through the emotional escalation protocol stays over ten minutes. Half the audience browses on mobile, half on desktop, suggesting consultation both in the moment of need and in moments of study. We still need to validate the next link: there is no email subscription data in this document (MailerLite export pending) and no systematic qualitative feedback. Trust in the content is suggested; trust sufficient to hand over personal data or money is not yet measured.">Las señales sugieren que sí. 91 visitantes entraron al portal del método (27% del total). Quien llega en crisis por el protocolo de escalada emocional permanece más de diez minutos. La mitad de la audiencia navega desde el móvil, la mitad desde escritorio, lo que sugiere consulta tanto en el momento de necesidad como en momentos de estudio. Todavía necesitamos validar el siguiente eslabón: no hay datos de suscripción de correo en este documento (exportación de MailerLite pendiente) ni retroalimentación cualitativa sistemática. Confianza en el contenido está sugerida; confianza suficiente para dar datos personales o dinero, aún no medida.</p>
+  </div>
+
+  <div class="qa-block">
+    <h3 data-es="¿Existe evidencia de demanda comercial hoy?" data-en="Is there evidence of commercial demand today?">¿Existe evidencia de demanda comercial hoy?</h3>
+    <p class="body"><span class="chip unk" data-es="DESCONOCIDO" data-en="UNKNOWN">DESCONOCIDO</span></p>
+    <p class="body" data-es="No. Y este documento no va a suavizarlo: no hay ventas porque nunca se ha intentado vender. No existen registros de pago, no existe una oferta publicada, y ningún dato de atención puede sustituir esa evidencia. La cadena es atención, luego confianza, luego intención, luego compra. Hoy tenemos evidencia verificada de atención, señales interpretables de confianza, indicios tempranos de intención (19 clics al método), y cero datos de compra. El primer ciclo comercial existe precisamente para crear el dato que falta." data-en="No. And this document will not soften it: there are no sales because selling has never been attempted. No payment records exist, no published offer exists, and no attention data can substitute for that evidence. The chain is attention, then trust, then intent, then purchase. Today we have verified evidence of attention, interpretable signals of trust, early hints of intent (19 method clicks), and zero purchase data. The first commercial cycle exists precisely to create the missing data point.">No. Y este documento no va a suavizarlo: no hay ventas porque nunca se ha intentado vender. No existen registros de pago, no existe una oferta publicada, y ningún dato de atención puede sustituir esa evidencia. La cadena es atención, luego confianza, luego intención, luego compra. Hoy tenemos evidencia verificada de atención, señales interpretables de confianza, indicios tempranos de intención (19 clics al método), y cero datos de compra. El primer ciclo comercial existe precisamente para crear el dato que falta.</p>
+  </div>
+
+  <div class="qa-block">
+    <h3 data-es="¿Hay suficiente audiencia para una prueba significativa?" data-en="Is there enough audience for a meaningful test?">¿Hay suficiente audiencia para una prueba significativa?</h3>
+    <p class="body"><span class="chip int" data-es="INTERPRETACIÓN" data-en="INTERPRETATION">INTERPRETACIÓN</span></p>
+    <p class="body" data-es="Probablemente sí, con dos condiciones de honestidad. Primera: la cifra de 40,000 seguidores de Instagram es aproximada y está pendiente de verificación directa. Segunda: el 0.05% que representa veinte inscripciones es contexto de escala, no una tasa de conversión pronosticada. Nadie sabe qué porcentaje de esa audiencia es alcanzable, activa, o dispuesta a pagar. Lo que sí es razonable afirmar: pedir veinte síes a una audiencia de decenas de miles es una prueba de tamaño modesto, y las 339 personas que ya llegaron al sitio se comportan como el segmento más comprometido de esa audiencia." data-en="Probably yes, with two honesty conditions. First: the 40,000 Instagram follower figure is approximate and pending direct verification. Second: the 0.05% that twenty enrollments represent is scale context, not a forecasted conversion rate. Nobody knows what percentage of that audience is reachable, active, or willing to pay. What is reasonable to state: asking for twenty yeses from an audience of tens of thousands is a modestly sized test, and the 339 people who already reached the site behave like the most engaged segment of that audience.">Probablemente sí, con dos condiciones de honestidad. Primera: la cifra de 40,000 seguidores de Instagram es aproximada y está pendiente de verificación directa. Segunda: el 0.05% que representa veinte inscripciones es contexto de escala, no una tasa de conversión pronosticada. Nadie sabe qué porcentaje de esa audiencia es alcanzable, activa, o dispuesta a pagar. Lo que sí es razonable afirmar: pedir veinte síes a una audiencia de decenas de miles es una prueba de tamaño modesto, y las 339 personas que ya llegaron al sitio se comportan como el segmento más comprometido de esa audiencia.</p>
+  </div>
+
+  <div class="qa-block">
+    <h3 data-es="¿Qué permanece desconocido?" data-en="What remains unknown?">¿Qué permanece desconocido?</h3>
+    <ul class="plain">
+      <li data-es="¿La gente pagará $225?" data-en="Will people pay $225?">¿La gente pagará $225?</li>
+      <li data-es="¿Qué promesa convierte mejor?" data-en="Which promise converts best?">¿Qué promesa convierte mejor?</li>
+      <li data-es="¿Qué segmento de la audiencia es más propenso a inscribirse?" data-en="Which audience segment is most likely to enroll?">¿Qué segmento de la audiencia es más propenso a inscribirse?</li>
+      <li data-es="¿Qué objeciones impiden la compra?" data-en="What objections prevent purchase?">¿Qué objeciones impiden la compra?</li>
+      <li data-es="¿Qué canal de adquisición produce la intención más fuerte?" data-en="Which acquisition channel produces the strongest intent?">¿Qué canal de adquisición produce la intención más fuerte?</li>
+      <li data-es="¿Cuánto sostén requiere una cohorte de parte de Nari?" data-en="How much support does a cohort require from Nari?">¿Cuánto sostén requiere una cohorte de parte de Nari?</li>
+      <li data-es="¿La oferta puede repetirse de forma rentable?" data-en="Can the offer repeat profitably?">¿La oferta puede repetirse de forma rentable?</li>
+    </ul>
+  </div>
+</section>
+
+<section id="s4">
+  <div class="eyebrow"><span class="idx">04</span><span data-es="MAPA DE AFIRMACIONES Y EVIDENCIA" data-en="CLAIM-TO-EVIDENCE MAP">MAPA DE AFIRMACIONES Y EVIDENCIA</span></div>
+  <h2 data-es="Audita el argumento tú misma" data-en="Audit the argument yourself">Audita el argumento tú misma</h2>
+  <p class="body" data-es="Cada afirmación importante de la presentación y del documento ejecutivo, conectada con su evidencia, su fuente, y su nivel de certeza." data-en="Every major claim from the presentation and the executive document, connected to its evidence, its source, and its level of certainty.">Cada afirmación importante de la presentación y del documento ejecutivo, conectada con su evidencia, su fuente, y su nivel de certeza.</p>
+  <div class="scroll-x"><table>
+    <tr>
+      <th data-es="AFIRMACIÓN" data-en="CLAIM">AFIRMACIÓN</th>
+      <th data-es="EVIDENCIA" data-en="EVIDENCE">EVIDENCIA</th>
+      <th data-es="FUENTE" data-en="SOURCE">FUENTE</th>
+      <th data-es="CERTEZA" data-en="CERTAINTY">CERTEZA</th>
+      <th data-es="QUEDA POR VALIDAR" data-en="STILL TO VALIDATE">QUEDA POR VALIDAR</th>
+    </tr>
+    <tr>
+      <td class="k" data-es="La audiencia ya dedica tiempo real al contenido." data-en="The audience already spends real time with the content.">La audiencia ya dedica tiempo real al contenido.</td>
+      <td data-es="5:05 de duración promedio, 73.6% de profundidad, 26.1% de rebote." data-en="5:05 average duration, 73.6% depth, 26.1% bounce.">5:05 de duración promedio, 73.6% de profundidad, 26.1% de rebote.</td>
+      <td class="n">PLAUSIBLE</td>
+      <td><span class="chip ver" data-es="VERIFICADO" data-en="VERIFIED">VERIFICADO</span></td>
+      <td data-es="Si esa atención se traduce en inscripción o compra." data-en="Whether that attention translates into enrollment or purchase.">Si esa atención se traduce en inscripción o compra.</td>
+    </tr>
+    <tr>
+      <td class="k" data-es="Las páginas de crisis funcionan como puertas de entrada." data-en="The crisis pages work as entry doors.">Las páginas de crisis funcionan como puertas de entrada.</td>
+      <td data-es="108 entradas únicas por protocolos vs. 125 por el inicio; 10:05 de permanencia entrando por escalada emocional." data-en="108 unique protocol entrances vs. 125 via homepage; 10:05 stay when entering via emotional escalation.">108 entradas únicas por protocolos vs. 125 por el inicio; 10:05 de permanencia entrando por escalada emocional.</td>
+      <td class="n">PLAUSIBLE</td>
+      <td><span class="chip ver" data-es="VERIFICADO" data-en="VERIFIED">VERIFICADO</span></td>
+      <td data-es="Si esos visitantes en crisis son el segmento que se inscribe." data-en="Whether those in-crisis visitors are the segment that enrolls.">Si esos visitantes en crisis son el segmento que se inscribe.</td>
+    </tr>
+    <tr>
+      <td class="k" data-es="Todo ocurrió sin publicidad pagada." data-en="All of it happened without paid advertising.">Todo ocurrió sin publicidad pagada.</td>
+      <td data-es="Cero visitas con medio pagado; 95.2% de tráfico directo." data-en="Zero visits from paid mediums; 95.2% direct traffic.">Cero visitas con medio pagado; 95.2% de tráfico directo.</td>
+      <td class="n">PLAUSIBLE</td>
+      <td><span class="chip ver" data-es="VERIFICADO" data-en="VERIFIED">VERIFICADO</span></td>
+      <td data-es="Cómo se comporta el tráfico cuando sí haya un mensaje de venta." data-en="How traffic behaves once there is a sales message.">Cómo se comporta el tráfico cuando sí haya un mensaje de venta.</td>
+    </tr>
+    <tr>
+      <td class="k" data-es="El sistema aún no genera ingresos porque no se lo hemos pedido." data-en="The system has not generated revenue because we have not asked it to.">El sistema aún no genera ingresos porque no se lo hemos pedido.</td>
+      <td data-es="Hecho verificado: cero ventas, cero intentos de venta, ninguna oferta publicada. La causa (&quot;porque no se lo hemos pedido&quot;) es la lectura estratégica de ese hecho." data-en="Verified fact: zero sales, zero sales attempts, no published offer. The cause (&quot;because we have not asked it to&quot;) is the strategic reading of that fact.">Hecho verificado: cero ventas, cero intentos de venta, ninguna oferta publicada. La causa (&quot;porque no se lo hemos pedido&quot;) es la lectura estratégica de ese hecho.</td>
+      <td class="n">REGISTROS</td>
+      <td><span class="chip int" data-es="INTERPRETACIÓN" data-en="INTERPRETATION">INTERPRETACIÓN</span></td>
+      <td data-es="El primer ciclo comercial prueba la causa directamente." data-en="The first commercial cycle tests the cause directly.">El primer ciclo comercial prueba la causa directamente.</td>
+    </tr>
+    <tr>
+      <td class="k" data-es="La audiencia ya existe alrededor de la marca." data-en="The audience already exists around the brand.">La audiencia ya existe alrededor de la marca.</td>
+      <td data-es="Aproximadamente 40,000 seguidores en Instagram (cifra reportada) más el comportamiento profundo de quienes llegan al sitio." data-en="Approximately 40,000 Instagram followers (reported figure) plus the deep behavior of those reaching the site.">Aproximadamente 40,000 seguidores en Instagram (cifra reportada) más el comportamiento profundo de quienes llegan al sitio.</td>
+      <td class="n">INSTAGRAM · PLAUSIBLE</td>
+      <td><span class="chip int" data-es="INTERPRETACIÓN" data-en="INTERPRETATION">INTERPRETACIÓN</span></td>
+      <td data-es="Verificar la cifra exacta y qué fracción es alcanzable." data-en="Verify the exact figure and what fraction is reachable.">Verificar la cifra exacta y qué fracción es alcanzable.</td>
+    </tr>
+    <tr>
+      <td class="k" data-es="Veinte familias es un objetivo realista." data-en="Twenty families is a realistic target.">Veinte familias es un objetivo realista.</td>
+      <td data-es="Contexto de escala: 20 es el 0.05% de la audiencia aproximada. No existe tasa de conversión previa." data-en="Scale context: 20 is 0.05% of the approximate audience. No prior conversion rate exists.">Contexto de escala: 20 es el 0.05% de la audiencia aproximada. No existe tasa de conversión previa.</td>
+      <td class="n">CÁLCULO</td>
+      <td><span class="chip hyp" data-es="HIPÓTESIS · OBJETIVO" data-en="HYPOTHESIS · TARGET">HIPÓTESIS · OBJETIVO</span></td>
+      <td data-es="Todo. Ese es el propósito del primer ciclo." data-en="Everything. That is the purpose of the first cycle.">Todo. Ese es el propósito del primer ciclo.</td>
+    </tr>
+    <tr>
+      <td class="k" data-es="Veinte inscripciones equivalen a un mes de acompañamiento estratégico." data-en="Twenty enrollments equal one month of strategic partnership.">Veinte inscripciones equivalen a un mes de acompañamiento estratégico.</td>
+      <td data-es="Aritmética verificable: 20 &#215; $225 = $4,500 brutos. Que ocurra es un objetivo, no un pronóstico." data-en="Verifiable arithmetic: 20 &#215; $225 = $4,500 gross. Whether it happens is a target, not a forecast.">Aritmética verificable: 20 &#215; $225 = $4,500 brutos. Que ocurra es un objetivo, no un pronóstico.</td>
+      <td class="n">CÁLCULO</td>
+      <td><span class="chip hyp" data-es="HIPÓTESIS · OBJETIVO" data-en="HYPOTHESIS · TARGET">HIPÓTESIS · OBJETIVO</span></td>
+      <td data-es="Comisiones, impuestos y costos de entrega reducen la cifra neta." data-en="Fees, taxes and delivery costs reduce the net figure.">Comisiones, impuestos y costos de entrega reducen la cifra neta.</td>
+    </tr>
+    <tr>
+      <td class="k" data-es="La plataforma técnica está lista para recibir tráfico." data-en="The technical platform is ready to receive traffic.">La plataforma técnica está lista para recibir tráfico.</td>
+      <td data-es="473ms de carga mediana, CLS 100% bueno, INP 95% bueno. Una excepción conocida: la imagen principal del inicio, con corrección en curso." data-en="473ms median load, CLS 100% good, INP 95% good. One known exception: the homepage hero image, fix in progress.">473ms de carga mediana, CLS 100% bueno, INP 95% bueno. Una excepción conocida: la imagen principal del inicio, con corrección en curso.</td>
+      <td class="n">CLOUDFLARE RUM</td>
+      <td><span class="chip ver" data-es="VERIFICADO" data-en="VERIFIED">VERIFICADO</span></td>
+      <td data-es="Confirmar la corrección de la imagen en el mismo panel tras el despliegue." data-en="Confirm the image fix in the same panel after deploy.">Confirmar la corrección de la imagen en el mismo panel tras el despliegue.</td>
+    </tr>
+    <tr>
+      <td class="k" data-es="El precio de $225 es el experimento inicial más razonable." data-en="The $225 price is the most reasonable first experiment.">El precio de $225 es el experimento inicial más razonable.</td>
+      <td data-es="Posicionamiento entre cursos grabados ($34 a $99) y coaching privado (paquetes de $400 a $1,500); tráfico actual mayoritariamente de EE.UU.; comparación cualitativa de tres opciones de precio." data-en="Positioning between recorded courses ($34 to $99) and private coaching ($400 to $1,500 packages); current traffic mostly from the U.S.; qualitative comparison of three price options.">Posicionamiento entre cursos grabados ($34 a $99) y coaching privado (paquetes de $400 a $1,500); tráfico actual mayoritariamente de EE.UU.; comparación cualitativa de tres opciones de precio.</td>
+      <td class="n">MERCADO · PLAUSIBLE</td>
+      <td><span class="chip int" data-es="INTERPRETACIÓN" data-en="INTERPRETATION">INTERPRETACIÓN</span></td>
+      <td data-es="Transacciones reales. Y la geografía de la audiencia de Instagram, que podría reabrir la conversación." data-en="Real transactions. And the Instagram audience geography, which could reopen the conversation.">Transacciones reales. Y la geografía de la audiencia de Instagram, que podría reabrir la conversación.</td>
+    </tr>
+    <tr>
+      <td class="k" data-es="Las fechas del primer ciclo: 5, 15 y 30 de septiembre." data-en="The first cycle dates: September 5, 15 and 30.">Las fechas del primer ciclo: 5, 15 y 30 de septiembre.</td>
+      <td data-es="Compromisos de trabajo, no eventos ocurridos." data-en="Working commitments, not events that have happened.">Compromisos de trabajo, no eventos ocurridos.</td>
+      <td class="n">PLAN</td>
+      <td><span class="chip hyp" data-es="HIPÓTESIS · OBJETIVO" data-en="HYPOTHESIS · TARGET">HIPÓTESIS · OBJETIVO</span></td>
+      <td data-es="Cumplirlas." data-en="Meeting them.">Cumplirlas.</td>
+    </tr>
+  </table></div>
+</section>
+
+<section id="s5">
+  <div class="eyebrow"><span class="idx">05</span><span data-es="LA HIPÓTESIS DE PRECIO" data-en="THE PRICING HYPOTHESIS">LA HIPÓTESIS DE PRECIO</span></div>
+  <h2 data-es="¿Por qué empezar probando $225?" data-en="Why begin by testing $225?">¿Por qué empezar probando $225?</h2>
+  <p class="body" data-es="En la conversación surgió la pregunta correcta: ¿hay personas que pagan $225? La respuesta honesta es que todavía no lo sabemos, porque nunca se ha vendido nada. Esta sección no intenta demostrar que $225 es el precio correcto. Eso sería deshonesto sin evidencia transaccional. Intenta algo distinto: mostrar por qué $225 es el <span class='t'>experimento inicial más razonable</span> con todo lo que sabemos hoy. La recomendación debe sostenerse por sí sola, incluso si el objetivo de $4,500 no existiera." data-en="The right question came up in the conversation: are there people who pay $225? The honest answer is that we do not know yet, because nothing has ever been sold. This section does not try to prove that $225 is the correct price. That would be dishonest without transactional evidence. It attempts something different: to show why $225 is the <span class='t'>most reasonable first experiment</span> given everything we know today. The recommendation must stand on its own, even if the $4,500 objective did not exist.">En la conversación surgió la pregunta correcta: ¿hay personas que pagan $225? La respuesta honesta es que todavía no lo sabemos, porque nunca se ha vendido nada. Esta sección no intenta demostrar que $225 es el precio correcto. Eso sería deshonesto sin evidencia transaccional. Intenta algo distinto: mostrar por qué $225 es el <span class="t">experimento inicial más razonable</span> con todo lo que sabemos hoy. La recomendación debe sostenerse por sí sola, incluso si el objetivo de $4,500 no existiera.</p>
+
+  <h3 data-es="1. Qué transformación se está vendiendo" data-en="1. What transformation is being sold">1. Qué transformación se está vendiendo</h3>
+  <p class="body" data-es="El valor no lo definen tres semanas, tres sesiones ni una cohorte. Eso es el formato. El valor lo define la transformación: una madre que hoy gestiona un problema recurrente por instinto y agotamiento, y que al cerrar el ciclo tiene un sistema propio: entiende el patrón, aplicó un protocolo con acompañamiento en vivo, y vio evidencia en su propia casa de que funciona. Esa es la promesa de diseño que el primer ciclo pone a prueba. Los cursos grabados venden información. El Estudio propone vender un cambio acompañado. Esa diferencia es la base de todo el razonamiento de precio." data-en="Value is not defined by three weeks, three sessions or a cohort. That is the format. Value is defined by the transformation: a mother who today manages a recurring problem on instinct and exhaustion, and who closes the cycle with a system of her own: she understands the pattern, applied a protocol with live guidance, and saw evidence in her own home that it works. That is the design promise the first cycle puts to the test. Recorded courses sell information. El Estudio proposes selling an accompanied change. That difference is the basis of the entire pricing rationale.">El valor no lo definen tres semanas, tres sesiones ni una cohorte. Eso es el formato. El valor lo define la transformación: una madre que hoy gestiona un problema recurrente por instinto y agotamiento, y que al cerrar el ciclo tiene un sistema propio: entiende el patrón, aplicó un protocolo con acompañamiento en vivo, y vio evidencia en su propia casa de que funciona. Esa es la promesa de diseño que el primer ciclo pone a prueba. Los cursos grabados venden información. El Estudio propone vender un cambio acompañado. Esa diferencia es la base de todo el razonamiento de precio.</p>
+
+  <h3 data-es="2. El contexto de mercado" data-en="2. The market context">2. El contexto de mercado</h3>
+  <p class="body" data-es="Precios públicos observados en el mercado de educación para padres de EE.UU., julio de 2026. No para copiarlos: para ubicar la propuesta." data-en="Public prices observed in the U.S. parenting education market, July 2026. Not to copy them: to locate the proposal.">Precios públicos observados en el mercado de educación para padres de EE.UU., julio de 2026. No para copiarlos: para ubicar la propuesta.</p>
+  <div class="scroll-x"><table>
+    <tr>
+      <th data-es="CATEGORÍA" data-en="CATEGORY">CATEGORÍA</th>
+      <th data-es="FORMATO Y DURACIÓN" data-en="FORMAT AND LENGTH">FORMATO Y DURACIÓN</th>
+      <th data-es="PRECIO TÍPICO" data-en="TYPICAL PRICE">PRECIO TÍPICO</th>
+      <th data-es="POSICIONAMIENTO" data-en="POSITIONING">POSICIONAMIENTO</th>
+    </tr>
+    <tr>
+      <td class="k" data-es="Cursos grabados autodirigidos" data-en="Self-paced recorded courses">Cursos grabados autodirigidos</td>
+      <td data-es="Video pregrabado, 4 a 6 horas, acceso permanente, sin contacto en vivo. Ejemplo: Big Little Feelings." data-en="Pre-recorded video, 4 to 6 hours, permanent access, no live contact. Example: Big Little Feelings.">Video pregrabado, 4 a 6 horas, acceso permanente, sin contacto en vivo. Ejemplo: Big Little Feelings.</td>
+      <td class="n" data-es="$34 A $99 · PRECIOS PUBLICADOS" data-en="$34 TO $99 · PUBLISHED PRICES">$34 A $99 · PRECIOS PUBLICADOS</td>
+      <td data-es="Contenido masivo. Alcance sobre profundidad." data-en="Mass content. Reach over depth.">Contenido masivo. Alcance sobre profundidad.</td>
+    </tr>
+    <tr>
+      <td class="k" data-es="Clases grupales en vivo" data-en="Live group classes">Clases grupales en vivo</td>
+      <td data-es="Series experienciales de varias semanas por facilitadores certificados (ej. Disciplina Positiva, talleres por Zoom)." data-en="Multi-week experiential series by certified facilitators (e.g. Positive Discipline, Zoom workshops).">Series experienciales de varias semanas por facilitadores certificados (ej. Disciplina Positiva, talleres por Zoom).</td>
+      <td class="n" data-es="VARIABLE POR FACILITADOR" data-en="VARIES BY FACILITATOR">VARIABLE POR FACILITADOR</td>
+      <td data-es="Educación en vivo, generalmente entre el curso grabado y el coaching privado." data-en="Live education, generally between recorded courses and private coaching.">Educación en vivo, generalmente entre el curso grabado y el coaching privado.</td>
+    </tr>
+    <tr>
+      <td class="k" data-es="Coaching parental privado" data-en="Private parent coaching">Coaching parental privado</td>
+      <td data-es="Sesiones individuales de 45 a 60 minutos; paquetes de 4 a 8 sesiones." data-en="Individual 45 to 60 minute sessions; packages of 4 to 8 sessions.">Sesiones individuales de 45 a 60 minutos; paquetes de 4 a 8 sesiones.</td>
+      <td class="n" data-es="$75 A $200 POR SESIÓN · PAQUETES $400 A $1,500 · GUÍAS PUBLICADAS" data-en="$75 TO $200 PER SESSION · PACKAGES $400 TO $1,500 · PUBLISHED GUIDES">$75 A $200 POR SESIÓN · PAQUETES $400 A $1,500 · GUÍAS PUBLICADAS</td>
+      <td data-es="Acompañamiento personalizado, alto contacto." data-en="Personalized guidance, high touch.">Acompañamiento personalizado, alto contacto.</td>
+    </tr>
+    <tr>
+      <td class="k" data-es="Programas transformacionales largos" data-en="Long transformational programs">Programas transformacionales largos</td>
+      <td data-es="12 semanas, sesiones semanales, individual o grupos pequeños." data-en="12 weeks, weekly sessions, individual or small groups.">12 semanas, sesiones semanales, individual o grupos pequeños.</td>
+      <td class="n" data-es="$1,200 A $3,500 · AUTORREPORTADO" data-en="$1,200 TO $3,500 · SELF-REPORTED">$1,200 A $3,500 · AUTORREPORTADO</td>
+      <td data-es="Premium. Exige proceso de venta de alto contacto." data-en="Premium. Requires a high-touch sales process.">Premium. Exige proceso de venta de alto contacto.</td>
+    </tr>
+    <tr>
+      <td class="k">El Estudio · Cohorte Fundadora</td>
+      <td data-es="3 semanas, 3 sesiones en vivo con Nari, máximo 25 familias, un solo problema, en español." data-en="3 weeks, 3 live sessions with Nari, maximum 25 families, one defined problem, in Spanish.">3 semanas, 3 sesiones en vivo con Nari, máximo 25 familias, un solo problema, en español.</td>
+      <td class="n" data-es="$225 · HIPÓTESIS A PROBAR" data-en="$225 · HYPOTHESIS TO TEST">$225 · HIPÓTESIS A PROBAR</td>
+      <td data-es="Transformación acotada con acceso en vivo. El nivel intermedio que el mercado hispanohablante casi no atiende." data-en="Bounded transformation with live access. The middle tier the Spanish-language market barely serves.">Transformación acotada con acceso en vivo. El nivel intermedio que el mercado hispanohablante casi no atiende.</td>
+    </tr>
+  </table></div>
+
+  <h3 data-es="3. Dónde se ubica Criar Sin Culpas" data-en="3. Where Criar Sin Culpas belongs">3. Dónde se ubica Criar Sin Culpas</h3>
+  <p class="body" data-es="$225 equivale a dos o tres cursos grabados de la categoría masiva, y a una o dos horas de coaching privado. A cambio ofrece algo que ninguno de esos dos extremos ofrece: tres sesiones en vivo con la fundadora, en grupo pequeño, sobre un problema definido, en español. La propuesta no compite con los cursos de $79 en alcance, ni con el coaching de $1,500 en intensidad. Ocupa el nivel intermedio: más profundo que el contenido, más accesible que el acompañamiento privado. Si la investigación del mercado hispanohablante (pendiente) cambia esta lectura, la recomendación cambia con ella." data-en="$225 equals two or three recorded courses from the mass category, and one to two hours of private coaching. In exchange it offers something neither extreme offers: three live sessions with the founder, in a small group, on one defined problem, in Spanish. The proposal does not compete with $79 courses on reach, nor with $1,500 coaching on intensity. It occupies the middle tier: deeper than content, more accessible than private guidance. If the pending Spanish-language market research changes this reading, the recommendation changes with it.">$225 equivale a dos o tres cursos grabados de la categoría masiva, y a una o dos horas de coaching privado. A cambio ofrece algo que ninguno de esos dos extremos ofrece: tres sesiones en vivo con la fundadora, en grupo pequeño, sobre un problema definido, en español. La propuesta no compite con los cursos de $79 en alcance, ni con el coaching de $1,500 en intensidad. Ocupa el nivel intermedio: más profundo que el contenido, más accesible que el acompañamiento privado. Si la investigación del mercado hispanohablante (pendiente) cambia esta lectura, la recomendación cambia con ella.</p>
+
+  <h3 data-es="4. La evidencia de nuestra propia audiencia" data-en="4. Evidence from our own audience">4. La evidencia de nuestra propia audiencia</h3>
+  <p class="body" data-es="Un hallazgo del período cambia el contexto de precio: 307 de los 315 visitantes con país atribuido llegaron desde Estados Unidos, no desde Latinoamérica. Un precio en dólares, anclado a los comparables del mercado estadounidense, es coherente con la geografía de quienes hoy llegan a la plataforma. Dos precauciones obligatorias: la geografía del tráfico no demuestra disposición a pagar, y la geografía de la audiencia de Instagram (donde vive la mayor parte de la marca) no está verificada y podría ser muy distinta. Si la audiencia de Instagram resulta mayoritariamente latinoamericana, la conversación de precio deberá reabrirse con esa evidencia." data-en="One finding from the period changes the pricing context: 307 of the 315 country-attributed visitors arrived from the United States, not Latin America. A price in dollars, anchored to U.S. market comparables, is coherent with the geography of those reaching the platform today. Two mandatory precautions: traffic geography does not prove willingness to pay, and the geography of the Instagram audience (where most of the brand lives) is unverified and could be very different. If the Instagram audience turns out to be mostly Latin American, the pricing conversation must be reopened with that evidence.">Un hallazgo del período cambia el contexto de precio: 307 de los 315 visitantes con país atribuido llegaron desde Estados Unidos, no desde Latinoamérica. Un precio en dólares, anclado a los comparables del mercado estadounidense, es coherente con la geografía de quienes hoy llegan a la plataforma. Dos precauciones obligatorias: la geografía del tráfico no demuestra disposición a pagar, y la geografía de la audiencia de Instagram (donde vive la mayor parte de la marca) no está verificada y podría ser muy distinta. Si la audiencia de Instagram resulta mayoritariamente latinoamericana, la conversación de precio deberá reabrirse con esa evidencia.</p>
+
+  <h3 data-es="5. El precio como experimento: tres opciones" data-en="5. Price as experiment: three options">5. El precio como experimento: tres opciones</h3>
+  <p class="body" data-es="La pregunta correcta no es si la gente puede pagar $225. Es cuál precio es el <span class='t'>primer experimento más informativo</span>. El primer ciclo no solo compra ingreso: compra información sobre si la audiencia valora la transformación, si la promesa resuena, si el posicionamiento es correcto y si el modelo tiene tracción. Cada precio compra información distinta." data-en="The right question is not whether people can pay $225. It is which price is the <span class='t'>most informative first experiment</span>. The first cycle does not only buy revenue: it buys information about whether the audience values the transformation, whether the promise resonates, whether the positioning is correct and whether the model has traction. Each price buys different information.">La pregunta correcta no es si la gente puede pagar $225. Es cuál precio es el <span class="t">primer experimento más informativo</span>. El primer ciclo no solo compra ingreso: compra información sobre si la audiencia valora la transformación, si la promesa resuena, si el posicionamiento es correcto y si el modelo tiene tracción. Cada precio compra información distinta.</p>
+  <div class="scroll-x"><table>
+    <tr>
+      <th data-es="OPCIÓN" data-en="OPTION">OPCIÓN</th>
+      <th data-es="QUÉ SEÑAL PRODUCE" data-en="WHAT SIGNAL IT PRODUCES">QUÉ SEÑAL PRODUCE</th>
+      <th data-es="QUÉ SE APRENDE" data-en="WHAT IS LEARNED">QUÉ SE APRENDE</th>
+      <th data-es="RIESGOS" data-en="RISKS">RIESGOS</th>
+    </tr>
+    <tr>
+      <td class="k" data-es="Más bajo · zona de $79 a $99" data-en="Lower · $79 to $99 zone">Más bajo · zona de $79 a $99</td>
+      <td data-es="Compromiso bajo, muchos síes posibles, señal débil sobre valor percibido." data-en="Low commitment, many possible yeses, weak signal on perceived value.">Compromiso bajo, muchos síes posibles, señal débil sobre valor percibido.</td>
+      <td data-es="Mide alcance más que valor. Un sí de $79 no dice si la audiencia paga por profundidad." data-en="Measures reach more than value. A $79 yes does not say whether the audience pays for depth.">Mide alcance más que valor. Un sí de $79 no dice si la audiencia paga por profundidad.</td>
+      <td data-es="Ancla a Criar Sin Culpas como contenido, en competencia directa con productos grabados masivos. Difícil subir el precio después." data-en="Anchors Criar Sin Culpas as content, competing head-on with mass recorded products. Hard to raise the price later.">Ancla a Criar Sin Culpas como contenido, en competencia directa con productos grabados masivos. Difícil subir el precio después.</td>
+    </tr>
+    <tr>
+      <td class="k" data-es="Recomendado · $225" data-en="Recommended · $225">Recomendado · $225</td>
+      <td data-es="Compromiso real sin exigir un proceso de venta complejo. Cada sí es una señal fuerte." data-en="Real commitment without requiring a complex sales process. Every yes is a strong signal.">Compromiso real sin exigir un proceso de venta complejo. Cada sí es una señal fuerte.</td>
+      <td data-es="Prueba directamente la pregunta central: ¿la audiencia paga por la profundidad de Nari en vivo? Genera además datos de asistencia y finalización con participantes comprometidas." data-en="Directly tests the central question: does the audience pay for Nari's depth, live? It also generates attendance and completion data with committed participants.">Prueba directamente la pregunta central: ¿la audiencia paga por la profundidad de Nari en vivo? Genera además datos de asistencia y finalización con participantes comprometidas.</td>
+      <td data-es="Menos síes que un precio bajo; con muestras pequeñas, un resultado intermedio puede ser ambiguo." data-en="Fewer yeses than a low price; with small samples, a middling result can be ambiguous.">Menos síes que un precio bajo; con muestras pequeñas, un resultado intermedio puede ser ambiguo.</td>
+    </tr>
+    <tr>
+      <td class="k" data-es="Más alto · zona de $400 a $600" data-en="Higher · $400 to $600 zone">Más alto · zona de $400 a $600</td>
+      <td data-es="Señal muy fuerte por cada sí; posiciona premium desde el inicio." data-en="Very strong signal per yes; positions premium from the start.">Señal muy fuerte por cada sí; posiciona premium desde el inicio.</td>
+      <td data-es="Mide demanda premium, pero probablemente requiere venta de alto contacto (llamadas, seguimiento) que la marca aún no tiene montada." data-en="Measures premium demand, but likely requires high-touch selling (calls, follow-up) the brand has not yet built.">Mide demanda premium, pero probablemente requiere venta de alto contacto (llamadas, seguimiento) que la marca aún no tiene montada.</td>
+      <td data-es="Riesgo de un ciclo con cero datos: si nadie compra, no sabremos si falló el precio, la promesa o el proceso. Es el experimento menos informativo para un primer intento." data-en="Risk of a zero-data cycle: if nobody buys, we will not know whether the price, the promise or the process failed. It is the least informative experiment for a first attempt.">Riesgo de un ciclo con cero datos: si nadie compra, no sabremos si falló el precio, la promesa o el proceso. Es el experimento menos informativo para un primer intento.</td>
+    </tr>
+  </table></div>
+
+  <h3 data-es="6. La recomendación" data-en="6. The recommendation">6. La recomendación</h3>
+  <p class="lede" data-es="No afirmamos que $225 sea el precio correcto. Lo recomendamos como el <span class='t'>experimento inicial más sólido</span> según la evidencia actual, el posicionamiento comparable del mercado, la transformación propuesta, y el tipo de negocio que intencionalmente se está construyendo." data-en="We are not claiming that $225 is the correct price. We recommend it as the <span class='t'>strongest first experiment</span> based on the current evidence, comparable market positioning, the proposed transformation, and the type of business intentionally being built.">No afirmamos que $225 sea el precio correcto. Lo recomendamos como el <span class="t">experimento inicial más sólido</span> según la evidencia actual, el posicionamiento comparable del mercado, la transformación propuesta, y el tipo de negocio que intencionalmente se está construyendo.</p>
+  <p class="body" style="margin-top:1.4rem;" data-es="El primer ciclo responderá con transacciones lo que ningún análisis puede responder con argumentos. Si la evidencia contradice la hipótesis, el precio cambia. Eso no sería un fracaso del experimento: sería el experimento funcionando." data-en="The first cycle will answer with transactions what no analysis can answer with arguments. If the evidence contradicts the hypothesis, the price changes. That would not be a failure of the experiment: it would be the experiment working.">El primer ciclo responderá con transacciones lo que ningún análisis puede responder con argumentos. Si la evidencia contradice la hipótesis, el precio cambia. Eso no sería un fracaso del experimento: sería el experimento funcionando.</p>
+</section>
+
+
+<section id="s6">
+  <div class="eyebrow"><span class="idx">06</span><span data-es="LOS ESCENARIOS" data-en="THE SCENARIOS">LOS ESCENARIOS</span></div>
+  <h2 data-es="¿Qué pasa si estamos equivocados?" data-en="What if we are wrong?">¿Qué pasa si estamos equivocados?</h2>
+  <p class="body" data-es="Esta es la pregunta detrás de todas las demás, y merece una respuesta directa en lugar de optimismo. El primer ciclo está diseñado para que equivocarse produzca conocimiento, no ruina. El costo está acotado: un mes de trabajo de activación, sin construir infraestructura nueva, con un cupo máximo de 25 familias. Y como el plan de medición registra cada etapa del embudo por separado, cada resultado posible, incluido el peor, nos dice algo específico y accionable. Estos son los tres escenarios y lo que el negocio aprende en cada uno." data-en="This is the question behind all the others, and it deserves a direct answer rather than optimism. The first cycle is designed so that being wrong produces knowledge, not ruin. The cost is bounded: one month of activation work, no new infrastructure, a maximum of 25 families. And because the measurement plan records each funnel stage separately, every possible outcome, including the worst one, tells us something specific and actionable. These are the three scenarios and what the business learns in each.">Esta es la pregunta detrás de todas las demás, y merece una respuesta directa en lugar de optimismo. El primer ciclo está diseñado para que equivocarse produzca conocimiento, no ruina. El costo está acotado: un mes de trabajo de activación, sin construir infraestructura nueva, con un cupo máximo de 25 familias. Y como el plan de medición registra cada etapa del embudo por separado, cada resultado posible, incluido el peor, nos dice algo específico y accionable. Estos son los tres escenarios y lo que el negocio aprende en cada uno.</p>
+
+  <div class="metric">
+    <div class="num" data-es="0 a 9" data-en="0 to 9">0 a 9</div>
+    <div class="caption src" data-es="ESCENARIO A · SIN VALIDACIÓN" data-en="SCENARIO A · NO VALIDATION">ESCENARIO A · SIN VALIDACIÓN</div>
+    <dl>
+      <dt data-es="QUÉ APRENDE EL NEGOCIO" data-en="WHAT THE BUSINESS LEARNS">QUÉ APRENDE EL NEGOCIO</dt>
+      <dd data-es="El embudo nos dice exactamente dónde se rompió la cadena. Si hubo visitas a la página pero pocos inicios de registro, el problema es la promesa o el precio. Si hubo inicios sin completar, el problema es la fricción del proceso. Si casi nadie llegó a la página, el problema es el canal y el alcance, no la oferta. Cero inscripciones con medición completa vale más que veinte inscripciones sin medición: convierte una decepción en un diagnóstico." data-en="The funnel tells us exactly where the chain broke. If there were page visits but few registration starts, the problem is the promise or the price. If there were starts without completion, the problem is process friction. If almost nobody reached the page, the problem is the channel and reach, not the offer. Zero enrollments with complete measurement is worth more than twenty enrollments without measurement: it turns a disappointment into a diagnosis.">El embudo nos dice exactamente dónde se rompió la cadena. Si hubo visitas a la página pero pocos inicios de registro, el problema es la promesa o el precio. Si hubo inicios sin completar, el problema es la fricción del proceso. Si casi nadie llegó a la página, el problema es el canal y el alcance, no la oferta. Cero inscripciones con medición completa vale más que veinte inscripciones sin medición: convierte una decepción en un diagnóstico.</dd>
+      <dt data-es="QUÉ DECISIÓN INFORMA" data-en="WHAT DECISION IT INFORMS">QUÉ DECISIÓN INFORMA</dt>
+      <dd data-es="No repetir a ciegas. Se ajusta el eslabón específico que falló (promesa, precio, problema elegido o canal) y se decide si el segundo intento es un experimento más pequeño y barato, o si la energía comercial se pausa mientras se corrige. En ningún caso la respuesta es construir más infraestructura." data-en="Do not repeat blindly. The specific broken link is adjusted (promise, price, chosen problem, or channel) and we decide whether the second attempt is a smaller, cheaper experiment, or whether commercial energy pauses while correcting. In no case is the answer to build more infrastructure.">No repetir a ciegas. Se ajusta el eslabón específico que falló (promesa, precio, problema elegido o canal) y se decide si el segundo intento es un experimento más pequeño y barato, o si la energía comercial se pausa mientras se corrige. En ningún caso la respuesta es construir más infraestructura.</dd>
+      <dt class="np" data-es="QUÉ NO SIGNIFICA" data-en="WHAT IT DOES NOT MEAN">QUÉ NO SIGNIFICA</dt>
+      <dd data-es="No significa que la plataforma falló, ni que la marca no tiene valor. La evidencia de atención (5:05 de lectura, protocolos como puertas de entrada) sigue siendo verdad. Significa que la primera traducción de esa atención a una oferta pagada no encontró su forma todavía." data-en="It does not mean the platform failed, or that the brand has no value. The attention evidence (5:05 of reading, protocols as entry doors) remains true. It means the first translation of that attention into a paid offer has not found its form yet.">No significa que la plataforma falló, ni que la marca no tiene valor. La evidencia de atención (5:05 de lectura, protocolos como puertas de entrada) sigue siendo verdad. Significa que la primera traducción de esa atención a una oferta pagada no encontró su forma todavía.</dd>
+    </dl>
+  </div>
+
+  <div class="metric">
+    <div class="num" data-es="10 a 19" data-en="10 to 19">10 a 19</div>
+    <div class="caption src" data-es="ESCENARIO B · VALIDACIÓN PARCIAL" data-en="SCENARIO B · PARTIAL VALIDATION">ESCENARIO B · VALIDACIÓN PARCIAL</div>
+    <dl>
+      <dt data-es="QUÉ APRENDE EL NEGOCIO" data-en="WHAT THE BUSINESS LEARNS">QUÉ APRENDE EL NEGOCIO</dt>
+      <dd data-es="Lo fundamental queda demostrado: existen personas que pagan por la profundidad de Nari. Con diez o más transacciones aparece por primera vez una tasa de conversión real, un perfil de quién compra, y un grupo pagante que se convierte en la fuente de datos más rica del negocio: su asistencia, su finalización y su retroalimentación valen más que cualquier análisis previo. Es posiblemente el escenario que más enseña por dólar invertido." data-en="The fundamental point is proven: people exist who pay for Nari's depth. With ten or more transactions, a real conversion rate appears for the first time, a profile of who buys, and a paying group that becomes the business's richest data source: their attendance, completion and feedback are worth more than any prior analysis. It is arguably the scenario that teaches the most per dollar invested.">Lo fundamental queda demostrado: existen personas que pagan por la profundidad de Nari. Con diez o más transacciones aparece por primera vez una tasa de conversión real, un perfil de quién compra, y un grupo pagante que se convierte en la fuente de datos más rica del negocio: su asistencia, su finalización y su retroalimentación valen más que cualquier análisis previo. Es posiblemente el escenario que más enseña por dólar invertido.</dd>
+      <dt data-es="QUÉ DECISIÓN INFORMA" data-en="WHAT DECISION IT INFORMS">QUÉ DECISIÓN INFORMA</dt>
+      <dd data-es="Entregar la cohorte con excelencia (esas familias son el experimento), y decidir el segundo ciclo con datos de clientas reales: si se ajusta la promesa, el precio o el canal. La disciplina crítica aquí: un resultado intermedio con muestra pequeña es el más fácil de leer con optimismo o con pánico. Por eso las reglas de lectura se fijan antes de conocer el resultado, no después." data-en="Deliver the cohort with excellence (those families are the experiment), and decide the second cycle with real customer data: whether to adjust the promise, the price or the channel. The critical discipline here: a middle result with a small sample is the easiest to read with optimism or with panic. That is why the reading rules are set before knowing the outcome, not after.">Entregar la cohorte con excelencia (esas familias son el experimento), y decidir el segundo ciclo con datos de clientas reales: si se ajusta la promesa, el precio o el canal. La disciplina crítica aquí: un resultado intermedio con muestra pequeña es el más fácil de leer con optimismo o con pánico. Por eso las reglas de lectura se fijan antes de conocer el resultado, no después.</dd>
+      <dt class="np" data-es="QUÉ NO SIGNIFICA" data-en="WHAT IT DOES NOT MEAN">QUÉ NO SIGNIFICA</dt>
+      <dd data-es="No significa ni éxito total ni fracaso. Significa que el modelo tiene pulso y que el segundo ciclo se diseña con evidencia en lugar de hipótesis." data-en="It means neither total success nor failure. It means the model has a pulse and the second cycle gets designed with evidence instead of hypotheses.">No significa ni éxito total ni fracaso. Significa que el modelo tiene pulso y que el segundo ciclo se diseña con evidencia en lugar de hipótesis.</dd>
+    </dl>
+  </div>
+
+  <div class="metric">
+    <div class="num" data-es="20 a 25" data-en="20 to 25">20 a 25</div>
+    <div class="caption src" data-es="ESCENARIO C · VALIDACIÓN COMPLETA" data-en="SCENARIO C · FULL VALIDATION">ESCENARIO C · VALIDACIÓN COMPLETA</div>
+    <dl>
+      <dt data-es="QUÉ APRENDE EL NEGOCIO" data-en="WHAT THE BUSINESS LEARNS">QUÉ APRENDE EL NEGOCIO</dt>
+      <dd data-es="El modelo queda validado en su objetivo central, y la pregunta del negocio cambia de naturaleza: deja de ser si hay demanda y pasa a ser si la entrega es sostenible para Nari. La cohorte completa prueba la capacidad real: cuánta energía consumen tres sesiones en vivo con 20 a 25 familias, y si una lista de espera aparece como señal de expansión." data-en="The model is validated at its core target, and the business question changes in nature: it stops being whether demand exists and becomes whether delivery is sustainable for Nari. The full cohort tests real capacity: how much energy three live sessions with 20 to 25 families consume, and whether a waitlist appears as an expansion signal.">El modelo queda validado en su objetivo central, y la pregunta del negocio cambia de naturaleza: deja de ser si hay demanda y pasa a ser si la entrega es sostenible para Nari. La cohorte completa prueba la capacidad real: cuánta energía consumen tres sesiones en vivo con 20 a 25 familias, y si una lista de espera aparece como señal de expansión.</dd>
+      <dt data-es="QUÉ DECISIÓN INFORMA" data-en="WHAT DECISION IT INFORMS">QUÉ DECISIÓN INFORMA</dt>
+      <dd data-es="Repetir, escalar o ajustar el precio hacia arriba con cautela. Pero la decisión se toma después de la finalización y la retroalimentación, no después del cierre de ventas: una cohorte llena que no termina satisfecha es una advertencia, no una victoria." data-en="Repeat, scale, or adjust the price upward with caution. But the decision is made after completion and feedback, not after sales close: a full cohort that does not finish satisfied is a warning, not a victory.">Repetir, escalar o ajustar el precio hacia arriba con cautela. Pero la decisión se toma después de la finalización y la retroalimentación, no después del cierre de ventas: una cohorte llena que no termina satisfecha es una advertencia, no una victoria.</dd>
+      <dt class="np" data-es="QUÉ NO SIGNIFICA" data-en="WHAT IT DOES NOT MEAN">QUÉ NO SIGNIFICA</dt>
+      <dd data-es="No significa que el mercado de largo plazo está probado. La primera cohorte puede estar influida por novedad y lealtad personal hacia Nari; la repetibilidad se demuestra en el segundo ciclo, no en el primero." data-en="It does not mean the long-term market is proven. The first cohort may be influenced by novelty and personal loyalty to Nari; repeatability is proven in the second cycle, not the first.">No significa que el mercado de largo plazo está probado. La primera cohorte puede estar influida por novedad y lealtad personal hacia Nari; la repetibilidad se demuestra en el segundo ciclo, no en el primero.</dd>
+    </dl>
+  </div>
+
+  <div class="callout" data-es="<strong>El principio que gobierna los tres escenarios:</strong> las reglas de lectura se acuerdan antes del 5 de septiembre, no después del 30. El experimento solo puede fracasar de dos maneras: no medir, o medir y no decidir. En los tres escenarios, el 30 de septiembre el negocio sabrá más que hoy, y la siguiente decisión se tomará con ese conocimiento." data-en="<strong>The principle governing all three scenarios:</strong> the reading rules are agreed before September 5, not after the 30th. The experiment can only fail in two ways: not measuring, or measuring and not deciding. In all three scenarios, on September 30 the business will know more than it does today, and the next decision will be made with that knowledge."><strong>El principio que gobierna los tres escenarios:</strong> las reglas de lectura se acuerdan antes del 5 de septiembre, no después del 30. El experimento solo puede fracasar de dos maneras: no medir, o medir y no decidir. En los tres escenarios, el 30 de septiembre el negocio sabrá más que hoy, y la siguiente decisión se tomará con ese conocimiento.</div>
+</section>
+
+
+<section id="s7">
+  <div class="eyebrow"><span class="idx">07</span><span data-es="EL PRIMER CICLO DE VALIDACIÓN COMERCIAL" data-en="THE FIRST COMMERCIAL VALIDATION CYCLE">EL PRIMER CICLO DE VALIDACIÓN COMERCIAL</span></div>
+  <h2 data-es="Qué está diseñado a aprender septiembre" data-en="What September is designed to learn">Qué está diseñado a aprender septiembre</h2>
+  <p class="body" data-es="El primer ciclo no es solo una meta de ingreso. Es un experimento diseñado para responder siete preguntas a la vez: si la audiencia paga, si el precio es aceptable, si la promesa es clara, si el formato atrae, si el proceso de inscripción funciona, si Nari puede entregar la experiencia de forma sostenible, y si hay suficiente demanda para repetir o expandir el modelo. Cada etapa produce un dato que hoy no existe." data-en="The first cycle is not just a revenue goal. It is an experiment designed to answer seven questions at once: whether the audience pays, whether the price is acceptable, whether the promise is clear, whether the format attracts, whether the enrollment process works, whether Nari can deliver the experience sustainably, and whether there is enough demand to repeat or expand the model. Each stage produces a data point that does not exist today.">El primer ciclo no es solo una meta de ingreso. Es un experimento diseñado para responder siete preguntas a la vez: si la audiencia paga, si el precio es aceptable, si la promesa es clara, si el formato atrae, si el proceso de inscripción funciona, si Nari puede entregar la experiencia de forma sostenible, y si hay suficiente demanda para repetir o expandir el modelo. Cada etapa produce un dato que hoy no existe.</p>
+  <div class="scroll-x"><table>
+    <tr>
+      <th data-es="ETAPA" data-en="STAGE">ETAPA</th>
+      <th data-es="MÉTRICA" data-en="METRIC">MÉTRICA</th>
+      <th data-es="OBJETIVO O UMBRAL" data-en="TARGET OR THRESHOLD">OBJETIVO O UMBRAL</th>
+      <th data-es="FUENTE" data-en="SOURCE">FUENTE</th>
+      <th data-es="DECISIÓN QUE INFORMA" data-en="DECISION IT INFORMS">DECISIÓN QUE INFORMA</th>
+    </tr>
+    <tr>
+      <td class="k" data-es="Interés en la oferta" data-en="Interest in the offer">Interés en la oferta</td>
+      <td data-es="Visitas a la página de inscripción" data-en="Visits to the enrollment page">Visitas a la página de inscripción</td>
+      <td data-es="Línea base del primer ciclo (sin referencia previa)" data-en="First-cycle baseline (no prior reference)">Línea base del primer ciclo (sin referencia previa)</td>
+      <td class="n">PLAUSIBLE</td>
+      <td data-es="Claridad del mensaje y del canal." data-en="Clarity of the message and the channel.">Claridad del mensaje y del canal.</td>
+    </tr>
+    <tr>
+      <td class="k" data-es="Inicios de registro" data-en="Registration starts">Inicios de registro</td>
+      <td data-es="Evento nuevo de inicio de formulario" data-en="New form-start event">Evento nuevo de inicio de formulario</td>
+      <td data-es="Línea base" data-en="Baseline">Línea base</td>
+      <td class="n">PLAUSIBLE</td>
+      <td data-es="Fricción del proceso de inscripción." data-en="Friction in the enrollment process.">Fricción del proceso de inscripción.</td>
+    </tr>
+    <tr>
+      <td class="k" data-es="Registros completados" data-en="Completed registrations">Registros completados</td>
+      <td data-es="Preinscripciones confirmadas" data-en="Confirmed pre-enrollments">Preinscripciones confirmadas</td>
+      <td data-es="Abiertas antes del 5 de septiembre" data-en="Open before September 5">Abiertas antes del 5 de septiembre</td>
+      <td class="n">MAILERLITE</td>
+      <td data-es="Claridad de la promesa." data-en="Clarity of the promise.">Claridad de la promesa.</td>
+    </tr>
+    <tr>
+      <td class="k" data-es="Pagos" data-en="Payments">Pagos</td>
+      <td data-es="Inscripciones pagadas" data-en="Paid enrollments">Inscripciones pagadas</td>
+      <td data-es="10 = validación mínima · 20 = objetivo central · 25 = cupo" data-en="10 = minimum validation · 20 = core target · 25 = capacity">10 = validación mínima · 20 = objetivo central · 25 = cupo</td>
+      <td class="n">PROCESADOR DE PAGOS</td>
+      <td data-es="La decisión del 30 de septiembre." data-en="The September 30 decision.">La decisión del 30 de septiembre.</td>
+    </tr>
+    <tr>
+      <td class="k" data-es="Asistencia" data-en="Attendance">Asistencia</td>
+      <td data-es="Presencia en las sesiones en vivo" data-en="Presence in the live sessions">Presencia en las sesiones en vivo</td>
+      <td data-es="Mayoría de inscritas en cada sesión" data-en="Majority of enrollees in each session">Mayoría de inscritas en cada sesión</td>
+      <td class="n">PLATAFORMA DE SESIONES</td>
+      <td data-es="Si el formato en vivo sostiene el interés." data-en="Whether the live format sustains interest.">Si el formato en vivo sostiene el interés.</td>
+    </tr>
+    <tr>
+      <td class="k" data-es="Finalización" data-en="Completion">Finalización</td>
+      <td data-es="Participantes que completan las 3 sesiones" data-en="Participants completing all 3 sessions">Participantes que completan las 3 sesiones</td>
+      <td data-es="Línea base" data-en="Baseline">Línea base</td>
+      <td class="n">PLATAFORMA DE SESIONES</td>
+      <td data-es="Si la experiencia cumple su promesa." data-en="Whether the experience delivers its promise.">Si la experiencia cumple su promesa.</td>
+    </tr>
+    <tr>
+      <td class="k" data-es="Retroalimentación" data-en="Feedback">Retroalimentación</td>
+      <td data-es="Encuesta al cierre de la cohorte" data-en="End-of-cohort survey">Encuesta al cierre de la cohorte</td>
+      <td data-es="Respuestas de la mayoría de participantes" data-en="Responses from a majority of participants">Respuestas de la mayoría de participantes</td>
+      <td class="n">ENCUESTA</td>
+      <td data-es="Qué ajustar antes de repetir." data-en="What to adjust before repeating.">Qué ajustar antes de repetir.</td>
+    </tr>
+    <tr>
+      <td class="k" data-es="Interés de repetición" data-en="Repeat interest">Interés de repetición</td>
+      <td data-es="Lista de espera y referencias" data-en="Waitlist and referrals">Lista de espera y referencias</td>
+      <td data-es="Línea base" data-en="Baseline">Línea base</td>
+      <td class="n">MAILERLITE</td>
+      <td data-es="Si el modelo puede expandirse." data-en="Whether the model can expand.">Si el modelo puede expandirse.</td>
+    </tr>
+  </table></div>
+  <div class="callout" data-es="<strong>Nota sobre medición:</strong> los eventos nuevos del ciclo se crean con nombres nuevos. Los nombres de eventos existentes en Plausible nunca se renombran, para que las series históricas sigan siendo comparables." data-en="<strong>Measurement note:</strong> new cycle events are created with new names. Existing Plausible event names are never renamed, so historical series remain comparable."><strong>Nota sobre medición:</strong> los eventos nuevos del ciclo se crean con nombres nuevos. Los nombres de eventos existentes en Plausible nunca se renombran, para que las series históricas sigan siendo comparables.</div>
+</section>
+
+<section id="s8">
+  <div class="eyebrow"><span class="idx">08</span><span data-es="SUPUESTOS Y LIMITACIONES" data-en="ASSUMPTIONS AND LIMITATIONS">SUPUESTOS Y LIMITACIONES</span></div>
+  <h2 data-es="Lo que estos datos todavía no pueden decirnos" data-en="What this data cannot tell us yet">Lo que estos datos todavía no pueden decirnos</h2>
+  <p class="body" data-es="Esta sección no es pesimismo. Es disciplina. Un documento de evidencia que esconde sus límites deja de ser evidencia." data-en="This section is not pessimism. It is discipline. An evidence document that hides its limits stops being evidence.">Esta sección no es pesimismo. Es disciplina. Un documento de evidencia que esconde sus límites deja de ser evidencia.</p>
+  <ul class="plain">
+    <li data-es="Atención no es intención de compra. Toda la evidencia de comportamiento mide lectura, no disposición a pagar." data-en="Attention is not purchase intent. All behavioral evidence measures reading, not willingness to pay.">Atención no es intención de compra. Toda la evidencia de comportamiento mide lectura, no disposición a pagar.</li>
+    <li data-es="Tamaño de audiencia no es demanda alcanzable. De 40,000 seguidores aproximados, no sabemos cuántos ven el contenido ni cuántos responderían a una invitación." data-en="Audience size is not reachable demand. Of roughly 40,000 followers, we do not know how many see the content or would respond to an invitation.">Tamaño de audiencia no es demanda alcanzable. De 40,000 seguidores aproximados, no sabemos cuántos ven el contenido ni cuántos responderían a una invitación.</li>
+    <li data-es="El comportamiento orgánico puede cambiar bajo un mensaje de venta. La lectura profunda actual ocurrió sin que se pidiera nada a cambio." data-en="Organic behavior may change under a sales message. Today's deep reading happened with nothing being asked in return.">El comportamiento orgánico puede cambiar bajo un mensaje de venta. La lectura profunda actual ocurrió sin que se pidiera nada a cambio.</li>
+    <li data-es="Una primera cohorte pequeña no establece el tamaño del mercado a largo plazo, y puede estar influida por novedad o lealtad personal hacia Nari." data-en="A small first cohort does not establish long-term market size, and may be influenced by novelty or personal loyalty to Nari.">Una primera cohorte pequeña no establece el tamaño del mercado a largo plazo, y puede estar influida por novedad o lealtad personal hacia Nari.</li>
+    <li data-es="Los visitantes bajaron mes a mes (189, 111, 39). No sabemos aún cuánto de eso es decaimiento natural sin promoción y cuánto es estacionalidad o medición incompleta." data-en="Visitors declined month over month (189, 111, 39). We do not yet know how much is natural decay without promotion and how much is seasonality or incomplete measurement.">Los visitantes bajaron mes a mes (189, 111, 39). No sabemos aún cuánto de eso es decaimiento natural sin promoción y cuánto es estacionalidad o medición incompleta.</li>
+    <li data-es="La medición actual puede incluir visitas del propio equipo; no hay exclusión configurada en Plausible. Con volúmenes pequeños, esto puede sesgar promedios." data-en="Current measurement may include the team's own visits; no exclusion is configured in Plausible. At small volumes, this can bias averages.">La medición actual puede incluir visitas del propio equipo; no hay exclusión configurada en Plausible. Con volúmenes pequeños, esto puede sesgar promedios.</li>
+    <li data-es="Las fuentes cubren períodos distintos: Plausible 91 días, Cloudflare RUM 30 días, Instagram una foto puntual. Las cifras no son directamente comparables entre plataformas." data-en="Sources cover different periods: Plausible 91 days, Cloudflare RUM 30 days, Instagram a point-in-time snapshot. Figures are not directly comparable across platforms.">Las fuentes cubren períodos distintos: Plausible 91 días, Cloudflare RUM 30 días, Instagram una foto puntual. Las cifras no son directamente comparables entre plataformas.</li>
+    <li data-es="Las métricas de redes sociales pertenecen a plataformas de terceros y pueden cambiar de definición o desaparecer sin aviso." data-en="Social platform metrics belong to third parties and can change definition or disappear without notice.">Las métricas de redes sociales pertenecen a plataformas de terceros y pueden cambiar de definición o desaparecer sin aviso.</li>
+  </ul>
+</section>
+
+<section id="s9">
+  <div class="eyebrow"><span class="idx">09</span><span data-es="ACCESO Y PROPIEDAD" data-en="ACCESS AND OWNERSHIP">ACCESO Y PROPIEDAD</span></div>
+  <h2 data-es="Los datos son tuyos" data-en="The data is yours">Los datos son tuyos</h2>
+  <p class="lede" data-es="Los datos y registros de Criar Sin Culpas pertenecen a <span class='t'>Criar Sin Culpas</span>. Este documento organiza y explica la evidencia, pero no sustituye el acceso directo a las fuentes originales." data-en="The data and records of Criar Sin Culpas belong to <span class='t'>Criar Sin Culpas</span>. This document organizes and explains the evidence, but does not replace direct access to the original sources.">Los datos y registros de Criar Sin Culpas pertenecen a <span class="t">Criar Sin Culpas</span>. Este documento organiza y explica la evidencia, pero no sustituye el acceso directo a las fuentes originales.</p>
+  <p class="body" style="margin-top:1.6rem;" data-es="Deberías tener acceso propio a: el panel de Plausible del sitio, el panel de Cloudflare, la cuenta de MailerLite, la cuenta de Cloudinary, y el procesador de pagos cuando exista. Cualquier cálculo de este documento es reproducible con las exportaciones listadas en el apéndice. Cualquier supuesto manual está etiquetado como tal. Este documento no contiene credenciales; los accesos se comparten por canales seguros, nunca dentro de un archivo." data-en="You should have your own access to: the site's Plausible dashboard, the Cloudflare panel, the MailerLite account, the Cloudinary account, and the payment processor once it exists. Every calculation in this document is reproducible from the exports listed in the appendix. Every manual assumption is labeled as such. This document contains no credentials; access is shared through secure channels, never inside a file.">Deberías tener acceso propio a: el panel de Plausible del sitio, el panel de Cloudflare, la cuenta de MailerLite, la cuenta de Cloudinary, y el procesador de pagos cuando exista. Cualquier cálculo de este documento es reproducible con las exportaciones listadas en el apéndice. Cualquier supuesto manual está etiquetado como tal. Este documento no contiene credenciales; los accesos se comparten por canales seguros, nunca dentro de un archivo.</p>
+</section>
+
+<section id="s10">
+  <div class="eyebrow"><span class="idx">10</span><span data-es="APÉNDICE" data-en="APPENDIX">APÉNDICE</span></div>
+  <h2 data-es="Definiciones, fórmulas y fuentes" data-en="Definitions, formulas and sources">Definiciones, fórmulas y fuentes</h2>
+
+  <h3 data-es="Definiciones" data-en="Definitions">Definiciones</h3>
+  <ul class="plain">
+    <li data-es="Visitante: persona única detectada por el navegador en el período. Visita: sesión continua de navegación. Vista de página: cada página abierta." data-en="Visitor: unique person detected by the browser in the period. Visit: continuous browsing session. Pageview: each page opened.">Visitante: persona única detectada por el navegador en el período. Visita: sesión continua de navegación. Vista de página: cada página abierta.</li>
+    <li data-es="Duración de visita: tiempo entre la primera y la última acción de una sesión. Incluye rebotes (que cuentan como 0), por lo que el promedio es conservador." data-en="Visit duration: time between the first and last action of a session. Includes bounces (counted as 0), making the average conservative.">Duración de visita: tiempo entre la primera y la última acción de una sesión. Incluye rebotes (que cuentan como 0), por lo que el promedio es conservador.</li>
+    <li data-es="Profundidad de lectura: porcentaje máximo de la página recorrido con desplazamiento." data-en="Reading depth: maximum percentage of the page reached by scrolling.">Profundidad de lectura: porcentaje máximo de la página recorrido con desplazamiento.</li>
+    <li data-es="Rebote: visita de una sola página sin interacción posterior." data-en="Bounce: single-page visit with no further interaction.">Rebote: visita de una sola página sin interacción posterior.</li>
+    <li data-es="LCP, INP, CLS: métricas estándar de experiencia web. LCP mide cuánto tarda en aparecer el contenido principal; INP mide la respuesta a las interacciones; CLS mide si la página salta mientras carga." data-en="LCP, INP, CLS: standard web experience metrics. LCP measures how long the main content takes to appear; INP measures response to interactions; CLS measures whether the page jumps while loading.">LCP, INP, CLS: métricas estándar de experiencia web. LCP mide cuánto tarda en aparecer el contenido principal; INP mide la respuesta a las interacciones; CLS mide si la página salta mientras carga.</li>
+  </ul>
+
+  <h3 data-es="Fórmulas" data-en="Formulas">Fórmulas</h3>
+  <ul class="plain">
+    <li data-es="Duración promedio = suma de (duración diaria &#215; visitas diarias) / total de visitas. Resultado: 305.4 segundos = 5:05." data-en="Average duration = sum of (daily duration &#215; daily visits) / total visits. Result: 305.4 seconds = 5:05.">Duración promedio = suma de (duración diaria &#215; visitas diarias) / total de visitas. Resultado: 305.4 segundos = 5:05.</li>
+    <li data-es="Profundidad ponderada = suma de (profundidad por página &#215; vistas de esa página) / total de vistas. Resultado: 73.6%." data-en="Weighted depth = sum of (per-page depth &#215; that page's views) / total views. Result: 73.6%.">Profundidad ponderada = suma de (profundidad por página &#215; vistas de esa página) / total de vistas. Resultado: 73.6%.</li>
+    <li data-es="Tráfico directo = 299 visitantes directos / 314 visitantes con canal atribuido = 95.2%." data-en="Direct traffic = 299 direct visitors / 314 channel-attributed visitors = 95.2%.">Tráfico directo = 299 visitantes directos / 314 visitantes con canal atribuido = 95.2%.</li>
+    <li data-es="Contexto de escala = 20 inscripciones / 40,000 seguidores aproximados = 0.05%. Depende de una cifra por verificar." data-en="Scale context = 20 enrollments / approximately 40,000 followers = 0.05%. Depends on a figure pending verification.">Contexto de escala = 20 inscripciones / 40,000 seguidores aproximados = 0.05%. Depende de una cifra por verificar.</li>
+  </ul>
+
+  <h3 data-es="Archivos fuente" data-en="Source files">Archivos fuente</h3>
+  <ul class="plain">
+    <li class="n" style="font-family:'JetBrains Mono',monospace;font-size:12px;">Plausible_export_criarsinculpas_com_91d_.zip <span class="caption" data-es="· EXPORTACIÓN COMPLETA · 16 ABR A 15 JUL 2026" data-en="· FULL EXPORT · APR 16 TO JUL 15 2026">· EXPORTACIÓN COMPLETA · 16 ABR A 15 JUL 2026</span></li>
+    <li class="n" style="font-family:'JetBrains Mono',monospace;font-size:12px;">all_sites_for_account_2026-07-17T23_08_38_001Z.csv <span class="caption" data-es="· PETICIONES DE BORDE · EXCLUIDO DEL ANÁLISIS" data-en="· EDGE REQUESTS · EXCLUDED FROM ANALYSIS">· PETICIONES DE BORDE · EXCLUIDO DEL ANÁLISIS</span></li>
+    <li class="n" style="font-family:'JetBrains Mono',monospace;font-size:12px;">biglittlefeelings.com <span class="caption" data-es="· PRECIOS PUBLICADOS DE CURSOS · CONSULTADO 17 JUL 2026" data-en="· PUBLISHED COURSE PRICES · CHECKED JUL 17 2026">· PRECIOS PUBLICADOS DE CURSOS · CONSULTADO 17 JUL 2026</span></li>
+    <li class="n" style="font-family:'JetBrains Mono',monospace;font-size:12px;"><span data-es="Guías publicadas de coaching parental (rangos por sesión y paquete) y programa de 12 semanas del Jai Institute (autorreportado)" data-en="Published parent-coaching guides (per-session and package ranges) and the Jai Institute 12-week program (self-reported)">Guías publicadas de coaching parental (rangos por sesión y paquete) y programa de 12 semanas del Jai Institute (autorreportado)</span> <span class="caption" data-es="· CONSULTADO 17 JUL 2026" data-en="· CHECKED JUL 17 2026">· CONSULTADO 17 JUL 2026</span></li>
+    <li class="n" style="font-family:'JetBrains Mono',monospace;font-size:12px;">Cloudflare Web Analytics <span class="caption" data-es="· PANEL RUM · CAPTURA DEL 17 JUL 2026" data-en="· RUM PANEL · CAPTURED JUL 17 2026">· PANEL RUM · CAPTURA DEL 17 JUL 2026</span></li>
+  </ul>
+
+  <h3 data-es="Discrepancias conocidas entre plataformas" data-en="Known discrepancies between platforms">Discrepancias conocidas entre plataformas</h3>
+  <ul class="plain">
+    <li data-es="Plausible registró 339 visitantes en 91 días; Cloudflare registró 240 visitas en sus últimos 30 días. Miden cosas distintas, con ventanas y métodos de conteo distintos. Ninguna cifra corrige a la otra." data-en="Plausible recorded 339 visitors in 91 days; Cloudflare recorded 240 visits in its last 30 days. They measure different things, with different windows and counting methods. Neither figure corrects the other.">Plausible registró 339 visitantes en 91 días; Cloudflare registró 240 visitas en sus últimos 30 días. Miden cosas distintas, con ventanas y métodos de conteo distintos. Ninguna cifra corrige a la otra.</li>
+    <li data-es="El panel de Cloudflare mostró interacciones en una ruta (/strategy-ledger/) que no forma parte de la estructura publicada del sitio. Pendiente de confirmar si corresponde a un despliegue interno o a la mezcla de dominios de la cuenta." data-en="The Cloudflare panel showed interactions on a path (/strategy-ledger/) that is not part of the site's published structure. Pending confirmation of whether it corresponds to an internal deployment or to the account's domain mixing.">El panel de Cloudflare mostró interacciones en una ruta (/strategy-ledger/) que no forma parte de la estructura publicada del sitio. Pendiente de confirmar si corresponde a un despliegue interno o a la mezcla de dominios de la cuenta.</li>
+    <li data-es="Cinco referencias de tráfico provinieron de entornos de vista previa de contenido de Google (usercontent.goog), probablemente asistentes de IA mostrando el sitio. Un visitante cada una; sin impacto en los promedios." data-en="Five traffic referrals came from Google content preview environments (usercontent.goog), likely AI assistants displaying the site. One visitor each; no impact on averages.">Cinco referencias de tráfico provinieron de entornos de vista previa de contenido de Google (usercontent.goog), probablemente asistentes de IA mostrando el sitio. Un visitante cada una; sin impacto en los promedios.</li>
+  </ul>
+
+  <h3 data-es="Registro de datos faltantes" data-en="Missing data record">Registro de datos faltantes</h3>
+  <ul class="plain">
+    <li data-es="Número de suscriptores y desempeño de la secuencia de MailerLite: exportación pendiente." data-en="MailerLite subscriber count and sequence performance: export pending.">Número de suscriptores y desempeño de la secuencia de MailerLite: exportación pendiente.</li>
+    <li data-es="Cifra exacta y métricas de engagement de Instagram: verificación directa pendiente." data-en="Exact Instagram figure and engagement metrics: direct verification pending.">Cifra exacta y métricas de engagement de Instagram: verificación directa pendiente.</li>
+    <li data-es="Retroalimentación cualitativa de la audiencia: sin recopilación sistemática todavía." data-en="Qualitative audience feedback: no systematic collection yet.">Retroalimentación cualitativa de la audiencia: sin recopilación sistemática todavía.</li>
+    <li data-es="Comparables de precio del mercado hispanohablante: sin relevar todavía." data-en="Spanish-language market price comparables: not yet surveyed.">Comparables de precio del mercado hispanohablante: sin relevar todavía.</li>
+    <li data-es="Exclusión de visitas del equipo en Plausible: por configurar." data-en="Team visit exclusion in Plausible: to be configured.">Exclusión de visitas del equipo en Plausible: por configurar.</li>
+  </ul>
+</section>
+
+<footer>
+  <p class="caption" data-es="CRIAR SIN CULPAS · LA EVIDENCIA DETRÁS DE LA CONVERSACIÓN · VERSIÓN 3 · 17 DE JULIO DE 2026 · LG STUDIO" data-en="CRIAR SIN CULPAS · THE EVIDENCE BEHIND THE CONVERSATION · VERSION 3 · JULY 17 2026 · LG STUDIO">CRIAR SIN CULPAS · LA EVIDENCIA DETRÁS DE LA CONVERSACIÓN · VERSIÓN 3 · 17 DE JULIO DE 2026 · LG STUDIO</p>
+</footer>
+
+</div>
+<script>
+  var LANG_KEY = 'csc_lang';
+  function setLang(lang){
+    document.querySelectorAll('[data-es]').forEach(function(el){
+      var c = el.getAttribute('data-' + lang);
+      if(c !== null){ el.innerHTML = c; }
+    });
+    document.documentElement.lang = lang;
+    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    try{ localStorage.setItem(LANG_KEY, lang); }catch(e){}
+  }
+  (function(){
+    var saved = 'es';
+    try{ saved = localStorage.getItem(LANG_KEY) || 'es'; }catch(e){}
+    if(saved === 'en'){ setLang('en'); }
+  })();
+</script>
+</body>
+</html>
