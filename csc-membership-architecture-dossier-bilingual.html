@@ -1,0 +1,1424 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Dossier bilingüe de arquitectura de membresía para Criar Sin Culpas"><title>Dossier de arquitectura de membresía | Criar Sin Culpas</title><style>
+:root{--ink:#20211f;--muted:#66655e;--cream:#f6f0e7;--paper:#fffdf9;--terracotta:#b85f43;--gold:#bd8b3e;--rule:#d9d0c3;--soft:#eee5d9;--teal:#3d7774}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,Arial,sans-serif;line-height:1.65}.topbar{position:sticky;top:0;z-index:20;background:rgba(32,33,31,.96);color:white;padding:10px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px;box-shadow:0 4px 18px rgba(0,0,0,.12)}.brand{font-size:12px;letter-spacing:.16em;text-transform:uppercase}.controls{display:flex;gap:8px;align-items:center}.controls button{border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;padding:8px 12px;border-radius:999px;cursor:pointer;font-weight:700}.controls button.active{background:#fff;color:var(--ink)}.shell{max-width:1080px;margin:0 auto;background:var(--paper);min-height:100vh;padding:72px 80px 100px;box-shadow:0 0 50px rgba(74,57,35,.1)}h1{font-family:Georgia,serif;font-size:clamp(46px,7vw,78px);line-height:.98;margin:15px 0 12px;letter-spacing:-.04em}h2{font-family:Georgia,serif;font-size:38px;line-height:1.12;margin:78px 0 24px;padding-top:18px;border-top:1px solid var(--rule);letter-spacing:-.025em}h3{font-size:21px;margin:38px 0 12px;letter-spacing:-.01em}p{margin:0 0 17px}.subtitle{font-family:Georgia,serif;color:var(--terracotta);font-size:28px;margin-bottom:28px}.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:var(--terracotta)}.callout{background:var(--soft);border-left:4px solid var(--terracotta);padding:22px 24px;margin:28px 0;border-radius:0 10px 10px 0}.callout strong{font-size:11px;letter-spacing:.14em}.table-wrap{overflow-x:auto;margin:20px 0 32px;border:1px solid var(--rule);border-radius:10px}table{width:100%;border-collapse:collapse;font-size:14px}th{background:var(--ink);color:#fff;text-align:left;padding:13px 14px;font-size:11px;letter-spacing:.09em;text-transform:uppercase}td{padding:13px 14px;border-top:1px solid var(--rule);vertical-align:top}tr:nth-child(even) td{background:#faf6ef}ul,ol{padding-left:24px;margin:12px 0 26px}li{margin:8px 0}.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 28px;margin:20px 0 36px}.toc-grid a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule);padding:8px 0}.journey{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.journey div{background:var(--soft);padding:18px;border-radius:10px}.journey span{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--terracotta);color:white;margin-bottom:8px}.journey strong{display:block}.journey p{font-size:13px;color:var(--muted);margin:5px 0}.nav-pills{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0 30px}.nav-pills span{border:1px solid var(--rule);border-radius:999px;padding:7px 13px}.flow{background:var(--ink);color:white;padding:24px;border-radius:10px;margin:25px 0;text-align:center}.flow b{color:#e7b16d;margin:0 6px}.lang{display:none}.lang.active{display:block}.note{font-size:12px;color:var(--muted);margin-top:5px}.footer{margin-top:80px;padding-top:24px;border-top:1px solid var(--rule);font-size:12px;color:var(--muted)}@media(max-width:760px){.shell{padding:48px 22px}.topbar{padding:10px 12px}.brand{display:none}h2{font-size:31px}.toc-grid,.journey{grid-template-columns:1fr}.controls button{padding:7px 10px}}@media print{body{background:white}.topbar{display:none}.shell{box-shadow:none;max-width:none;padding:15mm}.lang{display:none!important}.lang.active{display:block!important}h2{break-before:page}table,.callout{break-inside:avoid}}
+</style></head><body><header class="topbar"><div class="brand">CRIAR SIN CULPAS · MEMBERSHIP ARCHITECTURE</div><div class="controls"><button data-lang="es">Español</button><button data-lang="en">English</button><button onclick="window.print()">Imprimir / PDF</button></div></header><main class="shell"><article id="lang-es" class="lang">
+<p class="eyebrow">ESTRATEGIA + PRODUCTO + EXPERIENCIA + TECNOLOGÍA</p>
+<h1>Dossier de arquitectura<br>de membresía</h1>
+<p class="subtitle">Criar Sin Culpas</p>
+<p>Un plano por fases para convertir el ecosistema público y confiable de recursos de CSC en una experiencia continua de apoyo de pago para madres, padres y cuidadores de niños neurodivergentes.</p>
+<p class="eyebrow">VERSIÓN 1.0 | JULIO DE 2026</p>
+<div class="callout"><strong>PROPUESTA CENTRAL</strong><br>CSC no debe vender acceso a una pila de contenido. Debe ofrecer un sistema de apoyo sereno y navegable que ayude a una familia a entender qué está ocurriendo, elegir qué importa ahora y dar un siguiente paso útil, sin culpas.</div>
+<p>Preparado como documento estratégico de trabajo para Nari Fateha y el equipo de Criar Sin Culpas.</p>
+
+<section class="doc-section"><h2 id="es-contenido">Contenido</h2>
+<div class="toc-grid">
+<a href="#es-resumen">01. Resumen ejecutivo</a><a href="#es-tesis">02. Tesis de membresía</a><a href="#es-audiencia">03. Audiencia y tareas por resolver</a><a href="#es-ecosistema">04. Ecosistema público y de pago</a><a href="#es-oferta">05. Oferta y precios</a><a href="#es-recorrido">06. Recorrido de la familia</a><a href="#es-experiencia">07. Experiencia e información</a><a href="#es-contenido-modelo">08. Contenido y programación</a><a href="#es-permisos">09. Funciones y permisos</a><a href="#es-bilingue">10. Experiencia bilingüe</a><a href="#es-operaciones">11. Operaciones</a><a href="#es-tecnologia">12. Tecnología</a><a href="#es-datos">13. Datos, privacidad y seguridad</a><a href="#es-mvp">14. MVP y lanzamiento</a><a href="#es-medicion">15. Medición</a><a href="#es-decisiones">16. Registro de decisiones</a><a href="#es-implementacion">17. Implementación</a><a href="#es-fuentes">18. Fuentes y supuestos</a>
+</div>
+<div class="callout"><strong>CÓMO USAR ESTE DOSSIER</strong><br>Las secciones 1 a 6 establecen la lógica del producto y del negocio. Las secciones 7 a 13 definen la experiencia y el sistema operativo. Las secciones 14 a 17 convierten la estrategia en un plan de lanzamiento construible. Todo elemento identificado como hipótesis debe validarse antes del lanzamiento público.</div>
+</section>
+
+<section class="doc-section"><h2 id="es-resumen">01. Resumen ejecutivo</h2>
+<p>Criar Sin Culpas ya ha construido el inicio de un ecosistema de recursos confiable: una marca reconocible, un sitio público, protocolos prácticos, un centro editorial de aprendizaje, una base bilingüe y una voz que acompaña a las familias con claridad, no con culpa. La siguiente oportunidad de negocio no consiste simplemente en colocar esos activos detrás de un inicio de sesión. Consiste en construir una experiencia continua de apoyo alrededor de ellos.</p>
+<p>El primer producto recomendado es la <strong>Biblioteca de Miembros de CSC</strong>: una experiencia de pago enfocada que combina orientación estructurada, herramientas prácticas, apoyo recurrente en vivo y un tablero personal sencillo. La comunidad, el seguimiento de progreso, la personalización, las certificaciones y las licencias para facilitadores deben quedar fuera de la primera versión hasta que el comportamiento de los miembros demuestre que realmente hacen falta.</p>
+<div class="callout"><strong>POSICIONAMIENTO RECOMENDADO</strong><br>Apoyo continuo para madres, padres y cuidadores de niños neurodivergentes que necesitan una manera más clara de comprender qué está pasando, decidir qué importa ahora y responder sin culpa.</div>
+<h3>Modelo recomendado</h3>
+<div class="table-wrap"><table><tr><th>Capa</th><th>Función</th><th>Acceso</th></tr><tr><td>Confianza pública</td><td>Protocolos, artículos seleccionados de Aprende, recursos de crisis, educación de marca y descubrimiento por búsqueda.</td><td>Gratis</td></tr><tr><td>Apoyo para miembros</td><td>Biblioteca guiada, herramientas de implementación, sesión mensual en vivo, grabaciones, guiones y planes descargables.</td><td>Pago recurrente</td></tr><tr><td>Apoyo premium</td><td>Talleres de grupos pequeños, intensivos, cohortes o series por tema.</td><td>Complemento de pago</td></tr><tr><td>Plataforma futura</td><td>Comunidad, planes guardados, personalización, seguimiento y herramientas para facilitadores.</td><td>Más adelante, tras validación</td></tr></table></div>
+<h3>Recomendación principal</h3><p>Lanzar una sola membresía clara, no varios niveles confusos. Los talleres y cohortes breves pueden ofrecerse como complementos. Los protocolos públicos más fuertes deben permanecer gratuitos para construir confianza. El valor de pago debe estar en la implementación, la continuidad, la interpretación en vivo y una ruta más fácil para usar el material.</p>
+<h3>Tecnología sugerida para el MVP</h3><p>Conviene utilizar una plataforma de membresía integrada en lugar de construir desde cero la autenticación, la facturación y la administración de cuentas. Outseta es la recomendación principal para el MVP porque reúne autenticación, contenido protegido, pagos, CRM, correo, perfiles y soporte. Memberstack es una alternativa sólida cuando la flexibilidad visual del front end sea la prioridad principal y CSC esté cómodo operando herramientas separadas. Una solución personalizada con Supabase solo debe considerarse cuando CSC necesite datos específicos por miembro, planes guardados, personalización o permisos complejos.</p>
+</section>
+
+<section class="doc-section"><h2 id="es-tesis">02. Tesis de membresía</h2>
+<h3>El producto no es “acceso a contenido”</h3><p>Las familias ya pueden encontrar una cantidad abrumadora de información sobre crianza en internet. Más información no significa automáticamente más ayuda. El producto de pago de CSC debe reducir el trabajo necesario para interpretar, priorizar y aplicar esa información en la vida real.</p>
+<div class="callout"><strong>TESIS</strong><br>La experiencia de pago se gana su lugar al convertir orientación confiable en un sistema continuo de ubicación, aplicación y apoyo.</div>
+<h3>La transformación</h3>
+<div class="table-wrap"><table><tr><th>Antes</th><th>Experiencia CSC</th><th>Después</th></tr><tr><td>Demasiados consejos y ningún punto de partida claro.</td><td>Una entrada serena basada en la necesidad inmediata.</td><td>Un primer paso claro.</td></tr><tr><td>Culpa repetida después de momentos difíciles.</td><td>Guiones, protocolos y herramientas de reflexión utilizables bajo presión.</td><td>Respuestas más preparadas.</td></tr><tr><td>Recursos guardados pero no aplicados.</td><td>Rutas breves de implementación e interpretación recurrente.</td><td>Mayor uso en la vida cotidiana.</td></tr><tr><td>Sentirse sola o sin contexto.</td><td>Una voz confiable y apoyo grupal con límites claros.</td><td>Más orientación y menos aislamiento.</td></tr></table></div>
+<h3>Principios estratégicos</h3><ol><li>El contenido gratuito construye confianza. El apoyo de pago facilita la implementación.</li><li>La experiencia se organiza alrededor de necesidades y situaciones, no de formatos.</li><li>Cada sesión debe responder: ¿Qué está pasando? ¿Qué importa ahora? ¿Qué puedo hacer después?</li><li>La membresía debe reducir la carga cognitiva, no crear otra obligación.</li><li>El acceso en vivo debe ajustarse a la capacidad real de Nari.</li><li>La entrega bilingüe debe ser intencional y equivalente en significado.</li><li>La comunidad es una responsabilidad. No debe lanzarse sin moderación y reglas de seguridad.</li><li>CSC debe conservar la relación, los datos y la experiencia de marca aunque use software externo.</li></ol>
+</section>
+
+<section class="doc-section"><h2 id="es-audiencia">03. Audiencia y tareas por resolver</h2>
+<h3>Audiencia principal</h3><p>Madres, padres y cuidadores hispanohablantes o bilingües que crían niños neurodivergentes, especialmente quienes se sienten agotados, sobrecargados por consejos contradictorios o inseguros sobre cómo responder ante conflictos recurrentes, desregulación, dificultades de sueño, tensión entre hermanos, estrés escolar y uso de pantallas.</p>
+<h3>Segmentos prioritarios</h3><div class="table-wrap"><table><tr><th>Segmento</th><th>Necesidad dominante</th><th>Valor de la membresía</th></tr><tr><td>Familia en modo de supervivencia</td><td>Ayuda inmediata y concreta.</td><td>Rutas cortas, guiones y herramientas utilizables hoy.</td></tr><tr><td>Familia con patrones repetidos</td><td>Prepararse antes del próximo episodio.</td><td>Protocolos, planes y foco mensual.</td></tr><tr><td>Familia bilingüe o bicultural</td><td>Orientación que respete lenguaje y contexto.</td><td>Experiencia bilingüe coherente y ejemplos relevantes.</td></tr><tr><td>Cuidador que busca continuidad</td><td>Un lugar confiable al cual regresar.</td><td>Biblioteca organizada, sesiones y seguimiento editorial.</td></tr></table></div>
+<h3>Tareas principales</h3><ul><li>Ayudarme a entender qué puede haber debajo de una conducta sin hacerme sentir culpable.</li><li>Ayudarme a saber qué hacer en los próximos diez minutos, no solo lo que dice la teoría ideal.</li><li>Ayudarme a prepararme para situaciones que se repiten.</li><li>Darme lenguaje para hablar con mi hijo, pareja, familia o escuela.</li><li>Ayudarme a distinguir qué consejo aplica a mi hijo y cuál no.</li><li>Darme un lugar confiable al cual volver cuando estoy demasiado cansada para buscar otra vez.</li><li>Permitir que aprenda a mi ritmo sin crear otro estándar en el que pueda “fallar”.</li></ul>
+<h3>No es la primera audiencia</h3><p>El MVP no debe diseñarse como plataforma de formación profesional para terapeutas, docentes o clínicos. Esos públicos podrían sostener licencias, educación continua o programas de facilitadores más adelante. Incluirlos desde el inicio debilitaría la promesa para las familias y complicaría permisos, lenguaje, precios y profundidad.</p>
+</section>
+
+<section class="doc-section"><h2 id="es-ecosistema">04. Ecosistema público y de pago</h2>
+<h3>La frontera debe tener sentido</h3><p>La experiencia de pago no debe hacer que el sitio público parezca deliberadamente incompleto o punitivo. CSC debe seguir publicando recursos gratuitos genuinamente útiles. La membresía añade continuidad, apoyo para implementar, organización, herramientas más profundas y acceso a orientación recurrente.</p>
+<div class="table-wrap"><table><tr><th>Permanece público</th><th>Valor para miembros</th></tr><tr><td>Protocolos esenciales de descubrimiento, artículos seleccionados, recursos de crisis, información básica y educación de marca.</td><td>Herramientas de aplicación, secuencias, guiones, planes, sesiones, grabaciones, resúmenes y orientación mensual.</td></tr></table></div>
+<h3>Prueba para decidir el límite</h3><p>Un recurso debe permanecer público cuando ocultarlo debilitaría la función de servicio de CSC, cuando sea central para el descubrimiento y la confianza o cuando aporte ayuda básica urgente. Puede ser exclusivo para miembros cuando su valor principal dependa de una implementación más profunda, una secuencia, interpretación en vivo, personalización o uso repetido.</p>
+<h3>Rutas recomendadas</h3><ol><li>Una familia encuentra un protocolo público mediante búsqueda o redes.</li><li>El protocolo resuelve una pregunta inmediata y presenta una herramienta relacionada.</li><li>La invitación explica el problema continuo que resuelve, no solo los archivos adicionales.</li><li>La familia ve una vista previa del tablero, el foco mensual, la próxima sesión y ejemplos.</li><li>El pago crea la cuenta y la lleva directamente a una bienvenida corta.</li><li>La primera sesión produce un resultado útil en menos de diez minutos.</li></ol>
+</section>
+
+<section class="doc-section"><h2 id="es-oferta">05. Oferta y arquitectura de precios</h2>
+<h3>Oferta de lanzamiento recomendada</h3><div class="callout"><strong>NOMBRE DE TRABAJO: CSC ACOMPAÑA</strong><br>Una membresía continua para comprender mejor lo que ocurre, prepararse para los momentos que se repiten y responder con más claridad, sin culpas.</div>
+<p>El nombre es una hipótesis. El principio importante es que el producto debe sonar a apoyo y continuidad, no a almacén de contenido ni a curso formal.</p>
+<h3>Una membresía, inclusiones claras</h3><ul><li>Acceso completo a la biblioteca organizada.</li><li>Herramientas de implementación conectadas con los protocolos públicos.</li><li>Una sesión grupal recurrente cada mes, con grabación y resumen escrito.</li><li>Guiones, planes, listas y guías descargables.</li><li>Una ruta mensual de “en qué enfocarse” para reducir la sobrecarga de opciones.</li><li>Acceso anticipado o precio preferencial para talleres y cohortes.</li><li>Autogestión de cuenta y facturación.</li></ul>
+<h3>Hipótesis de precio</h3><div class="table-wrap"><table><tr><th>Opción</th><th>Hipótesis inicial</th><th>Uso</th></tr><tr><td>Mensual fundadores</td><td>US$24 a US$29</td><td>Validar disposición de pago y retención.</td></tr><tr><td>Anual fundadores</td><td>Equivalente a dos meses gratis</td><td>Mejorar compromiso y flujo de caja.</td></tr><tr><td>Talleres o cohortes</td><td>Precio separado</td><td>Profundidad por tema sin inflar la membresía.</td></tr></table></div>
+<p>El precio no debe cerrarse solo con este documento. Debe probarse con la audiencia actual de Nari, una página clara y una invitación limitada para miembros fundadores.</p>
+<h3>Qué no lanzar</h3><ul><li>Tres o más niveles superpuestos.</li><li>Acceso directo ilimitado a Nari.</li><li>Una promesa de contenido nuevo cada semana.</li><li>Un foro sin responsable de moderación.</li><li>Acceso de por vida que cree obligaciones permanentes.</li><li>Precios basados principalmente en la cantidad de archivos o videos.</li></ul>
+</section>
+
+<section class="doc-section"><h2 id="es-recorrido">06. El recorrido de la familia</h2>
+<div class="journey"><div><span>1</span><strong>Descubrir</strong><p>Encuentra un recurso público relevante.</p></div><div><span>2</span><strong>Reconocerse</strong><p>Ve su situación descrita sin culpa.</p></div><div><span>3</span><strong>Evaluar</strong><p>Comprende el valor continuo de la membresía.</p></div><div><span>4</span><strong>Unirse</strong><p>Paga y crea su cuenta.</p></div><div><span>5</span><strong>Activarse</strong><p>Encuentra un punto de partida útil.</p></div><div><span>6</span><strong>Regresar</strong><p>Usa recursos y apoyo recurrente.</p></div></div>
+<h3>Los primeros diez minutos</h3><ol><li>Dar la bienvenida con lenguaje sencillo y confirmar para qué sirve el espacio.</li><li>Hacer una sola pregunta opcional: “¿Qué está tomando más energía ahora?”</li><li>Ofrecer entre cuatro y seis situaciones, no un formulario largo.</li><li>Recomendar un recurso inicial y una herramienta práctica.</li><li>Mostrar la próxima sesión y explicar cómo funcionan las grabaciones.</li><li>Invitar a elegir preferencias de notificación sin obligar a completar un perfil extenso.</li><li>Terminar con un tablero claro al cual regresar.</li></ol>
+<h3>La retención no es una fábrica de contenido</h3><p>La retención debe provenir de la relevancia, la organización, la interpretación recurrente y un apoyo confiable. El producto no necesita volumen constante. Necesita un ritmo claro y una razón útil, no demandante, para volver.</p>
+</section>
+
+<section class="doc-section"><h2 id="es-experiencia">07. Experiencia del miembro y arquitectura de información</h2>
+<h3>Navegación principal</h3><div class="nav-pills"><span>Inicio</span><span>Situaciones</span><span>Herramientas</span><span>Sesiones</span><span>Guardados</span><span>Cuenta</span></div>
+<h3>Módulos del tablero</h3><ul><li>Tarjeta “Empieza aquí” para nuevos miembros.</li><li>Selector “Lo que más energía está tomando”.</li><li>Foco del mes con un recurso y una acción recomendados.</li><li>Próxima sesión en vivo con zona horaria clara y promesa de grabación.</li><li>Recursos añadidos o actualizados recientemente.</li><li>Acceso rápido a elementos guardados.</li><li>Ayuda de cuenta, facturación y contacto.</li></ul>
+<h3>Taxonomía de contenido</h3><p>La biblioteca debe organizarse primero por situación y resultado deseado. Los tipos de archivo son metadatos secundarios.</p>
+<div class="table-wrap"><table><tr><th>Dimensión</th><th>Ejemplos</th></tr><tr><td>Situación</td><td>Pantallas, desbordes, sueño, hermanos, escuela, transiciones.</td></tr><tr><td>Necesidad inmediata</td><td>Entender, responder ahora, prepararse, conversar, reparar.</td></tr><tr><td>Formato</td><td>Protocolo, guion, plan, audio, video, lista, resumen.</td></tr><tr><td>Tiempo disponible</td><td>2 minutos, 10 minutos, profundizar.</td></tr><tr><td>Idioma</td><td>Español, inglés, ambos.</td></tr></table></div>
+<h3>Principio de interfaz</h3><div class="callout">La experiencia debe sentirse como si CSC hubiera organizado el siguiente paso, no como si hubiera entregado una biblioteca para que una familia cansada la administre sola.</div>
+</section>
+
+<section class="doc-section"><h2 id="es-contenido-modelo">08. Modelo de contenido y programación</h2>
+<h3>Ritmo mensual sostenible</h3><div class="table-wrap"><table><tr><th>Elemento</th><th>Cadencia</th><th>Función</th></tr><tr><td>Tema central</td><td>Mensual</td><td>Da coherencia y reduce opciones.</td></tr><tr><td>Herramienta práctica</td><td>Mensual</td><td>Convierte el tema en una acción concreta.</td></tr><tr><td>Sesión grupal</td><td>Mensual</td><td>Interpreta, contextualiza y responde preguntas moderadas.</td></tr><tr><td>Grabación y resumen</td><td>Después de la sesión</td><td>Extiende el valor a quienes no pueden asistir.</td></tr><tr><td>Recordatorio editorial</td><td>Ligero</td><td>Ayuda a regresar sin crear presión.</td></tr></table></div>
+<h3>Regla de capacidad</h3><div class="callout">Si la membresía exige que Nari produzca más de un tema central, una sesión y una herramienta práctica al mes para sentirse valiosa, la arquitectura del producto está equivocada.</div>
+<h3>Roles editoriales</h3><div class="table-wrap"><table><tr><th>Rol</th><th>Responsabilidad</th></tr><tr><td>Nari</td><td>Voz experta, entrega en vivo y aprobación final.</td></tr><tr><td>Liderazgo editorial/estratégico</td><td>Foco mensual, empaque, secuencia, recorrido y medición.</td></tr><tr><td>Producción</td><td>Formato, producción bilingüe, resúmenes y publicación.</td></tr><tr><td>Operaciones</td><td>Soporte, facturación, logística, etiquetas y escalamiento.</td></tr><tr><td>Revisión clínica/legal</td><td>Revisión puntual de afirmaciones sensibles y avisos.</td></tr></table></div>
+</section>
+
+<section class="doc-section"><h2 id="es-permisos">09. Matriz de funciones y permisos</h2>
+<div class="table-wrap"><table><tr><th>Función</th><th>Público</th><th>Miembro</th><th>Fase</th></tr><tr><td>Protocolos seleccionados</td><td>Sí</td><td>Sí</td><td>MVP</td></tr><tr><td>Biblioteca completa</td><td>No</td><td>Sí</td><td>MVP</td></tr><tr><td>Cuenta e inicio de sesión</td><td>No</td><td>Sí</td><td>MVP</td></tr><tr><td>Facturación y cancelación</td><td>No</td><td>Cuenta propia</td><td>MVP</td></tr><tr><td>Sesiones en vivo</td><td>Vista previa</td><td>Registro y acceso</td><td>MVP</td></tr><tr><td>Grabaciones y resúmenes</td><td>Extracto opcional</td><td>Sí</td><td>MVP</td></tr><tr><td>Descargas</td><td>Seleccionadas</td><td>Sí</td><td>MVP</td></tr><tr><td>Guardar recursos</td><td>No</td><td>Marcadores básicos</td><td>MVP ligero</td></tr><tr><td>Enviar pregunta</td><td>No</td><td>Sí, con consentimiento</td><td>MVP</td></tr><tr><td>Publicar o comentar</td><td>No</td><td>No</td><td>Más adelante</td></tr><tr><td>Perfil visible</td><td>No</td><td>No</td><td>Solo si se valida</td></tr><tr><td>Recomendaciones personalizadas</td><td>No</td><td>Reglas sencillas</td><td>Fase 2</td></tr><tr><td>Seguimiento de progreso</td><td>No</td><td>No</td><td>Fase 2 o 3</td></tr></table></div>
+</section>
+
+<section class="doc-section"><h2 id="es-bilingue">10. Reglas de experiencia bilingüe</h2>
+<p>El español debe ser la experiencia principal de lanzamiento. El inglés debe funcionar como una versión equivalente, no como un añadido tardío ni como traducción literal sin revisión.</p>
+<h3>Reglas</h3><ol><li>Una sola cuenta debe conservar la preferencia de idioma.</li><li>Las páginas de cuenta, pago, cancelación, privacidad y soporte deben estar disponibles en ambos idiomas desde el lanzamiento.</li><li>Cada recurso debe mostrar con claridad qué versiones existen.</li><li>Las traducciones deben conservar intención, calidez y precisión, no solo palabras.</li><li>Una actualización en el idioma fuente debe marcar la contraparte para revisión.</li><li>Los eventos pueden celebrarse en un idioma específico, pero la página debe indicarlo antes del registro.</li><li>Las grabaciones deben incluir, cuando sea viable, resumen o subtítulos en el otro idioma.</li></ol>
+<div class="table-wrap"><table><tr><th>Estado</th><th>Significado</th></tr><tr><td>ES completo</td><td>La fuente en español está aprobada y vigente.</td></tr><tr><td>EN completo</td><td>La versión en inglés está aprobada y vigente.</td></tr><tr><td>Traducción pendiente</td><td>La contraparte está planificada pero aún no disponible.</td></tr><tr><td>Revisión requerida</td><td>Una actualización puede haber dejado desactualizada la traducción.</td></tr><tr><td>Específico del idioma</td><td>El recurso existe intencionalmente en un solo idioma.</td></tr></table></div>
+</section>
+
+<section class="doc-section"><h2 id="es-operaciones">11. Operaciones y administración</h2>
+<h3>Flujos esenciales</h3><div class="table-wrap"><table><tr><th>Flujo</th><th>Responsable</th><th>Soporte del sistema</th></tr><tr><td>Crear o actualizar recurso</td><td>Producción</td><td>CMS o páginas protegidas</td></tr><tr><td>Asignar acceso e idioma</td><td>Producción</td><td>Etiquetas y permisos</td></tr><tr><td>Programar sesión</td><td>Operaciones</td><td>Calendario, correo y registro</td></tr><tr><td>Recoger y moderar preguntas</td><td>Operaciones + Nari</td><td>Formulario, consentimiento y cola</td></tr><tr><td>Publicar grabación y resumen</td><td>Producción</td><td>Video, página protegida y correo</td></tr><tr><td>Pago fallido</td><td>Automatización; luego operaciones</td><td>Recuperación y estado</td></tr><tr><td>Cancelar o reembolsar</td><td>Miembro u operaciones</td><td>Portal y política documentada</td></tr><tr><td>Beca o acceso especial</td><td>Administrador autorizado</td><td>Plan complementario o acceso manual</td></tr><tr><td>Soporte</td><td>Operaciones</td><td>Mesa de ayuda o buzón compartido</td></tr><tr><td>Revisión mensual</td><td>Liderazgo estratégico</td><td>Panel y analítica</td></tr></table></div>
+<h3>Políticas antes de lanzar</h3><ul><li>Cancelación, reembolso y periodo de gracia.</li><li>Normas para preguntas, consentimiento y uso anónimo de ejemplos.</li><li>Tiempo de respuesta de soporte.</li><li>Criterios para becas o accesos especiales.</li><li>Protocolo de escalamiento para contenido sensible.</li><li>Proceso para retirar acceso administrativo.</li></ul>
+</section>
+
+<section class="doc-section"><h2 id="es-tecnologia">12. Arquitectura tecnológica</h2>
+<div class="table-wrap"><table><tr><th>Capa</th><th>Recomendación</th><th>Razón</th></tr><tr><td>Sitio público y front end</td><td>Conservar el sitio y sistema visual actual de CSC.</td><td>Evita una migración innecesaria.</td></tr><tr><td>Autenticación y acceso</td><td>Outseta para el MVP.</td><td>Integra cuentas, contenido protegido, perfil y operación.</td></tr><tr><td>Facturación</td><td>Stripe mediante la plataforma.</td><td>Suscripciones, facturas, reintentos y autoservicio.</td></tr><tr><td>CRM y correo</td><td>Outseta inicialmente.</td><td>Mantiene identidad, pago, comunicación y soporte conectados.</td></tr><tr><td>Video</td><td>Proveedor profesional privado o no listado.</td><td>Separa medios de la base de membresía.</td></tr><tr><td>Analítica</td><td>Analítica del sitio + eventos de membresía.</td><td>Mide adquisición, activación, uso y retención.</td></tr><tr><td>Soporte</td><td>Mesa de ayuda o buzón dedicado.</td><td>Deja un historial rastreable.</td></tr><tr><td>Automatización</td><td>Flujos nativos primero; Make solo para brechas claras.</td><td>Reduce integraciones frágiles.</td></tr></table></div>
+<div class="flow">Página pública CSC <b>→</b> oferta <b>→</b> pago <b>→</b> cuenta <b>→</b> membresía activa <b>→</b> tablero protegido <b>→</b> biblioteca y sesiones <b>→</b> autoservicio de facturación <b>→</b> correo y analítica</div>
+<h3>Criterios de decisión</h3><p>Antes de contratar la plataforma debe validarse la compatibilidad con el stack actual, el nivel de personalización visual, la experiencia bilingüe, las reglas de acceso, la exportación de datos, los flujos de cancelación y el costo total. La tecnología debe servir al producto; no debe convertirse en el producto.</p>
+</section>
+
+<section class="doc-section"><h2 id="es-datos">13. Datos, analítica, privacidad y seguridad</h2>
+<h3>Datos mínimos</h3><div class="table-wrap"><table><tr><th>Dato</th><th>Necesario para MVP</th><th>No necesario al lanzar</th></tr><tr><td>Identidad</td><td>Nombre, correo e idioma.</td><td>Perfiles detallados del hogar.</td></tr><tr><td>Comercial</td><td>Plan, estado, fechas e ID de facturación.</td><td>Datos de tarjeta almacenados por CSC.</td></tr><tr><td>Uso</td><td>Inicio, vistas, descargas, grabaciones y registro.</td><td>Vigilancia conductual fina.</td></tr><tr><td>Preferencias</td><td>Correo e intereses opcionales.</td><td>Historial diagnóstico del niño.</td></tr><tr><td>Soporte</td><td>Problema de cuenta y resolución.</td><td>Notas clínicas.</td></tr><tr><td>Pregunta en vivo</td><td>Texto, consentimiento y moderación.</td><td>Expedientes permanentes del niño.</td></tr></table></div>
+<h3>Límites de seguridad</h3><ul><li>No recopilar información clínica detallada ni historias identificables de menores para personalización.</li><li>No presentar el servicio como diagnóstico, tratamiento, terapia o sustituto de atención profesional.</li><li>Obtener consentimiento claro antes de usar preguntas o relatos en sesiones, resúmenes o materiales.</li><li>Separar datos de pago, identidad, analítica y soporte según la función de cada proveedor.</li><li>Definir retención y eliminación de datos.</li><li>Revisión legal de términos, privacidad, avisos, cancelación y consentimiento antes de lanzar.</li></ul>
+<h3>Eventos de medición</h3><div class="table-wrap"><table><tr><th>Etapa</th><th>Eventos</th></tr><tr><td>Adquisición</td><td>Vista de oferta, vista previa, inicio de pago.</td></tr><tr><td>Conversión</td><td>Pago completado, cuenta creada, anual elegido.</td></tr><tr><td>Activación</td><td>Bienvenida, primer recurso, primera descarga.</td></tr><tr><td>Uso</td><td>Inicio, recurso, grabación, registro, pregunta.</td></tr><tr><td>Retención</td><td>Regreso en 30 días, actividad mensual, renovación.</td></tr><tr><td>Riesgo</td><td>Pago fallido, 30 días sin actividad, inicio de cancelación.</td></tr><tr><td>Salida</td><td>Cancelación, expiración, reembolso, eliminación.</td></tr></table></div>
+</section>
+
+<section class="doc-section"><h2 id="es-mvp">14. Alcance del MVP y hoja de ruta</h2>
+<div class="callout"><strong>PROMESA DEL MVP</strong><br>Una familia puede unirse, encontrar el punto de partida correcto, usar un recurso práctico, asistir o ver apoyo recurrente y administrar su cuenta sin intervención del equipo.</div>
+<h3>Incluido en el MVP</h3><ul><li>Página de oferta y pago.</li><li>Creación de cuenta, inicio de sesión y recuperación.</li><li>Una membresía con pago mensual y anual.</li><li>Tablero y biblioteca protegida.</li><li>Filtros sencillos por situación, necesidad e idioma.</li><li>Sesión mensual, registro, grabación y resumen.</li><li>Descargas y marcadores básicos.</li><li>Preguntas moderadas con consentimiento.</li><li>Correos de bienvenida, recordatorio, pago y cancelación.</li><li>Autoservicio de facturación.</li><li>Analítica esencial y soporte operativo.</li></ul>
+<h3>Fuera del MVP</h3><ul><li>Foro abierto, mensajes directos y perfiles públicos.</li><li>Aplicación móvil nativa.</li><li>Diagnóstico, planes clínicos o expedientes infantiles.</li><li>Personalización avanzada o IA.</li><li>Gamificación y progreso complejo.</li><li>Certificaciones, licencias y acceso profesional.</li></ul>
+<h3>Fases</h3><div class="table-wrap"><table><tr><th>Fase</th><th>Objetivo</th><th>Resultado</th></tr><tr><td>0. Validación</td><td>Probar demanda y claridad.</td><td>Página, entrevistas, lista y prueba de precio.</td></tr><tr><td>1. Base</td><td>Construir cuentas y pagos.</td><td>Autenticación, facturación, tablero y correos.</td></tr><tr><td>2. Biblioteca</td><td>Convertir activos existentes.</td><td>Recursos, herramientas, taxonomía y filtros.</td></tr><tr><td>3. Programación</td><td>Establecer valor recurrente.</td><td>Sesión, grabación, resumen y foco mensual.</td></tr><tr><td>4. Fundadores</td><td>Lanzar a un grupo controlado.</td><td>Onboarding, soporte, aprendizaje y ajustes.</td></tr><tr><td>5. Público</td><td>Abrir con operación estable.</td><td>Campaña, anual y referidos.</td></tr><tr><td>6. Expansión</td><td>Añadir solo lo respaldado por evidencia.</td><td>Personalización, cohortes o comunidad limitada.</td></tr></table></div>
+</section>
+
+<section class="doc-section"><h2 id="es-medicion">15. Marco de medición</h2>
+<div class="callout"><strong>MÉTRICA PRINCIPAL</strong><br>Porcentaje de miembros activos que usan al menos un recurso práctico o una experiencia de apoyo dentro de un periodo móvil de 30 días.</div>
+<div class="table-wrap"><table><tr><th>Categoría</th><th>Métrica</th><th>Hipótesis inicial</th></tr><tr><td>Demanda</td><td>Conversión de lista a pago</td><td>Definir tras la prueba.</td></tr><tr><td>Activación</td><td>Primera acción útil en 7 días</td><td>60% o más.</td></tr><tr><td>Uso</td><td>Uso mensual de recurso práctico</td><td>50% o más.</td></tr><tr><td>Valor en vivo</td><td>Registro o reproducción por sesión</td><td>30% o más.</td></tr><tr><td>Retención</td><td>Retención pagada al mes 2</td><td>75% o más.</td></tr><tr><td>Anual</td><td>Proporción que elige anual</td><td>15% a 30%.</td></tr><tr><td>Soporte</td><td>Problemas resueltos dentro del estándar</td><td>90% o más.</td></tr><tr><td>Eficiencia</td><td>Uso por cada recurso central nuevo</td><td>Observar tendencia, no volumen.</td></tr><tr><td>Referidos</td><td>Nuevos miembros por recomendación</td><td>Crear línea base después del mes 2.</td></tr></table></div>
+<p>Estas cifras son hipótesis de trabajo, no compromisos. La meta del lanzamiento fundador es establecer una línea base real y entender qué comportamientos predicen valor y permanencia.</p>
+</section>
+
+<section class="doc-section"><h2 id="es-decisiones">16. Registro de decisiones</h2>
+<div class="table-wrap"><table><tr><th>Decisión</th><th>Recomendación por defecto</th><th>Responsable o compuerta</th></tr><tr><td>Nombre</td><td>CSC Acompaña como nombre de trabajo.</td><td>Nari + marca</td></tr><tr><td>Audiencia</td><td>Madres, padres y cuidadores; español primero.</td><td>Nari</td></tr><tr><td>Promesa</td><td>Orientación, implementación y apoyo continuo sin culpa.</td><td>Nari + estrategia</td></tr><tr><td>Límite público</td><td>Mantener públicos protocolos de descubrimiento y crisis.</td><td>Editorial</td></tr><tr><td>Estructura</td><td>Una oferta, mensual y anual.</td><td>Negocio</td></tr><tr><td>Precio fundador</td><td>US$24 a US$29 como hipótesis.</td><td>Negocio tras validación</td></tr><tr><td>Sesión</td><td>Una grupal al mes.</td><td>Aprobación de capacidad de Nari</td></tr><tr><td>Comunidad</td><td>Excluir del MVP.</td><td>Compuerta firme</td></tr><tr><td>Acceso directo</td><td>Sin acceso privado ilimitado a Nari.</td><td>Compuerta firme</td></tr><tr><td>Idioma</td><td>Español primero; procesos críticos bilingües.</td><td>Nari + editorial</td></tr><tr><td>Tecnología</td><td>MVP con Outseta, sujeto a validación del stack.</td><td>Técnico</td></tr><tr><td>Datos sensibles</td><td>No recopilar datos sensibles a nivel del niño.</td><td>Privacidad</td></tr><tr><td>Legal</td><td>Revisión antes del lanzamiento.</td><td>Asesoría calificada</td></tr><tr><td>Cohorte fundadora</td><td>Grupo controlado según capacidad.</td><td>Operaciones</td></tr></table></div>
+</section>
+
+<section class="doc-section"><h2 id="es-implementacion">17. Brief de implementación</h2>
+<h3>Paquetes de trabajo</h3><ol><li><strong>Validación del producto:</strong> página de oferta, entrevistas, precio, lista y criterios de avance.</li><li><strong>Diseño de experiencia:</strong> mapa de pantallas, estados, navegación, taxonomía y flujo bilingüe.</li><li><strong>Preparación de contenido:</strong> inventario, frontera público/pago, herramientas, traducciones y metadatos.</li><li><strong>Configuración técnica:</strong> cuentas, pagos, permisos, correo, soporte, video y analítica.</li><li><strong>Operación:</strong> políticas, sesión mensual, moderación, soporte, reembolsos y escalamiento.</li><li><strong>Lanzamiento fundador:</strong> reclutamiento, onboarding, seguimiento, aprendizaje y correcciones.</li></ol>
+<h3>Pruebas de aceptación</h3><div class="table-wrap"><table><tr><th>Escenario</th><th>Resultado esperado</th></tr><tr><td>Nuevo miembro mensual</td><td>Cuenta activa, bienvenida enviada y tablero habilitado.</td></tr><tr><td>Nuevo miembro anual</td><td>Estado anual correcto y acceso equivalente.</td></tr><tr><td>Pago fallido</td><td>Comienza recuperación y se aplica la regla de gracia.</td></tr><tr><td>Cancelación</td><td>Se detiene el cobro y se muestra la fecha de fin de acceso.</td></tr><tr><td>Reembolso</td><td>Estado y acceso se actualizan según la política.</td></tr><tr><td>URL protegida</td><td>Una persona no autorizada no puede recuperar el material.</td></tr><tr><td>Cambio de idioma</td><td>Interfaz y mensajes críticos cambian sin crear otra cuenta.</td></tr><tr><td>Beca</td><td>Acceso sin cobro estándar y claramente marcado.</td></tr><tr><td>Pregunta</td><td>Consentimiento capturado y entrada en moderación.</td></tr><tr><td>Salida de administrador</td><td>Acceso eliminado y auditoría completada.</td></tr></table></div>
+<h3>Definición de “listo para lanzar”</h3><ul><li>La oferta ha sido validada con miembros reales o compromisos verificables.</li><li>La experiencia completa funciona en móvil y escritorio.</li><li>Las rutas críticas están disponibles en español y en inglés donde corresponda.</li><li>Pagos, cancelación, fallos y reembolsos han sido probados.</li><li>Existe contenido suficiente para el primer mes sin depender de producción urgente.</li><li>Las políticas legales y de privacidad están aprobadas.</li><li>Hay una persona responsable del soporte y otra del contenido.</li><li>La analítica registra activación, uso, retención y riesgo.</li></ul>
+</section>
+
+<section class="doc-section"><h2 id="es-fuentes">18. Fuentes y supuestos</h2>
+<h3>Fuentes tecnológicas</h3><div class="table-wrap"><table><tr><th>Fuente</th><th>Relevancia</th></tr><tr><td>Outseta</td><td>Autenticación, contenido protegido, pagos, CRM, correo, cuentas y soporte.</td></tr><tr><td>Memberstack</td><td>Cuentas, contenido restringido, acceso por plan, Stripe y estados de suscripción.</td></tr><tr><td>Stripe</td><td>Ciclo de suscripción y portal del cliente para métodos, facturas, cambios y cancelación.</td></tr><tr><td>Supabase</td><td>Autenticación y seguridad por filas para una arquitectura personalizada futura.</td></tr></table></div>
+<h3>Supuestos que deben validarse</h3><ul><li>La audiencia de Nari muestra intención suficiente para sostener una oferta recurrente.</li><li>Una sesión mensual y una herramienta central pueden producir valor continuo.</li><li>El sitio actual puede integrar una plataforma de membresía sin una reconstrucción total.</li><li>El español será el idioma principal del lanzamiento.</li><li>CSC puede asignar capacidad estable a soporte, producción y operación.</li><li>Los precios propuestos son hipótesis y no decisiones finales.</li></ul>
+<div class="callout"><strong>SIGUIENTE ARTEFACTO RECOMENDADO</strong><br>Convertir esta arquitectura en un documento de requisitos del producto, un mapa UX pantalla por pantalla y un paquete de validación de lanzamiento. Ese paquete debe incluir la página de oferta, la invitación fundadora, una guía de entrevistas, la prueba de precio y un cuadro de decisión.</div>
+</section>
+<div class="footer">Criar Sin Culpas · Dossier de arquitectura de membresía · Versión 1.0 · Julio de 2026</div></article><article id="lang-en" class="lang"><p class="eyebrow">STRATEGY + PRODUCT + EXPERIENCE + TECHNOLOGY</p>
+<h1>Membership<br>Architecture Dossier</h1>
+<p class="subtitle">Criar Sin Culpas</p>
+<p>A phased blueprint for turning CSC’s trusted public resource ecosystem into an ongoing, paid support experience for parents raising neurodivergent children.</p>
+<p class="eyebrow">VERSION 1.0  |  JULY 2026</p>
+<div class="callout">CORE PROPOSITION<br>CSC should not sell access to a pile of content. It should provide a calm, navigable support system that helps a parent understand what is happening, choose what matters now, and take one useful next step without guilt.</div>
+<p>Prepared as a strategic working document for Nari Fateha and the Criar Sin Culpas team.</p>
+<section class="doc-section"><h2 id="en-contents">Contents</h2>
+<div class="table-wrap"><table>
+<tr>
+<th>SECTION</th>
+<th>TITLE</th>
+</tr>
+<tr>
+<td>01</td>
+<td>Executive Summary</td>
+</tr>
+<tr>
+<td>02</td>
+<td>Membership Thesis</td>
+</tr>
+<tr>
+<td>03</td>
+<td>Audience and Jobs to Be Done</td>
+</tr>
+<tr>
+<td>04</td>
+<td>Public and Paid Ecosystem</td>
+</tr>
+<tr>
+<td>05</td>
+<td>Offer and Pricing Architecture</td>
+</tr>
+<tr>
+<td>06</td>
+<td>The Parent Journey</td>
+</tr>
+<tr>
+<td>07</td>
+<td>Member Experience and Information Architecture</td>
+</tr>
+<tr>
+<td>08</td>
+<td>Content and Programming Model</td>
+</tr>
+<tr>
+<td>09</td>
+<td>Feature and Permissions Matrix</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Bilingual Experience Rules</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Operations and Administration</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Technology Architecture</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Data, Analytics, Privacy, and Safety</td>
+</tr>
+<tr>
+<td>14</td>
+<td>MVP Scope and Launch Roadmap</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Measurement Framework</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Decision Register</td>
+</tr>
+<tr>
+<td>17</td>
+<td>Implementation Brief</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Sources and Assumptions</td>
+</tr>
+</table></div>
+<div class="callout">HOW TO USE THIS DOSSIER<br>Sections 1 through 6 establish the product and commercial logic. Sections 7 through 13 define the experience and operating system. Sections 14 through 17 convert the strategy into a buildable launch plan. Any item marked as a hypothesis should be validated before public launch.</div>
+<section class="doc-section"><h2 id="en-01-executive-summary">01. Executive Summary</h2>
+<p>Criar Sin Culpas has already built the beginning of a trusted resource ecosystem: a recognizable brand, a public website, practical protocols, an editorial learning hub, a bilingual foundation, and a voice that meets parents with clarity rather than blame. The next business opportunity is not simply to place those assets behind a login. It is to build an ongoing support experience around them.</p>
+<p>The recommended first product is the CSC Member Library, a focused paid experience that combines structured guidance, practical tools, recurring live support, and a simple personal dashboard. Community features, progress tracking, personalization, certifications, and facilitator licensing should remain outside the first release until member behavior proves that they are necessary.</p>
+<div class="callout">RECOMMENDED LAUNCH POSITION<br>Ongoing support for parents raising neurodivergent children who need a clearer way to understand what is happening, decide what matters now, and respond without guilt.</div>
+<h3>The recommended model</h3>
+<div class="table-wrap"><table>
+<tr>
+<th>LAYER</th>
+<th>ROLE</th>
+<th>ACCESS</th>
+</tr>
+<tr>
+<td>Public trust layer</td>
+<td>Protocols, selected Aprende articles, crisis resources, brand education, search discovery</td>
+<td>Free</td>
+</tr>
+<tr>
+<td>Member support layer</td>
+<td>Guided library, implementation tools, monthly live session, replays, downloadable scripts and plans</td>
+<td>Paid recurring</td>
+</tr>
+<tr>
+<td>Premium support layer</td>
+<td>Small-group workshops, intensives, cohorts, or topic-specific series</td>
+<td>Paid add-on or premium tier</td>
+</tr>
+<tr>
+<td>Future platform layer</td>
+<td>Community, saved plans, personalization, progress tracking, facilitator tools</td>
+<td>Later, only after validation</td>
+</tr>
+</table></div>
+<h3>Primary recommendation</h3>
+<p>Launch one clear paid membership rather than several confusing tiers. Use optional workshops or short cohorts as add-ons. Preserve the strongest public protocols as free trust-building resources, while making the paid value about implementation, continuity, live interpretation, and an easier path through the material.</p>
+<h3>Suggested MVP technology</h3>
+<p>Use an integrated membership platform rather than building authentication, billing, and account management from scratch. Outseta is the leading recommendation for the MVP because it combines authentication, protected content, billing, CRM, email, member profiles, and support tools in one operational system. Memberstack is a credible alternative when front-end design flexibility is the highest priority and CSC is comfortable operating separate tools for CRM, email, and support. A custom Supabase-based product should be considered only when CSC needs member-specific data, saved plans, personalization, or complex permissions that the integrated tools cannot support.</p>
+<section class="doc-section"><h2 id="en-02-membership-thesis">02. Membership Thesis</h2>
+<h3>The product is not “content access”</h3>
+<p>Parents can already find an overwhelming amount of parenting content online. More information is not automatically more helpful. CSC’s paid product must reduce the work required to interpret, prioritize, and apply that information in real life.</p>
+<div class="callout">MEMBERSHIP THESIS<br>The paid experience earns its place by turning trustworthy guidance into an ongoing system of orientation, application, and support.</div>
+<h3>The transformation</h3>
+<div class="table-wrap"><table>
+<tr>
+<th>BEFORE</th>
+<th>CSC MEMBER EXPERIENCE</th>
+<th>AFTER</th>
+</tr>
+<tr>
+<td>Too much advice, no clear starting point</td>
+<td>A calm entry path based on the parent’s immediate need</td>
+<td>A clear first step</td>
+</tr>
+<tr>
+<td>Repeated guilt after difficult moments</td>
+<td>Scripts, protocols, and reflection tools built for use under pressure</td>
+<td>More prepared responses</td>
+</tr>
+<tr>
+<td>Resources saved but not applied</td>
+<td>Short implementation paths and recurring live interpretation</td>
+<td>Practical follow-through</td>
+</tr>
+<tr>
+<td>Feeling alone or uniquely inadequate</td>
+<td>A consistent voice that normalizes complexity without minimizing it</td>
+<td>Less isolation, more agency</td>
+</tr>
+<tr>
+<td>Starting over every time a new issue appears</td>
+<td>A structured library organized around situations and needs</td>
+<td>A reusable support system</td>
+</tr>
+</table></div>
+<h3>Strategic principles</h3>
+<ol>
+<li>Free content builds trust. Paid support makes implementation easier.</li>
+<li>Organize the experience around parent needs and situations, not content formats.</li>
+<li>Every member session should answer: What is happening? What matters now? What can I do next?</li>
+<li>The membership must reduce cognitive load, not create a new obligation to keep up.</li>
+<li>Live access must be designed around Nari’s actual capacity, not an aspirational publishing treadmill.</li>
+<li>Bilingual delivery must be intentional and equivalent in meaning, not mechanically duplicated.</li>
+<li>Community is a responsibility, not a decorative feature. It should not launch without moderation capacity and safety rules.</li>
+<li>CSC should own the member relationship, data, and brand experience even when third-party software powers the infrastructure.</li>
+</ol>
+<section class="doc-section"><h2 id="en-03-audience-and-jobs-to-be-done">03. Audience and Jobs to Be Done</h2>
+<h3>Primary audience</h3>
+<p>Spanish-speaking and bilingual parents or caregivers raising neurodivergent children, especially those who feel exhausted, overloaded by conflicting advice, or unsure how to respond in recurring moments of conflict, dysregulation, sleep difficulty, sibling tension, school stress, and screen use.</p>
+<h3>Priority segments</h3>
+<div class="table-wrap"><table>
+<tr>
+<th>SEGMENT</th>
+<th>CONTEXT</th>
+<th>WHAT THEY NEED MOST</th>
+</tr>
+<tr>
+<td>The exhausted responder</td>
+<td>Mostly arrives during or after a difficult moment</td>
+<td>Immediate orientation, a script, a small next step</td>
+</tr>
+<tr>
+<td>The proactive preparer</td>
+<td>Wants to prevent recurring patterns before the next incident</td>
+<td>Plans, routines, checklists, and practice tools</td>
+</tr>
+<tr>
+<td>The newly navigating parent</td>
+<td>Is beginning to understand neurodivergence or a recent diagnosis</td>
+<td>Language, interpretation, and a trustworthy path through the basics</td>
+</tr>
+<tr>
+<td>The isolated caregiver</td>
+<td>Lacks aligned support from family, school, or partner</td>
+<td>Validation, communication tools, and guided support</td>
+</tr>
+<tr>
+<td>The returning learner</td>
+<td>Already trusts Nari and has consumed CSC content</td>
+<td>Continuity, depth, live access, and a more organized experience</td>
+</tr>
+</table></div>
+<h3>Core jobs to be done</h3>
+<ul>
+<li>Help me understand what may be underneath this behavior without making me feel blamed.</li>
+<li>Help me know what to do in the next ten minutes, not only what the ideal theory says.</li>
+<li>Help me prepare for situations that repeat.</li>
+<li>Give me language I can use with my child, partner, family, or school.</li>
+<li>Help me decide which advice applies to my child and which does not.</li>
+<li>Give me a reliable place to return when I am too tired to search again.</li>
+<li>Let me learn at my own pace without creating another standard I can fail.</li>
+</ul>
+<h3>Not the first audience</h3>
+<p>The MVP should not be designed as a professional training platform for therapists, teachers, or clinicians. Those audiences may later support licensing, continuing education, or facilitator programs, but mixing them into the first membership would weaken the parent promise and complicate permissions, language, pricing, and content depth.</p>
+<section class="doc-section"><h2 id="en-04-public-and-paid-ecosystem">04. Public and Paid Ecosystem</h2>
+<h3>The boundary must be meaningful</h3>
+<p>The paid experience should not make the public site feel intentionally incomplete or punitive. CSC should continue to publish genuinely useful free resources. Paid membership should add continuity, implementation support, organization, deeper tools, and access to recurring guidance.</p>
+<div class="table-wrap"><table>
+<tr>
+<th>PUBLIC</th>
+<th>MEMBER-ONLY</th>
+<th>PREMIUM / ADD-ON</th>
+</tr>
+<tr>
+<td>Core protocols and selected summaries</td>
+<td>Guided implementation versions with steps, scripts, reflection prompts, and printable tools</td>
+<td>Live topic intensives or multi-session cohorts</td>
+</tr>
+<tr>
+<td>Selected Aprende articles</td>
+<td>Full themed collections and learning paths</td>
+<td>Small-group application sessions</td>
+</tr>
+<tr>
+<td>Crisis and urgent public-service resources</td>
+<td>Preparation plans and recovery tools</td>
+<td>Limited direct review or case-based workshop</td>
+</tr>
+<tr>
+<td>Brand newsletter and public announcements</td>
+<td>Member digest, replay notes, and new-resource alerts</td>
+<td>Topic bundles or workshops for non-members</td>
+</tr>
+<tr>
+<td>Selected clips or excerpts</td>
+<td>Complete session replay library</td>
+<td>Professional or facilitator licensing later</td>
+</tr>
+</table></div>
+<h3>Content boundary test</h3>
+<p>A resource should remain public when withholding it would undermine CSC’s public-service role, when it is central to discovery and trust, or when it provides urgent baseline help. A resource can be member-only when its primary value comes from deeper implementation, sequencing, live interpretation, personalization, or repeated use over time.</p>
+<h3>Recommended public-to-paid paths</h3>
+<ol>
+<li>A parent finds a public protocol through search or social.</li>
+<li>The protocol solves one immediate question and introduces a related implementation tool.</li>
+<li>The member invitation explains the ongoing problem it solves, not merely the additional files it unlocks.</li>
+<li>The parent sees a preview of the dashboard, current monthly focus, upcoming live support, and sample tools.</li>
+<li>Checkout creates the account and sends the parent directly into a short welcome path.</li>
+<li>The first session produces a useful result in under ten minutes.</li>
+</ol>
+<section class="doc-section"><h2 id="en-05-offer-and-pricing-architecture">05. Offer and Pricing Architecture</h2>
+<h3>Recommended launch offer</h3>
+<div class="callout">WORKING PRODUCT NAME<br>CSC Acompaña. A calm, practical member space for understanding what is happening, preparing for recurring moments, and choosing the next step without guilt.</div>
+<p>The name is a working hypothesis, not a final naming decision. The important principle is that the product should sound like support and continuity, not a content warehouse or a formal course.</p>
+<h3>One membership, clear inclusions</h3>
+<ul>
+<li>Full access to the organized member library.</li>
+<li>Implementation toolkits connected to the public protocols.</li>
+<li>One recurring live group session each month, with replay and written summary.</li>
+<li>Member-only downloadable scripts, plans, checklists, and conversation guides.</li>
+<li>A monthly “what to focus on” pathway that reduces choice overload.</li>
+<li>Early access or member pricing for workshops and short cohorts.</li>
+<li>Account and billing self-service.</li>
+</ul>
+<h3>Pricing hypotheses</h3>
+<div class="table-wrap"><table>
+<tr>
+<th>MODEL</th>
+<th>HYPOTHESIS</th>
+<th>ADVANTAGE</th>
+<th>RISK</th>
+</tr>
+<tr>
+<td>Founding monthly</td>
+<td>$19 to $29 USD per month</td>
+<td>Accessible entry; easier founding-member recruitment</td>
+<td>Higher churn and ongoing acquisition pressure</td>
+</tr>
+<tr>
+<td>Standard monthly</td>
+<td>$29 to $39 USD per month</td>
+<td>Supports recurring programming and stronger perceived value</td>
+<td>Requires consistent proof of ongoing value</td>
+</tr>
+<tr>
+<td>Annual</td>
+<td>$290 to $390 USD per year</td>
+<td>Improves cash flow and commitment</td>
+<td>Needs a clear annual roadmap and trust</td>
+</tr>
+<tr>
+<td>Workshop add-on</td>
+<td>$39 to $99 per workshop or short series</td>
+<td>Monetizes depth without overloading the core membership</td>
+<td>Can make the base membership feel thin if overused</td>
+</tr>
+</table></div>
+<p>Recommended validation range: launch a founding cohort at $24 to $29 per month, or an annual founding option equivalent to two months free. Do not finalize the price from this document alone. Test willingness to pay with Nari’s existing audience, a clear landing page, and a limited founding-member invitation.</p>
+<h3>What not to launch</h3>
+<ul>
+<li>Three or more overlapping membership tiers.</li>
+<li>Unlimited direct access to Nari.</li>
+<li>A promise of new content every week.</li>
+<li>A community forum without moderation ownership.</li>
+<li>A lifetime access offer that creates permanent service obligations.</li>
+<li>Pricing based primarily on the number of files or videos.</li>
+</ul>
+<section class="doc-section"><h2 id="en-06-the-parent-journey">06. The Parent Journey</h2>
+<h3>Journey stages</h3>
+<div class="table-wrap"><table>
+<tr>
+<th>STAGE</th>
+<th>PARENT QUESTION</th>
+<th>EXPERIENCE REQUIREMENT</th>
+<th>SUCCESS SIGNAL</th>
+</tr>
+<tr>
+<td>Discover</td>
+<td>Can this help with what is happening right now?</td>
+<td>Specific public resource and credible language</td>
+<td>Engages deeply with protocol or article</td>
+</tr>
+<tr>
+<td>Consider</td>
+<td>Why would I pay when free information exists?</td>
+<td>Clear distinction: organization, implementation, live support, continuity</td>
+<td>Visits membership page or preview</td>
+</tr>
+<tr>
+<td>Join</td>
+<td>Will this be complicated or another commitment?</td>
+<td>Simple checkout, transparent terms, immediate access</td>
+<td>Completes account and first action</td>
+</tr>
+<tr>
+<td>Orient</td>
+<td>Where do I begin?</td>
+<td>Three-minute welcome and need-based entry path</td>
+<td>Opens recommended first resource</td>
+</tr>
+<tr>
+<td>Apply</td>
+<td>Can I use this in real life?</td>
+<td>Short steps, scripts, printable tools, replay notes</td>
+<td>Downloads, saves, or completes a tool</td>
+</tr>
+<tr>
+<td>Return</td>
+<td>Is there a reason to come back?</td>
+<td>Monthly focus, new support, relevant reminders</td>
+<td>Returns within 30 days</td>
+</tr>
+<tr>
+<td>Renew</td>
+<td>Is this still helping me?</td>
+<td>Visible library value, recurring live support, progress and relevance</td>
+<td>Renews or chooses annual plan</td>
+</tr>
+<tr>
+<td>Advocate</td>
+<td>Would I recommend this to another parent?</td>
+<td>Trust, results, easy referral path</td>
+<td>Referral or testimonial</td>
+</tr>
+</table></div>
+<h3>The first ten minutes</h3>
+<ol>
+<li>Welcome the parent in plain language and confirm what the space is for.</li>
+<li>Ask one optional question: “What is taking the most energy right now?”</li>
+<li>Offer four to six situation-based choices, not a long intake form.</li>
+<li>Recommend one starting resource and one practical tool.</li>
+<li>Show the next live session and explain how replays work.</li>
+<li>Invite notification preferences without forcing a long profile setup.</li>
+<li>End with a clear “come back here” dashboard state.</li>
+</ol>
+<div class="callout">EXPERIENCE STANDARD<br>A tired parent should be able to join, orient, and leave with one useful action before the system asks for extensive profile data, community participation, or a learning commitment.</div>
+<h3>Retention is not a content treadmill</h3>
+<p>Retention should come from relevance, organization, recurring interpretation, and dependable support. The product does not need constant volume. It needs a clear rhythm and a reason to return that feels useful rather than demanding.</p>
+<section class="doc-section"><h2 id="en-07-member-experience-and-information-architecture">07. Member Experience and Information Architecture</h2>
+<h3>Primary navigation</h3>
+<div class="table-wrap"><table>
+<tr>
+<th>AREA</th>
+<th>PURPOSE</th>
+<th>MVP</th>
+</tr>
+<tr>
+<td>Inicio</td>
+<td>Personal orientation, current monthly focus, recommended next step, upcoming live support</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Necesito ayuda con...</td>
+<td>Situation-based entry into protocols and tools</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Prepararme</td>
+<td>Plans, routines, scripts, and preventive resources</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Aprender</td>
+<td>Themed learning collections and deeper editorial content</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>En vivo</td>
+<td>Upcoming session, submission rules, replay archive, written summaries</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Mis recursos</td>
+<td>Saved or recently viewed content</td>
+<td>Light version only</td>
+</tr>
+<tr>
+<td>Mi cuenta</td>
+<td>Profile, language, email preferences, billing, cancellation</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Comunidad</td>
+<td>Peer discussion and groups</td>
+<td>No, later</td>
+</tr>
+</table></div>
+<h3>Recommended dashboard modules</h3>
+<ul>
+<li>“Empieza aquí” card for new members.</li>
+<li>“Lo que más energía está tomando” situation selector.</li>
+<li>Current monthly focus with one recommended resource and one action.</li>
+<li>Upcoming live session with time-zone clarity and replay promise.</li>
+<li>Recently added or updated resources, limited to three items.</li>
+<li>Continue where you left off.</li>
+<li>Quick access to the four core protocols.</li>
+<li>Account and support access in the footer or profile menu.</li>
+</ul>
+<h3>Content taxonomy</h3>
+<div class="table-wrap"><table>
+<tr>
+<th>DIMENSION</th>
+<th>EXAMPLES</th>
+</tr>
+<tr>
+<td>Situation</td>
+<td>Screens, dysregulation, bedtime, siblings, school, transitions, sensory overload</td>
+</tr>
+<tr>
+<td>Moment</td>
+<td>Before, during, after, recurring pattern</td>
+</tr>
+<tr>
+<td>Need</td>
+<td>Understand, respond, prepare, communicate, recover</td>
+</tr>
+<tr>
+<td>Age or stage</td>
+<td>Optional and broad, only when materially relevant</td>
+</tr>
+<tr>
+<td>Format</td>
+<td>Guide, script, plan, checklist, audio, replay</td>
+</tr>
+<tr>
+<td>Access</td>
+<td>Public, member, add-on, future professional</td>
+</tr>
+</table></div>
+<p>The interface should primarily expose situation, moment, and need. Format should remain secondary. Parents rarely arrive wanting “a PDF.” They arrive wanting help with bedtime tonight.</p>
+<section class="doc-section"><h2 id="en-08-content-and-programming-model">08. Content and Programming Model</h2>
+<h3>The recurring rhythm</h3>
+<div class="table-wrap"><table>
+<tr>
+<th>CADENCE</th>
+<th>MEMBER EXPERIENCE</th>
+<th>TEAM REQUIREMENT</th>
+</tr>
+<tr>
+<td>Monthly</td>
+<td>One focus theme, one live session, one practical implementation tool, one concise member digest</td>
+<td>Sustainable default</td>
+</tr>
+<tr>
+<td>Quarterly</td>
+<td>One deeper workshop or short series, optional paid add-on</td>
+<td>Planned campaign</td>
+</tr>
+<tr>
+<td>Ongoing</td>
+<td>Library curation, resource updates, replay summaries, public-to-member pathways</td>
+<td>Editorial maintenance</td>
+</tr>
+<tr>
+<td>As needed</td>
+<td>Urgent public-service resource during major events or crises</td>
+<td>Public mission, not paywalled</td>
+</tr>
+</table></div>
+<h3>Content unit specification</h3>
+<p>Every member resource should have a consistent structure so the library feels navigable even when formats differ:</p>
+<ol>
+<li>What this helps with.</li>
+<li>What may be happening underneath.</li>
+<li>What matters most right now.</li>
+<li>One action to try.</li>
+<li>Words you can use.</li>
+<li>What not to force.</li>
+<li>When to seek additional professional support.</li>
+<li>Related resources.</li>
+</ol>
+<h3>Live support model</h3>
+<p>The MVP should include one moderated group session per month. It should not promise individual clinical advice or unlimited case review. Questions may be submitted in advance, grouped by theme, anonymized when used in replay materials, and answered as general educational guidance.</p>
+<div class="callout">CAPACITY RULE<br>If the membership requires Nari to produce more than one core theme, one live session, and one practical tool per month to feel valuable, the product architecture is wrong.</div>
+<h3>Editorial ownership</h3>
+<div class="table-wrap"><table>
+<tr>
+<th>ROLE</th>
+<th>RESPONSIBILITY</th>
+</tr>
+<tr>
+<td>Nari</td>
+<td>Subject-matter voice, live delivery, final approval of guidance</td>
+</tr>
+<tr>
+<td>Editorial/strategy lead</td>
+<td>Monthly focus, packaging, sequencing, member journey, measurement</td>
+</tr>
+<tr>
+<td>Content producer</td>
+<td>Resource formatting, bilingual production, replay summary, upload</td>
+</tr>
+<tr>
+<td>Member operations</td>
+<td>Support, billing issues, session logistics, tagging, escalation</td>
+</tr>
+<tr>
+<td>Clinical/legal reviewer, as needed</td>
+<td>Review of sensitive claims, disclaimers, or high-risk guidance</td>
+</tr>
+</table></div>
+<section class="doc-section"><h2 id="en-09-feature-and-permissions-matrix">09. Feature and Permissions Matrix</h2>
+<div class="table-wrap"><table>
+<tr>
+<th>FEATURE</th>
+<th>PUBLIC</th>
+<th>MEMBER</th>
+<th>ADMIN</th>
+<th>PHASE</th>
+</tr>
+<tr>
+<td>View selected protocols</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Manage</td>
+<td>MVP</td>
+</tr>
+<tr>
+<td>View full member library</td>
+<td>No</td>
+<td>Yes</td>
+<td>Manage</td>
+<td>MVP</td>
+</tr>
+<tr>
+<td>Create account and log in</td>
+<td>No</td>
+<td>Yes</td>
+<td>Manage</td>
+<td>MVP</td>
+</tr>
+<tr>
+<td>Manage billing and cancellation</td>
+<td>No</td>
+<td>Own account</td>
+<td>View status</td>
+<td>MVP</td>
+</tr>
+<tr>
+<td>Register for live session</td>
+<td>Preview</td>
+<td>Yes</td>
+<td>Manage</td>
+<td>MVP</td>
+</tr>
+<tr>
+<td>View replay and summary</td>
+<td>Excerpt optional</td>
+<td>Yes</td>
+<td>Manage</td>
+<td>MVP</td>
+</tr>
+<tr>
+<td>Download tools</td>
+<td>Selected</td>
+<td>Yes</td>
+<td>Manage</td>
+<td>MVP</td>
+</tr>
+<tr>
+<td>Save resources</td>
+<td>No</td>
+<td>Basic bookmarks</td>
+<td>View aggregate only</td>
+<td>MVP light</td>
+</tr>
+<tr>
+<td>Submit a question</td>
+<td>No</td>
+<td>Yes, with consent rules</td>
+<td>Moderate</td>
+<td>MVP</td>
+</tr>
+<tr>
+<td>Comment or post</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>Later</td>
+</tr>
+<tr>
+<td>Member profile visible to others</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>Later only if needed</td>
+</tr>
+<tr>
+<td>Personalized recommendations</td>
+<td>No</td>
+<td>Rule-based light</td>
+<td>Configure</td>
+<td>Phase 2</td>
+</tr>
+<tr>
+<td>Progress tracking</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>Phase 2 or 3</td>
+</tr>
+<tr>
+<td>Facilitator access</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>Future</td>
+</tr>
+</table></div>
+<h3>Access states that must be designed</h3>
+<ul>
+<li>Anonymous visitor.</li>
+<li>Free subscriber without membership.</li>
+<li>Active monthly member.</li>
+<li>Active annual member.</li>
+<li>Founding member with legacy price.</li>
+<li>Past-due member during payment recovery.</li>
+<li>Canceled member with access through the paid period.</li>
+<li>Expired member.</li>
+<li>Complimentary or scholarship member.</li>
+<li>Administrator and content editor.</li>
+</ul>
+<h3>Permission principle</h3>
+<p>Access should be controlled from membership status and content labels, not by manually maintaining duplicate pages for each plan. The system must have a documented rule for past-due, canceled, refunded, complimentary, and manually granted access.</p>
+<section class="doc-section"><h2 id="en-10-bilingual-experience-rules">10. Bilingual Experience Rules</h2>
+<h3>Recommended launch posture</h3>
+<p>Launch Spanish-first with a bilingual-ready architecture. Provide English where the source content already exists and where bilingual access materially expands the audience, but do not delay the MVP until every member resource has been duplicated. The interface, account, billing, legal, and support-critical content should be available in both languages at launch.</p>
+<h3>Rules</h3>
+<ol>
+<li>Language selection must be persistent across sessions.</li>
+<li>Each resource must have a canonical language and a translation status.</li>
+<li>Translated resources must preserve meaning, tone, safety guidance, and calls to action. They should not be treated as word-for-word duplicates.</li>
+<li>URLs and metadata should support language-specific discovery and sharing.</li>
+<li>Live sessions should declare the delivery language before registration.</li>
+<li>Replays should include clear language labels. Captions or transcripts should be prioritized before full dubbed versions.</li>
+<li>Billing, cancellation, consent, privacy, and support instructions must never depend on the user understanding the other language.</li>
+<li>Analytics should track language preference and cross-language usage without creating separate member identities.</li>
+</ol>
+<h3>Content status labels</h3>
+<div class="table-wrap"><table>
+<tr>
+<th>STATUS</th>
+<th>MEANING</th>
+</tr>
+<tr>
+<td>ES complete</td>
+<td>Spanish source is approved and current</td>
+</tr>
+<tr>
+<td>EN complete</td>
+<td>English version is approved and current</td>
+</tr>
+<tr>
+<td>Translation pending</td>
+<td>The counterpart version is planned but unavailable</td>
+</tr>
+<tr>
+<td>Review required</td>
+<td>A source update may have made the translation stale</td>
+</tr>
+<tr>
+<td>Language-specific</td>
+<td>The resource is intentionally available in one language because of event or audience context</td>
+</tr>
+</table></div>
+<section class="doc-section"><h2 id="en-11-operations-and-administration">11. Operations and Administration</h2>
+<h3>Minimum administrative workflows</h3>
+<div class="table-wrap"><table>
+<tr>
+<th>WORKFLOW</th>
+<th>OWNER</th>
+<th>SYSTEM SUPPORT</th>
+</tr>
+<tr>
+<td>Create or update a resource</td>
+<td>Content producer</td>
+<td>CMS or protected-page workflow</td>
+</tr>
+<tr>
+<td>Assign access level and language</td>
+<td>Content producer</td>
+<td>Tags or plan permissions</td>
+</tr>
+<tr>
+<td>Schedule live session</td>
+<td>Member operations</td>
+<td>Calendar, email, registration</td>
+</tr>
+<tr>
+<td>Collect and moderate questions</td>
+<td>Member operations + Nari</td>
+<td>Form, consent field, review queue</td>
+</tr>
+<tr>
+<td>Publish replay and summary</td>
+<td>Content producer</td>
+<td>Video host, protected page, email</td>
+</tr>
+<tr>
+<td>Handle failed payment</td>
+<td>Automated first, operations second</td>
+<td>Billing recovery and member status</td>
+</tr>
+<tr>
+<td>Cancel or refund</td>
+<td>Member self-service or operations</td>
+<td>Customer portal and documented policy</td>
+</tr>
+<tr>
+<td>Grant scholarship access</td>
+<td>Authorized admin</td>
+<td>Complimentary plan or manual access</td>
+</tr>
+<tr>
+<td>Respond to support request</td>
+<td>Member operations</td>
+<td>Help desk or shared inbox</td>
+</tr>
+<tr>
+<td>Review performance monthly</td>
+<td>Strategy/editorial lead</td>
+<td>Dashboard and analytics</td>
+</tr>
+</table></div>
+<h3>Service standards</h3>
+<ul>
+<li>Publish response-time expectations for billing and account support.</li>
+<li>Keep educational support clearly separate from emergency, medical, psychological, or legal services.</li>
+<li>Use saved response templates for common login, billing, cancellation, and access issues.</li>
+<li>Document who can grant complimentary access, refunds, or account extensions.</li>
+<li>Maintain an internal content register with owner, language, access level, publish date, review date, and safety status.</li>
+<li>Run a monthly member-operations review before planning new features.</li>
+</ul>
+<h3>Moderation boundary</h3>
+<p>The MVP intentionally excludes open member posting. This removes a major moderation, privacy, and safety burden. Questions submitted for live sessions should include consent language explaining whether they may be paraphrased, anonymized, or included in a replay.</p>
+<section class="doc-section"><h2 id="en-12-technology-architecture">12. Technology Architecture</h2>
+<h3>Recommended MVP stack</h3>
+<div class="table-wrap"><table>
+<tr>
+<th>LAYER</th>
+<th>RECOMMENDATION</th>
+<th>RATIONALE</th>
+</tr>
+<tr>
+<td>Public site and member front end</td>
+<td>Preserve the current CSC site and visual system</td>
+<td>Avoids replatforming the brand and content unnecessarily</td>
+</tr>
+<tr>
+<td>Authentication and protected access</td>
+<td>Outseta for MVP</td>
+<td>Integrated accounts, protected content, member profile, and operational tooling</td>
+</tr>
+<tr>
+<td>Billing</td>
+<td>Stripe through the membership platform</td>
+<td>Recurring payments, invoices, retries, and customer self-service</td>
+</tr>
+<tr>
+<td>CRM and lifecycle email</td>
+<td>Outseta initially</td>
+<td>Keeps member identity, billing status, email, and support connected</td>
+</tr>
+<tr>
+<td>Video</td>
+<td>Private or unlisted professional video host with embed controls</td>
+<td>Separates media delivery from the membership database</td>
+</tr>
+<tr>
+<td>Analytics</td>
+<td>First-party site analytics plus membership events</td>
+<td>Tracks acquisition, activation, engagement, and retention</td>
+</tr>
+<tr>
+<td>Support</td>
+<td>Outseta help desk or a dedicated support inbox</td>
+<td>Creates a traceable member-support workflow</td>
+</tr>
+<tr>
+<td>Automation</td>
+<td>Native workflows first; Make or similar only for clear gaps</td>
+<td>Reduces brittle integrations</td>
+</tr>
+</table></div>
+<h3>Why Outseta leads for the MVP</h3>
+<p>Outseta currently combines authentication, protected content, payments, CRM, email, user accounts, and help-desk capabilities. That combination reduces the number of systems CSC must connect and operate during launch. It is especially attractive while the team is small and the product is still validating its recurring value.</p>
+<h3>When Memberstack is the better choice</h3>
+<p>Choose Memberstack when preserving a highly custom front-end experience is more important than having an integrated operating suite, and when CSC is prepared to connect separate systems for email, CRM, and support. Memberstack supports user accounts, gated content, plan-based access, and Stripe billing, which makes it a strong design-forward membership layer.</p>
+<h3>When to move toward Supabase or a custom application</h3>
+<p>Consider a custom architecture only after CSC needs member-specific records or behaviors such as saved family plans, complex personalization, progress history, professional accounts, multiple household members, or granular permissions. Supabase Auth combined with database row-level security can support those needs, but it introduces engineering, testing, security, monitoring, and maintenance obligations that are unnecessary for the first product.</p>
+<h3>Logical flow</h3>
+<div class="callout">SYSTEM FLOW<br>Public CSC page → membership offer → checkout → account creation → active membership status → protected dashboard → library and live support → billing self-service → lifecycle email and analytics</div>
+<h3>Build constraints</h3>
+<ul>
+<li>Do not rebuild the public site solely to accommodate membership software.</li>
+<li>Do not store sensitive child details in the MVP.</li>
+<li>Do not create separate user databases in multiple tools without a clear system of record.</li>
+<li>Do not rely on page hiding alone for sensitive or paid files. Validate how protected assets and direct URLs are handled.</li>
+<li>Do not use an automation platform for core access control.</li>
+<li>Run the entire account lifecycle in test mode before launch, including failed payment, cancellation, refund, and expired access.</li>
+</ul>
+<section class="doc-section"><h2 id="en-13-data-analytics-privacy-and-safety">13. Data, Analytics, Privacy, and Safety</h2>
+<h3>Minimum member data</h3>
+<div class="table-wrap"><table>
+<tr>
+<th>DATA</th>
+<th>MVP NEED</th>
+<th>NOT NEEDED AT LAUNCH</th>
+</tr>
+<tr>
+<td>Identity</td>
+<td>Name, email, language preference</td>
+<td>Detailed household profiles</td>
+</tr>
+<tr>
+<td>Commercial</td>
+<td>Plan, status, start date, renewal date, billing customer ID</td>
+<td>Payment card data stored by CSC</td>
+</tr>
+<tr>
+<td>Engagement</td>
+<td>Login, resource views, downloads, replay views, session registration</td>
+<td>Fine-grained behavioral surveillance</td>
+</tr>
+<tr>
+<td>Preferences</td>
+<td>Email preferences, optional topic interests</td>
+<td>Child diagnosis history</td>
+</tr>
+<tr>
+<td>Support</td>
+<td>Account issue and resolution record</td>
+<td>Clinical case notes</td>
+</tr>
+<tr>
+<td>Live question</td>
+<td>Submitted text, consent choice, moderation status</td>
+<td>Permanent child-specific records</td>
+</tr>
+</table></div>
+<h3>Privacy principles</h3>
+<ul>
+<li>Collect the least information required to deliver the service.</li>
+<li>Do not collect a child’s full name, exact birth date, diagnosis records, school records, or medical history in the MVP.</li>
+<li>Explain what is collected, why, where it is processed, and how members can request deletion.</li>
+<li>Keep billing data with the payment processor rather than within CSC systems.</li>
+<li>Define retention periods for canceled accounts, support tickets, and submitted questions.</li>
+<li>Require administrative accounts to use strong passwords and multi-factor authentication where supported.</li>
+<li>Limit admin access by role and remove access promptly when responsibilities change.</li>
+<li>Review privacy and terms with qualified counsel before launch, especially because the subject matter involves children and parenting support.</li>
+</ul>
+<h3>Safety and scope language</h3>
+<p>CSC must state clearly that membership materials are educational and do not replace individualized medical, psychological, therapeutic, educational, or legal advice. Emergency and crisis resources should direct users to appropriate local services. Live-session participation rules should prohibit sharing identifying information about children or third parties.</p>
+<h3>Core event taxonomy</h3>
+<div class="table-wrap"><table>
+<tr>
+<th>FUNNEL STAGE</th>
+<th>EVENTS</th>
+</tr>
+<tr>
+<td>Acquisition</td>
+<td>membership_page_view, offer_preview, checkout_start</td>
+</tr>
+<tr>
+<td>Conversion</td>
+<td>checkout_complete, account_created, annual_selected</td>
+</tr>
+<tr>
+<td>Activation</td>
+<td>welcome_complete, first_resource_view, first_tool_download</td>
+</tr>
+<tr>
+<td>Engagement</td>
+<td>member_login, resource_view, replay_view, live_register, question_submit</td>
+</tr>
+<tr>
+<td>Retention</td>
+<td>return_30d, monthly_active, renewal_success</td>
+</tr>
+<tr>
+<td>Risk</td>
+<td>payment_failed, no_activity_30d, cancellation_start</td>
+</tr>
+<tr>
+<td>Exit</td>
+<td>canceled, expired, refund_complete, deletion_request</td>
+</tr>
+</table></div>
+<section class="doc-section"><h2 id="en-14-mvp-scope-and-launch-roadmap">14. MVP Scope and Launch Roadmap</h2>
+<h3>MVP definition</h3>
+<div class="callout">MVP PROMISE<br>A parent can join, find the right starting point, use a practical member resource, attend or watch recurring support, and manage the account without staff intervention.</div>
+<h3>In scope</h3>
+<ul>
+<li>One paid recurring membership and one annual option.</li>
+<li>Account creation, login, password reset, and email verification.</li>
+<li>Protected member dashboard aligned with the CSC visual system.</li>
+<li>Need-based navigation and organized member library.</li>
+<li>Member versions of the four protocols with implementation tools.</li>
+<li>One monthly live session, replay, and written summary.</li>
+<li>Downloadable scripts, checklists, and plans.</li>
+<li>Language preference and bilingual account-critical content.</li>
+<li>Billing portal, cancellation, payment recovery, and access-state rules.</li>
+<li>Lifecycle email: welcome, orientation, session reminders, new monthly focus, failed payment, cancellation confirmation.</li>
+<li>Basic analytics and an operating dashboard.</li>
+<li>Support and escalation workflow.</li>
+</ul>
+<h3>Explicitly out of scope</h3>
+<ul>
+<li>Open community forum or direct messaging.</li>
+<li>Personal clinical advice or case management.</li>
+<li>Complex family profiles or storage of child data.</li>
+<li>Native mobile apps.</li>
+<li>Gamification, badges, or streaks.</li>
+<li>Professional certification or facilitator licensing.</li>
+<li>AI-generated personalized parenting recommendations.</li>
+<li>Unlimited live access or private messaging with Nari.</li>
+<li>Multiple paid tiers beyond monthly and annual billing of the same offer.</li>
+</ul>
+<h3>Phased roadmap</h3>
+<div class="table-wrap"><table>
+<tr>
+<th>PHASE</th>
+<th>OBJECTIVE</th>
+<th>KEY OUTPUT</th>
+</tr>
+<tr>
+<td>0. Validation</td>
+<td>Prove demand and offer clarity</td>
+<td>Offer page, audience interviews, founding waitlist, price test</td>
+</tr>
+<tr>
+<td>1. Foundation</td>
+<td>Build the account and paid-access system</td>
+<td>Auth, billing, dashboard shell, permissions, lifecycle emails</td>
+</tr>
+<tr>
+<td>2. Library</td>
+<td>Turn existing assets into the first complete member experience</td>
+<td>Member protocols, tools, taxonomy, search or filtering</td>
+</tr>
+<tr>
+<td>3. Programming</td>
+<td>Establish recurring value</td>
+<td>Live session workflow, replay, summary, monthly focus</td>
+</tr>
+<tr>
+<td>4. Founding launch</td>
+<td>Launch to a controlled group</td>
+<td>Onboarding, support, feedback, analytics, fixes</td>
+</tr>
+<tr>
+<td>5. Public launch</td>
+<td>Open the offer with proof and stable operations</td>
+<td>Public campaign, annual option, referral path</td>
+</tr>
+<tr>
+<td>6. Evidence-led expansion</td>
+<td>Add only what member behavior supports</td>
+<td>Personalization, cohorts, limited community, or custom product features</td>
+</tr>
+</table></div>
+<section class="doc-section"><h2 id="en-15-measurement-framework">15. Measurement Framework</h2>
+<h3>North-star behavior</h3>
+<div class="callout">NORTH-STAR METRIC<br>Percentage of active members who use at least one practical resource or support experience in a rolling 30-day period.</div>
+<p>This is more meaningful than total logins because it focuses on actual support usage. A practical resource includes a protocol implementation tool, script, plan, replay, live session, or structured learning pathway.</p>
+<h3>Launch scorecard</h3>
+<div class="table-wrap"><table>
+<tr>
+<th>CATEGORY</th>
+<th>METRIC</th>
+<th>EARLY WORKING TARGET</th>
+</tr>
+<tr>
+<td>Demand</td>
+<td>Waitlist-to-paid conversion</td>
+<td>Set after founding-offer test</td>
+</tr>
+<tr>
+<td>Activation</td>
+<td>First useful action within 7 days</td>
+<td>60% or higher hypothesis</td>
+</tr>
+<tr>
+<td>Engagement</td>
+<td>Monthly practical-resource usage</td>
+<td>50% or higher hypothesis</td>
+</tr>
+<tr>
+<td>Live value</td>
+<td>Registration or replay use per monthly session</td>
+<td>30% or higher hypothesis</td>
+</tr>
+<tr>
+<td>Retention</td>
+<td>Month 2 paid retention</td>
+<td>75% or higher hypothesis</td>
+</tr>
+<tr>
+<td>Annual adoption</td>
+<td>Share choosing annual</td>
+<td>15% to 30% hypothesis</td>
+</tr>
+<tr>
+<td>Support quality</td>
+<td>Account issues resolved within stated standard</td>
+<td>90% or higher</td>
+</tr>
+<tr>
+<td>Content efficiency</td>
+<td>Member usage per newly produced core resource</td>
+<td>Track trend, not volume</td>
+</tr>
+<tr>
+<td>Referral</td>
+<td>New members attributed to member referral</td>
+<td>Establish baseline after month 2</td>
+</tr>
+</table></div>
+<h3>Qualitative evidence</h3>
+<ul>
+<li>Members can explain why they pay in language that matches the intended promise.</li>
+<li>Members report that the system makes it easier to decide what to do next.</li>
+<li>They use the tools during recurring real-life situations, not only consume content passively.</li>
+<li>Nari can maintain the monthly rhythm without sacrificing quality or personal capacity.</li>
+<li>Support questions reveal understandable product gaps rather than systemic confusion.</li>
+<li>Cancellations are tied to temporary need or affordability more often than lack of clarity or value.</li>
+</ul>
+<section class="doc-section"><h2 id="en-16-decision-register">16. Decision Register</h2>
+<p>The dossier provides recommended defaults. The following decisions require explicit approval before implementation.</p>
+<div class="table-wrap"><table>
+<tr>
+<th>DECISION</th>
+<th>RECOMMENDED DEFAULT</th>
+<th>OWNER / GATE</th>
+</tr>
+<tr>
+<td>Product name</td>
+<td>CSC Acompaña as working name; conduct naming review</td>
+<td>Nari + brand lead</td>
+</tr>
+<tr>
+<td>Launch audience</td>
+<td>Parents and caregivers, Spanish-first</td>
+<td>Nari</td>
+</tr>
+<tr>
+<td>Core promise</td>
+<td>Ongoing orientation, implementation, and support without guilt</td>
+<td>Nari + strategy lead</td>
+</tr>
+<tr>
+<td>Public content boundary</td>
+<td>Keep core discovery protocols and crisis resources public</td>
+<td>Editorial lead</td>
+</tr>
+<tr>
+<td>Membership structure</td>
+<td>One offer, monthly and annual billing</td>
+<td>Business owner</td>
+</tr>
+<tr>
+<td>Founding price</td>
+<td>$24 to $29 monthly hypothesis</td>
+<td>Business owner after validation</td>
+</tr>
+<tr>
+<td>Live cadence</td>
+<td>One group session monthly</td>
+<td>Nari capacity approval</td>
+</tr>
+<tr>
+<td>Community</td>
+<td>Exclude from MVP</td>
+<td>Firm gate</td>
+</tr>
+<tr>
+<td>Direct access</td>
+<td>No unlimited private access to Nari</td>
+<td>Firm gate</td>
+</tr>
+<tr>
+<td>Launch language</td>
+<td>Spanish-first; account-critical bilingual</td>
+<td>Nari + editorial lead</td>
+</tr>
+<tr>
+<td>Technology</td>
+<td>Outseta-led MVP; validate against current site stack</td>
+<td>Technical lead</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>Do not collect child-level sensitive data</td>
+<td>Privacy gate</td>
+</tr>
+<tr>
+<td>Legal review</td>
+<td>Terms, privacy, disclaimers, cancellation, consent before launch</td>
+<td>Qualified counsel</td>
+</tr>
+<tr>
+<td>Founding cohort size</td>
+<td>Controlled group sized to support capacity</td>
+<td>Operations lead</td>
+</tr>
+</table></div>
+<h3>Questions to validate with the audience</h3>
+<ul>
+<li>Which recurring situations make parents return for help most often?</li>
+<li>Which part of the proposed value feels worth paying for: organization, tools, live guidance, continuity, or all four?</li>
+<li>What price feels plausible, and what would make it feel too expensive or suspiciously cheap?</li>
+<li>Would parents attend live, rely on replays, or use written summaries?</li>
+<li>How much English access is necessary for the initial audience?</li>
+<li>What would make members hesitate to create an account or share a question?</li>
+<li>What result would make them say the membership paid for itself that month?</li>
+</ul>
+<section class="doc-section"><h2 id="en-17-implementation-brief">17. Implementation Brief</h2>
+<h3>Build objective</h3>
+<p>Add a branded, secure, paid member experience to the existing Criar Sin Culpas ecosystem without replacing the public site or overbuilding a custom platform. The implementation must support one recurring membership with monthly and annual billing, plan-based protected content, bilingual account-critical experiences, a member dashboard, live-session access, replay delivery, lifecycle email, billing self-service, and basic analytics.</p>
+<h3>Required product surfaces</h3>
+<ol>
+<li>Membership landing page with clear public-versus-paid value and founding offer.</li>
+<li>Checkout and account-creation flow.</li>
+<li>Login, verification, password reset, and access-error states.</li>
+<li>New-member welcome and first-use path.</li>
+<li>Member dashboard.</li>
+<li>Situation-based library index and resource detail template.</li>
+<li>Live-support page with schedule, question submission, consent, and replay archive.</li>
+<li>Account page with language and communication preferences.</li>
+<li>Billing portal and cancellation path.</li>
+<li>Admin workflow for member status, content access, support, and scholarship access.</li>
+<li>Lifecycle email templates.</li>
+<li>Analytics event map and launch dashboard.</li>
+</ol>
+<h3>Acceptance criteria</h3>
+<ul>
+<li>A new member can complete checkout and reach the dashboard without manual staff action.</li>
+<li>Active, past-due, canceled, expired, complimentary, and admin access states behave according to the documented rules.</li>
+<li>Protected content cannot be accessed by a logged-out or unauthorized user through normal page URLs.</li>
+<li>A member can update payment details, download invoices where available, cancel, and understand when access ends.</li>
+<li>The member experience is usable on mobile and preserves the CSC visual language.</li>
+<li>All account, billing, consent, privacy, and support-critical messages are available in Spanish and English.</li>
+<li>Admins can publish a resource, assign language and access, and make it visible without engineering intervention.</li>
+<li>Live questions record consent and can be moderated before use.</li>
+<li>Analytics distinguish public visitors, checkout behavior, activation, engagement, renewal, and cancellation.</li>
+<li>The team can operate one monthly programming cycle using a documented checklist.</li>
+</ul>
+<h3>Pre-launch test scenarios</h3>
+<div class="table-wrap"><table>
+<tr>
+<th>SCENARIO</th>
+<th>EXPECTED RESULT</th>
+</tr>
+<tr>
+<td>New monthly member</td>
+<td>Account active, welcome sent, dashboard unlocked</td>
+</tr>
+<tr>
+<td>New annual member</td>
+<td>Annual status recorded, same product access, correct renewal</td>
+</tr>
+<tr>
+<td>Failed payment</td>
+<td>Recovery sequence begins; access follows approved grace rule</td>
+</tr>
+<tr>
+<td>Cancellation</td>
+<td>Billing stops at approved point; member sees access-end date</td>
+</tr>
+<tr>
+<td>Refund</td>
+<td>Status and access update according to policy</td>
+</tr>
+<tr>
+<td>Expired link or direct asset URL</td>
+<td>Unauthorized user cannot retrieve protected material through ordinary access path</td>
+</tr>
+<tr>
+<td>Language change</td>
+<td>Interface and account-critical messages update without new account</td>
+</tr>
+<tr>
+<td>Scholarship member</td>
+<td>Access granted without standard charge and clearly labeled in admin</td>
+</tr>
+<tr>
+<td>Question submission</td>
+<td>Consent captured; item enters moderation queue</td>
+</tr>
+<tr>
+<td>Admin departure</td>
+<td>Access removed and audit completed</td>
+</tr>
+</table></div>
+<section class="doc-section"><h2 id="en-18-sources-and-assumptions">18. Sources and Assumptions</h2>
+<h3>Product assumptions</h3>
+<ul>
+<li>The current CSC website can accept a third-party authentication or membership integration without a complete rebuild.</li>
+<li>CSC intends to preserve meaningful free resources as a trust and public-service layer.</li>
+<li>Nari can sustainably support one recurring live group session per month.</li>
+<li>The initial audience is primarily Spanish-speaking or bilingual parents and caregivers.</li>
+<li>The membership is educational and supportive, not a clinical care service.</li>
+<li>Existing protocols and Aprende content can be adapted into member implementation resources.</li>
+<li>Pricing and product naming remain hypotheses until audience validation.</li>
+</ul>
+<h3>Technical sources reviewed, July 2026</h3>
+<div class="table-wrap"><table>
+<tr>
+<th>SOURCE</th>
+<th>RELEVANCE</th>
+</tr>
+<tr>
+<td>Outseta</td>
+<td>Authentication and protected content; integrated payments, CRM, email, user accounts, and help desk. Official product and help documentation.</td>
+</tr>
+<tr>
+<td>Memberstack</td>
+<td>User accounts, gated content, plan-based access, Stripe billing, subscription states, and multiple-product access. Official documentation.</td>
+</tr>
+<tr>
+<td>Stripe</td>
+<td>Subscription lifecycle and hosted customer portal for payment methods, invoices, subscription updates, and cancellation. Official documentation.</td>
+</tr>
+<tr>
+<td>Supabase</td>
+<td>Authentication and Postgres row-level security for granular data authorization in a future custom architecture. Official documentation.</td>
+</tr>
+</table></div>
+<h3>Important limitation</h3>
+<p>This dossier is an implementation blueprint, not legal, tax, clinical, security, or privacy advice. Final technology selection must be validated against the current CSC codebase, hosting environment, content-delivery method, payment-country requirements, and the terms and pricing available at the time of purchase. Qualified counsel should review the membership terms, privacy notice, consent language, refund and cancellation policy, and educational disclaimers before launch.</p>
+<div class="callout">RECOMMENDED NEXT ARTIFACT<br>Convert this architecture into a Membership Product Requirements Document, a screen-by-screen UX map, and a launch validation package. The validation package should include the offer page, founding-member invitation, interview guide, pricing test, and decision scorecard.</div><div class="footer">Criar Sin Culpas · Membership Architecture Dossier · Version 1.0 · July 2026</div></article></main><script>
+const buttons=[...document.querySelectorAll('[data-lang]')];
+function setLang(lang){document.documentElement.lang=lang;document.querySelectorAll('.lang').forEach(x=>x.classList.toggle('active',x.id==='lang-'+lang));buttons.forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));localStorage.setItem('csc-dossier-lang',lang);document.title=(lang==='es'?'Dossier de arquitectura de membresía':'Membership Architecture Dossier')+' | Criar Sin Culpas';}
+buttons.forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));setLang(localStorage.getItem('csc-dossier-lang')||'es');
+</script></body></html>
