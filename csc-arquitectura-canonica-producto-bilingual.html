@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Arquitectura canónica de producto para El Estudio de Criar Sin Culpas">
+<title>Arquitectura canónica de producto | Criar Sin Culpas</title>
+<style>
+:root{--ink:#20211f;--muted:#66655e;--cream:#f6f0e7;--paper:#fffdf9;--terracotta:#b85f43;--gold:#bd8b3e;--rule:#d9d0c3;--soft:#eee5d9;--teal:#3d7774}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,Arial,sans-serif;line-height:1.65}.topbar{position:sticky;top:0;z-index:20;background:rgba(32,33,31,.96);color:white;padding:10px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px;box-shadow:0 4px 18px rgba(0,0,0,.12)}.brand{font-size:12px;letter-spacing:.16em;text-transform:uppercase}.controls{display:flex;gap:8px;align-items:center}.controls button{border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;padding:8px 12px;border-radius:999px;cursor:pointer;font-weight:700}.controls button.active{background:#fff;color:var(--ink)}.shell{max-width:1080px;margin:0 auto;background:var(--paper);min-height:100vh;padding:72px 80px 100px;box-shadow:0 0 50px rgba(74,57,35,.1)}h1{font-family:Georgia,serif;font-size:clamp(40px,6vw,68px);line-height:1.02;margin:15px 0 12px;letter-spacing:-.04em}h2{font-family:Georgia,serif;font-size:34px;line-height:1.12;margin:64px 0 20px;padding-top:18px;border-top:1px solid var(--rule);letter-spacing:-.025em}h3{font-size:19px;margin:28px 0 10px;letter-spacing:-.01em}p{margin:0 0 17px}.subtitle{font-family:Georgia,serif;color:var(--terracotta);font-size:26px;margin-bottom:24px}.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:var(--terracotta)}.callout{background:var(--soft);border-left:4px solid var(--terracotta);padding:22px 24px;margin:28px 0;border-radius:0 10px 10px 0}.callout strong{font-size:11px;letter-spacing:.14em}.callout.canon{border-left-color:var(--teal)}ul,ol{padding-left:24px;margin:12px 0 22px}li{margin:8px 0}.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 28px;margin:20px 0 36px}.toc-grid a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule);padding:8px 0}.tree{background:var(--ink);color:#f6f0e7;padding:24px 28px;border-radius:10px;margin:24px 0;font-family:Consolas,"Courier New",monospace;font-size:13px;line-height:1.55;overflow-x:auto;white-space:pre}.table-wrap{overflow-x:auto;margin:20px 0 32px;border:1px solid var(--rule);border-radius:10px}table{width:100%;border-collapse:collapse;font-size:14px}th{background:var(--ink);color:#fff;text-align:left;padding:13px 14px;font-size:11px;letter-spacing:.09em;text-transform:uppercase}td{padding:13px 14px;border-top:1px solid var(--rule);vertical-align:top}tr:nth-child(even) td{background:#faf6ef}.mindset{font-style:italic;color:var(--muted);margin:8px 0 20px}.lang{display:none}.lang.active{display:block}.footer{margin-top:80px;padding-top:24px;border-top:1px solid var(--rule);font-size:12px;color:var(--muted)}@media(max-width:760px){.shell{padding:48px 22px}.topbar{padding:10px 12px}.brand{display:none}h2{font-size:28px}.toc-grid{grid-template-columns:1fr}.controls button{padding:7px 10px}}@media print{body{background:white}.topbar{display:none}.shell{box-shadow:none;max-width:none;padding:15mm}.lang{display:none!important}.lang.active{display:block!important}h2{break-before:page}.callout,.tree,.table-wrap{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header class="topbar">
+<div class="brand">CRIAR SIN CULPAS · CANONICAL PRODUCT ARCHITECTURE</div>
+<div class="controls">
+<button data-lang="es">Español</button>
+<button data-lang="en">English</button>
+<button onclick="window.print()">Imprimir / PDF</button>
+</div>
+</header>
+<main class="shell">
+
+<article id="lang-es" class="lang">
+<p class="eyebrow">DOCUMENTO CANÓNICO · PRODUCTO</p>
+<h1>Arquitectura canónica<br>de producto</h1>
+<p class="subtitle">El Estudio de Criar Sin Culpas</p>
+<p class="eyebrow">VERSIÓN 1.0 | JULIO DE 2026</p>
+<div class="callout canon"><strong>AUTORIDAD DEL DOCUMENTO</strong><br>Este documento establece la jerarquía oficial de producto, la nomenclatura, el posicionamiento y el modelo de acceso para Criar Sin Culpas. Es la fuente de verdad para todo trabajo futuro de producto, UX, marketing, inscripción, membresía y localización. Si cualquier documento existente entra en conflicto con esta arquitectura, prevalece esta arquitectura.</div>
+
+<section class="doc-section">
+<h2 id="es-contenido">Contenido</h2>
+<div class="toc-grid">
+<a href="#es-jerarquia">1. Jerarquía de producto</a>
+<a href="#es-posicionamiento">2. Posicionamiento</a>
+<a href="#es-acceso">3. Modelos de acceso</a>
+<a href="#es-publicos">4. Recursos públicos</a>
+<a href="#es-expansion">5. Expansión futura</a>
+<a href="#es-nomenclatura">6. Guía de nomenclatura</a>
+<a href="#es-ingles">7. Equivalentes en inglés</a>
+<a href="#es-gobernanza">8. Gobernanza</a>
+</div>
+</section>
+
+<section class="doc-section">
+<h2 id="es-jerarquia">1. Jerarquía de producto</h2>
+<p><strong>Criar Sin Culpas</strong> es la marca.</p>
+<p><strong>El Estudio de Criar Sin Culpas</strong> es el ecosistema de aprendizaje.</p>
+<p>El Estudio debe describirse como un entorno estructurado de aprendizaje y acompañamiento que organiza el trabajo de Nari en experiencias prácticas y fáciles de seguir.</p>
+<p>El Estudio <strong>no</strong> es:</p>
+<ul>
+<li>un curso</li>
+<li>una membresía</li>
+<li>un taller</li>
+</ul>
+<p>El Estudio es el ecosistema paraguas que contiene múltiples formas de acceso y participación.</p>
+<div class="tree">Criar Sin Culpas
+│
+├── Recursos Públicos
+│
+└── El Estudio de Criar Sin Culpas
+     │
+     ├── Pase de Acceso
+     ├── Membresía CSC
+     ├── Talleres
+     ├── Recursos y Guías
+     ├── Sesiones en Vivo
+     └── Comunidad (futuro)</div>
+</section>
+
+<section class="doc-section">
+<h2 id="es-posicionamiento">2. Posicionamiento</h2>
+<div class="callout"><strong>DEFINICIÓN OFICIAL</strong><br>El espacio donde el conocimiento, los talleres, las herramientas y la experiencia de Criar Sin Culpas se organizan en rutas claras y prácticas para ayudar a madres, padres y cuidadores a comprender mejor lo que está ocurriendo y saber qué hacer después.</div>
+<p>Atributos clave:</p>
+<ul>
+<li>Claridad</li>
+<li>Calma</li>
+<li>Acompañamiento</li>
+<li>Aplicación práctica</li>
+<li>Aprendizaje progresivo</li>
+</ul>
+<p>Evitar lenguaje que posicione El Estudio como:</p>
+<ul>
+<li>una biblioteca de contenido</li>
+<li>una colección de archivos</li>
+<li>una plataforma educativa tradicional</li>
+</ul>
+</section>
+
+<section class="doc-section">
+<h2 id="es-acceso">3. Modelos de acceso</h2>
+<p>Dos formas oficiales de entrar a El Estudio.</p>
+
+<h3>Pase de Acceso</h3>
+<p><strong>Propósito:</strong> Resolver un reto específico o acceder a una experiencia de aprendizaje concreta.</p>
+<p><strong>Características:</strong></p>
+<ul>
+<li>Pago único</li>
+<li>No requiere suscripción</li>
+<li>Acceso puntual</li>
+<li>Talleres específicos</li>
+<li>Recursos específicos</li>
+<li>Experiencias específicas</li>
+</ul>
+<p class="mindset">Mentalidad de la familia: «Necesito ayuda con esto ahora.»</p>
+
+<h3>Membresía CSC</h3>
+<p><strong>Propósito:</strong> Ofrecer acceso continuo y crecimiento sostenido dentro de El Estudio.</p>
+<p><strong>Características:</strong></p>
+<ul>
+<li>Pago recurrente</li>
+<li>Acceso continuo</li>
+<li>Recursos en expansión</li>
+<li>Talleres disponibles</li>
+<li>Sesiones en vivo</li>
+<li>Herramientas continuas</li>
+<li>Comunidad futura</li>
+</ul>
+<p class="mindset">Mentalidad de la familia: «Quiero seguir creciendo y aprendiendo de forma continua.»</p>
+</section>
+
+<section class="doc-section">
+<h2 id="es-publicos">4. Recursos públicos</h2>
+<p>Los recursos públicos permanecen:</p>
+<ul>
+<li>Disponibles sin pago</li>
+<li>Como mecanismos de descubrimiento</li>
+<li>Como mecanismos de construcción de confianza</li>
+<li>Como mecanismos de apoyo inmediato</li>
+</ul>
+<p>Los recursos públicos no sustituyen a El Estudio.</p>
+<p>El Estudio aporta estructura, profundidad, implementación y continuidad.</p>
+</section>
+
+<section class="doc-section">
+<h2 id="es-expansion">5. Expansión futura</h2>
+<p>Elementos futuros pueden incluir:</p>
+<ul>
+<li>Comunidad</li>
+<li>Cohortes</li>
+<li>Certificaciones</li>
+<li>Formación para facilitadores</li>
+<li>Experiencias avanzadas</li>
+<li>Herramientas personalizadas</li>
+</ul>
+<p>Son capacidades futuras y no deben redefinir la arquitectura central.</p>
+</section>
+
+<section class="doc-section">
+<h2 id="es-nomenclatura">6. Guía de nomenclatura</h2>
+<div class="table-wrap">
+<table>
+<tr><th>Rol</th><th>Nombre oficial</th></tr>
+<tr><td>Marca</td><td>Criar Sin Culpas</td></tr>
+<tr><td>Ecosistema de aprendizaje</td><td>El Estudio de Criar Sin Culpas</td></tr>
+<tr><td>Acceso de pago único</td><td>Pase de Acceso</td></tr>
+<tr><td>Acceso recurrente</td><td>Membresía CSC</td></tr>
+</table>
+</div>
+<p>Evitar introducir nombres alternativos de producto salvo que una oferta futura requiera un nombre aprobado de forma independiente.</p>
+<p>Ejemplos de nombres que no deben convertirse en productos paraguas competidores:</p>
+<ul>
+<li>Biblioteca de Miembros CSC</li>
+<li>CSC Acompaña</li>
+<li>Cualquier nomenclatura paraguas alternativa que compita con El Estudio</li>
+</ul>
+</section>
+
+<section class="doc-section">
+<h2 id="es-ingles">7. Equivalentes en inglés</h2>
+<div class="table-wrap">
+<table>
+<tr><th>Español</th><th>Inglés aprobado</th><th>Notas</th></tr>
+<tr><td>Criar Sin Culpas</td><td>Criar Sin Culpas</td><td>Marca</td></tr>
+<tr><td>El Estudio de Criar Sin Culpas</td><td>El Estudio</td><td>No traducir; nombre de producto</td></tr>
+<tr><td>Pase de Acceso</td><td>Access Pass</td><td></td></tr>
+<tr><td>Membresía CSC</td><td>CSC Membership</td><td></td></tr>
+<tr><td>Recursos Públicos</td><td>Public Resources</td><td></td></tr>
+<tr><td>Comunidad</td><td>Community</td><td></td></tr>
+<tr><td>Sesiones en Vivo</td><td>Live Sessions</td><td></td></tr>
+<tr><td>Talleres</td><td>Workshops</td><td></td></tr>
+</table>
+</div>
+<p>La versión en inglés debe preservar <strong>El Estudio</strong> como nombre propio de producto y no sustituirlo por términos genéricos como «Member Library».</p>
+</section>
+
+<section class="doc-section">
+<h2 id="es-gobernanza">8. Gobernanza</h2>
+<p>Esta arquitectura es el marco de referencia para:</p>
+<ul>
+<li>Dossier de arquitectura de membresía</li>
+<li>Documentos de requisitos de producto</li>
+<li>Arquitectura UX</li>
+<li>Flujos de inscripción</li>
+<li>Páginas de marketing</li>
+<li>Campañas de lanzamiento</li>
+<li>Localización bilingüe</li>
+</ul>
+<p>Todo documento futuro debe alinearse con esta jerarquía y terminología.</p>
+</section>
+
+<div class="footer">Criar Sin Culpas · Arquitectura canónica de producto · Versión 1.0 · Julio de 2026</div>
+</article>
+
+<article id="lang-en" class="lang">
+<p class="eyebrow">CANONICAL DOCUMENT · PRODUCT</p>
+<h1>Canonical Product<br>Architecture</h1>
+<p class="subtitle">El Estudio de Criar Sin Culpas</p>
+<p class="eyebrow">VERSION 1.0 | JULY 2026</p>
+<div class="callout canon"><strong>DOCUMENT AUTHORITY</strong><br>This document establishes the official product hierarchy, nomenclature, positioning, and customer access model for Criar Sin Culpas. It is the source of truth for all future product, UX, marketing, enrollment, membership, and localization work. If any existing document conflicts with this architecture, this architecture takes precedence.</div>
+
+<section class="doc-section">
+<h2 id="en-contents">Contents</h2>
+<div class="toc-grid">
+<a href="#en-hierarchy">1. Product hierarchy</a>
+<a href="#en-positioning">2. Positioning</a>
+<a href="#en-access">3. Access models</a>
+<a href="#en-public">4. Public resources</a>
+<a href="#en-expansion">5. Future expansion</a>
+<a href="#en-naming">6. Naming guidelines</a>
+<a href="#en-english">7. English equivalents</a>
+<a href="#en-governance">8. Governance</a>
+</div>
+</section>
+
+<section class="doc-section">
+<h2 id="en-hierarchy">1. Product hierarchy</h2>
+<p><strong>Criar Sin Culpas</strong> is the brand.</p>
+<p><strong>El Estudio de Criar Sin Culpas</strong> is the learning ecosystem.</p>
+<p>El Estudio should be described as a structured learning and support environment that organizes Nari's body of work into practical, easy-to-follow experiences.</p>
+<p>El Estudio is <strong>not</strong>:</p>
+<ul>
+<li>a course</li>
+<li>a membership</li>
+<li>a workshop</li>
+</ul>
+<p>El Estudio is the umbrella ecosystem that contains multiple forms of access and participation.</p>
+<div class="tree">Criar Sin Culpas
+│
+├── Public Resources
+│
+└── El Estudio de Criar Sin Culpas
+     │
+     ├── Access Pass
+     ├── CSC Membership
+     ├── Workshops
+     ├── Resources and Guides
+     ├── Live Sessions
+     └── Community (future)</div>
+</section>
+
+<section class="doc-section">
+<h2 id="en-positioning">2. Positioning</h2>
+<div class="callout"><strong>OFFICIAL DEFINITION</strong><br>The space where the knowledge, workshops, tools, and experience of Criar Sin Culpas are organized into clear, practical paths that help mothers, fathers, and caregivers understand what is happening and know what to do next.</div>
+<p>Key attributes:</p>
+<ul>
+<li>Clarity</li>
+<li>Calm</li>
+<li>Supportive accompaniment</li>
+<li>Practical application</li>
+<li>Progressive learning</li>
+</ul>
+<p>Avoid language that positions El Estudio as:</p>
+<ul>
+<li>a content library</li>
+<li>a file collection</li>
+<li>a traditional educational platform</li>
+</ul>
+</section>
+
+<section class="doc-section">
+<h2 id="en-access">3. Access models</h2>
+<p>Two official ways to enter El Estudio.</p>
+
+<h3>Access Pass</h3>
+<p><strong>Purpose:</strong> Resolve a specific challenge or access a specific learning experience.</p>
+<p><strong>Characteristics:</strong></p>
+<ul>
+<li>One-time payment</li>
+<li>No subscription required</li>
+<li>Point-in-time access</li>
+<li>Specific workshops</li>
+<li>Specific resources</li>
+<li>Specific experiences</li>
+</ul>
+<p class="mindset">Customer mindset: "I need help with this right now."</p>
+
+<h3>CSC Membership</h3>
+<p><strong>Purpose:</strong> Provide ongoing access and continued growth within El Estudio.</p>
+<p><strong>Characteristics:</strong></p>
+<ul>
+<li>Recurring payment</li>
+<li>Continuous access</li>
+<li>Expanding resources</li>
+<li>Available workshops</li>
+<li>Live sessions</li>
+<li>Ongoing tools</li>
+<li>Future community</li>
+</ul>
+<p class="mindset">Customer mindset: "I want to keep growing and learning continuously."</p>
+</section>
+
+<section class="doc-section">
+<h2 id="en-public">4. Public resources</h2>
+<p>Public resources remain:</p>
+<ul>
+<li>Available without payment</li>
+<li>Discovery mechanisms</li>
+<li>Trust-building mechanisms</li>
+<li>Immediate support mechanisms</li>
+</ul>
+<p>Public resources are not replacements for El Estudio.</p>
+<p>El Estudio provides structure, depth, implementation, and continuity.</p>
+</section>
+
+<section class="doc-section">
+<h2 id="en-expansion">5. Future expansion</h2>
+<p>Future elements may include:</p>
+<ul>
+<li>Community</li>
+<li>Cohorts</li>
+<li>Certifications</li>
+<li>Facilitator training</li>
+<li>Advanced experiences</li>
+<li>Personalized tools</li>
+</ul>
+<p>These are future capabilities and should not redefine the core architecture.</p>
+</section>
+
+<section class="doc-section">
+<h2 id="en-naming">6. Naming guidelines</h2>
+<div class="table-wrap">
+<table>
+<tr><th>Role</th><th>Official name</th></tr>
+<tr><td>Brand</td><td>Criar Sin Culpas</td></tr>
+<tr><td>Learning ecosystem</td><td>El Estudio de Criar Sin Culpas</td></tr>
+<tr><td>One-time purchase path</td><td>Access Pass (Pase de Acceso)</td></tr>
+<tr><td>Recurring access path</td><td>CSC Membership (Membresía CSC)</td></tr>
+</table>
+</div>
+<p>Avoid introducing alternate product names unless a future offering requires an independently approved name.</p>
+<p>Examples of names that should not become competing umbrella products:</p>
+<ul>
+<li>CSC Member Library</li>
+<li>CSC Acompaña</li>
+<li>Any alternate umbrella naming that competes with El Estudio</li>
+</ul>
+</section>
+
+<section class="doc-section">
+<h2 id="en-english">7. English equivalents</h2>
+<div class="table-wrap">
+<table>
+<tr><th>Spanish</th><th>Approved English</th><th>Notes</th></tr>
+<tr><td>Criar Sin Culpas</td><td>Criar Sin Culpas</td><td>Brand</td></tr>
+<tr><td>El Estudio de Criar Sin Culpas</td><td>El Estudio</td><td>Do not translate; product name</td></tr>
+<tr><td>Pase de Acceso</td><td>Access Pass</td><td></td></tr>
+<tr><td>Membresía CSC</td><td>CSC Membership</td><td></td></tr>
+<tr><td>Recursos Públicos</td><td>Public Resources</td><td></td></tr>
+<tr><td>Comunidad</td><td>Community</td><td></td></tr>
+<tr><td>Sesiones en Vivo</td><td>Live Sessions</td><td></td></tr>
+<tr><td>Talleres</td><td>Workshops</td><td></td></tr>
+</table>
+</div>
+<p>The English version must preserve <strong>El Estudio</strong> as a proper product name and must not replace it with generic terms such as "Member Library."</p>
+</section>
+
+<section class="doc-section">
+<h2 id="en-governance">8. Governance</h2>
+<p>This architecture is the reference framework for:</p>
+<ul>
+<li>Membership Architecture Dossier</li>
+<li>Product Requirements Documents</li>
+<li>UX Architecture</li>
+<li>Enrollment flows</li>
+<li>Marketing pages</li>
+<li>Launch campaigns</li>
+<li>Bilingual localization</li>
+</ul>
+<p>Any future document must align with this hierarchy and terminology.</p>
+</section>
+
+<div class="footer">Criar Sin Culpas · Canonical Product Architecture · Version 1.0 · July 2026</div>
+</article>
+
+</main>
+<script>
+(function(){
+var buttons=document.querySelectorAll('.controls button[data-lang]');
+var saved=localStorage.getItem('csc-canon-lang')||'es';
+function setLang(lang){
+  document.documentElement.lang=lang;
+  document.querySelectorAll('.lang').forEach(function(x){x.classList.toggle('active',x.id==='lang-'+lang);});
+  buttons.forEach(function(b){b.classList.toggle('active',b.dataset.lang===lang);});
+  localStorage.setItem('csc-canon-lang',lang);
+  document.title=(lang==='es'?'Arquitectura canónica de producto':'Canonical Product Architecture')+' | Criar Sin Culpas';
+}
+buttons.forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.lang);});});
+setLang(saved);
+})();
+</script>
+</body>
+</html>
