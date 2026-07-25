@@ -43,7 +43,9 @@
               '<a href="https://instagram.com/criarsinculpas" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>' +
               '<a href="mailto:hola@criarsinculpas.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>' +
             '</div>' +
-            '<p class="foot-credit"><span data-es="Fotografía" data-en="Photography">Fotografía</span> · <a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">SHARNAY PHOTOGRAPHY</a></p>' +
+            '<a class="footer-credit" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía por Sharnay Photography">' +
+              '<img src="https://res.cloudinary.com/dogtoagya/image/upload/h_120,q_auto:good,f_auto/v1784924892/sharnay_logo_horizontal_black_footer_2x_giqnao.png" alt="Sharnay Photography">' +
+            '</a>' +
           '</div>' +
         '</div>' +
         '<div class="foot-bottom">' +

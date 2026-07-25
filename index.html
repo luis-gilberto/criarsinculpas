@@ -137,8 +137,75 @@
     .hero-scrim-v{background:linear-gradient(to top, rgba(22,34,45,.6) 0%, transparent 48%);}
     .hero-overlay{position:relative;z-index:2;min-height:clamp(460px,66vh,660px);max-width:var(--maxw);margin:0 auto;padding:clamp(2rem,6vw,4rem) var(--gutter);display:flex;flex-direction:column;justify-content:center;gap:1.15rem;color:oklch(0.97 0.015 75);}
     .hero-doors{position:relative;z-index:3;max-width:var(--maxw);margin:-66px auto 0;padding:0 var(--gutter);}
-    .hero-credit{position:absolute;z-index:4;top:1.125rem;right:1.125rem;font-size:.6875rem;letter-spacing:.14em;color:oklch(0.97 0.015 75 / .75);text-decoration:none;text-shadow:0 1px 3px rgba(0,0,0,.55);white-space:nowrap;pointer-events:auto;}
+    .hero-credit{
+      position:absolute;
+      bottom:1.25rem;
+      right:1.25rem;
+      z-index:3;
+      display:flex;
+      align-items:center;
+      gap:.7rem;
+      text-decoration:none;
+      color:#fff;
+      opacity:.85;
+      transition:opacity .3s ease;
+    }
+    .hero-credit:hover{opacity:1;}
     .hero-credit:focus-visible{outline:1px solid oklch(0.97 0.015 75 / .4);outline-offset:2px;}
+    .hero-credit-mark{
+      width:32px;
+      height:32px;
+      flex-shrink:0;
+      display:block;
+      transform-origin:center;
+    }
+    .hero-credit-mark img{
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:contain;
+      transform:scale(.62);
+      opacity:.42;
+      filter:grayscale(.65) drop-shadow(0 1px 2px rgba(0,0,0,.22));
+      transition:opacity .35s ease,filter .35s ease;
+    }
+    .hero-credit:hover .hero-credit-mark img{
+      animation:shutter 1.2s cubic-bezier(.65,0,.35,1) forwards;
+    }
+    @keyframes shutter{
+      0%{transform:rotate(0deg) scale(.62);opacity:.42;filter:grayscale(.65) drop-shadow(0 1px 2px rgba(0,0,0,.22));}
+      12%{transform:rotate(0deg) scale(1);opacity:1;filter:grayscale(0) drop-shadow(0 2px 4px rgba(0,0,0,.3));}
+      25%{transform:rotate(0deg) scale(1.55);opacity:1;filter:grayscale(0) drop-shadow(0 2px 4px rgba(0,0,0,.3));}
+      60%{transform:rotate(50deg) scale(1.35);opacity:1;filter:grayscale(0) drop-shadow(0 2px 4px rgba(0,0,0,.3));}
+      90%{transform:rotate(90deg) scale(1.55);opacity:1;filter:grayscale(0) drop-shadow(0 2px 4px rgba(0,0,0,.3));}
+      100%{transform:rotate(90deg) scale(1.55);opacity:1;filter:grayscale(0) drop-shadow(0 2px 4px rgba(0,0,0,.3));}
+    }
+    .hero-credit-wordmark{
+      overflow:hidden;
+      max-width:0;
+      opacity:0;
+      transform:translateX(-24px);
+      transition:max-width .25s cubic-bezier(.65,0,.35,1) 0s,opacity .18s ease 0s,transform .25s cubic-bezier(.65,0,.35,1) 0s;
+    }
+    .hero-credit-wordmark img{
+      height:36px;
+      width:auto;
+      display:block;
+    }
+    .hero-credit:hover .hero-credit-wordmark{
+      max-width:340px;
+      opacity:1;
+      transform:translateX(0);
+      transition:max-width .7s cubic-bezier(.65,0,.35,1) 1.15s,opacity .5s ease 1.25s,transform .7s cubic-bezier(.65,0,.35,1) 1.15s;
+    }
+    @media (hover:none){
+      .hero-credit-mark img{
+        transform:scale(1);
+        opacity:1;
+        filter:grayscale(0) drop-shadow(0 2px 4px rgba(0,0,0,.3));
+      }
+      .hero-credit-wordmark{max-width:340px;opacity:1;transform:none;}
+    }
 
     /* ── shared photo-credit reveal (jiggle + slide-down plate) ── */
     @keyframes photo-jiggle{
@@ -171,7 +238,36 @@
       .hero-overlay{padding:clamp(1.6rem,5vw,2.5rem) var(--gutter);}
       .hero-headline{font-size:clamp(1.85rem,7.5vw,2.5rem);max-width:14ch;text-shadow:0 1px 4px rgba(22,34,45,.55);}
       .hero-sub{text-shadow:0 1px 3px rgba(22,34,45,.45);}
-      .hero-credit{color:oklch(0.97 0.015 75 / .8);}
+    }
+
+    @media(max-width:640px){
+      .hero-overlay.hero-type{
+        position:absolute;
+        bottom:5.5rem;
+        top:auto;
+        transform:none;
+        left:5%;
+        right:5%;
+        max-width:none;
+        min-height:auto;
+        justify-content:flex-end;
+        padding:0;
+      }
+      .hero-type p{display:none;}
+      .hero-credit{
+        bottom:1rem;
+        right:50%;
+        transform:translateX(50%);
+        max-width:calc(100vw - 2rem);
+      }
+      .hero-credit-mark{width:26px;height:26px;}
+      .hero-credit-wordmark img{height:28px;}
+      .hero-credit:hover .hero-credit-wordmark{
+        max-width:min(240px,calc(100vw - 5rem));
+      }
+    }
+    @media(max-width:640px) and (hover:none){
+      .hero-credit-wordmark{max-width:min(240px,calc(100vw - 5rem));}
     }
 
 
@@ -478,8 +574,14 @@
           Un espacio de apoyo para bajar la intensidad, recuperar claridad y acompañar los momentos difíciles · sin culpa ni perfeccionismo.
         </p>
       </div>
-      <a class="hero-credit" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer"
-         data-i18n="hero_credit" data-es="Fotografía · Erika Sharnay" data-en="Photography · Erika Sharnay">Fotografía · Erika Sharnay</a>
+      <a class="hero-credit" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía por Sharnay Photography">
+        <span class="hero-credit-mark" aria-hidden="true">
+          <img src="https://res.cloudinary.com/dogtoagya/image/upload/h_120,q_auto:good,f_auto/v1784944558/sharnay_lens_logomark_white_xq9qcb.png" alt="">
+        </span>
+        <span class="hero-credit-wordmark" aria-hidden="true">
+          <img src="https://res.cloudinary.com/dogtoagya/image/upload/h_80,q_auto:good,f_auto/v1784944558/SharnayPhotography_logotype_white_hawtjy.png" alt="">
+        </span>
+      </a>
     </figure>
 
     <div class="hero-doors">
