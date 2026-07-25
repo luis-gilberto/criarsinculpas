@@ -18,18 +18,18 @@
 .site-footer .foot-social a:hover{color:oklch(0.62 0.14 38);border-color:oklch(0.62 0.14 38);}
 .site-footer .foot-social svg{width:1rem;height:1rem;}
 .site-footer .footer-credit{
-  display:inline-block;
-  margin-top:1.25rem;
+  display:block;
+  margin-top:.5rem;
   text-decoration:none;
-  opacity:.88;
-  transition:opacity .25s ease;
 }
-.site-footer .footer-credit:hover{opacity:1;}
 .site-footer .footer-credit img{
   height:52px;
   width:auto;
+  opacity:.9;
   display:block;
+  transition:opacity .2s ease;
 }
+.site-footer .footer-credit:hover img{opacity:1;}
 .site-footer .foot-col-end{display:flex;flex-direction:column;align-items:flex-start;}
 .site-footer .foot-bottom{max-width:1240px;margin:3rem auto 0;padding-top:1.75rem;border-top:1px solid oklch(0.22 0.04 260 / .08);}
 .site-footer .foot-bottom-inner{display:flex;flex-direction:column;gap:.5rem;text-align:center;font-size:.7rem;color:oklch(0.45 0.02 260);}

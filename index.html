@@ -176,8 +176,8 @@
       0%{transform:rotate(0deg) scale(.62);opacity:.42;filter:grayscale(.65) drop-shadow(0 1px 2px rgba(0,0,0,.22));}
       12%{transform:rotate(0deg) scale(1);opacity:1;filter:grayscale(0) drop-shadow(0 2px 4px rgba(0,0,0,.3));}
       25%{transform:rotate(0deg) scale(1.55);opacity:1;filter:grayscale(0) drop-shadow(0 2px 4px rgba(0,0,0,.3));}
-      60%{transform:rotate(50deg) scale(1.35);opacity:1;filter:grayscale(0) drop-shadow(0 2px 4px rgba(0,0,0,.3));}
-      90%{transform:rotate(90deg) scale(1.55);opacity:1;filter:grayscale(0) drop-shadow(0 2px 4px rgba(0,0,0,.3));}
+      60%{transform:rotate(50deg) scale(1.35);opacity:1;}
+      90%{transform:rotate(90deg) scale(1.55);opacity:1;}
       100%{transform:rotate(90deg) scale(1.55);opacity:1;filter:grayscale(0) drop-shadow(0 2px 4px rgba(0,0,0,.3));}
     }
     .hero-credit-wordmark{
@@ -198,13 +198,54 @@
       transform:translateX(0);
       transition:max-width .7s cubic-bezier(.65,0,.35,1) 1.15s,opacity .5s ease 1.25s,transform .7s cubic-bezier(.65,0,.35,1) 1.15s;
     }
-    @media (hover:none){
-      .hero-credit-mark img{
-        transform:scale(1);
-        opacity:1;
-        filter:grayscale(0) drop-shadow(0 2px 4px rgba(0,0,0,.3));
+
+    @media(max-width:1023px){
+      .hero-credit{
+        top:1rem;
+        right:1rem;
+        bottom:auto;
+        left:auto;
+        transform:none;
+        opacity:.92;
+        gap:.5rem;
+        max-width:calc(100vw - 2rem);
       }
-      .hero-credit-wordmark{max-width:340px;opacity:1;transform:none;}
+      .hero-credit-mark{
+        width:24px;
+        height:24px;
+      }
+      .hero-credit-mark img{
+        transform:none;
+        opacity:1;
+        filter:drop-shadow(0 1px 3px rgba(0,0,0,.35));
+        animation:none!important;
+      }
+      .hero-credit-wordmark{
+        max-width:none;
+        opacity:1;
+        transform:none;
+        transition:none;
+      }
+      .hero-credit-wordmark img{
+        height:22px;
+      }
+      .hero-credit:hover .hero-credit-mark img{
+        animation:none;
+      }
+      .hero-credit:hover .hero-credit-wordmark{
+        max-width:none;
+        transition:none;
+      }
+    }
+
+    @media(max-width:640px){
+      .hero-credit-mark{
+        width:18px;
+        height:18px;
+      }
+      .hero-credit-wordmark img{
+        height:20px;
+      }
     }
 
     /* ── shared photo-credit reveal (jiggle + slide-down plate) ── */
@@ -238,36 +279,6 @@
       .hero-overlay{padding:clamp(1.6rem,5vw,2.5rem) var(--gutter);}
       .hero-headline{font-size:clamp(1.85rem,7.5vw,2.5rem);max-width:14ch;text-shadow:0 1px 4px rgba(22,34,45,.55);}
       .hero-sub{text-shadow:0 1px 3px rgba(22,34,45,.45);}
-    }
-
-    @media(max-width:640px){
-      .hero-overlay.hero-type{
-        position:absolute;
-        bottom:5.5rem;
-        top:auto;
-        transform:none;
-        left:5%;
-        right:5%;
-        max-width:none;
-        min-height:auto;
-        justify-content:flex-end;
-        padding:0;
-      }
-      .hero-type p{display:none;}
-      .hero-credit{
-        bottom:1rem;
-        right:50%;
-        transform:translateX(50%);
-        max-width:calc(100vw - 2rem);
-      }
-      .hero-credit-mark{width:26px;height:26px;}
-      .hero-credit-wordmark img{height:28px;}
-      .hero-credit:hover .hero-credit-wordmark{
-        max-width:min(240px,calc(100vw - 5rem));
-      }
-    }
-    @media(max-width:640px) and (hover:none){
-      .hero-credit-wordmark{max-width:min(240px,calc(100vw - 5rem));}
     }
 
 
