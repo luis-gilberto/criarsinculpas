@@ -45,6 +45,7 @@
   <script defer src="/js/site-nav.js"></script>
   <link rel="stylesheet" href="/css/site-footer.css">
   <link rel="stylesheet" href="/css/site-nav.css">
+  <link rel="stylesheet" href="/css/photo-credit.css">
 
   <style>
     /* ═══════════════════════════════════════════
@@ -155,6 +156,13 @@
       width: 100%;
       height: 100%;
     }
+    .method-hero-band__scrim {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+      background: linear-gradient(to top, rgba(31, 46, 70, .32) 0%, transparent 45%);
+    }
     .method-hero-band picture,
     .method-hero-band img {
       display: block;
@@ -163,31 +171,117 @@
       object-fit: cover;
       object-position: 50% 42%;
     }
-    .method-hero-band__scrim {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      background: linear-gradient(to top, rgba(31,46,70,.32) 0%, transparent 45%);
+
+    /* hero credit · mismo tratamiento que homepage */
+    .hero-credit{
+      position:absolute;
+      bottom:1.25rem;
+      right:1.25rem;
+      z-index:4;
+      display:flex;
+      align-items:center;
+      gap:.7rem;
+      text-decoration:none;
+      color:#fff;
+      opacity:.85;
+      transition:opacity .3s ease;
     }
-    .method-hero-band__credit {
-      position: absolute;
-      z-index: 2;
-      right: clamp(.85rem, 2vw, 1.25rem);
-      bottom: clamp(.85rem, 2vw, 1.25rem);
-      margin: 0;
-      font-size: .6875rem;
-      font-weight: 500;
-      letter-spacing: .14em;
-      color: oklch(0.97 0.015 75 / .88);
-      text-shadow: 0 1px 3px rgba(0,0,0,.55);
+    .hero-credit:hover{opacity:1;}
+    .hero-credit:focus-visible{outline:1px solid oklch(0.97 0.015 75 / .4);outline-offset:2px;}
+    .hero-credit-mark{
+      width:32px;
+      height:32px;
+      flex-shrink:0;
+      display:block;
+      transform-origin:center;
     }
-    .method-hero-band__credit a {
-      color: inherit;
-      text-decoration: none;
+    .hero-credit-mark img{
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:contain;
+      transform:scale(.62);
+      opacity:.42;
+      filter:grayscale(.65) drop-shadow(0 1px 2px rgba(0,0,0,.22));
+      transition:opacity .35s ease,filter .35s ease;
     }
-    .method-hero-band__credit a:hover {
-      color: #fff;
+    .hero-credit:hover .hero-credit-mark img{
+      animation:shutter 1.2s cubic-bezier(.65,0,.35,1) forwards;
+    }
+    @keyframes shutter{
+      0%{transform:rotate(0deg) scale(.62);opacity:.42;filter:grayscale(.65) drop-shadow(0 1px 2px rgba(0,0,0,.22));}
+      12%{transform:rotate(0deg) scale(1);opacity:1;filter:grayscale(0) drop-shadow(0 2px 4px rgba(0,0,0,.3));}
+      25%{transform:rotate(0deg) scale(1.55);opacity:1;filter:grayscale(0) drop-shadow(0 2px 4px rgba(0,0,0,.3));}
+      60%{transform:rotate(50deg) scale(1.35);opacity:1;}
+      90%{transform:rotate(90deg) scale(1.55);opacity:1;}
+      100%{transform:rotate(90deg) scale(1.55);opacity:1;filter:grayscale(0) drop-shadow(0 2px 4px rgba(0,0,0,.3));}
+    }
+    .hero-credit-wordmark{
+      overflow:hidden;
+      max-width:0;
+      opacity:0;
+      transform:translateX(-24px);
+      transition:max-width .25s cubic-bezier(.65,0,.35,1) 0s,opacity .18s ease 0s,transform .25s cubic-bezier(.65,0,.35,1) 0s;
+    }
+    .hero-credit-wordmark img{
+      height:36px;
+      width:auto;
+      display:block;
+    }
+    .hero-credit:hover .hero-credit-wordmark{
+      max-width:340px;
+      opacity:1;
+      transform:translateX(0);
+      transition:max-width .7s cubic-bezier(.65,0,.35,1) 1.15s,opacity .5s ease 1.25s,transform .7s cubic-bezier(.65,0,.35,1) 1.15s;
+    }
+
+    @media(max-width:1023px){
+      .hero-credit{
+        top:1rem;
+        right:1rem;
+        bottom:auto;
+        left:auto;
+        transform:none;
+        opacity:.92;
+        gap:.5rem;
+        max-width:calc(100vw - 2rem);
+      }
+      .hero-credit-mark{
+        width:24px;
+        height:24px;
+      }
+      .hero-credit-mark img{
+        transform:none;
+        opacity:1;
+        filter:drop-shadow(0 1px 3px rgba(0,0,0,.35));
+        animation:none!important;
+      }
+      .hero-credit-wordmark{
+        max-width:none;
+        opacity:1;
+        transform:none;
+        transition:none;
+      }
+      .hero-credit-wordmark img{
+        height:22px;
+      }
+      .hero-credit:hover .hero-credit-mark img{
+        animation:none;
+      }
+      .hero-credit:hover .hero-credit-wordmark{
+        max-width:none;
+        transition:none;
+      }
+    }
+
+    @media(max-width:640px){
+      .hero-credit-mark{
+        width:18px;
+        height:18px;
+      }
+      .hero-credit-wordmark img{
+        height:20px;
+      }
     }
 
     /* ══════════════════════════════════════════
@@ -343,7 +437,7 @@
     .method-photo-image-wrap {
       position: relative;
       border-radius: 28px;
-      overflow: hidden;
+      overflow: visible;
       background: var(--void-mid);
       box-shadow:
         0 24px 70px rgba(31,46,70,.10),
@@ -428,94 +522,6 @@
         border-radius: 22px;
         max-width: 520px;
         margin: 0 auto;
-      }
-    }
-
-    /* ── PHOTO CREDIT / EDITORIAL ATTRIBUTION ── */
-    .photo-credit-wrap {
-      isolation: isolate;
-    }
-
-    .photo-credit-overlay {
-      position: absolute;
-      left: 18px;
-      bottom: 18px;
-      z-index: 3;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      max-width: calc(100% - 36px);
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(250,246,242,.72);
-      color: rgba(31,46,70,.68);
-      text-decoration: none;
-      font-size: .58rem;
-      font-weight: 500;
-      letter-spacing: .035em;
-      line-height: 1;
-      opacity: 0;
-      transform: translateY(5px);
-      pointer-events: none;
-      backdrop-filter: blur(14px) saturate(120%);
-      -webkit-backdrop-filter: blur(14px) saturate(120%);
-      border: 1px solid rgba(31,46,70,.08);
-      box-shadow: 0 8px 24px rgba(31,46,70,.08);
-      transition:
-        opacity .35s var(--ease-silk),
-        transform .35s var(--ease-silk),
-        background .25s ease,
-        color .25s ease;
-    }
-
-    .photo-credit-overlay strong {
-      font-weight: 600;
-      color: rgba(31,46,70,.82);
-    }
-
-    .photo-credit-overlay:hover {
-      background: rgba(250,246,242,.88);
-      color: var(--text);
-    }
-
-    .photo-credit-wrap:hover .photo-credit-overlay,
-    .photo-credit-wrap:focus-within .photo-credit-overlay {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
-    .photo-credit-line {
-      margin-top: 18px;
-      font-size: .62rem;
-      line-height: 1.7;
-      color: rgba(31,46,70,.34);
-      letter-spacing: .035em;
-    }
-
-    .photo-credit-line a {
-      color: rgba(217,107,71,.62);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(217,107,71,.22);
-      transition: color .25s, border-color .25s;
-    }
-
-    .photo-credit-line a:hover {
-      color: var(--coral-ink);
-      border-color: rgba(217,107,71,.42);
-    }
-
-    /* On touch devices, keep the image clean. Credit remains below in .photo-credit-line. */
-    @media (hover: none) {
-      .photo-credit-overlay {
-        display: none;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .photo-credit-line {
-        margin-top: 14px;
-        font-size: .6rem;
       }
     }
 
@@ -976,17 +982,14 @@
           >
         </picture>
         <span class="method-hero-band__scrim" aria-hidden="true"></span>
-        <p class="method-hero-band__credit">
-          <span
-            data-i18n="hero_band_credit"
-            data-es="Fotografía · "
-            data-en="Photography · "
-          >Fotografía · </span><a
-            href="https://www.instagram.com/sharnay_photography/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >Erika Sharnay</a>
-        </p>
+        <a class="hero-credit" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía por Sharnay Photography">
+          <span class="hero-credit-mark" aria-hidden="true">
+            <img src="https://res.cloudinary.com/dogtoagya/image/upload/h_120,q_auto:good,f_auto/v1784944558/sharnay_lens_logomark_white_xq9qcb.png" alt="">
+          </span>
+          <span class="hero-credit-wordmark" aria-hidden="true">
+            <img src="https://res.cloudinary.com/dogtoagya/image/upload/h_80,q_auto:good,f_auto/v1784944558/SharnayPhotography_logotype_white_hawtjy.png" alt="">
+          </span>
+        </a>
       </div>
     </section>
 
@@ -1039,10 +1042,12 @@
       <section class="section method-photo-section scroll-reveal" aria-labelledby="method-photo-title">
         <figure class="method-photo-card">
           <div
-            class="method-photo-image-wrap photo-credit-wrap"
+            class="method-photo-image-wrap frame plate-bl"
             itemscope
             itemtype="https://schema.org/ImageObject"
           >
+            <span class="plate" aria-hidden="true"></span>
+            <span class="dot" aria-hidden="true"></span>
             <meta itemprop="contentUrl" content="https://res.cloudinary.com/dogtoagya/image/upload/v1782696507/ChatGPT_Image_Jun_28_2026_06_26_42_PM_cqpdfh.png">
             <meta itemprop="name" content="Nari writing the Criar Sin Culpas method">
             <meta itemprop="description" content="Nari escribiendo en un cuaderno mientras desarrolla el método Criar Sin Culpas.">
@@ -1067,29 +1072,21 @@
               </span>
             </span>
 
-            <img
-              src="https://res.cloudinary.com/dogtoagya/image/upload/v1782696507/ChatGPT_Image_Jun_28_2026_06_26_42_PM_cqpdfh.png"
-              alt="Nari escribiendo en un cuaderno mientras desarrolla el método Criar Sin Culpas."
-              loading="lazy"
-              decoding="async"
-              class="method-photo-image"
-              itemprop="contentUrl"
-            >
+            <div class="shot">
+              <img
+                src="https://res.cloudinary.com/dogtoagya/image/upload/v1782696507/ChatGPT_Image_Jun_28_2026_06_26_42_PM_cqpdfh.png"
+                alt="Nari escribiendo en un cuaderno mientras desarrolla el método Criar Sin Culpas."
+                loading="lazy"
+                decoding="async"
+                class="method-photo-image"
+                itemprop="contentUrl"
+              >
+            </div>
 
-            <a
-              class="photo-credit-overlay"
-              href="https://www.instagram.com/sharnay_photography/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Fotografía por Erika Sharnay, Sharnay Photography. Abrir Instagram."
-            >
-              <span
-                data-i18n="photo_credit_label_method"
-                data-es="Fotografía por"
-                data-en="Photography by"
-              >Fotografía por</span>
-              <strong>Erika Sharnay</strong>
-              <span>· Sharnay Photography</span>
+            <a class="credit-plate" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía: SHARNAY PHOTOGRAPHY" data-aria-es="Fotografía: SHARNAY PHOTOGRAPHY" data-aria-en="Photography: SHARNAY PHOTOGRAPHY">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              <span data-es="SHARNAY PHOTOGRAPHY" data-en="SHARNAY PHOTOGRAPHY">SHARNAY PHOTOGRAPHY</span>
+              <span class="arrow" aria-hidden="true">↗</span>
             </a>
           </div>
 
@@ -1115,19 +1112,6 @@
               data-es="Esta no es una teoría flotando en el aire. Es un sistema construido desde la experiencia, la escucha y el trabajo real con familias que necesitan calma antes que más ruido."
               data-en="This is not a theory floating in the air. It is a system built from experience, listening, and real work with families who need calm before more noise."
             >Esta no es una teoría flotando en el aire. Es un sistema construido desde la experiencia, la escucha y el trabajo real con familias que necesitan calma antes que más ruido.</p>
-
-            <p class="photo-credit-line">
-              <span
-                data-i18n="photo_credit_line_method"
-                data-es="Fotografía:"
-                data-en="Photography:"
-              >Fotografía:</span>
-              <a
-                href="https://www.instagram.com/sharnay_photography/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >Erika Sharnay · Sharnay Photography</a>
-            </p>
           </figcaption>
         </figure>
       </section>

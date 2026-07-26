@@ -1,0 +1,388 @@
+/**
+ * photo-credit.css · Criar Sin Culpas
+ * Componente unico: lente translucido + placa .credit-plate al hover.
+ * Marcado canonico en HTML de cada pagina; este archivo concentra TODO el CSS.
+ */
+
+/* ── reveal: jiggle del encuadre ── */
+@keyframes photo-jiggle {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0); }
+  18% { transform: translate3d(-2px, -1px, 0) rotate(-.45deg); }
+  36% { transform: translate3d(2px, -1px, 0) rotate(.4deg); }
+  54% { transform: translate3d(-1.5px, 1px, 0) rotate(-.28deg); }
+  78% { transform: translate3d(1px, 0, 0) rotate(.18deg); }
+}
+
+/* ── placa (anclaje de casa, fondo uniforme, capas) ── */
+.credit-plate {
+  position: absolute;
+  z-index: 1;
+  right: 1.4rem;
+  bottom: .1rem;
+  left: auto;
+  top: auto;
+  display: inline-flex;
+  align-items: flex-end;
+  gap: .5rem;
+  /* franja superior reservada: al revelar (72%) queda oculta bajo la foto */
+  padding: 1.2rem .9rem .55rem .8rem;
+  border-radius: 0 0 .85rem .85rem;
+  background: oklch(0.22 0.04 55);
+  color: #fff;
+  font-size: .58rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 18px 30px -18px oklch(0.22 0.04 55 / .65);
+  transform: translateY(-100%);
+  pointer-events: none;
+  transition: transform .55s cubic-bezier(.16, 1, .3, 1), background .25s, color .25s;
+  line-height: 1.15;
+}
+
+.credit-plate svg {
+  width: 11px;
+  height: 11px;
+  opacity: .95;
+  display: block;
+  flex: 0 0 auto;
+}
+
+.credit-plate .arrow {
+  margin-left: .15rem;
+  transition: transform .3s cubic-bezier(.16, 1, .3, 1);
+}
+
+.credit-plate:hover {
+  background: oklch(0.74 0.13 38);
+  color: oklch(0.22 0.04 260);
+}
+
+.credit-plate:hover .arrow {
+  transform: translateX(3px);
+}
+
+/* ── reveal al hover (sin opacity: la imagen oculta la placa en reposo) ── */
+.nari-shot:hover .credit-plate,
+.nari-shot:focus-within .credit-plate,
+.frame:hover .credit-plate,
+.frame:focus-within .credit-plate {
+  transform: translateY(72%);
+  pointer-events: auto;
+}
+
+.nari-shot:hover .shot,
+.frame:hover .shot,
+.portrait:hover .ring {
+  animation: photo-jiggle .65s cubic-bezier(.16, 1, .3, 1);
+}
+
+/* ── preview: efecto calmante (solo hosts con .credit-calm-preview) ── */
+.frame.credit-calm-preview .shot {
+  transition: transform .8s cubic-bezier(.16, 1, .3, 1), box-shadow .8s cubic-bezier(.16, 1, .3, 1);
+}
+
+.frame.credit-calm-preview:hover .shot,
+.frame.credit-calm-preview:focus-within .shot {
+  animation: none;
+  transform: translate3d(0, 3px, 0) scale(1.006);
+  box-shadow: 0 48px 96px -52px oklch(0.22 0.04 260 / .48), 0 16px 38px -26px oklch(0.22 0.04 260 / .24);
+}
+
+.frame.credit-calm-preview .plate {
+  opacity: .9;
+  transition: opacity .85s cubic-bezier(.16, 1, .3, 1);
+}
+
+.frame.credit-calm-preview:hover .plate,
+.frame.credit-calm-preview:focus-within .plate {
+  opacity: 1;
+}
+
+.frame.credit-calm-preview .shot::after {
+  transition: opacity .85s cubic-bezier(.16, 1, .3, 1);
+}
+
+.frame.credit-calm-preview:hover .shot::after,
+.frame.credit-calm-preview:focus-within .shot::after {
+  opacity: .55;
+}
+
+.frame.credit-calm-preview:hover .credit-plate,
+.frame.credit-calm-preview:focus-within .credit-plate {
+  /* compensa el settle de .shot (3px) para que el copy no suba bajo la imagen */
+  transform: translateY(calc(72% + 3px));
+  pointer-events: auto;
+}
+
+.frame.credit-calm-preview .credit-plate {
+  transition: transform .7s cubic-bezier(.16, 1, .3, 1), background .35s, color .35s;
+}
+
+/* ── hosts + capas: contenedor 0 · placa 1 · imagen 2 ── */
+.nari-shot,
+.frame,
+.portrait {
+  position: relative;
+  z-index: 0;
+}
+
+.nari-shot .shot,
+.frame .shot,
+.portrait .ring {
+  position: relative;
+  z-index: 2;
+}
+
+/* ── lente translucido (marco elevado) ── */
+.nari-shot .plate,
+.frame .plate {
+  position: absolute;
+  z-index: 0;
+  border-radius: 1.85rem;
+  background: linear-gradient(142deg, oklch(0.84 0.066 26 / .55) 0%, oklch(0.93 0.03 48 / .16) 78%);
+}
+
+.nari-shot .plate {
+  top: 1.9rem;
+  right: 1.9rem;
+  left: -1.9rem;
+  bottom: -1.9rem;
+}
+
+.frame.plate-br .plate {
+  top: 1.9rem;
+  left: 1.9rem;
+  right: -1.9rem;
+  bottom: -1.9rem;
+}
+
+.frame.plate-bl .plate {
+  top: 1.9rem;
+  right: 1.9rem;
+  left: -1.9rem;
+  bottom: -1.9rem;
+}
+
+.nari-shot .dot,
+.frame .dot {
+  position: absolute;
+  top: -.55rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: oklch(0.74 0.13 38);
+  z-index: 2;
+}
+
+.nari-shot .dot {
+  right: .4rem;
+}
+
+.frame.plate-br .dot {
+  left: .4rem;
+}
+
+.frame.plate-bl .dot {
+  right: .4rem;
+}
+
+.nari-shot .shot,
+.frame .shot {
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 44px 90px -50px oklch(0.22 0.04 260 / .55), 0 14px 34px -24px oklch(0.22 0.04 260 / .3);
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.nari-shot .shot img {
+  width: 100%;
+  height: clamp(22rem, 60vh, 32rem);
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+
+.frame .shot img {
+  width: 100%;
+  height: clamp(21rem, 56vh, 30rem);
+  object-fit: cover;
+}
+
+.nari-shot .shot::after,
+.frame .shot::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 34%;
+  pointer-events: none;
+  background: linear-gradient(to top, oklch(0.22 0.04 260 / .32), transparent);
+}
+
+/* inscripcion: marco mas compacto */
+.inscripcion-credit .frame .plate {
+  border-radius: 1.85rem;
+}
+
+.inscripcion-credit .frame.plate-br .plate {
+  top: 1.25rem;
+  left: 1.25rem;
+  right: -1.25rem;
+  bottom: -1.25rem;
+}
+
+.inscripcion-credit .frame.plate-bl .plate {
+  top: 1.25rem;
+  right: 1.25rem;
+  left: -1.25rem;
+  bottom: -1.25rem;
+}
+
+.inscripcion-credit .frame .dot {
+  background: oklch(0.74 0.13 38);
+}
+
+/* metodo: foto en practica (contenida) */
+.method-photo-image-wrap.frame .shot {
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+.method-photo-image-wrap.frame .shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.inscripcion-credit .frame .shot img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 1.5rem;
+}
+
+.frame.hero-frame .shot img {
+  border-radius: 1.5rem;
+}
+
+/* metodo: contenedor de foto en practica conserva layout propio; overflow visible para la lengueta */
+.method-photo-image-wrap.frame {
+  overflow: visible;
+}
+
+.method-photo-image-wrap.frame .shot {
+  border-radius: 1.5rem;
+}
+
+.method-photo-image-wrap.frame .shot .method-photo-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 1.5rem;
+}
+
+/* ── excepcion circular · sobre-nari figure.portrait (212px)
+   Una placa horizontal no cabe dentro de la curva; va debajo del disco,
+   no montada sobre el. margin-bottom (no padding-bottom): top:100% se
+   resuelve contra la caja de relleno y el padding empujaba el anclaje. ── */
+.portrait {
+  width: clamp(152px, 42vw, 212px);
+  margin-bottom: calc(14px + 2rem);
+}
+
+.portrait::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  z-index: 0;
+  background: linear-gradient(142deg, oklch(0.84 0.066 26 / .5), oklch(0.93 0.03 48 / .15));
+  transform: translate(11px, 13px);
+}
+
+.portrait .ring {
+  display: block;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid oklch(0.985 0.008 75);
+  box-shadow: 0 26px 54px -30px oklch(0.22 0.04 260 / .5);
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.portrait .ring img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.portrait .pdot {
+  position: absolute;
+  top: 2px;
+  right: 9px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: oklch(0.74 0.13 38);
+  z-index: 2;
+}
+
+.portrait .credit-plate {
+  right: auto;
+  bottom: auto;
+  left: 50%;
+  top: 100%;
+  font-size: .5rem;
+  letter-spacing: .16em;
+  padding: 1rem .7rem .48rem .6rem;
+  transform: translate(-50%, -160%);
+}
+
+.portrait:hover .credit-plate,
+.portrait:focus-within .credit-plate {
+  transform: translate(-50%, 14px);
+  pointer-events: auto;
+}
+
+.portrait:hover .ring,
+.portrait:focus-within .ring {
+  animation: photo-jiggle .65s cubic-bezier(.16, 1, .3, 1);
+}
+
+/* ── responsive marco ── */
+@media (max-width: 1023px) {
+  .nari-shot .plate {
+    left: -1rem;
+  }
+
+  .frame.plate-br .plate {
+    right: -1rem;
+  }
+
+  .frame.plate-bl .plate {
+    left: -1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .inscripcion-credit .frame.plate-br .plate {
+    right: -.65rem;
+  }
+
+  .inscripcion-credit .frame.plate-bl .plate {
+    left: -.65rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nari-shot:hover .shot,
+  .frame:hover .shot,
+  .portrait:hover .ring {
+    animation: none !important;
+  }
+}

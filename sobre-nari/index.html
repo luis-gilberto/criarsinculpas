@@ -52,6 +52,7 @@
   <script defer src="/js/site-footer.js"></script>
   <link rel="stylesheet" href="/css/site-footer.css">
   <link rel="stylesheet" href="/css/site-nav.css">
+  <link rel="stylesheet" href="/css/photo-credit.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -85,13 +86,122 @@
     /* ── HERO (full bleed) ── */
     .hero{position:relative;width:100%;height:clamp(560px,90vh,860px);overflow:hidden;background:var(--background);}
     .hero-photo{position:absolute;top:0;right:0;bottom:0;width:50%;z-index:2;overflow:hidden;}
-    .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 38%;}
-    .hero-photo::before{content:'';position:absolute;left:0;top:0;bottom:0;width:48px;z-index:1;pointer-events:none;background:linear-gradient(to right,oklch(0.22 0.04 260 / .07),transparent);}
-    .hero-credit{position:absolute;right:clamp(.85rem,2vw,1.25rem);bottom:clamp(.85rem,2vw,1.25rem);z-index:3;display:inline-flex;align-items:center;gap:.45rem;margin:0;padding:.38rem .65rem .38rem .55rem;border-radius:.35rem;background:oklch(0.22 0.04 260 / .34);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-family:var(--sans);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:oklch(0.97 0.015 75 / .95);opacity:0;pointer-events:none;transition:opacity .5s var(--ease-silk),background .35s var(--ease-silk);}
-    .hero-credit svg{width:11px;height:11px;opacity:.9;flex-shrink:0;}
-    .hero-credit a{color:inherit;text-decoration:none;border-bottom:none;}
-    .hero-photo:hover .hero-credit,.hero-photo:focus-within .hero-credit{opacity:.68;pointer-events:auto;}
-    .hero-credit:hover{background:oklch(0.22 0.04 260 / .48);opacity:.82;}
+    .hero-photo::before{content:'';position:absolute;left:0;top:0;bottom:0;width:48px;z-index:3;pointer-events:none;background:linear-gradient(to right,oklch(0.22 0.04 260 / .07),transparent);}
+    .hero-photo picture,
+    .hero-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:58% 38%;}
+
+    /* hero credit · mismo tratamiento que homepage; anclado izquierda (pared beige) */
+    .hero-photo .hero-credit{
+      position:absolute;
+      bottom:1.25rem;
+      left:1.25rem;
+      right:auto;
+      z-index:4;
+      display:flex;
+      align-items:center;
+      gap:.7rem;
+      text-decoration:none;
+      color:#fff;
+      opacity:.92;
+      transition:opacity .3s ease;
+    }
+    .hero-photo .hero-credit:hover{opacity:1;}
+    .hero-photo .hero-credit:focus-visible{outline:1px solid oklch(0.97 0.015 75 / .4);outline-offset:2px;}
+    .hero-photo .hero-credit-mark{
+      width:32px;
+      height:32px;
+      flex-shrink:0;
+      display:block;
+      transform-origin:center;
+    }
+    .hero-photo .hero-credit-mark img{
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:contain;
+      transform:scale(.62);
+      opacity:.55;
+      filter:grayscale(.4) drop-shadow(0 1px 3px rgba(0,0,0,.28));
+      transition:opacity .35s ease,filter .35s ease;
+    }
+    .hero-photo .hero-credit:hover .hero-credit-mark img{
+      animation:shutter 1.2s cubic-bezier(.65,0,.35,1) forwards;
+    }
+    @keyframes shutter{
+      0%{transform:rotate(0deg) scale(.62);opacity:.42;filter:grayscale(.65) drop-shadow(0 1px 2px rgba(0,0,0,.22));}
+      12%{transform:rotate(0deg) scale(1);opacity:1;filter:grayscale(0) drop-shadow(0 2px 4px rgba(0,0,0,.3));}
+      25%{transform:rotate(0deg) scale(1.55);opacity:1;filter:grayscale(0) drop-shadow(0 2px 4px rgba(0,0,0,.3));}
+      60%{transform:rotate(50deg) scale(1.35);opacity:1;}
+      90%{transform:rotate(90deg) scale(1.55);opacity:1;}
+      100%{transform:rotate(90deg) scale(1.55);opacity:1;filter:grayscale(0) drop-shadow(0 2px 4px rgba(0,0,0,.3));}
+    }
+    .hero-photo .hero-credit-wordmark{
+      overflow:hidden;
+      max-width:0;
+      opacity:0;
+      transform:translateX(-24px);
+      transition:max-width .25s cubic-bezier(.65,0,.35,1) 0s,opacity .18s ease 0s,transform .25s cubic-bezier(.65,0,.35,1) 0s;
+    }
+    .hero-photo .hero-credit-wordmark img{
+      height:36px;
+      width:auto;
+      display:block;
+    }
+    .hero-photo .hero-credit:hover .hero-credit-wordmark{
+      max-width:340px;
+      opacity:1;
+      transform:translateX(0);
+      transition:max-width .7s cubic-bezier(.65,0,.35,1) 1.15s,opacity .5s ease 1.25s,transform .7s cubic-bezier(.65,0,.35,1) 1.15s;
+    }
+
+    @media(max-width:1023px){
+      .hero-photo .hero-credit{
+        top:auto;
+        left:1rem;
+        right:auto;
+        bottom:1rem;
+        transform:none;
+        opacity:.92;
+        gap:.5rem;
+        max-width:calc(100% - 2rem);
+      }
+      .hero-photo .hero-credit-mark{
+        width:24px;
+        height:24px;
+      }
+      .hero-photo .hero-credit-mark img{
+        transform:none;
+        opacity:1;
+        filter:drop-shadow(0 1px 3px rgba(0,0,0,.35));
+        animation:none!important;
+      }
+      .hero-photo .hero-credit-wordmark{
+        max-width:none;
+        opacity:1;
+        transform:none;
+        transition:none;
+      }
+      .hero-photo .hero-credit-wordmark img{
+        height:22px;
+      }
+      .hero-photo .hero-credit:hover .hero-credit-mark img{
+        animation:none;
+      }
+      .hero-photo .hero-credit:hover .hero-credit-wordmark{
+        max-width:none;
+        transition:none;
+      }
+    }
+
+    @media(max-width:640px){
+      .hero-photo .hero-credit-mark{
+        width:18px;
+        height:18px;
+      }
+      .hero-photo .hero-credit-wordmark img{
+        height:20px;
+      }
+    }
 
     .hero-type{position:absolute;inset:0;z-index:1;}
     .hero-type .eyebrow{position:absolute;top:clamp(2rem,8vh,5rem);left:var(--gutter);}
@@ -106,7 +216,6 @@
     @media(max-width:1100px){
       .hero{height:auto;overflow:visible;}
       .hero-photo{position:relative;width:100%;height:clamp(360px,50vh,560px);}
-      .hero-photo img{object-position:50% 30%;}
       .hero-photo::before{display:none;}
       .hero-type{position:relative;inset:auto;padding:2rem var(--gutter) .5rem;}
       .hero-type .eyebrow{position:static;display:block;margin-bottom:1.5rem;}
@@ -114,12 +223,6 @@
       .hero-headline .l1{margin-left:0;font-size:clamp(2rem,9vw,3.4rem);}
       .hero-headline .l2{margin-left:0;font-size:clamp(3.6rem,22vw,6.5rem);}
       .hero-foot{position:relative;left:auto;bottom:auto;padding:1.25rem var(--gutter) 0;max-width:none;}
-      .hero-photo{display:flex;flex-direction:column;align-items:stretch;}
-      .hero-credit{position:static;order:2;align-self:flex-end;margin:.5rem var(--gutter) 0;padding:0;opacity:1;pointer-events:auto;background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;border-radius:0;font-size:.72rem;font-weight:400;letter-spacing:0;text-transform:none;color:var(--muted-foreground);transition:none;}
-      .hero-credit svg{display:none;}
-      .hero-credit a{color:var(--muted-foreground);border-bottom:1px solid oklch(0.74 0.13 38 / .35);transition:color .25s,border-color .25s;}
-      .hero-credit a:hover{color:var(--accent);border-color:oklch(0.74 0.13 38 / .55);}
-      .hero-credit:hover{background:transparent;opacity:1;}
     }
 
     .sec{padding-block:clamp(4rem,9vw,7rem);}
@@ -136,33 +239,7 @@
     .dropcap{float:left;margin-right:.5rem;font-family:var(--serif);font-size:3rem;line-height:1;color:var(--accent);}
     @media(min-width:768px){ .intro-cols{grid-template-columns:repeat(3,1fr);margin-top:4rem;} }
 
-    /* ── elevated picture frame + photo credits ── */
-    @keyframes photo-jiggle{
-      0%,100%{transform:translate3d(0,0,0) rotate(0)}
-      18%{transform:translate3d(-2px,-1px,0) rotate(-.45deg)}
-      36%{transform:translate3d(2px,-1px,0) rotate(.4deg)}
-      54%{transform:translate3d(-1.5px,1px,0) rotate(-.28deg)}
-      78%{transform:translate3d(1px,0,0) rotate(.18deg)}
-    }
-    .credit-plate{position:absolute;z-index:0;right:1.4rem;bottom:.1rem;display:inline-flex;align-items:center;gap:.5rem;padding:.55rem .9rem .55rem .8rem;border-radius:0 0 .85rem .85rem;background:oklch(0.22 0.04 260 / .95);color:#fff;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;white-space:nowrap;box-shadow:0 18px 30px -18px oklch(0.22 0.04 260 / .65);transform:translateY(-100%);opacity:0;pointer-events:none;transition:transform .55s var(--ease-silk),opacity .35s var(--ease-silk),background .25s,color .25s;line-height:1;}
-    .credit-plate svg{width:11px;height:11px;opacity:.95;display:block;flex:0 0 auto;}
-    .credit-plate .arrow{margin-left:.15rem;transition:transform .3s var(--ease-silk);}
-    .frame:hover .shot,.portrait:hover .ring{animation:photo-jiggle .65s var(--ease-silk);}
-    .frame:hover .credit-plate,.frame:focus-within .credit-plate{transform:translateY(72%);opacity:1;pointer-events:auto;}
-    .credit-plate:hover{background:var(--accent);color:var(--primary);}
-    .credit-plate:hover .arrow{transform:translateX(3px);}
-    .frame{position:relative;}
-    .frame .plate{position:absolute;z-index:0;border-radius:1.85rem;background:linear-gradient(142deg,oklch(0.84 0.066 26 / .55) 0%,oklch(0.93 0.03 48 / .16) 78%);}
-    .frame.plate-br .plate{top:1.9rem;left:1.9rem;right:-1.9rem;bottom:-1.9rem;}
-    .frame.plate-bl .plate{top:1.9rem;right:1.9rem;left:-1.9rem;bottom:-1.9rem;}
-    .frame .dot{position:absolute;top:-.55rem;width:9px;height:9px;border-radius:50%;background:var(--accent);z-index:2;}
-    .frame.plate-br .dot{left:.4rem;} .frame.plate-bl .dot{right:.4rem;}
-    .frame .shot{position:relative;z-index:1;border-radius:1.5rem;overflow:hidden;box-shadow:0 44px 90px -50px oklch(0.22 0.04 260 / .55),0 14px 34px -24px oklch(0.22 0.04 260 / .3);transform:translateZ(0);will-change:transform;}
-    .frame .shot img{width:100%;height:clamp(21rem,56vh,30rem);object-fit:cover;}
-    .frame .shot::after{content:'';position:absolute;inset:auto 0 0 0;height:34%;pointer-events:none;background:linear-gradient(to top,oklch(0.22 0.04 260 / .32),transparent);}
-
     .split{display:grid;grid-template-columns:1fr;gap:3.25rem;align-items:center;}
-    @media(max-width:1023px){ .frame.plate-br .plate{right:-1rem;} .frame.plate-bl .plate{left:-1rem;} }
     .split .copy .eyebrow{display:block;}
     .split .copy h2{margin-top:1.5rem;font-family:var(--serif);font-size:clamp(2rem,5vw,3rem);font-weight:400;line-height:1.1;color:var(--foreground);}
     .split .copy h2 em{color:var(--accent);}
@@ -213,13 +290,6 @@
     .voice-grid .vh h2 em{color:var(--accent);}
     .voice-grid .vb{display:flex;flex-direction:column;gap:1.25rem;font-size:.95rem;line-height:1.85;color:oklch(0.22 0.04 260 / .85);}
     .voice-grid .vb .pq{font-family:var(--serif);font-size:1.125rem;font-style:italic;color:var(--accent);}
-    .portrait{position:relative;width:clamp(152px,42vw,212px);margin-bottom:calc(14px + 2rem);}
-    .portrait::before{content:'';position:absolute;inset:0;border-radius:50%;z-index:0;background:linear-gradient(142deg,oklch(0.84 0.066 26 / .5),oklch(0.93 0.03 48 / .15));transform:translate(11px,13px);}
-    .portrait .ring{position:relative;z-index:1;display:block;border-radius:50%;overflow:hidden;border:3px solid var(--background);box-shadow:0 26px 54px -30px oklch(0.22 0.04 260 / .5);transform:translateZ(0);will-change:transform;}
-    .portrait .ring img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;}
-    .portrait .pdot{position:absolute;top:2px;right:9px;width:9px;height:9px;border-radius:50%;background:var(--accent);z-index:2;}
-    .portrait .credit-plate{right:auto;bottom:auto;left:50%;top:100%;font-size:.5rem;letter-spacing:.16em;padding:.45rem .7rem .45rem .6rem;transform:translate(-50%,-160%);}
-    .portrait:hover .credit-plate,.portrait:focus-within .credit-plate{transform:translate(-50%,14px);opacity:1;pointer-events:auto;}
     @media(min-width:1024px){ .voice-grid{grid-template-columns:minmax(240px,18rem) 1fr;gap:4rem;align-items:start;} }
 
     .mani .head{text-align:center;}
@@ -246,19 +316,6 @@
     .btn-accent:hover{transform:translateY(-2px);}
     .btn-outline{border:1px solid oklch(0.97 0.015 75 / .25);color:oklch(0.97 0.015 75 / .9);}
     .btn-outline:hover{background:oklch(0.97 0.015 75 / .05);}
-
-    @media(max-width:640px){
-      .frame,.portrait{display:flex;flex-direction:column;align-items:flex-end;}
-      .frame .credit-plate,.portrait .credit-plate{display:none;}
-      .frame .credit-plate-mob,.portrait .credit-plate-mob{display:block;align-self:flex-end;margin:.5rem 0 0;text-align:right;font-family:var(--sans);font-size:.72rem;font-weight:400;letter-spacing:0;color:var(--muted-foreground);}
-      .frame .credit-plate-mob a,.portrait .credit-plate-mob a{color:var(--muted-foreground);border-bottom:1px solid oklch(0.74 0.13 38 / .35);transition:color .25s,border-color .25s;}
-      .frame .credit-plate-mob a:hover,.portrait .credit-plate-mob a:hover{color:var(--accent);border-color:oklch(0.74 0.13 38 / .55);}
-      .frame:hover .shot,.portrait:hover .ring{animation:none;}
-    }
-    .credit-plate-mob{display:none;}
-    @media(prefers-reduced-motion:reduce){
-      .frame:hover .shot,.portrait:hover .ring{animation:none!important;}
-    }
   </style>
 </head>
 <body data-protocol="general">
@@ -281,10 +338,14 @@
         <source media="(max-width:1100px)" srcset="https://res.cloudinary.com/dogtoagya/image/upload/f_auto,q_auto:good,c_limit,w_768,c_fill,g_face,ar_3:2/v1782326399/nari-hero-bio_xhrtih.png">
         <img src="https://res.cloudinary.com/dogtoagya/image/upload/f_auto,q_auto:good,c_limit,w_1100,c_fill,g_face,ar_4:5/v1782326399/nari-hero-bio_xhrtih.png" alt="Nari escribiendo en su cuaderno con suéter azul" data-alt-es="Nari escribiendo en su cuaderno con suéter azul" data-alt-en="Nari writing in her notebook in a blue sweater" itemprop="contentUrl">
       </picture>
-      <p class="hero-credit">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-        <span class="hero-credit-label"><span data-es="Fotografía por " data-en="Photography by ">Fotografía por </span><a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">Erika Sharnay</a></span>
-      </p>
+      <a class="hero-credit" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía por Sharnay Photography">
+        <span class="hero-credit-mark" aria-hidden="true">
+          <img src="https://res.cloudinary.com/dogtoagya/image/upload/h_120,q_auto:good,f_auto/v1784944558/sharnay_lens_logomark_white_xq9qcb.png" alt="">
+        </span>
+        <span class="hero-credit-wordmark" aria-hidden="true">
+          <img src="https://res.cloudinary.com/dogtoagya/image/upload/h_80,q_auto:good,f_auto/v1784944558/SharnayPhotography_logotype_white_hawtjy.png" alt="">
+        </span>
+      </a>
     </div>
     <div class="hero-type">
       <span class="eyebrow" data-es="La historia" data-en="Her story">La historia</span>
@@ -314,7 +375,7 @@
   <!-- SU ENFOQUE -->
   <section class="bg-sand-40">
     <div class="wrap sec split img-left">
-      <figure class="media frame plate-br" itemscope itemtype="https://schema.org/ImageObject">
+      <figure class="media frame plate-br credit-calm-preview" itemscope itemtype="https://schema.org/ImageObject">
         <span class="plate" aria-hidden="true"></span>
         <span class="dot" aria-hidden="true"></span>
         <meta itemprop="contentUrl" content="https://res.cloudinary.com/dogtoagya/image/upload/c_crop,g_north,h_0.85,q_auto,f_auto/v1782273563/ChatGPT_Image_Jun_23_2026_06_39_04_PM_1_lja5np.png">
@@ -328,12 +389,11 @@
         <div class="shot">
           <img src="https://res.cloudinary.com/dogtoagya/image/upload/c_crop,g_north,h_0.85,q_auto,f_auto/v1782273563/ChatGPT_Image_Jun_23_2026_06_39_04_PM_1_lja5np.png" alt="Nari escribiendo" data-alt-es="Nari escribiendo" data-alt-en="Nari writing" itemprop="contentUrl">
         </div>
-        <a class="credit-plate" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía: SHARNAY PHOTOGRAPHY">
+        <a class="credit-plate" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía: SHARNAY PHOTOGRAPHY" data-aria-es="Fotografía: SHARNAY PHOTOGRAPHY" data-aria-en="Photography: SHARNAY PHOTOGRAPHY">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           <span data-es="SHARNAY PHOTOGRAPHY" data-en="SHARNAY PHOTOGRAPHY">SHARNAY PHOTOGRAPHY</span>
           <span class="arrow" aria-hidden="true">↗</span>
         </a>
-        <p class="credit-plate-mob"><span data-es="Fotografía por " data-en="Photography by ">Fotografía por </span><a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">Erika Sharnay</a></p>
       </figure>
       <div class="copy">
         <span class="eyebrow" data-es="Su enfoque" data-en="Her approach">Su enfoque</span>
@@ -385,12 +445,11 @@
         <div class="shot">
           <img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto,f_auto/v1782310664/Nari-louie-playing_pb9vkt.png" alt="Nari jugando con su hijo" data-alt-es="Nari jugando con su hijo" data-alt-en="Nari playing with her child" itemprop="contentUrl">
         </div>
-        <a class="credit-plate" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía: SHARNAY PHOTOGRAPHY">
+        <a class="credit-plate" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía: SHARNAY PHOTOGRAPHY" data-aria-es="Fotografía: SHARNAY PHOTOGRAPHY" data-aria-en="Photography: SHARNAY PHOTOGRAPHY">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           <span data-es="SHARNAY PHOTOGRAPHY" data-en="SHARNAY PHOTOGRAPHY">SHARNAY PHOTOGRAPHY</span>
           <span class="arrow" aria-hidden="true">↗</span>
         </a>
-        <p class="credit-plate-mob"><span data-es="Fotografía por " data-en="Photography by ">Fotografía por </span><a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">Erika Sharnay</a></p>
       </figure>
     </div>
   </section>
@@ -413,12 +472,11 @@
           <div class="shot shot-studio">
             <img src="https://res.cloudinary.com/dogtoagya/image/upload/f_auto,q_auto:good,c_limit,w_1080/v1782343072/ChatGPT_Image_Jun_24_2026_04_17_18_PM_r989al.png" alt="Nari grabando contenido educativo en el estudio con su teléfono y trípode" data-alt-es="Nari grabando contenido educativo en el estudio con su teléfono y trípode" data-alt-en="Nari recording educational content in the studio with her phone and tripod" itemprop="contentUrl" loading="lazy" decoding="async">
           </div>
-          <a class="credit-plate" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía: SHARNAY PHOTOGRAPHY">
+          <a class="credit-plate" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía: SHARNAY PHOTOGRAPHY" data-aria-es="Fotografía: SHARNAY PHOTOGRAPHY" data-aria-en="Photography: SHARNAY PHOTOGRAPHY">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
             <span data-es="SHARNAY PHOTOGRAPHY" data-en="SHARNAY PHOTOGRAPHY">SHARNAY PHOTOGRAPHY</span>
             <span class="arrow" aria-hidden="true">↗</span>
           </a>
-          <p class="credit-plate-mob"><span data-es="Fotografía por " data-en="Photography by ">Fotografía por </span><a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">Erika Sharnay</a></p>
         </figure>
         <div class="head">
           <span class="eyebrow" data-es="Más allá de la crianza" data-en="Beyond parenting">Más allá de la crianza</span>
@@ -452,12 +510,11 @@
             <meta itemprop="acquireLicensePage" content="https://www.instagram.com/sharnay_photography/">
             <span itemprop="creator" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Erika Sharnay"><meta itemprop="url" content="https://www.instagram.com/sharnay_photography/"><span itemprop="worksFor" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="Sharnay Photography"></span></span>
             <span class="ring"><img src="https://res.cloudinary.com/dogtoagya/image/upload/q_auto,f_auto/v1782333842/portrait_w8ii8s.jpg" alt="Retrato de Nari sonriendo" data-alt-es="Retrato de Nari sonriendo" data-alt-en="Portrait of Nari smiling" itemprop="contentUrl"></span>
-            <a class="credit-plate" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía: SHARNAY PHOTOGRAPHY">
+            <a class="credit-plate" href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer" aria-label="Fotografía: SHARNAY PHOTOGRAPHY" data-aria-es="Fotografía: SHARNAY PHOTOGRAPHY" data-aria-en="Photography: SHARNAY PHOTOGRAPHY">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
               <span data-es="SHARNAY PHOTOGRAPHY" data-en="SHARNAY PHOTOGRAPHY">SHARNAY PHOTOGRAPHY</span>
               <span class="arrow" aria-hidden="true">↗</span>
             </a>
-            <p class="credit-plate-mob"><span data-es="Fotografía por " data-en="Photography by ">Fotografía por </span><a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">Erika Sharnay</a></p>
           </figure>
           <span class="eyebrow" data-es="En sus palabras" data-en="In her words">En sus palabras</span>
           <h2 data-es="Hola,<br><em>soy Nari.</em>" data-en="Hi,<br><em>I'm Nari.</em>">Hola,<br><em>soy Nari.</em></h2>

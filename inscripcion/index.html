@@ -64,6 +64,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/site-footer.css">
   <link rel="stylesheet" href="/css/site-nav.css">
+  <link rel="stylesheet" href="/css/photo-credit.css">
 
   <style>
     :root {
@@ -116,49 +117,10 @@
     @media (max-width: 520px){ .promo-cta { width:100%; justify-content:center; } }
     @media (prefers-reduced-motion: reduce) { .promo-dot { animation: none; } .promo-strip { transition: none; } }
 
-    @keyframes photo-jiggle {
-      0%,100%{transform:translate3d(0,0,0) rotate(0)}
-      18%{transform:translate3d(-2px,-1px,0) rotate(-.45deg)}
-      36%{transform:translate3d(2px,-1px,0) rotate(.4deg)}
-      54%{transform:translate3d(-1.5px,1px,0) rotate(-.28deg)}
-      78%{transform:translate3d(1px,0,0) rotate(.18deg)}
-    }
     @keyframes ping { 0% { box-shadow: 0 0 0 0 oklch(0.74 0.13 38 / .5); } 70% { box-shadow: 0 0 0 9px oklch(0.74 0.13 38 / 0); } 100% { box-shadow: 0 0 0 0 oklch(0.74 0.13 38 / 0); } }
     .status-dot { animation: ping 2.2s var(--ease-silk) infinite; }
 
-    .frame { position: relative; }
-    .frame .plate { position: absolute; z-index: 0; border-radius: 1.85rem; background: linear-gradient(142deg, oklch(0.84 0.066 26 / .55) 0%, oklch(0.93 0.03 48 / .16) 78%); }
-    .frame.plate-br .plate { top: 1.25rem; left: 1.25rem; right: -1.25rem; bottom: -1.25rem; }
-    .frame.plate-bl .plate { top: 1.25rem; right: 1.25rem; left: -1.25rem; bottom: -1.25rem; }
-    .frame .dot { position: absolute; top: -.55rem; width: 9px; height: 9px; border-radius: 50%; background: oklch(0.74 0.13 38); z-index: 2; }
-    .frame.plate-br .dot { left: .4rem; }
-    .frame.plate-bl .dot { right: .4rem; }
-    .frame .shot { position: relative; z-index: 1; border-radius: 1.5rem; overflow: hidden; box-shadow: 0 44px 90px -50px oklch(0.22 0.04 260 / .55), 0 14px 34px -24px oklch(0.22 0.04 260 / .3); transform: translateZ(0); will-change: transform; }
-    .frame .shot img { display: block; width: 100%; object-fit: cover; }
-    .frame:not(.hero-frame):hover .shot { animation: photo-jiggle .65s var(--ease-silk); }
-    .credit-plate { position: absolute; z-index: 3; right: 1.4rem; bottom: .1rem; left: auto; top: auto; display: inline-flex; align-items: center; gap: .5rem; padding: .55rem .9rem .55rem .8rem; border-radius: 0 0 .85rem .85rem; background: oklch(0.22 0.04 260 / .95); color: #fff; font-family: 'DM Sans', system-ui, sans-serif; font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; white-space: nowrap; box-shadow: 0 18px 30px -18px oklch(0.22 0.04 260 / .65); transform: translateY(-100%); opacity: 0; pointer-events: none; transition: transform .55s var(--ease-silk), opacity .35s var(--ease-silk), background .25s, color .25s; line-height: 1; }
-    .credit-plate svg { width: 11px; height: 11px; opacity: .95; display: block; flex: 0 0 auto; }
-    .credit-plate .arrow { margin-left: .15rem; transition: transform .3s var(--ease-silk); }
-    .frame:hover .credit-plate, .frame:focus-within .credit-plate { transform: translateY(72%); opacity: 1; pointer-events: auto; }
-    .credit-plate:hover { background: oklch(0.74 0.13 38); color: var(--navy); }
-    .credit-plate:hover .arrow { transform: translateX(3px); }
-    /* Hero uses same badge plate as other frames */
-    .frame.hero-frame .shot img { border-radius: 1.5rem; }
-    #nari .frame:hover .shot, #nari .frame:focus-within .shot { overflow: visible; }
-    #nari .shot img { border-radius: 1.5rem; }
-    #nari .credit-plate-mob { margin-top: .45rem; padding-right: .15rem; }
-    .credit-plate-mob { display: none; }
-    @media (max-width: 640px) {
-      .frame .credit-plate { display: none; }
-      .credit-plate-mob { display: block; margin-top: .65rem; text-align: right; font-family: 'DM Sans', system-ui, sans-serif; font-size: .72rem; color: oklch(0.45 0.03 260); }
-      .credit-plate-mob a { color: oklch(0.45 0.03 260); border-bottom: 1px solid oklch(0.74 0.13 38 / .35); text-decoration: none; }
-      .credit-plate-mob a:hover { color: oklch(0.74 0.13 38); }
-      #nari .credit-plate-mob { margin-top: .45rem; padding-right: .15rem; }
-      .frame.plate-br .plate { right: -.65rem; }
-      .frame.plate-bl .plate { left: -.65rem; }
-    }
     @media (prefers-reduced-motion: reduce) {
-      .frame:not(.hero-frame):hover .shot { animation: none; }
       .status-dot { animation: none; }
       html { scroll-behavior: auto; }
     }
@@ -184,7 +146,7 @@
     .cta-pill { max-width: 100%; box-sizing: border-box; white-space: normal; text-align: center; overflow-wrap: break-word; }
   </style>
 </head>
-<body class="min-h-screen bg-background text-foreground" data-protocol="inscripciones" data-guide="learning_layer">
+<body class="min-h-screen bg-background text-foreground inscripcion-credit" data-protocol="inscripciones" data-guide="learning_layer">
 <div class="grain" aria-hidden="true"></div>
 
 <div id="site-nav" data-active="inscripcion"></div>
@@ -282,7 +244,6 @@
         <span data-es="SHARNAY PHOTOGRAPHY" data-en="SHARNAY PHOTOGRAPHY">SHARNAY PHOTOGRAPHY</span>
         <span class="arrow" aria-hidden="true">↗</span>
       </a>
-      <p class="credit-plate-mob"><span data-es="Fotografía por " data-en="Photography by ">Fotografía por </span><a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">Erika Sharnay</a></p>
     </figure>
   </div>
 </section>
@@ -340,7 +301,6 @@
         <span data-es="SHARNAY PHOTOGRAPHY" data-en="SHARNAY PHOTOGRAPHY">SHARNAY PHOTOGRAPHY</span>
         <span class="arrow" aria-hidden="true">↗</span>
       </a>
-      <p class="credit-plate-mob"><span data-es="Fotografía por " data-en="Photography by ">Fotografía por </span><a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">Erika Sharnay</a></p>
     </figure>
     <div>
       <p class="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent" data-es="Quién está detrás del método" data-en="Who's behind the method">Quién está detrás del método</p>
@@ -543,7 +503,6 @@
         <span data-es="SHARNAY PHOTOGRAPHY" data-en="SHARNAY PHOTOGRAPHY">SHARNAY PHOTOGRAPHY</span>
         <span class="arrow" aria-hidden="true">↗</span>
       </a>
-      <p class="credit-plate-mob"><span data-es="Fotografía por " data-en="Photography by ">Fotografía por </span><a href="https://www.instagram.com/sharnay_photography/" target="_blank" rel="noopener noreferrer">Erika Sharnay</a></p>
     </figure>
     <div class="order-1 lg:order-2">
       <h2 class="font-serif text-3xl font-light text-foreground sm:text-4xl" data-es="Por qué abrimos la pre-inscripción antes del lanzamiento" data-en="Why we're opening pre-enrollment before launch">Por qué abrimos la pre-inscripción antes del lanzamiento</h2>
