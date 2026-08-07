@@ -4,29 +4,215 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Criar Sin Culpas · Lectura de producto · Julio · Agosto 2026</title>
+
+<!-- Canonical CSC brand tokens (color, type, spacing, radii, motion) -->
+<style>
+/* ═══ Criar Sin Culpas · canonical tokens (inlined from assets/colors_and_type.css) ═══ */
+/* =====================================================
+   CRIAR SIN CULPAS — Design System
+   colors_and_type.css · v1 · Ed. 2026
+   Sourced from criarsinculpas.com/brand + Iconography Addendum
+   ===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  /* =====================================================
+     COLOR — Brand core
+     ===================================================== */
+  --cream:        #FAF6F2;   /* the page / lienzo dominante */
+  --blush:        #FCE7DD;   /* respiro secondary            */
+  --peach:        #F4A88A;   /* el pulso — brand signature   */
+  --peach-deep:   #E8896A;
+  --navy:         #1F2E46;   /* el ancla — authority/trust   */
+  --navy-soft:    #2B3D57;
+  --slate-light:  #A7B6C6;   /* guía — claridad              */
+  --slate-blue:   #8599AD;
+
+  /* Ink — body copy never uses pure black */
+  --ink:          #1F2E46;
+  --ink-mute:     #4A5B75;
+  --ink-quiet:    #7F8DA1;
+  --ink-faint:    #CBD3DD;
+
+  /* Iconography palette (extended semantic hues) */
+  --icon-rosa:      #E89BA8;
+  --icon-rosa-wash: #F5D2D8;
+  --icon-terra:     #C45A47;
+  --icon-terra-wash:#EFC3B9;
+  --icon-musgo:     #8A9E7E;
+  --icon-musgo-wash:#D0D8C6;
+  --icon-ambar:     #E4A85C;
+  --icon-ambar-wash:#F3D9B3;
+  --icon-sereno:    #8FA8C4;
+  --icon-sereno-wash:#CFD9E5;
+
+  /* Semantic aliases */
+  --bg:           var(--cream);
+  --bg-elev:      #FFFFFF;
+  --bg-soft:      var(--blush);
+  --bg-navy:      var(--navy);
+  --fg1:          var(--navy);      /* primary text        */
+  --fg2:          var(--ink-mute);  /* body                */
+  --fg3:          var(--ink-quiet); /* captions / metadata */
+  --fg4:          var(--slate-blue);/* eyebrows / labels   */
+  --accent:       var(--peach);
+  --accent-strong:var(--peach-deep);
+  --link:         var(--peach-deep);
+
+  /* =====================================================
+     TYPE — Families
+     ===================================================== */
+  --font-serif: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-sans:  'Inter', -apple-system, 'Helvetica Neue', sans-serif;
+
+  /* =====================================================
+     RHYTHM — Borders, shadows
+     ===================================================== */
+  --border:        rgba(31, 46, 70, 0.08);
+  --border-strong: rgba(31, 46, 70, 0.16);
+  --border-dashed: rgba(31, 46, 70, 0.14);
+
+  --shadow-1: 0 1px 0 rgba(31,46,70,0.04), 0 1px 2px rgba(31,46,70,0.04);
+  --shadow-2: 0 1px 0 rgba(31,46,70,0.04), 0 8px 24px -12px rgba(31,46,70,0.14);
+  --shadow-3: 0 1px 0 rgba(31,46,70,0.05), 0 22px 48px -22px rgba(31,46,70,0.22);
+
+  /* =====================================================
+     SPACING — 4pt base
+     ===================================================== */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* =====================================================
+     RADII — Restrained. Editorial, not softpop.
+     ===================================================== */
+  --radius-xs: 3px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-pill: 999px;
+
+  /* =====================================================
+     MOTION
+     ===================================================== */
+  --ease-out:  cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-io:   cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast:  160ms;
+  --dur-base:  260ms;
+  --dur-slow:  480ms;
+}
+
+/* =====================================================
+   BASE — Never touch pure black. Serif hierarchy.
+   ===================================================== */
+html, body {
+  background: var(--bg);
+  color: var(--fg1);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  margin: 0;
+}
+
+/* =====================================================
+   TYPE — Named classes (also mapped to h1..h4)
+   ===================================================== */
+.eyebrow, .cs-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg4);
+}
+
+.h-display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(48px, 5.4vw, 88px);
+  line-height: 1.0;
+  letter-spacing: -0.005em;
+  color: var(--fg1);
+  margin: 0;
+}
+h1 { font-family: var(--font-serif); font-weight: 400; font-size: 64px; line-height: 1.05; color: var(--fg1); margin: 0; letter-spacing: -0.005em; }
+
+.h-editorial {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(32px, 3.4vw, 48px);
+  line-height: 1.1;
+  color: var(--fg1);
+  margin: 0;
+}
+h2 { font-family: var(--font-serif); font-weight: 400; font-size: 40px; line-height: 1.15; color: var(--fg1); margin: 0; }
+
+.h-section {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 1.2;
+  color: var(--fg1);
+  margin: 0;
+}
+h3 { font-family: var(--font-serif); font-weight: 500; font-size: 26px; line-height: 1.2; color: var(--fg1); margin: 0; }
+h4 { font-family: var(--font-serif); font-weight: 500; font-size: 20px; line-height: 1.25; color: var(--fg1); margin: 0; }
+
+.body-lg { font-size: 18px; line-height: 1.7; color: var(--fg2); max-width: 56ch; }
+.body    { font-size: 15px; line-height: 1.65; color: var(--fg2); }
+.caption { font-size: 12.5px; line-height: 1.5; color: var(--fg3); }
+p        { font-size: 15px; line-height: 1.65; color: var(--fg2); margin: 0 0 1em; }
+code, .mono {
+  font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+  font-size: 12.5px;
+  color: var(--fg2);
+  background: rgba(31,46,70,0.04);
+  padding: 1px 6px;
+  border-radius: var(--radius-xs);
+}
+
+.pull {
+  /* Italic reserved for direct quotes / editorial commentary only. */
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 1.35;
+  color: var(--fg1);
+}
+
+/* Links */
+a { color: var(--link); text-decoration: none; border-bottom: 1px solid rgba(232,137,106,0.35); transition: border-color var(--dur-fast) var(--ease-out); }
+a:hover { border-bottom-color: var(--peach-deep); }
+</style>
+
+<!-- JetBrains Mono for meta / eyebrow taxonomy labels -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
-  :root{
-    --navy:#18242F;
-    --navy-soft:#2C3B49;
-    --terracotta:#BC6044;
-    --terracotta-deep:#A54F35;
-    --peach:#F3CDB3;
-    --peach-soft:#F8E3D2;
-    --paper:#FAF6EF;
-    --paper-deep:#F2ECE0;
-    --line:rgba(24,36,47,.12);
-    --ink-60:rgba(24,36,47,.62);
-    --ink-45:rgba(24,36,47,.45);
-  }
+  /* ---------- Local overrides / composition-scoped styles ---------- */
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
-    background:var(--paper);
+    background:var(--cream);
     color:var(--navy);
-    font-family:'Inter',sans-serif;
+    font-family:var(--font-sans);
     font-size:16px;
     line-height:1.65;
     -webkit-font-smoothing:antialiased;
@@ -50,6 +236,7 @@
     font-family:'JetBrains Mono',monospace;
     font-size:11px;
     letter-spacing:.14em;
+    z-index:5;
   }
   .lt-btn{
     background:none;
@@ -57,46 +244,47 @@
     cursor:pointer;
     font:inherit;
     letter-spacing:inherit;
-    color:var(--ink-45);
+    color:var(--ink-quiet);
     padding:6px 4px;
-    transition:color .2s ease;
+    transition:color var(--dur-fast) var(--ease-out);
   }
   .lt-btn:hover{color:var(--navy);}
-  .lt-btn.active{color:var(--terracotta);border-bottom:1px solid var(--terracotta);}
-  .lt-btn:focus-visible{outline:2px solid var(--terracotta);outline-offset:2px;}
-  .lt-sep{color:var(--ink-45);}
+  .lt-btn.active{color:var(--peach-deep);border-bottom:1px solid var(--peach-deep);}
+  .lt-btn:focus-visible{outline:2px solid var(--peach);outline-offset:3px;}
+  .lt-sep{color:var(--ink-faint);}
 
   /* ---------- Header ---------- */
   header{
     padding:72px 0 56px;
-    border-bottom:1px solid var(--line);
+    border-bottom:1px solid var(--border);
     position:relative;
   }
-  .eyebrow{
+  .eyebrow-line{
     font-family:'JetBrains Mono',monospace;
     font-size:11px;
     letter-spacing:.22em;
     text-transform:uppercase;
-    color:var(--terracotta);
+    color:var(--peach-deep);
     display:flex;
     align-items:center;
     gap:14px;
     margin-bottom:28px;
   }
-  .eyebrow::after{content:'';height:1px;flex:1;background:var(--line);}
-  h1{
-    font-family:'Cormorant Garamond',serif;
-    font-weight:600;
+  .eyebrow-line::after{content:'';height:1px;flex:1;background:var(--border);}
+  h1.doc-title{
+    font-family:var(--font-serif);
+    font-weight:500;
     font-size:clamp(38px,6vw,58px);
     line-height:1.08;
     letter-spacing:-.01em;
     max-width:18ch;
+    color:var(--navy);
   }
-  h1 em{font-style:normal;color:var(--terracotta);}
+  h1.doc-title em{font-style:normal;color:var(--peach-deep);}
   .subtitulo{
     margin-top:18px;
     font-size:16px;
-    color:var(--ink-60);
+    color:var(--ink-mute);
     max-width:44ch;
   }
   .header-meta{
@@ -107,14 +295,52 @@
     font-family:'JetBrains Mono',monospace;
     font-size:11.5px;
     letter-spacing:.06em;
-    color:var(--ink-60);
+    color:var(--ink-mute);
   }
   .header-meta span b{font-weight:500;color:var(--navy);}
+
+  /* ---------- Hero illustration ---------- */
+  .hero{
+    margin:40px 0 8px;
+  }
+  .hero-frame{
+    background:var(--blush);
+    border-radius:22px;
+    padding:22px;
+    box-shadow:var(--shadow-1);
+  }
+  .hero-frame svg{
+    display:block;
+    width:100%;
+    height:auto;
+  }
+  .hero-caption{
+    margin-top:16px;
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--ink-quiet);
+  }
+  .hero-caption .label{color:var(--peach-deep);}
+  .hero-caption .desc{
+    font-family:var(--font-serif);
+    font-style:italic;
+    font-weight:400;
+    font-size:15px;
+    letter-spacing:0;
+    text-transform:none;
+    color:var(--ink-mute);
+  }
 
   /* ---------- Carta / intro ---------- */
   .carta{padding:56px 0 8px;}
   .carta p{
-    font-family:'Cormorant Garamond',serif;
+    font-family:var(--font-serif);
+    font-weight:400;
     font-size:clamp(20px,2.6vw,23px);
     line-height:1.55;
     max-width:40ch;
@@ -122,42 +348,44 @@
   }
   .carta p + p{margin-top:1em;}
   html[lang="en"] .carta p.l-en + p.l-es{margin-top:0;}
-  .carta .acc{color:var(--terracotta);font-weight:600;}
+  .carta .acc{color:var(--peach-deep);font-weight:500;}
 
   /* ---------- La decisión ---------- */
   .decision{padding:88px 0 0;text-align:center;}
-  .decision .eyebrow3{
+  .decision .eyebrow-quiet{
     font-family:'JetBrains Mono',monospace;
     font-size:11px;
     letter-spacing:.22em;
     text-transform:uppercase;
-    color:var(--terracotta);
+    color:var(--peach-deep);
     margin-bottom:26px;
   }
   .decision h2{
-    font-family:'Cormorant Garamond',serif;
-    font-weight:600;
+    font-family:var(--font-serif);
+    font-weight:500;
     font-size:clamp(28px,4.4vw,40px);
     line-height:1.25;
     max-width:26ch;
     margin:0 auto 22px;
+    color:var(--navy);
   }
-  .decision h2 .acc{color:var(--terracotta);}
+  .decision h2 .acc{color:var(--peach-deep);}
   .decision p{
     max-width:58ch;
     margin:0 auto;
-    color:var(--navy-soft);
+    color:var(--ink-mute);
     font-size:15.5px;
   }
   .decision p + p{margin-top:.9em;}
   .decision .direccion{
-    font-family:'Cormorant Garamond',serif;
+    font-family:var(--font-serif);
     font-size:clamp(19px,2.5vw,22px);
     line-height:1.5;
     color:var(--navy);
     max-width:44ch;
+    font-weight:400;
   }
-  .decision .direccion .acc{color:var(--terracotta);font-weight:600;}
+  .decision .direccion .acc{color:var(--peach-deep);font-weight:500;}
 
   /* ---------- Aprendizajes ---------- */
   .senales{padding:88px 0 0;}
@@ -166,76 +394,126 @@
     font-size:11px;
     letter-spacing:.22em;
     text-transform:uppercase;
-    color:var(--terracotta);
+    color:var(--peach-deep);
     display:flex;
     align-items:center;
     gap:14px;
     margin-bottom:8px;
   }
-  .senales-head::after{content:'';height:1px;flex:1;background:var(--line);}
+  .senales-head::after{content:'';height:1px;flex:1;background:var(--border);}
 
   .senal{
     padding:52px 0;
-    border-bottom:1px solid var(--line);
+    border-bottom:1px solid var(--border);
     display:grid;
-    grid-template-columns:64px 1fr;
-    gap:28px;
+    grid-template-columns:88px 1fr;
+    gap:32px;
+    align-items:start;
   }
   .senal:last-of-type{border-bottom:none;}
-  .senal-num{
-    font-family:'Cormorant Garamond',serif;
-    font-weight:500;
-    font-size:44px;
-    line-height:1;
-    color:var(--peach);
+
+  /* Icon + numeral column */
+  .senal-mark{
     padding-top:4px;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
   }
+  .senal-icon{
+    width:64px;
+    height:64px;
+    display:block;
+  }
+  .senal-icon svg,
+  .senal-icon img{
+    display:block;
+    width:100%;
+    height:100%;
+  }
+  .senal-num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--ink-quiet);
+    padding-left:2px;
+  }
+  .senal-num b{
+    color:var(--peach-deep);
+    font-weight:500;
+  }
+
   .senal h2{
-    font-family:'Cormorant Garamond',serif;
-    font-weight:600;
+    font-family:var(--font-serif);
+    font-weight:500;
     font-size:clamp(25px,3.4vw,30px);
     line-height:1.22;
     margin-bottom:16px;
     max-width:28ch;
+    color:var(--navy);
   }
-  .senal h2 .acc{color:var(--terracotta);}
+  .senal h2 .acc{color:var(--peach-deep);}
   .senal p{
     max-width:58ch;
-    color:var(--navy-soft);
+    color:var(--ink-mute);
     font-size:15.5px;
   }
   .senal p + p{margin-top:.9em;}
   html[lang="es"] .senal p.l-es + p.l-en + p.l-es,
   html[lang="en"] .senal p.l-en + p.l-es + p.l-en{margin-top:.9em;}
   .senal p b{color:var(--navy);font-weight:600;}
-  .senal p .acc{color:var(--terracotta);font-weight:600;}
+  .senal p .acc{color:var(--peach-deep);font-weight:500;}
 
-  /* ---------- Recomendación (navy) ---------- */
+  /* ---------- Recomendación (navy block) ---------- */
   .recomendacion{
-    margin:88px 0 0;
+    margin:96px 0 0;
     background:var(--navy);
-    border-radius:16px;
+    border-radius:12px;
     padding:clamp(36px,6vw,56px);
-    color:var(--paper);
+    color:var(--cream);
+    box-shadow:var(--shadow-2);
+    position:relative;
+    overflow:hidden;
   }
-  .recomendacion .eyebrow2{
+  /* subtle peach seal in top-right corner of navy block */
+  .recomendacion::before{
+    content:'';
+    position:absolute;
+    top:-40px;right:-40px;
+    width:180px;height:180px;
+    border-radius:50%;
+    background:var(--peach);
+    opacity:.08;
+  }
+  .recomendacion .eyebrow-onnavy{
     font-family:'JetBrains Mono',monospace;
     font-size:10.5px;
     letter-spacing:.22em;
     text-transform:uppercase;
     color:var(--peach);
     margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .recomendacion .eyebrow-onnavy .dot{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--peach);
+    display:inline-block;
   }
   .recomendacion h2{
-    font-family:'Cormorant Garamond',serif;
-    font-weight:600;
+    font-family:var(--font-serif);
+    font-weight:500;
     font-size:clamp(26px,3.8vw,34px);
     line-height:1.25;
     margin-bottom:18px;
     max-width:26ch;
+    color:var(--cream);
+    position:relative;
   }
   .recomendacion .intro{
-    color:rgba(250,246,239,.78);
+    color:rgba(250,246,242,.75);
     max-width:56ch;
     font-size:15.5px;
     margin-bottom:28px;
@@ -250,7 +528,7 @@
     position:relative;
     padding-left:22px;
     font-size:14.5px;
-    color:rgba(250,246,239,.85);
+    color:rgba(250,246,242,.86);
     line-height:1.5;
   }
   .rec-list li::before{
@@ -258,45 +536,45 @@
     position:absolute;
     left:0;
     top:9px;
-    width:8px;
-    height:8px;
+    width:7px;
+    height:7px;
     border-radius:50%;
-    background:var(--terracotta);
+    background:var(--peach);
   }
 
   /* ---------- Contexto ---------- */
-  .contexto{padding:88px 0 0;}
+  .contexto{padding:96px 0 0;}
   .contexto-head{
     font-family:'JetBrains Mono',monospace;
     font-size:11px;
     letter-spacing:.22em;
     text-transform:uppercase;
-    color:var(--terracotta);
+    color:var(--peach-deep);
     display:flex;
     align-items:center;
     gap:14px;
     margin-bottom:36px;
   }
-  .contexto-head::after{content:'';height:1px;flex:1;background:var(--line);}
+  .contexto-head::after{content:'';height:1px;flex:1;background:var(--border);}
 
   .stats-quiet{
     display:flex;
     flex-wrap:wrap;
     gap:10px 40px;
-    padding:22px 0;
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
+    padding:26px 0;
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
     font-family:'JetBrains Mono',monospace;
     font-size:11px;
     letter-spacing:.14em;
     text-transform:uppercase;
-    color:var(--ink-60);
+    color:var(--ink-mute);
     align-items:baseline;
   }
   .stats-quiet b{
-    font-family:'Cormorant Garamond',serif;
-    font-weight:600;
-    font-size:22px;
+    font-family:var(--font-serif);
+    font-weight:500;
+    font-size:24px;
     letter-spacing:0;
     color:var(--navy);
     margin-right:6px;
@@ -305,7 +583,7 @@
   .contexto-notas{margin-top:40px;}
   .contexto-notas p{
     max-width:60ch;
-    color:var(--navy-soft);
+    color:var(--ink-mute);
     font-size:15px;
   }
   .contexto-notas p + p{margin-top:.9em;}
@@ -315,7 +593,7 @@
   /* ---------- Cierre ---------- */
   footer{
     margin-top:96px;
-    border-top:1px solid var(--line);
+    border-top:1px solid var(--border);
     padding:48px 0 72px;
   }
   footer .firma{
@@ -327,11 +605,12 @@
     font-size:10.5px;
     letter-spacing:.14em;
     text-transform:uppercase;
-    color:var(--ink-45);
+    color:var(--ink-quiet);
   }
+  footer .firma .mark{color:var(--peach-deep);}
 
   /* ---------- Reveal ---------- */
-  .rv{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease;}
+  .rv{opacity:0;transform:translateY(14px);transition:opacity var(--dur-slow) var(--ease-out),transform var(--dur-slow) var(--ease-out);}
   .rv.in{opacity:1;transform:none;}
   @media (prefers-reduced-motion:reduce){
     .rv{opacity:1;transform:none;transition:none;}
@@ -342,11 +621,21 @@
   @media (max-width:640px){
     .lang-toggle{top:24px;}
     header{padding-top:88px;}
-    .bignums{grid-template-columns:1fr;}
-    .bignum + .bignum{border-left:none;border-top:1px solid var(--line);}
-    .senal{grid-template-columns:1fr;gap:8px;}
-    .senal-num{font-size:32px;}
+    .hero-frame{padding:14px;border-radius:16px;}
+    .senal{grid-template-columns:1fr;gap:16px;}
+    .senal-mark{flex-direction:row;align-items:center;gap:14px;}
+    .senal-icon{width:52px;height:52px;}
     .rec-list{grid-template-columns:1fr;}
+  }
+
+  /* ---------- Print ---------- */
+  @media print{
+    body{background:#fff;}
+    .lang-toggle{display:none;}
+    .rv{opacity:1;transform:none;}
+    .recomendacion{page-break-inside:avoid;}
+    .senal{page-break-inside:avoid;}
+    .hero{page-break-inside:avoid;}
   }
 </style>
 </head>
@@ -360,11 +649,11 @@
       <span class="lt-sep">·</span>
       <button class="lt-btn" data-lang="en" type="button">EN</button>
     </div>
-    <div class="eyebrow">
+    <div class="eyebrow-line">
       <span class="l-es">Criar Sin Culpas · Lectura de producto</span>
       <span class="l-en">Criar Sin Culpas · Product reading</span>
     </div>
-    <h1>
+    <h1 class="doc-title">
       <span class="l-es">Lo que el sitio nos está ayudando a <em>decidir</em></span>
       <span class="l-en">What the site is helping us <em>decide</em></span>
     </h1>
@@ -382,17 +671,226 @@
     </div>
   </header>
 
+  <!-- ══════════════════════════════════════════════════════════
+       HERO · "La convergencia"
+       Two currents (Pantallas / Desbordes) meeting at one ambar point (el piloto).
+       Custom illustration built on the CSC hero library rules.
+       ══════════════════════════════════════════════════════════ -->
+  <section class="hero rv" aria-label="Ilustración de portada · La convergencia">
+    <div class="hero-frame">
+      <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" aria-labelledby="ttl-lc">
+  <title id="ttl-lc">La convergencia: dos corrientes editoriales que se encuentran en un solo punto ámbar.</title>
+
+  <!-- ═══════════════════════════════════════════════════════
+       ATMOSPHERE — sereno gradient wash at top, subtle
+       ═══════════════════════════════════════════════════════ -->
+  <path d="M0 0 L 800 0 L 800 200 C 640 194, 480 208, 320 202 C 200 198, 80 208, 0 202 z"
+        fill="#8FA8C4" opacity="0.16"/>
+  <path d="M0 140 C 200 132, 400 148, 600 138 C 700 134, 780 140, 800 138 L 800 200 L 0 200 z"
+        fill="#8FA8C4" opacity="0.10"/>
+
+  <!-- Faint musgo horizon band — the ground the currents rise from -->
+  <path d="M0 300 C 200 296, 400 302, 600 298 C 700 296, 780 300, 800 298 L 800 340 L 0 340 z"
+        fill="#8A9E7E" opacity="0.10"/>
+
+  <!-- ═══════════════════════════════════════════════════════
+       LEFT CURRENT · sereno — "Pantallas" — wide, cool, arriving from lower-left
+       ═══════════════════════════════════════════════════════ -->
+
+  <!-- Body of the current: broad ribbon curving up toward center-right convergence -->
+  <path d="M0 480
+           L 0 400
+           C 40 388, 90 372, 150 356
+           C 220 336, 290 316, 350 296
+           C 380 286, 395 282, 402 282
+           C 405 289, 400 297, 388 306
+           C 366 322, 330 340, 280 362
+           C 210 394, 130 428, 60 456
+           C 30 468, 10 476, 0 480 z"
+        fill="#8FA8C4" opacity="0.48"/>
+
+  <!-- Secondary wisps — flow trails, thin lines -->
+  <g fill="none" stroke="#8FA8C4" stroke-width="2.2" stroke-linecap="round" opacity="0.65">
+    <path d="M40 420 C 100 402, 180 380, 260 356"/>
+    <path d="M70 442 C 140 422, 220 396, 300 368"/>
+    <path d="M110 462 C 190 440, 280 410, 340 384"/>
+  </g>
+
+  <!-- Top edge of the current — hand-drawn navy line, guides eye to convergence -->
+  <path d="M0 400
+           C 40 388, 90 372, 150 356
+           C 220 336, 290 316, 350 296
+           C 380 286, 395 282, 402 282"
+        fill="none" stroke="#1F2E46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+
+  <!-- Small sereno dots along the current — data points, foam, movement -->
+  <g fill="#8FA8C4" opacity="0.9">
+    <circle cx="80" cy="386" r="2.2"/>
+    <circle cx="148" cy="358" r="1.8"/>
+    <circle cx="216" cy="332" r="2.4"/>
+    <circle cx="290" cy="308" r="1.9"/>
+    <circle cx="350" cy="292" r="2.1"/>
+  </g>
+
+  <!-- Eyebrow label — LEFT: "Pantallas" tucked at start of the current -->
+  <text x="24" y="428"
+        font-family="'JetBrains Mono', monospace" font-size="10.5" letter-spacing="2.4"
+        fill="#1F2E46" opacity="0.55">
+    PANTALLAS
+  </text>
+
+  <!-- ═══════════════════════════════════════════════════════
+       RIGHT CURRENT · terracota — "Desbordes" — warm, deep, arriving from lower-right
+       ═══════════════════════════════════════════════════════ -->
+
+  <!-- Body -->
+  <path d="M800 480
+           L 800 400
+           C 760 388, 710 372, 650 356
+           C 580 336, 510 316, 450 296
+           C 420 286, 405 282, 398 282
+           C 395 289, 400 297, 412 306
+           C 434 322, 470 340, 520 362
+           C 590 394, 670 428, 740 456
+           C 770 468, 790 476, 800 480 z"
+        fill="#C45A47" opacity="0.55"/>
+
+  <!-- Secondary wisps -->
+  <g fill="none" stroke="#C45A47" stroke-width="2.2" stroke-linecap="round" opacity="0.62">
+    <path d="M760 420 C 700 402, 620 380, 540 356"/>
+    <path d="M730 442 C 660 422, 580 396, 500 368"/>
+    <path d="M690 462 C 610 440, 520 410, 460 384"/>
+  </g>
+
+  <!-- Top edge -->
+  <path d="M800 400
+           C 760 388, 710 372, 650 356
+           C 580 336, 510 316, 450 296
+           C 420 286, 405 282, 398 282"
+        fill="none" stroke="#1F2E46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+
+  <!-- Terra dots along the current — foam, emotional beats -->
+  <g fill="#C45A47" opacity="0.9">
+    <circle cx="720" cy="386" r="2.2"/>
+    <circle cx="652" cy="358" r="1.8"/>
+    <circle cx="584" cy="332" r="2.4"/>
+    <circle cx="510" cy="308" r="1.9"/>
+    <circle cx="450" cy="292" r="2.1"/>
+  </g>
+
+  <!-- Small rosa flecks near the terra current — the emotional register -->
+  <g fill="#E89BA8" opacity="0.7">
+    <circle cx="680" cy="376" r="1.6"/>
+    <circle cx="612" cy="348" r="1.4"/>
+    <circle cx="548" cy="322" r="1.6"/>
+  </g>
+
+  <!-- Eyebrow label — RIGHT: "Desbordes" -->
+  <text x="776" y="428" text-anchor="end"
+        font-family="'JetBrains Mono', monospace" font-size="10.5" letter-spacing="2.4"
+        fill="#1F2E46" opacity="0.55">
+    DESBORDES
+  </text>
+
+  <!-- ═══════════════════════════════════════════════════════
+       THE CONVERGENCE POINT — where the two currents meet
+       Ambar heart at the top, sitting on a soft halo. This is "el piloto".
+       ═══════════════════════════════════════════════════════ -->
+
+  <!-- Soft blush halo behind convergence — 'the space it holds' -->
+  <ellipse cx="400" cy="266" rx="46" ry="34" fill="#FCE7DD" opacity="0.9"/>
+
+  <!-- Concentric ambar breath rings — target, but calm -->
+  <circle cx="400" cy="266" r="36" fill="none" stroke="#E4A85C" stroke-width="1.0" opacity="0.28"/>
+  <circle cx="400" cy="266" r="24" fill="none" stroke="#E4A85C" stroke-width="1.1" opacity="0.42"/>
+
+  <!-- Dashed navy target circle — 'focal decision' -->
+  <circle cx="400" cy="266" r="14" fill="none" stroke="#1F2E46" stroke-width="1.0" stroke-dasharray="2 3.5" opacity="0.55"/>
+
+  <!-- The ambar heart — center of the composition. The piloto. -->
+  <g transform="translate(378 244) scale(0.24)">
+    <path d="M50 32 c -6 -10, -19 -12, -26 -5 c -8 7, -7 21, 3 31 l 23 22 l 24 -22 c 10 -10, 11 -24, 3 -31 c -7 -7, -21 -5, -27 5z"
+          fill="#E4A85C" opacity="0.95" stroke="#1F2E46" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+
+  <!-- 'EL PILOTO' — hand-set label just above the convergence -->
+  <text class="l-es" x="400" y="196" text-anchor="middle"
+        font-family="'Cormorant Garamond', serif" font-size="15" font-style="italic" font-weight="400"
+        fill="#1F2E46" opacity="0.72">
+    el piloto
+  </text>
+  <text class="l-en" x="400" y="196" text-anchor="middle"
+        font-family="'Cormorant Garamond', serif" font-size="15" font-style="italic" font-weight="400"
+        fill="#1F2E46" opacity="0.72">
+    the pilot
+  </text>
+
+  <!-- Small ambar dot on the label's ligature — the punctuation -->
+  <circle cx="428" cy="192" r="1.8" fill="#E4A85C"/>
+
+  <!-- ═══════════════════════════════════════════════════════
+       WITNESS FIGURE — small navy line figure just right of convergence,
+       looking toward it. The reader / decision-maker. Not centered on the point;
+       stands in relation to it.
+       ═══════════════════════════════════════════════════════ -->
+
+  <g fill="none" stroke="#1F2E46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <!-- head — turned slightly toward the convergence (left) -->
+    <circle cx="530" cy="336" r="13"/>
+    <!-- eye dashes — looking left toward the piloto -->
+    <path d="M522 336 l 3 0"/>
+    <path d="M532 336 l 3 0"/>
+    <!-- neutral mouth -->
+    <path d="M524 344 l 8 0"/>
+    <!-- body -->
+    <path d="M530 349 L 530 400"/>
+    <!-- one arm relaxed, one hand slightly raised toward the piloto — attentive -->
+    <path d="M530 365 C 518 371, 510 378, 508 386"/>
+    <path d="M530 365 C 522 361, 514 358, 508 358"/>
+    <!-- legs planted -->
+    <path d="M530 400 L 522 424"/>
+    <path d="M530 400 L 538 424"/>
+  </g>
+
+  <!-- ═══════════════════════════════════════════════════════
+       GROUND LINE — subtle horizon
+       ═══════════════════════════════════════════════════════ -->
+  <path d="M60 440 C 220 436, 400 440, 580 438 C 680 436, 740 438, 740 440"
+        fill="none" stroke="#1F2E46" stroke-width="1.4" stroke-linecap="round" opacity="0.20"/>
+
+  <!-- ═══════════════════════════════════════════════════════
+       BRAND MARK — tiny corner watermark
+       ═══════════════════════════════════════════════════════ -->
+  <text x="24" y="30"
+        font-family="'JetBrains Mono', monospace" font-size="9" letter-spacing="2.2"
+        fill="#1F2E46" opacity="0.35">
+    CSC · HERO · LECTURA JUL–AGO 2026
+  </text>
+</svg>
+    </div>
+    <div class="hero-caption">
+      <span class="label">
+        <span class="l-es">Metáfora · La convergencia</span>
+        <span class="l-en">Metaphor · The convergence</span>
+      </span>
+      <span class="desc">
+        <span class="l-es">Dos corrientes que se encuentran en un punto. El piloto vive ahí.</span>
+        <span class="l-en">Two currents meeting at a single point. The pilot lives there.</span>
+      </span>
+    </div>
+  </section>
+
   <section class="carta rv">
-    <p class="l-es">Nari, revisé el comportamiento de las últimas cuatro semanas para identificar qué partes del sitio están generando exploración, qué temas reciben mayor atención y qué recorrido todavía necesitamos completar antes de lanzar una <span class="acc">experiencia pagada</span>.</p>
-    <p class="l-en">Nari, I reviewed the behavior of the last four weeks to identify which parts of the site are generating exploration, which topics receive the most attention, and which journey we still need to complete before launching a <span class="acc">paid experience</span>.</p>
-    <p class="l-es">Esta lectura se enfoca en el comportamiento dentro del sitio, no en el volumen. Todavía no hemos realizado una distribución externa consistente, así que los datos se utilizan para orientar la primera experiencia que vamos a construir y probar.</p>
-    <p class="l-en">This reading focuses on behavior inside the site, not on volume. We have not yet run consistent external distribution, so the data is used to guide the first experience we are going to build and test.</p>
+    <p class="l-es">Nari, revisé el comportamiento de las últimas cuatro semanas para identificar qué partes de criarsinculpas.com están generando exploración, qué temas reciben mayor atención y qué recorrido todavía necesitamos completar antes de lanzar una <span class="acc">experiencia pagada</span>.</p>
+    <p class="l-en">Nari, I reviewed the behavior of the last four weeks to identify which parts of criarsinculpas.com are generating exploration, which topics receive the most attention, and which journey we still need to complete before launching a <span class="acc">paid experience</span>.</p>
+    <p class="l-es">Esta lectura se enfoca en el comportamiento dentro de criarsinculpas.com, no en el volumen. Todavía no hemos realizado una distribución externa consistente, así que los datos se utilizan para orientar la primera experiencia que vamos a construir y probar.</p>
+    <p class="l-en">This reading focuses on behavior inside criarsinculpas.com, not on volume. We have not yet run consistent external distribution, so the data is used to guide the first experience we are going to build and test.</p>
     <p class="l-es">El propósito de esta lectura es más inmediato: utilizar lo que ya podemos observar para decidir <span class="acc">qué debemos construir y probar primero</span>.</p>
     <p class="l-en">The purpose of this reading is more immediate: to use what we can already observe to decide <span class="acc">what we should build and test first</span>.</p>
   </section>
 
   <section class="decision rv">
-    <div class="eyebrow3">
+    <div class="eyebrow-quiet">
       <span class="l-es">La decisión que empieza a tomar forma</span>
       <span class="l-en">The decision taking shape</span>
     </div>
@@ -410,18 +908,77 @@
       <span class="l-en">What we are learning</span>
     </div>
 
+    <!-- Señal 1 · pulso · movement across the site -->
     <article class="senal rv">
-      <div class="senal-num">1</div>
+      <div class="senal-mark">
+        <span class="senal-icon">
+          <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- sereno wash -->
+  <circle cx="50" cy="50" r="34" fill="#8FA8C4" opacity="0.35" transform="translate(2 3) rotate(-4 50 50)"/>
+  <g fill="none" stroke="#1F2E46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <!-- outer ring, imperfect -->
+    <path d="M50 18 c 18 1, 32 15, 32 32 c 0 18 -15 32 -33 32 c -17 0 -31 -15 -31 -33 c 0 -17 15 -31 32 -31z"/>
+    <!-- middle ring -->
+    <path d="M50 30 c 12 0, 22 10, 22 22 c 0 11 -10 21 -22 21 c -11 0 -21 -11 -21 -22 c 0 -11 10 -21 21 -21z" opacity="0.7"/>
+    <!-- inner ring / heartbeat core -->
+    <path d="M50 42 c 5 0, 9 4, 9 9 c 0 5 -4 9 -9 9 c -5 0 -9 -4 -9 -9 c 0 -5 4 -9 9 -9z" opacity="0.9"/>
+    <!-- center dot -->
+    <circle cx="50" cy="51" r="1.8" fill="#1F2E46" stroke="none"/>
+  </g>
+</svg>
+        </span>
+        <span class="senal-num"><b>01</b> · <span class="l-es">Señal</span><span class="l-en">Signal</span></span>
+      </div>
       <div>
         <h2 class="l-es">Las visitas no se concentran en <span class="acc">una sola página</span></h2>
         <h2 class="l-en">Visits are not concentrated on <span class="acc">a single page</span></h2>
-        <p class="l-es">Las visitas incluyen movimiento entre los protocolos, El Método, tu historia y las áreas de acceso. Esto sugiere que las diferentes partes del sitio están conectando entre sí. El siguiente paso es observar si ese mismo comportamiento aparece cuando llevemos una audiencia externa.</p>
-        <p class="l-en">Visits include movement between the protocols, El Método, your story, and the access areas. This suggests the different parts of the site are connecting with each other. The next step is to see whether the same behavior appears when we bring an external audience.</p>
+        <p class="l-es">Las visitas incluyen movimiento entre los protocolos, El Método, tu historia y las áreas de acceso. Esto sugiere que las diferentes partes de criarsinculpas.com están conectando entre sí. El siguiente paso es observar si ese mismo comportamiento aparece cuando llevemos una audiencia externa.</p>
+        <p class="l-en">Visits include movement between the protocols, El Método, your story, and the access areas. This suggests the different parts of criarsinculpas.com are connecting with each other. The next step is to see whether the same behavior appears when we bring an external audience.</p>
       </div>
     </article>
 
+    <!-- Señal 2 · umbral · Pantallas → Desbordes (the actual thematic bridge) -->
     <article class="senal rv">
-      <div class="senal-num">2</div>
+      <div class="senal-mark">
+        <span class="senal-icon">
+          <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- LEFT room (warm — inside the screen) — peach wash -->
+  <path d="M14 32 L 44 32 L 44 76 L 14 76 z"
+        fill="#F4A88A" opacity="0.42" transform="translate(2 3) rotate(-2 30 54)"/>
+
+  <!-- RIGHT room (calm — after screens) — sereno wash -->
+  <path d="M56 32 L 86 32 L 86 76 L 56 76 z"
+        fill="#8FA8C4" opacity="0.38" transform="translate(-2 3) rotate(2 70 54)"/>
+
+  <g fill="none" stroke="#1F2E46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <!-- left room outline -->
+    <path d="M14 76 L 14 32 L 44 32"/>
+    <!-- right room outline -->
+    <path d="M56 32 L 86 32 L 86 76"/>
+    <!-- shared floor -->
+    <path d="M10 76 L 90 76"/>
+    <!-- opening — small arched threshold between rooms -->
+    <path d="M44 76 L 44 44 c 0 -4, 3 -6, 6 -6 c 3 0, 6 2, 6 6 L 56 76"/>
+  </g>
+
+  <!-- tiny geometric shapes on LEFT (the screen world) -->
+  <g fill="#E89BA8" opacity="0.85">
+    <circle cx="24" cy="46" r="2.2"/>
+    <rect x="30" y="52" width="4" height="4" rx="1"/>
+    <circle cx="22" cy="60" r="1.8"/>
+  </g>
+
+  <!-- small figure walking THROUGH the opening, mid-passage -->
+  <g fill="none" stroke="#1F2E46" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="50" cy="60" r="4.5"/>
+    <path d="M50 64.5 L 50 74"/>
+    <path d="M50 68 L 46 72"/>
+    <path d="M50 68 L 54 72"/>
+  </g>
+</svg>
+        </span>
+        <span class="senal-num"><b>02</b> · <span class="l-es">Señal</span><span class="l-en">Signal</span></span>
+      </div>
       <div>
         <h2 class="l-es">Pantallas abre la <span class="acc">conversación</span>; regulación emocional le da <span class="acc">profundidad</span></h2>
         <h2 class="l-en">Screens open the <span class="acc">conversation</span>; emotional regulation gives it <span class="acc">depth</span></h2>
@@ -432,8 +989,34 @@
       </div>
     </article>
 
+    <!-- Señal 3 · presencia · confianza en Nari -->
     <article class="senal rv">
-      <div class="senal-num">3</div>
+      <div class="senal-mark">
+        <span class="senal-icon">
+          <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- ambar wash — soft field connecting the two -->
+  <ellipse cx="50" cy="54" rx="34" ry="18" fill="#E4A85C" opacity="0.32" transform="translate(2 3) rotate(-2 50 54)"/>
+
+  <g fill="none" stroke="#1F2E46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <!-- left figure — slightly smaller (child) -->
+    <circle cx="34" cy="46" r="8"/>
+    <path d="M34 54 L 34 74"/>
+    <path d="M34 62 L 28 70"/>
+    <path d="M34 62 L 40 70"/>
+
+    <!-- right figure — slightly taller (adult) -->
+    <circle cx="66" cy="42" r="10"/>
+    <path d="M66 52 L 66 76"/>
+    <path d="M66 60 L 58 70"/>
+    <path d="M66 60 L 74 70"/>
+  </g>
+
+  <!-- tiny ambar dot floating between them — the felt presence -->
+  <circle cx="50" cy="54" r="2.2" fill="#E4A85C" stroke="#1F2E46" stroke-width="0.6"/>
+</svg>
+        </span>
+        <span class="senal-num"><b>03</b> · <span class="l-es">Señal</span><span class="l-en">Signal</span></span>
+      </div>
       <div>
         <h2 class="l-es">La confianza en <span class="acc">ti</span> forma parte de la decisión</h2>
         <h2 class="l-en">Trust in <span class="acc">you</span> is part of the decision</h2>
@@ -444,8 +1027,28 @@
       </div>
     </article>
 
+    <!-- Señal 4 · ritmo · defined experience (start / end, cadence) -->
     <article class="senal rv">
-      <div class="senal-num">4</div>
+      <div class="senal-mark">
+        <span class="senal-icon">
+          <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- terra wash pill behind -->
+  <rect x="12" y="38" width="76" height="24" rx="12" fill="#C45A47" opacity="0.28" transform="translate(2 3) rotate(-3 50 50)"/>
+  <g fill="none" stroke="#1F2E46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <!-- baseline entering -->
+    <path d="M14 50 L 24 50"/>
+    <!-- five short peaks — heartbeat rhythm -->
+    <path d="M24 50 L 28 40 L 32 60 L 36 46 L 40 54 L 44 42 L 48 58 L 52 46 L 56 54 L 60 40 L 64 60 L 68 50"/>
+    <!-- baseline exiting -->
+    <path d="M68 50 L 86 50"/>
+    <!-- accent dots — two terra flecks that mark the "start/end" of the crisis window -->
+    <circle cx="18" cy="50" r="2.2" fill="#C45A47" stroke="none"/>
+    <circle cx="82" cy="50" r="2.2" fill="#C45A47" stroke="none"/>
+  </g>
+</svg>
+        </span>
+        <span class="senal-num"><b>04</b> · <span class="l-es">Señal</span><span class="l-en">Signal</span></span>
+      </div>
       <div>
         <h2 class="l-es">La inscripción y el portal necesitan una <span class="acc">experiencia definida</span></h2>
         <h2 class="l-en">Registration and the portal need a <span class="acc">defined experience</span></h2>
@@ -458,7 +1061,8 @@
   </section>
 
   <section class="recomendacion rv">
-    <div class="eyebrow2">
+    <div class="eyebrow-onnavy">
+      <span class="dot" aria-hidden="true"></span>
       <span class="l-es">Recomendación</span>
       <span class="l-en">Recommendation</span>
     </div>
@@ -510,7 +1114,7 @@
 
   <footer class="rv">
     <div class="firma">
-      <span>Criar Sin Culpas · criarsinculpas.com</span>
+      <span><span class="mark">◆</span>&nbsp; Criar Sin Culpas · criarsinculpas.com</span>
       <span class="l-es">Preparado por LG Studio · Agosto 2026</span>
       <span class="l-en">Prepared by LG Studio · August 2026</span>
     </div>
