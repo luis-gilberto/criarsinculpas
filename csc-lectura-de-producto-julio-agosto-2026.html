@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Criar Sin Culpas · Lectura de producto · Julio · Agosto 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#18242F;
+    --navy-soft:#2C3B49;
+    --terracotta:#BC6044;
+    --terracotta-deep:#A54F35;
+    --peach:#F3CDB3;
+    --peach-soft:#F8E3D2;
+    --paper:#FAF6EF;
+    --paper-deep:#F2ECE0;
+    --line:rgba(24,36,47,.12);
+    --ink-60:rgba(24,36,47,.62);
+    --ink-45:rgba(24,36,47,.45);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--navy);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--peach);color:var(--navy);}
+
+  .wrap{max-width:840px;margin:0 auto;padding:0 24px;}
+
+  /* ---------- Language visibility ---------- */
+  html[lang="es"] .l-en{display:none !important;}
+  html[lang="en"] .l-es{display:none !important;}
+
+  /* ---------- Language toggle ---------- */
+  .lang-toggle{
+    position:absolute;
+    top:32px;
+    right:0;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+  }
+  .lt-btn{
+    background:none;
+    border:none;
+    cursor:pointer;
+    font:inherit;
+    letter-spacing:inherit;
+    color:var(--ink-45);
+    padding:6px 4px;
+    transition:color .2s ease;
+  }
+  .lt-btn:hover{color:var(--navy);}
+  .lt-btn.active{color:var(--terracotta);border-bottom:1px solid var(--terracotta);}
+  .lt-btn:focus-visible{outline:2px solid var(--terracotta);outline-offset:2px;}
+  .lt-sep{color:var(--ink-45);}
+
+  /* ---------- Header ---------- */
+  header{
+    padding:72px 0 56px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--terracotta);
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:28px;
+  }
+  .eyebrow::after{content:'';height:1px;flex:1;background:var(--line);}
+  h1{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;
+    font-size:clamp(38px,6vw,58px);
+    line-height:1.08;
+    letter-spacing:-.01em;
+    max-width:18ch;
+  }
+  h1 em{font-style:normal;color:var(--terracotta);}
+  .subtitulo{
+    margin-top:18px;
+    font-size:16px;
+    color:var(--ink-60);
+    max-width:44ch;
+  }
+  .header-meta{
+    margin-top:32px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 36px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:.06em;
+    color:var(--ink-60);
+  }
+  .header-meta span b{font-weight:500;color:var(--navy);}
+
+  /* ---------- Carta / intro ---------- */
+  .carta{padding:56px 0 8px;}
+  .carta p{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(20px,2.6vw,23px);
+    line-height:1.55;
+    max-width:40ch;
+    color:var(--navy);
+  }
+  .carta p + p{margin-top:1em;}
+  html[lang="en"] .carta p.l-en + p.l-es{margin-top:0;}
+  .carta .acc{color:var(--terracotta);font-weight:600;}
+
+  /* ---------- La decisión ---------- */
+  .decision{padding:88px 0 0;text-align:center;}
+  .decision .eyebrow3{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--terracotta);
+    margin-bottom:26px;
+  }
+  .decision h2{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;
+    font-size:clamp(28px,4.4vw,40px);
+    line-height:1.25;
+    max-width:26ch;
+    margin:0 auto 22px;
+  }
+  .decision h2 .acc{color:var(--terracotta);}
+  .decision p{
+    max-width:58ch;
+    margin:0 auto;
+    color:var(--navy-soft);
+    font-size:15.5px;
+  }
+  .decision p + p{margin-top:.9em;}
+  .decision .direccion{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(19px,2.5vw,22px);
+    line-height:1.5;
+    color:var(--navy);
+    max-width:44ch;
+  }
+  .decision .direccion .acc{color:var(--terracotta);font-weight:600;}
+
+  /* ---------- Aprendizajes ---------- */
+  .senales{padding:88px 0 0;}
+  .senales-head{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--terracotta);
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:8px;
+  }
+  .senales-head::after{content:'';height:1px;flex:1;background:var(--line);}
+
+  .senal{
+    padding:52px 0;
+    border-bottom:1px solid var(--line);
+    display:grid;
+    grid-template-columns:64px 1fr;
+    gap:28px;
+  }
+  .senal:last-of-type{border-bottom:none;}
+  .senal-num{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:44px;
+    line-height:1;
+    color:var(--peach);
+    padding-top:4px;
+  }
+  .senal h2{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;
+    font-size:clamp(25px,3.4vw,30px);
+    line-height:1.22;
+    margin-bottom:16px;
+    max-width:28ch;
+  }
+  .senal h2 .acc{color:var(--terracotta);}
+  .senal p{
+    max-width:58ch;
+    color:var(--navy-soft);
+    font-size:15.5px;
+  }
+  .senal p + p{margin-top:.9em;}
+  html[lang="es"] .senal p.l-es + p.l-en + p.l-es,
+  html[lang="en"] .senal p.l-en + p.l-es + p.l-en{margin-top:.9em;}
+  .senal p b{color:var(--navy);font-weight:600;}
+  .senal p .acc{color:var(--terracotta);font-weight:600;}
+
+  /* ---------- Recomendación (navy) ---------- */
+  .recomendacion{
+    margin:88px 0 0;
+    background:var(--navy);
+    border-radius:16px;
+    padding:clamp(36px,6vw,56px);
+    color:var(--paper);
+  }
+  .recomendacion .eyebrow2{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--peach);
+    margin-bottom:20px;
+  }
+  .recomendacion h2{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;
+    font-size:clamp(26px,3.8vw,34px);
+    line-height:1.25;
+    margin-bottom:18px;
+    max-width:26ch;
+  }
+  .recomendacion .intro{
+    color:rgba(250,246,239,.78);
+    max-width:56ch;
+    font-size:15.5px;
+    margin-bottom:28px;
+  }
+  .rec-list{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px 32px;
+    list-style:none;
+  }
+  .rec-list li{
+    position:relative;
+    padding-left:22px;
+    font-size:14.5px;
+    color:rgba(250,246,239,.85);
+    line-height:1.5;
+  }
+  .rec-list li::before{
+    content:'';
+    position:absolute;
+    left:0;
+    top:9px;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--terracotta);
+  }
+
+  /* ---------- Contexto ---------- */
+  .contexto{padding:88px 0 0;}
+  .contexto-head{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--terracotta);
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:36px;
+  }
+  .contexto-head::after{content:'';height:1px;flex:1;background:var(--line);}
+
+  .stats-quiet{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 40px;
+    padding:22px 0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--ink-60);
+    align-items:baseline;
+  }
+  .stats-quiet b{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;
+    font-size:22px;
+    letter-spacing:0;
+    color:var(--navy);
+    margin-right:6px;
+  }
+
+  .contexto-notas{margin-top:40px;}
+  .contexto-notas p{
+    max-width:60ch;
+    color:var(--navy-soft);
+    font-size:15px;
+  }
+  .contexto-notas p + p{margin-top:.9em;}
+  html[lang="en"] .contexto-notas p.l-en + p.l-es{margin-top:0;}
+  .contexto-notas p b{color:var(--navy);font-weight:600;}
+
+  /* ---------- Cierre ---------- */
+  footer{
+    margin-top:96px;
+    border-top:1px solid var(--line);
+    padding:48px 0 72px;
+  }
+  footer .firma{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    gap:12px 24px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--ink-45);
+  }
+
+  /* ---------- Reveal ---------- */
+  .rv{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease;}
+  .rv.in{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:reduce){
+    .rv{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:640px){
+    .lang-toggle{top:24px;}
+    header{padding-top:88px;}
+    .bignums{grid-template-columns:1fr;}
+    .bignum + .bignum{border-left:none;border-top:1px solid var(--line);}
+    .senal{grid-template-columns:1fr;gap:8px;}
+    .senal-num{font-size:32px;}
+    .rec-list{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="lang-toggle" role="group" aria-label="Idioma / Language">
+      <button class="lt-btn active" data-lang="es" type="button">ES</button>
+      <span class="lt-sep">·</span>
+      <button class="lt-btn" data-lang="en" type="button">EN</button>
+    </div>
+    <div class="eyebrow">
+      <span class="l-es">Criar Sin Culpas · Lectura de producto</span>
+      <span class="l-en">Criar Sin Culpas · Product reading</span>
+    </div>
+    <h1>
+      <span class="l-es">Lo que el sitio nos está ayudando a <em>decidir</em></span>
+      <span class="l-en">What the site is helping us <em>decide</em></span>
+    </h1>
+    <p class="subtitulo">
+      <span class="l-es">Una lectura temprana para orientar la primera experiencia pagada.</span>
+      <span class="l-en">An early reading to guide the first paid experience.</span>
+    </p>
+    <div class="header-meta">
+      <span class="l-es">Periodo · <b>9 jul al 5 ago 2026</b></span>
+      <span class="l-en">Period · <b>Jul 9 to Aug 5, 2026</b></span>
+      <span class="l-es">Fuente · <b>Plausible Analytics</b></span>
+      <span class="l-en">Source · <b>Plausible Analytics</b></span>
+      <span class="l-es">Preparado para · <b>Nari</b></span>
+      <span class="l-en">Prepared for · <b>Nari</b></span>
+    </div>
+  </header>
+
+  <section class="carta rv">
+    <p class="l-es">Nari, revisé el comportamiento de las últimas cuatro semanas para identificar qué partes del sitio están generando exploración, qué temas reciben mayor atención y qué recorrido todavía necesitamos completar antes de lanzar una <span class="acc">experiencia pagada</span>.</p>
+    <p class="l-en">Nari, I reviewed the behavior of the last four weeks to identify which parts of the site are generating exploration, which topics receive the most attention, and which journey we still need to complete before launching a <span class="acc">paid experience</span>.</p>
+    <p class="l-es">Esta lectura se enfoca en el comportamiento dentro del sitio, no en el volumen. Todavía no hemos realizado una distribución externa consistente, así que los datos se utilizan para orientar la primera experiencia que vamos a construir y probar.</p>
+    <p class="l-en">This reading focuses on behavior inside the site, not on volume. We have not yet run consistent external distribution, so the data is used to guide the first experience we are going to build and test.</p>
+    <p class="l-es">El propósito de esta lectura es más inmediato: utilizar lo que ya podemos observar para decidir <span class="acc">qué debemos construir y probar primero</span>.</p>
+    <p class="l-en">The purpose of this reading is more immediate: to use what we can already observe to decide <span class="acc">what we should build and test first</span>.</p>
+  </section>
+
+  <section class="decision rv">
+    <div class="eyebrow3">
+      <span class="l-es">La decisión que empieza a tomar forma</span>
+      <span class="l-en">The decision taking shape</span>
+    </div>
+    <h2 class="l-es">La recomendación no es comenzar con una <span class="acc">membresía amplia</span>.</h2>
+    <h2 class="l-en">The recommendation is not to start with a <span class="acc">broad membership</span>.</h2>
+    <p class="direccion l-es">La dirección más concreta es diseñar una primera experiencia alrededor de una necesidad específica, conectando los <span class="acc">límites de pantalla</span> con el acompañamiento de los <span class="acc">desbordes emocionales</span> que pueden aparecer durante esas transiciones.</p>
+    <p class="direccion l-en">The most concrete direction is to design a first experience around a specific need, connecting <span class="acc">screen boundaries</span> with support for the <span class="acc">emotional overwhelm</span> that can appear during those transitions.</p>
+    <p class="l-es">Todavía es una hipótesis. Pero es la hipótesis que mejor conecta los contenidos que atraen atención, la profundidad de lectura, la confianza en ti y la experiencia que estamos comenzando a construir mediante Outseta y el portal.</p>
+    <p class="l-en">It is still a hypothesis. But it is the hypothesis that best connects the content drawing attention, the depth of reading, the trust in you, and the experience we are starting to build through Outseta and the portal.</p>
+  </section>
+
+  <section class="senales">
+    <div class="senales-head rv">
+      <span class="l-es">Qué estamos aprendiendo</span>
+      <span class="l-en">What we are learning</span>
+    </div>
+
+    <article class="senal rv">
+      <div class="senal-num">1</div>
+      <div>
+        <h2 class="l-es">Las visitas no se concentran en <span class="acc">una sola página</span></h2>
+        <h2 class="l-en">Visits are not concentrated on <span class="acc">a single page</span></h2>
+        <p class="l-es">Las visitas incluyen movimiento entre los protocolos, El Método, tu historia y las áreas de acceso. Esto sugiere que las diferentes partes del sitio están conectando entre sí. El siguiente paso es observar si ese mismo comportamiento aparece cuando llevemos una audiencia externa.</p>
+        <p class="l-en">Visits include movement between the protocols, El Método, your story, and the access areas. This suggests the different parts of the site are connecting with each other. The next step is to see whether the same behavior appears when we bring an external audience.</p>
+      </div>
+    </article>
+
+    <article class="senal rv">
+      <div class="senal-num">2</div>
+      <div>
+        <h2 class="l-es">Pantallas abre la <span class="acc">conversación</span>; regulación emocional le da <span class="acc">profundidad</span></h2>
+        <h2 class="l-en">Screens open the <span class="acc">conversation</span>; emotional regulation gives it <span class="acc">depth</span></h2>
+        <p class="l-es">Pantallas fue el contenido temático con mayor alcance durante el periodo. Desbordes emocionales recibió menos visitantes, pero generó una lectura más profunda.</p>
+        <p class="l-en">Screen time was the thematic content with the widest reach during the period. Emotional overwhelm received fewer visitors, but generated deeper reading.</p>
+        <p class="l-es">Esta combinación nos da una hipótesis concreta para la primera experiencia: comenzar con una situación cotidiana que muchas familias reconocen y conectarla con herramientas de acompañamiento emocional.</p>
+        <p class="l-en">This combination gives us a concrete hypothesis for the first experience: start with an everyday situation many families recognize and connect it with emotional support tools.</p>
+      </div>
+    </article>
+
+    <article class="senal rv">
+      <div class="senal-num">3</div>
+      <div>
+        <h2 class="l-es">La confianza en <span class="acc">ti</span> forma parte de la decisión</h2>
+        <h2 class="l-en">Trust in <span class="acc">you</span> is part of the decision</h2>
+        <p class="l-es">Las visitas a Sobre Nari y El Método indican que las personas también buscan entender quién está detrás de la orientación y cómo trabajas.</p>
+        <p class="l-en">Visits to Sobre Nari and El Método indicate that people also want to understand who is behind the guidance and how you work.</p>
+        <p class="l-es">Esto no significa que la experiencia deba depender de acceso constante a ti. Significa que debemos encontrar una forma sostenible de hacer visible tu guía, tu criterio y tu presencia.</p>
+        <p class="l-en">This does not mean the experience should depend on constant access to you. It means we need to find a sustainable way to make your guidance, your judgment, and your presence visible.</p>
+      </div>
+    </article>
+
+    <article class="senal rv">
+      <div class="senal-num">4</div>
+      <div>
+        <h2 class="l-es">La inscripción y el portal necesitan una <span class="acc">experiencia definida</span></h2>
+        <h2 class="l-en">Registration and the portal need a <span class="acc">defined experience</span></h2>
+        <p class="l-es">Ya existe exploración de la página de inscripción y del portal. Ahora necesitamos definir con precisión qué recibe una familia al registrarse, qué ocurre después del pago, cómo comienza y qué encuentra cuando entra.</p>
+        <p class="l-en">There is already exploration of the registration page and the portal. Now we need to define precisely what a family receives when they register, what happens after payment, how they begin, and what they find when they enter.</p>
+        <p class="l-es">Ese es el recorrido que estamos comenzando a construir mediante Outseta.</p>
+        <p class="l-en">That is the journey we are starting to build through Outseta.</p>
+      </div>
+    </article>
+  </section>
+
+  <section class="recomendacion rv">
+    <div class="eyebrow2">
+      <span class="l-es">Recomendación</span>
+      <span class="l-en">Recommendation</span>
+    </div>
+    <h2 class="l-es">Diseñar una experiencia piloto pequeña antes de construir una membresía completa</h2>
+    <h2 class="l-en">Design a small pilot experience before building a full membership</h2>
+    <p class="intro l-es">El piloto debe permitirnos definir y probar:</p>
+    <p class="intro l-en">The pilot should let us define and test:</p>
+    <ul class="rec-list l-es">
+      <li>A quién ayudamos primero</li>
+      <li>Qué problema específico atendemos</li>
+      <li>Qué resultado ofrecemos</li>
+      <li>Qué materiales existentes podemos utilizar</li>
+      <li>Qué presencia tuya incluye</li>
+      <li>Cómo funcionan la inscripción, el pago, los primeros pasos y el acceso</li>
+    </ul>
+    <ul class="rec-list l-en">
+      <li>Who we help first</li>
+      <li>Which specific problem we address</li>
+      <li>What result we offer</li>
+      <li>Which existing materials we can use</li>
+      <li>How much of your presence it includes</li>
+      <li>How registration, payment, first steps, and access work</li>
+    </ul>
+  </section>
+
+  <section class="contexto">
+    <div class="contexto-head rv">
+      <span class="l-es">Contexto de esta lectura</span>
+      <span class="l-en">Context for this reading</span>
+    </div>
+
+    <div class="rv">
+      <div class="stats-quiet">
+        <span><b>38</b> <span class="l-es">visitantes únicos</span><span class="l-en">unique visitors</span></span>
+        <span><b>55</b> <span class="l-es">visitas</span><span class="l-en">visits</span></span>
+        <span><b>309</b> <span class="l-es">páginas vistas</span><span class="l-en">pageviews</span></span>
+      </div>
+    </div>
+
+    <div class="contexto-notas rv">
+      <p class="l-es">El volumen todavía es limitado y la mayoría del tráfico llegó de forma <b>directa</b>, sin campañas de distribución activas todavía.</p>
+      <p class="l-en">Volume is still limited and most of the traffic arrived <b>directly</b>, without active distribution campaigns yet.</p>
+      <p class="l-es">Por esa razón, los datos de este reporte se utilizan para <b>identificar comportamientos y orientar la construcción</b>. La próxima prueba externa nos permitirá comenzar a medir alcance, interés y respuesta con mayor claridad.</p>
+      <p class="l-en">For that reason, the data in this report is used to <b>identify behaviors and guide the build</b>. The next external test will let us begin to measure reach, interest, and response with greater clarity.</p>
+      <p class="l-es">La siguiente etapa de medición comenzará con una prueba externa claramente definida, utilizando UTMs y separando el tráfico interno.</p>
+      <p class="l-en">The next stage of measurement will begin with a clearly defined external test, using UTMs and separating internal traffic.</p>
+    </div>
+  </section>
+
+  <footer class="rv">
+    <div class="firma">
+      <span>Criar Sin Culpas · criarsinculpas.com</span>
+      <span class="l-es">Preparado por LG Studio · Agosto 2026</span>
+      <span class="l-en">Prepared by LG Studio · August 2026</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // Language toggle (csc_lang convention; localStorage wrapped for restricted environments)
+  const TITLES = {
+    es: 'Criar Sin Culpas · Lectura de producto · Julio · Agosto 2026',
+    en: 'Criar Sin Culpas · Product reading · July · August 2026'
+  };
+  function setLang(lang){
+    if(lang !== 'es' && lang !== 'en'){ lang = 'es'; }
+    document.documentElement.setAttribute('lang', lang);
+    document.title = TITLES[lang];
+    document.querySelectorAll('.lt-btn').forEach(function(btn){
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+    try{ localStorage.setItem('csc_lang', lang); }catch(e){}
+  }
+  document.querySelectorAll('.lt-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){ setLang(btn.getAttribute('data-lang')); });
+  });
+  (function(){
+    let saved = 'es';
+    try{ saved = localStorage.getItem('csc_lang') || 'es'; }catch(e){}
+    setLang(saved);
+  })();
+
+  // Scroll reveal
+  const io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.12});
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+</script>
+
+</body>
+</html>
