@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex, nofollow">
-  <title>Portal Premium · El Método Nari</title>
+  <title>El Estudio · Criar Sin Culpas</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -183,24 +183,216 @@
     .complete-btn.done { background:var(--gold-soft); color:var(--gold); border:1px solid rgba(176,141,87,.3); cursor:default; transform:none; box-shadow:none; }
     .complete-btn svg { width:16px; height:16px; }
 
-    /* LOCK */
-    #lock { position:fixed; inset:0; z-index:9999; background:var(--navy); display:flex; align-items:center; justify-content:center; transition:opacity .6s ease; }
-    #lock .box { text-align:center; max-width:420px; padding:48px 32px; width:90%; }
-    #lock .seal { width:46px; height:46px; margin:0 auto 22px; }
-    #lock .seal svg { width:100%; height:100%; animation:sealin 1s var(--ease); }
+    /* LOCK · El Estudio entry door */
+    #lock {
+      position:fixed; inset:0; z-index:9999;
+      background:#0B162C;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      padding:clamp(20px,4vh,48px) 20px;
+      transition:opacity .6s ease;
+      overflow-x:hidden;
+      overflow-y:auto;
+      -webkit-overflow-scrolling:touch;
+    }
+    #lock .box {
+      position:relative; z-index:2;
+      text-align:center;
+      max-width:440px; width:min(92vw,440px);
+      padding:clamp(12px,3vh,28px) 8px;
+      flex-shrink:0;
+    }
+    #lock .seal {
+      width:52px; height:52px; margin:0 auto 22px;
+    }
+    #lock .seal svg {
+      width:100%; height:100%;
+      animation:sealin 1s var(--ease);
+    }
     @keyframes sealin { from{opacity:0;transform:scale(.7) rotate(-20deg);} to{opacity:1;transform:none;} }
-    #lock h1 { font-family:var(--serif); font-size:clamp(2rem,5vw,2.9rem); font-weight:300; color:var(--void); line-height:1.1; margin-bottom:8px; }
-    #lock h1 em { font-style:italic; color:var(--gold); }
-    #lock .sub { font-size:.82rem; color:rgba(250,246,242,.45); margin-bottom:38px; letter-spacing:.04em; }
+    #lock .brand-mark {
+      font-family:var(--sans);
+      font-size:.68rem; font-weight:600;
+      letter-spacing:.28em; text-transform:uppercase;
+      color:rgba(250,246,242,.92);
+      margin-bottom:28px;
+    }
+    #lock .brand-mark .sin { color:#D97D5D; }
+    #lock h1 {
+      font-family:var(--serif);
+      font-size:clamp(2.6rem,7vw,3.6rem);
+      font-weight:400;
+      color:#FAF6F2;
+      line-height:1.05;
+      letter-spacing:-.01em;
+      margin-bottom:14px;
+    }
+    #lock .tagline {
+      font-family:var(--serif);
+      font-size:clamp(1.05rem,2.4vw,1.2rem);
+      font-weight:400;
+      line-height:1.45;
+      color:rgba(250,246,242,.78);
+      max-width:28ch;
+      margin:0 auto 36px;
+    }
+    #lock .tagline .acc { color:#D97D5D; font-style:italic; }
+    #lock .lock-rule {
+      display:flex; align-items:center; gap:14px;
+      margin:0 auto 22px; max-width:220px;
+    }
+    #lock .lock-rule::before,
+    #lock .lock-rule::after {
+      content:''; flex:1; height:1px;
+      background:rgba(143,168,196,.35);
+    }
+    #lock .lock-rule svg {
+      width:14px; height:14px; flex-shrink:0;
+      color:#C5A059;
+    }
+    #lock .access-note {
+      font-family:var(--sans);
+      font-size:.84rem;
+      line-height:1.55;
+      color:rgba(250,246,242,.55);
+      max-width:34ch;
+      margin:0 auto 28px;
+    }
+    #lock .access-note .acc { color:#D97D5D; font-weight:500; }
     #lock form { display:flex; flex-direction:column; gap:12px; }
-    #lock input { width:100%; padding:15px 20px; background:rgba(250,246,242,.06); border:1px solid rgba(250,246,242,.14); border-radius:12px; color:var(--void); font-family:var(--mono); font-size:1rem; text-align:center; letter-spacing:.22em; outline:none; transition:border-color .2s; }
-    #lock input:focus { border-color:var(--coral); }
-    #lock button { width:100%; padding:15px 20px; background:var(--coral-ink); color:#fff; border:none; border-radius:12px; font-family:var(--sans); font-size:.82rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; transition:opacity .2s,transform .2s; }
-    #lock button:hover { opacity:.9; transform:translateY(-1px); }
-    #le { margin-top:14px; font-size:.8rem; color:var(--coral); opacity:0; transition:opacity .3s; min-height:1em; }
-    #lockLangs { margin-top:30px; display:flex; gap:8px; justify-content:center; }
-    #lockLangs button { width:auto; padding:6px 14px; background:transparent; border:1px solid rgba(250,246,242,.16); color:rgba(250,246,242,.55); font-family:var(--mono); font-size:.6rem; letter-spacing:.1em; border-radius:999px; text-transform:none; }
-    #lockLangs button.active { background:rgba(250,246,242,.1); color:var(--void); border-color:rgba(250,246,242,.3); }
+    #lock .field {
+      position:relative; display:flex; align-items:center;
+    }
+    #lock .field-ico {
+      position:absolute; left:16px; top:50%; transform:translateY(-50%);
+      width:16px; height:16px; color:rgba(250,246,242,.45);
+      pointer-events:none; display:flex;
+    }
+    #lock .field-ico svg { width:100%; height:100%; }
+    #lock input {
+      width:100%;
+      padding:15px 18px 15px 44px;
+      background:rgba(8,14,28,.55);
+      border:1px solid rgba(143,168,196,.28);
+      border-radius:12px;
+      color:#FAF6F2;
+      font-family:var(--mono);
+      font-size:.92rem;
+      letter-spacing:.04em;
+      outline:none;
+      transition:border-color .2s, background .2s;
+    }
+    #lock input::placeholder { color:rgba(250,246,242,.38); letter-spacing:.02em; }
+    #lock input:focus { border-color:rgba(217,125,93,.7); background:rgba(8,14,28,.72); }
+    #lock .enter-btn {
+      width:100%;
+      padding:16px 20px;
+      background:#D97D5D;
+      color:#fff;
+      border:none;
+      border-radius:12px;
+      font-family:var(--sans);
+      font-size:.78rem;
+      font-weight:700;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      cursor:pointer;
+      transition:opacity .2s, transform .2s, background .2s;
+    }
+    #lock .enter-btn:hover { opacity:.92; transform:translateY(-1px); background:#E08A6B; }
+    #le {
+      margin-top:14px;
+      font-size:.8rem;
+      color:#D97D5D;
+      opacity:0;
+      transition:opacity .3s;
+      min-height:1em;
+    }
+    #lock .help {
+      position:relative;
+      z-index:3;
+      margin-top:22px;
+      font-family:var(--mono);
+      font-size:.68rem;
+      letter-spacing:.02em;
+      color:rgba(250,246,242,.42);
+      line-height:1.55;
+      max-width:100%;
+      padding:0 4px;
+    }
+    #lock .help a {
+      color:#D97D5D;
+      text-decoration:none;
+      border-bottom:1px solid transparent;
+      transition:border-color .2s;
+    }
+    #lock .help a:hover { border-bottom-color:rgba(217,125,93,.55); }
+    #lock .lock-foot {
+      margin-top:34px;
+      padding-top:28px;
+      border-top:1px solid rgba(143,168,196,.18);
+    }
+    #lockLangs { display:flex; gap:8px; justify-content:center; }
+    #lockLangs button {
+      width:auto;
+      padding:8px 16px;
+      background:transparent;
+      border:1px solid rgba(250,246,242,.16);
+      color:rgba(250,246,242,.5);
+      font-family:var(--mono);
+      font-size:.62rem;
+      letter-spacing:.08em;
+      border-radius:999px;
+      text-transform:none;
+      cursor:pointer;
+      transition:background .2s, color .2s, border-color .2s;
+    }
+    #lockLangs button.active {
+      background:rgba(250,246,242,.1);
+      color:#FAF6F2;
+      border-color:rgba(250,246,242,.32);
+    }
+    #lock .door-art {
+      position:relative;
+      z-index:1;
+      width:min(112px,34vw);
+      margin:28px auto 8px;
+      flex-shrink:0;
+      pointer-events:none;
+      opacity:.92;
+    }
+    #lock .door-art svg { width:100%; height:auto; display:block; }
+
+    /* Wide + tall: vignette in the left gutter, clear of the centered copy */
+    @media (min-width: 1180px) and (min-height: 760px) {
+      #lock .door-art {
+        position:absolute;
+        left:clamp(20px, 3.5vw, 56px);
+        bottom:clamp(20px, 4vh, 48px);
+        margin:0;
+        width:min(168px, 14vw);
+        /* Never spill into the centered column (440px / 2 + gap) */
+        max-width:calc(50vw - 260px);
+      }
+    }
+
+    /* Mid widths: keep door in-flow under the form so it cannot collide */
+    @media (max-width: 1179px), (max-height: 759px) {
+      #lock .door-art {
+        position:relative;
+        left:auto;
+        bottom:auto;
+        margin:28px auto 4px;
+        width:min(100px, 30vw);
+      }
+    }
+
+    @media (max-width: 420px) {
+      #lock .door-art { width:84px; margin-top:22px; }
+      #lock .help { font-size:.62rem; }
+    }
 
     #vmodal { position:fixed; inset:0; z-index:8000; background:rgba(31,46,70,.78); backdrop-filter:blur(8px); display:none; align-items:center; justify-content:center; padding:24px; }
     #vmodal.on { display:flex; animation:fadein .3s ease; }
@@ -240,27 +432,59 @@
 </head>
 <body>
 
-  <!-- LOCK -->
+  <!-- LOCK · El Estudio entry door -->
   <div id="lock">
     <div class="box">
-      <div class="seal">
-        <svg viewBox="0 0 46 46" fill="none">
-          <circle cx="23" cy="23" r="21" stroke="#B08D57" stroke-width="1.3"/>
-          <path d="M15 24c3 3.6 10 3.6 13-3C30 26 25 31 23 31s-8-3.4-8-7z" stroke="#F4A88A" stroke-width="1.4" stroke-linejoin="round"/>
-          <circle cx="23" cy="18" r="2.4" fill="#F4A88A"/>
+      <div class="seal" aria-hidden="true">
+        <svg viewBox="0 0 52 52" fill="none">
+          <circle cx="26" cy="26" r="24.5" stroke="#C5A059" stroke-width="1.2"/>
+          <circle cx="26" cy="20" r="2.6" fill="#D97D5D"/>
+          <path d="M16 28c3.2 4.2 12.8 4.2 16.8-3.2C35.2 30.5 29.2 36 26 36s-9.8-4-10-8z" stroke="#D97D5D" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
         </svg>
       </div>
-      <h1 id="lockTitle">Portal <em>Premium</em></h1>
-      <div class="sub" id="lockSub">El Método Nari · Acceso de Alumnos</div>
+      <div class="brand-mark">CRIAR <span class="sin">SIN</span> CULPAS</div>
+      <h1 id="lockTitle">El Estudio</h1>
+      <p class="tagline" id="lockTagline">Un espacio para aprender, prepararte y seguir <span class="acc">avanzando.</span></p>
+      <div class="lock-rule" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+      </div>
+      <p class="access-note" id="lockNote">El Estudio es un entorno de apoyo continuo con acceso para <span class="acc">miembros.</span></p>
       <form id="lf" onsubmit="checkPass(event)">
-        <input id="lp" type="password" autocomplete="off">
-        <button type="submit" id="lockBtn">Entrar →</button>
+        <div class="field">
+          <span class="field-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          </span>
+          <input id="lp" type="password" autocomplete="off" placeholder="Código de acceso" aria-label="Código de acceso">
+        </div>
+        <button type="submit" class="enter-btn" id="lockBtn">Entrar →</button>
       </form>
       <div id="le"></div>
-      <div id="lockLangs">
-        <button data-l="es">Español</button>
-        <button data-l="en">English</button>
+      <p class="help" id="lockHelp">¿No tienes acceso? Escribe a <a href="mailto:help@criarsinculpas.com">help@criarsinculpas.com</a></p>
+      <div class="lock-foot">
+        <div id="lockLangs">
+          <button data-l="es" type="button">Español</button>
+          <button data-l="en" type="button">English</button>
+        </div>
       </div>
+    </div>
+    <div class="door-art" aria-hidden="true">
+      <svg viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 198 H192" stroke="#C5A059" stroke-width="1.2" stroke-linecap="round" opacity=".55"/>
+        <path d="M28 208 H172" stroke="#C5A059" stroke-width="1" stroke-linecap="round" opacity=".28"/>
+        <path d="M52 198 V52 C52 40 62 30 78 30 H122 C138 30 148 40 148 52 V198" stroke="#C5A059" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M148 52 L186 68 V188 L148 198" stroke="#C5A059" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M148 52 L186 68" stroke="#C5A059" stroke-width="1.2" opacity=".7"/>
+        <defs>
+          <linearGradient id="doorGlow" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#F4A88A"/>
+            <stop offset="55%" stop-color="#D97D5D"/>
+            <stop offset="100%" stop-color="#BC6044"/>
+          </linearGradient>
+        </defs>
+        <rect x="78" y="42" width="48" height="148" rx="2" fill="url(#doorGlow)" opacity=".95"/>
+        <circle cx="168" cy="118" r="2" fill="#F4A88A" opacity=".85"/>
+        <circle cx="176" cy="102" r="1.2" fill="#C5A059" opacity=".7"/>
+      </svg>
     </div>
   </div>
 
@@ -334,8 +558,11 @@
     /* ════════ UI STRINGS ════════ */
     var UI = {
       es: {
-        lockTitle:'Portal <em>Premium</em>', lockSub:'El Método Nari · Acceso de Alumnos',
-        placeholder:'Clave de acceso', enter:'Entrar →', wrong:'Clave incorrecta. Inténtalo de nuevo.',
+        lockTitle:'El Estudio',
+        lockTagline:'Un espacio para aprender, prepararte y seguir <span class="acc">avanzando.</span>',
+        lockNote:'El Estudio es un entorno de apoyo continuo con acceso para <span class="acc">miembros.</span>',
+        lockHelp:'¿No tienes acceso? Escribe a <a href="mailto:help@criarsinculpas.com">help@criarsinculpas.com</a>',
+        placeholder:'Código de acceso', enter:'Entrar →', wrong:'Código incorrecto. Inténtalo de nuevo.',
         of:'de', modules:'módulos', courseTime:'1 h 9 min', soon:'Próximamente',
         chapterSoon:'El <b>Capítulo 03</b> se desbloquea pronto para alumnas Premium.',
         userSince:'Desde Junio 2026', badge:'Membresía Premium', logout:'Cerrar sesión',
@@ -349,7 +576,10 @@
         close:'Cerrar ✕', vK:'Clase en video', vT:'El reproductor de la clase se integra aquí.'
       },
       en: {
-        lockTitle:'Premium <em>Portal</em>', lockSub:'El Método Nari · Student Access',
+        lockTitle:'El Estudio',
+        lockTagline:'A space to learn, prepare, and keep <span class="acc">moving forward.</span>',
+        lockNote:'El Estudio is an ongoing support environment with access for <span class="acc">members.</span>',
+        lockHelp:'Don\u2019t have access? Write to <a href="mailto:help@criarsinculpas.com">help@criarsinculpas.com</a>',
         placeholder:'Access code', enter:'Enter →', wrong:'Wrong code. Try again.',
         of:'of', modules:'modules', courseTime:'1 hr 9 min', soon:'Coming soon',
         chapterSoon:'<b>Chapter 03</b> unlocks soon for Premium students.',
@@ -534,9 +764,12 @@
     /* ════════ RENDER: chrome ════════ */
     function renderChrome(){
       document.documentElement.lang = lang;
-      document.getElementById('lockTitle').innerHTML = tt('lockTitle');
-      document.getElementById('lockSub').textContent = tt('lockSub');
+      document.getElementById('lockTitle').textContent = tt('lockTitle');
+      document.getElementById('lockTagline').innerHTML = tt('lockTagline');
+      document.getElementById('lockNote').innerHTML = tt('lockNote');
+      document.getElementById('lockHelp').innerHTML = tt('lockHelp');
       document.getElementById('lp').setAttribute('placeholder', tt('placeholder'));
+      document.getElementById('lp').setAttribute('aria-label', tt('placeholder'));
       document.getElementById('lockBtn').textContent = tt('enter');
       document.getElementById('userSince').textContent = tt('userSince');
       document.getElementById('badgeLabel').textContent = tt('badge');
