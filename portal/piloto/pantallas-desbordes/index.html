@@ -1,0 +1,2057 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Pantallas → Desbordes · El Estudio · Criar Sin Culpas</title>
+  <meta name="description" content="Experiencia piloto de El Estudio: ubicar una transición de pantalla difícil, encontrar una forma clara de acompañarla y preparar la próxima vez.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    if (window.location.hostname === 'criarsinculpas.com') {
+      var s = document.createElement('script');
+      s.defer = true;
+      s.setAttribute('data-domain', 'criarsinculpas.com');
+      s.src = 'https://plausible.io/js/script.js';
+      document.head.appendChild(s);
+    }
+    window.plausible = window.plausible || function () {
+      if (window.location.hostname !== 'criarsinculpas.com') {
+        console.log('Plausible [Local]:', arguments[0], arguments[1]);
+      }
+    };
+  </script>
+  <script defer src="/js/track.js"></script>
+  <style>
+    :root {
+      --cream: #FAF6F2;
+      --blush: #FCE7DD;
+      --paper: #FFFFFF;
+      --peach: #F4A88A;
+      --peach-deep: #D96B47;
+      --navy: #1F2E46;
+      --slate: #8599AD;
+      --ink-60: rgba(31,46,70,.66);
+      --ink-40: rgba(31,46,70,.42);
+      --line: rgba(31,46,70,.10);
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, monospace;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --pad: clamp(20px, 5vw, 40px);
+      --max: 640px;
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--navy);
+      min-height: 100dvh;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection { background: rgba(244,168,138,.35); }
+    button, input, select, textarea { font: inherit; }
+    a { color: var(--peach-deep); }
+    :focus-visible { outline: 2px solid var(--peach-deep); outline-offset: 3px; }
+
+    .pilot {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+    .pilot-top {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(250,246,242,.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      padding: 12px var(--pad);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .pilot-brand {
+      font-family: var(--mono);
+      font-size: .58rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--ink-40);
+      flex: 1;
+      min-width: 0;
+    }
+    .pilot-brand b { color: var(--navy); font-weight: 600; }
+    .stage-dots {
+      display: flex; gap: 6px; align-items: center;
+    }
+    .stage-dots span {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(31,46,70,.15);
+      transition: background .25s, transform .25s;
+    }
+    .stage-dots span.on { background: var(--peach-deep); transform: scale(1.15); }
+    .stage-dots span.done { background: var(--slate); }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+    .menu-btn {
+      border: 1px solid var(--line);
+      background: var(--paper);
+      border-radius: 999px;
+      width: 40px; height: 40px;
+      display: grid; place-items: center;
+      cursor: pointer; color: var(--navy);
+      flex-shrink: 0;
+    }
+    .menu-btn svg { width: 18px; height: 18px; }
+
+    .menu-pop {
+      display: none;
+      position: absolute; right: var(--pad); top: 56px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: 0 18px 40px rgba(31,46,70,.10);
+      min-width: 200px;
+      padding: 8px;
+      z-index: 30;
+    }
+    .menu-pop.open { display: block; }
+    .menu-pop button {
+      width: 100%;
+      text-align: left;
+      background: none; border: none;
+      padding: 12px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      color: var(--navy);
+      font-size: .9rem;
+    }
+    .menu-pop button:hover { background: var(--blush); }
+    .menu-pop .danger { color: var(--peach-deep); }
+
+    .pilot-main {
+      flex: 1;
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: clamp(28px, 6vw, 48px) var(--pad) 120px;
+    }
+    .screen { display: none; animation: rise .45s var(--ease); }
+    .screen.on { display: block; }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .screen { animation: none; }
+      html { scroll-behavior: auto; }
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: .62rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--peach-deep);
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(1.9rem, 6vw, 2.55rem);
+      line-height: 1.12;
+      letter-spacing: -.01em;
+      margin-bottom: 14px;
+    }
+    h1 em, .acc { font-style: italic; color: var(--peach-deep); font-weight: 500; }
+    .lede {
+      font-size: 1.05rem;
+      color: var(--ink-60);
+      max-width: 38ch;
+      margin-bottom: 18px;
+    }
+    .context-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: .62rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--slate);
+      background: rgba(133,153,173,.12);
+      border-radius: 999px;
+      padding: 8px 12px;
+      margin-bottom: 32px;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 52px;
+      padding: 14px 22px;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: .95rem;
+      letter-spacing: .02em;
+      transition: transform .2s var(--ease), opacity .2s, background .2s;
+      text-decoration: none;
+      width: 100%;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+    .btn-primary { background: var(--navy); color: var(--cream); }
+    .btn-primary:hover:not(:disabled) { background: #182436; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--navy);
+      border: 1px solid var(--line);
+    }
+    .btn-ghost {
+      background: none;
+      border: none;
+      color: var(--ink-60);
+      min-height: 44px;
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      width: auto;
+      align-self: center;
+    }
+    .btn-soft { background: var(--blush); color: var(--navy); }
+
+    .invite-steps {
+      list-style: none;
+      margin: 22px 0 8px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 36ch;
+    }
+    .invite-steps li {
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+      font-size: .95rem;
+      color: var(--ink);
+    }
+    .invite-steps .n {
+      font-family: var(--mono);
+      font-size: .62rem;
+      letter-spacing: .1em;
+      color: var(--peach-deep);
+      min-width: 1.4rem;
+    }
+    .invite-meta {
+      font-size: .9rem;
+      color: var(--ink-60);
+      margin: 18px 0 6px;
+      max-width: 40ch;
+    }
+    .invite-note {
+      font-size: .82rem;
+      color: var(--ink-40);
+      margin-top: 16px;
+      max-width: 42ch;
+      line-height: 1.45;
+    }
+    .id-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 10px;
+      max-width: 420px;
+    }
+    .id-form .field { margin: 0; }
+    .id-form input[type="text"],
+    .id-form input[type="email"],
+    .id-form select {
+      width: 100%;
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font: inherit;
+      background: var(--paper);
+      color: var(--ink);
+    }
+    .id-form input:focus,
+    .id-form select:focus {
+      outline: none;
+      border-color: rgba(244,168,138,.7);
+    }
+    .id-hint {
+      font-size: .8rem;
+      color: var(--ink-40);
+      margin-top: 6px;
+    }
+    .dev-bypass {
+      display: none;
+      margin-top: 8px;
+      text-align: center;
+    }
+    .dev-bypass.show { display: block; }
+
+    .choice-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .choice {
+      text-align: left;
+      background: var(--paper);
+      border: 1.5px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px 18px 18px 20px;
+      cursor: pointer;
+      transition: border-color .2s, box-shadow .2s, background .2s;
+      width: 100%;
+    }
+    .choice:hover { border-color: rgba(244,168,138,.55); }
+    .choice.selected {
+      border-color: var(--peach-deep);
+      background: linear-gradient(180deg, #fff, var(--blush));
+      box-shadow: 0 10px 28px rgba(217,107,71,.08);
+    }
+    .choice .k {
+      font-family: var(--mono);
+      font-size: .58rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--peach-deep);
+      margin-bottom: 6px;
+    }
+    .choice .t {
+      font-family: var(--serif);
+      font-size: 1.28rem;
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+    .choice .d { font-size: .92rem; color: var(--ink-60); }
+
+    .orient-block {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      margin-bottom: 12px;
+    }
+    .orient-block .lbl {
+      font-family: var(--mono);
+      font-size: .58rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 8px;
+    }
+    .orient-block p { color: var(--ink-60); font-size: 1rem; }
+    .phrase-box {
+      background: var(--navy);
+      color: var(--cream);
+      border-radius: var(--radius);
+      padding: 22px;
+      margin: 8px 0 4px;
+    }
+    .phrase-box .lbl { color: var(--peach); }
+    .phrase-box .quote {
+      font-family: var(--serif);
+      font-size: clamp(1.25rem, 4vw, 1.45rem);
+      font-style: italic;
+      line-height: 1.35;
+      margin: 8px 0 16px;
+    }
+    .ori-note {
+      font-size: .92rem;
+      color: var(--ink-60);
+      max-width: 44ch;
+      margin: 18px 0 8px;
+      line-height: 1.5;
+    }
+    .path-principle {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--ink-60);
+      max-width: 36ch;
+      margin: -6px 0 22px;
+    }
+    .safety {
+      font-size: .82rem;
+      color: var(--ink-40);
+      margin-top: 18px;
+      max-width: 46ch;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .path-nav {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      margin: 8px 0 22px;
+    }
+    .path-nav button {
+      font-family: var(--mono);
+      font-size: .58rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--ink-40);
+      border-radius: 999px;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+    .path-nav button.current {
+      background: var(--navy);
+      color: var(--cream);
+      border-color: var(--navy);
+    }
+    .path-nav button.done { color: var(--navy); border-color: rgba(31,46,70,.22); }
+    .path-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 24px;
+    }
+    .path-card .step-name {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+    .path-card .more {
+      margin-top: 14px;
+      color: var(--ink-60);
+      font-size: .95rem;
+      display: none;
+    }
+    .path-card .more.open { display: block; }
+    .path-card .toggle-more {
+      margin-top: 12px;
+      background: none;
+      border: none;
+      color: var(--peach-deep);
+      cursor: pointer;
+      font-size: .88rem;
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      padding: 0;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+    .field label {
+      font-family: var(--mono);
+      font-size: .62rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--slate);
+    }
+    .seg {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .seg button, .pick {
+      border: 1.5px solid var(--line);
+      background: var(--paper);
+      border-radius: 12px;
+      padding: 14px 12px;
+      cursor: pointer;
+      color: var(--navy);
+      text-align: left;
+      font-size: .92rem;
+      transition: border-color .2s, background .2s;
+    }
+    .seg button.on, .pick.on {
+      border-color: var(--peach-deep);
+      background: var(--blush);
+    }
+    .field input, .field textarea, .field select {
+      width: 100%;
+      border: 1.5px solid var(--line);
+      background: var(--paper);
+      border-radius: 12px;
+      padding: 14px 16px;
+      color: var(--navy);
+      min-height: 52px;
+    }
+    .field textarea { min-height: 88px; resize: vertical; }
+    .pick-list { display: flex; flex-direction: column; gap: 8px; }
+
+    .plan-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 16px 40px rgba(31,46,70,.05);
+    }
+    .plan-card h2 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 1.7rem;
+      margin-bottom: 18px;
+    }
+    .plan-row {
+      padding: 14px 0;
+      border-top: 1px solid var(--line);
+    }
+    .plan-row:first-of-type { border-top: none; padding-top: 0; }
+    .plan-row .k {
+      font-family: var(--mono);
+      font-size: .58rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 4px;
+    }
+    .plan-row .v { font-size: 1.02rem; }
+    .toast {
+      position: fixed;
+      left: 50%; bottom: 24px;
+      transform: translateX(-50%) translateY(120%);
+      background: var(--navy);
+      color: var(--cream);
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-size: .88rem;
+      z-index: 50;
+      transition: transform .4s var(--ease);
+      max-width: calc(100vw - 32px);
+      text-align: center;
+    }
+    .toast.on { transform: translateX(-50%) translateY(0); }
+
+    .resource-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    .resource-links a {
+      display: block;
+      padding: 16px 18px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      text-decoration: none;
+      color: var(--navy);
+    }
+    .resource-links a span {
+      display: block;
+      font-family: var(--mono);
+      font-size: .58rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 4px;
+    }
+    .feedback {
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+    .fb-status {
+      font-size: .9rem;
+      margin-top: 14px;
+      max-width: 42ch;
+      line-height: 1.45;
+    }
+    .fb-status.ok { color: var(--navy); }
+    .fb-status.err { color: #8a3b2a; }
+    .fb-status.pending { color: var(--ink-60); }
+    .feedback h3 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 1.35rem;
+      margin-bottom: 8px;
+    }
+    .confirm {
+      display: none;
+      position: fixed; inset: 0; z-index: 60;
+      background: rgba(31,46,70,.45);
+      align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .confirm.on { display: flex; }
+    .confirm-box {
+      background: var(--cream);
+      border-radius: 18px;
+      padding: 28px;
+      max-width: 360px;
+      width: 100%;
+    }
+    .confirm-box p { margin: 8px 0 20px; color: var(--ink-60); }
+
+    @media (min-width: 768px) {
+      .seg { grid-template-columns: repeat(4, 1fr); }
+      .actions.row { flex-direction: row; }
+      .actions.row .btn { width: auto; flex: 1; }
+    }
+    @media print {
+      .pilot-top, .actions, .menu-pop, .toast, .feedback { display: none !important; }
+      .pilot-main { padding: 0; max-width: none; }
+      .screen { display: none !important; }
+      #screen-plan { display: block !important; }
+    }
+  </style>
+</head>
+<body data-protocol="csc-pilot-01">
+  <div class="pilot">
+    <header class="pilot-top">
+      <div class="pilot-brand"><b>El Estudio</b> · Piloto 01</div>
+      <div class="stage-dots" id="stageDots" aria-hidden="true"></div>
+      <p class="sr-only" id="stageAnnounce" aria-live="polite"></p>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Opciones" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="6" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="18" r="1"/></svg>
+      </button>
+      <div class="menu-pop" id="menuPop" role="menu">
+        <button type="button" data-action="lang">English</button>
+        <button type="button" data-action="resources">Ver recursos públicos</button>
+        <button type="button" class="danger" data-action="reset">Empezar de nuevo</button>
+      </div>
+    </header>
+
+    <main class="pilot-main" id="app">
+
+      <!-- INVITE (experiment wrapper) -->
+      <section class="screen" id="screen-invite" data-stage="invite">
+        <p class="eyebrow" data-i18n="invite_eyebrow">El Estudio · Prueba privada</p>
+        <h1 data-i18n="invite_h1">Estamos probando una nueva forma de acompañarte en esos momentos difíciles.</h1>
+        <p class="lede" data-i18n="invite_lede">Esta primera experiencia comienza con algo muy concreto: cuando apagar una pantalla termina en tensión, pelea o desborde.</p>
+        <p class="lede" data-i18n="invite_lede2">Queremos saber si una experiencia breve puede ayudarte a ubicar lo que está pasando, encontrar un siguiente paso claro y prepararte mejor para la próxima transición.</p>
+        <p class="eyebrow" style="margin-top:8px" data-i18n="invite_steps_lbl">Qué vas a hacer</p>
+        <ol class="invite-steps">
+          <li><span class="n">1</span><span data-i18n="invite_s1">Ubicar el momento</span></li>
+          <li><span class="n">2</span><span data-i18n="invite_s2">Recibir una orientación</span></li>
+          <li><span class="n">3</span><span data-i18n="invite_s3">Preparar una próxima prueba</span></li>
+          <li><span class="n">4</span><span data-i18n="invite_s4">Contarnos si te sirvió</span></li>
+        </ol>
+        <p class="invite-meta" data-i18n="invite_time">Aprox. 5–8 minutos.</p>
+        <div class="actions">
+          <button class="btn btn-primary" type="button" id="btnInviteContinue" data-i18n="cta_invite">Probar la experiencia</button>
+        </div>
+        <p class="invite-note" data-i18n="invite_note">Esta es una prueba privada de Criar Sin Culpas. No es terapia ni evaluación clínica.</p>
+      </section>
+
+      <!-- IDENTIFY (tester cohort) -->
+      <section class="screen" id="screen-identify" data-stage="identify">
+        <p class="eyebrow" data-i18n="id_eyebrow">Acceso de prueba</p>
+        <h1 data-i18n="id_h1">Antes de empezar, cuéntanos <em>quién eres</em>.</h1>
+        <p class="lede" data-i18n="id_lede">Solo lo necesario para esta prueba. No pedimos datos de tu hijo o hija.</p>
+        <form class="id-form" id="identifyForm" novalidate>
+          <div class="field">
+            <label for="idFirstName" data-i18n="id_name_lbl">Tu nombre</label>
+            <input type="text" id="idFirstName" name="firstName" autocomplete="given-name" maxlength="60" required>
+          </div>
+          <div class="field">
+            <label for="idEmail" data-i18n="id_email_lbl">Tu correo</label>
+            <input type="email" id="idEmail" name="email" autocomplete="email" maxlength="120" required>
+            <p class="id-hint" data-i18n="id_email_hint">Para esta prueba privada. No compartimos tu correo.</p>
+            <p class="id-hint" data-i18n="id_email_reason">Te lo pedimos para poder darte seguimiento a esta prueba y avisarte si se convierte en algo más grande.</p>
+          </div>
+          <input type="hidden" id="idLang" name="language" value="es">
+          <div class="field">
+            <label for="idSource" data-i18n="id_source_lbl">Código de invitación (opcional)</label>
+            <input type="text" id="idSource" name="source" autocomplete="off" maxlength="40" data-i18n-ph="id_source_ph" placeholder="Si te dieron uno">
+          </div>
+          <div class="actions">
+            <button class="btn btn-primary" type="submit" id="btnIdentify" data-i18n="cta_identify">Continuar</button>
+          </div>
+          <div class="dev-bypass" id="devBypass">
+            <button class="btn btn-ghost" type="button" id="btnDevBypass" data-i18n="cta_dev_bypass">Continuar en vista previa (solo local)</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ENTRY -->
+      <section class="screen" id="screen-entry" data-stage="entry">
+        <p class="eyebrow" data-i18n="entry_eyebrow">El Estudio · Experiencia piloto</p>
+        <h1 data-i18n="entry_h1">Cuando apagar la pantalla se convierte en <em>batalla</em>.</h1>
+        <p class="lede" data-i18n="entry_lede">Una experiencia breve para ayudarte a ubicar qué está pasando durante la transición, encontrar una forma clara de acompañarla y prepararte para la próxima vez.</p>
+        <div class="context-chip" data-i18n="entry_chip">Pantallas + regulación emocional</div>
+        <div class="actions">
+          <button class="btn btn-primary" type="button" data-go="situation" data-track="pilot_start" data-i18n="cta_start">Empezar</button>
+          <button class="btn btn-ghost" type="button" data-go="situation" data-skip="1" data-track="pilot_start" data-i18n="cta_mid">Ya estoy en medio del momento</button>
+        </div>
+      </section>
+
+      <!-- SITUATION -->
+      <section class="screen" id="screen-situation" data-stage="situation">
+        <p class="eyebrow" data-i18n="sit_eyebrow">Primero · Ubiquémonos</p>
+        <h1 data-i18n="sit_h1">¿Qué está pasando <em>ahora mismo</em>?</h1>
+        <p class="lede" data-i18n="sit_lede">No necesitas contar toda la historia. Elige lo que más se parece a este momento.</p>
+        <div class="choice-grid" id="situationChoices" role="radiogroup" aria-label="Situación"></div>
+        <div class="actions">
+          <button class="btn btn-primary" type="button" id="btnSituationNext" disabled data-go="orientation" data-i18n="cta_help_now">Ver qué puede ayudar ahora</button>
+          <button class="btn btn-ghost" type="button" data-go="entry" data-i18n="cta_back">Volver</button>
+        </div>
+      </section>
+
+      <!-- ORIENTATION -->
+      <section class="screen" id="screen-orientation" data-stage="orientation">
+        <p class="eyebrow" data-i18n="ori_eyebrow">Estás aquí</p>
+        <h1 id="oriTitle"></h1>
+        <div class="orient-block">
+          <div class="lbl" data-i18n="ori_what">Qué está pasando</div>
+          <p id="oriWhat"></p>
+        </div>
+        <div class="orient-block">
+          <div class="lbl" data-i18n="ori_priority">Qué importa ahora</div>
+          <p id="oriPriority"></p>
+        </div>
+        <div class="phrase-box">
+          <div class="lbl" data-i18n="ori_try">Qué probar</div>
+          <div class="quote" id="oriPhrase"></div>
+          <button class="btn btn-soft" type="button" id="btnCopyPhrase" data-i18n="cta_copy">Copiar frase</button>
+        </div>
+        <p class="ori-note" data-i18n="safety_nd">No todas las transiciones difíciles tienen la misma causa. A veces el cambio de actividad, el cansancio o la sobrecarga también influyen.</p>
+        <div class="safety" id="safetyBlock">
+          <p data-i18n="safety">Si hay riesgo físico, primero busca seguridad y pausa.</p>
+          <p data-i18n="safety_scope">Este recurso no está diseñado para situaciones con riesgo físico recurrente o crisis que requieran apoyo profesional inmediato.</p>
+        </div>
+        <div class="actions row">
+          <button class="btn btn-primary" type="button" data-go="path" data-track="pilot_path_start" data-i18n="cta_path">Seguir con la guía</button>
+          <button class="btn btn-secondary" type="button" data-go="situation" data-i18n="cta_other">Elegir otra situación</button>
+        </div>
+      </section>
+
+      <!-- PATH -->
+      <section class="screen" id="screen-path" data-stage="path">
+        <p class="eyebrow" data-i18n="path_eyebrow">La secuencia</p>
+        <h1 data-i18n="path_h1">Avisa · Valida · Guía · <em>Acompaña</em></h1>
+        <p class="lede" data-i18n="path_lede">Cuatro pasos breves. No son lecciones: son el orden de acompañar una transición.</p>
+        <p class="path-principle" data-i18n="path_principle">Puedes mantener el límite y acompañar la emoción al mismo tiempo.</p>
+        <div class="path-nav" id="pathNav"></div>
+        <div class="path-card" id="pathCard"></div>
+        <div class="actions row" id="pathActions"></div>
+      </section>
+
+      <!-- PLAN BUILDER -->
+      <section class="screen" id="screen-plan-builder" data-stage="plan-builder">
+        <p class="eyebrow" data-i18n="plan_eyebrow">Mi próxima transición</p>
+        <h1 data-i18n="plan_h1">Prepara lo <em>suficiente</em>.</h1>
+        <p class="lede" data-i18n="plan_lede">No necesitas diseñar una estrategia perfecta. Deja preparado lo suficiente para no empezar desde cero la próxima vez.</p>
+
+        <div class="field">
+          <label data-i18n="plan_when_lbl">¿Cuándo suele pasar?</label>
+          <div class="seg" id="whenSeg"></div>
+        </div>
+        <div class="field">
+          <label data-i18n="plan_aviso_lbl">¿Qué aviso quiero probar?</label>
+          <div class="pick-list" id="avisoPicks"></div>
+          <input type="text" id="avisoCustom" maxlength="160" data-i18n-ph="plan_aviso_ph" placeholder="O escribe tu propio aviso (corto)">
+        </div>
+        <div class="field">
+          <label data-i18n="plan_resist_lbl">Si el cambio se pone difícil, quiero recordar:</label>
+          <div class="pick-list" id="resistPicks"></div>
+        </div>
+        <div class="field">
+          <label data-i18n="plan_phrase_lbl">La frase que quiero tener a mano</label>
+          <div class="pick-list" id="phrasePicks"></div>
+        </div>
+        <div class="field">
+          <label data-i18n="plan_observe_lbl">Una cosa que quiero observar (opcional)</label>
+          <textarea id="observeField" maxlength="200" data-i18n-ph="plan_observe_ph" placeholder="Ej.: Si aviso antes, ¿baja la pelea?"></textarea>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" type="button" id="btnSavePlan" data-i18n="cta_save_plan">Guardar mi plan</button>
+          <button class="btn btn-ghost" type="button" data-go="path" data-i18n="cta_back">Volver</button>
+        </div>
+      </section>
+
+      <!-- PLAN -->
+      <section class="screen" id="screen-plan" data-stage="plan">
+        <p class="eyebrow" data-i18n="summary_eyebrow">Tu próxima prueba</p>
+        <div class="plan-card" id="planSummary"></div>
+        <div class="actions row">
+          <button class="btn btn-secondary" type="button" data-go="plan-builder" data-i18n="cta_edit">Editar plan</button>
+          <button class="btn btn-secondary" type="button" id="btnCopyPlan" data-i18n="cta_copy_plan">Copiar plan</button>
+          <button class="btn btn-secondary" type="button" id="btnPrintPlan" data-i18n="cta_print">Guardar / imprimir</button>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" type="button" data-go="complete" data-track="pilot_complete" data-i18n="cta_finish">Continuar</button>
+        </div>
+        <div class="resource-links">
+          <p class="eyebrow" style="margin-bottom:4px" data-i18n="handy">Para tener a mano</p>
+          <a href="/apoyo/screen-time"><span data-i18n="res_p_label">Pantallas</span><strong data-i18n="res_p_title">Límite sin guerra</strong></a>
+          <a href="/apoyo/emotional-escalation"><span data-i18n="res_d_label">Desbordes</span><strong data-i18n="res_d_title">Calma en crisis</strong></a>
+        </div>
+      </section>
+
+      <!-- COMPLETE -->
+      <section class="screen" id="screen-complete" data-stage="complete">
+        <p class="eyebrow" data-i18n="done_eyebrow">Listo</p>
+        <h1 data-i18n="done_h1">Ya tienes algo concreto para <em>probar</em>.</h1>
+        <p class="lede" data-i18n="done_lede">La próxima vez no tienes que empezar desde cero. Tu plan queda aquí para que puedas volver cuando lo necesites.</p>
+        <div class="actions">
+          <button class="btn btn-primary" type="button" data-go="plan" data-i18n="cta_my_plan">Volver a mi plan</button>
+          <a class="btn btn-secondary" href="/apoyo/" data-i18n="cta_explore">Explorar los recursos de Criar Sin Culpas</a>
+        </div>
+        <div class="feedback" id="feedbackBox">
+          <p class="eyebrow" data-i18n="fb_eyebrow">Ayúdanos a probar esta experiencia</p>
+          <h3 data-i18n="fb_q1">¿Esto te ayudó a saber qué hacer después?</h3>
+          <div class="pick-list" id="fbHelp"></div>
+          <h3 style="margin-top:22px" data-i18n="fb_q2">¿Qué parte te resultó más útil?</h3>
+          <div class="pick-list" id="fbUseful"></div>
+          <div class="field" style="margin-top:18px">
+            <label data-i18n="fb_comment_lbl">Si algo faltó, puedes contárnoslo aquí</label>
+            <textarea id="fbComment" maxlength="280" data-i18n-ph="fb_comment_ph" placeholder="Sin datos de tu hijo/a. Solo sobre la experiencia."></textarea>
+          </div>
+          <button class="btn btn-soft" type="button" id="btnFeedback" data-i18n="cta_feedback">Enviar comentario</button>
+          <p class="fb-status" id="fbStatus" role="status" aria-live="polite" hidden></p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="confirm" id="confirmReset" role="dialog" aria-modal="true" aria-labelledby="resetTitle">
+    <div class="confirm-box">
+      <h2 id="resetTitle" style="font-family:var(--serif);font-weight:400;font-size:1.4rem" data-i18n="reset_title">¿Empezar de nuevo?</h2>
+      <p data-i18n="reset_body">Se borrará tu situación elegida y el plan guardado en este dispositivo.</p>
+      <div class="actions row">
+        <button class="btn btn-secondary" type="button" id="resetCancel" data-i18n="cta_cancel">Cancelar</button>
+        <button class="btn btn-primary" type="button" id="resetOk" data-i18n="cta_reset_ok">Sí, empezar de nuevo</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── Access abstraction (Outseta can replace PilotParticipant later) ── */
+  var IS_PROD = location.hostname === 'criarsinculpas.com';
+  var ACCESS_KEY = 'csc_pilot_01_access';
+  var PARTICIPANT_KEY = 'csc_estudio_pilot_01_participant';
+  var SOURCE_KEY = 'csc_estudio_pilot_01_source';
+  var ALLOWED_SOURCES = ['nari', 'pantallas', 'email', 'instagram', 'direct'];
+  var FORMSPREE_ENDPOINT = 'https://formspree.io/f/xaqgwzqp';
+  var COHORT = 'test-a-utility';
+  var PILOT_ID = 'pantallas-desbordes';
+  var PILOT_VERSION = '1.1.0-test-a';
+
+  function uid() {
+    return 'p01_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
+  }
+
+  function normalizeSource(raw) {
+    var s = String(raw || '').toLowerCase().trim();
+    if (ALLOWED_SOURCES.indexOf(s) !== -1) return s;
+    if (s && /^[a-z0-9_-]{2,40}$/i.test(s)) return s.slice(0, 40);
+    return 'direct';
+  }
+
+  function captureSourceFromUrl() {
+    try {
+      var params = new URLSearchParams(location.search);
+      if (params.has('src')) {
+        var fromUrl = normalizeSource(params.get('src'));
+        try { sessionStorage.setItem(SOURCE_KEY, fromUrl); } catch (e) {}
+        try { localStorage.setItem(SOURCE_KEY, fromUrl); } catch (e) {}
+        return fromUrl;
+      }
+    } catch (e) {}
+    try {
+      var sess = sessionStorage.getItem(SOURCE_KEY);
+      if (sess) return normalizeSource(sess);
+    } catch (e) {}
+    try {
+      var loc = localStorage.getItem(SOURCE_KEY);
+      if (loc) return normalizeSource(loc);
+    } catch (e) {}
+    return 'direct';
+  }
+
+  var pilotSource = captureSourceFromUrl();
+
+  /* PilotParticipant — local now; Outseta account can back this later */
+  var PilotParticipant = {
+    load: function () {
+      try {
+        var raw = localStorage.getItem(PARTICIPANT_KEY);
+        if (!raw) return null;
+        var p = JSON.parse(raw);
+        if (!p || !p.participantId || !p.email) return null;
+        return p;
+      } catch (e) { return null; }
+    },
+    save: function (p) {
+      try { localStorage.setItem(PARTICIPANT_KEY, JSON.stringify(p)); } catch (e) {}
+      return p;
+    },
+    create: function (fields) {
+      var existing = PilotParticipant.load();
+      var now = Date.now();
+      return {
+        participantId: (existing && existing.participantId) || uid(),
+        firstName: String(fields.firstName || '').trim().slice(0, 60),
+        email: String(fields.email || '').trim().toLowerCase().slice(0, 120),
+        language: fields.language === 'en' ? 'en' : 'es',
+        source: normalizeSource(fields.source || pilotSource),
+        invitedAt: (existing && existing.invitedAt) || now,
+        startedAt: now
+      };
+    },
+    clear: function () {
+      try { localStorage.removeItem(PARTICIPANT_KEY); } catch (e) {}
+    }
+  };
+
+  var PilotAccessState = {
+    /* preview | invited-tester | future-access-pass */
+    get: function () {
+      if (!IS_PROD && !PilotParticipant.load()) return 'preview';
+      if (sessionStorage.getItem(ACCESS_KEY) === 'granted' && PilotParticipant.load()) {
+        return 'invited-tester';
+      }
+      if (sessionStorage.getItem(ACCESS_KEY) === 'preview-local' && !IS_PROD) {
+        return 'preview';
+      }
+      if (PilotParticipant.load()) return 'invited-tester';
+      return 'preview';
+    },
+    canEnterWrapper: function () { return true; },
+    canEnterCore: function () {
+      var flag = '';
+      try { flag = sessionStorage.getItem(ACCESS_KEY) || ''; } catch (e) {}
+      if (flag === 'granted' && PilotParticipant.load()) return true;
+      if (!IS_PROD && flag === 'preview-local') return true;
+      return false;
+    },
+    canEnter: function () { return PilotAccessState.canEnterWrapper(); },
+    grantInvitedTester: function () {
+      try { sessionStorage.setItem(ACCESS_KEY, 'granted'); } catch (e) {}
+    },
+    grantPreviewLocal: function () {
+      if (IS_PROD) return;
+      try { sessionStorage.setItem(ACCESS_KEY, 'preview-local'); } catch (e) {}
+    }
+  };
+
+  function postFormspree(payload) {
+    /* Local-only failure probe for QA: ?fb_dry_fail=1 */
+    if (!IS_PROD) {
+      try {
+        if (new URLSearchParams(location.search).get('fb_dry_fail') === '1') {
+          return Promise.resolve({ ok: false, status: 0 });
+        }
+      } catch (e) {}
+    }
+    /* Match existing apoyo check-in pattern: form-urlencoded + Accept JSON */
+    var body = new URLSearchParams();
+    Object.keys(payload || {}).forEach(function (key) {
+      var val = payload[key];
+      if (val === undefined || val === null) return;
+      body.append(key, String(val));
+    });
+    return fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: body
+    }).then(function (res) {
+      return { ok: !!res && res.ok, status: res ? res.status : 0 };
+    }).catch(function () {
+      return { ok: false, status: 0 };
+    });
+  }
+
+  /* ── Source content from apoyo/screen-time + emotional-escalation cards ── */
+  var SOURCE = {
+    pantallas: [
+      {
+        mode: 'suave',
+        title: { es: 'Suave', en: 'Gentle' },
+        when: { es: 'Todavía hay espacio para preparar la transición.', en: 'There is still room to prepare the transition.' },
+        phrase: { es: 'En 5 minutos toca apagar la pantalla.', en: "In 5 minutes, it's time to turn off the screen." },
+        hint: { es: 'Si todavía hay calma, este suele ser el momento más fácil para preparar la transición.', en: 'If there is still calm, this is usually the easiest moment to prepare the transition.' }
+      },
+      {
+        mode: 'paso_a_paso',
+        title: { es: 'Paso a paso', en: 'Step by step' },
+        when: { es: 'Se queda pegado o le cuesta arrancar.', en: "They get stuck or can't start." },
+        phrase: { es: 'Veo que te cuesta soltarla, pero es hora de apagarla.', en: "I can see it's hard to let it go, but it's time to turn it off." },
+        hint: { es: 'Un paso a la vez. Reduce la carga cognitiva.', en: 'One step at a time. Reduce cognitive load.' }
+      },
+      {
+        mode: 'firme',
+        title: { es: 'Firme + calma', en: 'Firm + calm' },
+        when: { es: 'Hay llanto o mucha resistencia.', en: 'There is crying or a lot of pushback.' },
+        phrase: { es: 'Usaste tus 5 minutos. Veo que estás frustrado. La pantalla descansa hasta mañana.', en: "You used your 5 minutes. I can see you're frustrated. The screen rests until tomorrow." },
+        hint: { es: 'Hecho + emoción + consecuencia. Sin negociar.', en: 'Fact + emotion + consequence. No negotiation.' }
+      }
+    ],
+    desbordes: [
+      {
+        mode: 'contener',
+        title: { es: 'Contener', en: 'Contain' },
+        when: { es: 'Empieza la intensidad. Tu hijo aún te escucha.', en: 'The intensity is starting. Your child can still hear you.' },
+        phrase: { es: 'Veo que estás molesto/frustrado pero aquí estoy.', en: "I see you're upset or frustrated—and I'm right here." },
+        hint: { es: 'Valida lo que siente, no trates de cambiarlo en el momento.', en: "Validate what they feel, don't try to change it in the moment." }
+      },
+      {
+        mode: 'regular',
+        title: { es: 'Regular juntos', en: 'Regulate together' },
+        when: { es: 'La emoción está subiendo. Necesita tu ritmo.', en: 'The emotion is rising. They need your rhythm.' },
+        phrase: { es: 'Vamos a tomarnos unos minutos para calmarnos poco a poco.', en: "Let's take a few minutes to calm down, little by little." },
+        hint: { es: 'Baja el ritmo y evita entrar en lucha.', en: 'Slow the pace and avoid getting into a fight.' }
+      },
+      {
+        mode: 'proteger',
+        title: { es: 'Sostener + proteger', en: 'Hold + protect' },
+        when: { es: 'Hay llanto fuerte. Ahora mismo lo más importante es evitar que la situación siga escalando.', en: 'There is heavy crying. Right now, the most important thing is to keep the situation from escalating further.' },
+        phrase: { es: 'Te doy un poco de espacio. En unos minutos vuelvo.', en: "I'm giving you a little space. I'll be back in a few minutes." },
+        hint: { es: 'Tu papel aquí es estabilizar, no absorber.', en: 'Your role here is to stabilize, not to absorb.' }
+      }
+    ]
+  };
+
+  /* Deterministic orientation from selected situation — uses source phrases only */
+  var ORIENT = {
+    calm: {
+      title: { es: 'Todavía hay calma', en: 'There is still calm' },
+      what: {
+        es: 'La pantalla sigue encendida y todavía hay espacio para preparar la transición antes de que aumente la intensidad.',
+        en: 'The screen is still on and there is still room to prepare the transition before intensity rises.'
+      },
+      priority: {
+        es: SOURCE.pantallas[0].hint.es + ' Avisa antes de que el límite llegue de golpe.',
+        en: SOURCE.pantallas[0].hint.en + ' Give a warning before the limit arrives abruptly.'
+      },
+      phrase: SOURCE.pantallas[0].phrase,
+      source: 'pantallas/suave'
+    },
+    resistance: {
+      title: { es: 'El cambio se pone difícil', en: 'The change is getting hard' },
+      what: {
+        es: 'Ya avisaste o intentaste cerrar y aparece negociación, rechazo o tensión. ' + SOURCE.pantallas[1].when.es,
+        en: 'You already warned or tried to close, and negotiation, refusal, or tension appears. ' + SOURCE.pantallas[1].when.en
+      },
+      priority: {
+        es: SOURCE.pantallas[1].hint.es + ' Mantén el límite con pocas palabras.',
+        en: SOURCE.pantallas[1].hint.en + ' Hold the limit with few words.'
+      },
+      phrase: SOURCE.pantallas[1].phrase,
+      source: 'pantallas/paso_a_paso'
+    },
+    anger: {
+      title: { es: 'Ya hay llanto o enojo', en: 'There is already crying or anger' },
+      what: {
+        es: 'El límite ya activó una respuesta emocional fuerte. ' + SOURCE.pantallas[2].when.es,
+        en: 'The limit already activated a strong emotional response. ' + SOURCE.pantallas[2].when.en
+      },
+      priority: {
+        es: SOURCE.pantallas[2].hint.es + ' No necesitas convencer ni explicar más.',
+        en: SOURCE.pantallas[2].hint.en + ' You do not need to convince or explain more.'
+      },
+      phrase: SOURCE.pantallas[2].phrase,
+      source: 'pantallas/firme'
+    },
+    overwhelm: {
+      title: { es: 'Todo se desbordó', en: 'Everything overflowed' },
+      what: {
+        es: 'La intensidad subió y ahora lo principal es acompañar sin seguir escalando. ' + SOURCE.desbordes[2].when.es,
+        en: 'Intensity rose and now the main thing is to accompany without escalating further. ' + SOURCE.desbordes[2].when.en
+      },
+      priority: {
+        es: SOURCE.desbordes[2].hint.es + ' ' + SOURCE.desbordes[0].hint.es,
+        en: SOURCE.desbordes[2].hint.en + ' ' + SOURCE.desbordes[0].hint.en
+      },
+      phrase: SOURCE.desbordes[2].phrase,
+      source: 'desbordes/proteger'
+    }
+  };
+
+  /* Path: Avisa→Valida→Guía→Acompaña mapped onto approved source beats */
+  var PATH = [
+    {
+      id: 'avisa',
+      name: { es: 'Avisa', en: 'Warn' },
+      short: {
+        es: 'Prepara la transición antes de que el límite llegue. ' + SOURCE.pantallas[0].hint.es,
+        en: 'Prepare the transition before the limit arrives. ' + SOURCE.pantallas[0].hint.en
+      },
+      phrase: SOURCE.pantallas[0].phrase,
+      more: {
+        es: 'Fuente: Pantallas · ' + SOURCE.pantallas[0].title.es + '. Úsala cuando todavía hay espacio para preparar el cambio.',
+        en: 'Source: Screens · ' + SOURCE.pantallas[0].title.en + '. Use it while there is still room to prepare the change.'
+      }
+    },
+    {
+      id: 'valida',
+      name: { es: 'Valida', en: 'Validate' },
+      short: {
+        es: SOURCE.desbordes[0].hint.es,
+        en: SOURCE.desbordes[0].hint.en
+      },
+      phrase: {
+        es: 'Veo que estás molesto. Te acompaño mientras hacemos este cambio.',
+        en: "I can see you're upset. I'll stay with you while we make this change."
+      },
+      more: {
+        es: 'Fuente: Desbordes · Contener + puente de acompañamiento. Validar no significa quitar el límite. Frase base también usada: «' + SOURCE.desbordes[0].phrase.es + '»',
+        en: 'Source: Meltdowns · Contain + accompaniment bridge. Validating does not mean removing the limit. Base phrase also used: "' + SOURCE.desbordes[0].phrase.en + '"'
+      }
+    },
+    {
+      id: 'guia',
+      name: { es: 'Guía', en: 'Guide' },
+      short: {
+        es: 'Haz el siguiente paso concreto y pequeño. ' + SOURCE.pantallas[1].hint.es,
+        en: 'Make the next step concrete and small. ' + SOURCE.pantallas[1].hint.en
+      },
+      phrase: SOURCE.pantallas[1].phrase,
+      more: {
+        es: 'Fuente: Pantallas · Paso a paso. Una instrucción, no un discurso.',
+        en: 'Source: Screens · Step by step. One instruction, not a speech.'
+      }
+    },
+    {
+      id: 'sosten',
+      name: { es: 'Acompaña', en: 'Accompany' },
+      short: {
+        es: 'Si la emoción sube, quédate presente sin escalar. ' + SOURCE.desbordes[2].hint.es,
+        en: 'If the emotion rises, stay present without escalating. ' + SOURCE.desbordes[2].hint.en
+      },
+      phrase: SOURCE.desbordes[2].phrase,
+      more: {
+        es: 'Fuente: Desbordes · Sostener + proteger. Estabilizar, no absorber. El espacio es temporal y con regreso.',
+        en: 'Source: Meltdowns · Hold + protect. Stabilize, do not absorb. Space is temporary and includes a return.'
+      }
+    }
+  ];
+
+  /* Which Path step matches each situation, so the guide doesn't reopen at
+     "Avisa" for someone who just said they're already mid-meltdown. */
+  var SITUATION_PATH_START = {
+    calm: 0,       // avisa
+    resistance: 2, // guia
+    anger: 1,      // valida
+    overwhelm: 3   // sosten
+  };
+
+  var SITUATIONS = [
+    { id: 'calm', k: 'A', t: { es: 'Todavía hay calma', en: 'There is still calm' }, d: { es: 'La pantalla sigue encendida y todavía puedes preparar la transición.', en: 'The screen is still on and you can still prepare the transition.' } },
+    { id: 'resistance', k: 'B', t: { es: 'El cambio se pone difícil', en: 'The change is getting hard' }, d: { es: 'Ya avisaste o intentaste cerrar y aparece negociación, rechazo o tensión.', en: 'You already warned or tried to close, and negotiation, refusal, or tension appears.' } },
+    { id: 'anger', k: 'C', t: { es: 'Ya hay llanto o enojo', en: 'There is already crying or anger' }, d: { es: 'El límite ya activó una respuesta emocional fuerte.', en: 'The limit already activated a strong emotional response.' } },
+    { id: 'overwhelm', k: 'D', t: { es: 'Todo se desbordó', en: 'Everything overflowed' }, d: { es: 'La intensidad subió y ahora lo principal es acompañar sin seguir escalando.', en: 'Intensity rose and now the main thing is to accompany without escalating further.' } }
+  ];
+
+  var WHEN_OPTS = [
+    { id: 'morning', es: 'Mañana', en: 'Morning' },
+    { id: 'afternoon', es: 'Tarde', en: 'Afternoon' },
+    { id: 'night', es: 'Noche', en: 'Night' },
+    { id: 'varies', es: 'Cambia según el día', en: 'It varies by day' }
+  ];
+
+  var RESIST_OPTS = [
+    { id: 'few_words', es: SOURCE.pantallas[2].hint.es, en: SOURCE.pantallas[2].hint.en },
+    { id: 'validate', es: SOURCE.desbordes[0].hint.es, en: SOURCE.desbordes[0].hint.en },
+    { id: 'slow', es: SOURCE.desbordes[1].hint.es, en: SOURCE.desbordes[1].hint.en }
+  ];
+
+  var UI = {
+    es: {
+      invite_eyebrow: 'El Estudio · Prueba privada',
+      invite_h1: 'Estamos probando una nueva forma de acompañarte en esos momentos difíciles.',
+      invite_lede: 'Esta primera experiencia comienza con algo muy concreto: cuando apagar una pantalla termina en tensión, pelea o desborde.',
+      invite_lede2: 'Queremos saber si una experiencia breve puede ayudarte a ubicar lo que está pasando, encontrar un siguiente paso claro y prepararte mejor para la próxima transición.',
+      invite_steps_lbl: 'Qué vas a hacer',
+      invite_s1: 'Ubicar el momento',
+      invite_s2: 'Recibir una orientación',
+      invite_s3: 'Preparar una próxima prueba',
+      invite_s4: 'Contarnos si te sirvió',
+      invite_time: 'Aprox. 5–8 minutos.',
+      invite_note: 'Esta es una prueba privada de Criar Sin Culpas. No es terapia ni evaluación clínica.',
+      cta_invite: 'Probar la experiencia',
+      id_eyebrow: 'Acceso de prueba',
+      id_h1: 'Antes de empezar, cuéntanos <em>quién eres</em>.',
+      id_lede: 'Solo lo necesario para esta prueba. No pedimos datos de tu hijo o hija.',
+      id_name_lbl: 'Tu nombre',
+      id_email_lbl: 'Tu correo',
+      id_email_hint: 'Para esta prueba privada. No compartimos tu correo.',
+      id_email_reason: 'Te lo pedimos para poder darte seguimiento a esta prueba y avisarte si se convierte en algo más grande.',
+      id_source_lbl: 'Código de invitación (opcional)',
+      id_source_ph: 'Si te dieron uno',
+      cta_identify: 'Continuar',
+      cta_dev_bypass: 'Continuar en vista previa (solo local)',
+      toast_identify: 'Listo. Puedes empezar.',
+      toast_identify_err: 'Revisa tu nombre y correo para continuar.',
+      entry_eyebrow: 'El Estudio · Experiencia piloto',
+      entry_h1: 'Cuando apagar la pantalla se convierte en <em>batalla</em>.',
+      entry_lede: 'Una experiencia breve para ayudarte a ubicar qué está pasando durante la transición, encontrar una forma clara de acompañarla y prepararte para la próxima vez.',
+      entry_chip: 'Pantallas + regulación emocional',
+      cta_start: 'Empezar', cta_mid: 'Ya estoy en medio del momento', cta_back: 'Volver',
+      cta_help_now: 'Ver qué puede ayudar ahora', cta_path: 'Seguir con la guía', cta_other: 'Elegir otra situación',
+      cta_copy: 'Copiar frase', cta_save_plan: 'Guardar mi plan', cta_edit: 'Editar plan',
+      cta_copy_plan: 'Copiar plan', cta_print: 'Guardar / imprimir', cta_finish: 'Continuar',
+      cta_my_plan: 'Volver a mi plan', cta_explore: 'Explorar los recursos de Criar Sin Culpas',
+      cta_feedback: 'Enviar comentario', cta_feedback_sending: 'Enviando...', cta_cancel: 'Cancelar', cta_reset_ok: 'Sí, empezar de nuevo',
+      cta_next_step: 'Siguiente', cta_prev_step: 'Anterior', cta_prep: 'Preparar la próxima transición',
+      cta_more: 'Ver un poco más', cta_less: 'Ver menos',
+      sit_eyebrow: 'Primero · Ubiquémonos', sit_h1: '¿Qué está pasando <em>ahora mismo</em>?',
+      sit_lede: 'No necesitas contar toda la historia. Elige lo que más se parece a este momento.',
+      ori_eyebrow: 'Estás aquí', ori_what: 'Qué está pasando', ori_priority: 'Qué importa ahora', ori_try: 'Qué probar',
+      safety: 'Si hay riesgo físico, primero busca seguridad y pausa.',
+      safety_nd: 'No todas las transiciones difíciles tienen la misma causa. A veces el cambio de actividad, el cansancio o la sobrecarga también influyen.',
+      safety_scope: 'Este recurso no está diseñado para situaciones con riesgo físico recurrente o crisis que requieran apoyo profesional inmediato.',
+      path_eyebrow: 'La secuencia', path_h1: 'Avisa · Valida · Guía · <em>Acompaña</em>',
+      path_lede: 'Cuatro pasos breves. No son lecciones: son el orden de acompañar una transición.',
+      path_principle: 'Puedes mantener el límite y acompañar la emoción al mismo tiempo.',
+      plan_eyebrow: 'Mi próxima transición', plan_h1: 'Prepara lo <em>suficiente</em>.',
+      plan_lede: 'No necesitas diseñar una estrategia perfecta. Deja preparado lo suficiente para no empezar desde cero la próxima vez.',
+      plan_when_lbl: '¿Cuándo suele pasar?', plan_aviso_lbl: '¿Qué aviso quiero probar?',
+      plan_aviso_ph: 'O escribe tu propio aviso (corto)',
+      plan_resist_lbl: 'Si el cambio se pone difícil, quiero recordar:',
+      plan_phrase_lbl: 'La frase que quiero tener a mano',
+      plan_observe_lbl: 'Una cosa que quiero observar (opcional)',
+      plan_observe_ph: 'Ej.: Si aviso antes, ¿baja la pelea?',
+      summary_eyebrow: 'Tu próxima prueba', handy: 'Para tener a mano',
+      res_p_label: 'Pantallas', res_p_title: 'Límite sin guerra',
+      res_d_label: 'Desbordes', res_d_title: 'Calma en crisis',
+      done_eyebrow: 'Listo', done_h1: 'Ya tienes algo concreto para <em>probar</em>.',
+      done_lede: 'La próxima vez no tienes que empezar desde cero. Tu plan queda aquí para que puedas volver cuando lo necesites.',
+      fb_eyebrow: 'Ayúdanos a probar esta experiencia',
+      fb_q1: '¿Esto te ayudó a saber qué hacer después?',
+      fb_q2: '¿Qué parte te resultó más útil?',
+      fb_comment_lbl: 'Si algo faltó, puedes contárnoslo aquí',
+      fb_comment_ph: 'Sin datos de tu hijo/a. Solo sobre la experiencia.',
+      reset_title: '¿Empezar de nuevo?',
+      reset_body: 'Se borrará tu situación elegida y el plan guardado en este dispositivo. Tu acceso de prueba se mantiene.',
+      toast_copied: 'Frase copiada', toast_plan_saved: 'Tu plan quedó guardado en este dispositivo.',
+      toast_plan_copied: 'Plan copiado',
+      toast_feedback_ok: 'Gracias. Recibimos tu comentario.',
+      toast_feedback_fail: 'No pudimos enviar tu comentario todavía. Conservamos tu respuesta en este dispositivo para que puedas intentarlo otra vez.',
+      when: 'Momento', aviso: 'Aviso', resist: 'Si el cambio se pone difícil', phrase: 'Frase', observe: 'Observar',
+      fb_help: ['Sí, claramente', 'Más o menos', 'Todavía no'],
+      fb_useful: ['Ubicar el momento', 'Tener una frase', 'Ver la secuencia', 'Preparar mi plan'],
+      lang_toggle: 'English', menu_resources: 'Ver recursos públicos', menu_reset: 'Empezar de nuevo',
+      step_progress: 'Paso {n} de {total}'
+    },
+    en: {
+      invite_eyebrow: 'El Estudio · Private test',
+      invite_h1: 'We are testing a new way to support you in those hard moments.',
+      invite_lede: 'This first experience starts with something very concrete: when turning off a screen ends in tension, a fight, or overwhelm.',
+      invite_lede2: 'We want to know whether a short experience can help you locate what is happening, find a clear next step, and prepare better for the next transition.',
+      invite_steps_lbl: 'What you will do',
+      invite_s1: 'Locate the moment',
+      invite_s2: 'Receive orientation',
+      invite_s3: 'Prepare a next trial',
+      invite_s4: 'Tell us if it helped',
+      invite_time: 'About 5–8 minutes.',
+      invite_note: 'This is a private Criar Sin Culpas test. It is not therapy or a clinical evaluation.',
+      cta_invite: 'Try the experience',
+      id_eyebrow: 'Test access',
+      id_h1: 'Before you start, tell us <em>who you are</em>.',
+      id_lede: 'Only what this test needs. We do not ask for your child\'s information.',
+      id_name_lbl: 'Your first name',
+      id_email_lbl: 'Your email',
+      id_email_hint: 'For this private test. We do not share your email.',
+      id_email_reason: 'We ask so we can follow up on this test with you and let you know if it grows into something bigger.',
+      id_source_lbl: 'Invitation code (optional)',
+      id_source_ph: 'If you were given one',
+      cta_identify: 'Continue',
+      cta_dev_bypass: 'Continue in preview (local only)',
+      toast_identify: 'Ready. You can begin.',
+      toast_identify_err: 'Check your name and email to continue.',
+      entry_eyebrow: 'El Estudio · Pilot experience',
+      entry_h1: 'When turning off the screen turns into a <em>battle</em>.',
+      entry_lede: 'A short experience to help you locate what is happening in the transition, find a clear way to accompany it, and prepare for next time.',
+      entry_chip: 'Screens + emotional regulation',
+      cta_start: 'Start', cta_mid: "I'm already in the middle of it", cta_back: 'Back',
+      cta_help_now: 'See what can help now', cta_path: 'Continue with the guide', cta_other: 'Choose another situation',
+      cta_copy: 'Copy phrase', cta_save_plan: 'Save my plan', cta_edit: 'Edit plan',
+      cta_copy_plan: 'Copy plan', cta_print: 'Save / print', cta_finish: 'Continue',
+      cta_my_plan: 'Back to my plan', cta_explore: 'Explore Criar Sin Culpas resources',
+      cta_feedback: 'Send feedback', cta_feedback_sending: 'Sending...', cta_cancel: 'Cancel', cta_reset_ok: 'Yes, start over',
+      cta_next_step: 'Next', cta_prev_step: 'Previous', cta_prep: 'Prepare the next transition',
+      cta_more: 'See a little more', cta_less: 'See less',
+      sit_eyebrow: 'First · Let’s locate', sit_h1: 'What is happening <em>right now</em>?',
+      sit_lede: 'You do not need to tell the whole story. Choose what most resembles this moment.',
+      ori_eyebrow: 'You are here', ori_what: 'What is happening', ori_priority: 'What matters now', ori_try: 'What to try',
+      safety: 'If there is physical risk, seek safety and pause first.',
+      safety_nd: 'Not every hard transition has the same cause. Sometimes a change of activity, tiredness, or overload also play a role.',
+      safety_scope: 'This resource is not designed for situations with recurring physical risk or crises that need immediate professional support.',
+      path_eyebrow: 'The sequence', path_h1: 'Warn · Validate · Guide · <em>Accompany</em>',
+      path_lede: 'Four short steps. Not lessons: the order for accompanying a transition.',
+      path_principle: 'You can hold the limit and accompany the emotion at the same time.',
+      plan_eyebrow: 'My next transition', plan_h1: 'Prepare <em>enough</em>.',
+      plan_lede: 'You do not need a perfect strategy. Leave enough ready so you are not starting from zero next time.',
+      plan_when_lbl: 'When does it usually happen?', plan_aviso_lbl: 'Which warning do I want to try?',
+      plan_aviso_ph: 'Or write your own short warning',
+      plan_resist_lbl: 'If the change gets hard, I want to remember:',
+      plan_phrase_lbl: 'The phrase I want on hand',
+      plan_observe_lbl: 'One thing I want to observe (optional)',
+      plan_observe_ph: 'E.g.: If I warn earlier, does the fight drop?',
+      summary_eyebrow: 'Your next trial', handy: 'Keep on hand',
+      res_p_label: 'Screens', res_p_title: 'Limit without war',
+      res_d_label: 'Meltdowns', res_d_title: 'Calm in crisis',
+      done_eyebrow: 'Done', done_h1: 'You already have something concrete to <em>try</em>.',
+      done_lede: 'Next time you do not have to start from zero. Your plan stays here so you can return when you need it.',
+      fb_eyebrow: 'Help us test this experience',
+      fb_q1: 'Did this help you know what to do next?',
+      fb_q2: 'Which part was most useful?',
+      fb_comment_lbl: 'If something was missing, you can tell us here',
+      fb_comment_ph: 'No child data. Only about the experience.',
+      reset_title: 'Start over?',
+      reset_body: 'Your chosen situation and the plan saved on this device will be cleared. Your test access stays.',
+      toast_copied: 'Phrase copied', toast_plan_saved: 'Your plan was saved on this device.',
+      toast_plan_copied: 'Plan copied',
+      toast_feedback_ok: 'Thank you. We received your feedback.',
+      toast_feedback_fail: 'We could not send your feedback yet. We kept your response on this device so you can try again.',
+      when: 'Moment', aviso: 'Warning', resist: 'If the change gets hard', phrase: 'Phrase', observe: 'Observe',
+      fb_help: ['Yes, clearly', 'Somewhat', 'Not yet'],
+      fb_useful: ['Locating the moment', 'Having a phrase', 'Seeing the sequence', 'Preparing my plan'],
+      lang_toggle: 'Español', menu_resources: 'View public resources', menu_reset: 'Start over',
+      step_progress: 'Step {n} of {total}'
+    }
+  };
+
+  var WRAPPER_STAGES = ['invite', 'identify'];
+  var CORE_STAGES = ['entry','situation','orientation','path','plan-builder','plan','complete'];
+  var STAGES = WRAPPER_STAGES.concat(CORE_STAGES);
+  var STORAGE_KEY = 'csc_estudio_pilot_01';
+  var PLAN_KEY = 'csc_estudio_pilot_01_plan';
+
+  function detectLang() {
+    try {
+      var nav = (navigator.language || (navigator.languages && navigator.languages[0]) || 'es').toLowerCase();
+      return nav.indexOf('en') === 0 ? 'en' : 'es';
+    } catch (e) { return 'es'; }
+  }
+
+  var lang = 'es';
+  try { lang = localStorage.getItem('lg_parent_lang') || detectLang(); } catch (e) { lang = detectLang(); }
+  if (lang !== 'en') lang = 'es';
+
+  var state = loadState();
+  var pathStep = 0;
+  var pathMoreOpen = false;
+
+  function defaultState() {
+    return {
+      version: 1,
+      stage: 'invite',
+      situation: null,
+      pathAutoStarted: false,
+      completedPathSteps: [],
+      plan: null,
+      planSaved: false,
+      feedback: null,
+      updatedAt: Date.now()
+    };
+  }
+
+  function loadState() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return defaultState();
+      var parsed = JSON.parse(raw);
+      if (!parsed || parsed.version !== 1) return defaultState();
+      return Object.assign(defaultState(), parsed);
+    } catch (e) { return defaultState(); }
+  }
+
+  function saveState() {
+    state.updatedAt = Date.now();
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+    if (state.plan) {
+      try { localStorage.setItem(PLAN_KEY, JSON.stringify(state.plan)); } catch (e) {}
+    }
+  }
+
+  function t(key) { return (UI[lang] && UI[lang][key]) || UI.es[key] || key; }
+  function L(obj) { return obj ? (obj[lang] || obj.es || '') : ''; }
+
+  function track(name, props) {
+    var payload = Object.assign({
+      pilot: 'pantallas-desbordes',
+      cohort: COHORT,
+      source: pilotSource,
+      access: PilotAccessState.get()
+    }, props || {});
+    /* Never send email or name to analytics */
+    delete payload.email;
+    delete payload.firstName;
+    delete payload.name;
+    if (typeof window.track === 'function') window.track(name, payload);
+    else if (window.plausible) window.plausible(name, { props: payload });
+  }
+
+  function toast(msg) {
+    var el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('on');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(function () { el.classList.remove('on'); }, 2400);
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function (resolve, reject) {
+      var ta = document.createElement('textarea');
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); resolve(); } catch (e) { reject(e); }
+      document.body.removeChild(ta);
+    });
+  }
+
+  function applyI18n() {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n');
+      var val = t(key);
+      if (val.indexOf('<') !== -1) el.innerHTML = val;
+      else el.textContent = val;
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(function (el) {
+      el.setAttribute('placeholder', t(el.getAttribute('data-i18n-ph')));
+    });
+    var menuLang = document.querySelector('#menuPop [data-action="lang"]');
+    if (menuLang) menuLang.textContent = t('lang_toggle');
+    var menuRes = document.querySelector('#menuPop [data-action="resources"]');
+    if (menuRes) menuRes.textContent = t('menu_resources');
+    var menuReset = document.querySelector('#menuPop [data-action="reset"]');
+    if (menuReset) menuReset.textContent = t('menu_reset');
+  }
+
+  function renderDots() {
+    var host = document.getElementById('stageDots');
+    host.innerHTML = '';
+    var inCore = CORE_STAGES.indexOf(state.stage) >= 0;
+    host.style.visibility = inCore ? 'visible' : 'hidden';
+    CORE_STAGES.forEach(function (s) {
+      var d = document.createElement('span');
+      var idx = CORE_STAGES.indexOf(s);
+      var cur = CORE_STAGES.indexOf(state.stage);
+      if (inCore && s === state.stage) d.className = 'on';
+      else if (inCore && idx < cur) d.className = 'done';
+      host.appendChild(d);
+    });
+    var announce = document.getElementById('stageAnnounce');
+    if (announce) {
+      var cur2 = CORE_STAGES.indexOf(state.stage);
+      announce.textContent = (inCore && cur2 >= 0)
+        ? t('step_progress').replace('{n}', cur2 + 1).replace('{total}', CORE_STAGES.length)
+        : '';
+    }
+  }
+
+  function go(stage) {
+    if (STAGES.indexOf(stage) < 0) return;
+    if (CORE_STAGES.indexOf(stage) >= 0 && !PilotAccessState.canEnterCore()) {
+      stage = PilotParticipant.load() ? 'identify' : 'invite';
+    }
+    state.stage = stage;
+    saveState();
+    document.querySelectorAll('.screen').forEach(function (el) {
+      el.classList.toggle('on', el.getAttribute('data-stage') === stage);
+    });
+    renderDots();
+    window.scrollTo(0, 0);
+    if (stage === 'identify') renderIdentify();
+    if (stage === 'situation') renderSituations();
+    if (stage === 'orientation') renderOrientation();
+    if (stage === 'path') {
+      if (!state.pathAutoStarted && !(state.completedPathSteps || []).length) {
+        pathStep = SITUATION_PATH_START.hasOwnProperty(state.situation) ? SITUATION_PATH_START[state.situation] : 0;
+        state.pathAutoStarted = true;
+        saveState();
+      }
+      renderPath();
+    }
+    if (stage === 'plan-builder') renderPlanBuilder();
+    if (stage === 'plan') renderPlan();
+    if (stage === 'complete') renderComplete();
+    if (stage === 'invite') track('pilot_invite_view', { situation: 'none' });
+    if (stage === 'identify') track('pilot_identify_view', { situation: 'none' });
+    if (stage === 'orientation') track('pilot_orientation_view', { situation: state.situation });
+  }
+
+  function renderIdentify() {
+    var p = PilotParticipant.load();
+    var nameEl = document.getElementById('idFirstName');
+    var emailEl = document.getElementById('idEmail');
+    var langEl = document.getElementById('idLang');
+    var srcEl = document.getElementById('idSource');
+    if (p) {
+      nameEl.value = p.firstName || '';
+      emailEl.value = p.email || '';
+      langEl.value = p.language === 'en' ? 'en' : 'es';
+      srcEl.value = (p.source && ALLOWED_SOURCES.indexOf(p.source) === -1) ? p.source : '';
+    } else {
+      langEl.value = detectLang();
+      if (pilotSource && ALLOWED_SOURCES.indexOf(pilotSource) === -1) {
+        srcEl.value = pilotSource;
+      }
+    }
+    var bypass = document.getElementById('devBypass');
+    if (bypass) bypass.classList.toggle('show', !IS_PROD);
+  }
+
+  function completeIdentity(participant, via) {
+    PilotParticipant.save(participant);
+    try {
+      localStorage.setItem(SOURCE_KEY, participant.source);
+      sessionStorage.setItem(SOURCE_KEY, participant.source);
+    } catch (e) {}
+    pilotSource = participant.source;
+    lang = participant.language === 'en' ? 'en' : 'es';
+    try { localStorage.setItem('lg_parent_lang', lang); } catch (e) {}
+    PilotAccessState.grantInvitedTester();
+    applyI18n();
+    track('pilot_identify_submit', {
+      situation: 'none',
+      via: via || 'form',
+      language: lang
+    });
+    postFormspree({
+      _subject: 'CSC Pilot 01 · Tester identity',
+      protocol: 'csc-pilot-01',
+      form_type: 'pilot_01_identity',
+      cohort: COHORT,
+      participantId: participant.participantId,
+      firstName: participant.firstName,
+      email: participant.email,
+      language: participant.language,
+      source: participant.source,
+      invitedAt: participant.invitedAt,
+      startedAt: participant.startedAt
+    });
+    toast(t('toast_identify'));
+    go('entry');
+  }
+
+  function renderSituations() {
+    var host = document.getElementById('situationChoices');
+    host.innerHTML = '';
+    SITUATIONS.forEach(function (s) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'choice' + (state.situation === s.id ? ' selected' : '');
+      b.setAttribute('role', 'radio');
+      b.setAttribute('aria-checked', state.situation === s.id ? 'true' : 'false');
+      b.innerHTML = '<div class="k">' + s.k + '</div><div class="t">' + L(s.t) + '</div><div class="d">' + L(s.d) + '</div>';
+      b.addEventListener('click', function () {
+        if (state.situation !== s.id) state.pathAutoStarted = false;
+        state.situation = s.id;
+        saveState();
+        track('pilot_situation_selected', { situation: s.id });
+        renderSituations();
+        document.getElementById('btnSituationNext').disabled = false;
+      });
+      host.appendChild(b);
+    });
+    document.getElementById('btnSituationNext').disabled = !state.situation;
+  }
+
+  function renderOrientation() {
+    var o = ORIENT[state.situation] || ORIENT.calm;
+    document.getElementById('oriTitle').innerHTML = L(o.title);
+    document.getElementById('oriWhat').textContent = L(o.what);
+    document.getElementById('oriPriority').textContent = L(o.priority);
+    document.getElementById('oriPhrase').textContent = '“' + L(o.phrase) + '”';
+  }
+
+  function renderPath() {
+    var nav = document.getElementById('pathNav');
+    var card = document.getElementById('pathCard');
+    var actions = document.getElementById('pathActions');
+    nav.innerHTML = '';
+    PATH.forEach(function (step, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = L(step.name);
+      if (i === pathStep) b.className = 'current';
+      else if ((state.completedPathSteps || []).indexOf(step.id) !== -1 || i < pathStep) b.className = 'done';
+      b.addEventListener('click', function () { pathStep = i; pathMoreOpen = false; renderPath(); });
+      nav.appendChild(b);
+    });
+    var step = PATH[pathStep];
+    card.innerHTML =
+      '<div class="step-name">' + L(step.name) + '</div>' +
+      '<p>' + L(step.short) + '</p>' +
+      '<div class="phrase-box" style="margin-top:16px"><div class="lbl">' + t('ori_try') + '</div><div class="quote">“' + L(step.phrase) + '”</div>' +
+      '<button class="btn btn-soft" type="button" id="pathCopy">' + t('cta_copy') + '</button></div>' +
+      '<button class="toggle-more" type="button" id="pathMoreBtn">' + (pathMoreOpen ? t('cta_less') : t('cta_more')) + '</button>' +
+      '<div class="more' + (pathMoreOpen ? ' open' : '') + '" id="pathMore">' + L(step.more) + '</div>';
+
+    document.getElementById('pathCopy').onclick = function () {
+      copyText(L(step.phrase)).then(function () {
+        toast(t('toast_copied'));
+        track('pilot_phrase_copy', { situation: state.situation, step: step.id });
+      });
+    };
+    document.getElementById('pathMoreBtn').onclick = function () {
+      pathMoreOpen = !pathMoreOpen; renderPath();
+    };
+
+    var html = '';
+    if (pathStep > 0) html += '<button class="btn btn-secondary" type="button" id="pathPrev">' + t('cta_prev_step') + '</button>';
+    if (pathStep < PATH.length - 1) html += '<button class="btn btn-primary" type="button" id="pathNext">' + t('cta_next_step') + '</button>';
+    else html += '<button class="btn btn-primary" type="button" id="pathDone">' + t('cta_prep') + '</button>';
+    actions.innerHTML = html;
+
+    var prev = document.getElementById('pathPrev');
+    if (prev) prev.onclick = function () { pathStep--; pathMoreOpen = false; renderPath(); };
+    var next = document.getElementById('pathNext');
+    if (next) next.onclick = function () {
+      if (state.completedPathSteps.indexOf(step.id) === -1) state.completedPathSteps.push(step.id);
+      saveState();
+      pathStep++; pathMoreOpen = false; renderPath();
+    };
+    var done = document.getElementById('pathDone');
+    if (done) done.onclick = function () {
+      if (state.completedPathSteps.indexOf(step.id) === -1) state.completedPathSteps.push(step.id);
+      saveState();
+      track('pilot_path_complete', { situation: state.situation });
+      go('plan-builder');
+      track('pilot_plan_start', { situation: state.situation });
+    };
+  }
+
+  /* Plan Builder opens pre-set to the option that matches the situation the
+     parent already picked, instead of the same neutral default for everyone. */
+  var PLAN_DEFAULTS_BY_SITUATION = {
+    calm:       { avisoId: 'suave',       resistId: 'few_words', phraseId: 'p0' },
+    resistance: { avisoId: 'paso_a_paso', resistId: 'few_words', phraseId: 'p1' },
+    anger:      { avisoId: 'firme',       resistId: 'validate',  phraseId: 'p2' },
+    overwhelm:  { avisoId: 'firme',       resistId: 'slow',      phraseId: 'd2' }
+  };
+
+  function ensurePlanDraft() {
+    if (!state.plan) {
+      var d = PLAN_DEFAULTS_BY_SITUATION[state.situation] || {
+        avisoId: SOURCE.pantallas[0].mode,
+        resistId: RESIST_OPTS[0].id,
+        phraseId: 'p0'
+      };
+      state.plan = {
+        when: null,
+        avisoId: d.avisoId,
+        avisoCustom: '',
+        resistId: d.resistId,
+        phraseId: d.phraseId,
+        observe: ''
+      };
+    }
+  }
+
+  function renderPlanBuilder() {
+    ensurePlanDraft();
+
+    var when = document.getElementById('whenSeg');
+    when.innerHTML = '';
+    WHEN_OPTS.forEach(function (o) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = L(o);
+      if (state.plan.when === o.id) b.className = 'on';
+      b.onclick = function () { state.plan.when = o.id; saveState(); renderPlanBuilder(); };
+      when.appendChild(b);
+    });
+
+    var aviso = document.getElementById('avisoPicks');
+    aviso.innerHTML = '';
+    SOURCE.pantallas.forEach(function (c) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'pick' + (state.plan.avisoId === c.mode && !state.plan.avisoCustom ? ' on' : '');
+      b.textContent = L(c.phrase);
+      b.onclick = function () {
+        state.plan.avisoId = c.mode;
+        state.plan.avisoCustom = '';
+        document.getElementById('avisoCustom').value = '';
+        saveState(); renderPlanBuilder();
+      };
+      aviso.appendChild(b);
+    });
+    var ac = document.getElementById('avisoCustom');
+    ac.value = state.plan.avisoCustom || '';
+    ac.oninput = function () {
+      state.plan.avisoCustom = ac.value.slice(0, 160);
+      if (ac.value) state.plan.avisoId = 'custom';
+      saveState();
+    };
+
+    var resist = document.getElementById('resistPicks');
+    resist.innerHTML = '';
+    RESIST_OPTS.forEach(function (o) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'pick' + (state.plan.resistId === o.id ? ' on' : '');
+      b.textContent = L(o);
+      b.onclick = function () { state.plan.resistId = o.id; saveState(); renderPlanBuilder(); };
+      resist.appendChild(b);
+    });
+
+    var phrases = phraseOptions();
+    var ph = document.getElementById('phrasePicks');
+    ph.innerHTML = '';
+    phrases.forEach(function (p) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'pick' + (state.plan.phraseId === p.id ? ' on' : '');
+      b.textContent = L(p.text);
+      b.onclick = function () { state.plan.phraseId = p.id; saveState(); renderPlanBuilder(); };
+      ph.appendChild(b);
+    });
+
+    var obs = document.getElementById('observeField');
+    obs.value = state.plan.observe || '';
+    obs.oninput = function () { state.plan.observe = obs.value.slice(0, 200); saveState(); };
+  }
+
+  function phraseOptions() {
+    return [
+      { id: 'p0', text: SOURCE.pantallas[0].phrase },
+      { id: 'bridge', text: PATH[1].phrase },
+      { id: 'p1', text: SOURCE.pantallas[1].phrase },
+      { id: 'p2', text: SOURCE.pantallas[2].phrase },
+      { id: 'd0', text: SOURCE.desbordes[0].phrase },
+      { id: 'd2', text: SOURCE.desbordes[2].phrase }
+    ];
+  }
+
+  function resolvePlan() {
+    ensurePlanDraft();
+    var whenLabel = WHEN_OPTS.filter(function (o) { return o.id === state.plan.when; })[0];
+    var aviso = state.plan.avisoCustom;
+    if (!aviso) {
+      var src = SOURCE.pantallas.filter(function (c) { return c.mode === state.plan.avisoId; })[0];
+      aviso = src ? L(src.phrase) : '';
+    }
+    var resist = RESIST_OPTS.filter(function (o) { return o.id === state.plan.resistId; })[0];
+    var phrase = phraseOptions().filter(function (p) { return p.id === state.plan.phraseId; })[0];
+    return {
+      when: whenLabel ? L(whenLabel) : '—',
+      aviso: aviso || '—',
+      resist: resist ? L(resist) : '—',
+      phrase: phrase ? L(phrase.text) : '—',
+      observe: state.plan.observe || '—'
+    };
+  }
+
+  function renderPlan() {
+    var p = resolvePlan();
+    document.getElementById('planSummary').innerHTML =
+      '<h2>' + t('summary_eyebrow') + '</h2>' +
+      row(t('when'), p.when) +
+      row(t('aviso'), p.aviso) +
+      row(t('resist'), p.resist) +
+      row(t('phrase'), '“' + p.phrase + '”') +
+      row(t('observe'), p.observe);
+  }
+
+  function row(k, v) {
+    return '<div class="plan-row"><div class="k">' + k + '</div><div class="v">' + escapeHtml(v) + '</div></div>';
+  }
+
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, function (c) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
+    });
+  }
+
+  function renderComplete() {
+    var help = document.getElementById('fbHelp');
+    help.innerHTML = '';
+    t('fb_help').forEach(function (label, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'pick' + (state.feedback && state.feedback.helped === i ? ' on' : '');
+      b.textContent = label;
+      b.onclick = function () {
+        state.feedback = state.feedback || {};
+        state.feedback.helped = i;
+        saveState(); renderComplete();
+      };
+      help.appendChild(b);
+    });
+    var useful = document.getElementById('fbUseful');
+    useful.innerHTML = '';
+    t('fb_useful').forEach(function (label, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'pick' + (state.feedback && state.feedback.useful === i ? ' on' : '');
+      b.textContent = label;
+      b.onclick = function () {
+        state.feedback = state.feedback || {};
+        state.feedback.useful = i;
+        saveState(); renderComplete();
+      };
+      useful.appendChild(b);
+    });
+    var c = document.getElementById('fbComment');
+    c.value = (state.feedback && state.feedback.comment) || '';
+    c.oninput = function () {
+      state.feedback = state.feedback || {};
+      state.feedback.comment = c.value.slice(0, 280);
+      saveState();
+    };
+    var btn = document.getElementById('btnFeedback');
+    if (btn && !feedbackSending) btn.textContent = t('cta_feedback');
+    if (state.feedback && state.feedback.sentAt) {
+      setFeedbackStatus('ok', t('toast_feedback_ok'));
+    } else if (state.feedback && state.feedback.lastSendFailedAt) {
+      setFeedbackStatus('err', t('toast_feedback_fail'));
+    } else {
+      setFeedbackStatus('', '');
+    }
+  }
+
+  /* wire */
+  document.getElementById('btnCopyPhrase').addEventListener('click', function () {
+    var o = ORIENT[state.situation] || ORIENT.calm;
+    copyText(L(o.phrase)).then(function () {
+      toast(t('toast_copied'));
+      track('pilot_phrase_copy', { situation: state.situation });
+    });
+  });
+
+  document.getElementById('btnSavePlan').addEventListener('click', function () {
+    ensurePlanDraft();
+    state.planSaved = true;
+    saveState();
+    track('pilot_plan_saved', { situation: state.situation || 'none' });
+    toast(t('toast_plan_saved'));
+    go('plan');
+  });
+
+  document.getElementById('btnCopyPlan').addEventListener('click', function () {
+    var p = resolvePlan();
+    var text = [t('summary_eyebrow'), t('when') + ': ' + p.when, t('aviso') + ': ' + p.aviso, t('resist') + ': ' + p.resist, t('phrase') + ': ' + p.phrase, t('observe') + ': ' + p.observe].join('\n');
+    copyText(text).then(function () { toast(t('toast_plan_copied')); });
+  });
+
+  document.getElementById('btnPrintPlan').addEventListener('click', function () { window.print(); });
+
+  function setFeedbackStatus(kind, message) {
+    var el = document.getElementById('fbStatus');
+    if (!el) return;
+    if (!message) {
+      el.hidden = true;
+      el.textContent = '';
+      el.className = 'fb-status';
+      return;
+    }
+    el.hidden = false;
+    el.className = 'fb-status' + (kind ? ' ' + kind : '');
+    el.textContent = message;
+  }
+
+  function pathCompleted() {
+    if (!PATH.length) return false;
+    var done = state.completedPathSteps || [];
+    return PATH.every(function (step) { return done.indexOf(step.id) !== -1; });
+  }
+
+  function buildFeedbackPayload() {
+    var p = PilotParticipant.load() || {};
+    var helpedIdx = state.feedback && typeof state.feedback.helped === 'number' ? state.feedback.helped : null;
+    var usefulIdx = state.feedback && typeof state.feedback.useful === 'number' ? state.feedback.useful : null;
+    var q1Labels = t('fb_help');
+    var q2Labels = t('fb_useful');
+    var submittedAt = new Date().toISOString();
+    return {
+      _subject: 'CSC Pilot 01 · Feedback · ' + PILOT_ID,
+      protocol: 'csc-pilot-01',
+      form_type: 'pilot_01_feedback',
+      pilot_id: PILOT_ID,
+      pilot_version: PILOT_VERSION,
+      cohort: COHORT,
+      participant_id: p.participantId || 'anonymous',
+      source: pilotSource,
+      language: lang,
+      situation: state.situation || '',
+      completed_path: pathCompleted() ? 'true' : 'false',
+      plan_saved: state.planSaved ? 'true' : 'false',
+      q1_index: helpedIdx,
+      q1_label: helpedIdx !== null ? (q1Labels[helpedIdx] || '') : '',
+      q2_index: usefulIdx,
+      q2_label: usefulIdx !== null ? (q2Labels[usefulIdx] || '') : '',
+      comment: ((state.feedback && state.feedback.comment) || '').slice(0, 280),
+      submitted_at: submittedAt
+    };
+  }
+
+  var feedbackSending = false;
+
+  document.getElementById('btnFeedback').addEventListener('click', function () {
+    if (feedbackSending) return;
+    var btn = document.getElementById('btnFeedback');
+    state.feedback = state.feedback || {};
+    state.feedback.pendingSubmitAt = Date.now();
+    saveState();
+
+    /* Plausible: anonymous behavioral only — no free text, no email/name */
+    track('pilot_feedback', {
+      situation: state.situation || 'none',
+      helped: state.feedback.helped,
+      useful: state.feedback.useful,
+      completed_path: pathCompleted(),
+      plan_saved: !!state.planSaved
+    });
+
+    feedbackSending = true;
+    btn.disabled = true;
+    btn.textContent = t('cta_feedback_sending');
+    setFeedbackStatus('pending', t('cta_feedback_sending'));
+
+    var payload = buildFeedbackPayload();
+    postFormspree(payload).then(function (result) {
+      feedbackSending = false;
+      btn.disabled = false;
+      btn.textContent = t('cta_feedback');
+      if (result && result.ok) {
+        state.feedback.submittedAt = Date.now();
+        state.feedback.sentAt = state.feedback.submittedAt;
+        state.feedback.sentPayload = {
+          participant_id: payload.participant_id,
+          submitted_at: payload.submitted_at
+        };
+        saveState();
+        setFeedbackStatus('ok', t('toast_feedback_ok'));
+        toast(t('toast_feedback_ok'));
+      } else {
+        state.feedback.lastSendFailedAt = Date.now();
+        saveState();
+        setFeedbackStatus('err', t('toast_feedback_fail'));
+        toast(t('toast_feedback_fail'));
+      }
+    });
+  });
+
+  document.getElementById('app').addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-go]');
+    if (!btn) return;
+    var stage = btn.getAttribute('data-go');
+    var trackName = btn.getAttribute('data-track');
+    if (trackName) track(trackName, { situation: state.situation || 'none' });
+    if (stage === 'path' && pathStep === 0 && !(state.completedPathSteps || []).length) {
+      /* ok */
+    }
+    go(stage);
+  });
+
+  var menuBtn = document.getElementById('menuBtn');
+  var menuPop = document.getElementById('menuPop');
+  menuBtn.addEventListener('click', function () {
+    var open = menuPop.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  document.addEventListener('click', function (e) {
+    if (!menuPop.contains(e.target) && e.target !== menuBtn && !menuBtn.contains(e.target)) {
+      menuPop.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+  menuPop.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-action]');
+    if (!b) return;
+    var a = b.getAttribute('data-action');
+    if (a === 'lang') {
+      lang = lang === 'es' ? 'en' : 'es';
+      try { localStorage.setItem('lg_parent_lang', lang); } catch (err) {}
+      applyI18n();
+      go(state.stage);
+    } else if (a === 'resources') {
+      window.location.href = '/apoyo/';
+    } else if (a === 'reset') {
+      document.getElementById('confirmReset').classList.add('on');
+    }
+    menuPop.classList.remove('open');
+  });
+
+  document.getElementById('resetCancel').onclick = function () {
+    document.getElementById('confirmReset').classList.remove('on');
+  };
+  document.getElementById('resetOk').onclick = function () {
+    state = defaultState();
+    pathStep = 0;
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(PLAN_KEY);
+    } catch (e) {}
+    document.getElementById('confirmReset').classList.remove('on');
+    applyI18n();
+    go(PilotAccessState.canEnterCore() ? 'entry' : 'invite');
+  };
+
+  /* invite / identify wiring */
+  document.getElementById('btnInviteContinue').addEventListener('click', function () {
+    track('pilot_invite_continue', { situation: 'none' });
+    if (PilotAccessState.canEnterCore()) go('entry');
+    else go('identify');
+  });
+
+  document.getElementById('identifyForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var firstName = document.getElementById('idFirstName').value.trim();
+    var email = document.getElementById('idEmail').value.trim();
+    var language = document.getElementById('idLang').value;
+    var code = document.getElementById('idSource').value.trim();
+    if (!firstName || !email || email.indexOf('@') < 1) {
+      toast(t('toast_identify_err'));
+      return;
+    }
+    var source = code ? normalizeSource(code) : pilotSource;
+    completeIdentity(PilotParticipant.create({
+      firstName: firstName,
+      email: email,
+      language: language,
+      source: source
+    }), 'form');
+  });
+
+  document.getElementById('btnDevBypass').addEventListener('click', function () {
+    if (IS_PROD) return;
+    PilotAccessState.grantPreviewLocal();
+    track('pilot_identify_submit', { situation: 'none', via: 'dev_bypass', language: lang });
+    go('entry');
+  });
+
+  /* init */
+  if (!PilotAccessState.canEnterWrapper()) {
+    document.body.innerHTML = '<p style="padding:40px;font-family:sans-serif">Access required.</p>';
+    return;
+  }
+  applyI18n();
+  track('pilot_view', { situation: 'none' });
+
+  var startStage = state.stage || 'invite';
+  if (CORE_STAGES.indexOf(startStage) >= 0 && !PilotAccessState.canEnterCore()) {
+    startStage = PilotParticipant.load() ? 'identify' : 'invite';
+  } else if ((startStage === 'invite' || startStage === 'identify') && PilotAccessState.canEnterCore() && PilotParticipant.load()) {
+    startStage = 'entry';
+  }
+  go(startStage);
+})();
+</script>
+</body>
+</html>
