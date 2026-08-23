@@ -1,5 +1,7 @@
 # Brief de revisión · Piloto 01 · Pantallas → Desbordes
 
+> **Estrategia de prueba (canónica):** ver [`/docs/csc-pilot-01-test-plan.md`](../../../docs/csc-pilot-01-test-plan.md). Este documento es revisión de contenido para especialistas, no el plan de reclutamiento ni de activación.
+
 **Producto:** El Estudio de Criar Sin Culpas  
 **Experiencia:** Piloto de validación · `pantallas-desbordes`  
 **Audiencia de este documento:** especialistas en crianza, regulación emocional, desarrollo infantil y/o comunicación parental  

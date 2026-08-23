@@ -1,0 +1,114 @@
+/* Pilot 01 invite banner — Pantallas / Desbordes only */
+.pilot-invite-banner {
+  position: relative;
+  z-index: 20;
+  background: linear-gradient(180deg, #FCE7DD 0%, #FAF6F2 100%);
+  border-bottom: 1px solid rgba(31, 46, 70, 0.08);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  color: #1F2E46;
+}
+
+.pilot-invite-banner[hidden] {
+  display: none !important;
+}
+
+.pilot-invite-banner__inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+}
+
+.pilot-invite-banner__copy {
+  flex: 1 1 240px;
+  min-width: 0;
+}
+
+.pilot-invite-banner__eyebrow {
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #D96B47;
+  margin: 0 0 4px;
+}
+
+.pilot-invite-banner__text {
+  font-size: 0.95rem;
+  line-height: 1.45;
+  margin: 0;
+  max-width: 52ch;
+  color: #1F2E46;
+}
+
+.pilot-invite-banner__note {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.78rem;
+  color: rgba(31, 46, 70, 0.45);
+}
+
+.pilot-invite-banner__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.pilot-invite-banner__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  background: #1F2E46;
+  color: #FAF6F2;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.pilot-invite-banner__cta:hover {
+  background: #182436;
+  transform: translateY(-1px);
+}
+
+.pilot-invite-banner__dismiss {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgba(31, 46, 70, 0.12);
+  background: rgba(255, 255, 255, 0.55);
+  color: rgba(31, 46, 70, 0.55);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.pilot-invite-banner__dismiss:hover {
+  color: #1F2E46;
+  border-color: rgba(31, 46, 70, 0.25);
+}
+
+@media (max-width: 640px) {
+  .pilot-invite-banner__inner {
+    padding: 16px 16px 14px;
+  }
+  .pilot-invite-banner__actions {
+    width: 100%;
+  }
+  .pilot-invite-banner__cta {
+    flex: 1;
+  }
+}

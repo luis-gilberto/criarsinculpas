@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Creative brief · Pilot 01 outreach</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FAF6F2;
+      --blush: #FCE7DD;
+      --navy: #1F2E46;
+      --peach: #D96B47;
+      --ink-40: rgba(31, 46, 70, 0.55);
+      --ink-20: rgba(31, 46, 70, 0.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--navy);
+      line-height: 1.55;
+      padding: 32px 20px 64px;
+    }
+    .sheet {
+      max-width: 720px;
+      margin: 0 auto;
+      background: white;
+      border: 1px solid var(--ink-20);
+      border-radius: 12px;
+      padding: 40px 44px;
+      box-shadow: 0 8px 32px rgba(31, 46, 70, 0.06);
+    }
+    .eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--peach);
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 2.1rem;
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+    h1 em { font-style: italic; font-weight: 500; }
+    .lede { font-size: 1.02rem; color: var(--ink-40); margin-bottom: 28px; }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 32px;
+      padding: 16px;
+      background: var(--cream);
+      border-radius: 8px;
+    }
+    .meta .k {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-40);
+    }
+    .meta .v { font-weight: 600; margin-top: 2px; }
+    h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.45rem;
+      margin: 32px 0 12px;
+      padding-top: 8px;
+      border-top: 1px solid var(--ink-20);
+    }
+    h2:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+    h3 { font-size: 0.95rem; font-weight: 600; margin: 20px 0 8px; }
+    p { margin-bottom: 10px; }
+    ul, ol { margin: 0 0 14px 1.25rem; }
+    li { margin-bottom: 6px; }
+    .block {
+      background: var(--cream);
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin: 10px 0 16px;
+      font-size: 0.95rem;
+    }
+    .block.quote {
+      border-left: 3px solid var(--peach);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.2rem;
+      line-height: 1.4;
+    }
+    .url {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.82rem;
+      word-break: break-all;
+      color: var(--peach);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin: 12px 0 20px;
+    }
+    th, td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--ink-20);
+      vertical-align: top;
+    }
+    th {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-40);
+    }
+    .frame {
+      background: linear-gradient(135deg, var(--blush), var(--cream));
+      border-radius: 10px;
+      padding: 20px 22px;
+      margin: 14px 0;
+    }
+    .frame .dim {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.5;
+      margin-bottom: 10px;
+    }
+    .frame .label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--peach);
+      margin-bottom: 6px;
+    }
+    .frame h4 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+    }
+    .do-dont {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 14px 0;
+    }
+    .do-dont > div {
+      background: var(--cream);
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 0.88rem;
+    }
+    .do-dont .label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .do-dont .do .label { color: #2d6a4f; }
+    .do-dont .dont .label { color: var(--peach); }
+    .do-dont ul { margin: 0; list-style: none; padding: 0; }
+    .do-dont li::before { content: '· '; opacity: 0.4; }
+    .status-active {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: #d8f3dc;
+      color: #1b4332;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+    .status-future {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: var(--blush);
+      color: var(--navy);
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      opacity: 0.85;
+    }
+    .callout {
+      border: 1px dashed var(--peach);
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin: 16px 0;
+      font-size: 0.9rem;
+      background: #fffaf7;
+    }
+    .footer-note {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--ink-20);
+      font-size: 0.85rem;
+      color: var(--ink-40);
+    }
+    @media print {
+      body { background: white; padding: 0; }
+      .sheet { box-shadow: none; border: none; max-width: none; }
+    }
+  </style>
+</head>
+<body>
+  <article class="sheet">
+    <p class="eyebrow">Criar Sin Culpas · El Estudio</p>
+    <h1>Creative brief · Pilot 01 <em>outreach</em></h1>
+    <p class="lede">Private utility test for ~10–15 invited caregivers. This is not a launch, not membership, not therapy, and not an awareness campaign.</p>
+
+    <div class="callout">
+      <strong>Canonical test plan:</strong>
+      <span class="url">/docs/csc-pilot-01-test-plan.md</span>
+      — strategy source of truth. This brief is creative copy and specs only.
+    </div>
+
+    <div class="meta">
+      <div><div class="k">Test</div><div class="v">A · Utility</div></div>
+      <div><div class="k">Experience</div><div class="v">Pantallas → Desbordes</div></div>
+      <div><div class="k">Cohort</div><div class="v">10–15 direct invites</div></div>
+      <div><div class="k">Duration</div><div class="v">5–8 minutes</div></div>
+    </div>
+
+    <h2>Single message</h2>
+    <div class="block quote">
+      Private test. Short experience. When turning off a screen turns hard — help us learn if this actually helps.
+    </div>
+    <p>ES lockup for designers: <em>“Prueba privada. Experiencia breve. Cuando apagar la pantalla se complica.”</em></p>
+
+    <h2>URLs &amp; source tags</h2>
+    <p>Base: <span class="url">https://criarsinculpas.com/portal/piloto/pantallas-desbordes/</span></p>
+    <p>Source tags are preserved for operational tracking. Test A is <strong>not</strong> a channel-performance experiment.</p>
+
+    <h2><span class="status-active">Current · Test A</span> Direct invitation</h2>
+    <p>Recruit ~10–15 caregivers personally. Share the private pilot URL only through Nari’s email or WhatsApp/DM.</p>
+
+    <table>
+      <thead><tr><th>Channel</th><th>URL</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Email from Nari</td><td><span class="url">…/?src=email</span></td><td>Active</td></tr>
+        <tr><td>WhatsApp / DM from Nari</td><td><span class="url">…/?src=nari</span> or <span class="url">…/?src=whatsapp</span></td><td>Active</td></tr>
+        <tr><td>Private landing → identify → experience</td><td>Same base URL</td><td>Active</td></tr>
+      </tbody>
+    </table>
+
+    <h3>1 · Invitation email</h3>
+    <h4 style="font-size:.9rem;margin:16px 0 8px">Subjects</h4>
+    <ol>
+      <li>Estamos probando algo nuevo (y me gustaría tu mirada)</li>
+      <li>Una prueba breve: cuando apagar la pantalla se complica</li>
+      <li>¿Nos ayudas a probar una experiencia de 5–8 minutos?</li>
+    </ol>
+    <h4 style="font-size:.9rem;margin:16px 0 8px">Preview</h4>
+    <div class="block">No es terapia ni un curso. Es una prueba privada de Criar Sin Culpas.</div>
+    <h4 style="font-size:.9rem;margin:16px 0 8px">Body (ES)</h4>
+    <div class="block">
+      <p style="color:var(--navy)">Hola [Nombre],</p>
+      <p style="margin-top:10px">Estoy probando una forma nueva de acompañarte en esos momentos en los que apagar una pantalla termina en tensión, pelea o desborde.</p>
+      <p style="margin-top:10px">No es un curso. No es terapia. No es “la membresía”. Es una experiencia breve (unos 5–8 minutos) dentro de El Estudio: ubicar qué está pasando, encontrar un siguiente paso claro y preparar la próxima transición.</p>
+      <p style="margin-top:10px">Te escribo porque confío en tu honestidad. Quiero saber si esto realmente ayuda — o qué falta.</p>
+      <p style="margin-top:10px"><strong>CTA:</strong> Probar la experiencia → <span class="url">/?src=email</span></p>
+      <p style="margin-top:10px">Al final te pediré un comentario corto. Sin datos de tu hijo o hija. Solo sobre la experiencia.</p>
+      <p style="margin-top:10px">Gracias por estar cerca,<br>Nari · Criar Sin Culpas</p>
+    </div>
+    <p><strong>Design notes:</strong> Plain, personal, Nari’s voice. One navy button. No promo grid, no product collage.</p>
+
+    <h3>2 · WhatsApp / DM (Nari closest list)</h3>
+    <div class="block">
+      Hola [Nombre], ¿me ayudas a probar una experiencia breve de Criar Sin Culpas (5–8 min)? Es privada: cuando apagar la pantalla se complica. Tu feedback me importa mucho:<br>
+      <span class="url">https://criarsinculpas.com/portal/piloto/pantallas-desbordes/?src=nari</span>
+    </div>
+
+    <h3>Test A rollout (operational)</h3>
+    <ol>
+      <li><strong>Day 1</strong> — Personal email + WhatsApp/DM to invited list (~10–15)</li>
+      <li><strong>Day 4</strong> — Soft reminder to non-completers only (same private framing)</li>
+      <li><strong>Day 7–10</strong> — Review Formspree + Plausible; manual follow-up on whether they tried the plan in a real transition</li>
+    </ol>
+
+    <h2><span class="status-future">Future · Test A2 &amp; optional contingency</span> Not active during initial Test A</h2>
+    <p>Do not activate these surfaces until Test A utility evidence is reviewed. Banner code exists but defaults <strong>OFF</strong> (<code>PILOT_BANNER_ENABLED = false</code>).</p>
+
+    <table>
+      <thead><tr><th>Channel</th><th>URL</th><th>When</th></tr></thead>
+      <tbody>
+        <tr><td>Banner · Pantallas</td><td><span class="url">…/?src=pantallas</span></td><td>Test A2 contextual discovery</td></tr>
+        <tr><td>Banner · Desbordes</td><td><span class="url">…/?src=desbordes</span></td><td>Optional · later</td></tr>
+        <tr><td>Instagram Story (recruitment)</td><td><span class="url">…/?src=instagram</span></td><td>Contingency only if direct invites fall short</td></tr>
+        <tr><td>Instagram feed</td><td>—</td><td>Future / optional · not for Test A</td></tr>
+      </tbody>
+    </table>
+
+    <h3>In-product banner (Test A2)</h3>
+    <p>Built for <strong>/apoyo/screen-time</strong> and <strong>/apoyo/emotional-escalation</strong>. Dismissible. Not in global nav or homepage. <strong>Inactive until Test A2.</strong></p>
+    <div class="frame">
+      <div class="dim">Desktop · full width under nav · ~72–88px tall</div>
+      <p class="label">El Estudio · Prueba privada</p>
+      <h4>¿Apagar la pantalla se está volviendo una batalla?</h4>
+      <p>Estamos probando una experiencia breve para acompañarte mejor.<br><span style="opacity:.55;font-size:.85rem">Prueba privada. No es terapia.</span></p>
+      <p style="margin-top:14px"><strong>CTA:</strong> Probar (5–8 min)</p>
+    </div>
+    <h4 style="font-size:.9rem;margin:16px 0 8px">Specs</h4>
+    <ul>
+      <li>Background: blush → cream gradient (<code>#FCE7DD</code> → <code>#FAF6F2</code>)</li>
+      <li>Type: DM Mono eyebrow · DM Sans body · navy CTA <code>#1F2E46</code></li>
+      <li>Accent: peach-deep <code>#D96B47</code> on eyebrow only</li>
+      <li>Mobile: stack copy, then full-width CTA + dismiss</li>
+      <li>Preview locally: <span class="url">/apoyo/screen-time.html?pilot_banner=1</span></li>
+    </ul>
+
+    <h3>Instagram (contingency + future)</h3>
+    <p><strong>Contingency framing only:</strong> “Buscamos a unas pocas familias para probar algo en privado antes de publicarlo.” — not “Come discover El Estudio.”</p>
+    <h4 style="font-size:.9rem;margin:16px 0 8px">Story sequence (if contingency activates)</h4>
+    <table>
+      <thead><tr><th>Frame</th><th>On-screen text</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Cuando la pantalla se apaga… y todo se intensifica.</td><td>Problem. Quiet photo or cream field.</td></tr>
+        <tr><td>2</td><td>Estamos probando una experiencia breve en El Estudio.<br>Ubicar el momento → un siguiente paso → preparar la próxima vez.</td><td>What it is. No membership talk.</td></tr>
+        <tr><td>3</td><td>Buscamos a unas pocas familias para probar esto en privado.<br>5–8 min. Prueba privada. No es terapia.</td><td>Link sticker “Probar” → <span class="url">?src=instagram</span></td></tr>
+      </tbody>
+    </table>
+    <div class="frame">
+      <div class="dim">Feed optional · future only · 1080 × 1350 (4:5) or 1080 × 1080</div>
+      <p class="label">El Estudio · Prueba privada</p>
+      <h4>Cuando apagar la pantalla se convierte en batalla</h4>
+      <p>Una experiencia breve. Tu honestidad importa.</p>
+    </div>
+    <h4 style="font-size:.9rem;margin:16px 0 8px">Feed caption (ES) — future / optional</h4>
+    <div class="block">
+      Estamos probando algo pequeño dentro de El Estudio.<br><br>
+      Una experiencia breve para esos momentos en los que apagar la pantalla termina en tensión o desborde: ubicar qué pasa, encontrar un siguiente paso y prepararte para la próxima vez.<br><br>
+      No es un curso. No es terapia. Es una prueba privada.<br>
+      Si quieres ayudarnos con tu mirada honesta, el enlace está en historias.<br><br>
+      Gracias por cuidar esto conmigo.
+    </div>
+    <h4 style="font-size:.9rem;margin:16px 0 8px">Art direction</h4>
+    <div class="do-dont">
+      <div class="do">
+        <div class="label">Do</div>
+        <ul>
+          <li>Cream / blush / navy / peach</li>
+          <li>Cormorant for the hero line</li>
+          <li>One idea per frame</li>
+          <li>Real calm, human warmth</li>
+        </ul>
+      </div>
+      <div class="dont">
+        <div class="label">Don’t</div>
+        <ul>
+          <li>Purple gradients, glow, emoji piles</li>
+          <li>“NEW / LAUNCH / JOIN NOW”</li>
+          <li>Clinical or therapy language</li>
+          <li>Pricing or membership CTAs</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Success read (directional)</h2>
+    <p>With only 10–15 participants, inspect the funnel — do not treat percentages as hard pass/fail:</p>
+    <ul>
+      <li>Invited → started → identified → situation → orientation → path complete → plan saved → feedback submitted</li>
+      <li>Read comments in Formspree (<code>pilot_01_feedback</code>)</li>
+      <li><strong>Manual follow-up:</strong> did they try something from the plan during a later screen transition?</li>
+    </ul>
+
+    <p class="footer-note">
+      Internal brief · noindex · Pilot 01 Pantallas → Desbordes ·
+      Canonical plan: <span class="url">/docs/csc-pilot-01-test-plan.md</span> ·
+      Banner: <code>/css/pilot-invite-banner.css</code> + <code>/js/pilot-invite-banner.js</code> (default OFF)
+    </p>
+  </article>
+</body>
+</html>
